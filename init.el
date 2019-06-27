@@ -5,7 +5,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+             '("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
 
 (package-initialize)
 
