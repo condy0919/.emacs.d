@@ -3,8 +3,8 @@
       make-backup-files nil
       auto-save-default nil
       ring-bell-function 'ignore
-      blink-cursor-mode nil)
-
+      blink-cursor-mode nil
+      scroll-conservatively 1000)
 
 (setq-default indent-tabs-mode nil)
 
