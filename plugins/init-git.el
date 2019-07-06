@@ -2,6 +2,9 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
+(setq magit-status-margin
+  '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
+
 (use-package projectile
   :ensure t
   :config
@@ -10,7 +13,11 @@
   :bind (("C-c p a" . projectile-find-file)))
 
 (use-package treemacs-projectile
-  :ensure t)
+  :defer t
+  :ensure t
+  :config
+  (setq treemacs-header-function #'treemacs-projectile-create-header)
+)
 
 
 (provide 'init-git)

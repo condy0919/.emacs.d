@@ -12,7 +12,6 @@
 
 (delete-selection-mode t)
 (global-hl-line-mode t)
-(show-paren-mode t)
 
 (defalias 'list-buffers 'ibuffer)
 
@@ -22,6 +21,12 @@
   (tool-bar-mode -1))
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
+
+(use-package paren
+  :ensure nil
+  :hook (after-init . show-paren-mode)
+  :config (setq show-paren-when-point-inside-paren t
+                show-paren-when-point-in-periphery t))
 
 (use-package try
   :ensure t)

@@ -2,6 +2,25 @@
 (use-package ripgrep
   :ensure t)
 
+;; 模糊匹配文件
+(use-package fzf
+  :ensure t)
+
+;; 目录过滤
+(use-package dired-narrow
+  :ensure t
+  :config
+  (bind-key "C-c C-n" #'dired-narrow)
+  (bind-key "C-c C-f" #'dired-narrow-fuzzy))
+
+;; 显示当前目录下内容
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :config
+  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
+
 ;; 定位单词位置
 (use-package avy
   :ensure t
