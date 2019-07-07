@@ -54,6 +54,20 @@
 	("C-c 1"     . treemacs-delete-other-windows))
 )
 
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode t)
+  (setq projectile-completion-system 'ivy)
+  :bind (("C-c p a" . projectile-find-file)))
+
+(use-package treemacs-projectile
+  :defer t
+  :ensure t
+  :config
+  (setq treemacs-header-function #'treemacs-projectile-create-header)
+)
+
 ;; lint 工具
 (use-package flycheck
   :ensure t

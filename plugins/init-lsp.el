@@ -16,8 +16,8 @@
   :commands lsp-ui-mode
   :hook (lsp-mode . lsp-ui-mode)
   :config
-  (setq lsp-ui-doc-max-height 8
-        lsp-ui-doc-max-width 35
+  (setq lsp-ui-doc-max-height 10
+        lsp-ui-doc-max-width 40
         lsp-ui-sideline-ignore-duplicate t))
 
 (use-package company-lsp
