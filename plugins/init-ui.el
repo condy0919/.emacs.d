@@ -9,9 +9,12 @@
   :ensure t)
 
 (use-package zenburn-theme
+  :ensure t)
+
+(use-package doom-themes
   :ensure t
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'doom-one t))
 
 (use-package powerline
   :ensure t
