@@ -75,11 +75,15 @@
               ("C-c f" . clang-format-region))
 )
 
+(use-package highlight-doxygen
+  :ensure t
+  :hook ((c-mode c++-mode objc-mode) . highlight-doxygen-mode))
+
 ;; rust
 (use-package rust-mode
   :ensure t
   :config
-  (setq rust-format-on-save t)
+;;  (setq rust-format-on-save t)
   (use-package cargo
     :ensure t
     :diminish cargo-minor-mode
