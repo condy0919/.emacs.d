@@ -11,9 +11,9 @@
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   :hook (compilation-filter . my-colorize-compilation-buffer))
 
-(use-package display-line-numbers
-  :ensure nil
-  :hook (prog-mode . display-line-numbers-mode))
+(use-package diff-hl
+  :ensure t
+  :hook (prog-mode . diff-hl-mode))
 
 ;; 高亮 TODO
 (use-package hl-todo
@@ -25,7 +25,7 @@
               ("C-c t o" . hl-todo-occur))
   :hook (after-init . global-hl-todo-mode)
   :config
-  (dolist (keyword '("BUG" "ISSUE" "FIXME" "XXX"))
+  (dolist (keyword '("BUG" "ISSUE" "FIXME" "XXX" "NOTE" "NB"))
     (cl-pushnew `(,keyword . ,(face-foreground 'error)) hl-todo-keyword-faces))
   (dolist (keyword '("WORKAROUND" "HACK" "TRICK"))
     (cl-pushnew `(,keyword . ,(face-foreground 'warning)) hl-todo-keyword-faces)))
@@ -45,18 +45,6 @@
     (setq dumb-jump-selector 'ivy)))
 
 ;; C/C++
-(use-package ccls
-  :ensure t
-  :config
-  (setq ccls-sem-highlight-method 'font-lock
-	ccls-initialization-options
-	`(:clang
-	  (:extraArgs ["-std=c++17"]))
-    )
-  :hook ((c-mode c++-mode objc-mode) .
-	 (lambda () (require 'ccls) (lsp)))
-)
-
 (use-package cc-mode
   :ensure nil
   :hook (c-mode-common . (lambda ()
@@ -75,10 +63,6 @@
               ("C-c f" . clang-format-region))
 )
 
-(use-package highlight-doxygen
-  :ensure t
-  :hook ((c-mode c++-mode objc-mode) . highlight-doxygen-mode))
-
 ;; rust
 (use-package rust-mode
   :ensure t
@@ -94,5 +78,10 @@
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
   (add-hook 'rust-mode-hook 'flycheck-mode))
+
+;; bazel
+(use-package bazel-mode
+  :ensure t
+  :hook (bazel-mode . (lambda () (add-hook 'before-save-hook #'bazel-format nil t))))
 
 (provide 'init-dev)

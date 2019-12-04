@@ -68,10 +68,4 @@
   (setq treemacs-header-function #'treemacs-projectile-create-header)
 )
 
-;; lint 工具
-(use-package flycheck
-  :ensure t
-  :hook (after-init . global-flycheck-mode)
-  :diminish " FC")
-
 (provide 'init-misc)

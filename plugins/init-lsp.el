@@ -25,4 +25,10 @@
   :config
   (setq company-lsp-enable-recompletion t))
 
+;; lint 工具
+(use-package flycheck
+  :ensure t
+  :hook (after-init . global-flycheck-mode)
+  :diminish " FC")
+
 (provide 'init-lsp)
