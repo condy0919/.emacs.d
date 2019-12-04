@@ -8,7 +8,14 @@
         lsp-prefer-flymake nil
         flymake-fringe-indicator-position 'right-fringe)
   :config
-  (setq lsp-enable-snippet nil)
+  (setq lsp-enable-snippet nil
+        lsp-clients-clangd-args '("-j=2"
+                                  "--background-index"
+                                  "--clang-tidy"
+                                  "--suggest-missing-includes"
+                                  "--completion-style=bundled"
+                                  "--header-insertion=iwyu"
+                                  "--pch-storage=memory"))
   :commands lsp)
 
 (use-package lsp-ui
