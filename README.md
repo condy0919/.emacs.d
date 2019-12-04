@@ -9,5 +9,5 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 * company
 * lsp-mode
-* ccls
+* clangd
 * rust-mode
