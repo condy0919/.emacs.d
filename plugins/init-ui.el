@@ -1,6 +1,6 @@
 ;; 操作提示
 (use-package which-key
-  :ensure t 
+  :ensure t
   :config
   (which-key-mode))
 
@@ -16,10 +16,9 @@
   :config
   (load-theme 'doom-one t))
 
-(use-package powerline
+(use-package doom-modeline
   :ensure t
-  :config
-  (powerline-default-theme))
+  :hook (after-init . doom-modeline-mode))
 
 ;; windows 间跳转
 (use-package ace-window
