@@ -3,13 +3,13 @@
   :defer t
   :init (global-company-mode)
   :bind (
-	 :map company-active-map
-	 ("C-p" . company-select-previous)
-	 ("C-n" . company-select-next)
+     :map company-active-map
+     ("C-p" . company-select-previous)
+     ("C-n" . company-select-next)
      ("<tab>" . company-complete-common-or-cycle)
-	 :map company-search-map
-	 ("C-p" . company-select-previous)
-	 ("C-n" . company-select-next))
+     :map company-search-map
+     ("C-p" . company-select-previous)
+     ("C-n" . company-select-next))
   :config
   (progn
     ;; Use Company for completion

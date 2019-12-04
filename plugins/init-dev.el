@@ -11,10 +11,6 @@
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   :hook (compilation-filter . my-colorize-compilation-buffer))
 
-(use-package diff-hl
-  :ensure t
-  :hook (prog-mode . diff-hl-mode))
-
 ;; 高亮 TODO
 (use-package hl-todo
   :ensure t

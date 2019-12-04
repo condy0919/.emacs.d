@@ -54,6 +54,9 @@
 	("C-c 1"     . treemacs-delete-other-windows))
 )
 
+(use-package treemacs-evil
+  :ensure t)
+
 (use-package projectile
   :ensure t
   :config
@@ -65,7 +68,9 @@
   :defer t
   :ensure t
   :config
-  (setq treemacs-header-function #'treemacs-projectile-create-header)
-)
+  (setq treemacs-header-function #'treemacs-projectile-create-header))
+
+(use-package lsp-treemacs
+  :ensure t)
 
 (provide 'init-misc)
