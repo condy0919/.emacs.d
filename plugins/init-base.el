@@ -8,6 +8,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(set-face-attribute 'default nil :height 120)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (delete-selection-mode t)
@@ -43,7 +45,7 @@
 
 (use-package expand-region
   :ensure t
-  :config 
+  :config
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (global-set-key (kbd "C-.") 'set-mark-command)
