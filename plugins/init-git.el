@@ -8,6 +8,10 @@
 ;; 显示当前版本与上个版本的差异
 (use-package diff-hl
   :ensure t
-  :hook (prog-mode . diff-hl-mode))
+  :hook (prog-mode . (lambda ()
+                       (progn
+                         (diff-hl-mode)
+                         (diff-hl-flydiff-mode)
+                         (diff-hl-margin-mode)))))
 
 (provide 'init-git)
