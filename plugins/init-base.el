@@ -14,6 +14,8 @@
 
 (delete-selection-mode t)
 (global-hl-line-mode t)
+(line-number-mode t)
+(column-number-mode t)
 
 (defalias 'list-buffers 'ibuffer)
 
