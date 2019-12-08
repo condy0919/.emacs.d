@@ -4,10 +4,6 @@
   :config
   (which-key-mode))
 
-;; 显示 tips
-(use-package posframe
-  :ensure t)
-
 (use-package doom-themes
   :ensure t
   :config

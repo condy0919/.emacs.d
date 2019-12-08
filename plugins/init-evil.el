@@ -8,13 +8,6 @@
               :map evil-insert-state-map
 	      ([escape] . evil-normal-state)))
 
-(use-package evil-leader
-  :ensure t
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "\\")
-)
-
 (use-package evil-surround
   :ensure t
   :config

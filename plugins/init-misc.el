@@ -9,6 +9,7 @@
 ;; 目录过滤
 (use-package dired-narrow
   :ensure t
+  :after dired
   :config
   (bind-key "C-c C-n" #'dired-narrow)
   (bind-key "C-c C-f" #'dired-narrow-fuzzy))
@@ -53,24 +54,5 @@
 	("M-0"       . treemacs-select-window)
 	("C-c 1"     . treemacs-delete-other-windows))
 )
-
-(use-package treemacs-evil
-  :ensure t)
-
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-global-mode t)
-  (setq projectile-completion-system 'ivy)
-  :bind (("C-c p a" . projectile-find-file)))
-
-(use-package treemacs-projectile
-  :defer t
-  :ensure t
-  :config
-  (setq treemacs-header-function #'treemacs-projectile-create-header))
-
-(use-package lsp-treemacs
-  :ensure t)
 
 (provide 'init-misc)

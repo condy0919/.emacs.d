@@ -24,7 +24,6 @@
 (use-package init-ui)
 (use-package init-misc)
 (use-package init-evil)
-(use-package init-company)
 (use-package init-lsp)
 (use-package init-git)
 (use-package init-dev)
