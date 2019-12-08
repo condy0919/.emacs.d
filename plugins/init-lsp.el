@@ -46,10 +46,17 @@
   :config
   (setq lsp-ui-doc-max-height 10
         lsp-ui-doc-max-width 40
-        lsp-ui-sideline-ignore-duplicate t))
+        lsp-ui-sideline-enable nil
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-doc-header nil
+        lsp-ui-doc-include-signature nil))
 
 (use-package company-lsp
-  :ensure t)
+  :ensure t
+  :after lsp-mode
+  :config
+  (setq company-transformers nil
+        company-lsp-cache-candidates nil))
 
 ;; lint 工具
 (use-package flycheck

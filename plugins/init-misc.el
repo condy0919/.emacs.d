@@ -1,5 +1,5 @@
 ;; 快速搜索
-(use-package ripgrep
+(use-package rg
   :ensure t)
 
 ;; 模糊匹配文件

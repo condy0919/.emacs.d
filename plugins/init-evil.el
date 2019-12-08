@@ -10,7 +10,6 @@
 
 (use-package evil-surround
   :ensure t
-  :config
-  (global-evil-surround-mode 1))
+  :hook (prog-mode . evil-surround-mode))
 
 (provide 'init-evil)
