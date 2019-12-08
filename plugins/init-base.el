@@ -35,21 +35,6 @@
 (use-package try
   :ensure t)
 
-(use-package undo-tree
-  :ensure t
-  :init
-  (global-undo-tree-mode))
-
-(use-package beacon
-  :ensure t
-  :config
-  (beacon-mode 1))
-
-(use-package expand-region
-  :ensure t
-  :config
-  (global-set-key (kbd "C-=") 'er/expand-region))
-
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
