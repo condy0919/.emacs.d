@@ -6,7 +6,7 @@
   :bind (:map evil-motion-state-map
               ("C-u" . scroll-down-command)
               :map evil-insert-state-map
-	      ([escape] . evil-normal-state)))
+          ([escape] . evil-normal-state)))
 
 (use-package evil-surround
   :ensure t
