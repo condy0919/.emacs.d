@@ -58,6 +58,10 @@
   (setq company-transformers nil
         company-lsp-cache-candidates nil))
 
+(use-package lsp-ivy
+  :ensure t
+  :after lsp-mode)
+
 ;; lint 工具
 (use-package flycheck
   :ensure t
