@@ -8,7 +8,7 @@
 
 (setq-default indent-tabs-mode nil)
 
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 140)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
