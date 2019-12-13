@@ -31,7 +31,9 @@
 (use-package cc-mode
   :ensure nil
   :hook (c-mode-common . (lambda ()
-                           (c-set-offset 'innamespace [0]))))
+                           (c-set-offset 'innamespace [0])
+                           (setq c-basic-offset 4
+                                 tab-width 4))))
 
 (use-package modern-cpp-font-lock
   :ensure t
@@ -69,7 +71,7 @@
 ;; show trailing whitespaces
 (use-package whitespace
   :ensure nil
-  :hook (prog-mode . whitespace-mode)
+  :hook ((prog-mode markdown-mode conf-mode) . whitespace-mode)
   :config
   (setq whitespace-style '(face trailing)))
 
