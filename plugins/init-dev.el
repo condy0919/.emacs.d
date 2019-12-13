@@ -27,12 +27,11 @@
     (cl-pushnew `(,keyword . ,(face-foreground 'warning)) hl-todo-keyword-faces)))
 
 ;; C/C++
+;; no indentation inside namespace
 (use-package cc-mode
   :ensure nil
   :hook (c-mode-common . (lambda ()
-                           (c-set-style "stroustrup")
-                           (setq tab-width 4
-                                 c-basic-offset 4))))
+                           (c-set-offset 'innamespace [0]))))
 
 (use-package modern-cpp-font-lock
   :ensure t
@@ -63,7 +62,8 @@
 
 ;; bazel
 (use-package bazel-mode
-  :ensure t
+  ;;:ensure t
+  :load-path "/home/condy/.emacs.d/localtest"
   :hook (bazel-mode . (lambda () (add-hook 'before-save-hook #'bazel-format nil t))))
 
 ;; show trailing whitespaces
