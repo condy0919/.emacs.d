@@ -6,10 +6,7 @@
       blink-cursor-mode nil
       scroll-conservatively 1000)
 
-;; never use tabs
-(setq-default indent-tabs-mode nil
-              c-basic-offset 4
-              tab-width 4)
+(setq-default indent-tabs-mode nil)
 
 (set-face-attribute 'default nil :height 140)
 
