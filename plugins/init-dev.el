@@ -66,4 +66,11 @@
   :ensure t
   :hook (bazel-mode . (lambda () (add-hook 'before-save-hook #'bazel-format nil t))))
 
+;; show trailing whitespaces
+(use-package whitespace
+  :ensure nil
+  :hook (prog-mode . whitespace-mode)
+  :config
+  (setq whitespace-style '(face trailing)))
+
 (provide 'init-dev)
