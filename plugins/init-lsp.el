@@ -35,7 +35,6 @@
                                   "--clang-tidy"
                                   "--suggest-missing-includes"
                                   "--completion-style=bundled"
-                                  "--header-insertion=iwyu"
                                   "--pch-storage=memory"))
   :commands lsp)
 
