@@ -55,16 +55,22 @@
   :after lsp-mode
   :config
   (setq company-transformers nil
-        company-lsp-cache-candidates nil))
+        company-lsp-cache-candidates 'auto))
 
 (use-package lsp-ivy
   :ensure t
-  :after lsp-mode)
+  :after lsp-mode
+  :bind (:map lsp-mode-map
+              ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)))
 
 ;; lint 工具
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode)
   :diminish " FC")
+
+(use-package flycheck-posframe
+  :ensure t
+  :hook (flycheck-mode . flycheck-posframe-mode))
 
 (provide 'init-lsp)
