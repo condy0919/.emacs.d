@@ -38,4 +38,7 @@
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
+;; no corpse
+(substitute-key-definition 'kill-buffer 'kill-buffer-and-window global-map)
+
 (provide 'init-base)
