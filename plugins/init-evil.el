@@ -12,4 +12,7 @@
   :ensure t
   :hook (prog-mode . evil-surround-mode))
 
+(use-package evil-magit
+  :ensure t)
+
 (provide 'init-evil)
