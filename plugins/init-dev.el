@@ -43,8 +43,7 @@
   :ensure t
   :commands (clang-format-region)
   :bind (:map c-mode-base-map
-              ("C-c f" . clang-format-region))
-)
+              ("C-c f" . clang-format-region)))
 
 ;; rust
 (use-package rust-mode
@@ -74,5 +73,10 @@
   :hook ((prog-mode markdown-mode conf-mode) . whitespace-mode)
   :config
   (setq whitespace-style '(face trailing)))
+
+;; quickrun codes, including cpp. awesome!
+(use-package quickrun
+  :ensure t
+  :bind (("C-c r" . quickrun)))
 
 (provide 'init-dev)
