@@ -56,10 +56,12 @@
   :config
   (setq lsp-ui-doc-max-height 10
         lsp-ui-doc-max-width 40
-        lsp-ui-sideline-enable nil
-        lsp-ui-sideline-ignore-duplicate t
         lsp-ui-doc-header nil
-        lsp-ui-doc-include-signature nil))
+        lsp-ui-doc-include-signature nil
+        lsp-ui-sideline-show-hover 1
+        lsp-ui-flycheck-enable t)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package company-lsp
   :ensure t
@@ -79,9 +81,5 @@
   :ensure t
   :hook (prog-mode . flycheck-mode)
   :diminish " FC")
-
-(use-package flycheck-posframe
-  :ensure t
-  :hook (flycheck-mode . flycheck-posframe-mode))
 
 (provide 'init-lsp)
