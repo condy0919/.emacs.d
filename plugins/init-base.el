@@ -17,6 +17,8 @@
 (line-number-mode t)
 (column-number-mode t)
 
+(save-place-mode 1)
+
 (defalias 'list-buffers 'ibuffer)
 
 (when (fboundp 'menu-bar-mode)
