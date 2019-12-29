@@ -21,6 +21,17 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
+;; popups doc at the right of candidates menu
+(use-package company-quickhelp
+  :ensure t
+  :after company-mode)
+
+(use-package company-posframe
+  :ensure t
+  :after company-mode
+  :config
+  (setq company-posframe-quickhelp-delay 0))
+
 (use-package lsp-mode
   :ensure t
   :hook (prog-mode . lsp-deferred)
