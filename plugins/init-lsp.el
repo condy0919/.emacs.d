@@ -21,16 +21,10 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
-;; popups doc at the right of candidates menu
-(use-package company-quickhelp
-  :ensure t
-  :after company-mode)
-
+;; 补全窗口弹出更快
 (use-package company-posframe
   :ensure t
-  :after company-mode
-  :config
-  (setq company-posframe-quickhelp-delay 0))
+  :hook (company-mode . company-posframe-mode))
 
 (use-package lsp-mode
   :ensure t
@@ -59,6 +53,7 @@
         lsp-ui-doc-header nil
         lsp-ui-doc-include-signature nil
         lsp-ui-sideline-show-hover 1
+        lsp-ui-sideline-ignore-duplicate t
         lsp-ui-flycheck-enable t)
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
