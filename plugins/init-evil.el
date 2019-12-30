@@ -4,9 +4,12 @@
   :config
   (setcdr evil-insert-state-map nil)
   :bind (:map evil-motion-state-map
-              ("C-u" . scroll-down-command)
-              :map evil-insert-state-map
-          ([escape] . evil-normal-state)))
+         ("C-u" . scroll-down-command)
+         :map evil-insert-state-map
+         ([escape] . evil-normal-state)
+         :map evil-normal-state-map
+         ("M-." . xref-find-defitions)
+         ))
 
 (use-package evil-surround
   :ensure t
