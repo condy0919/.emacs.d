@@ -1,9 +1,10 @@
 (use-package magit
   :ensure t
-  :bind (("C-x g" . magit-status)))
+  :bind (("C-x g" . magit-status))
+  :config
+  (setq magit-status-margin
+        '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
-(setq magit-status-margin
-  '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
 
 ;; 显示当前版本与上个版本的差异
 (use-package diff-hl
