@@ -8,7 +8,7 @@
          :map evil-insert-state-map
          ([escape] . evil-normal-state)
          :map evil-normal-state-map
-         ("M-." . xref-find-defitions)
+         ("M-." . xref-find-definitions)
          ))
 
 (use-package evil-surround
