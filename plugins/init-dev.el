@@ -42,6 +42,7 @@
 ;; quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
+  :defer t
   :bind (("C-c x" . quickrun)))
 
 ;; A tree layout file explorer
@@ -75,6 +76,28 @@
         treemacs-goto-tag-strategy          'refetch-index)
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t))
+
+;; project management
+(use-package projectile
+  :ensure t
+  :defines projectile-mode-map
+  :bind (:map projectile-mode-map
+         ("C-c p" . projectile-command-map))
+  :hook (prog-mode . projectile-mode)
+  :config
+  (setq projectile-completion-system 'ivy))
+
+(use-package treemacs-evil
+  :ensure t
+  :after treemacs evil)
+
+(use-package treemacs-projectile
+  :ensure t
+  :after treemacs projectile)
+
+(use-package treemacs-magit
+  :ensure t
+  :after treemacs magit)
 
 ;; lint tool
 (use-package flycheck

@@ -16,6 +16,12 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "S-<return>") 'comment-indent-new-line)
 
+(setq adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
+(setq adaptive-fill-first-line-regexp "^* *$")
+
+(setq sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+(setq sentence-end-double-space nil)
+
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
@@ -47,9 +53,9 @@
 ;; show line/column number
 (use-package simple
   :ensure nil
-  :init
-  (setq line-number-mode t
-        column-number-mode t))
+  :hook (after-init . (lambda ()
+                        (line-number-mode)
+                        (column-number-mode))))
 
 ;; back to the previous position
 (use-package saveplace

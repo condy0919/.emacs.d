@@ -23,7 +23,8 @@
   :hook (prog-mode . evil-surround-mode))
 
 (use-package evil-magit
-  :ensure t)
+  :ensure t
+  :after evil magit)
 
 (provide 'init-evil)
 

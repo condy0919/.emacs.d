@@ -12,11 +12,13 @@
 
 ;; The blazing grep tool
 (use-package rg
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; fuzzy search
 (use-package fzf
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; Jump to arbitrary positions
 (use-package avy
@@ -26,6 +28,7 @@
 ;; fuzzy matcher
 (use-package counsel
   :ensure t
+  :defer t
   :diminish counsel-mode
   :hook (ivy-mode . counsel-mode)
   :bind (("M-y" . counsel-yank-pop)
@@ -46,11 +49,13 @@
 ;; search in local buffer
 (use-package swiper
   :ensure t
+  :defer t
   :bind (("C-s" . swiper-isearch)))
 
 ;; switch windows quickly
 (use-package ace-window
   :ensure t
+  :defer t
   :bind (:map global-map
          ("M-o" . ace-window))
   :config

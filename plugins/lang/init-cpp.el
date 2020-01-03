@@ -21,6 +21,7 @@
 (use-package clang-format
   :ensure t
   :commands (clang-format-region)
+  :defer t
   :bind (:map c-mode-base-map
               ("C-c f" . clang-format-region)))
 
