@@ -15,6 +15,9 @@
                      ".cache"
                      "cache"
                      "recentf"
+                     "^/tmp/"
+                     "^/usr/include/"
+                     "bookmarks"
                      "COMMIT_EDITMSG\\'"))
   :preface
   (defun my/recentf-save-list-silence ()
