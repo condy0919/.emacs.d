@@ -35,6 +35,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (use-package init-base)
+(use-package init-startup)
 (use-package init-org)
 (use-package init-ui)
 (use-package init-tools)
