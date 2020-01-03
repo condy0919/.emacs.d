@@ -1,3 +1,11 @@
+;;; init-git.el --- Git is awesome
+
+;;; Commentary:
+;;
+
+;;; Code:
+
+;; The awesome git client
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
@@ -6,13 +14,15 @@
         '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
 
-;; 显示当前版本与上个版本的差异
+;; highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t
-  :hook (prog-mode . (lambda ()
-                       (progn
-                         (diff-hl-mode)
-                         (diff-hl-flydiff-mode)
-                         (diff-hl-margin-mode)))))
+  :hook ((prog-mode . (lambda ()
+                        (diff-hl-mode)
+                        (diff-hl-flydiff-mode)
+                        (diff-hl-margin-mode)))
+         (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (provide 'init-git)
+
+;;; init-git.el ends here

@@ -1,3 +1,10 @@
+;;; init-evil.el --- Bring vim back
+
+;;; Commentary:
+;;
+
+;;; Code:
+
 (use-package evil
   :ensure t
   :hook (after-init . evil-mode)
@@ -19,3 +26,5 @@
   :ensure t)
 
 (provide 'init-evil)
+
+;;; init-evil.el ends here

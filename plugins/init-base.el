@@ -1,3 +1,10 @@
+;;; init-base.el --- The necessary settings
+
+;;; Commentary:
+;;
+
+;;; Code:
+
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       make-backup-files nil
@@ -6,18 +13,16 @@
       blink-cursor-mode nil
       scroll-conservatively 1000)
 
+(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "S-<return>") 'comment-indent-new-line)
+
+;; No tabs
 (setq-default indent-tabs-mode nil)
 
+;; font size
 (set-face-attribute 'default nil :height 140)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(delete-selection-mode t)
-(global-hl-line-mode t)
-(line-number-mode t)
-(column-number-mode t)
-
-(save-place-mode 1)
 
 (defalias 'list-buffers 'ibuffer)
 
@@ -34,11 +39,32 @@
   :config (setq show-paren-when-point-inside-paren t
                 show-paren-when-point-in-periphery t))
 
+;; The selected region of text can be deleted
+(use-package delsel
+  :ensure nil
+  :hook (after-init . delete-selection-mode))
+
+;; show line/column number
+(use-package simple
+  :ensure nil
+  :init
+  (setq line-number-mode t
+        column-number-mode t))
+
+;; back to the previous position
+(use-package saveplace
+  :ensure nil
+  :hook (after-init . save-place-mode))
+
+;; highlight current line
+(use-package hl-line
+  :ensure nil
+  :hook (after-init . global-hl-line-mode))
+
+;; Try out emacs package without installing
 (use-package try
   :ensure t)
 
-(global-set-key (kbd "C-.") 'set-mark-command)
-(global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "S-<return>") 'comment-indent-new-line)
-
 (provide 'init-base)
+
+;;; init-base.el ends here
