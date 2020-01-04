@@ -89,7 +89,10 @@
 
 (use-package treemacs-evil
   :ensure t
-  :after treemacs evil)
+  :after treemacs evil
+  :config
+  (evil-define-key 'treemacs treemacs-mode-map (kbd "l") 'treemacs-RET-action)
+  (evil-define-key 'treemacs treemacs-mode-map (kbd "h") 'treemacs-TAB-action))
 
 (use-package treemacs-projectile
   :ensure t
