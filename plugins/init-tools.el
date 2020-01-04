@@ -85,12 +85,19 @@
                                     (setq this-command 'winner-undo))))
                             (?r winner-redo))))
 
+;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "pandoc"))
+
+;; free hands
+(use-package auto-package-update
+  :ensure t
+  :defines auto-package-update-delete-old-version
+  :init (setq auto-package-update-delete-old-version t))
 
 (provide 'init-tools)
 
