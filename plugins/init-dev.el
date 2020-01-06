@@ -42,13 +42,11 @@
 ;; quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
-  :defer t
   :bind (("C-c x" . quickrun)))
 
 ;; A tree layout file explorer
 (use-package treemacs
   :ensure t
-  :defer t
   :commands (treemacs-follow-mode
              treemacs-filewatch-mode
              treemacs-fringe-indicator-mode

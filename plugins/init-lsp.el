@@ -8,7 +8,6 @@
 ;; The completion engine
 (use-package company
   :ensure t
-  :defer t
   :diminish company-mode
   :defines (company-dabbrev-downcase company-dabbrev-ignore-case)
   :hook (prog-mode . company-mode)
