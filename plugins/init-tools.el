@@ -28,7 +28,6 @@
 ;; fuzzy matcher
 (use-package counsel
   :ensure t
-  :defer t
   :diminish counsel-mode
   :hook (ivy-mode . counsel-mode)
   :bind (("M-y" . counsel-yank-pop)
@@ -49,13 +48,11 @@
 ;; search in local buffer
 (use-package swiper
   :ensure t
-  :defer t
   :bind (("C-s" . swiper-isearch)))
 
 ;; switch windows quickly
 (use-package ace-window
   :ensure t
-  :defer t
   :bind (:map global-map
          ("M-o" . ace-window))
   :config
@@ -88,10 +85,17 @@
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
+  :init (setq markdown-command "pandoc")
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc"))
+  :preface
+  (defun my/markdown-insert-ruby-tag ()
+    (interactive)
+    (let ((text (read-string "text: "))
+          (extra (read-string "extra text: ")))
+      (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text extra))))
+  :bind (("C-c r" . my/markdown-insert-ruby-tag)))
 
 ;; free hands
 (use-package auto-package-update
