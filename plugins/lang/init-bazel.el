@@ -8,13 +8,11 @@
 (use-package bazel-mode
   :ensure t
   :straight (:host github :repo "bazelbuild/emacs-bazel-mode")
-  :defer t
   :config (setq bazel-mode-buildifier-before-save t))
 
 (use-package bazel-build
   :ensure t
-  :straight (:host github :repo "bazelbuild/emacs-bazel-mode")
-  :defer t)
+  :straight (:host github :repo "bazelbuild/emacs-bazel-mode"))
 
 (provide 'init-bazel)
 
