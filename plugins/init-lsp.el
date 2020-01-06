@@ -29,11 +29,6 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
-;; Use posframe as the candidates menu
-(use-package company-posframe
-  :ensure t
-  :hook (company-mode . company-posframe-mode))
-
 (use-package lsp-mode
   :ensure t
   :defines lsp-clients-clangd-args
