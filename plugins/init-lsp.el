@@ -30,7 +30,6 @@
 
 (use-package lsp-mode
   :ensure t
-  :defines lsp-clients-clangd-args
   :hook (prog-mode . lsp-deferred)
   :init
   (setq lsp-auto-guess-root t
@@ -38,13 +37,7 @@
         lsp-prefer-flymake nil
         flymake-fringe-indicator-position 'right-fringe)
   :config
-  (setq lsp-enable-snippet nil
-        lsp-clients-clangd-args '("-j=2"
-                                  "--background-index"
-                                  "--clang-tidy"
-                                  "--suggest-missing-includes"
-                                  "--completion-style=bundled"
-                                  "--pch-storage=memory"))
+  (setq lsp-enable-snippet nil)
   :commands lsp)
 
 (use-package lsp-ui
@@ -59,6 +52,7 @@
   :config
   (setq
     ;; doc
+    lsp-ui-doc-enable nil
     lsp-ui-doc-max-height 30
     lsp-ui-doc-max-width 60
     lsp-ui-doc-header nil
@@ -66,11 +60,10 @@
     ;; sideline
     lsp-ui-sideline-enable t
     lsp-ui-sideline-ignore-duplicate t
-    lsp-ui-sideline-show-hover t
-    lsp-ui-sideline-show-symbol t
+    lsp-ui-sideline-show-hover nil
+    lsp-ui-sideline-show-symbol nil
     lsp-ui-sideline-show-diagnostics t
     lsp-ui-sideline-show-code-actions t
-    lsp-ui-sideline-code-action-prefix ""
     ;; flycheck
     lsp-ui-flycheck-enable t))
 
