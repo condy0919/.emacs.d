@@ -7,9 +7,12 @@
 git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
-仅包含**C/C++/Rust**相关配置
+仅包含**C/C++/Rust**相关配置，且全线使用 `lsp`
 
-* company
-* lsp-mode
-* clangd
-* rust-mode
+# cc-mode
+
+- clangd `lsp-mode` 默认
+
+# rust-mode
+
+- rls `lsp-mode` 默认
