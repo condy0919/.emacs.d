@@ -24,13 +24,8 @@
 
 (use-package modern-cpp-font-lock
   :ensure t
+  :diminish t
   :hook (c++-mode . modern-c++-font-lock-mode))
-
-(use-package clang-format
-  :ensure t
-  :commands (clang-format-region)
-  :bind (:map c-mode-base-map
-              ("C-c f" . clang-format-region)))
 
 (provide 'init-cpp)
 

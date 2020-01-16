@@ -31,13 +31,14 @@
 (use-package lsp-mode
   :ensure t
   :hook (prog-mode . lsp-deferred)
-  :init
-  (setq lsp-auto-guess-root t
-        lsp-keep-workspace-alive nil ;; auto kill lsp server
-        lsp-prefer-flymake nil
-        flymake-fringe-indicator-position 'right-fringe)
-  :config
-  (setq lsp-enable-snippet nil)
+  :init (setq flymake-fringe-indicator-position 'right-fringe)
+  :custom
+  (lsp-auto-guess-root t)
+  (lsp-keep-workspace-alive nil) ;; auto kill lsp server
+  (lsp-prefer-flymake nil)
+  (lsp-enable-snippet nil)
+  :bind (:map lsp-mode-map
+         ("C-c f" . lsp-format-region))
   :commands lsp)
 
 (use-package lsp-ui

@@ -78,12 +78,11 @@
 ;; project management
 (use-package projectile
   :ensure t
-  :defines projectile-mode-map
   :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
   :hook (prog-mode . projectile-mode)
-  :config
-  (setq projectile-completion-system 'ivy))
+  :custom
+  (projectile-completion-system 'ivy))
 
 (use-package treemacs-evil
   :ensure t

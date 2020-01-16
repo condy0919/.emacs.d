@@ -85,7 +85,9 @@
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
-  :init (setq markdown-command "pandoc")
+  :custom
+  (markdown-command "pandoc")
+  (markdown-fontify-code-blocks-natively t)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
@@ -95,13 +97,46 @@
     (let ((text (read-string "text: "))
           (extra (read-string "extra text: ")))
       (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text extra))))
-  :bind (("C-c r" . my/markdown-insert-ruby-tag)))
+  :bind (:map markdown-mode-map
+         ("C-c r" . my/markdown-insert-ruby-tag)))
 
 ;; free hands
 (use-package auto-package-update
   :ensure t
-  :defines auto-package-update-delete-old-version
-  :init (setq auto-package-update-delete-old-version t))
+  :custom
+  (auto-package-update-delete-old-version t))
+
+;; toggle shell
+(use-package aweshell
+  :ensure t
+  :straight (:host github :repo "manateelazycat/aweshell")
+  :bind (("M-=" . aweshell-dedicated-toggle)))
+
+;; GC optimization
+(use-package gcmh
+  :ensure t
+  :custom (gcmh-high-cons-threshold 100000000)
+  :hook (after-init . gcmh-mode))
+
+;; required by `comment-edit'
+(use-package dash
+  :ensure t)
+
+;; required by `comment-edit'
+(use-package edit-indirect
+  :ensure t)
+
+;; write documentation comment with in a easy way
+(use-package comment-edit
+  :ensure t
+  :straight (:host github :repo "twlz0ne/comment-edit.el"
+             :fork (:host github
+                    :repo "condy0919/comment-edit.el"))
+  :custom
+  (comment-edit-default-mode 'markdown-mode)
+  (comment-edit-remove-trailing-spaces-in-comment t)
+  :bind (:map prog-mode-map
+          ("C-c '" . comment-edit)))
 
 (provide 'init-tools)
 
