@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Defer GC
+(setq gc-cons-threshold 100000000)
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
