@@ -32,7 +32,8 @@
   :hook (ivy-mode . counsel-mode)
   :bind (("M-y" . counsel-yank-pop)
          ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)))
+         ("C-x C-f" . counsel-find-file)
+         ("C-x b" . counsel-ibuffer)))
 
 ;; buffer
 (use-package ivy
@@ -41,8 +42,7 @@
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "%d/%d"
               ivy-display-style 'fancy)
-  :bind (("C-x b" . ivy-switch-buffer)
-         ("C-c C-r" . ivy-resume))
+  :bind (("C-c C-r" . ivy-resume))
   :hook (after-init . ivy-mode))
 
 ;; search in local buffer
