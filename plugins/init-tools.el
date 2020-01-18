@@ -141,6 +141,20 @@
   :bind (:map prog-mode-map
           ("C-c '" . comment-edit)))
 
+;; pastebin service
+(use-package webpaste
+  :ensure t
+  :custom
+  (webpaste-paste-confirmation t)
+  (webpaste-add-to-killring nil)
+  (webpaste-provider-priority '("dpaste.org" "dpaste.com" "ix.io"))
+  :config
+  (add-hook 'webpaste-return-url-hook
+            (lambda (url)
+              (message "Opened URL in browser: %s" url)
+              (browse-url url)))
+  )
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
