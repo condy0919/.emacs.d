@@ -129,9 +129,7 @@
 ;; write documentation comment with in a easy way
 (use-package comment-edit
   :ensure t
-  :straight (:host github :repo "twlz0ne/comment-edit.el"
-             :fork (:host github
-                    :repo "condy0919/comment-edit.el"))
+  :straight (:host github :repo "twlz0ne/comment-edit.el")
   :custom
   (comment-edit-default-mode 'markdown-mode)
   (comment-edit-remove-trailing-spaces-in-comment t)
