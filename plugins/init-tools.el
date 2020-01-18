@@ -23,7 +23,12 @@
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t
-  :bind ("M-s" . avy-goto-word-1))
+  :config
+  ;; evil-leader keybindings
+  (evil-leader/set-key
+    "w" 'avy-goto-word-0
+    "l" 'avy-goto-line)
+  )
 
 ;; fuzzy matcher
 (use-package counsel

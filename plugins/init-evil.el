@@ -18,6 +18,17 @@
          ("M-." . xref-find-definitions)
          ))
 
+(use-package evil-leader
+  :ensure t
+  :custom (evil-leader/leader "<SPC>")
+  :config
+  (global-evil-leader-mode))
+
+(use-package evil-nerd-commenter
+  :ensure t
+  :config
+  (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines))
+
 (use-package evil-surround
   :ensure t
   :hook (prog-mode . evil-surround-mode))
