@@ -22,7 +22,10 @@
   :ensure t
   :custom (evil-leader/leader "<SPC>")
   :config
-  (global-evil-leader-mode))
+  (global-evil-leader-mode)
+  (evil-leader/set-key
+    "f" 'find-file-at-point)
+  )
 
 (use-package evil-nerd-commenter
   :ensure t
