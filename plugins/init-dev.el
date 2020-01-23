@@ -82,7 +82,8 @@
          ("C-c p" . projectile-command-map))
   :hook (prog-mode . projectile-mode)
   :custom
-  (projectile-completion-system 'ivy))
+  (projectile-completion-system 'ivy)
+  (projectile-indexing-method 'hybrid))
 
 (use-package treemacs-evil
   :ensure t
