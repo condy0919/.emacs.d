@@ -1,4 +1,4 @@
-;;; init-ui.el --- Theme and modeline
+;;; init-ui.el --- Theme and modeline -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

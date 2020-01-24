@@ -1,4 +1,4 @@
-;;; init.el --- The main entry for emacs
+;;; init.el --- The main entry for emacs -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,7 +6,6 @@
 (setq gc-cons-threshold 100000000)
 
 (require 'package)
-(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
 
@@ -37,16 +36,16 @@
 (add-to-list 'load-path (expand-file-name "plugins/lang" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(use-package init-base)
-(use-package init-startup)
-(use-package init-org)
-(use-package init-ui)
-(use-package init-tools)
-(use-package init-evil)
-(use-package init-lsp)
-(use-package init-git)
-(use-package init-dev)
-(use-package init-browser)
+(require 'init-base)
+(require 'init-startup)
+(require 'init-org)
+(require 'init-ui)
+(require 'init-tools)
+(require 'init-evil)
+(require 'init-lsp)
+(require 'init-git)
+(require 'init-dev)
+(require 'init-browser)
 
 (when (file-exists-p custom-file)
   (load custom-file))

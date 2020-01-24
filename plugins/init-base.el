@@ -1,18 +1,30 @@
-;;; init-base.el --- The necessary settings
+;;; init-base.el --- The necessary settings -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
 
 ;;; Code:
 
-(setq inhibit-startup-screen t
-      inhibit-startup-message t
-      make-backup-files nil
-      auto-save-default nil
-      ring-bell-function 'ignore
-      blink-cursor-mode nil
-      scroll-conservatively 1000)
+;; Supress GUI features
+(setq use-file-dialog nil
+      use-dialog-box nil
+      inhibit-startup-screen t
+      inhibit-startup-message t)
 
+;; No backup files
+(setq make-backup-files nil
+      auto-save-default nil)
+
+;; Supress annoying features
+(setq ring-bell-function 'ignore
+      blink-cursor-mode nil)
+
+;; smooth scroll
+(setq scroll-conservatively 1000)
+
+(setq scroll-preserve-screen-position 'always)
+
+;; Newline behaviour
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "S-<return>") 'comment-indent-new-line)
 
@@ -28,10 +40,12 @@
 ;; font size
 (set-face-attribute 'default nil :height 140)
 
+;; Prefer shorter names
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (defalias 'list-buffers 'ibuffer)
 
+;; Keep clean
 (when (fboundp 'menu-bar-mode)
   (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode)
@@ -39,11 +53,13 @@
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
 
+;; Highlight parenthesises
 (use-package paren
   :ensure nil
   :hook (after-init . show-paren-mode)
-  :config (setq show-paren-when-point-inside-paren t
-                show-paren-when-point-in-periphery t))
+  :config
+  (setq show-paren-when-point-inside-paren t
+        show-paren-when-point-in-periphery t))
 
 ;; The selected region of text can be deleted
 (use-package delsel

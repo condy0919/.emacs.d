@@ -1,4 +1,4 @@
-;;; init-bazel.el --- bazel is the future
+;;; init-bazel.el --- bazel is the future -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

@@ -1,4 +1,4 @@
-;;; init-evil.el --- Bring vim back
+;;; init-evil.el --- Bring vim back -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

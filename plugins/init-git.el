@@ -1,4 +1,4 @@
-;;; init-git.el --- Git is awesome
+;;; init-git.el --- Git is awesome -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

@@ -1,4 +1,4 @@
-;;; init-startup.el --- The startup dashboard
+;;; init-startup.el --- The startup dashboard -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -16,6 +16,7 @@
                      "cache"
                      "recentf"
                      "^/tmp/"
+                     "/ssh:"
                      "^/usr/include/"
                      "bookmarks"
                      "COMMIT_EDITMSG\\'"))

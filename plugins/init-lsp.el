@@ -1,4 +1,4 @@
-;;; init-lsp.el --- The completion engine and lsp client
+;;; init-lsp.el --- The completion engine and lsp client -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

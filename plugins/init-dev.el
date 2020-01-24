@@ -1,4 +1,4 @@
-;;; init-dev.el --- Programming development
+;;; init-dev.el --- Programming development -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -15,7 +15,9 @@
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  :hook (compilation-filter . my-colorize-compilation-buffer))
+  :hook (compilation-filter . my-colorize-compilation-buffer)
+  :custom
+  (compilation-scroll-output t))
 
 ;; highlight TODO
 (use-package hl-todo

@@ -1,4 +1,4 @@
-;;; init-browser.el --- Edit in Emacs
+;;; init-browser.el --- Edit in Emacs -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

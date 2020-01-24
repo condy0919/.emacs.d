@@ -1,4 +1,4 @@
-;;; init-cpp.el --- Cpp
+;;; init-cpp.el --- Cpp -*- lexical-binding: t -*-
 ;; no indentation inside namespace
 
 ;;; Commentary:

@@ -1,4 +1,4 @@
-;;; init-tools.el --- We all like productive tools
+;;; init-tools.el --- We all like productive tools -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -8,6 +8,7 @@
 ;; Tips for next keystroke
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :hook (after-init . which-key-mode))
 
 ;; The blazing grep tool
