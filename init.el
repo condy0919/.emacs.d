@@ -46,6 +46,7 @@
 (use-package init-lsp)
 (use-package init-git)
 (use-package init-dev)
+(use-package init-browser)
 
 (when (file-exists-p custom-file)
   (load custom-file))
