@@ -9,6 +9,7 @@
   :ensure t
   :custom
   (edit-server-default-major-mode 'markdown-mode)
+  (edit-server-new-frame nil)
   :config
   (edit-server-start))
 
