@@ -5,15 +5,12 @@
 
 ;;; Code:
 
-(use-package atomic-chrome
+(use-package edit-server
   :ensure t
-  :config
-  :hook (after-init . (lambda ()
-                        (atomic-chrome-start-server)))
   :custom
-  (atomic-chrome-default-major-mode 'markdown-mode)
-  (atomic-chrome-extension-type-list '(ghost-text)) ;; or 'atomic-chrome
-  )
+  (edit-server-default-major-mode 'markdown-mode)
+  :config
+  (edit-server-start))
 
 (provide 'init-browser)
 
