@@ -5,22 +5,12 @@
 
 ;;; Code:
 
-(use-package disable-mouse
-  :ensure t
-  :config
-  (global-disable-mouse-mode))
-
 (use-package evil
   :ensure t
   :diminish evil
   :hook (after-init . evil-mode)
   :config
   (setcdr evil-insert-state-map nil)
-  (mapc #'disable-mouse-in-keymap
-        (list evil-motion-state-map
-              evil-normal-state-map
-              evil-visual-state-map
-              evil-insert-state-map))
   :bind (:map evil-motion-state-map
          ("C-u" . scroll-down-command)
          :map evil-insert-state-map
