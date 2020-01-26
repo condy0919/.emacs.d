@@ -120,7 +120,9 @@
   :diminish " FC"
   :hook (prog-mode . flycheck-mode)
   :config
-  (setq flycheck-indication-mode 'right-fringe))
+  (setq flycheck-indication-mode 'right-fringe)
+  ;; disable flymake-proc
+  (setq-default flymake-diagnostic-functions nil))
 
 ;; xref
 (use-package ivy-xref
