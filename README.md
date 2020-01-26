@@ -11,8 +11,8 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # cc-mode
 
-- clangd `lsp-mode` 默认
+- clangd `eglot` 默认
 
 # rust-mode
 
-- rls `lsp-mode` 默认
+- rls `eglot` 默认

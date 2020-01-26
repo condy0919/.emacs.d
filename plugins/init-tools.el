@@ -64,8 +64,14 @@
 ;; switch windows quickly
 (use-package ace-window
   :ensure t
+  :preface
+  (defun my/switch-window ()
+    (interactive)
+    (if (<= (count-windows) 2)
+        (other-window 1)
+      (ace-window 1)))
   :bind (:map global-map
-         ("M-o" . ace-window))
+         ("M-o" . my/switch-window))
   :config
   (set-face-attribute
    'aw-leading-char-face nil
