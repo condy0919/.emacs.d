@@ -26,9 +26,10 @@
   :ensure t
   :config
   ;; evil-leader keybindings
-  (evil-leader/set-key
-    "w" 'avy-goto-word-0
-    "l" 'avy-goto-line)
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key
+      "w" 'avy-goto-word-0
+      "l" 'avy-goto-line))
   )
 
 ;; fuzzy matcher
