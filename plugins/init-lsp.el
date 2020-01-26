@@ -29,6 +29,11 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
+(use-package company-prescient
+  :ensure t
+  :hook (company-mode . company-prescient-mode)
+  :config (prescient-persist-mode +1))
+
 (use-package eglot
   :ensure t
   :hook ((rust-mode . eglot-ensure)

@@ -56,7 +56,7 @@
   :bind (("C-c C-r" . ivy-resume))
   :hook (after-init . ivy-mode))
 
-;; search in local buffer
+;; drop-in replacement of isearch
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper-isearch)))
