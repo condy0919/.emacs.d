@@ -9,7 +9,8 @@
 (use-package which-key
   :ensure t
   :diminish which-key-mode
-  :hook (after-init . which-key-mode))
+  :hook (after-init . which-key-mode)
+  :custom (which-key-idle-delay 0.5))
 
 ;; The blazing grep tool
 (use-package rg
@@ -24,11 +25,14 @@
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t
+  :custom
+  (avy-timeout-seconds 0.2)
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   :config
   ;; evil-leader keybindings
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key
-      "w" 'avy-goto-word-0
+      "w" 'avy-goto-char-timer
       "l" 'avy-goto-line))
   )
 
@@ -42,7 +46,7 @@
          ("C-x C-f" . counsel-find-file)
          ("C-x b" . counsel-ibuffer)))
 
-;; buffer
+;; ivy core
 (use-package ivy
   :ensure t
   :diminish ivy-mode

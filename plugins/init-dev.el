@@ -85,7 +85,19 @@
   :hook (prog-mode . projectile-mode)
   :custom
   (projectile-completion-system 'ivy)
-  (projectile-indexing-method 'hybrid))
+  (projectile-indexing-method 'hybrid)
+  (projectile-read-command nil) ;; no prompt in projectile-compile-project
+  :config
+  ;; project side rg
+  (use-package ripgrep
+    :ensure t)
+
+  ;; cmake project build
+  (projectile-register-project-type 'cmake '("CMakeLists.txt")
+                                    :configure "cmake %s"
+                                    :compile "cmake --build Debug"
+                                    :test "ctest")
+  )
 
 (use-package treemacs-evil
   :ensure t
@@ -109,6 +121,19 @@
   :hook (prog-mode . flycheck-mode)
   :config
   (setq flycheck-indication-mode 'right-fringe))
+
+;; xref
+(use-package ivy-xref
+  :ensure t
+  :init
+  ;; xref initialization is different in Emacs 27 - there are two different
+  ;; variables which can be set rather than just one
+  (when (>= emacs-major-version 27)
+    (setq xref-show-definitions-function #'ivy-xref-show-defs))
+  ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+  ;; commands other than xref-find-definitions (e.g. project-find-regexp)
+  ;; as well
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (require 'init-cpp)
 (require 'init-rust)
