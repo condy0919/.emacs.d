@@ -33,12 +33,14 @@
   :hook (prog-mode . lsp-deferred)
   :init (setq flymake-fringe-indicator-position 'right-fringe)
   :custom
+  (lsp-eldoc-enable-hover nil)   ;; Disable eldoc displays in minibuffer
   (lsp-auto-guess-root t)
   (lsp-keep-workspace-alive nil) ;; auto kill lsp server
   (lsp-prefer-flymake nil)
   (lsp-enable-snippet nil)
   :bind (:map lsp-mode-map
-         ("C-c f" . lsp-format-region))
+         ("C-c f" . lsp-format-region)
+         ("C-c C-d" . lsp-describe-thing-at-point))
   :commands lsp)
 
 (use-package lsp-ui
@@ -63,10 +65,14 @@
     lsp-ui-sideline-ignore-duplicate t
     lsp-ui-sideline-show-hover nil
     lsp-ui-sideline-show-symbol nil
-    lsp-ui-sideline-show-diagnostics t
+    lsp-ui-sideline-show-diagnostics nil
     lsp-ui-sideline-show-code-actions t
     ;; flycheck
-    lsp-ui-flycheck-enable t))
+    lsp-ui-flycheck-enable t)
+
+  ;; `C-g'to close doc
+  (advice-add #'keyboard-quit :before #'lsp-ui-doc-hide)
+  )
 
 (use-package company-lsp
   :ensure t
