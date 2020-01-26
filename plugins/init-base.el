@@ -30,9 +30,12 @@
 
 (setq mouse-yank-at-point t)
 
+(setq-default fill-column 80)
+
 (setq adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
 (setq adaptive-fill-first-line-regexp "^* *$")
 
+;; Paragraphs
 (setq sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
 
@@ -73,7 +76,8 @@
   :ensure nil
   :hook (after-init . (lambda ()
                         (line-number-mode)
-                        (column-number-mode))))
+                        (column-number-mode)
+                        (size-indication-mode))))
 
 ;; back to the previous position
 (use-package saveplace

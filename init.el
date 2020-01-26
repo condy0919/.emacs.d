@@ -45,7 +45,6 @@
 (require 'init-lsp)
 (require 'init-git)
 (require 'init-dev)
-(require 'init-browser)
 (require 'init-news)
 
 (when (file-exists-p custom-file)
