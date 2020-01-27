@@ -121,8 +121,8 @@
   :hook (prog-mode . flycheck-mode)
   :config
   (setq flycheck-indication-mode 'right-fringe)
-  ;; disable flymake-proc
-  (setq-default flymake-diagnostic-functions nil))
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  )
 
 ;; xref
 (use-package ivy-xref

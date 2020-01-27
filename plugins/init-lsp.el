@@ -29,21 +29,39 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
+;; Sorting & filtering
 (use-package company-prescient
   :ensure t
   :hook (company-mode . company-prescient-mode)
   :config (prescient-persist-mode +1))
 
-(use-package eglot
+;; lsp integration
+(use-package company-lsp
   :ensure t
-  :hook ((rust-mode . eglot-ensure)
-         (c-mode . eglot-ensure)
-         (c++-mode . eglot-ensure))
-  :bind (:map eglot-mode-map
-              ("C-c d" . eglot-help-at-point)
-              ("C-c f" . eglot-format)
-              ("C-c a" . eglot-code-actions)
-              ("C-c r" . eglot-rename))
+  :after lsp-mode
+  :config
+  (setq company-transformers nil
+        company-lsp-cache-candidates 'auto))
+
+;; lsp-mode
+(use-package lsp-mode
+  :ensure t
+  :hook (prog-mode . lsp-deferred)
+  :init (setq flymake-fringe-indicator-position 'right-fringe)
+  :custom
+  (lsp-log-io nil)                     ;; enable log only for debug
+  (lsp-enable-folding nil)             ;; use `evil-matchit' instead
+  (lsp-prefer-flymake :none)           ;; no real time syntax check
+  (lsp-enable-snippet nil)             ;; no snippet
+  (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
+  (lsp-auto-guess-root t)              ;; auto guess root
+  (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
+  (lsp-eldoc-enable-hover nil)         ;; Disable eldoc displays in minibuffer
+  :bind (:map lsp-mode-map
+              ("C-c f" . lsp-format-region)
+              ("C-c d" . lsp-describe-thing-at-point)
+              ("C-c a" . lsp-execute-code-action)
+              ("C-c r" . lsp-rename))
   )
 
 (provide 'init-lsp)

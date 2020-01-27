@@ -40,8 +40,9 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # cc-mode
 
-- clangd `eglot`
+- clangd `lsp-mode`
+- 禁用了 `flycheck`
 
 # rust-mode
 
-- rls `eglot` 默认
+- rls `lsp-mode` 默认
