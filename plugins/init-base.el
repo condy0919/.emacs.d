@@ -39,6 +39,11 @@
 (setq sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 (setq sentence-end-double-space nil)
 
+;; Treats the `_' as a word constituent
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?_ "w")))
+
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
