@@ -137,6 +137,9 @@
   ;; as well
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
+(use-package yaml-mode
+  :ensure t)
+
 (require 'init-cpp)
 (require 'init-rust)
 (require 'init-bazel)
