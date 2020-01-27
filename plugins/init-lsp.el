@@ -23,7 +23,7 @@
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
   (setq company-tooltip-align-annotations t
         company-show-numbers t  ;; Easy navigation to candidates with M-<n>
-        company-idle-delay 0.05
+        company-idle-delay 0.5
         company-minimum-prefix-length 2
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil)

@@ -19,15 +19,19 @@
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
 
-;; smooth scroll
-(setq scroll-conservatively 1000)
-
-(setq scroll-preserve-screen-position 'always)
+;; smooth scroll & friends
+(setq scroll-step 2
+      scroll-margin 2
+      hscroll-step 2
+      hscroll-margin 2
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 'always)
 
 ;; Newline behaviour
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "S-<return>") 'comment-indent-new-line)
 
+;; DONT move points out of eyes
 (setq mouse-yank-at-point t)
 
 (setq-default fill-column 80)
