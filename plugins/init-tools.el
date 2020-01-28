@@ -124,8 +124,13 @@
   :custom
   (auto-package-update-delete-old-version t))
 
+;; beautiful term mode & friends
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :hook (vterm-mode . (lambda ()
+                        (setq-local evil-insert-state-cursor 'box)
+                        (evil-insert-state)))
+  )
 
 (use-package vterm-toggle
   :ensure t
