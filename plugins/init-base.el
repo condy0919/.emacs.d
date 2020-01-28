@@ -99,6 +99,10 @@
   :ensure nil
   :hook (after-init . global-hl-line-mode))
 
+(use-package server
+  :ensure nil
+  :hook (after-init . server-mode))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t)
