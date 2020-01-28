@@ -36,16 +36,6 @@
       "l" 'avy-goto-line))
   )
 
-;; fuzzy matcher
-(use-package counsel
-  :ensure t
-  :diminish counsel-mode
-  :hook (ivy-mode . counsel-mode)
-  :bind (("M-y" . counsel-yank-pop)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x b" . counsel-ibuffer)))
-
 ;; ivy core
 (use-package ivy
   :ensure t
@@ -56,10 +46,21 @@
   :bind (("C-c C-r" . ivy-resume))
   :hook (after-init . ivy-mode))
 
-;; drop-in replacement of isearch
-(use-package swiper
+;; fuzzy matcher
+(use-package counsel
   :ensure t
-  :bind (("C-s" . swiper-isearch)))
+  :diminish counsel-mode
+  :hook (ivy-mode . counsel-mode)
+  :bind (("M-y" . counsel-yank-pop)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x b" . counsel-ibuffer)))
+
+;; DONT use swiper
+(use-package isearch
+  :ensure nil
+  :custom
+  (lazy-highlight-cleanup nil))
 
 ;; switch windows quickly
 (use-package ace-window
@@ -132,7 +133,9 @@
 ;; GC optimization
 (use-package gcmh
   :ensure t
-  :custom (gcmh-high-cons-threshold 100000000)
+  :custom
+  (gcmh-high-cons-threshold 100000000)
+  (gcmh-idle-delay 300)
   :hook (after-init . gcmh-mode))
 
 ;; required by `comment-edit'
