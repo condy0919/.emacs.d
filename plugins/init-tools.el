@@ -124,11 +124,25 @@
   :custom
   (auto-package-update-delete-old-version t))
 
-;; toggle shell
-(use-package aweshell
+(use-package vterm
+  :ensure t)
+
+(use-package vterm-toggle
   :ensure t
-  :straight (:host github :repo "manateelazycat/aweshell")
-  :bind (("M-=" . aweshell-dedicated-toggle)))
+  :bind (:map global-map
+         ("M-=" . vterm-toggle)
+         :map vterm-mode-map
+         ("<C-return>" . vterm-toggle-insert-cd))
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '("^v?term.*"
+                 (display-buffer-reuse-window display-buffer-in-side-window)
+                 (side . bottom)
+                 (dedicated . t)
+                 (reusable-frames . visible)
+                 (window-height . 0.3)))
+  )
 
 ;; GC optimization
 (use-package gcmh
