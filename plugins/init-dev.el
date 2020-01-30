@@ -97,6 +97,15 @@
                                     :configure "cmake %s"
                                     :compile "cmake --build Debug"
                                     :test "ctest")
+
+  (let ((ig-dirs '(".ccls"
+                   ".ccls-cache"
+                   ".clangd"
+                   "bazel-bin"
+                   "bazel-out"
+                   "bazel-testlogs")))
+    (dolist (dir ig-dirs)
+      (push dir projectile-globally-ignored-directories)))
   )
 
 (use-package treemacs-evil
