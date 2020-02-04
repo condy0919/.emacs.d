@@ -108,15 +108,7 @@
   (markdown-fontify-code-blocks-natively t)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :preface
-  (defun my/markdown-insert-ruby-tag ()
-    (interactive)
-    (let ((text (read-string "text: "))
-          (extra (read-string "extra text: ")))
-      (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text extra))))
-  :bind (:map markdown-mode-map
-         ("C-c r" . my/markdown-insert-ruby-tag)))
+         ("\\.markdown\\'" . markdown-mode)))
 
 ;; free hands
 (use-package auto-package-update
