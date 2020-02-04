@@ -7,7 +7,6 @@
 
 (use-package rust-mode
   :ensure t
-  :defer t
   :init (setq rust-format-on-save t))
 
 (use-package cargo

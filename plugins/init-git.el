@@ -23,6 +23,14 @@
                         (diff-hl-margin-mode)))
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
+;; Git related modes
+(use-package gitattributes-mode
+  :ensure t)
+(use-package gitconfig-mode
+  :ensure t)
+(use-package gitignore-mode
+  :ensure t)
+
 (provide 'init-git)
 
 ;;; init-git.el ends here

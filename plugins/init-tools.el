@@ -189,6 +189,19 @@
               (browse-url url)))
   )
 
+;; Edit text for browser with GhostText or AtomicChrome extension
+(use-package atomic-chrome
+  :ensure t
+  :hook ((emacs-startup . atomic-chrome-start-server)
+         (atomic-chrome-edit-mode . delete-other-windows))
+  :custom
+  (atomic-chrome-buffer-open-style 'frame)
+  (atomic-chrome-default-major-mode 'markdown-mode)
+  :config
+  (if (fboundp 'gfm-mode)
+      (setq atomic-chrome-url-major-mode-alist
+            '(("github\\.com" . gfm-mode)))))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
