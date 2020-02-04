@@ -22,7 +22,7 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 而这 4 个包也是 `Emacs` 自带的。
 
-为了保持界面的整洁，禁用的菜单栏、工具栏和滚动条。
+为了保持界面的整洁，禁用了菜单栏、工具栏和滚动条。
 
 # 趁手的工具
 
