@@ -21,12 +21,15 @@
             "--pch-storage=memory"
             "--suggest-missing-includes"
             )))
-    )
+  )
 
 (use-package modern-cpp-font-lock
   :ensure t
   :diminish t
   :hook (c++-mode . modern-c++-font-lock-mode))
+
+(use-package cmake-mode
+  :ensure t)
 
 (provide 'init-cpp)
 
