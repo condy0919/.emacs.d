@@ -114,7 +114,7 @@
 (use-package auto-package-update
   :ensure t
   :custom
-  (auto-package-update-delete-old-version t))
+  (auto-package-update-delete-old-versions t))
 
 ;; beautiful term mode & friends
 (use-package vterm
