@@ -32,7 +32,9 @@
   ;; evil-leader keybindings
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key
-      "w" 'avy-goto-char-timer
+      "w" 'avy-goto-word-or-subword-1
+      "e" 'avy-goto-end-of-line
+      "s" 'avy-goto-char-timer
       "l" 'avy-goto-line))
   )
 
