@@ -151,6 +151,7 @@
 
 (require 'init-cpp)
 (require 'init-rust)
+(require 'init-ocaml)
 (require 'init-bazel)
 
 (provide 'init-dev)
