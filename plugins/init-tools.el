@@ -54,7 +54,9 @@
   :bind (("M-y" . counsel-yank-pop)
          ("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
-         ("C-x b" . counsel-ibuffer)))
+         ("C-x b" . counsel-ibuffer))
+  :custom
+  (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
 ;; DONT use swiper
 (use-package isearch
