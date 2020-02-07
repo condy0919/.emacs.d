@@ -41,6 +41,14 @@
   :config
   (setq whitespace-style '(face trailing)))
 
+;; visual diff interface
+(use-package ediff
+  :ensure nil
+  :custom
+  (ediff-window-setup-function 'ediff-setup-plain)
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-merge-split-window-function 'split-window-horizontally))
+
 ;; quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
