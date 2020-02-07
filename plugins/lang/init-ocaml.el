@@ -8,6 +8,12 @@
 (use-package tuareg
   :ensure t)
 
+(use-package merlin
+  :ensure t
+  :hook (tuareg-mode . merlin-mode)
+  :custom
+  (merlin-error-after-save nil))
+
 (use-package dune
   :ensure t)
 
