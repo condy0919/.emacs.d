@@ -149,6 +149,9 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package toml-mode
+  :ensure t)
+
 (require 'init-cpp)
 (require 'init-rust)
 (require 'init-ocaml)
