@@ -17,6 +17,13 @@
   :ensure t
   :hook (magit-status-mode . magit-todos-mode))
 
+;; group buffers by git/svn/... project
+(use-package ibuffer-vc
+  :ensure t
+  :hook (ibuffer . (lambda ()
+                     (ibuffer-vc-set-filter-groups-by-vc-root)
+                     (unless (eq ibuffer-sorting-mode 'alphabetic)
+                       (ibuffer-do-sort-by-alphabetic)))))
 
 ;; highlight uncommitted changes using git
 (use-package diff-hl
