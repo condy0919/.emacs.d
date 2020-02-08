@@ -27,6 +27,8 @@
   :ensure t
   :custom
   (avy-timeout-seconds 0.2)
+  (avy-all-windows nil)
+  (avy-background t)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   :config
   ;; evil-leader keybindings
