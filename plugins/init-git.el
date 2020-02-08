@@ -13,6 +13,10 @@
   (setq magit-status-margin
         '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
+(use-package magit-todos
+  :ensure t
+  :hook (magit-status-mode . magit-todos-mode))
+
 
 ;; highlight uncommitted changes using git
 (use-package diff-hl
