@@ -14,7 +14,9 @@
   :ensure t
   :hook (tuareg-mode . merlin-mode)
   :custom
-  (merlin-error-after-save nil))
+  (merlin-error-after-save nil)
+  (merlin-command "ocamlmerlin")
+  (merlin-completion-with-doc t))
 
 ;; dune build system
 (use-package dune
