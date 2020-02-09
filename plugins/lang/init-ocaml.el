@@ -12,7 +12,8 @@
 ;; Indentation tool for OCaml
 (use-package ocp-indent
   :ensure t
-  :bind (("C-c f" . ocp-indent-region)))
+  :bind (:map tuareg-mode-map
+         ("C-c f" . ocp-indent-region)))
 
 ;; Context sensitive completion
 (use-package merlin
