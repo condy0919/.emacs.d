@@ -17,7 +17,9 @@
 (use-package golden-ratio
   :ensure t
   :hook (after-init . golden-ratio-mode)
-  :custom (golden-ratio-auto-scale t))
+  :custom
+  (golden-ratio-auto-scale t)
+  (golden-ratio-exclude-modes '(ediff-mode)))
 
 (provide 'init-ui)
 

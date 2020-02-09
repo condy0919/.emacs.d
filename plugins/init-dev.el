@@ -45,7 +45,7 @@
 (use-package ediff
   :ensure nil
   :custom
-  (ediff-window-setup-function 'ediff-setup-plain)
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-merge-split-window-function 'split-window-horizontally))
 
