@@ -9,6 +9,11 @@
 (use-package tuareg
   :ensure t)
 
+;; Indentation tool for OCaml
+(use-package ocp-indent
+  :ensure t
+  :bind (("C-c f" . ocp-indent-region)))
+
 ;; Context sensitive completion
 (use-package merlin
   :ensure t
