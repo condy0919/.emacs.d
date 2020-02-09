@@ -191,6 +191,10 @@
             (lambda (url)
               (message "Opened URL in browser: %s" url)
               (browse-url url)))
+  (setq webpaste--default-lang-alist
+        '((python-mode . "python")
+          (cc-mode . "cpp")
+          (rust-mode . "rust")))
   )
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
@@ -204,7 +208,9 @@
   :config
   (if (fboundp 'gfm-mode)
       (setq atomic-chrome-url-major-mode-alist
-            '(("github\\.com" . gfm-mode)))))
+            '(("github\\.com" . gfm-mode))))
+  ;; The browser is in "insert" state, makes it consistent
+  (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
 
 (provide 'init-tools)
 
