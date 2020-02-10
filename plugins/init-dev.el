@@ -102,8 +102,8 @@
 
   ;; cmake project build
   (projectile-register-project-type 'cmake '("CMakeLists.txt")
-                                    :configure "cmake %s"
-                                    :compile "cmake --build Debug"
+                                    :configure "cmake -Bbuild"
+                                    :compile "cmake --build build"
                                     :test "ctest")
 
   (let ((ig-dirs '(".ccls"
