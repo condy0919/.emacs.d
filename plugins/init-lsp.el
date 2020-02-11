@@ -51,7 +51,7 @@
   :custom
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
-  (lsp-prefer-flymake :none)           ;; no real time syntax check
+  (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
   (lsp-auto-guess-root t)              ;; auto guess root

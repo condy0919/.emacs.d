@@ -138,6 +138,7 @@
   :hook (prog-mode . flycheck-mode)
   :config
   (setq flycheck-indication-mode 'right-fringe)
+  ;; clang/gcc/cppcheck flycheckers never know the include path
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   )
 
