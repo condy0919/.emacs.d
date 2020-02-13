@@ -169,7 +169,7 @@
 (use-package edit-indirect
   :ensure t)
 
-;; write documentation comment with in a easy way
+;; write documentation comment in a easy way
 (use-package comment-edit
   :ensure t
   :straight (:host github :repo "twlz0ne/comment-edit.el")
