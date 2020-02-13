@@ -66,6 +66,7 @@
          ("C-x C-f" . counsel-find-file)
          ("C-x b" . counsel-ibuffer))
   :custom
+  (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
 ;; DONT use swiper

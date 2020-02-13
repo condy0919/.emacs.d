@@ -26,6 +26,11 @@
   :ensure t
   :hook (dired-mode . diredfl-mode))
 
+;; restore windows layout
+(use-package winner-mode
+  :ensure nil
+  :hook (after-init . winner-mode))
+
 (provide 'init-ui)
 
 ;;; init-ui.el ends here

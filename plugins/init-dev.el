@@ -44,6 +44,7 @@
 ;; visual diff interface
 (use-package ediff
   :ensure nil
+  :hook (ediff-quit . winner-undo) ;; restore windows layout
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)
@@ -53,6 +54,13 @@
 (use-package quickrun
   :ensure t
   :bind (("C-c x" . quickrun)))
+
+;; superb compiler explorer implementation
+(use-package rmsbolt
+  :ensure t
+  :custom
+  (rmsbolt-asm-format nil)
+  (rmsbolt-default-directory "/tmp"))
 
 ;; A tree layout file explorer
 (use-package treemacs
@@ -135,11 +143,10 @@
   :ensure t
   :diminish " FC"
   :hook (prog-mode . flycheck-mode)
-  :config
-  (setq flycheck-indication-mode 'right-fringe)
+  :custom
+  (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  )
+  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
 ;; xref
 (use-package ivy-xref
@@ -154,11 +161,30 @@
   ;; as well
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-(use-package yaml-mode
-  :ensure t)
+;; Draw a diagram in an easy way
+(use-package plantuml-mode
+  :ensure t
+  :custom
+  (plantuml-default-exec-mode 'executable)
+  (plantuml-output-type "txt"))
 
-(use-package toml-mode
-  :ensure t)
+;; jump to definition, used as a fallback of lsp-find-definition
+(use-package dumb-jump
+  :ensure t
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go)
+         ("M-g b" . dumb-jump-back)
+         ("M-g i" . dumb-jump-go-prompt)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :custom
+  (dumb-jump-quiet t)
+  (dumb-jump-selector 'ivy)
+  (dump-jump-prefer-searcher 'rg))
+
+;; config files mode
+(use-package yaml-mode :ensure t)
+(use-package toml-mode :ensure t)
 
 (require 'init-cpp)
 (require 'init-rust)
