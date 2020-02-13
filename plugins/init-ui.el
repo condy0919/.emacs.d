@@ -21,6 +21,11 @@
   (golden-ratio-auto-scale t)
   (golden-ratio-exclude-modes '(ediff-mode)))
 
+;; make dired colorful
+(use-package diredfl
+  :ensure t
+  :hook (dired-mode . diredfl-mode))
+
 (provide 'init-ui)
 
 ;;; init-ui.el ends here
