@@ -35,12 +35,27 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 ;; Git related modes
-(use-package gitattributes-mode
-  :ensure t)
-(use-package gitconfig-mode
-  :ensure t)
-(use-package gitignore-mode
-  :ensure t)
+(use-package gitattributes-mode :ensure t)
+(use-package gitconfig-mode :ensure t)
+(use-package gitignore-mode :ensure t)
+
+;; Open current file in browser
+(use-package browse-at-remote
+  :ensure t
+  :bind (:map vc-prefix-map
+         ("b" . bar-browse)
+         ("c" . bar-to-clipboard)))
+
+;; Pop up last commit information of current line
+(use-package git-messenger
+  :ensure t
+  :bind (:map vc-prefix-map
+         ("p" . git-messenger:popup-message)
+         :map git-messenger-map
+         ("m" . git-messenger:copy-message))
+  :custom
+  (git-messenger:show-detail t)
+  (git-messenger:use-magit-popup t))
 
 (provide 'init-git)
 
