@@ -106,8 +106,7 @@
                                     :compile "cmake --build build"
                                     :test "ctest")
 
-  (let ((ig-dirs '(".ccls"
-                   ".ccls-cache"
+  (let ((ig-dirs '(".ccls-cache"
                    ".clangd"
                    "bazel-bin"
                    "bazel-out"

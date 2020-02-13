@@ -29,6 +29,18 @@
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
 
+;; Show docs when completion as an alternative for lsp-ui
+(use-package company-quickhelp
+  :ensure t
+  :defines company-quickhelp-delay
+  :bind (:map company-active-map
+         ([remap company-show-doc-buffer] . company-quickhelp-manual-begin))
+  :hook (company-mode . company-quickhelp-mode)
+  :custom
+  (company-quickhelp-use-propertized-text t)
+  (company-quickhelp-delay 0.1)
+  (company-quickhelp-max-lines 8))
+
 ;; Sorting & filtering
 (use-package company-prescient
   :ensure t
