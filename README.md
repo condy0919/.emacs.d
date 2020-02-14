@@ -7,7 +7,7 @@
 git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
-仅包含**C/C++/Rust**相关配置，且全线使用 `lsp`
+仅包含**C/C++/Rust/OCaml**相关配置，且全线使用 `lsp`
 
 # 基础配置
 
@@ -32,17 +32,38 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 `avy` 用来代替 `vim-easymotion` 。而且`avy` 还提供了 `goto-line` 的功能，这下都
 不用开 `relative line number` 来 `8k` `9j` 这样跳了。
 
-自然 `ivy`, `counsel` 和 `swiper` 3 件套是要上的，补全功能太好用了。没有
-`counsel` 加持的 `M-x` 根本无法让人按下去。
+自然 `ivy`, `counsel` 是要上的，补全功能太好用了。没有`counsel` 加持的 `M-x` 根
+本无法让人按下去。
+
+`vterm` 作为一个与原生终端更加接近的终端模拟器，单就外观来看已经比 `Emacs` 自带
+的 `eshell` 好看。
 
 `Emacs` 下的 `markdown-mode` 让人惊艳，突然觉得写文档也会这么快乐。 与之相辅相成
-的还有 `comment-edit`, 让人在代码里写 `comment doc` 不再单调 :)
+的还有 `comment-edit`, 让人在代码里写 `comment documentation` 不再单调 :)
+
+从 `neovim` 迁移过来的我，自然是常开 `evil-mode`，相关的 `evil` 套件有:
+
+- evil-leader
+- evil-nerd-commenter
+- evil-surround
+- evil-magit
+
+# 通用开发设置
+
+- 显示行末空白字符
+- dumb-jump 作为 `lsp-find-defition` 失败后的备份手段
+- magit 作为 `git` 客户端
 
 # cc-mode
 
 - clangd `lsp-mode`
-- 禁用了 `flycheck`
+- 禁用了 `flycheck`，因为 `gcc/clang/cppcheck` 的 `flychecker` 无法正确包含头文
+  件的路径
 
 # rust-mode
 
 - rls `lsp-mode` 默认
+
+# ocaml-mode
+
+- 启用 `merlin` 作为补全后端
