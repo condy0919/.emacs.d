@@ -35,7 +35,7 @@
 
 (use-package evil-surround
   :ensure t
-  :hook (prog-mode . evil-surround-mode))
+  :hook ((prog-mode markdown-mode conf-mode) . evil-surround-mode))
 
 (use-package evil-magit
   :ensure t
