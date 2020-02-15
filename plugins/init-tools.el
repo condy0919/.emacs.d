@@ -213,6 +213,14 @@
   ;; The browser is in "insert" state, makes it consistent
   (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
 
+;; screencast
+(use-package gif-screencast
+  :ensure t
+  :bind (:map gif-screencast-mode-map
+         ([f8] . gif-screencast-toggle-pause)
+         ([f9] . gif-screencast-stop))
+  :custom (gif-screencast-output-directory "/tmp"))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
