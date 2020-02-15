@@ -168,6 +168,13 @@
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))
 
+(use-package flycheck-plantuml
+  :ensure t
+  :after (flycheck plantuml-mode)
+  :config (flycheck-plantuml-setup)
+  ;; flycheck-plantuml only support the jar style
+  :custom (plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+
 ;; jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t
