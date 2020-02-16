@@ -197,6 +197,7 @@
 (require 'init-rust)
 (require 'init-ocaml)
 (require 'init-bazel)
+(require 'init-haskell)
 
 (provide 'init-dev)
 
