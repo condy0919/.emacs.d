@@ -16,7 +16,6 @@
   (setq flymake-start-syntax-check-on-newline nil)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   :bind (:map haskell-mode-map
-         ("C-c t" . dante-type-at)
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . dante-info)
          ("C-c a" . attrap-attrap)
