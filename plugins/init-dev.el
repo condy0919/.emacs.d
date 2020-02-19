@@ -114,6 +114,11 @@
                                     :compile "cmake --build build"
                                     :test "ctest")
 
+  ;; bazel project builds
+  (projectile-register-project-type 'bazel '("WORKSPACE")
+                                    :compile "bazel build //..."
+                                    :test "bazel test //...")
+
   (let ((ig-dirs '(".ccls-cache"
                    ".clangd"
                    "bazel-bin"
@@ -174,6 +179,16 @@
   :config (flycheck-plantuml-setup)
   ;; flycheck-plantuml only support the jar style
   :custom (plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+
+;; An offline docset
+(use-package zeal-at-point
+  :ensure t
+  :bind (:map prog-mode-map
+         ("C-c z z" . zeal-at-point)
+         ("C-c z s" . zeal-at-point-search))
+  :custom
+  (zeal-at-point-mode-alist '((c++-mode . ("cpp" "boost"))
+                              (rust-mode . "rust"))))
 
 ;; jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
