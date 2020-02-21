@@ -72,8 +72,9 @@
 ;; DONT use swiper
 (use-package isearch
   :ensure nil
-  :custom
-  (lazy-highlight-cleanup nil))
+  :bind (:map isearch-mode-map
+         ("C-o" . isearch-occur))
+  :custom (lazy-highlight-cleanup nil))
 
 ;; switch windows quickly
 (use-package ace-window
@@ -220,6 +221,10 @@
          ([f8] . gif-screencast-toggle-pause)
          ([f9] . gif-screencast-stop))
   :custom (gif-screencast-output-directory "/tmp"))
+
+;; Open very large files
+(use-package vlf
+  :ensure t)
 
 (provide 'init-tools)
 

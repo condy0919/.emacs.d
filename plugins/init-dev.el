@@ -204,6 +204,21 @@
   (dumb-jump-selector 'ivy)
   (dump-jump-prefer-searcher 'rg))
 
+;; Hiding structured data
+(use-package hideshow
+  :ensure nil
+  :diminish hs-minor-mode
+  :bind (:map prog-mode-map
+         ("C-c TAB" . hs-toggle-hiding)
+         ("M-+" . hs-show-all))
+  :hook (prog-mode . hs-minor-mode)
+  :custom
+  (hs-special-modes-alist
+   (mapcar 'purecopy
+           '((c-mode "{" "}" "/[*/]" nil nil)
+             (c++-mode "{" "}" "/[*/]" nil nil)
+             (rust-mode "{" "}" "/[*/]" nil nil)))))
+
 ;; config files mode
 (use-package yaml-mode :ensure t)
 (use-package toml-mode :ensure t)
