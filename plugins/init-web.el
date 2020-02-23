@@ -10,13 +10,15 @@
   (css-indent-offset 2))
 
 (use-package json-mode
-  :ensure t)
+  :ensure t
+  :bind (:map json-mode-map
+         ("C-c TAB" . json-mode-beautify)))
 
 ;; highlight #535353 stuff
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
-  :hook ((html-mode css-mode) . rainbow-mode))
+  :hook ((web-mode html-mode css-mode) . rainbow-mode))
 
 (use-package web-mode
   :ensure t

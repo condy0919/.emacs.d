@@ -9,24 +9,19 @@
   :ensure t
   :diminish evil
   :hook (after-init . evil-mode)
-  :config
-  (setcdr evil-insert-state-map nil)
   :bind (:map evil-motion-state-map
          ("C-u" . scroll-down-command)
          :map evil-insert-state-map
          ([escape] . evil-normal-state)
          :map evil-normal-state-map
-         ("M-." . xref-find-definitions)
-         ))
+         ("M-." . xref-find-definitions))
+  )
 
 (use-package evil-leader
   :ensure t
   :custom (evil-leader/leader "<SPC>")
   :config
-  (global-evil-leader-mode)
-  (evil-leader/set-key
-    "f" 'find-file-at-point)
-  )
+  (global-evil-leader-mode))
 
 (use-package evil-nerd-commenter
   :ensure t
