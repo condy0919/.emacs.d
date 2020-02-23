@@ -178,6 +178,7 @@
   :custom
   (comment-edit-default-mode 'markdown-mode)
   (comment-edit-remove-trailing-spaces-in-comment t)
+  (comment-edit-continue-fill-column t)
   :bind (:map prog-mode-map
           ("C-c '" . comment-edit)))
 
