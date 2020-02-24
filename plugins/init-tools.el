@@ -73,7 +73,9 @@
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
-         ("C-o" . isearch-occur))
+         ("C-o" . isearch-occur)
+         ;; Edit the search string instead of jumping back
+         ([remap isearch-delete-char] . isearch-del-char))
   :custom (lazy-highlight-cleanup nil))
 
 ;; switch windows quickly
