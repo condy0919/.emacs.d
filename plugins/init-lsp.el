@@ -9,7 +9,7 @@
 (use-package company
   :ensure t
   :diminish company-mode
-  :defines (company-dabbrev-downcase company-dabbrev-ignore-case)
+  :defines (company-dabbrev-downcase company-dabbrev-ignore-case company-clang-arguments)
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
          ("C-p" . company-select-previous)
@@ -25,6 +25,7 @@
         company-show-numbers t  ;; Easy navigation to candidates with M-<n>
         company-idle-delay 0.1
         company-minimum-prefix-length 2
+        company-clang-arguments '("-std=c++17")
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
