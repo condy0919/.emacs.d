@@ -8,6 +8,7 @@
 (use-package evil
   :ensure t
   :diminish evil
+  :config (setcdr evil-insert-state-map nil) ;; IMPORTANT
   :hook (after-init . evil-mode)
   :bind (:map evil-motion-state-map
          ("C-u" . scroll-down-command)
