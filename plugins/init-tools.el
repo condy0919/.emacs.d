@@ -133,6 +133,8 @@
 ;; beautiful term mode & friends
 (use-package vterm
   :ensure t
+  :defines (evil-insert-state-cursor)
+  :commands (evil-insert-state)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         (evil-insert-state)))
@@ -203,6 +205,7 @@
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
   :ensure t
+  :commands (evil-set-initial-state)
   :hook ((emacs-startup . atomic-chrome-start-server)
          (atomic-chrome-edit-mode . delete-other-windows))
   :custom

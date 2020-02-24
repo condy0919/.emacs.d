@@ -20,6 +20,7 @@
 ;; group buffers by git/svn/... project
 (use-package ibuffer-vc
   :ensure t
+  :commands (ibuffer-do-sort-by-alphabetic)
   :hook (ibuffer . (lambda ()
                      (ibuffer-vc-set-filter-groups-by-vc-root)
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
