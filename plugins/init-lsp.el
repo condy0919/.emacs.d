@@ -48,14 +48,6 @@
   :hook (company-mode . company-prescient-mode)
   :config (prescient-persist-mode +1))
 
-;; lsp integration
-(use-package company-lsp
-  :ensure t
-  :after lsp-mode
-  :config
-  (setq company-transformers nil
-        company-lsp-cache-candidates 'auto))
-
 ;; lsp-mode
 (use-package lsp-mode
   :ensure t
@@ -65,6 +57,7 @@
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
+  (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
   (lsp-auto-guess-root t)              ;; auto guess root

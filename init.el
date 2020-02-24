@@ -5,6 +5,10 @@
 ;; Defer GC
 (setq gc-cons-threshold 100000000)
 
+;; Increase the amount of data from the process
+;; `lsp-mode' gains
+(setq read-process-output-max (* 1024 1024))
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
