@@ -50,7 +50,6 @@
 (require 'init-lsp)
 (require 'init-git)
 (require 'init-dev)
-(require 'init-web)
 (require 'init-news)
 (require 'init-blog)
 

@@ -40,12 +40,6 @@
       "l" 'avy-goto-line))
   )
 
-;; kill text up/down to the point
-(use-package avy-zap
-  :ensure t
-  :bind (("M-z" . avy-zap-to-char-dwim)
-         ("M-Z" . avy-zap-up-to-char-dwim)))
-
 ;; ivy core
 (use-package ivy
   :ensure t

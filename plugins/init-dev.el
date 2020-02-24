@@ -62,37 +62,6 @@
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))
 
-;; A tree layout file explorer
-(use-package treemacs
-  :ensure t
-  :commands (treemacs-follow-mode
-             treemacs-filewatch-mode
-             treemacs-fringe-indicator-mode
-             treemacs-git-mode)
-  :defines (treemacs-git-integration
-            treemacs-change-root-without-asking
-            treemacs-never-persist)
-  :bind
-  (:map global-map
-        ([f8]        . treemacs)
-        ("M-0"       . treemacs-select-window)
-        ("C-c 1"     . treemacs-delete-other-windows))
-  :config
-  (setq treemacs-follow-after-init          t
-        treemacs-width                      35
-        treemacs-indentation                2
-        treemacs-git-integration            t
-        treemacs-collapse-dirs              3
-        treemacs-silent-refresh             nil
-        treemacs-change-root-without-asking nil
-        treemacs-sorting                    'alphabetic-desc
-        treemacs-show-hidden-files          t
-        treemacs-never-persist              nil
-        treemacs-is-never-other-window      nil
-        treemacs-goto-tag-strategy          'refetch-index)
-  (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t))
-
 ;; project management
 (use-package projectile
   :ensure t
@@ -127,21 +96,6 @@
     (dolist (dir ig-dirs)
       (push dir projectile-globally-ignored-directories)))
   )
-
-(use-package treemacs-evil
-  :ensure t
-  :after treemacs evil
-  :config
-  (evil-define-key 'treemacs treemacs-mode-map (kbd "l") 'treemacs-RET-action)
-  (evil-define-key 'treemacs treemacs-mode-map (kbd "h") 'treemacs-TAB-action))
-
-(use-package treemacs-projectile
-  :ensure t
-  :after treemacs projectile)
-
-(use-package treemacs-magit
-  :ensure t
-  :after treemacs magit)
 
 ;; lint tool
 (use-package flycheck
