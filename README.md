@@ -39,7 +39,7 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 的 `eshell` 好看。
 
 `Emacs` 下的 `markdown-mode` 让人惊艳，突然觉得写文档也会这么快乐。 与之相辅相成
-的还有 `comment-edit`, 让人在代码里写 `comment documentation` 不再单调 :)
+的还有 `separedit`, 让人在代码里写 `comment documentation` 不再单调 :)
 
 从 `neovim` 迁移过来的我，自然是常开 `evil-mode`，相关的 `evil` 套件有:
 
@@ -53,6 +53,9 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 - 显示行末空白字符
 - dumb-jump 作为 `lsp-find-defition` 失败后的备份手段
 - magit 作为 `git` 客户端
+- hideshow 来显示/隐藏结构化的代码块，如 "{ }" 函数体等
+- rmsbolt 作为一个本地的 **Compiler Explorer** 相比于 `godbolt` 友好一点
+- quickrun 作为一个能够执行部分区域内的代码块，方便快速验证函数功能
 
 # cc-mode
 
