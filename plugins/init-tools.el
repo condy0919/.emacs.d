@@ -161,18 +161,18 @@
   (gcmh-idle-delay 300)
   :hook (after-init . gcmh-mode))
 
-;; required by `comment-edit'
+;; required by `separedit'
 (use-package dash
   :ensure t)
 
-;; required by `comment-edit'
+;; required by `separedit'
 (use-package edit-indirect
   :ensure t)
 
 ;; write documentation comment in a easy way
-(use-package comment-edit
+(use-package separedit
   :ensure t
-  :straight (:host github :repo "twlz0ne/comment-edit.el")
+  :straight (:host github :repo "twlz0ne/separedit.el")
   :custom
   (comment-edit-default-mode 'markdown-mode)
   (comment-edit-remove-trailing-spaces-in-comment t)
