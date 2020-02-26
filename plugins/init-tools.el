@@ -133,6 +133,8 @@
   :commands (evil-insert-state)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
+                        ;; DONT prompt about processes when killing vterm
+                        (setq-local confirm-kill-processes nil)
                         (evil-insert-state)))
   )
 
