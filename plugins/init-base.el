@@ -36,13 +36,6 @@
 
 (setq-default fill-column 80)
 
-(setq adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
-(setq adaptive-fill-first-line-regexp "^* *$")
-
-;; Paragraphs
-(setq sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
-(setq sentence-end-double-space nil)
-
 ;; Treats the `_' as a word constituent
 (add-hook 'after-change-major-mode-hook
           (lambda ()
@@ -88,6 +81,16 @@
                         (line-number-mode)
                         (column-number-mode)
                         (size-indication-mode))))
+;; type text
+(use-package text-mode
+  :ensure nil
+  :custom
+  ;; fill
+  (adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
+  (adaptive-fill-first-line-regexp "^* *$")
+  ;; paragraphs
+  (sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+  (sentence-end-double-space nil))
 
 ;; back to the previous position
 (use-package saveplace
@@ -99,6 +102,8 @@
   :ensure nil
   :hook (after-init . global-hl-line-mode))
 
+;; server mode.
+;; use emacsclient to connect
 (use-package server
   :ensure nil
   :hook (after-init . server-mode))
