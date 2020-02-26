@@ -174,11 +174,11 @@
   :ensure t
   :straight (:host github :repo "twlz0ne/separedit.el")
   :custom
-  (comment-edit-default-mode 'markdown-mode)
-  (comment-edit-remove-trailing-spaces-in-comment t)
-  (comment-edit-continue-fill-column t)
+  (separedit-default-mode 'markdown-mode)
+  (separedit-remove-trailing-spaces-in-comment t)
+  (separedit-continue-fill-column t)
   :bind (:map prog-mode-map
-          ("C-c '" . comment-edit)))
+          ("C-c '" . separedit)))
 
 ;; pastebin service
 (use-package webpaste
