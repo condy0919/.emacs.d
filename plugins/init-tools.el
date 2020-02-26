@@ -188,12 +188,22 @@
   :custom
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)
-  (webpaste-provider-priority '("dpaste.org" "dpaste.com" "ix.io"))
+  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io"))
   :config
   (add-hook 'webpaste-return-url-hook
             (lambda (url)
               (message "Opened URL in browser: %s" url)
               (browse-url url)))
+  ;; Waiting for merging https://github.com/etu/webpaste.el/pull/45
+  ;; mozilla pastebin
+  (add-to-list 'webpaste-providers-alist
+               '("paste.mozilla.org"
+                 :uri "https://paste.mozilla.org/api/"
+                 :post-data (("expires" . 86400))
+                 :post-field "content"
+                 :post-lang-field-name "lexer"
+                 :lang-overrides ((emacs-lisp-mode . "clojure"))
+                 :success-lambda webpaste--providers-success-returned-string))
   (setq webpaste--default-lang-alist
         '((python-mode . "python")
           (cc-mode . "cpp")
