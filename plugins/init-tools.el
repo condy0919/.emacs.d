@@ -25,7 +25,6 @@
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t
-  :defer t
   :custom
   (avy-timeout-seconds 0.2)
   (avy-all-windows nil)

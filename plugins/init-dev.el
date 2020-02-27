@@ -112,7 +112,6 @@
 ;; xref
 (use-package ivy-xref
   :ensure t
-  :defer t
   :init
   ;; xref initialization is different in Emacs 27 - there are two different
   ;; variables which can be set rather than just one
