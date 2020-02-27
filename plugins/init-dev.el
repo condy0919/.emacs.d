@@ -58,7 +58,7 @@
 ;; superb compiler explorer implementation
 (use-package rmsbolt
   :ensure t
-  :defer t
+  :defer 5
   :custom
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))
@@ -125,7 +125,6 @@
 ;; Draw a diagram in an easy way
 (use-package plantuml-mode
   :ensure t
-  :defer t
   :custom
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))

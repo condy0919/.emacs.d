@@ -28,8 +28,7 @@
   :hook (c++-mode . modern-c++-font-lock-mode))
 
 (use-package cmake-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (provide 'init-cpp)
 

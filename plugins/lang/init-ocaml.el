@@ -7,8 +7,7 @@
 
 ;; ocaml mode
 (use-package tuareg
-  :ensure t
-  :defer t)
+  :ensure t)
 
 ;; Indentation tool for OCaml
 (use-package ocp-indent
@@ -27,14 +26,12 @@
 
 ;; dune build system
 (use-package dune
-  :ensure t
-  :defer t)
+  :ensure t)
 
 ;; DONT forget to install https://github.com/reasonml/reason-cli
 ;; ocaml dialect for web
 (use-package reason-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (provide 'init-ocaml)
 
