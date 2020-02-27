@@ -186,16 +186,13 @@
 ;; pastebin service
 (use-package webpaste
   :ensure t
-  :defer t
   :custom
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io"))
-  :config
-  (add-hook 'webpaste-return-url-hook
-            (lambda (url)
-              (message "Opened URL in browser: %s" url)
-              (browse-url url)))
+  :hook (webpaste-return-url . (lambda (url)
+                                 (message "Opened URL in browser: %s" url)
+                                 (browse-url url)))
   )
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
