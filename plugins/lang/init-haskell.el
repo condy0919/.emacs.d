@@ -6,6 +6,7 @@
 
 (use-package haskell-mode
   :ensure t
+  :defer t
   :custom
   (haskell-process-check-cabal-config-on-load nil)
   (haskell-process-suggest-add-package nil)

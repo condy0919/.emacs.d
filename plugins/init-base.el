@@ -110,7 +110,8 @@
 
 ;; Try out emacs package without installing
 (use-package try
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide 'init-base)
 

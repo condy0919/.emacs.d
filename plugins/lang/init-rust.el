@@ -16,9 +16,7 @@
 
 (use-package flycheck-rust
   :ensure t
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook 'flycheck-mode))
+  :hook (flycheck-mode . flycheck-rust-setup))
 
 (provide 'init-rust)
 

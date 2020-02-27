@@ -25,6 +25,7 @@
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t
+  :defer t
   :custom
   (avy-timeout-seconds 0.2)
   (avy-all-windows nil)
@@ -123,6 +124,7 @@
 ;; free hands
 (use-package auto-package-update
   :ensure t
+  :defer t
   :custom
   (auto-package-update-delete-old-versions t))
 
@@ -140,10 +142,7 @@
 
 (use-package vterm-toggle
   :ensure t
-  :bind (:map global-map
-         ("M-=" . vterm-toggle)
-         :map vterm-mode-map
-         ("<C-return>" . vterm-toggle-insert-cd))
+  :bind (("M-=" . vterm-toggle))
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
@@ -165,11 +164,13 @@
 
 ;; required by `separedit'
 (use-package dash
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; required by `separedit'
 (use-package edit-indirect
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; write documentation comment in a easy way
 (use-package separedit
@@ -185,6 +186,7 @@
 ;; pastebin service
 (use-package webpaste
   :ensure t
+  :defer t
   :custom
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)
@@ -222,7 +224,8 @@
 
 ;; Open very large files
 (use-package vlf
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide 'init-tools)
 

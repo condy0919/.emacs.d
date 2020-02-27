@@ -58,6 +58,7 @@
 ;; superb compiler explorer implementation
 (use-package rmsbolt
   :ensure t
+  :defer t
   :custom
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))
@@ -75,6 +76,7 @@
   :config
   ;; project side rg
   (use-package ripgrep
+    :defer t
     :ensure t)
 
   ;; cmake project build
@@ -110,6 +112,7 @@
 ;; xref
 (use-package ivy-xref
   :ensure t
+  :defer t
   :init
   ;; xref initialization is different in Emacs 27 - there are two different
   ;; variables which can be set rather than just one
@@ -123,6 +126,7 @@
 ;; Draw a diagram in an easy way
 (use-package plantuml-mode
   :ensure t
+  :defer t
   :custom
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))
