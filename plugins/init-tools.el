@@ -223,6 +223,18 @@
   :ensure t
   :defer t)
 
+;; notes manager
+(use-package deft
+  :ensure t
+  :init
+  (setq deft-default-extension "org")
+  :custom
+  (deft-directory (expand-file-name "~/.deft/"))
+  (deft-use-filename-as-title nil)
+  (deft-file-naming-rules '((noslash . "-")
+                            (nospace . "-")
+                            (case-fn . downcase))))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
