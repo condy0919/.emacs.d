@@ -106,7 +106,16 @@
 ;; use emacsclient to connect
 (use-package server
   :ensure nil
-  :hook (after-init . server-mode))
+  :when (display-graphic-p)
+  :defer 1
+  :config
+  (unless (server-running-p)
+    (server-start)))
+
+;; workaround with minified source files
+(use-package so-long
+  :ensure nil
+  :config (global-so-long-mode 1))
 
 ;; Try out emacs package without installing
 (use-package try

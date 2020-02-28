@@ -46,6 +46,7 @@
   :ensure nil
   :hook (ediff-quit . winner-undo) ;; restore windows layout
   :custom
+  (ediff-diff-options "-w") ;; turn off whitespace checking
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-merge-split-window-function 'split-window-horizontally))
@@ -73,6 +74,7 @@
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
   (projectile-read-command nil) ;; no prompt in projectile-compile-project
+  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o"))
   :config
   ;; project side rg
   (use-package ripgrep

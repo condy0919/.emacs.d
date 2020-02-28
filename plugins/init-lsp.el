@@ -60,6 +60,7 @@
   (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
+  (lsp-enable-on-type-formatting nil)  ;; Disable formatting on the fly
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; Disable eldoc displays in minibuffer
