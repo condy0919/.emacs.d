@@ -226,6 +226,7 @@
 ;; notes manager
 (use-package deft
   :ensure t
+  :defer t
   :init
   (setq deft-default-extension "org")
   :custom
