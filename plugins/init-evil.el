@@ -8,13 +8,11 @@
 (use-package evil
   :ensure t
   :diminish evil
-  :config (setcdr evil-insert-state-map nil) ;; IMPORTANT
+  :custom
+  (evil-disable-insert-state-bindings t)
+  (evil-want-C-u-scroll t)
   :hook (after-init . evil-mode)
-  :bind (:map evil-motion-state-map
-         ("C-u" . scroll-down-command)
-         :map evil-insert-state-map
-         ([escape] . evil-normal-state)
-         :map evil-normal-state-map
+  :bind (:map evil-normal-state-map
          ("M-." . xref-find-definitions))
   )
 
