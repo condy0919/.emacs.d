@@ -71,13 +71,6 @@
               ("C-c r" . lsp-rename))
   )
 
-;; symbol navigation
-(use-package lsp-ivy
-  :ensure t
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-         ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)))
-
 (provide 'init-lsp)
 
 ;;; init-lsp.el ends here
