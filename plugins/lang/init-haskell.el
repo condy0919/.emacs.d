@@ -16,6 +16,9 @@
   (haskell-process-suggest-overloaded-strings nil)
   (haskell-process-suggest-restart nil))
 
+(use-package attrap
+  :ensure t)
+
 (use-package dante
   :ensure t
   :hook (haskell-mode . dante-mode)

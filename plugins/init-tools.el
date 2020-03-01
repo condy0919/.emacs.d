@@ -59,6 +59,11 @@
          ("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-x b" . counsel-ibuffer))
+  :config
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key
+      "i" 'counsel-imenu
+      "g" 'counsel-rg))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
@@ -132,6 +137,9 @@
   :ensure t
   :defines (evil-insert-state-cursor)
   :commands (evil-insert-state)
+  :custom
+  (vterm-kill-buffer-on-exit t)
+  (vterm-clear-scrollback t)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         ;; DONT prompt about processes when killing vterm
