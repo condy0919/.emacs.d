@@ -44,11 +44,16 @@
 (use-package ivy
   :ensure t
   :diminish ivy-mode
+  :defines (evil-insert-state-cursor)
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "%d/%d"
               ivy-display-style 'fancy)
   :bind (("C-c C-r" . ivy-resume))
-  :hook (after-init . ivy-mode))
+  :hook ((after-init . ivy-mode)
+         (ivy-occur-mode . (lambda ()
+                             (setq-local evil-insert-state-cursor 'box)
+                             (evil-insert-state))))
+  )
 
 ;; fuzzy matcher
 (use-package counsel

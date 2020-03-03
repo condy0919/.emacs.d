@@ -16,9 +16,6 @@
   (haskell-process-suggest-overloaded-strings nil)
   (haskell-process-suggest-restart nil))
 
-(use-package attrap
-  :ensure t)
-
 (use-package dante
   :ensure t
   :hook (haskell-mode . dante-mode)
@@ -30,7 +27,6 @@
   :bind (:map haskell-mode-map
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . dante-info)
-         ("C-c a" . attrap-attrap)
          ("C-c C-c" . dante-eval-block))
   )
 
