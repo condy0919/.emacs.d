@@ -16,6 +16,10 @@
 
 (use-package magit-todos
   :ensure t
+  :bind (:map magit-todos-section-map
+         ("j" . nil)
+         :map magit-todos-item-section-map
+         ("j" . nil))
   :hook (magit-status-mode . magit-todos-mode))
 
 ;; group buffers by git/svn/... project
