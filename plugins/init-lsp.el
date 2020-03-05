@@ -14,6 +14,7 @@
   :bind (:map company-active-map
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next)
+         ("C-s" . company-filter-candidates)
          ("<tab>" . company-complete-common-or-cycle)
          :map company-search-map
          ("C-p" . company-select-previous)

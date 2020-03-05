@@ -7,6 +7,9 @@
 
 (use-package cc-mode
   :ensure nil
+  :defines (lsp-clients-clangd-args)
+  :bind (:map c++-mode-map
+         ("C-c C-o" . ff-find-related-file))
   :config
   (c-set-offset 'innamespace [0]) ;; no indentation after namespace
   (setq c-basic-offset 4)
