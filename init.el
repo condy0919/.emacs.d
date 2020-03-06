@@ -52,7 +52,6 @@
 (require 'init-lsp)
 (require 'init-git)
 (require 'init-dev)
-(require 'init-news)
 (require 'init-blog)
 
 (when (file-exists-p custom-file)
