@@ -14,7 +14,7 @@
         (extra (read-string "extra text: ")))
     (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text extra))))
 
-(bind-key "C-c r" #'my/markdown-insert-ruby-tag markdown-mode-map)
+(bind-key "C-c C-s r" #'my/markdown-insert-ruby-tag markdown-mode-map)
 
 (provide 'init-blog)
 

@@ -247,7 +247,18 @@
   (deft-use-filename-as-title nil)
   (deft-file-naming-rules '((noslash . "-")
                             (nospace . "-")
-                            (case-fn . downcase))))
+                            (case-fn . downcase)))
+  :config
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key-for-mode 'deft-mode
+      "c" 'deft-filter-clear
+      "d" 'deft-delete-file
+      "i" 'deft-toggle-incremental-search
+      "n" 'deft-new-file
+      "N" 'deft-new-file-named
+      "q" 'quit-window
+      "o" 'deft-open-file-other-window
+      "r" 'deft-rename-file)))
 
 (provide 'init-tools)
 
