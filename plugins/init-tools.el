@@ -69,6 +69,11 @@
     (evil-leader/set-key
       "i" 'counsel-imenu
       "g" 'counsel-rg))
+  (ivy-set-actions
+   'counsel-find-file
+   '(("d" delete-file "delete")
+     ("r" rename-file "rename")
+     ("x" counsel-find-file-as-root "open as root")))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
