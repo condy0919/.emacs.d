@@ -59,6 +59,10 @@
 (use-package counsel
   :ensure t
   :diminish counsel-mode
+  :custom
+  (counsel-grep-post-action-hook '(recenter))
+  (counsel-find-file-at-point t)
+  (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)")
   :hook (ivy-mode . counsel-mode)
   :bind (("M-y" . counsel-yank-pop)
          ("M-x" . counsel-M-x)
@@ -74,9 +78,11 @@
    '(("d" delete-file "delete")
      ("r" rename-file "rename")
      ("x" counsel-find-file-as-root "open as root")))
-  :custom
-  (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
+
+  ;; recenter after jump
+  (advice-add #'counsel-imenu :after (lambda (&rest _)
+                                       (recenter)))
+  )
 
 ;; DONT use swiper
 (use-package isearch
