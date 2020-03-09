@@ -10,6 +10,7 @@
   :diminish evil
   :custom
   (evil-disable-insert-state-bindings t)
+  (evil-want-fine-undo t)
   (evil-want-C-u-scroll t)
   :hook (after-init . evil-mode)
   :bind (:map evil-normal-state-map
