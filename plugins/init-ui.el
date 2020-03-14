@@ -16,7 +16,7 @@
 
 (use-package golden-ratio
   :ensure t
-  :hook (after-init . golden-ratio-mode)
+  :defer 5
   :custom
   (golden-ratio-auto-scale t)
   (golden-ratio-exclude-modes '(calc-mode
