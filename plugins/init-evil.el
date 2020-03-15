@@ -12,6 +12,7 @@
   (evil-disable-insert-state-bindings t)
   (evil-want-fine-undo t)
   (evil-want-C-u-scroll t)
+  (evil-want-Y-yank-to-eol t)
   :hook (after-init . evil-mode)
   :bind (:map evil-normal-state-map
          ("M-." . xref-find-definitions))
