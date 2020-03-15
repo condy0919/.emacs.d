@@ -53,6 +53,7 @@
 (require 'init-git)
 (require 'init-dev)
 (require 'init-blog)
+(require 'init-mail)
 
 (when (file-exists-p custom-file)
   (load custom-file))
