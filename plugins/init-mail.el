@@ -28,6 +28,7 @@
                             ("/Drafts" . ?d)))
 
   ;; beautiful icons. Copy from doom
+  (mu4e-use-fancy-chars t)
   (mu4e-headers-has-child-prefix '("+" . ""))
   (mu4e-headers-empty-parent-prefix '("-" . ""))
   (mu4e-headers-first-child-prefix '("\\" . ""))
@@ -65,17 +66,8 @@
   (mu4e-confirm-quit nil)
   (mu4e-compose-signature "Sent from my Emacs.")
   :config
-  ;; configuration for sending mail
-  (setq message-send-mail-function #'smtpmail-send-it
-        smptmail-stream-type 'starttls
-        ;; close after sending
-        message-kill-buffer-on-exit t)
-
   ;; general mail settings
   (setq mail-user-agent 'mu4e-user-agent
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587
-        smtpmail-smtp-user "condy0919@gmail.com"
         user-mail-address "condy0919@gmail.com"
         user-full-name "Zhiwei Chen")
 
@@ -89,6 +81,23 @@
       "S" 'message-dont-send
       "a" 'mail-add-attachment))
   )
+
+;; sending mail
+(use-package message
+  :ensure nil
+  :after mu4e
+  :custom
+  (message-kill-buffer-on-exit t)
+  (message-send-mail-function #'smtpmail-send-it))
+
+(use-package smtpmail
+  :ensure nil
+  :after mu4e
+  :custom
+  (smtpmail-smtp-server "smtp.gmail.com")
+  (smtpmail-smtp-user "condy0919@gmail.com")
+  (smtpmail-smtp-service 587)
+  (smptmail-stream-type 'starttls))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
