@@ -46,7 +46,7 @@
   :diminish ivy-mode
   :defines (evil-insert-state-cursor)
   :init (setq ivy-use-virtual-buffers t
-              ivy-count-format "%d/%d"
+              ivy-count-format "%d/%d "
               ivy-display-style 'fancy)
   :bind (("C-c C-r" . ivy-resume))
   :hook ((after-init . ivy-mode)
@@ -189,10 +189,9 @@
   :ensure t
   :defer t)
 
-;; write documentation comment in a easy way
+;; write documentation comment in an easy way
 (use-package separedit
   :ensure t
-  :straight (:host github :repo "twlz0ne/separedit.el")
   :custom
   (separedit-default-mode 'markdown-mode)
   (separedit-remove-trailing-spaces-in-comment t)
