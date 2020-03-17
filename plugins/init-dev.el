@@ -111,6 +111,11 @@
   ;; clang/gcc/cppcheck flycheckers never know the include path
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
+(use-package flymake
+  :disabled
+  :custom
+  (flymake-fringe-indicator-position 'right-fringe))
+
 ;; xref
 (use-package ivy-xref
   :ensure t
@@ -130,13 +135,6 @@
   :custom
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))
-
-(use-package flycheck-plantuml
-  :ensure t
-  :after (flycheck plantuml-mode)
-  :config (flycheck-plantuml-setup)
-  ;; flycheck-plantuml only support the jar style
-  :custom (plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 
 ;; An offline docset
 (use-package zeal-at-point

@@ -40,7 +40,6 @@
   :hook (company-mode . company-quickhelp-mode)
   :custom
   (company-quickhelp-use-propertized-text t)
-  (company-quickhelp-delay 0.1)
   (company-quickhelp-max-lines 8))
 
 ;; Sorting & filtering
@@ -53,7 +52,6 @@
 (use-package lsp-mode
   :ensure t
   :hook (prog-mode . lsp-deferred)
-  :init (setq flymake-fringe-indicator-position 'right-fringe)
   :custom
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
