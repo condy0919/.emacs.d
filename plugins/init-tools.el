@@ -175,7 +175,8 @@
 (use-package gcmh
   :ensure t
   :custom
-  (gcmh-high-cons-threshold 100000000)
+  (gcmh-low-cons-threshold #x10000000)
+  (gcmh-high-cons-threshold #x40000000)
   (gcmh-idle-delay 300)
   :hook (after-init . gcmh-mode))
 
