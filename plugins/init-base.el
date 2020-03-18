@@ -122,6 +122,11 @@
   :ensure nil
   :config (global-so-long-mode 1))
 
+;; always recenter after jump
+(use-package imenu
+  :ensure nil
+  :hook (imenu-after-jump . recenter))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
