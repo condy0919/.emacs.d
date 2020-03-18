@@ -180,16 +180,6 @@
   (gcmh-idle-delay 300)
   :hook (after-init . gcmh-mode))
 
-;; required by `separedit'
-(use-package dash
-  :ensure t
-  :defer t)
-
-;; required by `separedit'
-(use-package edit-indirect
-  :ensure t
-  :defer t)
-
 ;; write documentation comment in an easy way
 (use-package separedit
   :ensure t
