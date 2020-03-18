@@ -92,13 +92,13 @@
                                     :compile "bazel build //..."
                                     :test "bazel test //...")
 
-  (let ((ig-dirs '(".ccls-cache"
-                   ".clangd"
-                   "bazel-bin"
-                   "bazel-out"
-                   "bazel-testlogs")))
-    (dolist (dir ig-dirs)
-      (push dir projectile-globally-ignored-directories)))
+  (dolist (dir '(".ccls-cache"
+                 ".clangd"
+                 "tmp"
+                 "bazel-bin"
+                 "bazel-out"
+                 "bazel-testlogs"))
+    (push dir projectile-globally-ignored-directories))
   )
 
 ;; lint tool
