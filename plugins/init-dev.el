@@ -107,6 +107,7 @@
   :diminish " FC"
   :hook (prog-mode . flycheck-mode)
   :custom
+  (flycheck-idle-change-delay 2) ;; was 0.5
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
