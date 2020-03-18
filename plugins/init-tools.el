@@ -85,7 +85,18 @@
          ("C-o" . isearch-occur)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
-  :custom (lazy-highlight-cleanup nil))
+  :custom
+  (isearch-lazy-count t)
+  (lazy-count-prefix-format "%s/%s ")
+  (lazy-count-suffix-format nil)
+  (lazy-highlight-cleanup nil))
+
+;; writable grep buffer. company well with ivy-occur
+(use-package wgrep
+  :ensure t
+  :custom
+  (wgrep-auto-save-buffer t)
+  (wgrep-change-readonly-file t))
 
 ;; switch windows quickly
 (use-package ace-window

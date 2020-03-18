@@ -97,6 +97,11 @@
   :ensure nil
   :hook (after-init . save-place-mode))
 
+;; update buffer whenever file changes
+(use-package autorevert
+  :ensure nil
+  :hook (after-init . global-auto-revert-mode))
+
 ;; highlight current line
 (use-package hl-line
   :ensure nil
