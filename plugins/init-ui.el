@@ -14,11 +14,6 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
-;; make dired colorful
-(use-package diredfl
-  :ensure t
-  :hook (dired-mode . diredfl-mode))
-
 ;; restore windows layout
 (use-package winner-mode
   :ensure nil
