@@ -71,10 +71,11 @@
         user-mail-address "condy0919@gmail.com"
         user-full-name "Zhiwei Chen")
 
+  ;; makes `rofi' distinguish from all Emacs instances
+  (set-frame-name (format "mail %s" user-mail-address))
+
   ;; evil integration
   (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "m" 'mu4e)
     (evil-leader/set-key-for-mode 'mu4e-compose-mode
       "s" 'message-send-and-exit
       "d" 'message-kill-buffer
