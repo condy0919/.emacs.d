@@ -8,6 +8,9 @@
 ;; bundled with system package `mu'
 (use-package mu4e
   :ensure nil
+  ;; makes `rofi' distinguish from all Emacs instances
+  :hook (mu4e-main-mode . (lambda ()
+                            (set-frame-name (format "mail %s" user-mail-address))))
   :custom
   ;; path
   (mu4e-maildir (expand-file-name "~/Mail"))
@@ -70,9 +73,6 @@
   (setq mail-user-agent 'mu4e-user-agent
         user-mail-address "condy0919@gmail.com"
         user-full-name "Zhiwei Chen")
-
-  ;; makes `rofi' distinguish from all Emacs instances
-  (set-frame-name (format "mail %s" user-mail-address))
 
   ;; evil integration
   (with-eval-after-load 'evil-leader
