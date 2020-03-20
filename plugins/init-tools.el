@@ -200,6 +200,7 @@
   (separedit-default-mode 'markdown-mode)
   (separedit-remove-trailing-spaces-in-comment t)
   (separedit-continue-fill-column t)
+  (separedit-buffer-creation-hook #'auto-fill-mode)
   :bind (:map prog-mode-map
           ("C-c '" . separedit)))
 
