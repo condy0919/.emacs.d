@@ -45,8 +45,8 @@
 ;; Sorting & filtering
 (use-package company-prescient
   :ensure t
-  :hook (company-mode . company-prescient-mode)
-  :config (prescient-persist-mode +1))
+  :hook ((company-mode . company-prescient-mode)
+         (company-mode . prescient-persist-mode)))
 
 ;; lsp-mode
 (use-package lsp-mode
