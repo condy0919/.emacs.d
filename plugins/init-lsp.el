@@ -64,10 +64,10 @@
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; Disable eldoc displays in minibuffer
   :bind (:map lsp-mode-map
-              ("C-c f" . lsp-format-region)
-              ("C-c d" . lsp-describe-thing-at-point)
-              ("C-c a" . lsp-execute-code-action)
-              ("C-c r" . lsp-rename))
+         ("C-c f" . lsp-format-region)
+         ("C-c d" . lsp-describe-thing-at-point)
+         ("C-c a" . lsp-execute-code-action)
+         ("C-c r" . lsp-rename))
   )
 
 (provide 'init-lsp)
