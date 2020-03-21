@@ -127,6 +127,10 @@
   :ensure nil
   :hook (imenu-after-jump . recenter))
 
+(use-package hippie-exp
+  :ensure nil
+  :bind ("M-/" . hippie-expand))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
