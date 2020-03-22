@@ -9,7 +9,6 @@
 (use-package company
   :ensure t
   :diminish company-mode
-  :defines (company-dabbrev-downcase company-dabbrev-ignore-case company-clang-arguments company-clang-insert-arguments)
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
          ("C-p" . company-select-previous)
@@ -27,10 +26,7 @@
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 2
-        company-clang-arguments '("-std=c++17")
-        company-clang-insert-arguments nil
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-case nil)
+        company-backends '(company-capf company-cmake))
   :diminish company-mode)
 
 ;; Show docs when completion as an alternative for lsp-ui

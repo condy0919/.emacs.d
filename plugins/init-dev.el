@@ -85,7 +85,7 @@
   (projectile-register-project-type 'cmake '("CMakeLists.txt")
                                     :configure "cmake -Bbuild"
                                     :compile "cmake --build build"
-                                    :test "ctest")
+                                    :test "cd build && ctest")
 
   ;; bazel project builds
   (projectile-register-project-type 'bazel '("WORKSPACE")
