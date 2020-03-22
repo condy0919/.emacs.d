@@ -9,7 +9,7 @@
 (use-package company
   :ensure t
   :diminish company-mode
-  :defines (company-dabbrev-downcase company-dabbrev-ignore-case company-clang-arguments)
+  :defines (company-dabbrev-downcase company-dabbrev-ignore-case company-clang-arguments company-clang-insert-arguments)
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
          ("C-p" . company-select-previous)
