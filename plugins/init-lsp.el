@@ -24,7 +24,8 @@
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
   (setq company-tooltip-align-annotations t
         company-show-numbers t  ;; Easy navigation to candidates with M-<n>
-        company-idle-delay 0.1
+        company-idle-delay 0
+        company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 2
         company-clang-arguments '("-std=c++17")
         company-dabbrev-downcase nil
