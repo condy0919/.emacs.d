@@ -108,6 +108,7 @@
   :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled))
+  (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
