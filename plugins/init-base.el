@@ -77,6 +77,8 @@
 ;; show line/column number
 (use-package simple
   :ensure nil
+  :custom
+  (save-interprogram-paste-before-kill t) ;; save current clipboard text
   :hook (after-init . (lambda ()
                         (line-number-mode)
                         (column-number-mode)
