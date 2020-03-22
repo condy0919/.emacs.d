@@ -21,8 +21,7 @@
 (use-package evil-leader
   :ensure t
   :custom (evil-leader/leader "<SPC>")
-  :config
-  (global-evil-leader-mode))
+  :hook (after-init . global-evil-leader-mode))
 
 (use-package evil-nerd-commenter
   :ensure t
