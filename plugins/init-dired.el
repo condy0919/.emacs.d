@@ -10,6 +10,7 @@
   :hook (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
+  (dired-auto-revert-buffer t)
   (dired-listing-switches "-Afhlv"))
 
 (use-package dired-aux
