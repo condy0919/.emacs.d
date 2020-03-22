@@ -28,6 +28,7 @@
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 2
         company-clang-arguments '("-std=c++17")
+        company-clang-insert-arguments nil
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil)
   :diminish company-mode)
