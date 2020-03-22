@@ -55,6 +55,7 @@
   :ensure t
   :hook (prog-mode . lsp-deferred)
   :custom
+  (lsp-keymap-prefix "C-c l")
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
