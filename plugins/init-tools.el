@@ -210,13 +210,10 @@
   :ensure t
   :defer 1
   :custom
+  (webpaste-open-in-browser t)
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)
-  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io"))
-  :hook (webpaste-return-url . (lambda (url)
-                                 (message "Opened URL in browser: %s" url)
-                                 (browse-url url)))
-  )
+  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io")))
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome

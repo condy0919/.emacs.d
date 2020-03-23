@@ -129,9 +129,16 @@
   :ensure nil
   :hook (imenu-after-jump . recenter))
 
+;; better abbrev expansion
 (use-package hippie-exp
   :ensure nil
   :bind ("M-/" . hippie-expand))
+
+;; Required by `webpaste'
+(use-package browse-url
+  :ensure nil
+  :custom
+  (browse-url-generic-program "firefox"))
 
 ;; Try out emacs package without installing
 (use-package try
