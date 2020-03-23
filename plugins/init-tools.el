@@ -48,7 +48,8 @@
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "%d/%d "
               ivy-display-style 'fancy)
-  :bind (("C-c C-r" . ivy-resume))
+  :bind (("C-c C-r" . ivy-resume)
+         ("C-x b" . ivy-switch-buffer))
   :hook ((after-init . ivy-mode)
          (ivy-occur-mode . (lambda ()
                              (setq-local evil-insert-state-cursor 'box)
@@ -62,8 +63,7 @@
   :hook (ivy-mode . counsel-mode)
   :bind (("M-y" . counsel-yank-pop)
          ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x b" . counsel-ibuffer))
+         ("C-x C-f" . counsel-find-file))
   :config
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key
