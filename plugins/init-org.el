@@ -7,6 +7,7 @@
 
 (use-package org
   :ensure nil
+  :mode ("\\.org\\'" . org-mode)
   :custom
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)

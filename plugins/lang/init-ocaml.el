@@ -7,7 +7,8 @@
 
 ;; ocaml mode
 (use-package tuareg
-  :ensure t)
+  :ensure t
+  :mode ("\\.ml\\'" . tuareg-mode))
 
 ;; Indentation tool for OCaml
 (use-package ocp-indent

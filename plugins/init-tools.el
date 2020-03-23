@@ -96,6 +96,7 @@
 ;; writable grep buffer. company well with ivy-occur
 (use-package wgrep
   :ensure t
+  :defer 1
   :custom
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
@@ -207,6 +208,7 @@
 ;; pastebin service
 (use-package webpaste
   :ensure t
+  :defer 1
   :custom
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)

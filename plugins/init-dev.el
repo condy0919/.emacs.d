@@ -54,13 +54,13 @@
 ;; quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
-  :defer 5
+  :defer 1
   :bind (("C-c x" . quickrun)))
 
 ;; superb compiler explorer implementation
 (use-package rmsbolt
   :ensure t
-  :defer 5
+  :defer 1
   :custom
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))

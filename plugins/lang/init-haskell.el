@@ -6,6 +6,7 @@
 
 (use-package haskell-mode
   :ensure t
+  :mode ("\\.hs\\'" . haskell-mode)
   :custom
   (haskell-process-check-cabal-config-on-load nil)
   (haskell-process-suggest-add-package nil)
