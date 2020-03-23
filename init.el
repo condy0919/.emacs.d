@@ -10,8 +10,9 @@
 (setq read-process-output-max (* 1024 1024))
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
+(setq package-archives
+      '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 (package-initialize)
 
