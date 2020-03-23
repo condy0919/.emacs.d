@@ -27,7 +27,6 @@
 
 (use-package modern-cpp-font-lock
   :ensure t
-  :diminish t
   :hook (c++-mode . modern-c++-font-lock-mode))
 
 (use-package cmake-mode

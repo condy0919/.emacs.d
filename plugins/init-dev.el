@@ -55,6 +55,7 @@
 (use-package quickrun
   :ensure t
   :defer 1
+  :custom (quickrun-focus-p nil)
   :bind (("C-c x" . quickrun)))
 
 ;; superb compiler explorer implementation
@@ -105,7 +106,6 @@
 ;; lint tool
 (use-package flycheck
   :ensure t
-  :diminish " FC"
   :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled))
@@ -167,7 +167,6 @@
 ;; Hiding structured data
 (use-package hideshow
   :ensure nil
-  :diminish hs-minor-mode
   :bind (:map prog-mode-map
          ("C-c TAB" . hs-toggle-hiding)
          ("M-+" . hs-show-all))

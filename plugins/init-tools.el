@@ -8,7 +8,6 @@
 ;; Tips for next keystroke
 (use-package which-key
   :ensure t
-  :diminish which-key-mode
   :hook (after-init . which-key-mode)
   :custom (which-key-idle-delay 0.5))
 
@@ -43,7 +42,6 @@
 ;; ivy core
 (use-package ivy
   :ensure t
-  :diminish ivy-mode
   :defines (evil-insert-state-cursor)
   :init (setq ivy-use-virtual-buffers t
               ivy-count-format "%d/%d "
@@ -59,11 +57,12 @@
 ;; fuzzy matcher
 (use-package counsel
   :ensure t
-  :diminish counsel-mode
   :hook (ivy-mode . counsel-mode)
-  :bind (("M-y" . counsel-yank-pop)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+  :bind (([remap evil-ex-registers]  . counsel-evil-registers)
+         ([remap evil-show-mark]     . counsel-mark-ring)
+         ([remap recentf-open-files] . counsel-recentf)
+         ([remap swiper]             . counsel-grep-or-swiper)
+         ("M-y"                      . counsel-yank-pop))
   :config
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key
@@ -258,7 +257,19 @@
       "N" 'deft-new-file-named
       "q" 'quit-window
       "o" 'deft-open-file-other-window
-      "r" 'deft-rename-file)))
+      "r" 'deft-rename-file))
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'deft-mode 'insert)
+    (evil-define-key 'normal deft-mode-map
+      "gr"  'deft-refresh
+      "C-s" 'deft-filter
+      "r"   'deft-rename-file
+      "a"   'deft-new-file
+      "A"   'deft-new-file-named
+      "d"   'deft-delete-file
+      "D"   'deft-archive-file
+      "q"   'deft-current-buffer))
+  )
 
 (provide 'init-tools)
 

@@ -8,7 +8,6 @@
 ;; The completion engine
 (use-package company
   :ensure t
-  :diminish company-mode
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
          ("C-p" . company-select-previous)
@@ -25,11 +24,10 @@
         company-show-numbers t  ;; Easy navigation to candidates with M-<n>
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
-        company-minimum-prefix-length 2
+        company-minimum-prefix-length 3
         company-backends '(company-capf
                            company-keywords
-                           company-tempo))
-  :diminish company-mode)
+                           company-tempo)))
 
 ;; Show docs when completion as an alternative for lsp-ui
 (use-package company-quickhelp
@@ -57,6 +55,7 @@
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
+  (lsp-flycheck-live-reporting nil)    ;; obey `flycheck-check-syntax-automatically'
   (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-symbol-highlighting nil) ;; turn off for better performance

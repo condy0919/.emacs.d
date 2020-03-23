@@ -44,8 +44,6 @@
 
 (use-package dashboard
   :ensure t
-  :diminish
-  (dashboard-mode page-break-lines-mode)
   :custom
   (dashboard-banner-logo-title "Welcome to Emacs Dashboard")
   (dashboard-startup-banner 'logo)

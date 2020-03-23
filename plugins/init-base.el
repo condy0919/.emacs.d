@@ -129,6 +129,11 @@
   :ensure nil
   :hook (imenu-after-jump . recenter))
 
+;; make escape more nature
+(use-package minibuffer
+  :ensure nil
+  :bind ([escape] . abort-recursive-edit))
+
 ;; better abbrev expansion
 (use-package hippie-exp
   :ensure nil
