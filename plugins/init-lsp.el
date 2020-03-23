@@ -26,7 +26,9 @@
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 2
-        company-backends '(company-capf company-cmake))
+        company-backends '(company-capf
+                           company-keywords
+                           company-tempo))
   :diminish company-mode)
 
 ;; Show docs when completion as an alternative for lsp-ui

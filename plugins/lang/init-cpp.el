@@ -31,7 +31,13 @@
   :hook (c++-mode . modern-c++-font-lock-mode))
 
 (use-package cmake-mode
-  :ensure t)
+  :ensure t
+  :defines (company-backends)
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
+         ("\\.cmake\\'" . cmake-mode))
+  :config
+  (with-eval-after-load 'company-mode
+    (add-to-list 'company-backends 'company-cmake)))
 
 (provide 'init-cpp)
 
