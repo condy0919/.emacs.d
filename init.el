@@ -55,7 +55,7 @@
 (require 'init-dev)
 (require 'init-blog)
 (require 'init-mail)
-(require 'init-key)
+(require 'init-mkey)
 
 (when (file-exists-p custom-file)
   (load custom-file))
