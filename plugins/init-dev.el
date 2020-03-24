@@ -112,14 +112,7 @@
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
-  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  :config
-  ;; consistent with help-mode
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'flycheck-error-list-mode 'normal)
-    (evil-define-key 'normal 'flycheck-error-list-mode-map
-      "q" 'quit-window))
-  )
+  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
 (use-package flymake
   :disabled

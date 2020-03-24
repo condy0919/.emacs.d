@@ -43,10 +43,9 @@
 (use-package ivy
   :ensure t
   :defines (evil-insert-state-cursor)
-  :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-count-format "%d/%d ")
-  (ivy-display-style 'fancy)
+  :init (setq ivy-use-virtual-buffers t
+              ivy-count-format "%d/%d "
+              ivy-display-style 'fancy)
   :bind (("C-c C-r" . ivy-resume)
          ("C-x b" . ivy-switch-buffer))
   :hook ((after-init . ivy-mode)
@@ -175,16 +174,13 @@
 (use-package vterm-toggle
   :ensure t
   :bind (("M-=" . vterm-toggle))
-  :custom
-  (vterm-toggle-fullscreen-p nil)
-  (vterm-toggle-use-dedicated-buffer t)
-  (vterm-toggle-cd-auto-create-buffer t)
-  (vterm-toggle-reset-window-configration-after-exit t)
   :config
+  (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
                '("^v?term.*"
                  (display-buffer-reuse-window display-buffer-in-side-window)
                  (side . bottom)
+                 (dedicated . t)
                  (reusable-frames . visible)
                  (window-height . 0.3)))
   )
@@ -265,7 +261,7 @@
       "r" 'deft-rename-file))
   (with-eval-after-load 'evil
     (evil-set-initial-state 'deft-mode 'insert)
-    (evil-define-key 'normal 'deft-mode-map
+    (evil-define-key 'normal deft-mode-map
       "gr"  'deft-refresh
       "C-s" 'deft-filter
       "r"   'deft-rename-file
