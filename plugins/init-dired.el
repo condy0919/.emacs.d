@@ -7,6 +7,7 @@
 ;; Use ( to toggle dired-hide-details-mode
 (use-package dired
   :ensure nil
+  :hook (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
   (dired-auto-revert-buffer t)
@@ -14,7 +15,7 @@
   (dired-listing-switches "-Afhlv")
   :bind (:map dired-mode-map
          ;; consistent with wgrep
-         ("C-c C-e" . wdired-change-to-wdired-mode)))
+         ("C-c C-e" . dired-toggle-read-only)))
 
 (use-package dired-aux
   :ensure nil
@@ -35,7 +36,6 @@
                             ".elc" ".pyc" ".o" ".swp")))
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil))
-
 
 ;; Make dired colorful
 (use-package diredfl
