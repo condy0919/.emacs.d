@@ -22,6 +22,5 @@
 (with-eval-after-load 'help
   (bind-key "o" #'mkey-open-help-link help-mode-map))
 
-
 (provide 'init-key)
 ;;; init-key.el ends here
