@@ -9,7 +9,9 @@
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
-  :bind (:map company-active-map
+  :bind (:map company-mode-map
+         ([remap completion-at-point] . company-complete)
+         :map company-active-map
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next)
          ("C-s" . company-filter-candidates)
@@ -17,17 +19,19 @@
          :map company-search-map
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next))
+  :custom
+  (company-idle-delay 0)
+  (company-show-numbers t) ;; Easy navigation to candidates with M-<n>
+  (company-minimum-prefix-length 4)
+  (company-tooltip-align-annotations t)
+  (company-backends '(company-capf
+                      company-keywords
+                      company-tempo))
   :config
-  ;; Use Company for completion
-  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
-  (setq company-tooltip-align-annotations t
-        company-show-numbers t  ;; Easy navigation to candidates with M-<n>
-        company-idle-delay 0
-        company-echo-delay (if (display-graphic-p) nil 0)
-        company-minimum-prefix-length 3
-        company-backends '(company-capf
-                           company-keywords
-                           company-tempo)))
+  (with-eval-after-load 'evil
+    ;; DONT show candidates menu when back to evil normal mode
+    (add-hook 'evil-normal-state-entry-hook 'company-abort))
+  )
 
 ;; Show docs when completion as an alternative for lsp-ui
 (use-package company-quickhelp
@@ -59,10 +63,10 @@
   (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
-  (lsp-enable-on-type-formatting nil)  ;; Disable formatting on the fly
+  (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
-  (lsp-eldoc-enable-hover nil)         ;; Disable eldoc displays in minibuffer
+  (lsp-eldoc-enable-hover nil)         ;; disable eldoc displays in minibuffer
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
