@@ -19,7 +19,7 @@
                               (ocaml . t)
                               (emacs-lisp . t))))
 
-;; pretty symbols
+;; Pretty symbols
 (use-package org-bullets
   :ensure t
   :hook (org-mode . org-bullets-mode))

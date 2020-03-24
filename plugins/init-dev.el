@@ -19,7 +19,7 @@
   :custom
   (compilation-scroll-output t))
 
-;; highlight TODO
+;; Highlight TODO
 (use-package hl-todo
   :ensure t
   :bind (:map hl-todo-mode-map
@@ -34,14 +34,14 @@
   (dolist (keyword '("WORKAROUND" "HACK" "TRICK"))
     (cl-pushnew `(,keyword . ,(face-foreground 'warning)) hl-todo-keyword-faces)))
 
-;; show trailing whitespaces
+;; Show trailing whitespaces
 (use-package whitespace
   :ensure nil
   :hook ((prog-mode markdown-mode conf-mode) . whitespace-mode)
   :config
   (setq whitespace-style '(face trailing)))
 
-;; visual diff interface
+;; Visual diff interface
 (use-package ediff
   :ensure nil
   :hook (ediff-quit . winner-undo) ;; restore windows layout
@@ -51,14 +51,14 @@
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-merge-split-window-function 'split-window-horizontally))
 
-;; quickrun codes, including cpp. awesome!
+;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
   :defer 1
   :custom (quickrun-focus-p nil)
   :bind (("C-c x" . quickrun)))
 
-;; superb compiler explorer implementation
+;; Superb compiler explorer implementation
 (use-package rmsbolt
   :ensure t
   :defer 1
@@ -66,7 +66,7 @@
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))
 
-;; project management
+;; Project management
 (use-package projectile
   :ensure t
   :bind (:map projectile-mode-map
@@ -103,7 +103,7 @@
     (push dir projectile-globally-ignored-directories))
   )
 
-;; lint tool
+;; Lint tool
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode)
@@ -156,7 +156,7 @@
   (zeal-at-point-mode-alist '((c++-mode . ("cpp" "boost"))
                               (rust-mode . "rust"))))
 
-;; jump to definition, used as a fallback of lsp-find-definition
+;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t
   :bind (("M-g o" . dumb-jump-go-other-window)
@@ -185,7 +185,7 @@
              (c++-mode "{" "}" "/[*/]" nil nil)
              (rust-mode "{" "}" "/[*/]" nil nil)))))
 
-;; config files mode
+;; Config files mode
 (use-package yaml-mode :ensure t)
 (use-package toml-mode :ensure t)
 

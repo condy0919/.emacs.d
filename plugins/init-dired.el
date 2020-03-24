@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-;; use ( to toggle dired-hide-details-mode
+;; Use ( to toggle dired-hide-details-mode
 (use-package dired
   :ensure nil
   :custom
@@ -33,16 +33,16 @@
   (dired-omit-files (rx (or ".git" ".svn"
                             ".ccls-cache" ".clangd"
                             ".elc" ".pyc" ".o" ".swp")))
-  ;; dont prompt about killing buffer visiting delete file
+  ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil))
 
 
-;; make dired colorful
+;; Make dired colorful
 (use-package diredfl
   :ensure t
   :hook (dired-mode . diredfl-mode))
 
-;; make all dired operations asynchronous
+;; Make all dired operations asynchronous
 (use-package async
   :ensure t)
 

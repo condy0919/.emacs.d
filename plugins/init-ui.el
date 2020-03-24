@@ -14,7 +14,7 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
-;; restore windows layout
+;; Restore windows layout
 (use-package winner-mode
   :ensure nil
   :hook (after-init . winner-mode))
