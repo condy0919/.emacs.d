@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-;; ocaml mode
+;; Ocaml mode
 (use-package tuareg
   :ensure t
   :mode ("\\.ml\\'" . tuareg-mode))
@@ -25,11 +25,11 @@
   (merlin-command "ocamlmerlin")
   (merlin-completion-with-doc t))
 
-;; dune build system
+;; Dune build system
 (use-package dune
   :ensure t)
 
-;; DONT forget to install https://github.com/reasonml/reason-cli
+;; Dont forget to install https://github.com/reasonml/reason-cli
 ;; ocaml dialect for web
 (use-package reason-mode
   :ensure t)

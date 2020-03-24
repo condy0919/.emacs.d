@@ -80,7 +80,7 @@
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
-;; DONT use swiper
+;; Dont use swiper
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
@@ -167,7 +167,7 @@
   (vterm-clear-scrollback t)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
-                        ;; DONT prompt about processes when killing vterm
+                        ;; Dont prompt about processes when killing vterm
                         (setq confirm-kill-processes nil)
                         (evil-insert-state)))
   )

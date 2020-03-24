@@ -14,6 +14,7 @@
   (setq magit-status-margin
         '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
+;; Todo integration
 (use-package magit-todos
   :ensure t
   :bind (:map magit-todos-section-map
@@ -22,7 +23,13 @@
          ("j" . nil))
   :hook (magit-status-mode . magit-todos-mode))
 
-;; group buffers by git/svn/... project
+;; Dont display empty groups
+(use-package ibuffer
+  :ensure nil
+  :custom
+  (ibuffer-show-empty-filter-groups nil))
+
+;; Group buffers by git/svn/... project
 (use-package ibuffer-vc
   :ensure t
   :commands (ibuffer-do-sort-by-alphabetic)
@@ -31,7 +38,7 @@
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
                        (ibuffer-do-sort-by-alphabetic)))))
 
-;; highlight uncommitted changes using git
+;; Highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t
   :hook ((prog-mode . (lambda ()

@@ -19,7 +19,7 @@
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
 
-;; smooth scroll & friends
+;; Smooth scroll & friends
 (setq scroll-step 2
       scroll-margin 2
       hscroll-step 2
@@ -31,7 +31,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "S-<return>") 'comment-indent-new-line)
 
-;; DONT move points out of eyes
+;; Dont move points out of eyes
 (setq mouse-yank-at-point t)
 
 (setq-default fill-column 80)
@@ -45,7 +45,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-;; font size
+;; Font size
 (set-face-attribute 'default nil :height 110)
 
 ;; Prefer shorter names
@@ -74,7 +74,7 @@
   :ensure nil
   :hook (after-init . delete-selection-mode))
 
-;; show line/column number
+;; Show line/column number
 (use-package simple
   :ensure nil
   :custom
@@ -83,7 +83,7 @@
                         (line-number-mode)
                         (column-number-mode)
                         (size-indication-mode))))
-;; type text
+;; Type text
 (use-package text-mode
   :ensure nil
   :custom
@@ -94,23 +94,23 @@
   (sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
 
-;; back to the previous position
+;; Back to the previous position
 (use-package saveplace
   :ensure nil
   :hook (after-init . save-place-mode))
 
-;; update buffer whenever file changes
+;; Update buffer whenever file changes
 (use-package autorevert
   :ensure nil
   :hook (after-init . global-auto-revert-mode))
 
-;; highlight current line
+;; Highlight current line
 (use-package hl-line
   :ensure nil
   :hook (after-init . global-hl-line-mode))
 
-;; server mode.
-;; use emacsclient to connect
+;; Server mode.
+;; Use emacsclient to connect
 (use-package server
   :ensure nil
   :when (display-graphic-p)
@@ -119,27 +119,27 @@
   (unless (server-running-p)
     (server-start)))
 
-;; workaround with minified source files
+;; Workaround with minified source files
 (use-package so-long
   :ensure nil
   :config (global-so-long-mode 1))
 
-;; always recenter after jump
+;; Always recenter after jump
 (use-package imenu
   :ensure nil
   :hook (imenu-after-jump . recenter))
 
-;; make escape more nature
+;; Make escape more nature
 (use-package minibuffer
   :ensure nil
   :bind ([escape] . abort-recursive-edit))
 
-;; better abbrev expansion
+;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
   :bind ("M-/" . hippie-expand))
 
-;; Required by `webpaste'
+;; Needed by `webpaste'
 (use-package browse-url
   :ensure nil
   :custom
