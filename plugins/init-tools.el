@@ -141,6 +141,7 @@
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
+  :hook (markdown-mode . auto-fill-mode)
   :custom
   (markdown-command "pandoc")
   (markdown-fontify-code-blocks-natively t)
