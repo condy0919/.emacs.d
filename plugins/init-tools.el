@@ -43,9 +43,10 @@
 (use-package ivy
   :ensure t
   :defines (evil-insert-state-cursor)
-  :init (setq ivy-use-virtual-buffers t
-              ivy-count-format "%d/%d "
-              ivy-display-style 'fancy)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "%d/%d ")
+  (ivy-display-style 'fancy)
   :bind (("C-c C-r" . ivy-resume)
          ("C-x b" . ivy-switch-buffer))
   :hook ((after-init . ivy-mode)
@@ -261,7 +262,7 @@
       "r" 'deft-rename-file))
   (with-eval-after-load 'evil
     (evil-set-initial-state 'deft-mode 'insert)
-    (evil-define-key 'normal deft-mode-map
+    (evil-define-key 'normal 'deft-mode-map
       "gr"  'deft-refresh
       "C-s" 'deft-filter
       "r"   'deft-rename-file
