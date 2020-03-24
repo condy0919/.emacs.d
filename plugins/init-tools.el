@@ -16,7 +16,7 @@
   :ensure t
   :defer t)
 
-;; fuzzy search
+;; Fuzzy search
 (use-package fzf
   :ensure t
   :defer t)
@@ -42,20 +42,17 @@
 ;; ivy core
 (use-package ivy
   :ensure t
-  :defines (evil-insert-state-cursor)
-  :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-count-format "%d/%d ")
-  (ivy-display-style 'fancy)
+  :hook (after-init . ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
          ("C-x b" . ivy-switch-buffer))
-  :hook ((after-init . ivy-mode)
-         (ivy-occur-mode . (lambda ()
-                             (setq-local evil-insert-state-cursor 'box)
-                             (evil-insert-state))))
+  :custom
+  (ivy-display-style 'fancy)          ;; fancy style
+  (ivy-count-format "%d/%d ")         ;; better counts
+  (ivy-use-virtual-buffers t)         ;; show recent files
+  (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
   )
 
-;; fuzzy matcher
+;; Fuzzy matcher
 (use-package counsel
   :ensure t
   :hook (ivy-mode . counsel-mode)
@@ -93,7 +90,7 @@
   (lazy-count-suffix-format nil)
   (lazy-highlight-cleanup nil))
 
-;; writable grep buffer. company well with ivy-occur
+;; Writable grep buffer. company well with ivy-occur
 (use-package wgrep
   :ensure t
   :defer 1
@@ -101,7 +98,7 @@
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
-;; switch windows quickly
+;; Switch windows quickly
 (use-package ace-window
   :ensure t
   :preface
@@ -150,14 +147,14 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
 
-;; free hands
+;; Free hands
 (use-package auto-package-update
   :ensure t
   :defer t
   :custom
   (auto-package-update-delete-old-versions t))
 
-;; beautiful term mode & friends
+;; Beautiful term mode & friends
 (use-package vterm
   :ensure t
   :defines (evil-insert-state-cursor)
@@ -195,7 +192,7 @@
   (gcmh-idle-delay 300)
   :hook (after-init . gcmh-mode))
 
-;; write documentation comment in an easy way
+;; Write documentation comment in an easy way
 (use-package separedit
   :ensure t
   :custom
@@ -206,7 +203,7 @@
   :bind (:map prog-mode-map
           ("C-c '" . separedit)))
 
-;; pastebin service
+;; Pastebin service
 (use-package webpaste
   :ensure t
   :defer 1
@@ -249,7 +246,7 @@
       "G"  'vlf-end-of-file))
   )
 
-;; notes manager
+;; Notes manager
 (use-package deft
   :ensure t
   :defer t
