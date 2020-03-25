@@ -55,6 +55,7 @@
 (require 'init-dev)
 (require 'init-blog)
 (require 'init-mail)
+(require 'init-dired)
 (require 'init-mkey)
 
 (when (file-exists-p custom-file)
