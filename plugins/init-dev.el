@@ -117,7 +117,7 @@
   ;; consistent with help-mode
   (with-eval-after-load 'evil
     (evil-set-initial-state 'flycheck-error-list-mode 'normal)
-    (evil-define-key 'normal 'flycheck-error-list-mode-map
+    (evil-define-key 'normal flycheck-error-list-mode-map
       "q" 'quit-window))
   )
 

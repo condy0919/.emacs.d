@@ -16,6 +16,17 @@
          ;; consistent with wgrep
          ("C-c C-e" . wdired-change-to-wdired-mode)))
 
+(use-package dired-x
+  :ensure nil
+  :hook (dired-mode . dired-omit-mode)
+  :custom
+  (dired-omit-files (rx (or ".git" ".svn"
+                            ".cache"
+                            ".ccls-cache" ".clangd"
+                            ".elc" ".pyc" ".o" ".swp")))
+  ;; Dont prompt about killing buffer visiting delete file
+  (dired-clean-confirm-killing-deleted-buffers nil))
+
 ;; Make dired colorful
 (use-package diredfl
   :ensure t

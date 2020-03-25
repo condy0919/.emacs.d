@@ -44,13 +44,27 @@
   :ensure t
   :hook (after-init . ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
-         ("C-x b" . ivy-switch-buffer))
+         ("C-x b" . ivy-switch-buffer)
+         :map ivy-minibuffer-map
+         ("C-c C-e" . my/ivy-woccur))
   :custom
   (ivy-display-style 'fancy)          ;; fancy style
   (ivy-count-format "%d/%d ")         ;; better counts
   (ivy-use-virtual-buffers t)         ;; show recent files
   (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
-  )
+  :preface
+  ;; Copy from
+  ;; https://github.com/honmaple/maple-emacs/blob/master/lisp/init-ivy.el
+  (defun my/ivy-woccur ()
+    "ivy-occur with wgrep-mode enabled."
+    (interactive)
+    (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
+    (ivy-occur))
+  :config
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'ivy-occur-grep-mode 'normal)
+    (evil-make-overriding-map ivy-occur-mode-map 'normal)))
+
 
 ;; Fuzzy matcher
 (use-package counsel
@@ -69,9 +83,9 @@
   (ivy-set-actions
    'counsel-find-file
    '(("d" delete-file "delete")
-     ("r" rename-file "rename")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
+  (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
   (counsel-yank-pop-separator "\n-----------\n")
   (counsel-find-file-at-point t)
@@ -201,7 +215,7 @@
   (separedit-continue-fill-column t)
   (separedit-buffer-creation-hook #'auto-fill-mode)
   :bind (:map prog-mode-map
-          ("C-c '" . separedit)))
+         ("C-c '" . separedit)))
 
 ;; Pastebin service
 (use-package webpaste
@@ -236,7 +250,7 @@
   :config
   (with-eval-after-load 'evil
     (evil-set-initial-state 'vlf-mode 'normal)
-    (evil-define-key 'normal 'vlf-mode-map
+    (evil-define-key 'normal vlf-mode-map
       ;; view
       "]]" 'vlf-next-batch
       "[[" 'vlf-prev-batch
@@ -271,15 +285,15 @@
       "r" 'deft-rename-file))
   (with-eval-after-load 'evil
     (evil-set-initial-state 'deft-mode 'insert)
-    (evil-define-key 'normal 'deft-mode-map
-      "gr"  'deft-refresh
-      "C-s" 'deft-filter
-      "r"   'deft-rename-file
-      "a"   'deft-new-file
-      "A"   'deft-new-file-named
-      "d"   'deft-delete-file
-      "D"   'deft-archive-file
-      "q"   'deft-current-buffer))
+    (evil-define-key 'normal deft-mode-map
+      "gr"        'deft-refresh
+      (kbd "C-s") 'deft-filter
+      "r"         'deft-rename-file
+      "a"         'deft-new-file
+      "A"         'deft-new-file-named
+      "d"         'deft-delete-file
+      "D"         'deft-archive-file
+      "q"         'deft-current-buffer))
   )
 
 (provide 'init-tools)

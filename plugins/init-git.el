@@ -10,9 +10,9 @@
   :ensure t
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
-  :config
-  (setq magit-status-margin
-        '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
+  :custom
+  (magit-diff-refine-hunk t)
+  (magit-status-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
 ;; Todo integration
 (use-package magit-todos
