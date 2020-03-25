@@ -12,13 +12,16 @@
   "Keybindings for myself."
   :group 'convenience)
 
-(defcustom mkey-enable-modes '(help profiler-report occur)
+(defcustom mkey-enable-modes '(help
+                               profiler-report
+                               occur
+                               evil-leader)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
   :group 'mkey)
 
 ;;;###autoload
-(defun mkey-init (&rest _)
+(defun mkey-init ()
   "Register the evil bindings for all modes in `mkey-enable-modes'."
   (interactive)
   (dolist (m mkey-enable-modes)
@@ -68,6 +71,53 @@
   (evil-define-key 'normal occur-edit-mode-map
     ;; like `wdired-mode'
     (kbd "C-c C-c") 'occur-cease-edit)
+  )
+
+;;;###autoload
+(defun mkey-evil-leader-setup ()
+  "Setup `evil-leader' bindings."
+  ;; prefix: <Leader> f, file
+  (evil-leader/set-key
+    "fj" 'dired-jump
+    "ff" 'find-file
+    "fd" 'delete-file
+    "fc" 'copy-file
+    "fr" 'rename-file
+    "fg" 'counsel-rg)
+
+  ;; prefix: <Leader> b, buffer
+  (evil-leader/set-key
+    "bb" 'ivy-switch-buffer
+    "bk" 'kill-this-buffer
+    "bi" 'ibuffer
+    "bp" 'previous-buffer
+    "bn" 'next-buffer)
+
+  ;; prefix: <Leader> b, bookmark
+  (evil-leader/set-key
+    "bm" 'bookmark-set
+    "bd" 'bookmark-delete
+    "bj" 'bookmark-jump
+    "bs" 'bookmark-save)
+
+  ;; prefix: <Leader> w, window
+  (evil-leader/set-key
+    "w" 'evil-window-map)
+
+  ;; prefix: <Leader> p, projectile
+  (evil-leader/set-key
+    "pp" 'projectile-switch-project
+    "pb" 'projectile-switch-to-buffer
+    "pf" 'projectile-find-file
+    "pg" 'projectile-ripgrep)
+
+  ;; frequently used keys
+  (evil-leader/set-key
+    "j" 'avy-goto-word-or-subword-1
+    "s" 'avy-goto-char-timer
+    "l" 'avy-goto-line
+    "i" 'counsel-imenu
+    "g" 'counsel-rg)
   )
 
 (provide 'init-mkey)

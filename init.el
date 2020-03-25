@@ -58,6 +58,10 @@
 (require 'init-dired)
 (require 'init-mkey)
 
+(use-package emacs
+  :ensure nil
+  :hook (after-init . mkey-init))
+
 (when (file-exists-p custom-file)
   (load custom-file))
 

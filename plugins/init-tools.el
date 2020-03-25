@@ -28,16 +28,7 @@
   (avy-timeout-seconds 0.2)
   (avy-all-windows nil)
   (avy-background t)
-  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
-  :config
-  ;; evil-leader keybindings
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "w" 'avy-goto-word-or-subword-1
-      "e" 'avy-goto-end-of-line
-      "s" 'avy-goto-char-timer
-      "l" 'avy-goto-line))
-  )
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))
 
 ;; ivy core
 (use-package ivy
@@ -76,10 +67,6 @@
          ([remap swiper]             . counsel-grep-or-swiper)
          ("M-y"                      . counsel-yank-pop))
   :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "i" 'counsel-imenu
-      "g" 'counsel-rg))
   (ivy-set-actions
    'counsel-find-file
    '(("d" delete-file "delete")
