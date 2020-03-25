@@ -13,4 +13,10 @@
 .cache/
 .extension/
 elpa/
+eshell/
 straight/
+transient/
+url/
+var/
+auto-save-list
+bookmarks
