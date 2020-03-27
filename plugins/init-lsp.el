@@ -26,8 +26,7 @@
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 3
         company-backends '(company-capf
-                           company-keywords
-                           company-tempo)))
+                           company-keywords)))
 
 ;; Show docs when completion as an alternative for lsp-ui
 (use-package company-quickhelp
