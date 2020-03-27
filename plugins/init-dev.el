@@ -168,8 +168,10 @@
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
   :custom
   (dumb-jump-quiet t)
+  (dumb-jump-aggressive t)
   (dumb-jump-selector 'ivy)
-  (dump-jump-prefer-searcher 'rg))
+  (dump-jump-prefer-searcher 'rg)
+  (dumb-jump-after-jump-hook 'recenter))
 
 ;; Hiding structured data
 (use-package hideshow
