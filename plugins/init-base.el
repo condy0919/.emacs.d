@@ -124,11 +124,6 @@
   :ensure nil
   :config (global-so-long-mode 1))
 
-;; Always recenter after jump
-(use-package imenu
-  :ensure nil
-  :hook (imenu-after-jump . recenter))
-
 ;; Make escape more nature
 (use-package minibuffer
   :ensure nil

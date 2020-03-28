@@ -170,8 +170,22 @@
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
   (dumb-jump-selector 'ivy)
-  (dump-jump-prefer-searcher 'rg)
-  (dumb-jump-after-jump-hook 'recenter))
+  (dump-jump-prefer-searcher 'rg))
+
+(use-package pulse
+  :ensure nil
+  :custom-face
+  (pulse-highlight-start-face ((t (:inherit highlight))))
+  (pulse-highlight-face ((t (:inherit highlight))))
+  :preface
+  (defun my/recenter-and-pulse (&rest _)
+    "Recenter and pulse the current line."
+    (recenter)
+    (pulse-momentary-highlight-one-line (point)))
+  :hook ((counsel-grep-post-action
+          dumb-jump-after-jump
+          bookmark-after-jump
+          imenu-after-jump) . my/recenter-and-pulse))
 
 ;; Hiding structured data
 (use-package hideshow
