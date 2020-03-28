@@ -256,6 +256,7 @@
   :custom
   (deft-directory (expand-file-name "~/.deft/"))
   (deft-use-filename-as-title nil)
+  (deft-use-filter-string-for-filename t)
   (deft-file-naming-rules '((noslash . "-")
                             (nospace . "-")
                             (case-fn . downcase)))
@@ -280,7 +281,7 @@
       "A"         'deft-new-file-named
       "d"         'deft-delete-file
       "D"         'deft-archive-file
-      "q"         'deft-current-buffer))
+      "q"         'kill-current-buffer))
   )
 
 (provide 'init-tools)
