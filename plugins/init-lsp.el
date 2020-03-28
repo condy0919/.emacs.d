@@ -57,11 +57,13 @@
   (lsp-flycheck-live-reporting nil)    ;; obey `flycheck-check-syntax-automatically'
   (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
-  (lsp-enable-symbol-highlighting nil) ;; turn off for better performance
-  (lsp-enable-on-type-formatting nil)  ;; Disable formatting on the fly
+  (lsp-enable-file-watchers nil)       ;; turn off for better performance
+  (lsp-enable-text-document-color nil) ;; as above
+  (lsp-enable-symbol-highlighting nil) ;; as above
+  (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
-  (lsp-eldoc-enable-hover nil)         ;; Disable eldoc displays in minibuffer
+  (lsp-eldoc-enable-hover nil)         ;; disable eldoc displays in minibuffer
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
