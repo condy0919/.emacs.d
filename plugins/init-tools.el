@@ -173,16 +173,9 @@
 (use-package vterm-toggle
   :ensure t
   :bind (("M-=" . vterm-toggle))
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-               '("^v?term.*"
-                 (display-buffer-reuse-window display-buffer-in-side-window)
-                 (side . bottom)
-                 (dedicated . t)
-                 (reusable-frames . visible)
-                 (window-height . 0.3)))
-  )
+  :custom
+  (vterm-toggle-fullscreen-p nil)
+  (vterm-toggle-use-dedicated-buffer t))
 
 ;; GC optimization
 (use-package gcmh
