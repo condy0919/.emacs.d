@@ -37,7 +37,11 @@
   :bind (("C-c C-r" . ivy-resume)
          ("C-x b" . ivy-switch-buffer)
          :map ivy-minibuffer-map
-         ("C-c C-e" . my/ivy-woccur))
+         ("C-c C-e" . my/ivy-woccur)
+         :map ivy-occur-mode-map
+         ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode)
+         :map ivy-occur-grep-mode-map
+         ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
   :custom
   (ivy-display-style 'fancy)          ;; fancy style
   (ivy-count-format "%d/%d ")         ;; better counts
@@ -66,10 +70,17 @@
          ([remap recentf-open-files] . counsel-recentf)
          ([remap swiper]             . counsel-grep-or-swiper)
          ("M-y"                      . counsel-yank-pop))
+  :preface
+  (defun my/rename-file (file)
+    (interactive)
+    (let* ((new-name (read-string "NewName: "))
+           (old-dir (file-name-directory file)))
+      (rename-file file (concat old-dir new-name))))
   :config
   (ivy-set-actions
    'counsel-find-file
    '(("d" delete-file "delete")
+     ("r" my/rename-file "rename")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
   (counsel-preselect-current-file t)

@@ -79,11 +79,6 @@
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
   (projectile-ignored-projects '("/tmp"))
   :config
-  ;; projectile-ripgrep requires `ripgrep'
-  (use-package ripgrep
-    :defer t
-    :ensure t)
-
   ;; cmake project build
   (projectile-register-project-type 'cmake '("CMakeLists.txt")
                                     :configure "cmake -Bbuild"
@@ -102,6 +97,12 @@
                  "bazel-testlogs"))
     (push dir projectile-globally-ignored-directories))
   )
+
+;; Comprehensive ivy integration for projectile
+(use-package counsel-projectile
+  :ensure t
+  :after counsel projectile
+  :hook (prog-mode . counsel-projectile-mode))
 
 ;; Lint tool
 (use-package flycheck
