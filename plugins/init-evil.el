@@ -26,8 +26,7 @@
 
 (use-package evil-nerd-commenter
   :ensure t
-  :config
-  (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines))
+  :bind ("M-;" . evilnc-comment-or-uncomment-lines))
 
 (use-package evil-surround
   :ensure t

@@ -122,7 +122,7 @@
 ;; Workaround with minified source files
 (use-package so-long
   :ensure nil
-  :config (global-so-long-mode 1))
+  :hook (after-init . global-so-long-mode))
 
 ;; Make escape more nature
 (use-package minibuffer

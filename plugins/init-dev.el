@@ -38,8 +38,8 @@
 (use-package whitespace
   :ensure nil
   :hook ((prog-mode markdown-mode conf-mode) . whitespace-mode)
-  :config
-  (setq whitespace-style '(face trailing)))
+  :custom
+  (whitespace-style '(face trailing)))
 
 ;; Visual diff interface
 (use-package ediff

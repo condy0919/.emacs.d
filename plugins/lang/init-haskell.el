@@ -20,11 +20,6 @@
 (use-package dante
   :ensure t
   :hook (haskell-mode . dante-mode)
-  :config
-  ;; Disable auto save flycheck
-  (setq flymake-no-changes-timeout nil)
-  (setq flymake-start-on-flymake-mode nil)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
   :bind (:map haskell-mode-map
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . dante-info)
