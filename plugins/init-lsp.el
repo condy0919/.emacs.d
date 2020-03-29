@@ -51,6 +51,7 @@
   :hook (prog-mode . lsp-deferred)
   :custom
   (lsp-keymap-prefix "C-c l")
+  (lsp-idle-delay 0.5)                 ;; lazy refresh
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
