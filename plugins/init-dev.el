@@ -76,9 +76,10 @@
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
   (projectile-read-command nil) ;; no prompt in projectile-compile-project
-  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
+  (projectile-ignored-projects '("/tmp"))
   :config
-  ;; project side rg
+  ;; projectile-ripgrep requires `ripgrep'
   (use-package ripgrep
     :defer t
     :ensure t)
@@ -96,7 +97,6 @@
 
   (dolist (dir '(".ccls-cache"
                  ".clangd"
-                 "tmp"
                  "bazel-bin"
                  "bazel-out"
                  "bazel-testlogs"))
@@ -189,8 +189,8 @@
           dumb-jump-after-jump
           bookmark-after-jump
           imenu-after-jump) . my/recenter-and-pulse)
-  :config
-  ;; evil
+  :init
+  ;; better evil notification
   (advice-add #'evil-goto-line     :after #'my/recenter-and-pulse)
   (advice-add #'evil-window-top    :after #'my/pulse-line)
   (advice-add #'evil-window-middle :after #'my/pulse-line)
