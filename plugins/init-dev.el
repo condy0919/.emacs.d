@@ -178,14 +178,23 @@
   (pulse-highlight-start-face ((t (:inherit highlight))))
   (pulse-highlight-face ((t (:inherit highlight))))
   :preface
+  (defun my/pulse-line (&rest _)
+    "Pulse the current line."
+    (pulse-momentary-highlight-one-line (point)))
   (defun my/recenter-and-pulse (&rest _)
     "Recenter and pulse the current line."
     (recenter)
-    (pulse-momentary-highlight-one-line (point)))
+    (my/pulse-line))
   :hook ((counsel-grep-post-action
           dumb-jump-after-jump
           bookmark-after-jump
-          imenu-after-jump) . my/recenter-and-pulse))
+          imenu-after-jump) . my/recenter-and-pulse)
+  :config
+  ;; evil
+  (advice-add #'evil-goto-line     :after #'my/recenter-and-pulse)
+  (advice-add #'evil-window-top    :after #'my/pulse-line)
+  (advice-add #'evil-window-middle :after #'my/pulse-line)
+  (advice-add #'evil-window-bottom :after #'my/pulse-line))
 
 ;; Hiding structured data
 (use-package hideshow
