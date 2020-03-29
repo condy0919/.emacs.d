@@ -10,11 +10,13 @@
   :ensure t
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
+         ([escape] . company-abort)
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next)
          ("C-s" . company-filter-candidates)
          ("<tab>" . company-complete-common-or-cycle)
          :map company-search-map
+         ([escape] . company-abort)
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next))
   :config
@@ -22,6 +24,7 @@
   (bind-key [remap completion-at-point] #'company-complete company-mode-map)
   (setq company-tooltip-align-annotations t
         company-show-numbers t  ;; Easy navigation to candidates with M-<n>
+        company-require-match nil
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
         company-minimum-prefix-length 3
