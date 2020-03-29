@@ -164,12 +164,18 @@
                         (evil-insert-state)))
   )
 
-(use-package vterm-toggle
+(use-package shell-pop
   :ensure t
-  :bind (("M-=" . vterm-toggle))
+  :bind ("M-=" . shell-pop)
   :custom
-  (vterm-toggle-fullscreen-p nil)
-  (vterm-toggle-use-dedicated-buffer t))
+  (shell-pop-full-span t)
+  (shell-pop-shell-type '("vterm" "*vterm*" #'vterm))
+  :config
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key
+      "ot" 'shell-pop
+      "oT" 'vterm
+      "oo" 'vterm-other-window)))
 
 ;; GC optimization
 (use-package gcmh
