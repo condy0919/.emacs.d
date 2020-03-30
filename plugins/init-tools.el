@@ -184,13 +184,7 @@
   :bind ("M-=" . shell-pop)
   :custom
   (shell-pop-full-span t)
-  (shell-pop-shell-type '("vterm" "*vterm*" #'vterm))
-  :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "ot" 'shell-pop
-      "oT" 'vterm
-      "oo" 'vterm-other-window)))
+  (shell-pop-shell-type '("vterm" "*vterm*" #'vterm)))
 
 ;; GC optimization
 (use-package gcmh

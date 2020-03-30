@@ -108,8 +108,22 @@
   (evil-leader/set-key
     "pp" 'projectile-switch-project
     "pb" 'projectile-switch-to-buffer
+    "po" 'projectile-find-other-file
     "pf" 'projectile-find-file
     "pg" 'projectile-ripgrep)
+
+  ;; prefix: <Leader> a, apps
+  (evil-leader/set-key
+    "am" 'mu4e
+    "ad" 'deft
+    "aa" 'org-agenda
+    "at" 'org-todo-list)
+
+  ;; prefix: <Leader> o, open
+  (evil-leader/set-key
+    "ot" 'shell-pop
+    "oT" 'vterm
+    "oo" 'vterm-other-window)
 
   ;; frequently used keys
   (evil-leader/set-key
