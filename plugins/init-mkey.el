@@ -115,6 +115,7 @@
   ;; prefix: <Leader> a, apps
   (evil-leader/set-key
     "am" 'mu4e
+    "ac" 'calendar
     "ad" 'deft
     "aa" 'org-agenda
     "at" 'org-todo-list)
@@ -132,6 +133,84 @@
     "l" 'avy-goto-line
     "i" 'counsel-imenu
     "g" 'counsel-rg)
+
+  ;; org-mode <Leader> m
+  ;; Copy from doom-emacs
+  (evil-leader/set-key-for-mode 'org-mode
+    "m'" 'org-edit-special
+    "m," 'org-switchb
+    "m." 'counsel-org-goto
+    "m/" 'counsel-org-goto-all
+    "mA" 'org-archive-subtree
+    "md" 'org-deadline
+    "me" 'org-export-dispatch
+    "mf" 'org-footnote-new
+    "mh" 'org-toggle-heading
+    "mi" 'org-toggle-item
+    "mI" 'org-toggle-inline-images
+    "mn" 'org-store-link
+    "mo" 'org-set-property
+    "mp" 'org-priority
+    "mq" 'org-set-tags-command
+    "ms" 'org-schedule
+    "mt" 'org-todo
+    "mT" 'org-todo-list
+    "maa" 'org-attach
+    "mad" 'org-attach-delete-one
+    "maD" 'org-attach-delete-all
+    "man" 'org-attach-new
+    "mao" 'org-attach-open
+    "maO" 'org-attach-open-in-emacs
+    "mar" 'org-attach-reveal
+    "maR" 'org-attach-reveal-in-emacs
+    "mau" 'org-attach-url
+    "mas" 'org-attach-set-directory
+    "maS" 'org-attach-sync
+    "mb-" 'org-table-insert-hline
+    "mba" 'org-table-align
+    "mbc" 'org-table-create-or-convert-from-region
+    "mbe" 'org-table-edit-field
+    "mbh" 'org-table-field-info
+    "mcc" 'org-clock-in
+    "mcC" 'org-clock-out
+    "mcd" 'org-clock-mark-default-task
+    "mce" 'org-clock-modify-effort-estimate
+    "mcE" 'org-set-effort
+    "mcl" 'org-clock-in-last
+    "mcg" 'org-clock-goto
+    "mcG" (lambda () (org-clock-goto 'select))
+    "mcr" 'org-clock-report
+    "mcx" 'org-clock-cancel
+    "mc=" 'org-clock-timestamps-up
+    "mc-" 'org-clock-timestamps-down
+    "mgg" 'counsel-org-goto
+    "mgG" 'counsel-org-goto-all
+    "mgc" 'org-clock-goto
+    "mgC" (lambda () (org-clock-goto 'select))
+    "mgi" 'org-id-goto
+    "mgr" 'org-refile-goto-last-stored
+    "mgx" 'org-capture-goto-last-stored
+    "mll" 'org-insert-link
+    "mlL" 'org-insert-all-links
+    "mls" 'org-store-link
+    "mlS" 'org-insert-last-stored-link
+    "mli" 'org-id-store-link
+    "mr" 'org-refile)
+
+  ;; org-agenda-mode <Leader> m
+  ;; Copy from doom-emacs
+  (evil-leader/set-key-for-mode 'org-agenda-mode
+    "md" 'org-agenda-deadline
+    "mcc" 'org-agenda-clock-in
+    "mcC" 'org-agenda-clock-out
+    "mcg" 'org-agenda-goto
+    "mcr" 'org-agenda-clockreport-mode
+    "mcs" 'org-agenda-show-clocking-issues
+    "mcx" 'org-agenda-clock-cancel
+    "mq" 'org-agenda-set-tags
+    "mr" 'org-agenda-refile
+    "ms" 'org-agenda-schedule
+    "mt" 'org-agenda-todo)
   )
 
 (provide 'init-mkey)
