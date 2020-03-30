@@ -9,7 +9,10 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch))
+         ("C-x M-g" . magit-dispatch)
+         ;; Close transient with ESC
+         :map transient-map
+         ([escape] . transient-quit-one))
   :custom
   (magit-diff-refine-hunk t)
   (magit-status-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
@@ -21,7 +24,11 @@
          ("j" . nil)
          :map magit-todos-item-section-map
          ("j" . nil))
-  :hook (magit-status-mode . magit-todos-mode))
+  :hook (magit-status-mode . magit-todos-mode)
+  :config
+  ;; Supress the `jT' keybind warning
+  (advice-add 'magit-todos-mode :around (lambda (orig-fun &rest args)
+                                          (ignore-error (apply orig-fun args)))))
 
 ;; Dont display empty groups
 (use-package ibuffer
