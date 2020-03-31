@@ -65,9 +65,9 @@
 (use-package paren
   :ensure nil
   :hook (after-init . show-paren-mode)
-  :config
-  (setq show-paren-when-point-inside-paren t
-        show-paren-when-point-in-periphery t))
+  :custom
+  (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t))
 
 ;; The selected region of text can be deleted
 (use-package delsel
