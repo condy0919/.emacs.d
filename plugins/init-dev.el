@@ -192,10 +192,11 @@
           imenu-after-jump) . my/recenter-and-pulse)
   :init
   ;; better evil notification
-  (advice-add #'evil-goto-line     :after #'my/recenter-and-pulse)
-  (advice-add #'evil-window-top    :after #'my/pulse-line)
-  (advice-add #'evil-window-middle :after #'my/pulse-line)
-  (advice-add #'evil-window-bottom :after #'my/pulse-line))
+  (advice-add #'evil-goto-line      :after #'my/recenter-and-pulse)
+  (advice-add #'evil-goto-mark-line :after #'my/recenter-and-pulse)
+  (advice-add #'evil-window-top     :after #'my/pulse-line)
+  (advice-add #'evil-window-middle  :after #'my/pulse-line)
+  (advice-add #'evil-window-bottom  :after #'my/pulse-line))
 
 ;; Hiding structured data
 (use-package hideshow
