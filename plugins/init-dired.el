@@ -21,8 +21,7 @@
   :ensure nil
   :hook (dired-mode . dired-omit-mode)
   :custom
-  (dired-omit-files (rx (or "." ".."
-                            ".git" ".svn"
+  (dired-omit-files (rx (or ".git" ".svn"
                             ".cache"
                             ".ccls-cache" ".clangd"
                             ".elc" ".pyc" ".o" ".swp")))
