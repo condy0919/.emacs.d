@@ -173,6 +173,7 @@
   (dumb-jump-selector 'ivy)
   (dump-jump-prefer-searcher 'rg))
 
+;; pulse current line
 (use-package pulse
   :ensure nil
   :custom-face

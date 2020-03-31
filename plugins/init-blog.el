@@ -58,7 +58,7 @@ usemathjax: false
   (let ((files (directory-files mblog-posts-directory
                                 nil
                                 "^[^\\.].*\\.md$")))
-    (find-file (expand-file-name (ivy-read "Post: " files)
+    (find-file (expand-file-name (completing-read "Post: " files)
                                  mblog-posts-directory))))
 
 (with-eval-after-load 'markdown-mode

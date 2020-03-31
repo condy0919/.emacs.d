@@ -63,6 +63,7 @@
 (require 'init-mail)
 (require 'init-dired)
 (require 'init-mkey)
+(require 'init-license)
 
 (use-package emacs
   :ensure nil
