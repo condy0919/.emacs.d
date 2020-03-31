@@ -13,6 +13,7 @@
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-Afhlv")
   :bind (:map dired-mode-map
+         ("-" . dired-up-directory)
          ;; consistent with wgrep
          ("C-c C-e" . wdired-change-to-wdired-mode)))
 
@@ -20,7 +21,8 @@
   :ensure nil
   :hook (dired-mode . dired-omit-mode)
   :custom
-  (dired-omit-files (rx (or ".git" ".svn"
+  (dired-omit-files (rx (or "." ".."
+                            ".git" ".svn"
                             ".cache"
                             ".ccls-cache" ".clangd"
                             ".elc" ".pyc" ".o" ".swp")))
