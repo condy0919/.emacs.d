@@ -111,6 +111,9 @@
   (evil-leader/set-key
     "pp" 'projectile-switch-project
     "pb" 'projectile-switch-to-buffer
+    "pc" 'projectile-compile-project
+    "pC" 'projectile-configure-project
+    "pP" 'projectile-test-project
     "po" 'projectile-find-other-file
     "pf" 'projectile-find-file
     "pg" 'projectile-ripgrep)
