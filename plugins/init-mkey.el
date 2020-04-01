@@ -14,7 +14,7 @@
 
 (defcustom mkey-enable-modes '(help
                                profiler-report
-                               occur
+                               replace ;; occur is in replace.el
                                evil-leader)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
@@ -61,7 +61,7 @@
     "q" 'quit-window))
 
 ;;;###autoload
-(defun mkey-occur-setup ()
+(defun mkey-replace-setup ()
   "Setup `evil' bindings for `occur'."
   (evil-set-initial-state 'occur-mode 'normal)
   (evil-make-overriding-map occur-mode-map 'normal)
