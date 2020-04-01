@@ -64,7 +64,6 @@
 (defun mkey-replace-setup ()
   "Setup `evil' bindings for `occur'."
   (evil-set-initial-state 'occur-mode 'normal)
-  (evil-make-overriding-map occur-mode-map 'normal)
   (evil-define-key 'normal occur-mode-map
     ;; like `wdired-mode'
     (kbd "C-c C-e") 'occur-edit-mode
