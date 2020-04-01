@@ -64,14 +64,17 @@
 (defun mkey-occur-setup ()
   "Setup `evil' bindings for `occur'."
   (evil-set-initial-state 'occur-mode 'normal)
+  (evil-make-overriding-map occur-mode-map 'normal)
   (evil-define-key 'normal occur-mode-map
     ;; like `wdired-mode'
-    (kbd "C-c C-e") 'occur-edit-mode)
+    (kbd "C-c C-e") 'occur-edit-mode
+    "q"             'quit-window)
 
   (evil-define-key 'normal occur-edit-mode-map
     ;; like `wdired-mode'
     (kbd "C-c C-c") 'occur-cease-edit)
   )
+
 
 ;;;###autoload
 (defun mkey-evil-leader-setup ()
