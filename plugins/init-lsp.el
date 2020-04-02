@@ -28,17 +28,15 @@
   (company-require-match nil)
   (company-minimum-prefix-length 3)
   (company-tooltip-align-annotations t)
-  (company-backends '(company-capf company-keywords)))
-
-;; Show docs when completion as an alternative for lsp-ui
-(use-package company-quickhelp
-  :ensure t
-  :bind (:map company-active-map
-         ([remap company-show-doc-buffer] . company-quickhelp-manual-begin))
-  :hook (company-mode . company-quickhelp-mode)
-  :custom
-  (company-quickhelp-use-propertized-text t)
-  (company-quickhelp-max-lines 8))
+  ;; complete `abbrev' only in current buffer
+  (company-dabbrev-other-buffers nil)
+  ;; make dabbrev case-sensitive
+  (company-dabbrev-ignore-case nil)
+  (company-dabbrev-downcase nil)
+  (company-backends '(company-capf
+                      company-files
+                      (company-dabbrev-code company-keywords)
+                      company-dabbrev)))
 
 ;; lsp-mode
 (use-package lsp-mode
