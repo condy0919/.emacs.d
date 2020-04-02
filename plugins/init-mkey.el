@@ -15,6 +15,8 @@
 (defcustom mkey-enable-modes '(help
                                profiler-report
                                replace ;; occur is in replace.el
+                               tar-mode
+                               archive-mode
                                evil-leader)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
@@ -74,6 +76,46 @@
     (kbd "C-c C-c") 'occur-cease-edit)
   )
 
+;;;###autoload
+(defun mkey-tar-mode-setup ()
+  "Setup `evil' bindings for `tar-mode'."
+  (evil-set-initial-state 'tar-mode 'normal)
+  (evil-define-key 'normal tar-mode-map
+    ;; movement
+    "j"  'tar-next-line
+    "k"  'tar-previous-line
+    "gg" 'beginning-of-buffer
+    "G"  'end-of-buffer
+
+    ;; op
+    "d" 'tar-flag-deleted
+    "r" 'tar-rename-entry
+    "x" 'tar-expunge
+
+    ;; quit
+    "q" 'quit-window)
+  )
+
+;;;###autoload
+(defun mkey-archive-mode-setup ()
+  "Setup `evil' bindings for `archive-mode'."
+  (evil-set-initial-state 'archive-mode 'normal)
+  (evil-define-key 'normal archive-mode-map
+    ;; movement
+    "j"  'archive-next-line
+    "k"  'archive-previous-line
+    "gg" 'beginning-of-buffer
+    "G"  'end-of-buffer
+
+    ;; op
+    "d" 'archive-flag-deleted
+    "r" 'archive-rename-entry
+    "x" 'archive-expunge
+    (kbd "RET") 'archive-view
+
+    ;; quit
+    "q" 'quit-window)
+  )
 
 ;;;###autoload
 (defun mkey-evil-leader-setup ()
