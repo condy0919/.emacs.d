@@ -15,6 +15,9 @@
 (setq make-backup-files nil
       auto-save-default nil)
 
+;; No lock files
+(setq create-lockfiles nil)
+
 ;; Supress annoying features
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
@@ -78,7 +81,10 @@
 (use-package simple
   :ensure nil
   :custom
-  (save-interprogram-paste-before-kill t) ;; save current clipboard text
+  ;; save current clipboard text
+  (save-interprogram-paste-before-kill t)
+  ;; eliminate duplicates
+  (kill-do-not-save-duplicates t)
   :hook (after-init . (lambda ()
                         (line-number-mode)
                         (column-number-mode)
