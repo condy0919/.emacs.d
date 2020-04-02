@@ -56,10 +56,12 @@
   (lsp-enable-file-watchers nil)       ;; turn off for better performance
   (lsp-enable-text-document-color nil) ;; as above
   (lsp-enable-symbol-highlighting nil) ;; as above
+  (lsp-enable-indentation nil)         ;; indent by ourself
   (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; disable eldoc displays in minibuffer
+  (lsp-signature-auto-activate nil)    ;; disable signature popup
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
