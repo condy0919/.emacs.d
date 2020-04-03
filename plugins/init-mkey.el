@@ -17,6 +17,8 @@
                                replace ;; occur is in replace.el
                                tar-mode
                                archive-mode
+                               dired
+                               doc-view
                                evil-leader)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
@@ -106,6 +108,45 @@
     "k"  'archive-previous-line
     "gg" 'beginning-of-buffer
     "G"  'end-of-buffer
+
+    ;; op
+    "d" 'archive-flag-deleted
+    "r" 'archive-rename-entry
+    "x" 'archive-expunge
+    (kbd "RET") 'archive-view
+
+    ;; quit
+    "q" 'quit-window)
+  )
+
+;;;###autoload
+(defun mkey-dired-setup ()
+  "Setup `evil' bindings for `dired'."
+  (evil-define-key 'normal dired-mode-map
+    ;; movement
+    "j" 'dired-next-line
+    "k" 'dired-previous-line
+    "gg" 'beginning-of-buffer
+    "G" 'end-of-buffer
+
+    ;; quit
+    "q" 'quit-window)
+  )
+
+;;;###autoload
+(defun mkey-doc-view-setup ()
+  "Setup `evil' bindings for `doc-view'."
+  (evil-set-initial-state 'doc-view 'normal)
+  (evil-define-key 'normal doc-view-mode-map
+    ;; movement
+    "j"  'doc-view-next-line-or-next-page
+    "k"  'doc-view-previous-line-or-previous-page
+    "gg" 'doc-view-first-page
+    "G"  'doc-view-last-page
+
+    ;; zoom
+    "+" 'doc-view-enlarge
+    "-" 'doc-view-shrink
 
     ;; op
     "d" 'archive-flag-deleted
