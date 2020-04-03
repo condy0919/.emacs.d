@@ -93,7 +93,8 @@
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
-         ("C-o" . isearch-occur)
+         ;; consistent with ivy-occur
+         ("C-c C-o" . isearch-occur)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :custom

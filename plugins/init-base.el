@@ -18,6 +18,9 @@
 ;; No lock files
 (setq create-lockfiles nil)
 
+;; Always load the newest file
+(setq load-prefer-newer t)
+
 ;; Supress annoying features
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
