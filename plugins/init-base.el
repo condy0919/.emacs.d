@@ -143,6 +143,12 @@
   :ensure nil
   :bind ("M-/" . hippie-expand))
 
+;; Make align be a simple thing
+(use-package align
+  :ensure nil
+  :bind (("C-c [" . align-regexp)
+         ("C-c ]" . align-regexp)))
+
 ;; Needed by `webpaste'
 (use-package browse-url
   :ensure nil
