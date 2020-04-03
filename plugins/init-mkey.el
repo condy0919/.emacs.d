@@ -167,7 +167,7 @@
     "ff" 'find-file
     "fd" 'delete-file
     "fc" 'copy-file
-    "fr" 'rename-file
+    "fr" 'counsel-recentf
     "fg" 'counsel-rg)
 
   ;; prefix: <Leader> b, buffer
@@ -188,6 +188,10 @@
   ;; prefix: <Leader> w, window
   (evil-leader/set-key
     "w" 'evil-window-map)
+  (evil-leader/set-key
+    "wd" 'evil-window-delete
+    "w-" 'split-window-vertically
+    "w/" 'split-window-horizontally)
 
   ;; prefix: <Leader> p, projectile
   (evil-leader/set-key
