@@ -141,6 +141,12 @@
   :ensure nil
   :bind ([escape] . abort-recursive-edit))
 
+;; View help page when we open
+(use-package help
+  :ensure nil
+  :custom
+  (help-window-select t))
+
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
