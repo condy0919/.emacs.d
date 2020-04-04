@@ -21,6 +21,9 @@
 ;; Always load the newest file
 (setq load-prefer-newer t)
 
+;; No gc for font caches
+(setq inhibit-compacting-font-caches t)
+
 ;; Supress annoying features
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)

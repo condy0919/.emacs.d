@@ -12,6 +12,9 @@
 
 (use-package doom-modeline
   :ensure t
+  :custom
+  (doom-modeline-github nil)
+  (doom-modeline-irc nil)
   :hook (after-init . doom-modeline-mode))
 
 ;; Restore windows layout
