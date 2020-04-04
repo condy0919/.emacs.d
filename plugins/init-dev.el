@@ -5,19 +5,39 @@
 
 ;;; Code:
 
+;; Notifications
+(use-package notifications
+  :ensure nil
+  :commands (notifications-notify))
+
 ;; Compilation Mode
 (use-package compile
   :ensure nil
+  :custom (compilation-scroll-output t)
+  :hook (compilation-filter . my/colorize-compilation-buffer)
+  :config
+  (add-to-list 'compilation-finish-functions 'my/notify-compilation-result)
   :preface
-  ;; ANSI Coloring
-  ;; @see https://stackoverflow.com/questions/13397737/ansi-coloring-in-compilation-mode
-  (defun my-colorize-compilation-buffer ()
+  (defun my/colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  :hook (compilation-filter . my-colorize-compilation-buffer)
-  :custom
-  (compilation-scroll-output t))
+  (defun my/notify-compilation-result (comp-buffer exit-string)
+    "Notify after the compilation is done.
+Close the *compilation* buffer if the compilation is successful,
+and set the focus back to Emacs frame."
+    (if (string-match "^finished" exit-string)
+        (progn
+          (delete-windows-on comp-buffer)
+          (notifications-notify :title "Compilation"
+                                :body "Compilation successful :-)"
+                                :timeout 5000
+                                :urgency 'normal))
+      (notifications-notify :title "Compilation"
+                            :body "Compilation failed :-("
+                            :timeout 5000
+                            :urgency 'critical)))
+  )
 
 ;; Highlight TODO
 (use-package hl-todo
