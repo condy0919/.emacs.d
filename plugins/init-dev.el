@@ -27,7 +27,7 @@
          ("C-c t p" . hl-todo-previous)
          ("C-c t n" . hl-todo-next)
          ("C-c t o" . hl-todo-occur))
-  :hook (after-init . global-hl-todo-mode)
+  :hook (prog-mode . hl-todo-mode)
   :config
   (dolist (keyword '("BUG" "ISSUE" "FIXME" "XXX" "NOTE" "NB"))
     (cl-pushnew `(,keyword . ,(face-foreground 'error)) hl-todo-keyword-faces))
