@@ -14,7 +14,7 @@
   :group 'convenience)
 
 (defcustom mkey-enable-modes '(help
-                               profiler-report
+                               profiler
                                replace ;; occur is in replace.el
                                tar-mode
                                archive-mode
@@ -46,8 +46,8 @@
     "q" 'quit-window))
 
 ;;;###autoload
-(defun mkey-profiler-report-setup ()
-  "Setup `evil' bindings for `profiler-report'."
+(defun mkey-profiler-setup ()
+  "Setup `evil' bindings for `profiler'."
   (evil-set-initial-state 'profiler-report-mode 'normal)
   (evil-define-key 'normal profiler-report-mode-map
     ;; toggle
