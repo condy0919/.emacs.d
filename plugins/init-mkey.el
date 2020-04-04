@@ -169,6 +169,7 @@
   ;; prefix: <Leader> f, file
   (evil-leader/set-key
     "fj" 'dired-jump
+    "fJ" 'dired-jump-other-window
     "ff" 'find-file
     "fd" 'delete-file
     "fc" 'copy-file
@@ -194,7 +195,6 @@
   (evil-leader/set-key
     "w" 'evil-window-map)
   (evil-leader/set-key
-    "wd" 'evil-window-delete
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
 
