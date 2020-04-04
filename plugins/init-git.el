@@ -45,6 +45,11 @@
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
                        (ibuffer-do-sort-by-alphabetic)))))
 
+(use-package vc
+  :ensure nil
+  :custom
+  (vc-handled-backends '(Git)))
+
 ;; Highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t
