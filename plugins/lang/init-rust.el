@@ -7,7 +7,8 @@
 
 (use-package rust-mode
   :ensure t
-  :init (setq rust-format-on-save t))
+  :custom
+  (rust-format-on-save t))
 
 (use-package cargo
   :ensure t
