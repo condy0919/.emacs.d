@@ -31,6 +31,7 @@
   :ensure t
   :hook (haskell-mode . hindent-mode)
   :custom
+  (hindent-reformat-buffer-on-save t)
   (hindent-process-path "~/.local/bin/hindent"))
 
 (provide 'init-haskell)

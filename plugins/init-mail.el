@@ -10,9 +10,6 @@
   :ensure nil
   :defer 1
   :commands (mu4e)
-  ;; makes `rofi' distinguish from all Emacs instances
-  :hook (mu4e-main-mode . (lambda ()
-                            (set-frame-name (format "mail %s" user-mail-address))))
   :custom
   ;; path
   (mu4e-maildir (expand-file-name "~/Mail"))
