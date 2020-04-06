@@ -171,6 +171,7 @@
     "fj" 'dired-jump
     "fJ" 'dired-jump-other-window
     "ff" 'find-file
+    "fF" 'find-file-other-window
     "fd" 'delete-file
     "fc" 'copy-file
     "fr" 'counsel-recentf

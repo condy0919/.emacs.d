@@ -167,16 +167,6 @@ and set the focus back to Emacs frame."
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))
 
-;; An offline docset
-(use-package zeal-at-point
-  :ensure t
-  :bind (:map prog-mode-map
-         ("C-c z z" . zeal-at-point)
-         ("C-c z s" . zeal-at-point-search))
-  :custom
-  (zeal-at-point-mode-alist '((c++-mode . ("cpp" "boost"))
-                              (rust-mode . "rust"))))
-
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t

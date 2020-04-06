@@ -77,7 +77,6 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 - 显示行末空白字符
 - 高亮**TODO** **FIXME**等关键字
-- 集成`zeal`快速搜索
 - `dumb-jump`作为`lsp-find-defition`失败后的备份手段
 - `magit`作为`git`客户端
 - `hideshow`来显示/隐藏结构化的代码块，如 "{ }" 函数体等
