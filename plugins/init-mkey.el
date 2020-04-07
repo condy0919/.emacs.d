@@ -233,7 +233,7 @@
 
   ;; frequently used keys
   (evil-leader/set-key
-    "q" 'kill-buffer-and-window
+    "q" 'kill-this-buffer
     "j" 'avy-goto-word-or-subword-1
     "s" 'avy-goto-char-timer
     "l" 'avy-goto-line
