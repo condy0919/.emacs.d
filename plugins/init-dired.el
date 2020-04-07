@@ -14,6 +14,7 @@
   (dired-listing-switches "-Afhlv")
   :bind (:map dired-mode-map
          ("-" . dired-up-directory)
+         ("C-c +" . dired-create-empty-file)
          ;; consistent with wgrep
          ("C-c C-e" . wdired-change-to-wdired-mode)))
 
