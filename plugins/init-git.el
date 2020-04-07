@@ -27,8 +27,8 @@
   :hook (magit-status-mode . magit-todos-mode)
   :config
   ;; Supress the `jT' keybind warning
-  (advice-add 'magit-todos-mode :around (lambda (orig-fun &rest args)
-                                          (ignore-error (apply orig-fun args)))))
+  (define-advice magit-todos-mode (:around (orig-fun &rest args))
+    (ignore-error (apply orig-fun args))))
 
 ;; Dont display empty groups
 (use-package ibuffer
