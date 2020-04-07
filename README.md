@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
+
 个人**Emacs**配置
 ====
 
