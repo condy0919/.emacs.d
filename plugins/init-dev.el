@@ -39,6 +39,17 @@ and set the focus back to Emacs frame."
                             :urgency 'critical)))
   )
 
+;; Debugger
+(use-package gdb-mi
+  :ensure nil
+  :hook (gud-mode . gud-tooltip-mode)
+  :custom
+  (gdb-show-main t)
+  (gdb-show-changed-values t)
+  (gdb-delete-out-of-scope t)
+  (gdb-use-colon-colon-notation t)
+  (gdb-restore-window-configuration-after-quit t))
+
 ;; Highlight TODO
 (use-package hl-todo
   :ensure t
