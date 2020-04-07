@@ -20,6 +20,7 @@
                                archive-mode
                                dired
                                doc-view
+                               quickrun
                                evil-leader)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
@@ -158,6 +159,12 @@
     ;; quit
     "q" 'quit-window)
   )
+
+;;;###autoload
+(defun mkey-quickrun-setup ()
+  "Setup `evil' bindings for `quickrun'."
+  (evil-define-key 'normal quickrun--mode-map
+    "q" 'quit-window))
 
 ;;;###autoload
 (defun mkey-evil-leader-setup ()
