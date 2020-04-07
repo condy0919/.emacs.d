@@ -134,6 +134,7 @@
 ;; Workaround with minified source files
 (use-package so-long
   :ensure nil
+  :when (>= emacs-major-version 27)
   :hook (after-init . global-so-long-mode))
 
 ;; Make escape more nature
