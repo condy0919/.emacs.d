@@ -59,6 +59,8 @@
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; disable eldoc displays in minibuffer
+  (lsp-signature-auto-activate t)      ;; show function signature
+  (lsp-signature-doc-lines 1)          ;; but dont take up more spaces
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
