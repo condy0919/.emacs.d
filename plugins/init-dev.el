@@ -45,6 +45,7 @@ and set the focus back to Emacs frame."
   :hook (gud-mode . gud-tooltip-mode)
   :custom
   (gdb-show-main t)
+  (gdb-display-io-nopopup t)
   (gdb-show-changed-values t)
   (gdb-delete-out-of-scope t)
   (gdb-use-colon-colon-notation t)

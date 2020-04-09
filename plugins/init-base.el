@@ -28,13 +28,27 @@
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
 
+;; UTF-8 everywhere
+(set-charset-priority 'unicode)
+(setq locale-coding-system   'utf-8) ; pretty
+(set-terminal-coding-system  'utf-8) ; pretty
+(set-keyboard-coding-system  'utf-8) ; pretty
+(set-selection-coding-system 'utf-8) ; please
+(prefer-coding-system        'utf-8) ; with sugar on top
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
 ;; Smooth scroll & friends
 (setq scroll-step 2
       scroll-margin 2
       hscroll-step 2
       hscroll-margin 2
-      scroll-conservatively 10000
+      scroll-conservatively 101
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01
       scroll-preserve-screen-position 'always)
+
+;; Dont scroll without our permission
+(setq auto-window-vscroll nil)
 
 ;; Newline behaviour
 (global-set-key (kbd "RET") 'newline-and-indent)
