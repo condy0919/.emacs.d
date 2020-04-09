@@ -20,6 +20,7 @@
 ;; Todo integration
 (use-package magit-todos
   :ensure t
+  :after magit
   :bind (:map magit-todos-section-map
          ("j" . nil)
          :map magit-todos-item-section-map
@@ -28,7 +29,7 @@
   :config
   ;; Supress the `jT' keybind warning
   (define-advice magit-todos-mode (:around (orig-fun &rest args))
-    (ignore-error (apply orig-fun args))))
+    (ignore-errors (apply orig-fun args))))
 
 ;; Dont display empty groups
 (use-package ibuffer
