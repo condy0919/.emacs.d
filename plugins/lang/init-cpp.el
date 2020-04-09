@@ -8,12 +8,20 @@
 (use-package cc-mode
   :ensure nil
   :defines (lsp-clients-clangd-args)
-  :bind (:map c++-mode-map
-         ("C-c C-o" . ff-find-related-file))
+  :custom
+  (c-offsets-alist '((inline-open           . 0)
+                     (brace-list-open       . 0)
+                     (inextern-lang         . 0)
+                     (statement-case-open   . 4)
+                     (access-label          . -)
+                     (case-label            . 0)
+                     (member-init-intro     . +)
+                     (topmost-intro         . 0)
+                     (inlambda              . 0) ;; better indentation for lambda
+                     (innamespace           . 0) ;; no indentation after namespace
+                     (arglist-cont-nonempty . +)))
   :config
-  (c-set-offset 'innamespace [0]) ;; no indentation after namespace
   (setq c-basic-offset 4)
-  (setq tab-width 4)
   (with-eval-after-load 'lsp-mode
     (setq lsp-clients-clangd-args
           '("-j=2"
@@ -21,8 +29,7 @@
             "--clang-tidy"
             "--completion-style=bundled"
             "--pch-storage=memory"
-            "--suggest-missing-includes"
-            )))
+            "--suggest-missing-includes")))
   )
 
 (use-package modern-cpp-font-lock
