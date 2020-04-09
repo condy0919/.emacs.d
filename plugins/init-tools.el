@@ -71,14 +71,27 @@
          ("M-y"                      . counsel-yank-pop))
   :preface
   (defun my/rename-file (file)
+    "Rename `FILE'. If the `FILE' is opened, kill the buffer too."
     (interactive)
     (let* ((new-name (read-string "NewName: "))
-           (old-dir (file-name-directory file)))
-      (rename-file file (concat old-dir new-name))))
+           (old-dir (file-name-directory file))
+           (new-file (concat old-dir new-name)))
+      (rename-file file new-file)
+      (let ((buf (find-buffer-visiting file)))
+        (when buf
+          (kill-buffer buf)
+          (find-file new-file)))))
+  (defun my/delete-file (file)
+    "Delete `FILE'. If the `FILE' is opened, kill the buffer too."
+    (interactive)
+    (let ((buf (find-buffer-visiting file)))
+      (delete-file file)
+      (when buf
+        (kill-buffer buf))))
   :config
   (ivy-set-actions
    'counsel-find-file
-   '(("d" delete-file "delete")
+   '(("d" my/delete-file "delete")
      ("r" my/rename-file "rename")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
