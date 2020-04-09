@@ -7,7 +7,8 @@
 
 (use-package recentf
   :ensure nil
-  :hook (after-init . recentf-mode)
+  :hook ((after-init . recentf-mode)
+         (focus-out-hook . (recentf-save-list recentf-cleanup)))
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
@@ -19,24 +20,7 @@
                      "/ssh:"
                      "^/usr/include/"
                      "bookmarks"
-                     "COMMIT_EDITMSG\\'"))
-  :preface
-  (defun my/recentf-save-list-silence ()
-    (interactive)
-    (let ((message-log-max nil))
-      (if (fboundp 'shut-up)
-          (shut-up (recentf-save-list))
-        (recentf-save-list)))
-    (message ""))
-  (defun my/recentf-cleanup-silence ()
-    (interactive)
-    (let ((message-log-max nil))
-      (if (fboundp 'shut-up)
-          (shut-up (recentf-cleanup))
-        (recentf-cleanup)))
-    (message ""))
-  :hook
-  (focus-out-hook . (my/recentf-save-list-silence my/recentf-cleanup-silence)))
+                     "COMMIT_EDITMSG\\'")))
 
 (use-package page-break-lines
   :ensure t
@@ -44,6 +28,9 @@
 
 (use-package dashboard
   :ensure t
+  :hook (after-init . dashboard-setup-startup-hook)
+  :custom-face
+  (dashboard-heading ((t (:foreground "#f1fa8c" :weight bold))))
   :custom
   (dashboard-banner-logo-title "Welcome to Emacs Dashboard")
   (dashboard-startup-banner 'logo)
@@ -53,10 +40,7 @@
   (dashboard-set-navigator t)
   (dashboard-items '((recents . 10)
                      (projects . 5)
-                     (bookmarks . 5)))
-  :custom-face
-  (dashboard-heading ((t (:foreground "#f1fa8c" :weight bold))))
-  :hook (after-init . dashboard-setup-startup-hook))
+                     (bookmarks . 5))))
 
 (provide 'init-startup)
 

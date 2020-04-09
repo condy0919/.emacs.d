@@ -54,7 +54,6 @@ and set the focus back to Emacs frame."
 (use-package hl-todo
   :ensure t
   :bind (:map hl-todo-mode-map
-         ([C-f3] . hl-todo-occur)
          ("C-c t p" . hl-todo-previous)
          ("C-c t n" . hl-todo-next)
          ("C-c t o" . hl-todo-occur))

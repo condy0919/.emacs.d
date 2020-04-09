@@ -28,8 +28,11 @@
   :hook (magit-status-mode . magit-todos-mode)
   :config
   ;; Supress the `jT' keybind warning
-  (define-advice magit-todos-mode (:around (orig-fun &rest args))
-    (ignore-errors (apply orig-fun args))))
+  (defun make-silent (func &rest args)
+    (cl-letf (((symbol-function 'message)
+               (lambda (&rest args) nil)))
+      (apply func args)))
+  (advice-add 'magit-todos-mode :around #'make-silent))
 
 ;; Dont display empty groups
 (use-package ibuffer
