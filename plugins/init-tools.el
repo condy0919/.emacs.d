@@ -35,7 +35,6 @@
   :ensure t
   :hook (after-init . ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
-         ("C-x b" . ivy-switch-buffer)
          :map ivy-minibuffer-map
          ("C-c C-e" . my/ivy-woccur)
          :map ivy-occur-mode-map
