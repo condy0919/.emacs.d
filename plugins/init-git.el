@@ -55,8 +55,8 @@
   :ensure t
   :hook ((prog-mode . (lambda ()
                         (diff-hl-mode)
-                        (diff-hl-flydiff-mode)
-                        (diff-hl-margin-mode)))
+                        (diff-hl-flydiff-mode)))
+         (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode-unless-remote)))
 
