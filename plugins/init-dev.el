@@ -171,14 +171,6 @@ and set the focus back to Emacs frame."
   ;; as well
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-;; Draw a diagram in an easy way
-(use-package plantuml-mode
-  :ensure t
-  :mode ("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)
-  :custom
-  (plantuml-default-exec-mode 'executable)
-  (plantuml-output-type "txt"))
-
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t

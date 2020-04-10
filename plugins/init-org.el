@@ -58,7 +58,6 @@
   (org-confirm-babel-evaluate nil)
   (org-babel-load-languages '((shell . t)
                               (python . t)
-                              (plantuml . t)
                               (ocaml . t)
                               (emacs-lisp . t))))
 
