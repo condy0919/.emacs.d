@@ -10,7 +10,6 @@
   :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . auto-fill-mode)
   :custom
-  ;; todo
   (org-tags-column -80)
   (org-todo-keywords
    '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
@@ -20,6 +19,7 @@
      ("WAITING"    :foreground "#9f7efe" :weight normal :underline t)
      ("DONE"       :foreground "#50a14f" :weight normal :underline t)
      ("CANCELLED"  :foreground "#ff6480" :weight normal :underline t)))
+  ;; log
   (org-log-done 'time)
   )
 
