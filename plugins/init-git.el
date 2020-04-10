@@ -64,11 +64,6 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode-unless-remote)))
 
-;; Git related modes
-(use-package gitattributes-mode :ensure t)
-(use-package gitconfig-mode :ensure t)
-(use-package gitignore-mode :ensure t)
-
 ;; Open current file in browser
 (use-package browse-at-remote
   :ensure t
