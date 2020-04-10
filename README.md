@@ -12,6 +12,8 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 仅包含**C/C++/Rust/OCaml/Haskell**相关配置，且全线使用`lsp`。当前由于
 `ocaml-lsp`十分难用，`haskell-ide-engine`水土不服，故这2个语言没有采用`lsp`。
 
+保持着尽量使用`Emacs`自带功能的原则，能用自带的就用自带的。
+
 # 基础配置
 
 最基础的配置包含了那些在所有`mode`下都不会变更的配置，包含了：
