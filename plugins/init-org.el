@@ -9,9 +9,6 @@
   :ensure nil
   :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . auto-fill-mode)
-  :bind (:map org-src-mode-map
-         ;; consistent with separedit/magit
-         ("C-c C-c" . org-edit-src-exit))
   :custom
   ;; agenda
   (org-agenda-inhibit-startup t)
@@ -30,7 +27,16 @@
      ("DONE"       :foreground "#50a14f" :weight normal :underline t)
      ("CANCELLED"  :foreground "#ff6480" :weight normal :underline t)))
   (org-log-done 'time)
-  ;; babel
+  )
+
+;; Write codes in org-mode
+(use-package org-src
+  :ensure nil
+  :after org
+  :bind (:map org-src-mode-map
+         ;; consistent with separedit/magit
+         ("C-c C-c" . org-edit-src-exit))
+  :custom
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)
   (org-src-preserve-indentation t)
