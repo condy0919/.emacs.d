@@ -7,6 +7,7 @@
 
 (use-package rust-mode
   :ensure t
+  :mode ("\\.rs\\'" . rust-mode)
   :custom
   (rust-format-on-save t))
 

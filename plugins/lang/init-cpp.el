@@ -7,6 +7,7 @@
 
 (use-package cc-mode
   :ensure nil
+  :mode ("\\.cxx\\'" . cc-mode)
   :defines (lsp-clients-clangd-args)
   :custom
   (c-offsets-alist '((inline-open           . 0)

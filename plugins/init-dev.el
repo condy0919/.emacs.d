@@ -174,6 +174,7 @@ and set the focus back to Emacs frame."
 ;; Draw a diagram in an easy way
 (use-package plantuml-mode
   :ensure t
+  :mode ("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)
   :custom
   (plantuml-default-exec-mode 'executable)
   (plantuml-output-type "txt"))
@@ -236,8 +237,12 @@ and set the focus back to Emacs frame."
              (rust-mode "{" "}" "/[*/]" nil nil)))))
 
 ;; Config files mode
-(use-package yaml-mode :ensure t)
-(use-package toml-mode :ensure t)
+(use-package yaml-mode
+  :ensure t
+  :mode ("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
+(use-package toml-mode
+  :ensure t
+  :mode ("\\.toml\\'" . toml-mode))
 
 (require 'init-cpp)
 (require 'init-rust)

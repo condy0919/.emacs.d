@@ -17,6 +17,7 @@
 ;; Indentation tool for OCaml
 (use-package ocp-indent
   :ensure t
+  :hook (tuareg-mode-local-vars . ocp-indent-caml-mode-setup)
   :commands (ocp-indent-region))
 
 ;; Context sensitive completion
@@ -31,7 +32,8 @@
 
 ;; Dune build system
 (use-package dune
-  :ensure t)
+  :ensure t
+  :defer 1)
 
 (provide 'init-ocaml)
 
