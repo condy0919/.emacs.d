@@ -28,8 +28,12 @@
   :ensure nil
   :after org
   :custom
-  (org-agenda-show-all-dates t)
+  (org-agenda-files '("~/.org/"))
+  (org-agenda-diary-file "~/.org/diary.org")
   (org-agenda-inhibit-startup t)
+  (org-agenda-show-all-dates t)
+  (org-agenda-hide-tags-regexp ":\\w+:")
+  (org-enforce-todo-checkbox-dependencies t)
   (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-unavailable-files t)
@@ -57,6 +61,20 @@
                               (plantuml . t)
                               (ocaml . t)
                               (emacs-lisp . t))))
+
+;; Create structured information quickly
+(use-package org-capture
+  :ensure nil
+  :after org
+  :custom
+  (org-capture-templates
+   '(("a" "Append")
+     ("c" "Captures")
+     ("ct" "Task" entry (file+headline "~/.org/tasks.org" "INBOX")
+      "* TODO %^{taskname} %^{CATEGORY}p\n :PROPERTIES:\n :CREATED: %U\n :END:\n")
+     ("cr" "Reference" entry (file+headline "~/.org/reference.org")
+      "* TODO %u %^{reference}\n %?")))
+  )
 
 ;; Pretty symbols
 (use-package org-bullets

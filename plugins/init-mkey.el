@@ -223,6 +223,7 @@
     "ac" 'calendar
     "ad" 'deft
     "aa" 'org-agenda
+    "ap" 'org-capture
     "at" 'org-todo-list)
 
   ;; prefix: <Leader> o, open
