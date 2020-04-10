@@ -180,9 +180,39 @@
   :custom
   (help-window-select t))
 
+;; Dynamic abbrev
+;; Stolen from https://protesilaos.com/dotemacs/
+(use-package dabbrev
+  :ensure nil
+  :commands (dabbrev-expand dabbrev-completion)
+  :custom
+  (dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
+  (dabbrev-abbrev-skip-leading-regexp "\\$\\|\\*\\|/\\|=")
+  (dabbrev-backward-only nil)
+  (dabbrev-case-distinction nil)
+  (dabbrev-case-fold-search t)
+  (dabbrev-case-replace nil)
+  (dabbrev-check-other-buffers t)
+  (dabbrev-eliminate-newlines nil)
+  (dabbrev-upcase-means-case-search t))
+
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
+  :after dabbrev
+  :custom
+  (hippie-expand-try-functions-list
+   '(try-expand-dabbrev
+     try-expand-dabbrev-visible
+     try-expand-dabbrev-all-buffers
+     try-expand-dabbrev-from-kill
+     try-expand-list-all-buffers
+     try-expand-list
+     try-expand-line-all-buffers
+     try-expand-line
+     try-complete-file-name-partially
+     try-complete-file-name
+     try-expand-all-abbrevs))
   :bind ("M-/" . hippie-expand))
 
 ;; Make align be a simple thing

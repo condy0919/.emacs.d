@@ -240,7 +240,7 @@ and set the focus back to Emacs frame."
 (use-package yaml-mode
   :ensure t
   :mode (("\\.yaml\\'" . yaml-mode)
-         ("\\.yml\\'"  . yaml-mode))
+         ("\\.yml\\'"  . yaml-mode)))
 (use-package toml-mode
   :ensure t
   :mode ("\\.toml\\'" . toml-mode))

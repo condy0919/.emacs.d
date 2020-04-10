@@ -39,6 +39,7 @@
 (use-package ibuffer
   :ensure nil
   :custom
+  (ibuffer-movement-cycle nil)
   (ibuffer-show-empty-filter-groups nil))
 
 ;; Group buffers by git/svn/... project
