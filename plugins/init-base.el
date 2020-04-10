@@ -167,6 +167,13 @@
   ;; year/month/day
   (calendar-date-string 'iso))
 
+;; lifelog
+(use-package diary-lib
+  :ensure nil
+  :custom
+  (diary-number-of-entries 7)
+  (diary-comment-start "#"))
+
 ;; View help page when we open
 (use-package help
   :ensure nil
