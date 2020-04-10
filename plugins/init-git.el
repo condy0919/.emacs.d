@@ -8,6 +8,7 @@
 ;; The awesome git client
 (use-package magit
   :ensure t
+  :defer 1
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ;; Close transient with ESC
