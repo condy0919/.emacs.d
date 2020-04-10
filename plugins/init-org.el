@@ -14,10 +14,11 @@
          ("C-c C-c" . org-edit-src-exit))
   :custom
   ;; agenda
-  (org-agenda-window-setup 'current-window)
   (org-agenda-inhibit-startup t)
-  (org-agenda-skip-unavailable-files t)
+  (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
+  (org-agenda-skip-unavailable-files t)
+  (org-agenda-window-setup 'current-window)
   ;; todo
   (org-tags-column -80)
   (org-todo-keywords
