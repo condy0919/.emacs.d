@@ -156,6 +156,17 @@
   :ensure nil
   :bind ([escape] . abort-recursive-edit))
 
+;; What day is it today?
+(use-package calendar
+  :ensure nil
+  :hook (calendar-today-visible . calendar-mark-today)
+  :custom
+  (calendar-mark-diary-entries-flag t)
+  ;; start from Monday
+  (calendar-week-start-day 1)
+  ;; year/month/day
+  (calendar-date-string 'iso))
+
 ;; View help page when we open
 (use-package help
   :ensure nil
