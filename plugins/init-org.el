@@ -10,12 +10,6 @@
   :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . auto-fill-mode)
   :custom
-  ;; agenda
-  (org-agenda-inhibit-startup t)
-  (org-agenda-skip-deadline-if-done t)
-  (org-agenda-skip-scheduled-if-done t)
-  (org-agenda-skip-unavailable-files t)
-  (org-agenda-window-setup 'current-window)
   ;; todo
   (org-tags-column -80)
   (org-todo-keywords
@@ -29,6 +23,21 @@
   (org-log-done 'time)
   )
 
+;; Keep track of tasks
+(use-package org-agenda
+  :ensure nil
+  :after org
+  :custom
+  (org-agenda-show-all-dates t)
+  (org-agenda-inhibit-startup t)
+  (org-agenda-skip-deadline-if-done t)
+  (org-agenda-skip-scheduled-if-done t)
+  (org-agenda-skip-unavailable-files t)
+  (org-agenda-window-setup 'current-window)
+  ;; consistent with builtin calendar
+  (org-agenda-start-on-weekday 1)
+  (org-agenda-search-headline-for-time nil))
+
 ;; Write codes in org-mode
 (use-package org-src
   :ensure nil
@@ -40,6 +49,8 @@
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)
   (org-src-preserve-indentation t)
+  (org-edit-src-content-indentation 0)
+  (org-src-window-setup 'current-window)
   (org-confirm-babel-evaluate nil)
   (org-babel-load-languages '((shell . t)
                               (python . t)
