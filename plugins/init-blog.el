@@ -32,6 +32,7 @@ usemathjax: false
 {:toc}
 " title))
 
+;;;###autoload
 (defun mblog-insert-ruby-tag (text ruby)
   "Quick insertion of ruby tag with `TEXT' and `RUBY'."
   (interactive "sText: \nsRuby: \n")
@@ -60,9 +61,6 @@ usemathjax: false
                                 "^[^\\.].*\\.md$")))
     (find-file (expand-file-name (completing-read "Post: " files)
                                  mblog-posts-directory))))
-
-(with-eval-after-load 'markdown-mode
-  (bind-key "C-c C-s r" #'mblog-insert-ruby-tag markdown-mode-map))
 
 (provide 'init-blog)
 

@@ -59,15 +59,22 @@
 (require 'init-lsp)
 (require 'init-git)
 (require 'init-dev)
-(require 'init-blog)
 (require 'init-mail)
 (require 'init-dired)
-(require 'init-mkey)
-(require 'init-license)
 
-(use-package emacs
+;; Facilities for myself
+(use-package init-blog
+  :ensure nil
+  :after markdown-mode
+  :bind (:map markdown-mode-map
+         ("C-c C-s r" . mblog-insert-ruby-tag)))
+
+(use-package init-mkey
   :ensure nil
   :hook (after-init . mkey-init))
+
+(use-package init-license
+  :ensure nil)
 
 (when (file-exists-p custom-file)
   (load custom-file))
