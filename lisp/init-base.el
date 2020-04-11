@@ -207,6 +207,7 @@
   :ensure t
   :defer t)
 
+;; Keep ~/.emacs.d clean
 (use-package no-littering
   :ensure t)
 
