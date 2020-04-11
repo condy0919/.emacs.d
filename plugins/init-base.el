@@ -29,12 +29,17 @@
       blink-cursor-mode nil)
 
 ;; UTF-8 everywhere
-(set-charset-priority 'unicode)
-(setq locale-coding-system   'utf-8) ; pretty
-(set-terminal-coding-system  'utf-8) ; pretty
-(set-keyboard-coding-system  'utf-8) ; pretty
-(set-selection-coding-system 'utf-8) ; please
-(prefer-coding-system        'utf-8) ; with sugar on top
+(set-charset-priority          'unicode)
+(set-buffer-file-coding-system 'utf-8)
+(set-clipboard-coding-system   'utf-8)
+(set-default-coding-systems    'utf-8)
+(set-file-name-coding-system   'utf-8)
+(set-keyboard-coding-system    'utf-8)
+(set-language-environment      'utf-8)
+(set-selection-coding-system   'utf-8)
+(set-terminal-coding-system    'utf-8)
+(prefer-coding-system          'utf-8)
+(setq locale-coding-system     'utf-8)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Smooth scroll & friends
@@ -184,7 +189,6 @@
 ;; Stolen from https://protesilaos.com/dotemacs/
 (use-package dabbrev
   :ensure nil
-  :commands (dabbrev-expand dabbrev-completion)
   :custom
   (dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
   (dabbrev-abbrev-skip-leading-regexp "\\$\\|\\*\\|/\\|=")

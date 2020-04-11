@@ -6,6 +6,7 @@
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum)
 
+;; Do not initialise the package manager.  This is done in `init.el'.
 (setq package-enable-at-startup nil)
 
 ;; Faster to disable these here (before they've been initialized)
