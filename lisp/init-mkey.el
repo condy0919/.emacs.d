@@ -220,10 +220,9 @@
   ;; prefix: <Leader> a, apps
   (evil-leader/set-key
     "am" 'mu4e
-    "ac" 'calendar
     "ad" 'deft
     "aa" 'org-agenda
-    "ap" 'org-capture
+    "ac" 'org-capture
     "at" 'org-todo-list)
 
   ;; prefix: <Leader> o, open
