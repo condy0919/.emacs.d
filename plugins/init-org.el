@@ -76,9 +76,14 @@
   )
 
 ;; Pretty symbols
-(use-package org-bullets
+(use-package org-superstar
   :ensure t
-  :hook (org-mode . org-bullets-mode))
+  :custom
+  ;; hide leading stars
+  (org-superstar-leading-bullet ?\s)
+  ;; fancy todo items
+  (org-superstar-special-todo-items t)
+  :hook (org-mode . org-superstar-mode))
 
 (provide 'init-org)
 
