@@ -162,7 +162,7 @@
 (use-package vterm
   :ensure t
   :defines (evil-insert-state-cursor)
-  :commands (evil-insert-state)
+  :commands (evil-insert-state vterm)
   :custom
   (vterm-module-cmake-args (concat "-DCMAKE_BUILD_TYPE=Release"
                                    (if (executable-find "vterm-ctrl")
