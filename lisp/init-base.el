@@ -207,6 +207,9 @@
   :ensure t
   :defer t)
 
+(use-package no-littering
+  :ensure t)
+
 (provide 'init-base)
 
 ;;; init-base.el ends here
