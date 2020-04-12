@@ -11,7 +11,6 @@
   :bind (:map evil-normal-state-map
          ("M-." . xref-find-definitions))
   :custom
-  (evil-search-module 'evil-search)
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
   (evil-want-fine-undo t)

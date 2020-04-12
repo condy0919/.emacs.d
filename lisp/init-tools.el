@@ -104,24 +104,10 @@
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
-         ([escape] . isearch-exit)
-         ([return] . my/isearch-repeat)
          ;; consistent with ivy-occur
          ("C-c C-o" . isearch-occur)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
-  :config
-  ;; make it behave like searching in browser
-  (defvar my/isearch--direction nil)
-  (defun my/isearch-repeat (&optional arg)
-    (interactive "P")
-    (isearch-repeat my/isearch--direction arg))
-  (define-advice isearch-exit (:after nil)
-    (setq-local my/isearch--direction nil))
-  (define-advice isearch-repeat-forward (:after (_))
-    (setq-local my/isearch--direction 'forward))
-  (define-advice isearch-repeat-backward (:after (_))
-    (setq-local my/isearch--direction 'backward))
   :custom
   (isearch-lazy-count t)
   (lazy-count-prefix-format "%s/%s ")
