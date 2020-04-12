@@ -108,7 +108,7 @@ and set the focus back to Emacs frame."
   (projectile-indexing-method 'hybrid)
   (projectile-read-command nil) ;; no prompt in projectile-compile-project
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
-  (projectile-ignored-projects '("/tmp"))
+  (projectile-ignored-projects '("/tmp/"))
   :config
   ;; cmake project build
   (projectile-register-project-type 'cmake '("CMakeLists.txt")

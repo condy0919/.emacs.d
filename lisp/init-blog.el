@@ -7,8 +7,6 @@
 
 ;;; Code:
 
-(require 'ivy)
-
 (defgroup mblog nil
   "Quick manipulation of blog posts."
   :group 'text)
