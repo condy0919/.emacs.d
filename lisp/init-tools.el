@@ -77,16 +77,15 @@
            (old-dir (file-name-directory file))
            (new-file (concat old-dir new-name)))
       (rename-file file new-file)
-      (let ((buf (find-buffer-visiting file)))
-        (when buf
-          (kill-buffer buf)
-          (find-file new-file)))))
+      (when-let* ((buf (find-buffer-visiting file)))
+        (kill-buffer buf)
+        (find-file new-file))))
   (defun my/delete-file (file)
     "Delete `FILE'. If the `FILE' is opened, kill the buffer too."
     (interactive)
-    (let ((buf (find-buffer-visiting file)))
+    (when (y-or-n-p (format "Really delete '%s'? " file))
       (delete-file file)
-      (when buf
+      (when-let* ((buf (find-buffer-visiting file)))
         (kill-buffer buf))))
   :config
   (ivy-set-actions
