@@ -164,10 +164,6 @@
   :defines (evil-insert-state-cursor)
   :commands (evil-insert-state vterm)
   :custom
-  (vterm-module-cmake-args (concat "-DCMAKE_BUILD_TYPE=Release"
-                                   (if (executable-find "vterm-ctrl")
-                                       " -DUSE_SYSTEM_LIBVTERM=On"
-                                     "")))
   (vterm-kill-buffer-on-exit t)
   (vterm-clear-scrollback t)
   :hook (vterm-mode . (lambda ()
