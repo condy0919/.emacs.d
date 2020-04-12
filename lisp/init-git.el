@@ -15,6 +15,8 @@
          :map transient-map
          ([escape] . transient-quit-one))
   :custom
+  ;; Supress message
+  (magit-no-message '("Turning on magit-auto-revert-mode..."))
   (magit-diff-refine-hunk t)
   (magit-status-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
