@@ -106,7 +106,7 @@
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
-  :after org
+  :after org doct
   :custom
   (org-capture-use-agenda-date t)
   ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
@@ -184,7 +184,7 @@
 (use-package doct
   :ensure t
   :after org
-  :commands (doct))
+  :commands (doct doct-get))
 
 (provide 'init-org)
 
