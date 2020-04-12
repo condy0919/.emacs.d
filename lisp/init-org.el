@@ -9,7 +9,9 @@
   :ensure nil
   :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . auto-fill-mode)
+  :commands (org-find-exact-headline-in-buffer org-set-tags)
   :custom
+  (org-directory "~/.org")
   (org-tags-column -80)
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
@@ -40,8 +42,11 @@
   :ensure nil
   :after org
   :custom
-  (org-agenda-files '("~/.org/"))
-  (org-agenda-diary-file "~/.org/diary.org")
+  (org-agenda-files  '("~/.org/"))
+  (org-agenda-diary-file "diary.org")
+  (org-agenda-sticky t)
+  (org-agenda-span 'day)
+  (org-agenda-include-diary nil)
   (org-agenda-include-deadlines t)
   (org-agenda-inhibit-startup t)
   (org-agenda-show-all-dates t)
@@ -52,6 +57,8 @@
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
+  (org-agenda-columns-add-appointments-to-effort-sum t)
+  (org-agenda-restore-windows-after-quit t)
   (org-agenda-window-setup 'current-window)
   ;; starts from Monday
   (org-agenda-start-on-weekday 1)
@@ -68,8 +75,12 @@
   :after org
   :custom
   (org-clock-in-resume t)
+  (org-clock-idle-time 10)
+  (org-clock-out-when-done t)
   (org-clock-persist 'history)
+  (org-clock-history-length 10)
   (org-clock-out-remove-zero-time-clocks t)
+  (org-clock-report-include-clocking-task t)
   :config
   (org-clock-persistence-insinuate))
 
@@ -97,13 +108,50 @@
   :ensure nil
   :after org
   :custom
+  (org-capture-use-agenda-date t)
+  ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
   (org-capture-templates
-   '(("a" "Append")
-     ("c" "Captures")
-     ("ct" "Task" entry (file+headline "~/.org/tasks.org" "INBOX")
-      "* TODO %^{taskname} %^{CATEGORY}p\n :PROPERTIES:\n :CREATED: %U\n :END:\n")
-     ("cr" "Reference" entry (file+headline "~/.org/reference.org")
-      "* TODO %u %^{reference}\n %?")))
+   (doct `(:group
+            :empty-lines 1
+            :children
+            (("Tasks"
+              :keys "t"
+              :file "tasks.org"
+              :clock-in t
+              :clock-resume t
+              :children
+              (("Today" :keys "t" :type entry :headline "Uncategorized"
+                :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
+               ("Reading" :keys "r" :type entry :headline "Reading"
+                :template "* TODO %^{name}\n %a\n")
+               ("Work" :keys "w" :type entry :headline "Work"
+                :template "* TODO %^{taskname}\n %a\n")))
+             ("Project"
+              :keys "p"
+              :file ,(defun my/project-todo-file ()
+                       (let ((file (expand-file-name "TODO.org"
+                                                     (when (functionp 'projectile-project-root)
+                                                       (projectile-project-root)))))
+                         (with-current-buffer (find-file-noselect file)
+                           (org-mode)
+                           ;; Set to UTF-8 because we may be visiting raw file
+                           (setq buffer-file-coding-system 'utf-8-unix)
+                           (when-let ((headline (doct-get :headline)))
+                             (unless (org-find-exact-headline-in-buffer headline)
+                               (goto-char (point-max))
+                               (insert "* " headline)
+                               (org-set-tags (downcase headline))))
+                           file)))
+              :template (lambda () (concat "* %{todo-state} " (when (y-or-n-p "Link? ") "%A\n") "%?"))
+              :todo-state "TODO"
+              :children (("bug"           :keys "b" :headline "Bugs")
+                         ("documentation" :keys "d" :headline "Documentation")
+                         ("enhancement"   :keys "e" :headline "Enhancements")
+                         ("feature"       :keys "f" :headline "Features")
+                         ("optimization"  :keys "o" :headline "Optimizations")
+                         ("miscellaneous" :keys "m" :headline "Miscellaneous")
+                         ("security"      :keys "s" :headline "Security")))))
+         ))
   )
 
 ;; export
