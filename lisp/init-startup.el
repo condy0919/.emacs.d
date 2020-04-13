@@ -26,7 +26,7 @@
 
 (use-package page-break-lines
   :ensure t
-  :defer t)
+  :hook ((emacs-lisp-mode compilation-mode help-mode) . page-break-lines-mode))
 
 (use-package dashboard
   :ensure t

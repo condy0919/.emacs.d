@@ -152,6 +152,7 @@ and set the focus back to Emacs frame."
   :ensure t
   :hook (prog-mode . flycheck-mode)
   :custom
+  (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
@@ -227,11 +228,13 @@ and set the focus back to Emacs frame."
   (advice-add #'evil-window-bottom   :after #'my/pulse-line))
 
 ;; Hiding structured data
+;;
+;; zm hide-all
+;; zr show-all
+;; zo show-block
+;; zc hide-block
 (use-package hideshow
   :ensure nil
-  :bind (:map prog-mode-map
-         ("C-c TAB" . hs-toggle-hiding)
-         ("M-+" . hs-show-all))
   :hook (prog-mode . hs-minor-mode)
   :custom
   (hs-special-modes-alist

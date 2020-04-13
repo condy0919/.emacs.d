@@ -10,6 +10,9 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# flycheck temp file
+.flycheck*
+
 .cache/
 .extension/
 elpa/
