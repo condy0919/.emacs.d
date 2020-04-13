@@ -51,6 +51,15 @@ and set the focus back to Emacs frame."
   (gdb-use-colon-colon-notation t)
   (gdb-restore-window-configuration-after-quit t))
 
+(use-package license
+  :ensure t
+  :straight (:host github :repo "condy0919/license.el")
+  :bind (:map prog-mode-map
+         ("C-c i l" . license-insert))
+  :custom
+  (license-copyright-holder 'auto)
+  (license-project-detection 'projectile))
+
 ;; Highlight TODO
 (use-package hl-todo
   :ensure t

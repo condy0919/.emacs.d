@@ -89,9 +89,6 @@
   :ensure nil
   :hook (after-init . mkey-init))
 
-(use-package init-license
-  :ensure nil)
-
 (when (file-exists-p custom-file)
   (load custom-file))
 
