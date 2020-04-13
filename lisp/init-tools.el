@@ -184,8 +184,8 @@
   :ensure t
   :custom
   (gcmh-low-cons-threshold #x10000000)
-  (gcmh-high-cons-threshold #x40000000)
-  (gcmh-idle-delay 300)
+  (gcmh-high-cons-threshold #x20000000)
+  (gcmh-idle-delay 60)
   :hook (after-init . gcmh-mode))
 
 ;; Write documentation comment in an easy way
