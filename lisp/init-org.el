@@ -154,6 +154,15 @@
          ))
   )
 
+(use-package org-faces
+  :ensure nil
+  :custom
+  (org-priority-faces '((?A . all-the-icons-red)
+                        (?B . all-the-icons-orange)
+                        (?C . all-the-icons-yellow)
+                        (?D . all-the-icons-green)
+                        (?E . all-the-icons-blue))))
+
 ;; export
 (use-package ox
   :ensure nil
