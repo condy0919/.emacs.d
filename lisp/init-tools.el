@@ -183,9 +183,10 @@
 (use-package gcmh
   :ensure t
   :custom
-  (gcmh-low-cons-threshold #x10000000)
-  (gcmh-high-cons-threshold #x20000000)
-  (gcmh-idle-delay 60)
+  (gcmh-verbose t)
+  (gcmh-idle-delay 30)
+  (gcmh-low-cons-threshold #x40000000)  ;; 1G
+  (gcmh-high-cons-threshold #x80000000) ;; 2G
   :hook (after-init . gcmh-mode))
 
 ;; Write documentation comment in an easy way
