@@ -19,6 +19,16 @@
   (evil-want-abbrev-expand-on-insert-exit nil)
   (evil-symbol-word-search t))
 
+;; See https://github.com/emacs-evil/evil/issues/1074
+(use-package undo-fu
+  :ensure t
+  :bind (([remap undo] . undo-fu-only-undo)
+         ([remap redo] . undo-fu-only-redo))
+  :config
+  (with-eval-after-load 'undo-tree
+    (global-undo-tree-mode -1))
+  )
+
 (use-package evil-leader
   :ensure t
   :custom (evil-leader/leader "<SPC>")
