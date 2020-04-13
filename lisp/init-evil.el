@@ -13,6 +13,9 @@
          ("go" . evil-avy-goto-word-or-subword-1)
          ("gl" . evil-avy-goto-line))
   :custom
+  ;; Switch to the new window after splitting
+  (evil-split-window-below t)
+  (evil-vsplit-window-right t)
   (evil-ex-complete-emacs-commands nil)
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
