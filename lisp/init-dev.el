@@ -13,7 +13,10 @@
 ;; Compilation Mode
 (use-package compile
   :ensure nil
-  :custom (compilation-scroll-output t)
+  :custom
+  (compilation-always-kill t)
+  (compilation-scroll-output t)
+  (compilation-ask-about-save nil) ;; save all buffers on `compile'
   :hook (compilation-filter . my/colorize-compilation-buffer)
   :config
   (add-to-list 'compilation-finish-functions 'my/notify-compilation-result)
