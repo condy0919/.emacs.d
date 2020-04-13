@@ -9,8 +9,11 @@
   :ensure t
   :hook (after-init . evil-mode)
   :bind (:map evil-normal-state-map
-         ("M-." . xref-find-definitions))
+         ("gs" . evil-avy-goto-char-timer)
+         ("go" . evil-avy-goto-word-or-subword-1)
+         ("gl" . evil-avy-goto-line))
   :custom
+  (evil-ex-complete-emacs-commands nil)
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
   (evil-want-fine-undo t)
