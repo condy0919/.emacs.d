@@ -185,8 +185,7 @@
   :custom
   (gcmh-verbose t)
   (gcmh-idle-delay 30)
-  (gcmh-low-cons-threshold #x40000000)  ;; 1G
-  (gcmh-high-cons-threshold #x80000000) ;; 2G
+  (gcmh-high-cons-threshold 16777216) ;; 16 MB
   :hook (after-init . gcmh-mode))
 
 ;; Write documentation comment in an easy way
