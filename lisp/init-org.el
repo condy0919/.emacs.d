@@ -183,7 +183,7 @@
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t
-  :after org
+  :demand t
   :commands (doct doct-get))
 
 (provide 'init-org)
