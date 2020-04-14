@@ -65,6 +65,8 @@
   :custom
   (ispell-dictionary "en_US")
   (ispell-program-name "hunspell")
+  ;; "C-;" is captured by fcitx
+  (flyspell-auto-correct-binding (kbd "C-M-;"))
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil))
 
