@@ -167,6 +167,7 @@
   (vterm-clear-scrollback t)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
+                        (setq-local global-hl-line-mode nil)
                         ;; Dont prompt about processes when killing vterm
                         (setq confirm-kill-processes nil)
                         (evil-insert-state)))

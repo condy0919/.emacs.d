@@ -32,11 +32,10 @@
   :hook (magit-status-mode . magit-todos-mode)
   :config
   ;; Supress the `jT' keybind warning
-  (defun make-silent (func &rest args)
+  (define-advice magit-todos-mode (:around (func &rest args))
     (cl-letf (((symbol-function 'message)
                (lambda (&rest args) nil)))
-      (apply func args)))
-  (advice-add 'magit-todos-mode :around #'make-silent))
+      (apply func args))))
 
 ;; Dont display empty groups
 (use-package ibuffer
@@ -58,6 +57,16 @@
   :ensure nil
   :custom
   (vc-handled-backends '(Git)))
+
+(use-package flyspell
+  :ensure nil
+  :if (executable-find "hunspell")
+  :hook (git-commit-mode . flyspell-mode)
+  :custom
+  (ispell-dictionary "en_US")
+  (ispell-program-name "hunspell")
+  (flyspell-issue-welcome-flag nil)
+  (flyspell-issue-message-flag nil))
 
 ;; Highlight uncommitted changes using git
 (use-package diff-hl
