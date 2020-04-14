@@ -65,6 +65,8 @@
   :custom
   (ispell-dictionary "en_US")
   (ispell-program-name "hunspell")
+  (ispell-personal-dictionary
+   (expand-file-name "hunspell_dict.txt" user-emacs-directory))
   ;; "C-;" is captured by fcitx
   (flyspell-auto-correct-binding (kbd "C-M-;"))
   (flyspell-issue-welcome-flag nil)
