@@ -136,7 +136,7 @@
                            (org-mode)
                            ;; Set to UTF-8 because we may be visiting raw file
                            (setq buffer-file-coding-system 'utf-8-unix)
-                           (when-let ((headline (doct-get :headline)))
+                           (when-let* ((headline (doct-get :headline)))
                              (unless (org-find-exact-headline-in-buffer headline)
                                (goto-char (point-max))
                                (insert "* " headline)
