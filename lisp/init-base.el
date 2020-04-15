@@ -28,20 +28,6 @@
 (setq ring-bell-function 'ignore
       blink-cursor-mode nil)
 
-;; UTF-8 everywhere
-(set-charset-priority          'unicode)
-(set-buffer-file-coding-system 'utf-8)
-(set-clipboard-coding-system   'utf-8)
-(set-default-coding-systems    'utf-8)
-(set-file-name-coding-system   'utf-8)
-(set-keyboard-coding-system    'utf-8)
-(set-language-environment      'utf-8)
-(set-selection-coding-system   'utf-8)
-(set-terminal-coding-system    'utf-8)
-(prefer-coding-system          'utf-8)
-(setq locale-coding-system     'utf-8)
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-
 ;; Smooth scroll & friends
 (setq scroll-step 2
       scroll-margin 2
