@@ -187,6 +187,13 @@
   :custom
   (help-window-select t))
 
+(use-package speedbar
+  :ensure nil
+  :bind ("<f8>" . speedbar-get-focus)
+  :custom
+  (speedbar-use-images nil)
+  (speedbar-indentation-width 2))
+
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
