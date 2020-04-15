@@ -56,6 +56,7 @@
 (use-package vc
   :ensure nil
   :custom
+  (vc-follow-symlinks t)
   (vc-handled-backends '(Git)))
 
 (use-package flyspell

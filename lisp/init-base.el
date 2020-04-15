@@ -110,6 +110,8 @@
   (save-interprogram-paste-before-kill t)
   ;; eliminate duplicates
   (kill-do-not-save-duplicates t)
+  ;; include '\n'
+  (kill-whole-line t)
   :hook (after-init . (lambda ()
                         (line-number-mode)
                         (column-number-mode)
