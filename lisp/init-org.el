@@ -24,11 +24,11 @@
   (org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i!)" "WAITING(w!)"
                                  "|" "DONE(d!)" "CANCELLED(c!)")))
   (org-todo-keyword-faces
-   '(("TODO"       :foreground "#7c7c75" :weight normal :underline t)
-     ("INPROGRESS" :foreground "#0098dd" :weight normal :underline t)
-     ("WAITING"    :foreground "#9f7efe" :weight normal :underline t)
-     ("DONE"       :foreground "#50a14f" :weight normal :underline t)
-     ("CANCELLED"  :foreground "#ff6480" :weight normal :underline t)))
+   '(("TODO"       :foreground "#7c7c75" :weight bold)
+     ("INPROGRESS" :foreground "#0098dd" :weight bold)
+     ("WAITING"    :foreground "#9f7efe" :weight bold)
+     ("DONE"       :foreground "#50a14f" :weight bold)
+     ("CANCELLED"  :foreground "#ff6480" :weight bold)))
   ;; log
   (org-log-done 'time)
   (org-log-repeat 'time)
