@@ -56,7 +56,7 @@
   :ensure nil
   :custom
   (vc-follow-symlinks t)
-  (vc-handled-backends '(Git)))
+  (vc-handled-backends nil))
 
 ;; Spell check
 (use-package flyspell
