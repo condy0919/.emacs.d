@@ -10,6 +10,7 @@
   :ensure nil
   :defer 1
   :commands (mu4e mu4e-compose-new)
+  :hook (mu4e-compose-mode . auto-fill-mode)
   :custom
   ;; path
   (mu4e-maildir (expand-file-name "~/Mail"))
