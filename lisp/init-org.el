@@ -50,6 +50,7 @@
   (org-agenda-include-deadlines t)
   (org-agenda-inhibit-startup t)
   (org-agenda-show-all-dates t)
+  (org-agenda-time-leading-zero t)
   (org-agenda-start-with-log-mode t)
   (org-agenda-start-with-clockreport-mode t)
   (org-agenda-hide-tags-regexp ":\\w+:")
