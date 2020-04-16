@@ -13,6 +13,12 @@
   :custom
   (org-directory "~/.org")
   (org-tags-column -80)
+  (org-pretty-entities t)
+  (org-startup-indented t)
+  (org-hide-emphasis-markers t)
+  (org-fontify-done-headline t)
+  (org-fontify-whole-heading-line t)
+  (org-fontify-quote-and-verse-blocks t)
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
   ;; block switching the parent to done state
