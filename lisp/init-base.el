@@ -9,7 +9,8 @@
 (setq use-file-dialog nil
       use-dialog-box nil
       inhibit-startup-screen t
-      inhibit-startup-message t)
+      inhibit-startup-message t
+      inhibit-startup-buffer-menu t)
 
 ;; No backup files
 (setq make-backup-files nil
