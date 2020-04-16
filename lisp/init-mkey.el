@@ -169,10 +169,6 @@
 ;;;###autoload
 (defun mkey-evil-leader-setup ()
   "Setup `evil-leader' bindings."
-  ;; Trim '<' and '>'
-  (defvar leader-key
-    (string-trim (default-value 'evil-leader/leader) "[<]+" "[>]+"))
-
   ;; prefix: <Leader> f, file
   (evil-leader/set-key
     "fj" 'dired-jump
@@ -213,7 +209,7 @@
     "pc" 'projectile-compile-project
     "pC" 'projectile-configure-project
     "pP" 'projectile-test-project
-    "po" 'projectile-find-other-file
+    "pa" 'projectile-find-other-file
     "pf" 'projectile-find-file
     "pg" 'projectile-ripgrep)
 
@@ -317,22 +313,12 @@
 
   ;; Replace with correct prefix names
   (with-eval-after-load 'which-key
-    (let ((prefix-re (regexp-opt (list leader-key))))
-      (cl-pushnew `((,(format "\\`%s a\\'" prefix-re))
-                    nil . "apps")
-                  which-key-replacement-alist)
-      (cl-pushnew `((,(format "\\`%s b\\'" prefix-re))
-                    nil . "buffmark")
-                  which-key-replacement-alist)
-      (cl-pushnew `((,(format "\\`%s f\\'" prefix-re))
-                    nil . "files")
-                  which-key-replacement-alist)
-      (cl-pushnew `((,(format "\\`%s o\\'" prefix-re))
-                    nil . "open")
-                  which-key-replacement-alist)
-      (cl-pushnew `((,(format "\\`%s p\\'" prefix-re))
-                    nil . "project")
-                  which-key-replacement-alist))
+    (which-key-add-key-based-replacements
+      "SPC a" "apps"
+      "SPC b" "buffmark"
+      "SPC f" "files"
+      "SPC o" "open"
+      "SPC p" "project")
     )
   )
 

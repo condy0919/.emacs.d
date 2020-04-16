@@ -100,7 +100,7 @@
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
-;; Dont use swiper, it takes up `ivy-height' lines.
+;; Use swiper less, it takes up `ivy-height' lines.
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
@@ -113,6 +113,15 @@
   (lazy-count-prefix-format "%s/%s ")
   (lazy-count-suffix-format nil)
   (lazy-highlight-cleanup nil))
+
+(use-package swiper
+  :ensure t
+  :config
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key
+      "/" 'swiper)
+    )
+  )
 
 ;; Writable grep buffer. company well with ivy-occur
 (use-package wgrep
