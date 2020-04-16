@@ -9,12 +9,20 @@
 (use-package mu4e
   :ensure nil
   :defer 1
-  :commands (mu4e)
+  :commands (mu4e mu4e-compose-new)
   :custom
   ;; path
   (mu4e-maildir (expand-file-name "~/Mail"))
   (mu4e-attachment-dir (expand-file-name "~/Mail/.attachments"))
 
+  ;; obsolete
+  ;; It must be nil
+  (mu4e-user-mail-address-list nil)
+
+  (mu4e-user-mailing-lists '(("emacs-china.org"   . "Emacs China")
+                             ("aur.archlinux.org" . "Arch Linux")
+                             ("github.com"        . "GitHub")
+                             ("twitter.com"       . "Twitter")))
   ;; Gmail specific configs
   (mu4e-sent-messages-behavior 'delete)
   (mu4e-index-cleanup nil)
