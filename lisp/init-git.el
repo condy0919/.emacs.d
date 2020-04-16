@@ -17,7 +17,6 @@
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
-  (magit-bury-buffer-function #'magit-mode-quit-window)
   (magit-diff-refine-hunk t)
   (magit-status-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
@@ -59,6 +58,7 @@
   (vc-follow-symlinks t)
   (vc-handled-backends '(Git)))
 
+;; Spell check
 (use-package flyspell
   :ensure nil
   :if (executable-find "hunspell")

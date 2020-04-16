@@ -168,12 +168,6 @@
   (diary-number-of-entries 7)
   (diary-comment-start "#"))
 
-;; View help page when we open
-(use-package help
-  :ensure nil
-  :custom
-  (help-window-select t))
-
 (use-package speedbar
   :ensure nil
   :bind ("<f8>" . speedbar-get-focus)
