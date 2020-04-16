@@ -29,6 +29,14 @@
      ("WAITING"    :foreground "#9f7efe" :weight bold)
      ("DONE"       :foreground "#50a14f" :weight bold)
      ("CANCELLED"  :foreground "#ff6480" :weight bold)))
+  (org-highest-priority ?A)
+  (org-lowest-priority ?E)
+  (org-default-priority ?C)
+  (org-priority-faces '((?A :foreground "red")
+                        (?B :foreground "orange")
+                        (?C :foreground "yellow")
+                        (?D :foreground "green")
+                        (?E :foreground "blue")))
   ;; log
   (org-log-done 'time)
   (org-log-repeat 'time)
@@ -154,15 +162,6 @@
                          ("security"      :keys "s" :headline "Security")))))
          ))
   )
-
-(use-package org-faces
-  :ensure nil
-  :custom
-  (org-priority-faces '((?A . all-the-icons-red)
-                        (?B . all-the-icons-orange)
-                        (?C . all-the-icons-yellow)
-                        (?D . all-the-icons-green)
-                        (?E . all-the-icons-blue))))
 
 ;; export
 (use-package ox
