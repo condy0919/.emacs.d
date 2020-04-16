@@ -183,10 +183,9 @@
 (use-package org-superstar
   :ensure t
   :custom
-  ;; hide leading stars
+  ;; hide leading stars, rendering in spaces
+  (org-hide-leading-stars nil)
   (org-superstar-leading-bullet ?\s)
-  ;; fancy todo items
-  (org-superstar-special-todo-items t)
   :hook (org-mode . org-superstar-mode))
 
 ;; Declarative Org Capture Templates
