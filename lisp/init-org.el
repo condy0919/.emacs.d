@@ -42,7 +42,7 @@
   :ensure nil
   :after org
   :custom
-  (org-agenda-files  '("~/.org/"))
+  (org-agenda-files `(,org-directory))
   (org-agenda-diary-file "diary.org")
   (org-agenda-sticky t)
   (org-agenda-span 'day)
