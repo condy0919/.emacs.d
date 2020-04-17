@@ -288,6 +288,24 @@
       "q"         'kill-current-buffer))
   )
 
+;; Visual bookmarks
+(use-package bm
+  :ensure t
+  :hook ((after-init   . bm-repository-load)
+         (find-file    . bm-buffer-restore)
+         (after-revert . bm-buffer-restore)
+         (kill-buffer  . bm-buffer-save)
+         (kill-emacs   . (lambda ()
+                           (bm-buffer-save-all)
+                           (bm-repository-save))))
+  :custom
+  (bm-annotate-on-create t)
+  (bm-buffer-persistence t)
+  (bm-cycle-all-buffers t)
+  (bm-goto-position nil)
+  (bm-in-lifo-order t)
+  (bm-recenter t))
+
 ;; Customize popwin behavior
 (use-package shackle
   :ensure t
@@ -304,6 +322,7 @@
                    (woman-mode           :select t :other t)
                    (grep-mode            :select t :align t)
                    (rg-mode              :select t :align t)
+                   ("*bm-bookmarks*"     :select t :align t)
                    ("*Flycheck errors*"      :select t   :align t)
                    ("*quickrun*"             :select nil :align t :size 15)
                    ("*Backtrace*"            :select t   :align t :size 15)

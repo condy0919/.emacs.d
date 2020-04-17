@@ -7,13 +7,13 @@
 ;;; Code:
 
 (require 'evil)
-(require 'cl-lib)
 
 (defgroup mkey nil
   "Keybindings for myself."
   :group 'convenience)
 
 (defcustom mkey-enable-modes '(help
+                               bm
                                profiler
                                replace ;; occur is in replace.el
                                tar-mode
@@ -167,6 +167,22 @@
     "q" 'quit-window))
 
 ;;;###autoload
+(defun mkey-bm-setup ()
+  "Setup `evil' bindings for `bm'."
+  (evil-set-initial-state 'bm-show-mode 'normal)
+  (evil-define-key 'normal bm-show-mode-map
+    ;; movement
+    "j" 'bm-show-next
+    "k" 'bm-show-prev
+
+    ;; op
+    (kbd "RET") 'bm-show-goto-bookmark
+
+    ;; quit
+    "q" 'bm-show-quit-window)
+  )
+
+;;;###autoload
 (defun mkey-evil-leader-setup ()
   "Setup `evil-leader' bindings."
   ;; prefix: <Leader> f, file
@@ -180,22 +196,21 @@
     "fr" 'counsel-recentf
     "fg" 'counsel-rg)
 
-  ;; prefix: <Leader> b, buffer
-  (evil-leader/set-key
-    "bb" 'ivy-switch-buffer
-    "bk" 'kill-this-buffer
-    "bi" 'ibuffer
-    "bp" 'previous-buffer
-    "bn" 'next-buffer)
-
   ;; prefix: <Leader> b, bookmark
   (evil-leader/set-key
     "bm" 'bookmark-set
     "bd" 'bookmark-delete
     "bj" 'bookmark-jump
     "bJ" 'bookmark-jump-other-window
-    "bl" 'list-bookmarks
+    "bl" 'bookmark-bmenu-list
     "bs" 'bookmark-save)
+
+  ;; prefix: <Leader> b, bm
+  (evil-leader/set-key
+    "bp" 'bm-previous
+    "bn" 'bm-next
+    "bt" 'bm-toggle
+    "ba" 'bm-show-all)
 
   ;; prefix: <Leader> w, window
   (evil-leader/set-key
@@ -317,7 +332,7 @@
   (with-eval-after-load 'which-key
     (which-key-add-key-based-replacements
       "SPC a" "apps"
-      "SPC b" "buffmark"
+      "SPC b" "bookmark"
       "SPC f" "files"
       "SPC o" "open"
       "SPC p" "project")
