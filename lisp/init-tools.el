@@ -16,11 +16,6 @@
   :ensure t
   :defer t)
 
-;; Fuzzy search
-(use-package fzf
-  :ensure t
-  :defer t)
-
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t

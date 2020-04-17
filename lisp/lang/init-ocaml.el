@@ -17,7 +17,7 @@
 ;; Indentation tool for OCaml
 (use-package ocp-indent
   :ensure t
-  :hook (tuareg-mode-local-vars . ocp-indent-caml-mode-setup)
+  :hook (tuareg-mode . ocp-indent-caml-mode-setup)
   :commands (ocp-indent-region))
 
 ;; Context sensitive completion
@@ -29,11 +29,6 @@
   (merlin-error-after-save nil)
   (merlin-command "ocamlmerlin")
   (merlin-completion-with-doc t))
-
-;; Dune build system
-(use-package dune
-  :ensure t
-  :defer 1)
 
 (provide 'init-ocaml)
 

@@ -49,10 +49,9 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 趁手的工具
 
-`which-key`, `rg`, `fzf`是比较常用的工具。不过说实话，最近在使用`projectile`之后
-`fzf`用得也少了，因为大多数场景都是在一个项目内跳转。由于有
-`counsel-projectile`的加成，在原有`projectile`的基础上又添加了许多`ivy action`，
-更一步提升了便捷性。
+`which-key`, `rg`是比较常用的工具。不过说实话，最近在使用`projectile`之后`fzf`也
+用不着了，因为大多数场景都是在一个项目内跳转。由于有`counsel-projectile`的加成，
+在原有`projectile`的基础上又添加了许多`ivy action`，更一步提升了便捷性。
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开
 `relative line number`来`8k` `9j`这样跳了。
