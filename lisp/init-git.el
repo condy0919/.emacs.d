@@ -58,21 +58,6 @@
   (vc-follow-symlinks t)
   (vc-handled-backends nil))
 
-;; Spell check
-(use-package flyspell
-  :ensure nil
-  :if (executable-find "hunspell")
-  :hook (git-commit-mode . flyspell-mode)
-  :custom
-  (ispell-dictionary "en_US")
-  (ispell-program-name "hunspell")
-  (ispell-personal-dictionary
-   (expand-file-name "hunspell_dict.txt" user-emacs-directory))
-  ;; "C-;" is captured by fcitx
-  (flyspell-auto-correct-binding (kbd "C-M-;"))
-  (flyspell-issue-welcome-flag nil)
-  (flyspell-issue-message-flag nil))
-
 ;; Highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t

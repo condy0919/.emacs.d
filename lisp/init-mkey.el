@@ -193,6 +193,8 @@
     "bm" 'bookmark-set
     "bd" 'bookmark-delete
     "bj" 'bookmark-jump
+    "bJ" 'bookmark-jump-other-window
+    "bl" 'list-bookmarks
     "bs" 'bookmark-save)
 
   ;; prefix: <Leader> w, window

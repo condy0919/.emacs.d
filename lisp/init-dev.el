@@ -193,6 +193,22 @@ and set the focus back to Emacs frame."
   :custom
   (flymake-fringe-indicator-position 'right-fringe))
 
+;; Spell check
+(use-package flyspell
+  :ensure nil
+  :if (executable-find "hunspell")
+  :hook (git-commit-mode . flyspell-mode)
+  :custom
+  (ispell-dictionary "en_US")
+  (ispell-program-name "hunspell")
+  (ispell-personal-dictionary
+   (expand-file-name "hunspell_dict.txt" user-emacs-directory))
+  ;; "C-;" is captured by fcitx
+  ;; M-TAB also can correct
+  (flyspell-auto-correct-binding (kbd "C-M-;"))
+  (flyspell-issue-welcome-flag nil)
+  (flyspell-issue-message-flag nil))
+
 ;; xref
 (use-package ivy-xref
   :ensure t
