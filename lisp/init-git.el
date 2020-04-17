@@ -56,7 +56,7 @@
   :ensure nil
   :custom
   (vc-follow-symlinks t)
-  (vc-handled-backends nil))
+  (vc-handled-backends '(Git)))
 
 ;; Highlight uncommitted changes using git
 (use-package diff-hl

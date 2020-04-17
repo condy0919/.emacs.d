@@ -297,7 +297,7 @@
   (shackle-default-alignment 'below)
   (shackle-rules '((magit-status-mode :select t :inhibit-window-quit t :same t)
                    (magit-log-mode    :select t :inhibit-window-quit t :same t)
-                   (profiler-report-mode :select t  :size 0.5)
+                   (profiler-report-mode :select t :size 0.5)
                    (help-mode            :select t :align 5 :size 0.4)
                    (comint-mode          :select t :align t :size 0.4)
                    (Man-mode             :select t :other t)
