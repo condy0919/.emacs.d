@@ -111,6 +111,8 @@
 ;; isearch alternative
 (use-package swiper
   :ensure t
+  :custom
+  (swiper-action-recenter t)
   :config
   (with-eval-after-load 'evil-leader
     (evil-leader/set-key
