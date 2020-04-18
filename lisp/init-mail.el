@@ -58,6 +58,8 @@
   (mu4e-hide-index-messages t)
   ;; try to show images
   (mu4e-view-show-images t)
+  (mu4e-view-image-max-width 400)
+  (mu4e-view-image-max-height 300)
   ;; use imagemagick if available
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
