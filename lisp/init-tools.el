@@ -168,7 +168,7 @@
   :commands (evil-insert-state vterm)
   :custom
   (vterm-kill-buffer-on-exit t)
-  (vterm-clear-scrollback t)
+  (vterm-clear-scrollback-when-clearing t)
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         (setq-local global-hl-line-mode nil)
