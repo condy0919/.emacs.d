@@ -73,6 +73,10 @@ and set the focus back to Emacs frame."
 
   (define-advice gud-kill-buffer-hook (:after nil)
     "Remove highlight overlay."
+    (delete-overlay gud-overlay))
+
+  (define-advice gud-sentinel (:after (_1 _2))
+    "Remove highlight overlay when user quit gud."
     (delete-overlay gud-overlay)))
 
 
