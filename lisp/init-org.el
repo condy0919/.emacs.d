@@ -12,9 +12,10 @@
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :custom
   (org-directory "~/.org")
-  (org-tags-column -80)
+  (org-tags-column 0)
   (org-pretty-entities t)
   (org-startup-indented t)
+  (org-image-actual-width nil)
   (org-hide-emphasis-markers t)
   (org-fontify-done-headline t)
   (org-fontify-whole-heading-line t)
@@ -59,7 +60,7 @@
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file "diary.org")
   (org-agenda-sticky t)
-  (org-agenda-span 'day)
+  (org-agenda-span 10)
   (org-agenda-include-diary nil)
   (org-agenda-include-deadlines t)
   (org-agenda-inhibit-startup t)
@@ -77,6 +78,7 @@
   (org-agenda-window-setup 'current-window)
   ;; starts from Monday
   (org-agenda-start-on-weekday 1)
+  (org-agenda-start-day "-3d")
   (org-agenda-use-time-grid t)
   (org-agenda-timegrid-use-ampm nil)
   (org-agenda-time-grid '((daily tody require-timed)
@@ -184,6 +186,11 @@
   (org-export-in-background t)
   (org-export-headline-levels 5)
   (org-export-backends '(ascii html md)))
+
+(use-package ox-html
+  :ensure nil
+  :custom
+  (org-html-validation-link nil))
 
 ;; Pretty symbols
 (use-package org-superstar
