@@ -278,13 +278,7 @@ and set the focus back to Emacs frame."
 ;; zc hide-block
 (use-package hideshow
   :ensure nil
-  :hook (prog-mode . hs-minor-mode)
-  :custom
-  (hs-special-modes-alist
-   (mapcar 'purecopy
-           '((c-mode "{" "}" "/[*/]" nil nil)
-             (c++-mode "{" "}" "/[*/]" nil nil)
-             (rust-mode "{" "}" "/[*/]" nil nil)))))
+  :hook (prog-mode . hs-minor-mode))
 
 ;; Config files mode
 (use-package yaml-mode
