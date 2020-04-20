@@ -129,6 +129,11 @@
   :ensure nil
   :hook (after-init . global-hl-line-mode))
 
+;; Switch window
+(use-package window
+  :ensure nil
+  :bind ("M-o" . other-window))
+
 ;; Server mode.
 ;; Use emacsclient to connect
 (use-package server

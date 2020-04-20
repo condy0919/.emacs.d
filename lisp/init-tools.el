@@ -128,23 +128,6 @@
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
-;; Switch windows quickly
-(use-package ace-window
-  :ensure t
-  :preface
-  (defun my/switch-window ()
-    (interactive)
-    (if (<= (count-windows) 2)
-        (other-window 1)
-      (ace-window 1)))
-  :bind ("M-o" . my/switch-window)
-  :custom-face
-  (aw-leading-char-face ((nil (:foreground "deep sky blue" :weight bold :height 3.0))))
-  (aw-mode-line-face ((nil (:foreground "lawn green" :inherit mode-line-buffer-id))))
-  :custom
-  (aw-keys '(?a ?s ?d ?f ?h ?j ?k ?l))
-  (aw-scope 'frame))
-
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
