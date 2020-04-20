@@ -33,25 +33,46 @@
   ;; Supress the `jT' keybind warning
   (define-advice magit-todos-mode (:around (func &rest args))
     (cl-letf (((symbol-function 'message)
-               (lambda (&rest args) nil)))
+               (lambda (&rest _) nil)))
       (apply func args))))
 
 ;; Dont display empty groups
 (use-package ibuffer
   :ensure nil
+  :hook ((ibuffer-mode . ibuffer-auto-mode)
+         (ibuffer-mode . (lambda ()
+                           (ibuffer-switch-to-saved-filter-groups "Default"))))
   :custom
+  (ibuffer-expert t)
   (ibuffer-movement-cycle nil)
-  (ibuffer-show-empty-filter-groups nil))
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-saved-filter-groups
+   '(("Default"
+      ("Interactive" (or (mode . lisp-interaction-mode)
+                         (name . "\\*Messages\\*")
+                         (name . "\\*compilation\\*")
+                         (name . "\\*Customize\\*")))
+      ("Programming" (or (derived-mode . prog-mode)
+                         (mode . makefile-mode)
+                         (mode . cmake-mode)))
+      ("Text" (or (mode . org-mode)
+                  (mode . markdown-mode)
+                  (mode . gfm-mode)
+                  (mode . rst-mode)
+                  (mode . text-mode)))
+      ("Mail" (or (mode . message-mode)
+                  (mode . bbdb-mode)
+                  (mode . mail-mode)
+                  (mode . mu4e-compose-mode)))
+      ("Dired" (mode . dired-mode))
+      ("Magit" (name . "\\*magit"))
+      ("Help" (or (name . "\\*Help\\*")
+                  (name . "\\*Apropos\\*")
+                  (name . "\\*info\\*"))))
+     ))
+  )
 
-;; Group buffers by git/svn/... project
-(use-package ibuffer-vc
-  :ensure t
-  :commands (ibuffer-do-sort-by-alphabetic)
-  :hook (ibuffer . (lambda ()
-                     (ibuffer-vc-set-filter-groups-by-vc-root)
-                     (unless (eq ibuffer-sorting-mode 'alphabetic)
-                       (ibuffer-do-sort-by-alphabetic)))))
-
+;; NB `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
   :custom

@@ -68,6 +68,9 @@
 
 (defalias 'list-buffers 'ibuffer)
 
+;; Use TeX as default IM
+(setq default-input-method "TeX")
+
 ;; Keep clean
 (when (fboundp 'menu-bar-mode)
   (menu-bar-mode -1))
@@ -93,6 +96,8 @@
 (use-package simple
   :ensure nil
   :custom
+  ;; column starts from 1
+  (column-number-indicator-zero-based nil)
   ;; save current clipboard text
   (save-interprogram-paste-before-kill t)
   ;; eliminate duplicates
@@ -103,6 +108,7 @@
                         (line-number-mode)
                         (column-number-mode)
                         (size-indication-mode))))
+
 ;; Type text
 (use-package text-mode
   :ensure nil

@@ -293,6 +293,7 @@ and set the focus back to Emacs frame."
 (require 'init-ocaml)
 (require 'init-bazel)
 (require 'init-haskell)
+(require 'init-python)
 
 (provide 'init-dev)
 

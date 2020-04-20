@@ -68,6 +68,7 @@
    'counsel-find-file
    '(("d" my/delete-file "delete")
      ("r" my/rename-file "rename")
+     ("l" vlf            "view large file")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
   (counsel-preselect-current-file t)
@@ -85,6 +86,10 @@
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :custom
+  ;; One space can represent a sequence of whitespaces
+  (isearch-lax-whitespace t)
+  (isearch-regexp-lax-whitespace t)
+  (search-whitespace-regexp "[ \t\r\n]+")
   (isearch-lazy-count t)
   (lazy-count-prefix-format "%s/%s ")
   (lazy-count-suffix-format nil)
@@ -116,6 +121,7 @@
   :hook (markdown-mode . auto-fill-mode)
   :custom
   (markdown-command "pandoc")
+  (markdown-asymmetric-header t)
   (markdown-fontify-code-blocks-natively t)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
