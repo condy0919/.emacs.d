@@ -63,24 +63,6 @@
          ([remap recentf-open-files] . counsel-recentf)
          ([remap swiper]             . counsel-grep-or-swiper)
          ("M-y"                      . counsel-yank-pop))
-  :preface
-  (defun my/rename-file (file)
-    "Rename `FILE'. If the `FILE' is opened, kill the buffer too."
-    (interactive)
-    (let* ((new-name (read-string "NewName: "))
-           (old-dir (file-name-directory file))
-           (new-file (concat old-dir new-name)))
-      (rename-file file new-file)
-      (when-let* ((buf (find-buffer-visiting file)))
-        (kill-buffer buf)
-        (find-file new-file))))
-  (defun my/delete-file (file)
-    "Delete `FILE'. If the `FILE' is opened, kill the buffer too."
-    (interactive)
-    (when (y-or-n-p (format "Really delete '%s'? " file))
-      (delete-file file)
-      (when-let* ((buf (find-buffer-visiting file)))
-        (kill-buffer buf))))
   :config
   (ivy-set-actions
    'counsel-find-file

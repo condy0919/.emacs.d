@@ -91,6 +91,7 @@
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(require 'init-core)
 (require 'init-base)
 (require 'init-startup)
 (require 'init-org)

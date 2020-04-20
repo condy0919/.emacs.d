@@ -191,9 +191,10 @@
     "fJ" 'dired-jump-other-window
     "ff" 'find-file
     "fF" 'find-file-other-window
-    "fd" 'delete-file
+    "fd" 'my/delete-current-file
     "fc" 'copy-file
     "fr" 'counsel-recentf
+    "fR" 'my/rename-current-file
     "fg" 'counsel-rg)
 
   ;; prefix: <Leader> b, bookmark
