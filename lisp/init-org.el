@@ -50,7 +50,9 @@
   (org-log-redeadline 'note)
   (org-log-reschedule 'note)
   (org-log-into-drawer t)
-  (org-log-state-notes-insert-after-drawers nil))
+  (org-log-state-notes-insert-after-drawers nil)
+  ;; archive
+  (org-archive-location "%s_archive::date-tree"))
 
 ;; Keep track of tasks
 (use-package org-agenda
