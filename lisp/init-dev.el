@@ -179,8 +179,7 @@ and set the focus back to Emacs frame."
   :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-temp-prefix ".flycheck")
-  (flycheck-check-syntax-automatically '(save mode-enabled idle-buffer-switch))
-  (flycheck-buffer-switch-check-intermediate-buffers t)
+  (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
