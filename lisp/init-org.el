@@ -60,7 +60,7 @@
   :after org
   :custom
   (org-agenda-files `(,org-directory))
-  (org-agenda-diary-file "diary.org")
+  (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
   (org-agenda-sticky t)
   (org-agenda-span 10)
   (org-agenda-include-diary nil)

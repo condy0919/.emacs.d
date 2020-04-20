@@ -160,7 +160,11 @@
   :ensure nil
   :hook (calendar-today-visible . calendar-mark-today)
   :custom
-  (calendar-mark-diary-entries-flag t)
+  (calendar-holidays (append holiday-general-holidays
+                             holiday-oriental-holidays
+                             holiday-solar-holidays))
+  (calendar-chinese-all-holidays-flag t)
+  (calendar-mark-holidays-flag t)
   ;; start from Monday
   (calendar-week-start-day 1)
   ;; year/month/day
