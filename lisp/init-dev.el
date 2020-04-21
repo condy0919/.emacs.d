@@ -25,17 +25,13 @@
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (defun my/notify-compilation-result (comp-buffer exit-string)
-    "Notify after the compilation is done.
-Close the *compilation* buffer if the compilation is successful,
-and set the focus back to Emacs frame."
+  (defun my/notify-compilation-result (_comp-buffer exit-string)
+    "Notify after the compilation is done."
     (if (string-match "^finished" exit-string)
-        (progn
-          (delete-windows-on comp-buffer)
-          (notifications-notify :title "Compilation"
-                                :body "Compilation successful :-)"
-                                :timeout 5000
-                                :urgency 'normal))
+        (notifications-notify :title "Compilation"
+                              :body "Compilation successful :-)"
+                              :timeout 5000
+                              :urgency 'normal)
       (notifications-notify :title "Compilation"
                             :body "Compilation failed :-("
                             :timeout 5000

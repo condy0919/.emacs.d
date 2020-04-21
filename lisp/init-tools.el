@@ -40,6 +40,8 @@
   (ivy-display-style 'fancy)          ;; fancy style
   (ivy-count-format "%d/%d ")         ;; better counts
   (ivy-use-virtual-buffers t)         ;; show recent files
+  (ivy-height 10)
+  (ivy-fixed-height-minibuffer t)     ;; fixed height
   (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
   :preface
   ;; Copy from
