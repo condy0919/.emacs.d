@@ -95,6 +95,8 @@
 ;; Open current file in browser
 (use-package browse-at-remote
   :ensure t
+  :custom
+  (browse-at-remote-add-line-number-if-no-region-selected nil)
   :bind (:map vc-prefix-map
          ("b" . bar-browse)
          ("c" . bar-to-clipboard)))

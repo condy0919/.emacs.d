@@ -48,6 +48,7 @@
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
+  (lsp-lens-auto-enable t)             ;; enable lens
   (lsp-flycheck-live-reporting nil)    ;; obey `flycheck-check-syntax-automatically'
   (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-enable-snippet nil)             ;; no snippet
@@ -58,9 +59,9 @@
   (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
-  (lsp-eldoc-enable-hover nil)         ;; disable eldoc displays in minibuffer
+  (lsp-eldoc-enable-hover nil)         ;; disable eldoc hover
   (lsp-signature-auto-activate t)      ;; show function signature
-  (lsp-signature-doc-lines 1)          ;; but dont take up more spaces
+  (lsp-signature-doc-lines 2)          ;; but dont take up more lines
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)

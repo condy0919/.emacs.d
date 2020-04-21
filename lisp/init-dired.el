@@ -24,6 +24,7 @@
   :custom
   (dired-omit-files (rx (or ".git" ".svn"
                             ".cache"
+                            ".vscode"
                             ".ccls-cache" ".clangd"
                             ".elc" ".pyc" ".o" ".swp")))
   ;; Dont prompt about killing buffer visiting delete file
