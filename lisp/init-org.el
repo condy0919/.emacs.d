@@ -51,6 +51,12 @@
   (org-log-reschedule 'note)
   (org-log-into-drawer t)
   (org-log-state-notes-insert-after-drawers nil)
+  ;; refile
+  (org-refile-use-cache t)
+  (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+  (org-refile-use-outline-path t)
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-allow-creating-parent-nodes 'confirm)
   ;; archive
   (org-archive-location "%s_archive::date-tree"))
 
@@ -61,6 +67,7 @@
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
+  (org-agenda-compact-blocks t)
   (org-agenda-sticky t)
   (org-agenda-span 10)
   (org-agenda-include-diary nil)
@@ -75,6 +82,7 @@
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
+  (org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
   (org-agenda-columns-add-appointments-to-effort-sum t)
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-window-setup 'current-window)
@@ -95,6 +103,7 @@
   :custom
   (org-clock-in-resume t)
   (org-clock-idle-time 10)
+  (org-clock-into-drawer t)
   (org-clock-out-when-done t)
   (org-clock-persist 'history)
   (org-clock-history-length 10)
