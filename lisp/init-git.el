@@ -17,8 +17,7 @@
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
-  (magit-diff-refine-hunk t)
-  (magit-status-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
+  (magit-diff-refine-hunk t))
 
 ;; Todo integration
 (use-package magit-todos
@@ -39,6 +38,7 @@
 ;; Dont display empty groups
 (use-package ibuffer
   :ensure nil
+  :commands (ibuffer-switch-to-saved-filter-groups)
   :hook ((ibuffer-mode . ibuffer-auto-mode)
          (ibuffer-mode . (lambda ()
                            (ibuffer-switch-to-saved-filter-groups "Default"))))
@@ -48,10 +48,13 @@
   (ibuffer-show-empty-filter-groups nil)
   (ibuffer-saved-filter-groups
    '(("Default"
-      ("Interactive" (or (mode . lisp-interaction-mode)
-                         (name . "\\*Messages\\*")
-                         (name . "\\*compilation\\*")
-                         (name . "\\*Customize\\*")))
+      ("Emacs" (or (name . "\\*scratch\\*")
+                   (name . "\\*dashboard\\*")
+                   (name . "\\*compilation\\*")
+                   (name . "\\*Backtrace\\*")
+                   (name . "\\*Packages\\*")
+                   (name . "\\*Messages\\*")
+                   (name . "\\*Customize\\*")))
       ("Programming" (or (derived-mode . prog-mode)
                          (mode . makefile-mode)
                          (mode . cmake-mode)))
@@ -65,7 +68,7 @@
                   (mode . mail-mode)
                   (mode . mu4e-compose-mode)))
       ("Dired" (mode . dired-mode))
-      ("Magit" (name . "\\*magit"))
+      ("Magit" (name . "magit"))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
                   (name . "\\*info\\*"))))
