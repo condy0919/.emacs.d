@@ -25,31 +25,6 @@
 ;; `lsp-mode' gains
 (setq read-process-output-max (* 1024 1024))
 
-;; Tricks stolen from
-;; https://github.com/CSRaghunandan/.emacs.d/blob/master/setup-files/setup-optimizations.el
-
-;; Disable bidirectional text rendering for a modest performance boost. Of
-;; course, this renders Emacs unable to detect/display right-to-left languages
-;; (sorry!), but for us left-to-right language speakers/writers, it's a boon.
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right)
-
-;; Horizontally scroll only the current line
-;; https://www.reddit.com/r/emacs/comments/6au45k/is_it_possible_to_truncate_long_lines_the_same/
-(setq auto-hscroll-mode 'current-line)
-
-;; More performant rapid scrolling over unfontified regions. May cause brief
-;; spells of inaccurate fontification immediately after scrolling.
-(setq fast-but-imprecise-scrolling t)
-
-;; Reduce rendering/line scan work for Emacs by not rendering cursors or regions
-;; in non-focused windows.
-(setq-default cursor-in-non-selected-windows nil)
-(setq highlight-nonselected-windows nil)
-
-;; Don't ping things that look like domain names.
-(setq ffap-machine-p-known 'reject)
-
 (require 'package)
 (setq package-archives
       '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
