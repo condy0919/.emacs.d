@@ -19,6 +19,7 @@
   (evil-ex-complete-emacs-commands nil)
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
+  (evil-insert-skip-empty-lines t)
   (evil-want-fine-undo t)
   (evil-want-C-u-scroll t)
   (evil-want-Y-yank-to-eol t)
@@ -36,7 +37,7 @@
 
 (use-package evil-surround
   :ensure t
-  :hook ((prog-mode markdown-mode conf-mode) . evil-surround-mode))
+  :hook (after-init . global-evil-surround-mode))
 
 (use-package evil-magit
   :ensure t
