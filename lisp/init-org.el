@@ -196,11 +196,16 @@
   (org-export-with-sub-superscripts nil)
   (org-export-in-background t)
   (org-export-headline-levels 5)
+  (org-export-coding-system 'utf-8)
+  (org-export-with-broken-links 'mark)
   (org-export-backends '(ascii html md)))
 
 (use-package ox-html
   :ensure nil
   :custom
+  (org-html-doctype "html5")
+  (org-html-html5-fancy t)
+  (org-html-checkbox-type 'uncode)
   (org-html-validation-link nil))
 
 ;; Pretty symbols
