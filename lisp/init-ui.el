@@ -8,7 +8,8 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-one t)
+  (doom-themes-org-config))
 
 (use-package doom-modeline
   :ensure t
@@ -16,6 +17,7 @@
   (doom-modeline-irc nil)
   (doom-modeline-mu4e nil)
   (doom-modeline-github nil)
+  (doom-modeline-unicode-fallback t)
   :hook (after-init . doom-modeline-mode))
 
 ;; Restore windows layout
