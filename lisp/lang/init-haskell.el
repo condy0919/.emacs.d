@@ -26,14 +26,6 @@
          ("C-c C-c" . dante-eval-block))
   )
 
-;; pretty printer
-(use-package hindent
-  :ensure t
-  :hook (haskell-mode . hindent-mode)
-  :custom
-  (hindent-reformat-buffer-on-save t)
-  (hindent-process-path "~/.local/bin/hindent"))
-
 (provide 'init-haskell)
 
 ;;; init-haskell.el ends here
