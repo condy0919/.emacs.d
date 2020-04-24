@@ -195,6 +195,7 @@
     "fc" 'copy-file
     "fr" 'counsel-recentf
     "fR" 'my/rename-current-file
+    "fl" 'find-file-literally
     "fg" 'counsel-rg)
 
   ;; prefix: <Leader> b, bookmark

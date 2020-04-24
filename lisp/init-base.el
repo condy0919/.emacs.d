@@ -12,6 +12,10 @@
       inhibit-startup-message t
       inhibit-startup-buffer-menu t)
 
+;; Linux specific
+(setq x-gtk-use-system-tooltips nil
+      x-underline-at-descent-line t)
+
 ;; No backup files
 (setq make-backup-files nil
       auto-save-default nil)
@@ -186,12 +190,19 @@
   (diary-number-of-entries 7)
   (diary-comment-start "#"))
 
+;; quick access to files/tags
 (use-package speedbar
   :ensure nil
   :bind ("<f8>" . speedbar-get-focus)
   :custom
   (speedbar-use-images nil)
   (speedbar-indentation-width 2))
+
+;; transparent remote access
+(use-package tramp
+  :ensure nil
+  :custom
+  (tramp-default-method "ssh"))
 
 ;; Better abbrev expansion
 (use-package hippie-exp

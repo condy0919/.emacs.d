@@ -131,6 +131,11 @@
                               (ocaml . t)
                               (emacs-lisp . t))))
 
+(use-package org-id
+  :ensure nil
+  :custom
+  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil

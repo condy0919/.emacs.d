@@ -71,6 +71,7 @@
    '(("d" my/delete-file "delete")
      ("r" my/rename-file "rename")
      ("l" vlf            "view large file")
+     ("b" hexl-find-file "open file in binary mode")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
   (counsel-preselect-current-file t)
