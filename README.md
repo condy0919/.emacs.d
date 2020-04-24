@@ -6,7 +6,7 @@
 仿 [Centaur Emacs](https://github.com/seagle0128/.emacs.d) 的个人配置.
 
 ```bash
-git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
+git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
 仅包含**C/C++/Rust/OCaml/Haskell**相关配置，且全线使用`lsp`。当前由于
@@ -39,19 +39,20 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 # 插件配置、升级
 
 选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`straight.el`辅
-助下载。
+助下载。`straight.el`在自举过程中会连接`githubusercontent.com`这个域名，此域名在
+国内访问几乎不可达，建议`bypass`之。
 
 而自动升级选择了`auto-package-update`。
 
 # 界面
 
-使用了`doom-themes`和`doom-modeline`，简直惊艳！
+使用了`doom-themes`和`doom-modeline`，简直惊艳！`doom-one`的界面非常好看！
 
 # 趁手的工具
 
-`which-key`, `rg`是比较常用的工具。不过说实话，最近在使用`projectile`之后`fzf`也
-用不着了，因为大多数场景都是在一个项目内跳转。由于有`counsel-projectile`的加成，
-在原有`projectile`的基础上又添加了许多`ivy action`，更一步提升了便捷性。
+`which-key`, `rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、
+运行变得更加方便。而且还有`counsel-projectile`的加成，在原有`projectile`的基础上
+又添加了许多`ivy action`，更一步提升了便捷性。
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开
 `relative line number`来`8k` `9j`这样跳了。
@@ -75,6 +76,34 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 - evil-nerd-commenter
 - evil-surround
 - evil-magit
+
+# 按键绑定
+
+## evil-mode
+
+`normal`状态下增加了如下键绑定:
+
+| key           | function                                             |
+|---------------|------------------------------------------------------|
+| <kbd>gs</kbd> | `evil-avy-goto-char-timer` 来跳转到目标字符          |
+| <kbd>go</kbd> | `evil-avy-goto-word-or-subword-1` 来跳转至目标单词处 |
+| <kbd>gl</kbd> | `evil-avy-goto-line` 来跳转到对应行                  |
+
+`avy`真乃神器也！
+
+## Emacs
+
+| key                | function                                                           |
+|--------------------|--------------------------------------------------------------------|
+| <kbd>M-;</kbd>     | `evilnc-comment-or-uncomment-lines` 注释与反注释                   |
+| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                |
+| <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                          |
+| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能               |
+| <kbd>C-c t o</kbd> | `hl-todo-occur`查找当前`buffer`内的**TODO**/**FIXME**等关键字      |
+| <kbd>C-x g</kbd>   | 呼出 `magit`                                                       |
+| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
+
+更详细的按键绑定请直接看代码. :-)
 
 # 通用开发设置
 
@@ -108,5 +137,5 @@ git clone https://github.com/condy0919/.emacs.d ~/.emacs.d
 # 个性化
 
 - 自己博客文章的查找、新建
-- 使用`tempo`来插入`SDPX`形式的`license`头部
+- 插入`SPDX`形式的`license`头功能已独立[license.el](https://github.com/condy0919/license.el)
 - 将常用的功能键绑定在`leader`键上
