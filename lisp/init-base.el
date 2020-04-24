@@ -126,8 +126,11 @@
   :hook (after-init . save-place-mode))
 
 ;; Update buffer whenever file changes
+;; Also revert dired buffer.
 (use-package autorevert
   :ensure nil
+  :custom
+  (global-auto-revert-non-file-buffers t)
   :hook (after-init . global-auto-revert-mode))
 
 ;; Highlight current line
