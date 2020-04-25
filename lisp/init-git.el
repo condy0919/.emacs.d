@@ -17,6 +17,7 @@
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
+  (magit-ediff-dwim-show-on-hunks t)
   (magit-diff-refine-hunk t))
 
 ;; Todo integration

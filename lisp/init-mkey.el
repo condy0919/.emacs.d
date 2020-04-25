@@ -239,6 +239,7 @@
     "ad" 'deft
     "aa" 'org-agenda
     "ac" 'org-capture
+    "al" 'org-store-link
     "at" 'org-todo-list)
 
   ;; prefix: <Leader> o, open

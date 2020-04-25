@@ -15,6 +15,7 @@
   (org-tags-column 0)
   (org-pretty-entities t)
   (org-startup-indented t)
+  (org-return-follows-link t)
   (org-image-actual-width nil)
   (org-hide-emphasis-markers t)
   (org-fontify-done-headline t)
@@ -54,9 +55,18 @@
   ;; refile
   (org-refile-use-cache t)
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
-  (org-refile-use-outline-path t)
+  (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
+  ;; tags
+  (org-fast-tag-selection-single-key t)
+  (org-tag-alist '((:startgroup)
+                   ("@work"   . ?b)
+                   ("@home"   . ?h)
+                   (:endgroup)
+                   ("reading" . ?r)
+                   ("writing" . ?w)
+                   ("email"   . ?e)))
   ;; archive
   (org-archive-location "%s_archive::date-tree"))
 
@@ -67,6 +77,7 @@
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
+  (org-agenda-insert-diary-extract-time t)
   (org-agenda-compact-blocks t)
   (org-agenda-sticky t)
   (org-agenda-span 10)
@@ -82,7 +93,8 @@
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
-  (org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
+  (org-agenda-clockreport-parameter-plist
+   '(:link t :maxlevel 3 :fileskip0 t :compact nil :narrow 80))
   (org-agenda-columns-add-appointments-to-effort-sum t)
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-window-setup 'current-window)
@@ -145,46 +157,55 @@
   ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
   (org-capture-templates
    (doct `(:group
-            :empty-lines 1
-            :children
-            (("Tasks"
-              :keys "t"
-              :file "tasks.org"
-              :clock-in t
-              :clock-resume t
-              :children
-              (("Today" :keys "t" :type entry :headline "Uncategorized"
-                :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
-               ("Reading" :keys "r" :type entry :headline "Reading"
-                :template "* TODO %^{name}\n %a\n")
-               ("Work" :keys "w" :type entry :headline "Work"
-                :template "* TODO %^{taskname}\n %a\n")))
-             ("Project"
-              :keys "p"
-              :file ,(defun my/project-todo-file ()
-                       (let ((file (expand-file-name "TODO.org"
-                                                     (when (functionp 'projectile-project-root)
-                                                       (projectile-project-root)))))
-                         (with-current-buffer (find-file-noselect file)
-                           (org-mode)
-                           ;; Set to UTF-8 because we may be visiting raw file
-                           (setq buffer-file-coding-system 'utf-8-unix)
-                           (when-let* ((headline (doct-get :headline)))
-                             (unless (org-find-exact-headline-in-buffer headline)
-                               (goto-char (point-max))
-                               (insert "* " headline)
-                               (org-set-tags (downcase headline))))
-                           file)))
-              :template (lambda () (concat "* %{todo-state} " (when (y-or-n-p "Link? ") "%A\n") "%?"))
-              :todo-state "TODO"
-              :children (("bug"           :keys "b" :headline "Bugs")
-                         ("documentation" :keys "d" :headline "Documentation")
-                         ("enhancement"   :keys "e" :headline "Enhancements")
-                         ("feature"       :keys "f" :headline "Features")
-                         ("optimization"  :keys "o" :headline "Optimizations")
-                         ("miscellaneous" :keys "m" :headline "Miscellaneous")
-                         ("security"      :keys "s" :headline "Security")))))
+           :empty-lines 1
+           :children
+           (("Tasks"
+             :keys "t"
+             :file "tasks.org"
+             :clock-in t
+             :clock-resume t
+             :children
+             (("Today" :keys "t" :type entry :headline "Uncategorized"
+               :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
+              ("Reading" :keys "r" :type entry :headline "Reading"
+               :template "* TODO %^{name}\n %a\n")
+              ("Work" :keys "w" :type entry :headline "Work"
+               :template "* TODO %^{taskname}\n %a\n")))
+            ("Project"
+             :keys "p"
+             :file ,(defun my/project-todo-file ()
+                      (let ((file (expand-file-name "TODO.org"
+                                                    (when (functionp 'projectile-project-root)
+                                                      (projectile-project-root)))))
+                        (with-current-buffer (find-file-noselect file)
+                          (org-mode)
+                          ;; Set to UTF-8 because we may be visiting raw file
+                          (setq buffer-file-coding-system 'utf-8-unix)
+                          (when-let* ((headline (doct-get :headline)))
+                            (unless (org-find-exact-headline-in-buffer headline)
+                              (goto-char (point-max))
+                              (insert "* " headline)
+                              (org-set-tags (downcase headline))))
+                          file)))
+             :template (lambda () (concat "* %{todo-state} " (when (y-or-n-p "Link? ") "%A\n") "%?"))
+             :todo-state "TODO"
+             :children (("bug"           :keys "b" :headline "Bugs")
+                        ("documentation" :keys "d" :headline "Documentation")
+                        ("enhancement"   :keys "e" :headline "Enhancements")
+                        ("feature"       :keys "f" :headline "Features")
+                        ("optimization"  :keys "o" :headline "Optimizations")
+                        ("miscellaneous" :keys "m" :headline "Miscellaneous")
+                        ("security"      :keys "s" :headline "Security")))))
          ))
+  )
+
+;; org links
+(use-package ol
+  :ensure nil
+  :custom
+  (org-link-abbrev-alist '(("github"  . "https://github.com/%s")
+                           ("youtube" . "https://youtube.com/watch?v=%s")
+                           ("google"  . "https://google.com/search?q=")))
   )
 
 ;; export
