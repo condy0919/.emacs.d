@@ -5,11 +5,6 @@
 
 ;;; Code:
 
-;; Notifications
-(use-package notifications
-  :ensure nil
-  :commands (notifications-notify))
-
 ;; Compilation Mode
 (use-package compile
   :ensure nil
@@ -193,7 +188,7 @@
   :custom
   (flymake-fringe-indicator-position 'right-fringe))
 
-;; Spell check
+;; Spell checker
 (use-package flyspell
   :ensure nil
   :if (executable-find "hunspell")

@@ -11,6 +11,7 @@
   :hook (org-mode . auto-fill-mode)
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :custom
+  (org-modules '(ol-info org-protocol org-tempo))
   (org-directory "~/.org")
   (org-tags-column 0)
   (org-pretty-entities t)
@@ -23,6 +24,7 @@
   (org-fontify-quote-and-verse-blocks t)
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
+  (org-yank-adjusted-subtrees t)
   ;; block switching the parent to done state
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -89,12 +91,17 @@
   (org-agenda-start-with-log-mode t)
   (org-agenda-start-with-clockreport-mode t)
   (org-agenda-hide-tags-regexp ":\\w+:")
+  (org-agenda-todo-ignore-with-date nil)
+  (org-agenda-todo-ignore-deadlines nil)
+  (org-agenda-todo-ignore-scheduled nil)
+  (org-agenda-todo-ignore-timestamp nil)
   (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
+  (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-clockreport-parameter-plist
-   '(:link t :maxlevel 3 :fileskip0 t :compact nil :narrow 80))
+   '(:link t :maxlevel 5 :fileskip0 t :compact nil :narrow 80))
   (org-agenda-columns-add-appointments-to-effort-sum t)
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-window-setup 'current-window)
@@ -114,13 +121,21 @@
   :after org
   :custom
   (org-clock-in-resume t)
-  (org-clock-idle-time 10)
+  (org-clock-idle-time 15)
   (org-clock-into-drawer t)
   (org-clock-out-when-done t)
   (org-clock-persist 'history)
-  (org-clock-history-length 10)
+  (org-clock-history-length 20)
+  (org-clock-mode-line-total 'current)
+  (org-clock-display-default-range 'thismonth)
+  (org-clock-in-switch-to-state "INPROGRESS")
   (org-clock-out-remove-zero-time-clocks t)
   (org-clock-report-include-clocking-task t)
+  (org-show-notification-handler (lambda (msg)
+                                   (notifications-notify :title "Org Clock"
+                                                         :body msg
+                                                         :timeout 5000
+                                                         :urgency 'critical)))
   :config
   (org-clock-persistence-insinuate))
 
@@ -139,6 +154,7 @@
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
   (org-babel-load-languages '((shell . t)
+                              (sql . t)
                               (python . t)
                               (ocaml . t)
                               (emacs-lisp . t))))
@@ -152,7 +168,7 @@
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
-  :after org doct
+  :after org
   :custom
   (org-capture-use-agenda-date t)
   ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
@@ -166,12 +182,20 @@
              :clock-in t
              :clock-resume t
              :children
-             (("Today" :keys "t" :type entry :headline "Uncategorized"
+             (("Today" :keys "t" :type entry :headline "Inbox"
                :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
               ("Reading" :keys "r" :type entry :headline "Reading"
                :template "* TODO %^{name}\n %a\n")
               ("Work" :keys "w" :type entry :headline "Work"
-               :template "* TODO %^{taskname}\n %a\n")))
+               :template "* TODO %^{taskname}\n %a\n")
+              ("Mail" :keys "e" :type entry :headline "Mails" :immediate-finish t
+               :template "* TODO [#A] Reply: %a\n")))
+            ("Notes"
+             :keys "n"
+             :file "notes.org"
+             :children
+             (("Capture" :keys "c" :type entry :headline "Inbox" :immediate-finish t
+               :template "* TODO [[%:link][%:description]]\n %a\n %i")))
             ("Project"
              :keys "p"
              :file ,(defun my/project-todo-file ()
@@ -205,6 +229,7 @@
   :ensure nil
   :after org
   :custom
+  (org-link-keep-stored-after-insertion t)
   (org-link-abbrev-alist '(("github"  . "https://github.com/%s")
                            ("youtube" . "https://youtube.com/watch?v=%s")
                            ("google"  . "https://google.com/search?q=")))
@@ -223,6 +248,7 @@
   (org-export-with-smart-quotes t)
   (org-export-with-section-numbers t)
   (org-export-with-sub-superscripts nil)
+  (org-export-use-babel nil)
   (org-export-in-background t)
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
@@ -252,6 +278,12 @@
   :ensure t
   :demand t
   :commands (doct doct-get))
+
+(use-package org-protocol
+  :ensure nil
+  :after org
+  :custom
+  (org-protocol-default-template-key "nc"))
 
 (provide 'init-org)
 

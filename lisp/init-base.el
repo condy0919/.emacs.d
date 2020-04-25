@@ -223,6 +223,11 @@
   :custom
   (browse-url-generic-program "firefox"))
 
+;; Notifications
+(use-package notifications
+  :ensure nil
+  :commands (notifications-notify))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t

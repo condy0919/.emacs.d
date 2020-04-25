@@ -73,6 +73,10 @@
   (evil-define-key 'normal occur-mode-map
     ;; like `wdired-mode'
     (kbd "C-c C-e") 'occur-edit-mode
+
+    ;; op
+    (kbd "RET") 'occur-mode-goto-occurrence
+
     "q"             'quit-window)
 
   (evil-define-key 'normal occur-edit-mode-map
