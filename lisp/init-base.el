@@ -186,6 +186,7 @@
 ;; lifelog
 (use-package diary-lib
   :ensure nil
+  :defer t
   :custom
   (diary-number-of-entries 7)
   (diary-comment-start "#"))
@@ -201,6 +202,7 @@
 ;; transparent remote access
 (use-package tramp
   :ensure nil
+  :defer t
   :custom
   (tramp-default-method "ssh"))
 

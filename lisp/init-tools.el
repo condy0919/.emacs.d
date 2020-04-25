@@ -101,6 +101,7 @@
 ;; isearch alternative
 (use-package swiper
   :ensure t
+  :defer t
   :custom
   (swiper-action-recenter t)
   :config

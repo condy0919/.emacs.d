@@ -145,6 +145,7 @@
 
 (use-package org-id
   :ensure nil
+  :after org
   :custom
   (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
 
@@ -202,6 +203,7 @@
 ;; org links
 (use-package ol
   :ensure nil
+  :after org
   :custom
   (org-link-abbrev-alist '(("github"  . "https://github.com/%s")
                            ("youtube" . "https://youtube.com/watch?v=%s")
@@ -211,6 +213,7 @@
 ;; export
 (use-package ox
   :ensure nil
+  :after org
   :custom
   (org-export-with-toc t)
   (org-export-with-email t)
@@ -228,6 +231,7 @@
 
 (use-package ox-html
   :ensure nil
+  :after org
   :custom
   (org-html-doctype "html5")
   (org-html-html5-fancy t)
