@@ -11,7 +11,7 @@
   :hook (org-mode . auto-fill-mode)
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :custom
-  (org-modules '(ol-info org-protocol org-tempo))
+  (org-modules '(ol-info org-habit org-protocol org-tempo))
   (org-directory "~/.org")
   (org-tags-column 0)
   (org-pretty-entities t)
@@ -81,6 +81,8 @@
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
   (org-agenda-insert-diary-extract-time t)
   (org-agenda-compact-blocks t)
+  (org-agenda-block-separator nil)
+  (org-habit-show-habits t)
   (org-agenda-sticky t)
   (org-agenda-span 10)
   (org-agenda-include-diary nil)
@@ -107,13 +109,52 @@
   (org-agenda-window-setup 'current-window)
   ;; starts from Monday
   (org-agenda-start-on-weekday 1)
-  (org-agenda-start-day "-3d")
   (org-agenda-use-time-grid t)
   (org-agenda-timegrid-use-ampm nil)
   (org-agenda-time-grid '((daily tody require-timed)
                           (300 600 900 1200 1500 1800 2100 2400)
                           "......" "----------------"))
-  (org-agenda-search-headline-for-time nil))
+  (org-agenda-search-headline-for-time nil)
+  (org-agenda-custom-commands
+   '(("n" "Agenda and all TODOs"
+      ((agenda "")
+       (alltodo "")))
+     ("f" . "Focus...")
+     ("f." "Today"
+      ((agenda "" ((org-agenda-entry-types '(:timestamp :sexp))
+                   (org-agenda-overriding-header (format-time-string "Calendar Today %F"))
+                   (org-agenda-span 'day)))
+       (tags-todo "reading" ((org-agenda-overriding-header "READING")
+                             (org-agenda-sorting-strategy '(priority-down))))
+       (tags-todo "writing" ((org-agenda-overriding-header "WRITING")
+                             (org-agenda-sorting-strategy '(priority-down))))
+       (todo "INPROGRESS" ((org-agenda-overriding-header "INPROGRESS")
+                           (org-agenda-sorting-strategy '(priority-down))))))
+     ("r" . "Review...")
+     ("ra" "All tasks"
+      ((alltodo ""))
+      ((org-agenda-overriding-header "All tasks (sorted by due date)")
+       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notdeadline))
+       (org-agenda-sorting-strategy '(deadline-up))))
+     ("rd" "Daily Timesheet"
+      ((agenda ""))
+      ((org-agenda-log-mode-items '(clock closed))
+       (org-agenda-overriding-header "DAILY")
+       (org-agenda-show-log 'clockcheck)
+       (org-agenda-span 'day)
+       (org-agenda-start-with-clockreport-mode t)
+       (org-agenda-time-grid nil)))
+     ("rw" "Weekly Timesheet"
+      ((agenda ""))
+      ((org-agenda-overriding-header "WEEKLY")
+       (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))
+       (org-agenda-span 'week)
+       (org-agenda-start-on-weekday 1)
+       (org-agenda-start-with-clockreport-mode t)
+       (org-agenda-time-grid nil)))
+     )
+   )
+  )
 
 ;; Record the time
 (use-package org-clock
@@ -244,6 +285,7 @@
   (org-export-with-email t)
   (org-export-with-author t)
   (org-export-with-drawers nil)
+  (org-export-with-properties t)
   (org-export-with-footnotes t)
   (org-export-with-smart-quotes t)
   (org-export-with-section-numbers t)
@@ -284,6 +326,12 @@
   :after org
   :custom
   (org-protocol-default-template-key "nc"))
+
+(use-package org-habit
+  :ensure nil
+  :after org
+  :custom
+  (org-habit-graph-column 50))
 
 (provide 'init-org)
 
