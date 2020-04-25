@@ -304,6 +304,19 @@
                    ("\\*ivy-occur .*\\*"       :regexp t :select t :align t)))
   )
 
+;; Grammar & Style checker
+(use-package langtool
+  :ensure t
+  :defer t
+  :bind (("C-x 4 w" . langtool-check)
+         ("C-x 4 W" . langtool-check-done)
+         ("C-x 4 l" . langtool-switch-default-language)
+         ("C-x 4 4" . langtool-show-message-at-point)
+         ("C-x 4 c" . langtool-correct-buffer))
+  :custom
+  (langtool-http-server-host "localhost")
+  (langtool-http-server-port 8081))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
