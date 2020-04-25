@@ -9,6 +9,8 @@
   :ensure nil
   :custom
   (dired-dwim-target t)
+  (dired-bind-man nil)
+  (dired-bind-info nil)
   (dired-auto-revert-buffer t)
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-Afhlv")
