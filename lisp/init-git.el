@@ -5,15 +5,18 @@
 
 ;;; Code:
 
+(use-package transient
+  :ensure t
+  :bind (:map transient-map
+         ;; Close transient with ESC
+         ([escape] . transient-quit-one)))
+
 ;; The awesome git client
 (use-package magit
   :ensure t
   :defer 1
   :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch)
-         ;; Close transient with ESC
-         :map transient-map
-         ([escape] . transient-quit-one))
+         ("C-x M-g" . magit-dispatch))
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
@@ -116,6 +119,7 @@
 (use-package smerge-mode
   :ensure nil
   :defer t
+  :requires transient
   :commands (transient-setup transient-prefix)
   :bind (:map smerge-mode-map
          ("C-c m" . my/smerge-menu))
