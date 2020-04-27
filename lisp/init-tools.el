@@ -227,10 +227,10 @@
 (use-package deft
   :ensure t
   :defer t
-  :init
-  (setq deft-default-extension "org")
+  :defines (org-directory)
+  :init (setq deft-default-extension "org")
   :custom
-  (deft-directory (expand-file-name "~/.deft/"))
+  (deft-directory org-directory)
   (deft-use-filename-as-title nil)
   (deft-use-filter-string-for-filename t)
   (deft-file-naming-rules '((noslash . "-")

@@ -10,6 +10,8 @@
   :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . auto-fill-mode)
   :commands (org-find-exact-headline-in-buffer org-set-tags)
+  :custom-face
+  (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
   (org-modules '(ol-info org-habit org-protocol org-tempo))
   (org-directory "~/.org")
@@ -114,47 +116,7 @@
   (org-agenda-time-grid '((daily tody require-timed)
                           (300 600 900 1200 1500 1800 2100 2400)
                           "......" "----------------"))
-  (org-agenda-search-headline-for-time nil)
-  (org-agenda-custom-commands
-   '(("n" "Agenda and all TODOs"
-      ((agenda "")
-       (alltodo "")))
-     ("f" . "Focus...")
-     ("f." "Today"
-      ((agenda "" ((org-agenda-entry-types '(:timestamp :sexp))
-                   (org-agenda-overriding-header (format-time-string "Calendar Today %F"))
-                   (org-agenda-span 'day)))
-       (tags-todo "reading" ((org-agenda-overriding-header "READING")
-                             (org-agenda-sorting-strategy '(priority-down))))
-       (tags-todo "writing" ((org-agenda-overriding-header "WRITING")
-                             (org-agenda-sorting-strategy '(priority-down))))
-       (todo "INPROGRESS" ((org-agenda-overriding-header "INPROGRESS")
-                           (org-agenda-sorting-strategy '(priority-down))))))
-     ("r" . "Review...")
-     ("ra" "All tasks"
-      ((alltodo ""))
-      ((org-agenda-overriding-header "All tasks (sorted by due date)")
-       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notdeadline))
-       (org-agenda-sorting-strategy '(deadline-up))))
-     ("rd" "Daily Timesheet"
-      ((agenda ""))
-      ((org-agenda-log-mode-items '(clock closed))
-       (org-agenda-overriding-header "DAILY")
-       (org-agenda-show-log 'clockcheck)
-       (org-agenda-span 'day)
-       (org-agenda-start-with-clockreport-mode t)
-       (org-agenda-time-grid nil)))
-     ("rw" "Weekly Timesheet"
-      ((agenda ""))
-      ((org-agenda-overriding-header "WEEKLY")
-       (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))
-       (org-agenda-span 'week)
-       (org-agenda-start-on-weekday 1)
-       (org-agenda-start-with-clockreport-mode t)
-       (org-agenda-time-grid nil)))
-     )
-   )
-  )
+  (org-agenda-search-headline-for-time nil))
 
 ;; Record the time
 (use-package org-clock
