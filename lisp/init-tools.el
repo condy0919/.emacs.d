@@ -283,11 +283,11 @@
   :ensure t
   :hook (after-init . shackle-mode)
   :custom
-  (shackle-default-size 0.33)
+  (shackle-default-size 0.5)
   (shackle-default-alignment 'below)
   (shackle-rules '((magit-status-mode    :select t :inhibit-window-quit t :same t)
                    (magit-log-mode       :select t :inhibit-window-quit t :same t)
-                   (profiler-report-mode :select t :size 0.5)
+                   (profiler-report-mode :select t)
                    (help-mode            :select t :align 5 :size 0.4)
                    (comint-mode          :select t :align t :size 0.4)
                    (Man-mode             :select t :other t)
@@ -295,7 +295,7 @@
                    (grep-mode            :select t :align t)
                    (rg-mode              :select t :align t)
                    ("*bm-bookmarks*"           :select t   :align t)
-                   ("*Flycheck errors*"        :select t   :align t)
+                   ("*Flycheck errors*"        :select t   :align t :size 10)
                    ("*quickrun*"               :select nil :align t :size 15)
                    ("*Backtrace*"              :select t   :align t :size 15)
                    ("*Shell Command Output*"   :select nil :align t :size 0.4)
