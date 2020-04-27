@@ -153,6 +153,7 @@
   :ensure nil
   :when (display-graphic-p)
   :defer 1
+  :commands (server-running-p)
   :config
   (unless (server-running-p)
     (server-start)))
