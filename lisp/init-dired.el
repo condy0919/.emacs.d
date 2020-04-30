@@ -24,6 +24,7 @@
   :ensure nil
   :hook (dired-mode . dired-omit-mode)
   :custom
+  (dired-omit-verbose nil)
   (dired-omit-files (rx (or ".git" ".svn"
                             ".cache"
                             ".vscode"

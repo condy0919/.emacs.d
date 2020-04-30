@@ -1,4 +1,6 @@
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
+[![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
+![Supports Emacs 26-28](https://img.shields.io/badge/Supports-Emacs_26.3_--_27.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
 
 个人**Emacs**配置
 ====
@@ -13,6 +15,15 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `ocaml-lsp`十分难用，`haskell-ide-engine`水土不服，故这2个语言没有采用`lsp`。
 
 保持着尽量使用`Emacs`自带功能的原则，能用自带的就用自带的。
+
+# 需要的依赖
+
+- `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
+- `languagetool` 更好的拼写检查、语法纠错工具
+- `rg` 更快的`grep`
+- `cmake` 编译`vterm`的模块、`c++`项目的构建工具
+- `git` 这个就不用说了吧？
+- `gcc` 这个就不用说了吧？
 
 # 基础配置
 
