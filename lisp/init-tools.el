@@ -235,30 +235,14 @@
   (deft-use-filter-string-for-filename t)
   (deft-file-naming-rules '((noslash . "-")
                             (nospace . "-")
-                            (case-fn . downcase)))
+                            (case-fn . downcase))))
+
+;; Note taking app
+(use-package zetteldeft
+  :ensure t
+  :after deft
   :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key-for-mode 'deft-mode
-      "c" 'deft-filter-clear
-      "d" 'deft-delete-file
-      "i" 'deft-toggle-incremental-search
-      "n" 'deft-new-file
-      "N" 'deft-new-file-named
-      "q" 'quit-window
-      "o" 'deft-open-file-other-window
-      "r" 'deft-rename-file))
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'deft-mode 'insert)
-    (evil-define-key 'normal deft-mode-map
-      "gr"        'deft-refresh
-      (kbd "C-s") 'deft-filter
-      "r"         'deft-rename-file
-      "a"         'deft-new-file
-      "A"         'deft-new-file-named
-      "d"         'deft-delete-file
-      "D"         'deft-archive-file
-      "q"         'kill-current-buffer))
-  )
+  (zetteldeft-set-classic-keybindings))
 
 ;; Visual bookmarks
 (use-package bm
