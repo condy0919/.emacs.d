@@ -1,6 +1,16 @@
+<h3 align="center">A fast and practical Emacs config</h3>
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EmacsIcon.svg/120px-EmacsIcon.svg.png" />
+</p>
+
+<div align="center">
+
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 26-28](https://img.shields.io/badge/Supports-Emacs_26.3_--_27.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+![Supports Emacs 26-28.x](https://img.shields.io/badge/Supports-Emacs_26.3_--_28.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+
+</div>
 
 个人**Emacs**配置
 ====
@@ -104,15 +114,21 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## Emacs
 
-| key                | function                                                           |
-|--------------------|--------------------------------------------------------------------|
-| <kbd>M-;</kbd>     | `evilnc-comment-or-uncomment-lines` 注释与反注释                   |
-| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                |
-| <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                          |
-| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能               |
-| <kbd>C-c t o</kbd> | `hl-todo-occur`查找当前`buffer`内的**TODO**/**FIXME**等关键字      |
-| <kbd>C-x g</kbd>   | 呼出 `magit`                                                       |
-| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
+| key                | function                                                                      |
+|--------------------|-------------------------------------------------------------------------------|
+| <kbd>M-;</kbd>     | `evilnc-comment-or-uncomment-lines` 注释与反注释                              |
+| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
+| <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
+| <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                                     |
+| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
+| <kbd>C-c t o</kbd> | `hl-todo-occur`查找当前`buffer`内的**TODO**/**FIXME**等关键字                 |
+| <kbd>C-c t p</kbd> | 上一个高亮的关键字                                                            |
+| <kbd>C-c t n</kbd> | 下一个高亮的关键字                                                            |
+| <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
+| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
+| <kbd>M-o</kbd>     | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
+| <kbd>C-c [</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                                    |
+| <kbd>C-c i l</kbd> | 方便地插入`SPDX`形式的`license`头部                                           |
 
 更详细的按键绑定请直接看代码. :-)
 
