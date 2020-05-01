@@ -14,7 +14,7 @@
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
   (org-modules '(ol-info org-habit org-protocol org-tempo))
-  (org-directory "~/OneDrive/Org/")
+  (org-directory "~/.org")
   (org-tags-column 0)
   (org-pretty-entities t)
   (org-startup-indented t)
