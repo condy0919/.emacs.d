@@ -4,3 +4,10 @@ Flycheck
 elisp
 tencent
 OneDrive
+bool
+const
+sizeof
+snprintf
+struct
+namespace
+constexpr

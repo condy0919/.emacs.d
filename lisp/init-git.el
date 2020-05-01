@@ -89,9 +89,9 @@
 ;; Highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t
-  :hook ((prog-mode . (lambda ()
-                        (diff-hl-mode)
-                        (diff-hl-flydiff-mode)))
+  :hook ((after-init . (lambda ()
+                         (global-diff-hl-mode)
+                         (diff-hl-flydiff-mode)))
          (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode-unless-remote)))
