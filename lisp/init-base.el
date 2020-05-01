@@ -134,6 +134,7 @@
 (use-package autorevert
   :ensure nil
   :custom
+  (auto-revert-verbose nil)
   (global-auto-revert-non-file-buffers t)
   :hook (after-init . global-auto-revert-mode))
 
