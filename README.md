@@ -1,4 +1,4 @@
-<h3 align="center">A fast and practical Emacs config</h3>
+<h3 align="center">A fast and incredible Emacs config</h3>
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EmacsIcon.svg/120px-EmacsIcon.svg.png" />
