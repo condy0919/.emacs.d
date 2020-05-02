@@ -47,6 +47,7 @@
   (lsp-idle-delay 0.5)                 ;; lazy refresh
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-enable-folding nil)             ;; use `evil-matchit' instead
+  (lsp-enable-links nil)               ;; no clickable links
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
   (lsp-lens-auto-enable t)             ;; enable lens
   (lsp-flycheck-live-reporting nil)    ;; obey `flycheck-check-syntax-automatically'

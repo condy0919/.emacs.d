@@ -21,7 +21,15 @@
                      (inlambda              . 0) ;; better indentation for lambda
                      (innamespace           . 0) ;; no indentation after namespace
                      (arglist-cont-nonempty . +)))
+  (c-doc-comment-style '((c-mode    . oxid) ;; was gtkdoc
+                         (c++-mode  . oxid) ;; was gtkdoc
+                         (java-mode . javadoc)
+                         (pike-mode . autodoc)))
   :config
+  (defconst oxid-font-lock-keywords
+    `((,(lambda (limit)
+          (c-font-lock-doc-comments "//[/!]+"
+              limit gtkdoc-font-lock-doc-comments)))))
   (setq c-basic-offset 4)
   (with-eval-after-load 'lsp-mode
     (setq lsp-clients-clangd-args
