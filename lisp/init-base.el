@@ -16,6 +16,10 @@
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
 
+;; Optimize for very long lines
+(setq bidi-paragraph-direction 'left-to-right
+      bidi-inhibit-bpa t)
+
 ;; No backup files
 (setq make-backup-files nil
       auto-save-default nil)
