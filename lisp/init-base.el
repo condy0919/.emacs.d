@@ -139,6 +139,7 @@
   :ensure nil
   :custom
   (auto-revert-verbose nil)
+  (auto-revert-remote-files t)
   (global-auto-revert-non-file-buffers t)
   :hook (after-init . global-auto-revert-mode))
 
@@ -211,6 +212,13 @@
   :defer t
   :custom
   (tramp-default-method "ssh"))
+
+;; htop like monitor
+(use-package proced
+  :ensure nil
+  :defer t
+  :custom
+  (proced-auto-update-flag t))
 
 ;; Better abbrev expansion
 (use-package hippie-exp
