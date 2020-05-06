@@ -6,14 +6,13 @@
 
 (use-package haskell-mode
   :ensure t
-  :mode ("\\.hs\\'" . haskell-mode)
+  :hook (haskell-mode . haskell-indentation-mode)
   :custom
+  (haskell-completing-read-function 'completing-read)
   (haskell-process-check-cabal-config-on-load nil)
   (haskell-process-suggest-add-package nil)
-  (haskell-process-suggest-haskell-docs-imports nil)
   (haskell-process-suggest-hoogle-imports nil)
   (haskell-process-suggest-language-pragmas nil)
-  (haskell-process-suggest-no-warn-orphans nil)
   (haskell-process-suggest-overloaded-strings nil)
   (haskell-process-suggest-restart nil))
 
