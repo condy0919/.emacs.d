@@ -76,6 +76,11 @@
 
 (defalias 'list-buffers 'ibuffer)
 
+;; Enable the disabled narrow commands
+(put 'narrow-to-defun  'disabled nil)
+(put 'narrow-to-page   'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
