@@ -34,7 +34,6 @@
   :custom-face
   (dashboard-heading ((t (:foreground "#f1fa8c" :weight bold))))
   :custom
-  (dashboard-banner-logo-title "Welcome to Emacs Dashboard")
   (dashboard-startup-banner 'logo)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
