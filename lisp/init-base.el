@@ -76,6 +76,10 @@
 
 (defalias 'list-buffers 'ibuffer)
 
+;; A simple frame title
+(setq frame-title-format '("%b - Emacs")
+      icon-title-format frame-title-format)
+
 ;; Enable the disabled narrow commands
 (put 'narrow-to-defun  'disabled nil)
 (put 'narrow-to-page   'disabled nil)
