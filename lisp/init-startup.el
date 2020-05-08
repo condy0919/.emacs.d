@@ -20,6 +20,7 @@
                      "recentf"
                      "^/tmp/"
                      "/ssh:"
+                     "/su\\(do\\)?:"
                      "^/usr/include/"
                      "bookmarks"
                      "COMMIT_EDITMSG\\'")))

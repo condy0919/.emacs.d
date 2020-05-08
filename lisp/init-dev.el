@@ -270,6 +270,11 @@
   :ensure nil
   :hook (prog-mode . hs-minor-mode))
 
+;; Antlr mode
+(use-package antlr-mode
+  :ensure nil
+  :mode ("\\.g4\\'" . antlr-mode))
+
 ;; Config files mode
 (use-package yaml-mode
   :ensure t

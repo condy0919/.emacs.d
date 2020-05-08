@@ -31,6 +31,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
 - `languagetool` 更好的拼写检查、语法纠错工具
 - `rg` 更快的`grep`
+- `fd` 更现代的 `find`
 - `cmake` 编译`vterm`的模块、`c++`项目的构建工具
 - `git` 这个就不用说了吧？
 - `gcc` 这个就不用说了吧？
