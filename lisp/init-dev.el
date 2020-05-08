@@ -276,6 +276,16 @@
   :ensure nil
   :mode ("\\.g4\\'" . antlr-mode))
 
+;; Shell mode
+(use-package sh-script
+  :ensure nil
+  :mode ("\\.sh\\'" . sh-mode)
+  :bind (:map sh-mode-map
+         ("C-c C-e" . sh-execute-region))
+  :custom
+  (sh-basic-offset 2)
+  (sh-indentation 2))
+
 ;; Config files mode
 (use-package yaml-mode
   :ensure t
