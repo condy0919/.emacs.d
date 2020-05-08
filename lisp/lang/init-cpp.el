@@ -8,6 +8,9 @@
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . cc-mode)
+  :hook (c-mode . (lambda ()
+                    (setq comment-start "// "
+                          comment-end "")))
   :defines (lsp-clients-clangd-args)
   :custom
   (c-offsets-alist '((inline-open           . 0)
