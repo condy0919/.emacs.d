@@ -11,3 +11,4 @@ snprintf
 struct
 namespace
 constexpr
+vterm
