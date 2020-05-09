@@ -144,14 +144,28 @@
   :defines (evil-insert-state-cursor)
   :commands (evil-insert-state vterm)
   :custom
+  (vterm-use-vterm-prompt nil)
   (vterm-kill-buffer-on-exit t)
   (vterm-clear-scrollback-when-clearing t)
+  :bind (:map vterm-mode-map
+         ("C-x C-f" . (lambda (&rest _)
+                        (interactive)
+                        (my/vterm-directory-sync)
+                        (call-interactively 'counsel-find-file))))
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         (setq-local global-hl-line-mode nil)
                         ;; Dont prompt about processes when killing vterm
                         (setq confirm-kill-processes nil)
                         (evil-insert-state)))
+  :config
+  ;; Directory synchronization (linux-only)
+  (defun my/vterm-directory-sync ()
+    "Synchronize current working directory."
+    (when vterm--process
+      (let* ((pid (process-id vterm--process))
+             (dir (file-truename (format "/proc/%d/cwd" pid))))
+        (setq-local default-directory dir))))
   )
 
 (use-package shell-pop
