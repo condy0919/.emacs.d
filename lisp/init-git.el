@@ -44,6 +44,10 @@
 (use-package vc
   :ensure nil
   :custom
+  ;; Disable vc for remote files, and `diff-hl' won't work as expected.
+  (vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                vc-ignore-dir-regexp
+                                tramp-file-name-regexp))
   (vc-follow-symlinks t)
   (vc-handled-backends '(Git)))
 
