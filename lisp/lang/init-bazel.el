@@ -7,18 +7,13 @@
 
 (use-package bazel-mode
   :ensure t
+  :commands (bazel-build bazel-run bazel-test)
+  :custom (bazel-mode-buildifier-before-save t)
   :mode (("WORKSPACE\\'" . bazel-mode)
          ("BUILD\\'"     . bazel-mode)
          ("\\.bazel\\'"  . bazel-mode)
          ("\\.bzl\\'"    . bazel-mode)
-         ("\\.BUILD\\'"  . bazel-mode))
-  :straight (:host github :repo "bazelbuild/emacs-bazel-mode")
-  :config (setq bazel-mode-buildifier-before-save t))
-
-(use-package bazel-build
-  :ensure t
-  :defer 1
-  :straight (:host github :repo "bazelbuild/emacs-bazel-mode"))
+         ("\\.BUILD\\'"  . bazel-mode)))
 
 (provide 'init-bazel)
 
