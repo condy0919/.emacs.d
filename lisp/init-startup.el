@@ -31,7 +31,9 @@
 
 (use-package dashboard
   :ensure t
-  :hook (after-init . dashboard-setup-startup-hook)
+  :hook ((after-init . dashboard-setup-startup-hook)
+         (dashboard-mode . (lambda ()
+                             (setq-local global-hl-line-mode nil))))
   :custom-face
   (dashboard-heading ((t (:foreground "#f1fa8c" :weight bold))))
   :custom

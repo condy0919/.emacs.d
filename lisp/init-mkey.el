@@ -180,7 +180,8 @@
     "k" 'bm-show-prev
 
     ;; op
-    (kbd "RET") 'bm-show-goto-bookmark
+    (kbd "RET")        'bm-show-goto-bookmark
+    (kbd "S-<return>") 'bm-show-bookmark
 
     ;; quit
     "q" 'bm-show-quit-window)
