@@ -13,3 +13,4 @@ namespace
 constexpr
 vterm
 bazel
+cmake
