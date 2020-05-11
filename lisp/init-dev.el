@@ -142,9 +142,10 @@
   :config
   ;; cmake project build
   (projectile-register-project-type 'cmake '("CMakeLists.txt")
-                                    :configure "cmake -Bbuild"
-                                    :compile "cmake --build build"
-                                    :test "cd build && ctest --output-on-failure")
+                                    :compilation-dir "build"
+                                    :configure "cmake %s -B %s"
+                                    :compile "cmake --build ."
+                                    :test "ctest --output-on-failure")
 
   ;; bazel project builds
   (projectile-register-project-type 'bazel '("WORKSPACE")
