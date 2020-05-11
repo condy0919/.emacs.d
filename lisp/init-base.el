@@ -213,6 +213,7 @@
   :bind ("<f8>" . speedbar-get-focus)
   :custom
   (speedbar-use-images nil)
+  (speedbar-show-unknown-files t)
   (speedbar-indentation-width 2))
 
 ;; transparent remote access
@@ -274,6 +275,9 @@
                   (mode . gfm-mode)
                   (mode . rst-mode)
                   (mode . text-mode)))
+      ("Config" (or (mode . yaml-mode)
+                    (mode . toml-mode)
+                    (mode . conf-mode)))
       ("Mail" (or (mode . message-mode)
                   (mode . bbdb-mode)
                   (mode . mail-mode)

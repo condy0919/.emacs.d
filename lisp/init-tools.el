@@ -244,6 +244,8 @@
   :defines (org-directory)
   :init (setq deft-default-extension "org")
   :custom
+  ;; Disable auto save
+  (deft-auto-save-interval 0)
   (deft-directory org-directory)
   (deft-use-filename-as-title nil)
   (deft-use-filter-string-for-filename t)
