@@ -11,7 +11,10 @@
   :bind (:map evil-normal-state-map
          ("gs" . evil-avy-goto-char-timer)
          ("go" . evil-avy-goto-word-or-subword-1)
-         ("gl" . evil-avy-goto-line))
+         ("gl" . evil-avy-goto-line)
+         :map evil-motion-state-map
+         ("[ b" . previous-buffer)
+         ("] b" . next-buffer))
   :custom
   ;; Switch to the new window after splitting
   (evil-split-window-below t)
