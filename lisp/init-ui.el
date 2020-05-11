@@ -25,6 +25,23 @@
   :ensure nil
   :hook (after-init . winner-mode))
 
+(use-package tab-line
+  :ensure nil
+  :when (>= emacs-major-version 27)
+  :custom-face
+  (tab-line ((t (:foreground "brightmagenta" :background "brightblack" :height 0.9 :inherit variable-pitch))))
+  (tab-line-tab ((t (:foreground "magenta" :background "brightwhite" :box (:line-width 2 :color "black" :style nil)))))
+  (tab-line-tab-inactive ((t (:foreground "brightmagenta" :background "brightblack" :box (:line-width 2 :color "#121212")))))
+  (tab-line-tab-current ((t (:inherit tab-line-tab))))
+  :custom
+  (tab-line-new-button-show nil)
+  (tab-line-close-button-show nil)
+  (tab-line-separator "")
+  (tab-line-exclude-modes '(completion-list-mode
+                            ediff-mode
+                            vterm-mode))
+  )
+
 (provide 'init-ui)
 
 ;;; init-ui.el ends here
