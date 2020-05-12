@@ -36,7 +36,13 @@
   (company-backends '(company-capf
                       company-files
                       (company-dabbrev-code company-keywords)
-                      company-dabbrev)))
+                      company-dabbrev))
+  :config
+  (define-advice company-abort (:after nil)
+    "Exit `evil-insert-state-mode' too."
+    (when (bound-and-true-p evil-mode)
+      (evil-force-normal-state)))
+  )
 
 ;; lsp-mode
 (use-package lsp-mode
