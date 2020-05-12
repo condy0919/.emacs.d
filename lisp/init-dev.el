@@ -158,6 +158,8 @@
                  "bazel-out"
                  "bazel-testlogs"))
     (add-to-list 'projectile-globally-ignored-directories dir))
+  (dolist (file '(".DS_Store"))
+    (add-to-list 'projectile-globally-ignored-files file))
   )
 
 ;; Comprehensive ivy integration for projectile
