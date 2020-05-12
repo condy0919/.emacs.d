@@ -157,7 +157,7 @@
                  "bazel-bin"
                  "bazel-out"
                  "bazel-testlogs"))
-    (push dir projectile-globally-ignored-directories))
+    (add-to-list 'projectile-globally-ignored-directories dir))
   )
 
 ;; Comprehensive ivy integration for projectile
