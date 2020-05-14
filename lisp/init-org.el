@@ -277,6 +277,18 @@
   (org-superstar-leading-bullet ?\s)
   :hook (org-mode . org-superstar-mode))
 
+(use-package org-super-agenda
+  :ensure t
+  :hook (org-agenda-mode . org-super-agenda-mode)
+  :custom
+  (org-super-agenda-groups '((:name "Today" :time-grid t)
+                             (:name "Deadlines" :deadline t :order 1)
+                             (:name "Important" :priority>= "B" :order 2)
+                             (:priority< "B" :order 2)
+                             (:name "Started" :todo "INPROGRESS" :order 6)
+                             (:todo "WAITING" :order 9)))
+  )
+
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t

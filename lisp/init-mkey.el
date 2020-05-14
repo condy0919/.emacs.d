@@ -195,6 +195,7 @@
     "fj" 'dired-jump
     "fJ" 'dired-jump-other-window
     "ff" 'find-file
+    "fo" 'counsel-find-file-extern
     "fF" 'find-file-other-window
     "fd" 'my/delete-current-file
     "fc" 'copy-file
