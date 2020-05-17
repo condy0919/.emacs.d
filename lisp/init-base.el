@@ -230,6 +230,14 @@
   :custom
   (proced-auto-update-flag t))
 
+;; mouse wheel optimization
+(use-package mwheel
+  :ensure nil
+  :defer t
+  :custom
+  (mouse-wheel-progressive-speed nil)
+  (mouse-wheel-scroll-amount '(1 ((shift) . 2) ((control)))))
+
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
