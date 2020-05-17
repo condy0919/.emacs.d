@@ -9,8 +9,10 @@
   :ensure nil
   :custom
   (dired-dwim-target t)
+  (dired-bind-vm nil)
   (dired-bind-man nil)
   (dired-bind-info nil)
+  (dired-bind-jump nil)
   (dired-auto-revert-buffer t)
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-Afhlv")
@@ -23,6 +25,7 @@
 (use-package dired-x
   :ensure nil
   :hook (dired-mode . dired-omit-mode)
+  :bind ([remap list-directory] . dired-jump)
   :custom
   (dired-omit-verbose nil)
   (dired-omit-files (rx (or ".git" ".svn"
