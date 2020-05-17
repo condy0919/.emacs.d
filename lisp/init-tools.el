@@ -216,10 +216,8 @@
   :custom
   (atomic-chrome-buffer-open-style 'frame)
   (atomic-chrome-default-major-mode 'markdown-mode)
+  (atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode)))
   :config
-  (if (fboundp 'gfm-mode)
-      (setq atomic-chrome-url-major-mode-alist
-            '(("github\\.com" . gfm-mode))))
   ;; The browser is in "insert" state, makes it consistent
   (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
 
