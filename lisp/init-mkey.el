@@ -12,16 +12,16 @@
   "Keybindings for myself."
   :group 'convenience)
 
-(defcustom mkey-enable-modes '(help
+(defcustom mkey-enable-modes '(archive-mode
                                bm
-                               profiler
-                               replace ;; occur is in replace.el
-                               tar-mode
-                               archive-mode
                                dired
-                               doc-view
+                               evil-leader
+                               help
+                               image
+                               profiler
                                quickrun
-                               evil-leader)
+                               replace ;; occur is in replace.el
+                               tar-mode)
   "The list of modes which will be evilified."
   :type '(repeat symbol)
   :group 'mkey)
@@ -45,6 +45,54 @@
 
     ;; quit
     "q" 'quit-window))
+
+;;;###autoload
+(defun mkey-image-setup ()
+  "Setup `evil' bindings for `image-mode'."
+  (evil-set-initial-state 'image-mode 'normal)
+  (evil-define-key 'normal image-mode-map
+    ;; motion
+    "gg" 'image-bob
+    "G" 'image-eob
+    "h" 'image-backward-hscroll
+    "l" 'image-forward-hscroll
+    "j" 'image-next-line
+    "k" 'image-previous-line
+    "0" 'image-bol
+    "^" 'image-bol
+    "$" 'image-eol
+    (kbd "C-d") 'image-scroll-up
+    (kbd "SPC") 'image-scroll-up
+    (kbd "S-SPC") 'image-scroll-down
+    (kbd "<delete>") 'image-scroll-down
+    ;; animation
+    (kbd "RET") 'image-toggle-animation
+    "a0" 'image-reset-speed
+    "ar" 'image-reverse-speed
+    "F" 'image-goto-frame
+    "," 'image-previous-frame ;; mplayer/mpv style
+    "." 'image-next-frame     ;; mplayer/mpv style
+    ";" 'image-next-frame     ;; Evil style
+    "{" 'image-decrease-speed ;; mplayer/mpv style
+    "}" 'image-increase-speed ;; mplayer/mpv style
+
+    "H" 'image-transform-fit-to-height
+    "W" 'image-transform-fit-to-width
+
+    "[[" 'image-previous-file
+    "]]" 'image-next-file
+    "gk" 'image-previous-file
+    "gj" 'image-next-file
+    (kbd "C-k") 'image-previous-file
+    (kbd "C-j") 'image-next-file
+
+    (kbd "C-c C-c") 'image-toggle-display
+
+    ;; quit
+    "q" 'quit-window
+    "ZQ" 'evil-quit
+    "ZZ" 'quit-window)
+  )
 
 ;;;###autoload
 (defun mkey-profiler-setup ()
@@ -134,31 +182,6 @@
     "k" 'dired-previous-line
     "gg" 'beginning-of-buffer
     "G" 'end-of-buffer
-
-    ;; quit
-    "q" 'quit-window)
-  )
-
-;;;###autoload
-(defun mkey-doc-view-setup ()
-  "Setup `evil' bindings for `doc-view'."
-  (evil-set-initial-state 'doc-view 'normal)
-  (evil-define-key 'normal doc-view-mode-map
-    ;; movement
-    "j"  'doc-view-next-line-or-next-page
-    "k"  'doc-view-previous-line-or-previous-page
-    "gg" 'doc-view-first-page
-    "G"  'doc-view-last-page
-
-    ;; zoom
-    "+" 'doc-view-enlarge
-    "-" 'doc-view-shrink
-
-    ;; op
-    "d" 'archive-flag-deleted
-    "r" 'archive-rename-entry
-    "x" 'archive-expunge
-    (kbd "RET") 'archive-view
 
     ;; quit
     "q" 'quit-window)
