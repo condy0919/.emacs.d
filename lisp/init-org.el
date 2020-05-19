@@ -70,6 +70,9 @@
                    (:endgroup)
                    ("reading" . ?r)
                    ("writing" . ?w)
+                   ("linux"   . ?l)
+                   ("c/cpp"   . ?c)
+                   ("emacs"     ?E)
                    ("email"   . ?e)))
   ;; archive
   (org-archive-location "%s_archive::date-tree"))

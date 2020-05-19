@@ -95,6 +95,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
 - evil-leader
+- evil-collection
 - evil-nerd-commenter
 - evil-surround
 - evil-magit
@@ -112,6 +113,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>gl</kbd> | `evil-avy-goto-line` 来跳转到对应行                  |
 
 `avy`真乃神器也！
+
+同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而
+获得了如下键绑定:
+
+| key           | function                                                         |
+| <kbd>[b</kbd> | `previous-buffer` 切换至上一个 `buffer`                          |
+| <kbd>]b</kbd> | `next-buffer` 切换至下一个 `buffer`                              |
+| <kbd>[l</kbd> | `evil-collection-unimpaired-previous-error` 上一个错误           |
+| <kbd>]l</kbd> | `evil-collection-unimpaired-next-error` 下一个错误               |
+| <kbd>[ </kbd> | `evil-collection-unimpaired-insert-space-above` 在上方插入一空行 |
+| <kbd>] </kbd> | `evil-collection-unimpaired-insert-space-below` 在下方插入一空行 |
 
 ## Emacs
 

@@ -63,6 +63,7 @@
     "fo" 'counsel-find-file-extern
     "fF" 'find-file-other-window
     "fd" 'my/delete-current-file
+    "fy" 'my/copy-current-filename
     "fc" 'copy-file
     "fr" 'counsel-recentf
     "fR" 'my/rename-current-file

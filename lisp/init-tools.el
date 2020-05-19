@@ -89,6 +89,8 @@
   :bind (:map isearch-mode-map
          ;; consistent with ivy-occur
          ("C-c C-o" . isearch-occur)
+         ;; jump with avy
+         ("C-\'"     . avy-isearch)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :custom
@@ -161,6 +163,7 @@
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         (setq-local global-hl-line-mode nil)
+                        (setq-local truncate-lines t)
                         ;; Dont prompt about processes when killing vterm
                         (setq confirm-kill-processes nil)
                         (evil-insert-state)))

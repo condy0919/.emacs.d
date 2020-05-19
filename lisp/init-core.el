@@ -43,5 +43,12 @@
   (or (buffer-file-name) (error "No file is visiting"))
   (my/delete-file (buffer-file-name)))
 
+;;;###autoload
+(defun my/copy-current-filename (&rest _)
+  "Copy the full path to the current file."
+  (interactive)
+  (or (buffer-file-name) (error "No file is visiting"))
+  (message (kill-new (buffer-file-name))))
+
 (provide 'init-core)
 ;;; init-core.el ends here
