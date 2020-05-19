@@ -75,6 +75,8 @@
      ("b" hexl-find-file "open file in binary mode")
      ("x" counsel-find-file-as-root "open as root")))
   :custom
+  ;; https://github.com/ericdanan/counsel-projectile/issues/154
+  (counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s")
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
   (counsel-yank-pop-separator "\n-----------\n")
