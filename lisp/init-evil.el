@@ -23,12 +23,21 @@
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
   (evil-insert-skip-empty-lines t)
+  (evil-want-integration t)
+  (evil-want-keybinding nil)
   (evil-want-fine-undo t)
   (evil-want-C-u-scroll t)
   (evil-want-C-g-bindings t)
   (evil-want-Y-yank-to-eol t)
   (evil-want-abbrev-expand-on-insert-exit nil)
   (evil-symbol-word-search t))
+
+(use-package evil-collection
+  :ensure t
+  :hook (evil-mode . evil-collection-init)
+  :custom
+  (evil-collection-company-use-tng nil)
+  (evil-collection-setup-minibuffer nil))
 
 (use-package evil-leader
   :ensure t

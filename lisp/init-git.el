@@ -28,10 +28,6 @@
 (use-package magit-todos
   :ensure t
   :after magit
-  :bind (:map magit-todos-section-map
-         ("j" . nil)
-         :map magit-todos-item-section-map
-         ("j" . nil))
   :hook (magit-status-mode . magit-todos-mode)
   :config
   ;; Supress the `jT' keybind warning
