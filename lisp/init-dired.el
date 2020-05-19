@@ -17,9 +17,8 @@
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-Afhlv")
   :bind (:map dired-mode-map
-         ([backspace] . dired-up-directory)
          ("C-c +"     . dired-create-empty-file)
-         ;; consistent with wgrep
+         ;; consistent with ivy
          ("C-c C-e"   . wdired-change-to-wdired-mode)))
 
 (use-package dired-x

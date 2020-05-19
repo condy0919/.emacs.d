@@ -86,10 +86,6 @@
   :bind (:map markdown-mode-map
          ("C-c C-s r" . mblog-insert-ruby-tag)))
 
-(use-package init-mkey
-  :ensure nil
-  :hook (after-init . mkey-init))
-
 (when (file-exists-p custom-file)
   (load custom-file))
 

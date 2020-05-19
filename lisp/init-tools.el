@@ -227,19 +227,7 @@
 ;; Open very large files
 (use-package vlf
   :ensure t
-  :defer t
-  :config
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'vlf-mode 'normal)
-    (evil-define-key 'normal vlf-mode-map
-      ;; view
-      "]]" 'vlf-next-batch
-      "[[" 'vlf-prev-batch
-
-      ;; jump
-      "gg" 'vlf-beginning-of-file
-      "G"  'vlf-end-of-file))
-  )
+  :defer t)
 
 ;; Notes manager
 (use-package deft
