@@ -99,8 +99,8 @@
   (isearch-regexp-lax-whitespace t)
   (search-whitespace-regexp "[ \t\r\n]+")
   (isearch-lazy-count t)
-  (lazy-count-prefix-format "%s/%s ")
-  (lazy-count-suffix-format nil)
+  (lazy-count-prefix-format nil)
+  (lazy-count-suffix-format " [%s/%s]")
   (lazy-highlight-cleanup nil))
 
 ;; isearch alternative
