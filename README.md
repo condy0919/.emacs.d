@@ -64,7 +64,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 助下载。`straight.el`在自举过程中会连接`githubusercontent.com`这个域名，此域名在
 国内访问几乎不可达，建议`bypass`之。
 
-而自动升级选择了`auto-package-update`。
+而自动升级选择了`auto-package-update`这个包。如果需要更新，`M-x`运行一下
+`auto-package-update-now`即可。需要注意的是，更新是同步的。
 
 # 界面
 
@@ -72,7 +73,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 趁手的工具
 
-`which-key`, `rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、
+`which-key`,`rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、
 运行变得更加方便。而且还有`counsel-projectile`的加成，在原有`projectile`的基础上
 又添加了许多`ivy action`，更一步提升了便捷性。
 
@@ -80,11 +81,11 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `relative line number`来`8k` `9j`这样跳了。
 
 自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的`M-x`根本无法
-让人按下去。这里没有使用`swiper`是因为它下方占用空间过大(继承于`ivy`的设置)，搜
-索时肯定是比较在意上下文，而一个`swiper`就占用了`ivy-height`行就显得有点奢侈。而
-自带的`isearch`在稍加设置之后，效果也还可以接受。当`evil-search-module`设置成
-`isearch`后，也可以使用相同的快捷键来触发`ivy-occur`。再加上`ivy-occur`可以与
-`wgrep`配合，将原来的「搜索、打开对应文件、修改」变成了「搜索、修改」。
+让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于
+`ivy`的设置)，搜索时肯定是比较在意上下文。而自带的`isearch`在稍加设置之后，效果
+也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来
+触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文
+件、修改」变成了「搜索、修改」。
 
 `vterm`作为一个与原生终端更加接近的终端模拟器，单就外观来看已经比`Emacs`自带的
 `eshell`好看。再加上`shell-pop`的辅助，美观又实用的`terminal`模拟器就出现了。
@@ -125,6 +126,16 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>[ </kbd> | `evil-collection-unimpaired-insert-space-above` 在上方插入一空行 |
 | <kbd>] </kbd> | `evil-collection-unimpaired-insert-space-below` 在下方插入一空行 |
 
+本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常
+推荐使用`evil-mode`在`normal`状态下定义的键绑定。
+
+| key           | function                                |
+|---------------|-----------------------------------------|
+| <kbd>zm</kbd> | `evil-close-folds`隐藏所有代码块        |
+| <kbd>zr</kbd> | `evil-open-folds`显示所有被隐藏的代码块 |
+| <kbd>zo</kbd> | `evil-open-fold`隐藏当前代码块          |
+| <kbd>zc</kbd> | `evil-close-fold`显示当前被隐藏的代码块 |
+
 ## Emacs
 
 | key                | function                                                                      |
@@ -140,10 +151,32 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
 | <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
 | <kbd>M-o</kbd>     | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
-| <kbd>C-c [</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                                    |
+| <kbd>C-c [</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能, <kbd>C-c ]</kbd> 也有同样效果     |
 | <kbd>C-c i l</kbd> | 方便地插入`SPDX`形式的`license`头部                                           |
 
-更详细的按键绑定请直接看代码. :-)
+因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
+说。本配置中还使用了`counsel-projectile`来令`projectile`更加方便。
+
+| key                  | function                                                             |
+|----------------------|----------------------------------------------------------------------|
+| <kbd>C-c p f</kbd>   | `projectile-find-file`在项目内查找其他文件                           |
+| <kbd>C-c p b</kbd>   | `projectile-switch-to-buffer`切换至其他`buffer`(限定在本`project`下) |
+| <kbd>C-c p C</kbd>   | `projectile-configure-project`配置当前项目                           |
+| <kbd>C-c p c</kbd>   | `projectile-compile-project`编译当前项目                             |
+| <kbd>C-c p u</kbd>   | `projectile-run-project`运行当前项目                                 |
+| <kbd>C-c p P</kbd>   | `projectile-test-project`测试当前项目                                |
+| <kbd>C-c p p</kbd>   | `projectile-switch-project`切换至其他项目                            |
+| <kbd>C-c p s r</kbd> | `projectile-ripgrep`使用`ripgrep`来搜索当前项目内的文本。此功能依赖`ripgrep`这个包，不过在`counsel-projectile`加持下被重新`remap`过。              |
+
+基于同样的理由，把`flycheck`单独拎了出来。
+
+| key                | function                                  |
+|--------------------|-------------------------------------------|
+| <kbd>C-c ! l</kbd> | `flycheck-list-errors`列出所有`lint`错误  |
+| <kbd>C-c ! n</kbd> | `flycheck-next-error`下一个`lint`错误     |
+| <kbd>C-c ! p</kbd> | `flycheck-previous-error`上一下`lint`错误 |
+
+更详细的按键绑定请直接看[代码](lisp/init-evil.el). :-)
 
 # 通用开发设置
 
