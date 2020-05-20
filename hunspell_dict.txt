@@ -16,3 +16,4 @@ bazel
 cmake
 customizable
 dired
+lsp

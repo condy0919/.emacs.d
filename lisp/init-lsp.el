@@ -52,7 +52,7 @@
   (lsp-keymap-prefix "C-c l")
   (lsp-idle-delay 0.5)                 ;; lazy refresh
   (lsp-log-io nil)                     ;; enable log only for debug
-  (lsp-enable-folding nil)             ;; use `evil-matchit' instead
+  (lsp-enable-folding nil)             ;; use `hideshow' instead
   (lsp-enable-links nil)               ;; no clickable links
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
   (lsp-lens-auto-enable t)             ;; enable lens
