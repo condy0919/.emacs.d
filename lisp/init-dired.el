@@ -28,10 +28,11 @@
   :custom
   (dired-omit-verbose nil)
   (dired-omit-files (rx (or ".git" ".svn"
+                            ".DS_Store"
                             ".cache"
                             ".vscode"
                             ".ccls-cache" ".clangd"
-                            ".elc" ".pyc" ".o" ".swp")))
+                            ".elc" ".pyc" ".o" ".swp" ".class")))
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil))
 
