@@ -34,17 +34,16 @@
   :hook ((after-init . dashboard-setup-startup-hook)
          (dashboard-mode . (lambda ()
                              (setq-local global-hl-line-mode nil))))
-  :custom-face
-  (dashboard-heading ((t (:foreground "#f1fa8c" :weight bold))))
   :custom
   (dashboard-startup-banner 'logo)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
   (dashboard-set-init-info t)
   (dashboard-set-navigator t)
-  (dashboard-items '((recents . 10)
-                     (projects . 5)
-                     (bookmarks . 5))))
+  (dashboard-items '((recents   . 10)
+                     (projects  . 5)
+                     (bookmarks . 5)
+                     (agenda    . 5))))
 
 (provide 'init-startup)
 

@@ -283,6 +283,8 @@
                   (mode . gfm-mode)
                   (mode . rst-mode)
                   (mode . text-mode)))
+      ("Term" (or (mode . vterm-mode)
+                  (mode . eshell-mode)))
       ("Config" (or (mode . yaml-mode)
                     (mode . toml-mode)
                     (mode . conf-mode)))
