@@ -7,6 +7,7 @@
 
 (use-package transient
   :ensure t
+  :commands (transient-setup transient-prefix)
   :bind (:map transient-map
          ;; Close transient with ESC
          ([escape] . transient-quit-one)))
@@ -79,13 +80,11 @@
 
 (use-package smerge-mode
   :ensure nil
-  :defer t
   :requires transient
-  :commands (transient-setup transient-prefix)
   :bind (:map smerge-mode-map
          ("C-c m" . my/smerge-menu))
   :config
-  (define-transient-command my/smerge-menu
+  (transient-define-prefix my/smerge-menu
     "Smerge"
     [["Navigation"
       ("p" "prev" smerge-prev)

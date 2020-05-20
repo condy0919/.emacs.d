@@ -136,7 +136,6 @@
   :custom
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
-  (projectile-read-command nil) ;; no prompt in projectile-compile-project
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
   (projectile-ignored-projects '("/tmp/"))
   :config
