@@ -85,6 +85,9 @@
 (put 'narrow-to-page   'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+;; Enable the disabled dired commands
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
@@ -147,8 +150,10 @@
 (use-package autorevert
   :ensure nil
   :custom
+  (auto-revert-interval 3)
   (auto-revert-verbose nil)
   (auto-revert-remote-files t)
+  (auto-revert-check-vc-info t)
   (global-auto-revert-non-file-buffers t)
   :hook (after-init . global-auto-revert-mode))
 

@@ -133,9 +133,9 @@
   (markdown-command "pandoc")
   (markdown-asymmetric-header t)
   (markdown-fontify-code-blocks-natively t)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'"       . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
+  :mode (("\\.md\\'"       . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)
+         ("README\\.md\\'" . gfm-mode)))
 
 ;; Free hands
 (use-package auto-package-update
