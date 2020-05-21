@@ -116,7 +116,9 @@
 (use-package quickrun
   :ensure t
   :defer 1
-  :custom (quickrun-focus-p nil)
+  :custom
+  (quickrun-focus-p nil)
+  (quickrun-input-file-extension ".qr")
   :bind (("C-c x" . quickrun)))
 
 ;; Superb compiler explorer implementation

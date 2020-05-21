@@ -179,6 +179,7 @@
   :ensure t
   :bind ("M-=" . shell-pop)
   :custom
+  (shell-pop-window-size 40)
   (shell-pop-full-span t)
   (shell-pop-shell-type '("vterm" "*vterm*" #'vterm)))
 
@@ -280,16 +281,14 @@
   (shackle-default-alignment 'below)
   (shackle-rules '((magit-status-mode    :select t :inhibit-window-quit t :same t)
                    (magit-log-mode       :select t :inhibit-window-quit t :same t)
+                   ("*quickrun*"         :select t :inhibit-window-quit t :same t)
                    (profiler-report-mode :select t)
                    (help-mode            :select t :align t :size 0.4)
                    (comint-mode          :select t :align t :size 0.4)
-                   (Man-mode             :select t :other t)
-                   (woman-mode           :select t :other t)
                    (grep-mode            :select t :align t)
                    (rg-mode              :select t :align t)
                    ("*bm-bookmarks*"           :select t   :align t)
                    ("*Flycheck errors*"        :select t   :align t :size 10)
-                   ("*quickrun*"               :select nil :align t :size 15)
                    ("*Backtrace*"              :select t   :align t :size 15)
                    ("*Shell Command Output*"   :select nil :align t :size 0.4)
                    ("*Async Shell Command*"    :ignore t)
