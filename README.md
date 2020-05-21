@@ -119,6 +119,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 获得了如下键绑定:
 
 | key           | function                                                         |
+|---------------|------------------------------------------------------------------|
 | <kbd>[b</kbd> | `previous-buffer` 切换至上一个 `buffer`                          |
 | <kbd>]b</kbd> | `next-buffer` 切换至下一个 `buffer`                              |
 | <kbd>[l</kbd> | `evil-collection-unimpaired-previous-error` 上一个错误           |
