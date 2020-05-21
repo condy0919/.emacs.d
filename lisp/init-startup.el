@@ -43,7 +43,16 @@
   (dashboard-items '((recents   . 10)
                      (projects  . 5)
                      (bookmarks . 5)
-                     (agenda    . 5))))
+                     (agenda    . 5)))
+  ;; Format: "(icon title help action face prefix suffix)"
+  (dashboard-navigator-buttons `((("★" "GitHub" "Browse" (lambda (&rest _) (browse-url homepage-url)))
+                                  ("♥" "Stars" "Show stars" (lambda (&rest _) (browse-url stars-url)))
+                                  ("⚑" "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
+                                  ("♺" "Update" "Update packages synchronously" (lambda (&rest _) (auto-package-update-now)) success))))
+  :config
+  (defconst homepage-url "https://github.com/condy0919/.emacs.d")
+  (defconst stars-url (concat homepage-url "/stargazers"))
+  (defconst issue-url (concat homepage-url "/issues/new")))
 
 (provide 'init-startup)
 
