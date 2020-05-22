@@ -109,6 +109,7 @@
   (evil-leader/set-key
     "am" 'mu4e
     "an" 'newsticker-show-news
+    "ah" 'hyperbole
     "ad" 'deft
     "aa" 'org-agenda
     "ac" 'org-capture

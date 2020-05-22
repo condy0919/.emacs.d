@@ -323,6 +323,14 @@
                                    "https://lwn.net/headlines/rss")))
   (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml"))))
 
+;; The Everyday Hypertextual Information Manager
+(use-package hyperbole
+  :ensure t
+  :defer t
+  :custom
+  (hkey-init nil)
+  (hyrolo-date-format "%Y-%m-%d"))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
