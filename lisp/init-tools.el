@@ -326,10 +326,24 @@
 ;; The Everyday Hypertextual Information Manager
 (use-package hyperbole
   :ensure t
-  :defer t
+  :hook (after-init . hyperb:init)
+  :bind (("C-h h"   . hyperbole)
+         ("C-h A"   . hkey-help)
+         ("C-c /"   . hui-search-web)
+         ("M-RET"   . hkey-either)
+         ("C-c RET" . hui-select-thing))
   :custom
   (hkey-init nil)
-  (hyrolo-date-format "%Y-%m-%d"))
+  (hproperty-but-emphasize-flag t)
+  (hyrolo-date-format "%Y-%m-%d")
+  (hyperbole-web-search-alist '(("CppReference"  . "https://en.cppreference.com/mwiki/index.php?search=%s")
+                                ("Google"        . "https://www.google.com/search?q=%s")
+                                ("Hub(git)"      . "https://grep.app/search?q=%s")
+                                ("RFCs"          . "https://tools.ietf.org/html/rfc%s")
+                                ("StackOverflow" . "https://stackoverflow.com/search?q=%s")
+                                ("Twitter"       . "https://twitter.com/search?q=%s")
+                                ("Wikipedia"     . "https://en.wikipedia.org/wiki/%s")
+                                ("Youtube"       . "https://www.youtube.com/results?search_query=%s"))))
 
 (provide 'init-tools)
 
