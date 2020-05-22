@@ -108,6 +108,7 @@
   ;; prefix: <Leader> a, apps
   (evil-leader/set-key
     "am" 'mu4e
+    "an" 'newsticker-show-news
     "ad" 'deft
     "aa" 'org-agenda
     "ac" 'org-capture

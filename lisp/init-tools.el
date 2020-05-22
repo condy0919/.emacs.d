@@ -299,7 +299,6 @@
 ;; Grammar & Style checker
 (use-package langtool
   :ensure t
-  :defer t
   :bind (("C-x 4 w" . langtool-check)
          ("C-x 4 W" . langtool-check-done)
          ("C-x 4 l" . langtool-switch-default-language)
@@ -308,6 +307,21 @@
   :custom
   (langtool-http-server-host "localhost")
   (langtool-http-server-port 8081))
+
+;; Generic RSS reader
+(use-package newst-reader
+  :ensure nil
+  :bind ("C-x 4 n" . newsticker-show-news)
+  :custom
+  (newsticker-date-format "%F %R, %A")
+  (newsticker-treeview-date-format "%F %R\t")
+  (newsticker-url-list-defaults '(("Emacs Wiki"
+                                   "https://www.emacswiki.org/emacs?action=rss"
+                                   nil
+                                   3600)
+                                  ("LWN (Linux Weekly News)"
+                                   "https://lwn.net/headlines/rss")))
+  (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml"))))
 
 (provide 'init-tools)
 
