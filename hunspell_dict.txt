@@ -19,3 +19,4 @@ dired
 lsp
 todo
 newsticker
+magit
