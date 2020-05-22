@@ -51,12 +51,12 @@
 ;; Highlight uncommitted changes using git
 (use-package diff-hl
   :ensure t
-  :hook ((after-init . (lambda ()
-                         (global-diff-hl-mode)
-                         (diff-hl-flydiff-mode)))
-         (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
+  :hook ((after-init         . (lambda ()
+                                 (global-diff-hl-mode)
+                                 (diff-hl-flydiff-mode)))
+         (magit-pre-refresh  . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
-         (dired-mode . diff-hl-dired-mode-unless-remote)))
+         (dired-mode         . diff-hl-dired-mode-unless-remote)))
 
 ;; Open current file in browser
 (use-package browse-at-remote
