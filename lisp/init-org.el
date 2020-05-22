@@ -299,6 +299,17 @@
   :demand t
   :commands (doct doct-get))
 
+;; Ensure that emacsclient.desktop exists and server-mode is opened.
+;;
+;; cat > ~/.local/share/applications/emacsclient.desktop << EOF
+;; [Desktop Entry]
+;; Name=Emacs Client
+;; Exec=emacsclient %u
+;; Icon=emacs-icon
+;; Type=Application
+;; Terminal=false
+;; MimeType=x-scheme-handler/org-protocol;
+;; EOF
 (use-package org-protocol
   :ensure nil
   :after org
