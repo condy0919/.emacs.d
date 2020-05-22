@@ -134,7 +134,7 @@
   (org-clock-history-length 20)
   (org-clock-mode-line-total 'current)
   (org-clock-display-default-range 'thismonth)
-  (org-clock-in-switch-to-state "INPROGRESS")
+  (org-clock-in-switch-to-state "TODO")
   (org-clock-out-remove-zero-time-clocks t)
   (org-clock-report-include-clocking-task t)
   (org-show-notification-handler (lambda (msg)
