@@ -159,11 +159,12 @@
   (org-src-window-setup 'current-window)
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
-  (org-babel-load-languages '((shell . t)
-                              (sql . t)
-                              (python . t)
-                              (ocaml . t)
-                              (emacs-lisp . t))))
+  (org-babel-load-languages '((awk        . t)
+                              (emacs-lisp . t)
+                              (ocaml      . t)
+                              (python     . t)
+                              (shell      . t)
+                              (sql        . t))))
 
 (use-package org-id
   :ensure nil
