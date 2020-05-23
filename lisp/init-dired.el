@@ -17,9 +17,17 @@
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-Afhlv")
   :bind (:map dired-mode-map
-         ("C-c +"     . dired-create-empty-file)
          ;; consistent with ivy
          ("C-c C-e"   . wdired-change-to-wdired-mode)))
+
+(use-package dired-aux
+  :ensure nil
+  :custom
+  (dired-isearch-filenames 'dwim)
+  (dired-create-destination-dirs 'ask)
+  (dired-vc-rename-file t)
+  :bind (:map dired-mode-map
+         ("C-c +" . dired-create-empty-file)))
 
 (use-package dired-x
   :ensure nil
