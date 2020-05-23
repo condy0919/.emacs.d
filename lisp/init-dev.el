@@ -105,7 +105,7 @@
   :hook (ediff-quit . winner-undo) ;; restore windows layout
   :custom
   (ediff-diff-options "-w") ;; turn off whitespace checking
-  (ediff-highlight-all-diffs nil)
+  (ediff-highlight-all-diffs t)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-merge-split-window-function 'split-window-horizontally))

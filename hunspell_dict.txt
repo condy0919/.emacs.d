@@ -21,3 +21,4 @@ todo
 newsticker
 magit
 fcitx
+ediff
