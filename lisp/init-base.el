@@ -233,6 +233,8 @@
   :ensure nil
   :defer t
   :custom
+  ;; same with htop
+  (proced-auto-update-interval 2)
   (proced-auto-update-flag t))
 
 ;; mouse wheel optimization

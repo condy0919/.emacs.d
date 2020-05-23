@@ -281,6 +281,13 @@
   (sh-basic-offset 2)
   (sh-indentation 2))
 
+;; CSS
+(use-package css-mode
+  :ensure nil
+  :mode ("\\.scss\\'" . scss-mode)
+  :custom
+  (css-indent-offset 2))
+
 ;; Config files mode
 (use-package yaml-mode
   :ensure t
