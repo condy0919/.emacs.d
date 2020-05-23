@@ -22,7 +22,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
 仅包含**C/C++/Rust/OCaml/Haskell**相关配置，且全线使用`lsp`。当前由于
-`ocaml-lsp`十分难用，`haskell-ide-engine`水土不服，故这2个语言没有采用`lsp`。
+`haskell-ide-engine`水土不服，故`haskell`没有采用`lsp`。
 
 保持着尽量使用`Emacs`自带功能的原则，能用自带的就用自带的。
 
@@ -31,6 +31,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
 - `languagetool` 更好的拼写检查、语法纠错工具
 - `rg` 更快的`grep`
+- `pandoc` 文本转换工具，`markdown-mode`渲染需要
 - `fd` 更现代的 `find`
 - `cmake` 编译`vterm`的模块、`c++`项目的构建工具
 - `git` 这个就不用说了吧？

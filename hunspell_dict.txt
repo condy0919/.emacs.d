@@ -20,3 +20,4 @@ lsp
 todo
 newsticker
 magit
+fcitx

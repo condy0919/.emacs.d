@@ -12,9 +12,10 @@
   :custom (which-key-idle-delay 0.5))
 
 ;; The blazing grep tool
+;; Press C-c s to search
 (use-package rg
   :ensure t
-  :defer t)
+  :hook (after-init . rg-enable-default-bindings))
 
 ;; Jump to arbitrary positions
 (use-package avy
