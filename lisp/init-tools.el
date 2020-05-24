@@ -20,6 +20,9 @@
 ;; Jump to arbitrary positions
 (use-package avy
   :ensure t
+  ;; integrate with isearch and others
+  ;; C-' to select isearch-candidate with avy
+  :hook (after-init . avy-setup-default)
   :custom
   (avy-timeout-seconds 0.2)
   (avy-all-windows nil)
@@ -88,8 +91,6 @@
   :bind (:map isearch-mode-map
          ;; consistent with ivy-occur
          ("C-c C-o" . isearch-occur)
-         ;; jump with avy
-         ("C-\'"     . avy-isearch)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :custom
