@@ -24,7 +24,8 @@
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
-  (company-show-numbers t) ;; Easy navigation to candidates with M-<n>
+  ;; Easy navigation to candidates with M-<n>
+  (company-show-numbers t)
   (company-require-match nil)
   (company-minimum-prefix-length 3)
   (company-tooltip-align-annotations t)
