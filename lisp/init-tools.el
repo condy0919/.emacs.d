@@ -148,17 +148,11 @@
 ;; Beautiful term mode & friends
 (use-package vterm
   :ensure t
-  :defines (evil-insert-state-cursor)
   :commands (evil-insert-state vterm)
   :custom
   (vterm-use-vterm-prompt nil)
   (vterm-kill-buffer-on-exit t)
   (vterm-clear-scrollback-when-clearing t)
-  :bind (:map vterm-mode-map
-         ("C-x C-f" . (lambda (&rest _)
-                        (interactive)
-                        (my/vterm-directory-sync)
-                        (call-interactively 'counsel-find-file))))
   :hook (vterm-mode . (lambda ()
                         (setq-local evil-insert-state-cursor 'box)
                         (setq-local global-hl-line-mode nil)
@@ -172,8 +166,13 @@
     "Synchronize current working directory."
     (when vterm--process
       (let* ((pid (process-id vterm--process))
-             (dir (file-truename (format "/proc/%d/cwd" pid))))
-        (setq-local default-directory dir))))
+             (dir (file-truename (format "/proc/%d/cwd/" pid))))
+        (setq default-directory dir))))
+
+  (when (eq system-type 'gnu/linux)
+    (define-advice vterm-send-return (:after nil)
+      "Synchronize current working directory."
+      (run-with-idle-timer 0.1 nil 'my/vterm-directory-sync)))
   )
 
 (use-package shell-pop
