@@ -27,7 +27,20 @@
   (dired-create-destination-dirs 'ask)
   (dired-vc-rename-file t)
   :bind (:map dired-mode-map
-         ("C-c +" . dired-create-empty-file)))
+         ("C-c +" . dired-create-empty-file))
+  :config
+  ;; with the help of `evil-collection', P is bound to `dired-do-print'.
+  (define-advice dired-do-print (:override (&optional _))
+    "Show/hide dotfiles."
+    (interactive)
+    (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
+        (progn
+          (setq-local dired-dotfiles-show-p nil)
+          (dired-mark-files-regexp "^\\\.")
+          (dired-do-kill-lines))
+      (revert-buffer)
+      (setq-local dired-dotfiles-show-p t)))
+  )
 
 (use-package dired-x
   :ensure nil
