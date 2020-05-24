@@ -16,6 +16,10 @@
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
 
+;; MacOS specific
+(setq ns-use-thing-smoothing t
+      ns-pop-up-frames nil)
+
 ;; Optimize for very long lines
 (setq bidi-paragraph-direction 'left-to-right
       bidi-inhibit-bpa t)
