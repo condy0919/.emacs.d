@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(require 'init-macros)
+
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . cc-mode)
@@ -42,12 +44,12 @@
 
 (use-package cmake-mode
   :ensure t
-  :defines (company-backends)
+  :defines (cmake-mode company-cmake)
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
-         ("\\.cmake\\'" . cmake-mode))
+         ("\\.cmake\\'"         . cmake-mode))
   :config
   (with-eval-after-load 'company-mode
-    (add-to-list 'company-backends 'company-cmake)))
+    (my/set-company-backends-for cmake-mode company-cmake)))
 
 (provide 'init-cpp)
 
