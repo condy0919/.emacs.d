@@ -7,6 +7,8 @@
 (use-package elisp-mode
   :ensure nil
   :bind (:map emacs-lisp-mode-map
+         ;; consistent with inferior-python-shell
+         ("C-c C-p" . ielm)
          ("C-c C-b" . eval-buffer)
          ("C-c C-c" . my/eval-to-comment))
   :config
