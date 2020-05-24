@@ -48,12 +48,10 @@
   :bind ([remap list-directory] . dired-jump)
   :custom
   (dired-omit-verbose nil)
-  (dired-omit-files (rx (or ".git" ".svn"
-                            ".DS_Store"
+  (dired-omit-files (rx (or ".DS_Store"
                             ".cache"
                             ".vscode"
-                            ".ccls-cache" ".clangd"
-                            ".elc" ".pyc" ".o" ".swp" ".class")))
+                            ".ccls-cache" ".clangd")))
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-guess-shell-alist-user `((,(rx "."
