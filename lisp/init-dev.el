@@ -293,9 +293,9 @@
   :ensure t
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'"  . yaml-mode)))
-(use-package toml-mode
-  :ensure t
-  :mode ("\\.toml\\'" . toml-mode))
+(use-package conf-toml-mode
+  :ensure nil
+  :mode ("\\.toml\\'" . conf-toml-mode))
 
 (require 'init-cpp)
 (require 'init-rust)
