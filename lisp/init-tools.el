@@ -131,7 +131,6 @@
                            (setq-local which-key-inhibit-regexps
                                        '("C-c C-s" "C-c C-c"))))
   :custom
-  (markdown-command "pandoc")
   (markdown-asymmetric-header t)
   (markdown-fontify-code-blocks-natively t)
   :mode (("\\.md\\'"       . markdown-mode)
