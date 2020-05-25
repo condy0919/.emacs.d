@@ -113,7 +113,6 @@
 ;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
-  :defer 1
   :custom
   (quickrun-focus-p nil)
   (quickrun-input-file-extension ".qr")
@@ -153,6 +152,7 @@
 
   (dolist (dir '(".ccls-cache"
                  ".clangd"
+                 ".vscode"
                  "bazel-bin"
                  "bazel-out"
                  "bazel-testlogs"))

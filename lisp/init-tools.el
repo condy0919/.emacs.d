@@ -15,6 +15,7 @@
 ;; Press C-c s to search
 (use-package rg
   :ensure t
+  :when (executable-find "rg")
   :hook (after-init . rg-enable-default-bindings))
 
 ;; Jump to arbitrary positions
