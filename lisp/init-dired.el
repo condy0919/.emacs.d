@@ -36,7 +36,7 @@
     (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
         (progn
           (setq-local dired-dotfiles-show-p nil)
-          (dired-mark-files-regexp "^\\\.")
+          (dired-mark-files-regexp "^\\.")
           (dired-do-kill-lines))
       (revert-buffer)
       (setq-local dired-dotfiles-show-p t)))
