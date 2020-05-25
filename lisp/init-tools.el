@@ -315,11 +315,7 @@
   :custom
   (newsticker-date-format "%F %R, %A")
   (newsticker-treeview-date-format "%F %R\t")
-  (newsticker-url-list-defaults '(("Emacs Wiki"
-                                   "https://www.emacswiki.org/emacs?action=rss"
-                                   nil
-                                   3600)
-                                  ("LWN (Linux Weekly News)"
+  (newsticker-url-list-defaults '(("LWN (Linux Weekly News)"
                                    "https://lwn.net/headlines/rss")))
   (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml"))))
 
