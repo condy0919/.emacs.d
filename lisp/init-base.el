@@ -264,7 +264,11 @@
 (use-package browse-url
   :ensure nil
   :custom
-  (browse-url-generic-program "firefox"))
+  (browse-url-generic-program (or (executable-find "firefox")
+                                  (executable-find "chromium")
+                                  (executable-find "google-chrome-stable")
+                                  (executable-find "google-chrome")))
+  (browse-url-handlers '(("\\`file:" . browse-url-default-browser))))
 
 ;; Buffer manager
 (use-package ibuffer
