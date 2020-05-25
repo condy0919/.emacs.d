@@ -27,3 +27,7 @@ MacOS
 toml
 url
 flyspell
+ispell
+hunspell
+txt
+emacs
