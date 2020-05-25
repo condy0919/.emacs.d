@@ -23,7 +23,6 @@
   (evil-want-integration t)
   (evil-want-keybinding nil)
   (evil-want-fine-undo t)
-  (evil-want-C-u-scroll t)
   (evil-want-C-g-bindings t)
   (evil-want-Y-yank-to-eol t)
   (evil-want-abbrev-expand-on-insert-exit nil)
