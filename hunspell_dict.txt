@@ -26,3 +26,4 @@ backends
 MacOS
 toml
 url
+flyspell

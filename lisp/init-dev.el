@@ -195,8 +195,8 @@
   (ispell-personal-dictionary
    (expand-file-name "hunspell_dict.txt" user-emacs-directory))
   ;; "C-;" is captured by fcitx
-  ;; M-TAB also can correct
   (flyspell-auto-correct-binding (kbd "C-M-;"))
+  (flyspell-use-meta-tab nil)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil))
 
