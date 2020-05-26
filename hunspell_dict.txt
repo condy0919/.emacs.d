@@ -31,3 +31,4 @@ ispell
 hunspell
 txt
 emacs
+config
