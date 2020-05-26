@@ -50,5 +50,13 @@
   (or (buffer-file-name) (error "No file is visiting"))
   (message (kill-new (buffer-file-name))))
 
+;;;###autoload
+(defun my/eshell-other-window (&rest _)
+  "Open a `eshell' in a new window."
+  (interactive)
+  (let ((buf (eshell)))
+    (switch-to-buffer (other-buffer buf))
+    (switch-to-buffer-other-window buf)))
+
 (provide 'init-core)
 ;;; init-core.el ends here

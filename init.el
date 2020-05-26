@@ -78,6 +78,7 @@
 (require 'init-dev)
 (require 'init-mail)
 (require 'init-dired)
+(require 'init-shell)
 
 ;; Facilities for myself
 (use-package init-blog

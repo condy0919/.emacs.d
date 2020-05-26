@@ -118,9 +118,10 @@
 
   ;; prefix: <Leader> o, open
   (evil-leader/set-key
-    "ot" 'shell-pop
-    "oT" 'vterm
-    "oo" 'vterm-other-window)
+    "ot" 'vterm
+    "oT" 'vterm-other-window
+    "oe" 'eshell
+    "oE" 'my/eshell-other-window)
 
   ;; frequently used keys
   (evil-leader/set-key
