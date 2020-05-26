@@ -38,6 +38,7 @@
       (run-with-idle-timer 0.1 nil 'my/vterm-directory-sync)))
   )
 
+;; the Emacs shell
 (use-package eshell
   :ensure nil
   :functions eshell/alias
@@ -52,6 +53,23 @@
                          (eshell/alias "nvim" "find-file $1")))
   )
 
+;; General term mode
+(use-package term
+  :ensure nil
+  :hook (term-mode . my/term-auto-close)
+  :config
+  (defun my/term-auto-close ()
+    "Close term buffer after exit."
+    (when (ignore-errors (get-buffer-process (current-buffer)))
+      (set-process-sentinel (get-buffer-process (current-buffer))
+                            (lambda (process exit-msg)
+                              (when (string-match "\\(finished\\|exited\\)" exit-msg)
+                                (kill-buffer (process-buffer process))
+                                (when (> (count-windows) 1)
+                                  (delete-window)))))))
+  )
+
+;; Popup a shell
 (use-package shell-pop
   :ensure t
   :bind ("M-=" . shell-pop)
