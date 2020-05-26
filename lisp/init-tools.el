@@ -125,6 +125,12 @@
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
+;; View/Edit reStructuredText file
+(use-package rst
+  :ensure nil
+  :mode (("\\.rst\\'"  . rst-mode)
+         ("\\.rest\\'" . rst-mode)))
+
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
