@@ -184,26 +184,61 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 - 显示行末空白字符
 - 高亮**TODO** **FIXME**等关键字
-- `dumb-jump`作为`lsp-find-defition`失败后的备份手段
+- `dumb-jump`作为`lsp-find-definition`失败后的备份手段
 - `magit`作为`git`客户端
 - `hideshow`来显示/隐藏结构化的代码块，如 "{ }" 函数体等
 - `rmsbolt`作为一个本地的 **Compiler Explorer** 相比于`godbolt`友好一点
+- `ispell`拼写检查器, `evil`用户可以快速通过<kbd>zm</kbd> (`ispell-word`) 来检查
+- `flyspell`拼写检查器，仅在`magit`写提交信息时启用
 - `quickrun`作为一个能够执行部分区域内的代码块，方便快速验证函数功能
 
 # prog-mode
 
 ## cc-mode
 
-- clangd `lsp-mode`
-- 禁用了`flycheck`，因为`gcc/clang/cppcheck`的`checker`无法正确包含头文件的路径
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`clangd`，一般发行版的源里都
+会有对应的包。如果想使用[ccls][ccls]，可以`customize`对应的变量:
+
+``` emacs-lisp
+(setq lsp-clients-clangd-executable "ccls"
+      lsp-clients-clangd-args nil)
+```
+
+如果想使用`ccls`的`lsp`扩展功能，需要安装[ccls][emacs-ccls]扩展。
+
+禁用了`flycheck`自带的3个`checker`(分别为`c/c++-clang`, `c/c++-cppcheck`,
+`c/c++-gcc`)，因为它们都无法正确包含自定义的头文件路径。
+
+此外，
+
+- `c++-mode`启用了[modern-cpp-font-lock][modern-cpp-font-lock]
+- `cmake-mode`可使用`company-mode`进行符号补全
 
 ## rust-mode
 
-- rls `lsp-mode` 默认
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟
+`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
+
+``` emacs-lisp
+(setq lsp-rust-server 'rust-analyzer)
+```
+
+来切换至`rust-analyzer`。
+
+当然，
+
+- `rust-mode`开启了保存时格式化文件，需要确保`rustfmt`二进制包存在
+- 使用了[cargo][cargo]来提供深度集成化的`cargo`命令
 
 ## ocaml-mode
 
-- 启用 `merlin` 作为补全后端
+使用`lsp-mode`作为补全、符号查找的工具。在`Arch Linux`上，可以使用
+[ocaml-lsp-git][ocaml-lsp-git]这个包。
+
+由于`ocaml-lsp-git`目前**只**实现了`lsp-format-buffer`且额外依赖`ocamlformat`。
+
+所以这里额外使用了[ocp-indent][ocp-indent]，通过`ocp-indent-region`,
+`ocp-indent-buffer`来提供格式化代码的功能。
 
 ## haskell-mode
 
@@ -214,3 +249,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - 自己博客文章的查找、新建
 - 插入`SPDX`形式的`license`头功能已独立[license.el](https://github.com/condy0919/license.el)
 - 将常用的功能键绑定在`leader`键上
+
+[ccls]: https://github.com/MaskRay/ccls/
+[cargo]: https://melpa.org/#/cargo
+[emacs-ccls]: https://melpa.org/#/ccls
+[ocp-indent]: https://melpa.org/#/ocp-indent
+[modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
+[ocaml-lsp-git]: https://aur.archlinux.org/packages/ocaml-lsp-git
