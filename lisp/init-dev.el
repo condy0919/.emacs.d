@@ -131,7 +131,7 @@
   :ensure t
   :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
-  :hook (after-init . projectile-mode)
+  :hook (prog-mode . projectile-mode)
   :custom
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
@@ -165,7 +165,7 @@
 (use-package counsel-projectile
   :ensure t
   :after counsel projectile
-  :hook (after-init . counsel-projectile-mode))
+  :hook (prog-mode . counsel-projectile-mode))
 
 ;; Lint tool
 (use-package flycheck
