@@ -157,6 +157,7 @@
   :ensure t
   :commands (evil-insert-state vterm)
   :custom
+  (vterm-always-compile-module t)
   (vterm-use-vterm-prompt nil)
   (vterm-kill-buffer-on-exit t)
   (vterm-clear-scrollback-when-clearing t)

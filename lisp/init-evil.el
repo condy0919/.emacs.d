@@ -40,8 +40,9 @@
   :config
   ;; Disable `evil-collection' in certain modes
   (dolist (ig-mode '(mu4e
-                     mu4e-conversion))
-    (advice-add (intern (format "evil-collection-%s-setup" (symbol-name ig-mode))) :override #'ignore))
+                     mu4e-conversion
+                     vterm))
+    (setq evil-collection-mode-list (remove ig-mode evil-collection-mode-list)))
 
   ;; Keybindings tweaks
   (evil-collection-define-key 'normal 'occur-mode-map
