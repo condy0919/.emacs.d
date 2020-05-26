@@ -13,9 +13,9 @@
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
-  (org-modules '(ol-info org-habit org-protocol org-tempo))
+  (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
   (org-directory "~/.org")
-  (org-tags-column 0)
+  (org-tags-column -80)
   (org-pretty-entities t)
   (org-imenu-depth 4)
   (org-startup-indented t)
@@ -127,6 +127,7 @@
 (use-package org-clock
   :ensure nil
   :after org
+  :commands notifications-notify
   :custom
   (org-clock-in-resume t)
   (org-clock-idle-time 15)
@@ -293,6 +294,23 @@
                              (:priority< "B" :order 2)
                              (:name "Started" :todo "INPROGRESS" :order 6)
                              (:todo "WAITING" :order 9)))
+  )
+
+;; Presentation
+(use-package org-tree-slide
+  :ensure t
+  :bind (:map org-mode-map
+         ("C-<f8>" . org-tree-slide-mode)
+         :map org-tree-slide-mode-map
+         ("C-x s c" . org-tree-slide-content)
+         ("C-<"     . org-tree-slide-move-previous-tree)
+         ("C->"     . org-tree-slide-move-next-tree))
+  :hook ((org-tree-slide-play . (lambda ()
+                                  (text-scale-increase 4)
+                                  (read-only-mode +1)))
+         (org-tree-slide-stop . (lambda ()
+                                  (text-scale-increase 0)
+                                  (read-only-mode -1))))
   )
 
 ;; Declarative Org Capture Templates
