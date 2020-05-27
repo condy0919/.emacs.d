@@ -7,13 +7,20 @@
 
 (use-package bazel-mode
   :ensure t
-  :commands (bazel-build bazel-run bazel-test)
   :custom (bazel-mode-buildifier-before-save t)
-  :mode (("WORKSPACE\\'" . bazel-mode)
-         ("BUILD\\'"     . bazel-mode)
-         ("\\.bazel\\'"  . bazel-mode)
-         ("\\.bzl\\'"    . bazel-mode)
-         ("\\.BUILD\\'"  . bazel-mode)))
+  :mode (("bazel\\.bazelrc\\'"   . bazelrc-mode)
+         ("\\.bazelrc\\'"        . bazelrc-mode)
+         ("\\.bzl\\'"            . bazel-starlark-mode)
+         ("WORKSPACE\\'"         . bazel-workspace-mode)
+         ("WORKSPACE\\.bazel\\'" . bazel-workspace-mode)
+         ("BUILD\\'"             . bazel-build-mode)
+         ("BUILD.bazel\\'"       . bazel-build-mode)))
+
+;; Bundled with `bazel-mode'
+(use-package bazel-build
+  :ensure nil
+  :defer t
+  :commands (bazel-build bazel-run bazel-test))
 
 (provide 'init-bazel)
 
