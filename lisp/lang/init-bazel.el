@@ -9,6 +9,7 @@
   :ensure t
   :custom (bazel-mode-buildifier-before-save t)
   :mode (("bazel\\.bazelrc\\'"   . bazelrc-mode)
+         ("bazel\\.rc\\'"        . bazelrc-mode)
          ("\\.bazelrc\\'"        . bazelrc-mode)
          ("\\.bzl\\'"            . bazel-starlark-mode)
          ("WORKSPACE\\'"         . bazel-workspace-mode)
