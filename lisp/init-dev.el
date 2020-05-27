@@ -138,18 +138,6 @@
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
   (projectile-ignored-projects '("/tmp/"))
   :config
-  ;; cmake project build
-  (projectile-register-project-type 'cmake '("CMakeLists.txt")
-                                    :compilation-dir "build"
-                                    :configure "cmake %s -B %s"
-                                    :compile "cmake --build ."
-                                    :test "ctest --output-on-failure")
-
-  ;; bazel project builds
-  (projectile-register-project-type 'bazel '("WORKSPACE")
-                                    :compile "bazel build //..."
-                                    :test "bazel test //...")
-
   (dolist (dir '(".ccls-cache"
                  ".clangd"
                  ".vscode"
