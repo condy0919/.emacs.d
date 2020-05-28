@@ -205,12 +205,12 @@
   :ensure t
   :defer t
   :defines (org-directory)
-  :init (setq deft-default-extension "org")
   :custom
   ;; Disable auto save
   (deft-auto-save-interval 0)
+  (deft-extensions '("org" "md"))
   (deft-directory org-directory)
-  (deft-use-filename-as-title nil)
+  (deft-use-filename-as-title t)
   (deft-use-filter-string-for-filename t)
   (deft-file-naming-rules '((noslash . "-")
                             (nospace . "-")
