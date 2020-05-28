@@ -216,13 +216,6 @@
                             (nospace . "-")
                             (case-fn . downcase))))
 
-;; Note taking app
-(use-package zetteldeft
-  :ensure t
-  :after deft
-  :config
-  (zetteldeft-set-classic-keybindings))
-
 ;; Visual bookmarks
 (use-package bm
   :ensure t
