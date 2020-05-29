@@ -134,16 +134,18 @@
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
-  :hook (markdown-mode . auto-fill-mode)
-  :hook (markdown-mode . (lambda ()
+  :mode ("README\\(?:\\.md\\)?\\'" . gfm-mode)
+  :hook ((markdown-mode . auto-fill-mode)
+         (markdown-mode . (lambda ()
                            (setq-local which-key-inhibit-regexps
-                                       '("C-c C-s" "C-c C-c"))))
+                                       '("C-c C-s" "C-c C-c")))))
   :custom
+  (markdown-header-scaling t)
+  (markdown-enable-wiki-links t)
+  (markdown-italic-underscore t)
   (markdown-asymmetric-header t)
-  (markdown-fontify-code-blocks-natively t)
-  :mode (("\\.md\\'"       . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)
-         ("README\\.md\\'" . gfm-mode)))
+  (markdown-gfm-uppercase-checkbox t)
+  (markdown-fontify-code-blocks-natively t))
 
 ;; Free hands
 (use-package auto-package-update
@@ -275,6 +277,7 @@
   :ensure nil
   :bind ("C-x 4 n" . newsticker-show-news)
   :custom
+  (newsticker-retrieval-method (if (eq system-type 'gnu/linux) 'extern 'intern))
   (newsticker-date-format "%F %R, %A")
   (newsticker-treeview-date-format "%F %R\t")
   (newsticker-url-list-defaults '(("LWN (Linux Weekly News)"

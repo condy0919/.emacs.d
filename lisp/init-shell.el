@@ -5,12 +5,12 @@
 
 ;;; Code:
 
+(require 'init-core)
+
 ;; Beautiful term mode & friends
 (use-package vterm
   :ensure t
-  :when (or (eq system-type 'gnu/linux)
-            (eq system-type 'darwin))
-  :commands (evil-insert-state vterm)
+  :when (bound-and-true-p module-file-suffix)
   :custom
   (vterm-always-compile-module t)
   (vterm-use-vterm-prompt nil)
@@ -43,11 +43,16 @@
   :ensure nil
   :functions eshell/alias
   :custom
+  (eshell-scroll-to-bottom-on-input 'all)
+  (eshell-scroll-to-bottom-on-output 'all)
   (eshell-kill-on-exit t)
+  (eshell-kill-processes-on-exit t)
   (eshell-hist-ignoredups t)
+  (eshell-error-if-no-glob t)
+  (eshell-glob-case-insensitive t)
   :hook (eshell-mode . (lambda ()
                          ;; Define aliases
-                         (eshell/alias "ll" "ls -lh --color=auto")
+                         (eshell/alias "ll"   "ls -lh --color=auto $*")
                          (eshell/alias "vi"   "find-file $1")
                          (eshell/alias "vim"  "find-file $1")
                          (eshell/alias "nvim" "find-file $1")))
@@ -56,18 +61,7 @@
 ;; General term mode
 (use-package term
   :ensure nil
-  :hook (term-mode . my/term-auto-close)
-  :config
-  (defun my/term-auto-close ()
-    "Close term buffer after exit."
-    (when (ignore-errors (get-buffer-process (current-buffer)))
-      (set-process-sentinel (get-buffer-process (current-buffer))
-                            (lambda (process exit-msg)
-                              (when (string-match "\\(finished\\|exited\\)" exit-msg)
-                                (kill-buffer (process-buffer process))
-                                (when (> (count-windows) 1)
-                                  (delete-window)))))))
-  )
+  :hook (term-mode . my/buffer-auto-close))
 
 ;; Popup a shell
 (use-package shell-pop

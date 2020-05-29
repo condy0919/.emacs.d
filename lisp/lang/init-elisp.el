@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'init-core)
+
 (use-package elisp-mode
   :ensure nil
   :bind (:map emacs-lisp-mode-map
@@ -25,6 +27,10 @@
         (save-match-data
           (re-search-forward "[[:space:]\n]+" nil t)
           (insert eval-as-comment-prefix))))))
+
+(use-package ielm
+  :ensure nil
+  :hook (ielm-mode . my/buffer-auto-close))
 
 (provide 'init-elisp)
 

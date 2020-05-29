@@ -58,5 +58,16 @@
     (switch-to-buffer (other-buffer buf))
     (switch-to-buffer-other-window buf)))
 
+;;;###autoload
+(defun my/buffer-auto-close ()
+  "Close buffer after exit."
+  (when (ignore-errors (get-buffer-process (current-buffer)))
+    (set-process-sentinel (get-buffer-process (current-buffer))
+                          (lambda (process exit-msg)
+                            (when (string-match "\\(finished\\|exited\\)" exit-msg)
+                              (kill-buffer (process-buffer process))
+                              (when (> (count-windows) 1)
+                                (delete-window)))))))
+
 (provide 'init-core)
 ;;; init-core.el ends here
