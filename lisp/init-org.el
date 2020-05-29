@@ -332,6 +332,17 @@
          ("C-c n i" . org-roam-insert)
          ("C-c n l" . org-roam)))
 
+(use-package org-journal
+  :ensure t
+  :bind (:map org-roam-mode-map
+         ("C-c n j" . org-journal-new-entry))
+  :custom
+  (org-journal-dir org-directory)
+  (org-journal-enable-agenda-integration t)
+  (org-journal-date-prefix "#+TITLE: ")
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-date-format "%F %R, %A"))
+
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t

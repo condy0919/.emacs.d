@@ -208,6 +208,7 @@
   :defer t
   :defines (org-directory)
   :custom
+  (deft-recursive t)
   ;; Disable auto save
   (deft-auto-save-interval 0)
   (deft-extensions '("org" "md"))
