@@ -32,3 +32,4 @@ hunspell
 txt
 emacs
 config
+ansi
