@@ -26,7 +26,9 @@
   (evil-want-C-g-bindings t)
   (evil-want-Y-yank-to-eol t)
   (evil-want-abbrev-expand-on-insert-exit nil)
-  (evil-symbol-word-search t))
+  (evil-symbol-word-search t)
+  :config
+  (evil-ex-define-cmd "q[uit]" 'kill-this-buffer))
 
 (use-package evil-collection
   :ensure t
@@ -125,7 +127,6 @@
 
   ;; frequently used keys
   (evil-leader/set-key
-    "q" 'kill-this-buffer
     "i" 'counsel-imenu
     "g" 'counsel-rg)
 
