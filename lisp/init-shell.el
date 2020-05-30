@@ -61,7 +61,11 @@
 ;; General term mode
 (use-package term
   :ensure nil
-  :hook (term-mode . my/buffer-auto-close))
+  :hook ((term-mode . my/buffer-auto-close)
+         (term-mode . (lambda ()
+                        (setq-local global-hl-line-mode nil)
+                        (setq-local truncate-lines t)
+                        (setq-local scroll-margin 0)))))
 
 ;; Popup a shell
 (use-package shell-pop

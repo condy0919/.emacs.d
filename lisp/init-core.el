@@ -59,6 +59,20 @@
     (switch-to-buffer-other-window buf)))
 
 ;;;###autoload
+(defun my/term-other-window (&rest _)
+  "Open a `term' in a new window."
+  (interactive)
+  (let ((buf (ansi-term shell-file-name)))
+    (switch-to-buffer (other-buffer buf))
+    (switch-to-buffer-other-window buf)))
+
+;;;###autoload
+(defun my/term (&rest _)
+  "Open a `term' in current window."
+  (interactive)
+  (ansi-term shell-file-name))
+
+;;;###autoload
 (defun my/buffer-auto-close ()
   "Close buffer after exit."
   (when (ignore-errors (get-buffer-process (current-buffer)))

@@ -123,7 +123,9 @@
     "ot" 'vterm
     "oT" 'vterm-other-window
     "oe" 'eshell
-    "oE" 'my/eshell-other-window)
+    "oE" 'my/eshell-other-window
+    "oo" 'my/term
+    "oO" 'my/term-other-window)
 
   ;; frequently used keys
   (evil-leader/set-key
