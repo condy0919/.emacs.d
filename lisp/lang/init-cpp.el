@@ -40,6 +40,19 @@
 
 (use-package modern-cpp-font-lock
   :ensure t
+  :custom
+  ;; Make integer literal highlight in the same color
+  (modern-c++-literal-binary-prefix-face 'font-lock-constant-face)
+  (modern-c++-literal-binary-infix-face  'font-lock-constant-face)
+  (modern-c++-literal-binary-suffix-face 'font-lock-constant-face)
+  (modern-c++-literal-octal-prefix-face  'font-lock-constant-face)
+  (modern-c++-literal-octal-infix-face   'font-lock-constant-face)
+  (modern-c++-literal-octal-suffix-face  'font-lock-constant-face)
+  (modern-c++-literal-hex-prefix-face    'font-lock-constant-face)
+  (modern-c++-literal-hex-infix-face     'font-lock-constant-face)
+  (modern-c++-literal-hex-suffix-face    'font-lock-constant-face)
+  (modern-c++-literal-dec-infix-face     'font-lock-constant-face)
+  (modern-c++-literal-dec-suffix-face    'font-lock-constant-face)
   :hook (c++-mode . modern-c++-font-lock-mode))
 
 (use-package cmake-mode
