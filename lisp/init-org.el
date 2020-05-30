@@ -334,6 +334,7 @@
 
 (use-package org-journal
   :ensure t
+  :after org-roam
   :bind (:map org-roam-mode-map
          ("C-c n j" . org-journal-new-entry))
   :custom
