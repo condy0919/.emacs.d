@@ -279,6 +279,7 @@
   :bind ("C-x 4 n" . newsticker-show-news)
   :custom
   (newsticker-retrieval-method (if (eq system-type 'gnu/linux) 'extern 'intern))
+  (newsticker-automatically-mark-items-as-old nil)
   (newsticker-date-format "%F %R, %A")
   (newsticker-treeview-date-format "%F %R\t")
   (newsticker-url-list-defaults '(("LWN (Linux Weekly News)"
