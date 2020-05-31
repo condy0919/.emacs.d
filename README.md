@@ -250,6 +250,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - 插入`SPDX`形式的`license`头功能已独立[license.el](https://github.com/condy0919/license.el)
 - 将常用的功能键绑定在`leader`键上
 
+# 截图
+
+![dashboard](https://user-images.githubusercontent.com/4024656/83343041-46cbc480-a328-11ea-800d-6cd88540186e.png
+"Dashboard")
+
+![magit_markdown](https://user-images.githubusercontent.com/4024656/83343152-30723880-a329-11ea-90ff-ec5f3b7d504a.png
+"Magit and markdown")
+
+![cpp_company](https://user-images.githubusercontent.com/4024656/83343182-965ec000-a329-11ea-862c-a0b25305a1b4.png
+"cc-mode and company")
+
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
 [emacs-ccls]: https://melpa.org/#/ccls
