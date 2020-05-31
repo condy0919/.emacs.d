@@ -323,6 +323,26 @@
   :ensure nil
   :commands (notifications-notify))
 
+;; Recently opened files
+(use-package recentf
+  :ensure nil
+  :after no-littering
+  :hook ((after-init . recentf-mode)
+         (focus-out-hook . (recentf-save-list recentf-cleanup)))
+  :custom
+  (recentf-max-saved-items 300)
+  (recentf-auto-cleanup 'never)
+  (recentf-exclude '((expand-file-name package-user-dir)
+                     no-littering-var-directory
+                     no-littering-etc-directory
+                     ".cache"
+                     "cache"
+                     "^/tmp/"
+                     "/ssh:"
+                     "/su\\(do\\)?:"
+                     "^/usr/include/"
+                     "COMMIT_EDITMSG\\'")))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
@@ -330,7 +350,8 @@
 
 ;; Keep ~/.emacs.d clean
 (use-package no-littering
-  :ensure t)
+  :ensure t
+  :demand t)
 
 (provide 'init-base)
 

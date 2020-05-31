@@ -5,26 +5,6 @@
 
 ;;; Code:
 
-(use-package recentf
-  :ensure nil
-  :hook ((after-init . recentf-mode)
-         (focus-out-hook . (recentf-save-list recentf-cleanup)))
-  :custom
-  (recentf-max-saved-items 300)
-  (recentf-auto-cleanup 'never)
-  (recentf-exclude '((expand-file-name package-user-dir)
-                     no-littering-var-directory
-                     no-littering-etc-directory
-                     ".cache"
-                     "cache"
-                     "recentf"
-                     "^/tmp/"
-                     "/ssh:"
-                     "/su\\(do\\)?:"
-                     "^/usr/include/"
-                     "bookmarks"
-                     "COMMIT_EDITMSG\\'")))
-
 (use-package page-break-lines
   :ensure t
   :hook ((emacs-lisp-mode compilation-mode help-mode) . page-break-lines-mode))
