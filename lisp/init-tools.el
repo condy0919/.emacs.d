@@ -147,6 +147,13 @@
   (markdown-gfm-uppercase-checkbox t)
   (markdown-fontify-code-blocks-natively t))
 
+;; Generate table of contents for markdown-mode
+(use-package markdown-toc
+  :ensure t
+  :after markdown-mode
+  :bind (:map markdown-mode-command-map
+         ("r" . markdown-toc-generate-or-refresh-toc)))
+
 ;; Free hands
 (use-package auto-package-update
   :ensure t
