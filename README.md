@@ -15,6 +15,9 @@
 个人**Emacs**配置
 ====
 
+![overview](https://user-images.githubusercontent.com/4024656/83358470-63a6dd00-a3a6-11ea-8489-f86b08b48d13.png
+"Emacs Overview")
+
 仿 [Centaur Emacs](https://github.com/seagle0128/.emacs.d) 的个人配置.
 
 ```bash
