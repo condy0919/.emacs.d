@@ -131,6 +131,12 @@
   :mode (("\\.rst\\'"  . rst-mode)
          ("\\.rest\\'" . rst-mode)))
 
+;; Pixel alignment for org/markdown tables
+(use-package valign
+  :ensure t
+  :straight (:host github :repo "casouri/valign" :branch "markdown")
+  :hook ((markdown-mode org-mode) . valign-mode))
+
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
