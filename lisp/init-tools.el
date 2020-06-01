@@ -134,7 +134,7 @@
 ;; Pixel alignment for org/markdown tables
 (use-package valign
   :ensure t
-  :straight (:host github :repo "casouri/valign" :branch "markdown")
+  :straight (:host github :repo "casouri/valign")
   :hook ((markdown-mode org-mode) . valign-mode))
 
 ;; The markdown mode is awesome! unbeatable
