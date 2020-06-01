@@ -33,3 +33,4 @@ txt
 emacs
 config
 ansi
+hideshow
