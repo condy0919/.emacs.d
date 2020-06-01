@@ -134,14 +134,15 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常
 推荐使用`evil-mode`在`normal`状态下定义的键绑定。
 
-| key           | function                                             |
-|---------------|------------------------------------------------------|
-| <kbd>zm</kbd> | `evil-close-folds`隐藏所有代码块                     |
-| <kbd>zr</kbd> | `evil-open-folds`显示所有被隐藏的代码块              |
-| <kbd>zo</kbd> | `evil-open-fold`隐藏当前代码块                       |
-| <kbd>zO</kbd> | `evil-open-fold-rec`递归地隐藏当前以及之内的代码块   |
-| <kbd>zc</kbd> | `evil-close-fold`显示当前被隐藏的代码块              |
-| <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块  |
+| key           | function                                            |
+|---------------|-----------------------------------------------------|
+| <kbd>zm</kbd> | `evil-close-folds`隐藏所有代码块                    |
+| <kbd>zr</kbd> | `evil-open-folds`显示所有被隐藏的代码块             |
+| <kbd>zo</kbd> | `evil-open-fold`隐藏当前代码块                      |
+| <kbd>zO</kbd> | `evil-open-fold-rec`递归地隐藏当前以及之内的代码块  |
+| <kbd>zc</kbd> | `evil-close-fold`显示当前被隐藏的代码块             |
+| <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
+| <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
 
 ## Emacs
 

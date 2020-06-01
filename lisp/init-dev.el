@@ -257,6 +257,7 @@
 ;;
 ;; zm hide-all
 ;; zr show-all
+;; za toggle-fold
 ;; zo show-block
 ;; zc hide-block
 (use-package hideshow
