@@ -1,3 +1,25 @@
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [个人**Emacs**配置](#个人emacs配置)
+- [需要的依赖](#需要的依赖)
+- [基础配置](#基础配置)
+- [插件配置、升级](#插件配置升级)
+- [界面](#界面)
+- [趁手的工具](#趁手的工具)
+- [按键绑定](#按键绑定)
+    - [evil-mode](#evil-mode)
+    - [Emacs](#emacs)
+- [通用开发设置](#通用开发设置)
+- [prog-mode](#prog-mode)
+    - [cc-mode](#cc-mode)
+    - [rust-mode](#rust-mode)
+    - [ocaml-mode](#ocaml-mode)
+    - [haskell-mode](#haskell-mode)
+- [个性化](#个性化)
+- [截图](#截图)
+
+<!-- markdown-toc end -->
 <h3 align="center">A fast and incredible Emacs config</h3>
 
 <p align="center">
@@ -97,6 +119,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还
 有`separedit`,让人在代码里写`documentation comments`不再烦恼。
 
+[valign][valign]提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
+
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
 - evil-leader
@@ -143,6 +167,37 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>zc</kbd> | `evil-close-fold`显示当前被隐藏的代码块             |
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
+
+提供了一个`Leader`键，绑定在`SPC`键上:
+
+文件相关的键绑定:
+
+| key           | function                                            |
+|---------------|-----------------------------------------------------|
+| <kbd>fj</kbd> | `dired-jump`在当前文件所属目录进入`dired`           |
+| <kbd>fJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
+| <kbd>ff</kbd> | `find-file`打开文件                                 |
+| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开  |
+| <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件      |
+| <kbd>fd</kbd> | `my/delete-current-file`删除当前文件                |
+| <kbd>fc</kbd> | `my/copy-current-file`拷贝当前文件至其他地方        |
+| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径    |
+| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件              |
+| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件               |
+| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件           |
+| <kbd>fg</kbd> | `counsel-rg`采用`rg`在当前目录下搜索                |
+
+打开其他程序的键绑定:
+
+| key           | function                 |
+|---------------|--------------------------|
+| <kbd>ot</kbd> | `vterm`                  |
+| <kbd>oT</kbd> | `vterm-other-window`     |
+| <kbd>oe</kbd> | `eshell`                 |
+| <kbd>oE</kbd> | `my/eshell-other-window` |
+| <kbd>oo</kbd> | `my/term`                |
+| <kbd>oO</kbd> | `my/term-other-window`                         |
+
 
 ## Emacs
 
@@ -269,6 +324,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
+[valign]: https://github.com/casouri/valign/
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent
 [modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
