@@ -296,6 +296,15 @@
   :custom
   (css-indent-offset 2))
 
+;; XML
+(use-package nxml-mode
+  :ensure nil
+  :mode (("\\.xml\\'" . nxml-mode)
+         ("\\.rss\\'" . nxml-mode))
+  :custom
+  (nxml-slash-auto-complete-flag t)
+  (nxml-auto-insert-xml-declaration-flag t))
+
 ;; Config files mode
 (use-package yaml-mode
   :ensure t
