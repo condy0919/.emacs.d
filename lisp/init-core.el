@@ -44,6 +44,19 @@
   (my/delete-file (buffer-file-name)))
 
 ;;;###autoload
+(defun my/copy-current-file (new-path &optional overwrite-p)
+  "Copy current buffer's file to `NEW-PATH'.
+If `OVERWRITE-P', overwrite the destination file without
+confirmation."
+  (interactive (list (read-file-name "Copy file to: ")
+                     current-prefix-arg))
+  (or (buffer-file-name) (error "No file is visiting"))
+  (let ((old-path (buffer-file-name))
+        (new-path (expand-file-name new-path)))
+    (make-directory (file-name-directory new-path) 't)
+    (copy-file old-path new-path (or overwrite-p 1))))
+
+;;;###autoload
 (defun my/copy-current-filename (&rest _)
   "Copy the full path to the current file."
   (interactive)

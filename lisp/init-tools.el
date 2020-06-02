@@ -67,7 +67,8 @@
   :ensure t
   :hook (ivy-mode . counsel-mode)
   :bind (([remap evil-ex-registers]  . counsel-evil-registers)
-         ([remap evil-show-mark]     . counsel-mark-ring)
+         ([remap evil-show-marks]    . counsel-mark-ring)
+         ([remap evil-show-jumps]    . my/evil-jump-list)
          ([remap recentf-open-files] . counsel-recentf)
          ([remap swiper]             . counsel-grep-or-swiper)
          ("M-y"                      . counsel-yank-pop))
@@ -79,6 +80,34 @@
      ("l" vlf            "view large file")
      ("b" hexl-find-file "open file in binary mode")
      ("x" counsel-find-file-as-root "open as root")))
+
+  ;; Modified from doom
+  (defun my/evil-jump-list ()
+    "evil jump list with ivy enhancement."
+    (interactive)
+    (ivy-read "evil jumplist: "
+              (nreverse
+               (delete-dups
+                (mapcar (lambda (mark)
+                          (cl-destructuring-bind (pt path) mark
+                            (let ((buf (get-file-buffer path)))
+                              (unless buf
+                                (setq buf (find-file-noselect path t)))
+                              (with-current-buffer buf
+                                (goto-char pt)
+                                (font-lock-fontify-region (line-beginning-position) (line-end-position))
+                                (cons (format "%s:%d %s"
+                                              (buffer-name)
+                                              (line-number-at-pos)
+                                              (string-trim-right (or (thing-at-point 'line) "")))
+                                      (point-marker))))))
+                        (evil--jumps-savehist-sync))))
+              :sort nil
+              :require-match t
+              :action (lambda (cand)
+                        (let ((mark (cdr cand)))
+                          (with-current-buffer (switch-to-buffer (marker-buffer mark))
+                            (goto-char (marker-position mark)))))))
   :custom
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
@@ -109,13 +138,7 @@
   :ensure t
   :defer t
   :custom
-  (swiper-action-recenter t)
-  :config
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "/" 'swiper)
-    )
-  )
+  (swiper-action-recenter t))
 
 ;; Writable grep buffer. company well with ivy-occur
 (use-package wgrep

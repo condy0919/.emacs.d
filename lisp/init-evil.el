@@ -66,7 +66,7 @@
     "fF" 'find-file-other-window
     "fd" 'my/delete-current-file
     "fy" 'my/copy-current-filename
-    "fc" 'copy-file
+    "fc" 'my/copy-current-file
     "fr" 'counsel-recentf
     "fR" 'my/rename-current-file
     "fl" 'find-file-literally
@@ -95,6 +95,28 @@
   (evil-leader/set-key
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
+
+  ;; prefix: <Leader> s, search
+  (evil-leader/set-key
+    "sb" 'swiper
+    "si" 'imenu
+    "sj" 'evil-show-jumps
+    "sr" 'evil-show-marks
+    "ss" 'swiper-isearch
+    "sS" 'swiper-isearch-thing-at-point)
+
+  ;; prefix: <Leader> g, git
+  (evil-leader/set-key
+    "gb" 'magit-branch-checkout
+    "gB" 'magit-blame-addition
+    "gc" 'magit-branch-and-checkout
+    "gC" 'magit-commit-create
+    "gd" 'magit-diff
+    "gf" 'magit-find-file
+    "gg" 'magit-status
+    "gG" 'magit-status-here
+    "gi" 'magit-init
+    "gr" 'magit-rebase-interactive)
 
   ;; prefix: <Leader> p, projectile
   (evil-leader/set-key
@@ -126,11 +148,6 @@
     "oE" 'my/eshell-other-window
     "oo" 'my/term
     "oO" 'my/term-other-window)
-
-  ;; frequently used keys
-  (evil-leader/set-key
-    "i" 'counsel-imenu
-    "g" 'counsel-rg)
 
   ;; org-mode <Leader> m
   ;; Copy from doom-emacs
