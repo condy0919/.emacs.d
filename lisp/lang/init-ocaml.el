@@ -13,6 +13,7 @@
 ;; Indentation tool for OCaml
 (use-package ocp-indent
   :ensure t
+  :when (executable-find "ocp-indent")
   :hook (tuareg-mode . ocp-setup-indent)
   :commands (ocp-indent-region ocp-indent-buffer))
 
