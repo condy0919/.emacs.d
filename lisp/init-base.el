@@ -169,7 +169,21 @@
 ;; Switch window
 (use-package window
   :ensure nil
-  :bind ("M-o" . other-window))
+  :bind (("M-o"   . other-window)
+         ("C-x o" . my/transient-other-window))
+  :config
+  ;; `term-mode' translates 'M-o' to `term-send-raw-meta', so use 'C-x o' instead.
+  (defun my/transient-other-window (count &optional all-frames interactive)
+    (interactive "p\ni\np")
+    (let ((echo-keystrokes nil))
+      (other-window count all-frames interactive)
+      (message "Use o for further window switch")
+      (set-transient-map
+       (let ((map (make-sparse-keymap)))
+         (define-key map [?o] #'other-window)
+         map)
+       t)))
+  )
 
 ;; Server mode.
 ;; Use emacsclient to connect
