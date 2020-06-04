@@ -35,7 +35,8 @@
             "--clang-tidy"
             "--completion-style=bundled"
             "--pch-storage=memory"
-            "--suggest-missing-includes")))
+            "--suggest-missing-includes"
+            "--header-insertion-decorators=0")))
   )
 
 (use-package modern-cpp-font-lock

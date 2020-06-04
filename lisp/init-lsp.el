@@ -15,14 +15,15 @@
          ([escape] . company-abort)
          ;; consistent with ivy-occur
          ("C-c C-o" . counsel-company)
-         ("C-p" . company-select-previous)
-         ("C-n" . company-select-next)
-         ("C-s" . company-filter-candidates)
-         ("<tab>" . company-complete-common-or-cycle)
+         ("C-p"     . company-select-previous)
+         ("C-n"     . company-select-next)
+         ("C-s"     . company-filter-candidates)
+         ([tab]     . company-complete-common-or-cycle)
+         ([backtab] . company-select-previous-or-abort)
          :map company-search-map
          ([escape] . company-search-abort)
-         ("C-p" . company-select-previous)
-         ("C-n" . company-select-next))
+         ("C-p"    . company-select-previous)
+         ("C-n"    . company-select-next))
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
