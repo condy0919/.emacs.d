@@ -83,7 +83,7 @@
 ;; Facilities for myself
 (use-package init-blog
   :ensure nil
-  :after markdown-mode
+  :defines markdown-mode-map
   :bind (:map markdown-mode-map
          ("C-c C-s r" . mblog-insert-ruby-tag)))
 

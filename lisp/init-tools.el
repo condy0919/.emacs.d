@@ -57,10 +57,7 @@
     (interactive)
     (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
     (ivy-occur))
-  :config
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'ivy-occur-grep-mode 'normal)
-    (evil-make-overriding-map ivy-occur-mode-map 'normal)))
+  )
 
 ;; Fuzzy matcher
 (use-package counsel
@@ -129,6 +126,7 @@
   (isearch-regexp-lax-whitespace t)
   (search-whitespace-regexp "[ \t\r\n]+")
   (isearch-lazy-count t)
+  (isearch-yank-on-move t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
   (lazy-highlight-cleanup nil))
