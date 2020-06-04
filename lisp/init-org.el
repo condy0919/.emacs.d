@@ -127,7 +127,7 @@
 (use-package org-clock
   :ensure nil
   :after org
-  :commands notifications-notify
+  :functions notifications-notify
   :custom
   (org-clock-in-resume t)
   (org-clock-idle-time 15)
@@ -137,7 +137,8 @@
   (org-clock-history-length 20)
   (org-clock-mode-line-total 'current)
   (org-clock-display-default-range 'thismonth)
-  (org-clock-in-switch-to-state "TODO")
+  (org-clock-in-switch-to-state "INPROGRESS")
+  (org-clock-out-switch-to-state "WAITING")
   (org-clock-out-remove-zero-time-clocks t)
   (org-clock-report-include-clocking-task t)
   (org-show-notification-handler (lambda (msg)
@@ -145,6 +146,11 @@
                                                          :body msg
                                                          :timeout 5000
                                                          :urgency 'critical)))
+  (org-clock-clocktable-default-properties '(:block day :maxlevel 3 :scope agenda
+                                             :link t :compact t :formula % :step day
+                                             :fileskip0 t :stepskip0 t :narrow 80
+                                             :properties ("CLOCKSUM" "CLOCKSUM_T"
+                                                          "TODO")))
   :config
   (org-clock-persistence-insinuate))
 
@@ -192,19 +198,21 @@
              :clock-in t
              :clock-resume t
              :children
-             (("Today" :keys "t" :type entry :headline "Tasks"
+             (("Tasks" :keys "t" :type entry :headline "Tasks"
                :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
               ("Reading" :keys "r" :type entry :headline "Reading"
                :template "* TODO %^{name}\n %a\n")
               ("Work" :keys "w" :type entry :headline "Work"
                :template "* TODO %^{taskname}\n %a\n")
-              ("Mail" :keys "e" :type entry :headline "Mails" :immediate-finish t
-               :template "* TODO [#A] Reply: %a\n")))
-            ("Notes"
-             :keys "n"
-             :file "notes.org"
+              ("Shopping" :keys "s" :type checkitem :headline "Shopping"
+               :template "[ ] %i%?")
+              ("Reminder" :keys "r" :type entry :headline "Non-recurring"
+               :template "* TODO [#B] %i%?")))
+            ("Capture"
+             :keys "c"
+             :file "capture.org"
              :children
-             (("Capture" :keys "c" :type entry :headline "Inbox" :immediate-finish t
+             (("Web" :keys "w" :type entry :headline "Web" :immediate-finish t
                :template "* TODO [[%:link][%:description]]\n %a\n %i")))
             ("Project"
              :keys "p"
@@ -288,10 +296,14 @@
   :ensure t
   :hook (org-agenda-mode . org-super-agenda-mode)
   :custom
-  (org-super-agenda-groups '((:name "Today" :time-grid t)
-                             (:name "Deadlines" :deadline t :order 1)
-                             (:name "Important" :priority>= "B" :order 2)
-                             (:priority< "B" :order 2)
+  (org-super-agenda-groups '((:log t)
+                             (:name "Schedule" :time-grid t)
+                             (:name "Scheduled" :scheduled past)
+                             (:name "Today" :scheduled today)
+                             (:name "Due today" :deadline today)
+                             (:name "Overdue" :deadline past)
+                             (:name "Due soon" :deadline future)
+                             (:name "Important" :priority>= "B")
                              (:name "Started" :todo "INPROGRESS" :order 6)
                              (:todo "WAITING" :order 9)))
   )
@@ -321,7 +333,7 @@
   :hook ((org-load . org-roam-mode)
          (org-roam-backlinks-mode . visual-line-mode))
   :custom
-  (org-roam-directory org-directory)
+  (org-roam-directory (concat org-directory "roam/"))
   (org-roam-buffer-no-delete-other-windows t)
   (org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
@@ -365,7 +377,7 @@
   :ensure nil
   :after org
   :custom
-  (org-protocol-default-template-key "nc"))
+  (org-protocol-default-template-key "cw"))
 
 (use-package org-habit
   :ensure nil
