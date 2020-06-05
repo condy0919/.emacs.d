@@ -34,3 +34,4 @@ emacs
 config
 ansi
 hideshow
+speedbar

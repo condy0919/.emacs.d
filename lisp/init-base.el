@@ -243,6 +243,9 @@
 (use-package speedbar
   :ensure nil
   :bind ("<f8>" . speedbar-get-focus)
+  :custom-face
+  (speedbar-file-face ((t (:foreground "cyan4"))))
+  (speedbar-selected-face ((t (:foreground "red3" :underline t))))
   :custom
   (speedbar-use-images nil)
   (speedbar-show-unknown-files t)
