@@ -75,6 +75,7 @@
   ;; prefix: <Leader> b, bookmark
   (evil-leader/set-key
     "bb" 'switch-to-buffer
+    "bB" 'list-buffers
     "bm" 'bookmark-set
     "bd" 'bookmark-delete
     "bj" 'bookmark-jump

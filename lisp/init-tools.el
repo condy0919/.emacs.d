@@ -162,10 +162,9 @@
 (use-package markdown-mode
   :ensure t
   :mode ("README\\(?:\\.md\\)?\\'" . gfm-mode)
-  :hook ((markdown-mode . auto-fill-mode)
-         (markdown-mode . (lambda ()
-                           (setq-local which-key-inhibit-regexps
-                                       '("C-c C-s" "C-c C-c")))))
+  :hook (markdown-mode . auto-fill-mode)
+  :init
+  (advice-add #'markdown--command-map-prompt :override #'ignore)
   :custom
   (markdown-header-scaling t)
   (markdown-enable-wiki-links t)
