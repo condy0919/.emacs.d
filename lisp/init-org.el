@@ -333,7 +333,7 @@
   :hook ((org-load . org-roam-mode)
          (org-roam-backlinks-mode . visual-line-mode))
   :custom
-  (org-roam-directory (concat org-directory "roam/"))
+  (org-roam-directory (expand-file-name (concat org-directory "roam/")))
   (org-roam-buffer-no-delete-other-windows t)
   (org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map

@@ -239,8 +239,8 @@
 ;; Notes manager
 (use-package deft
   :ensure t
-  :defer t
   :defines (org-directory)
+  :bind ("C-c n d" . deft)
   :custom
   (deft-recursive t)
   ;; Disable auto save
