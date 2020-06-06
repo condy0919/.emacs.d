@@ -37,8 +37,7 @@
   (dashboard-set-navigator t)
   (dashboard-items '((recents   . 10)
                      (projects  . 5)
-                     (bookmarks . 5)
-                     (agenda    . 5)))
+                     (bookmarks . 5)))
   :config
   (defconst homepage-url "https://github.com/condy0919/.emacs.d")
   (defconst stars-url (concat homepage-url "/stargazers"))
