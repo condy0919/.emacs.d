@@ -358,9 +358,9 @@
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
-  (recentf-exclude '((expand-file-name package-user-dir)
-                     no-littering-var-directory
-                     no-littering-etc-directory
+  (recentf-exclude `(,(expand-file-name package-user-dir)
+                     ,no-littering-var-directory
+                     ,no-littering-etc-directory
                      ".cache"
                      "cache"
                      "^/tmp/"
