@@ -307,18 +307,15 @@
   (langtool-http-server-host "localhost")
   (langtool-http-server-port 8081))
 
-;; Generic RSS reader
-(use-package newst-reader
-  :ensure nil
-  :bind ("C-x 4 n" . newsticker-show-news)
+;; RSS reader
+;; The builtin newsticker is buggy
+(use-package elfeed
+  :ensure t
+  :bind ("C-x 4 n" . elfeed)
   :custom
-  (newsticker-retrieval-method (if (eq system-type 'gnu/linux) 'extern 'intern))
-  (newsticker-automatically-mark-items-as-old nil)
-  (newsticker-date-format "%F %R, %A")
-  (newsticker-treeview-date-format "%F %R\t")
-  (newsticker-url-list-defaults '(("LWN (Linux Weekly News)"
-                                   "https://lwn.net/headlines/rss")))
-  (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml"))))
+  (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" Planet-Emacslife)
+                  ("https://lwn.net/headlines/rss" LWN)))
+  (elfeed-search-title-max-width 100))
 
 (provide 'init-tools)
 

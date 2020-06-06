@@ -133,7 +133,7 @@
   ;; prefix: <Leader> a, apps
   (evil-leader/set-key
     "am" 'mu4e
-    "an" 'newsticker-show-news
+    "an" 'elfeed
     "ah" 'hyperbole
     "ad" 'deft
     "aa" 'org-agenda
