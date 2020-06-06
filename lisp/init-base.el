@@ -171,7 +171,7 @@
   :ensure nil
   :bind (("M-o"   . other-window)
          ("C-x o" . my/transient-other-window))
-  :config
+  :preface
   ;; `term-mode' translates 'M-o' to `term-send-raw-meta', so use 'C-x o' instead.
   (defun my/transient-other-window (count &optional all-frames interactive)
     (interactive "p\ni\np")
