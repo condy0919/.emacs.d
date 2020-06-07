@@ -52,6 +52,7 @@
   (eshell-glob-case-insensitive t)
   :hook (eshell-mode . (lambda ()
                          ;; Define aliases
+                         (eshell/alias "q"    "exit")
                          (eshell/alias "ll"   "ls -lh --color=auto $*")
                          (eshell/alias "vi"   "find-file $1")
                          (eshell/alias "vim"  "find-file $1")
