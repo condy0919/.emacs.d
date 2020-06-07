@@ -12,6 +12,8 @@
          ;; consistent with inferior-python-shell
          ("C-c C-p" . ielm)
          ("C-c C-b" . eval-buffer)
+         ("C-c C-c" . my/eval-to-comment)
+         :map lisp-interaction-mode-map
          ("C-c C-c" . my/eval-to-comment))
   :config
   (defconst eval-as-comment-prefix ";;=> ")
