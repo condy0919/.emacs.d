@@ -11,6 +11,17 @@
   :defer 1
   :commands (mu4e mu4e-compose-new)
   :hook (mu4e-compose-mode . auto-fill-mode)
+  ;; from doom
+  ;; This hook correctly modifies gmail flags on emails when they are marked.
+  ;; Without it, refiling (archiving), trashing, and flagging (starring) email
+  ;; won't properly result in the corresponding gmail action, since the marks
+  ;; are ineffectual otherwise.
+  :hook (mu4e-mark-execute-pre . (lambda (mark msg)
+                                   (pcase mark
+                                     (`trash  (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
+                                     (`refile (mu4e-action-retag-message msg "-\\Inbox"))
+                                     (`flag   (mu4e-action-retag-message msg "+\\Starred"))
+                                     (`unflag (mu4e-action-retag-message msg "-\\Starred")))))
   :custom
   ;; path
   (mu4e-maildir (expand-file-name "~/Mail"))
@@ -30,27 +41,28 @@
   (mu4e-index-lazy-check t)
 
   ;; folders & shortcuts
-  (mu4e-drafts-folder "/Drafts")
-  (mu4e-sent-folder "/Sent")
-  (mu4e-trash-folder "/Trash")
-  (mu4e-maildir-shortcuts '(("/INBOX" . ?i)
-                            ("/Sent" . ?s)
-                            ("/Trash" . ?t)
-                            ("/Drafts" . ?d)))
+  (mu4e-drafts-folder "/Gmail/Drafts")
+  (mu4e-sent-folder   "/Gmail/Sent")
+  (mu4e-trash-folder  "/Gmail/Trash")
+  (mu4e-maildir-shortcuts '(("/Gmail/All"    . ?a)
+                            ("/Gmail/INBOX"  . ?i)
+                            ("/Gmail/Sent"   . ?s)
+                            ("/Gmail/Trash"  . ?t)
+                            ("/Gmail/Drafts" . ?d)))
 
   ;; beautiful icons. Copy from doom
   (mu4e-use-fancy-chars t)
-  (mu4e-headers-draft-mark '("D" . ""))
-  (mu4e-headers-flagged-mark '("F" . ""))
-  (mu4e-headers-new-mark '("N" . ""))
-  (mu4e-headers-passed-mark '("P" . ""))
-  (mu4e-headers-replied-mark '("R" . ""))
-  (mu4e-headers-seen-mark '("S" . ""))
-  (mu4e-headers-trashed-mark '("T" . ""))
-  (mu4e-headers-attach-mark '("a" . ""))
+  (mu4e-headers-draft-mark     '("D" . ""))
+  (mu4e-headers-flagged-mark   '("F" . ""))
+  (mu4e-headers-new-mark       '("N" . ""))
+  (mu4e-headers-passed-mark    '("P" . ""))
+  (mu4e-headers-replied-mark   '("R" . ""))
+  (mu4e-headers-seen-mark      '("S" . ""))
+  (mu4e-headers-trashed-mark   '("T" . ""))
+  (mu4e-headers-attach-mark    '("a" . ""))
   (mu4e-headers-encrypted-mark '("x" . ""))
-  (mu4e-headers-signed-mark '("s" . ""))
-  (mu4e-headers-unread-mark '("u" . ""))
+  (mu4e-headers-signed-mark    '("s" . ""))
+  (mu4e-headers-unread-mark    '("u" . ""))
 
   ;; visual-line-mode + auto-fill upon sending
   (mu4e-compose-format-flowed t)
