@@ -198,6 +198,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>oo</kbd> | `my/term`                |
 | <kbd>oO</kbd> | `my/term-other-window`                         |
 
+搜索相关的功能键绑定:
+
+| key           | function                        |
+|---------------|---------------------------------|
+| <kbd>sb</kbd> | `swiper`                        |
+| <kbd>si</kbd> | `imenu`                         |
+| <kbd>sj</kbd> | `evil-show-jumps`               |
+| <kbd>sr</kbd> | `evil-show-marks`               |
+| <kbd>ss</kbd> | `swiper-isearch`                |
+| <kbd>sS</kbd> | `swiper-isearch-thing-at-point` |
+
 
 ## Emacs
 
@@ -304,12 +315,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ## haskell-mode
 
 - 使用 `dante`
-
-# 个性化
-
-- 自己博客文章的查找、新建
-- 插入`SPDX`形式的`license`头功能已独立[license.el](https://github.com/condy0919/license.el)
-- 将常用的功能键绑定在`leader`键上
 
 # 截图
 
