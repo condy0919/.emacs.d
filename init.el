@@ -79,6 +79,7 @@
 (require 'init-mail)
 (require 'init-dired)
 (require 'init-shell)
+(require 'init-gnus)
 
 ;; Facilities for myself
 (use-package init-blog

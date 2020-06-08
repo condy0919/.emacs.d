@@ -231,9 +231,8 @@
   (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
 
 ;; Open very large files
-(use-package vlf
-  :ensure t
-  :defer t)
+(use-package vlf-setup
+  :ensure vlf)
 
 ;; Notes manager
 (use-package deft
