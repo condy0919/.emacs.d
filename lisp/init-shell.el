@@ -57,6 +57,13 @@
                          (eshell/alias "vi"   "find-file $1")
                          (eshell/alias "vim"  "find-file $1")
                          (eshell/alias "nvim" "find-file $1")))
+  :config
+  (define-advice eshell-term-sentinel (:after (process exit-msg))
+    "Cleanup the buffer of visual commands."
+    (when (string-match "\\(finished\\|exited\\)" exit-msg)
+      (kill-buffer (process-buffer process))
+      (when (> (count-windows) 1)
+        (delete-window))))
   )
 
 ;; General term mode
