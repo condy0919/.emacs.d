@@ -38,6 +38,11 @@
       (run-with-idle-timer 0.1 nil 'my/vterm-directory-sync)))
   )
 
+;; Dumb shell
+(use-package shell
+  :ensure nil
+  :hook (shell-mode . my/buffer-auto-close))
+
 ;; the Emacs shell
 (use-package eshell
   :ensure nil
