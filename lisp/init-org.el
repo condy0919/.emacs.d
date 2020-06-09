@@ -248,7 +248,8 @@
   :after org
   :custom
   (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("github"  . "https://github.com/%s")
+  (org-link-abbrev-alist '(("wg21"    . "https://wg21.link/%s")
+                           ("github"  . "https://github.com/%s")
                            ("youtube" . "https://youtube.com/watch?v=%s")
                            ("google"  . "https://google.com/search?q=")))
   )
