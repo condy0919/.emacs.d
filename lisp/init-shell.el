@@ -43,7 +43,7 @@
   :ensure nil
   :hook (shell-mode . my/buffer-auto-close))
 
-;; the Emacs shell
+;; the Emacs shell & friends
 (use-package eshell
   :ensure nil
   :functions eshell/alias
@@ -69,6 +69,19 @@
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
+
+  )
+
+(use-package em-hist
+  :ensure nil
+  :bind (:map eshell-hist-mode-map
+         ("M-r" . my/eshell-complete-history))
+  :config
+  (defun my/eshell-complete-history ()
+    "Complete eshell commands history using `completing-read'."
+    (interactive)
+    (let ((hist (ring-elements eshell-history-ring)))
+      (insert (completing-read "> " hist nil t))))
   )
 
 ;; General term mode
