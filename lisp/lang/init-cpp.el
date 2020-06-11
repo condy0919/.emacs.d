@@ -63,6 +63,10 @@
   :config
   (my/set-company-backends-for cmake-mode company-cmake))
 
+(use-package cmake-font-lock
+  :ensure t
+  :hook (cmake-mode . cmake-font-lock-activate))
+
 (provide 'init-cpp)
 
 ;;; init-cpp.el ends here
