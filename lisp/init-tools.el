@@ -28,7 +28,12 @@
   (avy-timeout-seconds 0.2)
   (avy-all-windows nil)
   (avy-background t)
-  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
+  :config
+  (define-advice avy-isearch (:around (func &rest args))
+    (let ((avy-style 'pre))
+      (apply func args)))
+  )
 
 ;; ivy core
 (use-package ivy
