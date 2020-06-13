@@ -269,7 +269,6 @@
   (org-export-with-section-numbers t)
   (org-export-with-sub-superscripts nil)
   (org-export-use-babel nil)
-  (org-export-in-background t)
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
   (org-export-with-broken-links 'mark)
