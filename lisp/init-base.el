@@ -325,6 +325,8 @@
                   (mode . rst-mode)
                   (mode . text-mode)))
       ("Term" (or (mode . vterm-mode)
+                  (mode . term-mode)
+                  (mode . shell-mode)
                   (mode . eshell-mode)))
       ("Config" (or (mode . yaml-mode)
                     (mode . toml-mode)
