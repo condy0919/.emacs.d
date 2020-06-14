@@ -10,7 +10,10 @@
 ;; Beautiful term mode & friends
 (use-package vterm
   :ensure t
-  :when (bound-and-true-p module-file-suffix)
+  :when (and (bound-and-true-p module-file-suffix)
+             (executable-find "cmake")
+             (executable-find "make")
+             (executable-find "libtool"))
   :custom
   (vterm-always-compile-module t)
   (vterm-use-vterm-prompt nil)
