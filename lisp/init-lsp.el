@@ -58,19 +58,19 @@
   :hook (prog-mode . lsp-deferred)
   :custom
   (lsp-keymap-prefix "C-c l")
-  (lsp-idle-delay 0.5)                 ;; lazy refresh
-  (lsp-log-io nil)                     ;; enable log only for debug
-  (lsp-enable-folding nil)             ;; use `hideshow' instead
   (lsp-enable-links nil)               ;; no clickable links
-  (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
-  (lsp-lens-auto-enable t)             ;; enable lens
-  (lsp-prefer-capf t)                  ;; using `company-capf' by default
+  (lsp-enable-folding nil)             ;; use `hideshow' instead
   (lsp-enable-snippet nil)             ;; no snippet
   (lsp-enable-file-watchers nil)       ;; turn off for better performance
   (lsp-enable-text-document-color nil) ;; as above
   (lsp-enable-symbol-highlighting nil) ;; as above
   (lsp-enable-indentation nil)         ;; indent by ourself
   (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
+  (lsp-idle-delay 0.5)                 ;; lazy refresh
+  (lsp-log-io nil)                     ;; enable log only for debug
+  (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
+  (lsp-lens-auto-enable t)             ;; enable lens
+  (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; disable eldoc hover
