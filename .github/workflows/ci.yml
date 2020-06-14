@@ -19,6 +19,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Check startup
       run: |
+        sed 's,https://mirrors.cloud.tencent.com/elpa/gnu/,https://elpa.gnu.org/packages/,' init.el -i
+        sed 's,https://mirrors.cloud.tencent.com/elpa/melpa/,https://melpa.org/packages/,' init.el -i
         ${EMACS:=emacs} --version
         echo "Attempting startup..."
         ${EMACS:=emacs} -nw --batch --eval '(let ((debug-on-error (>=  emacs-major-version 26)) \
