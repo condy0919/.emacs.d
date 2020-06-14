@@ -16,8 +16,8 @@
     - [rust-mode](#rust-mode)
     - [ocaml-mode](#ocaml-mode)
     - [haskell-mode](#haskell-mode)
-- [个性化](#个性化)
 - [截图](#截图)
+- [FAQ](#faq)
 
 <!-- markdown-toc end -->
 <h3 align="center">A fast and incredible Emacs config</h3>
@@ -327,8 +327,24 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ![cpp_company](https://user-images.githubusercontent.com/4024656/83343182-965ec000-a329-11ea-862c-a0b25305a1b4.png
 "cc-mode and company")
 
+# FAQ
+
+1. [dashboard][dashboard]里图标显示不正确？
+   依赖[all-the-icons][all-the-icons]，请确保`M-x all-the-icons-install-fonts`安
+   装对应的字体以显示图标。
+2. 更新时提示对应版本的包不存在？
+   这多是因为国内镜像源泉同步慢导致的。如果出错，可以临时禁用镜像源。
+
+``` elisp
+(setq package-archives
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
+```
+
+[all-the-icons]: https://github.com/domtronn/all-the-icons.el/
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
+[dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
 [valign]: https://github.com/casouri/valign/
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent

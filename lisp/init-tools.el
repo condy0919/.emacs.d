@@ -186,6 +186,7 @@ Show the heading too, if it is currently invisible."
   :hook (markdown-mode . auto-fill-mode)
   :init
   (advice-add #'markdown--command-map-prompt :override #'ignore)
+  (advice-add #'markdown--style-map-prompt   :override #'ignore)
   :custom
   (markdown-header-scaling t)
   (markdown-enable-wiki-links t)
