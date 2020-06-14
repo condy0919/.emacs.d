@@ -34,6 +34,10 @@
 ;; Always load the newest file
 (setq load-prefer-newer t)
 
+;; Cutting and pasting use primary/clipboard
+(setq select-enable-primary t
+      select-enable-clipboard t)
+
 ;; No gc for font caches
 (setq inhibit-compacting-font-caches t)
 
