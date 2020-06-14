@@ -96,5 +96,13 @@ confirmation."
                               (when (> (count-windows) 1)
                                 (delete-window)))))))
 
+;;;###autoload
+(defun my/ielm-other-window (&rest _)
+  "Open a `ielm' in a new window."
+  (interactive)
+  (let ((buf (ielm)))
+    (switch-to-buffer (other-buffer buf))
+    (switch-to-buffer-other-window buf)))
+
 (provide 'init-core)
 ;;; init-core.el ends here

@@ -35,3 +35,4 @@ config
 ansi
 hideshow
 speedbar
+ielm
