@@ -15,7 +15,6 @@
 ;; The awesome git client
 (use-package magit
   :ensure t
-  :defer 1
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
   :custom
@@ -28,7 +27,6 @@
 ;; Todo integration
 (use-package magit-todos
   :ensure t
-  :after magit
   :hook (magit-status-mode . magit-todos-mode)
   :config
   ;; Supress the `jT' keybind warning
