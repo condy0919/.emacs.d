@@ -44,11 +44,13 @@
   (mu4e-drafts-folder "/Gmail/Drafts")
   (mu4e-sent-folder   "/Gmail/Sent")
   (mu4e-trash-folder  "/Gmail/Trash")
-  (mu4e-maildir-shortcuts '(("/Gmail/All"    . ?a)
-                            ("/Gmail/INBOX"  . ?i)
-                            ("/Gmail/Sent"   . ?s)
-                            ("/Gmail/Trash"  . ?t)
-                            ("/Gmail/Drafts" . ?d)))
+  (mu4e-refile-folder "/Gmail/Archive")
+  (mu4e-maildir-shortcuts '(("/Gmail/All"     . ?a)
+                            ("/Gmail/INBOX"   . ?i)
+                            ("/Gmail/Sent"    . ?s)
+                            ("/Gmail/Trash"   . ?t)
+                            ("/Gmail/Archive" . ?r)
+                            ("/Gmail/Drafts"  . ?d)))
 
   ;; beautiful icons. Copy from doom
   (mu4e-use-fancy-chars t)
@@ -68,6 +70,7 @@
   (mu4e-compose-format-flowed t)
   (mu4e-view-show-addresses t)
   (mu4e-hide-index-messages t)
+  (mu4e-view-prefer-html t)
   ;; try to show images
   (mu4e-view-show-images t)
   (mu4e-view-image-max-width 400)
@@ -99,6 +102,16 @@
       "S" 'message-dont-send
       "a" 'mail-add-attachment))
   )
+
+;; bundled with `mu'
+(use-package org-mu4e
+  :ensure nil
+  :after mu4e
+  :hook (mu4e-compose-mode . org-mu4e-compose-org-mode)
+  :hook (message-send-hook . (lambda ()
+                               (setq-local org-mu4e-convert-to-html nil)))
+  :custom
+  (org-mu4e-convert-to-html t))
 
 ;; sending mail
 (use-package message

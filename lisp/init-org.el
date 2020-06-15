@@ -376,6 +376,17 @@
   :custom
   (org-habit-graph-column 50))
 
+;; Bundled with `mu'
+(use-package mu4e-org
+  :ensure nil
+  :after mu4e
+  :bind (:map mu4e-headers-mode-map
+         ("C-c c" . mu4e-org-store-and-capture)
+         :map mu4e-view-mode-map
+         ("C-c c" . mu4e-org-store-and-capture))
+  :custom
+  (mu4e-org-link-query-in-headers-mode nil))
+
 (provide 'init-org)
 
 ;;; init-org.el ends here

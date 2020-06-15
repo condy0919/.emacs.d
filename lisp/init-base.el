@@ -235,7 +235,15 @@
   ;; year/month/day
   (calendar-date-string 'iso))
 
-;; lifelog
+;; Appointment
+(use-package appt
+  :ensure nil
+  :hook (after-init . appt-activate)
+  :custom
+  (appt-display-mode-line t)
+  (appt-display-interval 3)
+  (appt-message-warning-time 15))
+
 ;; Lifelog
 (use-package diary-lib
   :ensure nil
