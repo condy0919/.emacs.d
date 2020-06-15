@@ -169,6 +169,8 @@
   (org-confirm-babel-evaluate nil)
   (org-edit-src-content-indentation 0)
   (org-babel-load-languages '((awk        . t)
+                              (C          . t)
+                              (dot        . t)
                               (emacs-lisp . t)
                               (ocaml      . t)
                               (python     . t)
