@@ -71,10 +71,15 @@
     "fl" 'find-file-literally
     "fg" 'counsel-rg)
 
-  ;; prefix: <Leader> b, bookmark
+  ;; prefix: <Leader> b, buffer
   (evil-leader/set-key
     "bb" 'switch-to-buffer
-    "bB" 'list-buffers
+    "bB" 'switch-to-buffer-other-window
+    "bi" 'list-buffers
+    "by" 'my/copy-current-buffer-name)
+
+  ;; prefix: <Leader> b, bookmark
+  (evil-leader/set-key
     "bm" 'bookmark-set
     "bd" 'bookmark-delete
     "bj" 'bookmark-jump

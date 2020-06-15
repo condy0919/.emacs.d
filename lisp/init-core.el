@@ -64,6 +64,12 @@ confirmation."
   (message (kill-new (buffer-file-name))))
 
 ;;;###autoload
+(defun my/copy-current-buffer-name (&rest _)
+  "Copy the name to the current buffer."
+  (interactive)
+  (message (kill-new (buffer-name))))
+
+;;;###autoload
 (defun my/eshell-other-window (&rest _)
   "Open a `eshell' in a new window."
   (interactive)
