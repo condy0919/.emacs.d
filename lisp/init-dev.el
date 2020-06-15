@@ -301,6 +301,7 @@
   :ensure nil
   :mode (("\\.xml\\'" . nxml-mode)
          ("\\.rss\\'" . nxml-mode))
+  :magic "<\\?xml"
   :custom
   (nxml-slash-auto-complete-flag t)
   (nxml-auto-insert-xml-declaration-flag t))

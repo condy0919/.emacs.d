@@ -285,6 +285,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 - `c++-mode`启用了[modern-cpp-font-lock][modern-cpp-font-lock]
 - `cmake-mode`可使用`company-mode`进行符号补全
+- 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也
+  可以`#define`一些宏，放入`hide-ifdef-env`中生效。
 
 ## rust-mode
 
