@@ -144,6 +144,7 @@
     "ad" 'deft
     "aa" 'org-agenda
     "ac" 'org-capture
+    "aC" 'calendar
     "al" 'org-store-link
     "at" 'org-todo-list)
 
