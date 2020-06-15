@@ -15,6 +15,7 @@
              (executable-find "make")
              (executable-find "libtool"))
   :custom
+  (vterm-buffer-name-string "%s")
   (vterm-always-compile-module t)
   (vterm-use-vterm-prompt nil)
   (vterm-kill-buffer-on-exit t)
@@ -39,6 +40,15 @@
     (define-advice vterm-send-return (:after nil)
       "Synchronize current working directory."
       (run-with-idle-timer 0.1 nil 'my/vterm-directory-sync)))
+
+  (define-advice counsel-yank-pop-action (:around (func &rest args))
+    (if (eq major-mode 'vterm-mode)
+        (let ((inhibit-read-only t)
+              (yank-undo-function (lambda (_start _end) (vterm-undo))))
+          (cl-letf (((symbol-function 'insert-for-yank)
+                     (lambda (s) (vterm-send-string s t))))
+            (apply func args)))
+      (apply func args)))
   )
 
 ;; Dumb shell
