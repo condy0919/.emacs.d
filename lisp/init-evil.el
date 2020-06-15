@@ -41,8 +41,7 @@
   (evil-collection-setup-debugger-keys nil)
   :config
   ;; Disable `evil-collection' in certain modes
-  (dolist (ig-mode '(mu4e
-                     mu4e-conversion))
+  (dolist (ig-mode '())
     (setq evil-collection-mode-list (remove ig-mode evil-collection-mode-list)))
 
   ;; Keybindings tweaks
