@@ -120,14 +120,16 @@
 
   ;; prefix: <Leader> p, projectile
   (evil-leader/set-key
-    "pp" 'projectile-switch-project
-    "pb" 'projectile-switch-to-buffer
-    "pc" 'projectile-compile-project
     "pC" 'projectile-configure-project
     "pP" 'projectile-test-project
     "pa" 'projectile-find-other-file
+    "pb" 'projectile-switch-to-buffer
+    "pc" 'projectile-compile-project
     "pf" 'projectile-find-file
-    "pg" 'projectile-ripgrep)
+    "pg" 'projectile-ripgrep
+    "pk" 'projectile-kill-buffers
+    "po" 'projectile-multi-occur
+    "pp" 'projectile-switch-project)
 
   ;; prefix: <Leader> a, apps
   (evil-leader/set-key
