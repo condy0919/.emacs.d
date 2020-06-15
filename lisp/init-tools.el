@@ -313,7 +313,8 @@ Show the heading too, if it is currently invisible."
                    ("*Shell Command Output*"   :select nil :align t :size 0.4)
                    ("*Async Shell Command*"    :ignore t)
                    ("*package update results*" :select nil :align t :size 10)
-                   ("\\*ivy-occur .*\\*"       :regexp t :select t :align t)))
+                   ("*Occur*"                  :select t   :align right)
+                   ("\\*ivy-occur .*\\*"       :regexp t :select t :align right)))
   )
 
 ;; Grammar & Style checker
