@@ -15,7 +15,6 @@
              (executable-find "make")
              (executable-find "libtool"))
   :custom
-  (vterm-buffer-name-string "%s")
   (vterm-always-compile-module t)
   (vterm-use-vterm-prompt nil)
   (vterm-kill-buffer-on-exit t)
@@ -51,11 +50,6 @@
       (apply func args)))
   )
 
-;; Dumb shell
-(use-package shell
-  :ensure nil
-  :hook (shell-mode . my/buffer-auto-close))
-
 ;; the Emacs shell & friends
 (use-package eshell
   :ensure nil
@@ -82,7 +76,6 @@
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
-
   )
 
 (use-package em-hist
@@ -102,9 +95,32 @@
   :ensure nil
   :hook ((term-mode . my/buffer-auto-close)
          (term-mode . (lambda ()
+                        (setq-local evil-insert-state-cursor 'box)
                         (setq-local global-hl-line-mode nil)
                         (setq-local truncate-lines t)
-                        (setq-local scroll-margin 0)))))
+                        (setq-local scroll-margin 0)))
+         (term-mode . (lambda ()
+                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+                          (setq-local term--process proc)
+                          (set-process-sentinel proc (lambda (_process _exit-msg)
+                                                       (setq-local term--process nil)))))))
+  :config
+  (defvar term--process nil)
+
+  ;; Directory synchronization (linux-only)
+  (defun my/term-directory-sync ()
+    "Synchronize current working directory."
+    (when term--process
+      (let* ((pid (process-id term--process))
+             (dir (file-truename (format "/proc/%d/cwd/" pid))))
+        (setq default-directory dir))))
+
+  (when (eq system-type 'gnu/linux)
+    (define-advice term-send-raw (:after nil)
+      "Synchronize current working directory."
+      (when (equal (this-command-keys) "\C-m")
+        (run-with-idle-timer 0.1 nil 'my/term-directory-sync))))
+  )
 
 ;; Popup a shell
 (use-package shell-pop

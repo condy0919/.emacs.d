@@ -249,6 +249,7 @@
 ;; Lifelog
 (use-package diary-lib
   :ensure nil
+  :defer t
   :custom
   (diary-number-of-entries 7)
   (diary-comment-start "#"))
