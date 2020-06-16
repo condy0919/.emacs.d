@@ -39,6 +39,11 @@
             "--header-insertion-decorators=0")))
   )
 
+(use-package bison-mode
+  :ensure t
+  :mode (("\\.ll\\'" . flex-mode)
+         ("\\.yy\\'" . bison-mode)))
+
 ;; Highlight "#if 0" as comments
 (use-package hideif
   :ensure nil
