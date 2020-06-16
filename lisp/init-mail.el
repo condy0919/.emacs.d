@@ -10,7 +10,8 @@
   :ensure nil
   :defer 1
   :commands (mu4e mu4e-compose-new)
-  :hook (mu4e-compose-mode . auto-fill-mode)
+  :hook ((mu4e-compose-mode . auto-fill-mode)
+         (mu4e-compose-mode . flyspell-mode))
   ;; from doom
   ;; This hook correctly modifies gmail flags on emails when they are marked.
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
@@ -44,13 +45,13 @@
   (mu4e-drafts-folder "/Gmail/Drafts")
   (mu4e-sent-folder   "/Gmail/Sent")
   (mu4e-trash-folder  "/Gmail/Trash")
-  (mu4e-refile-folder "/Gmail/Archive")
-  (mu4e-maildir-shortcuts '(("/Gmail/All"     . ?a)
-                            ("/Gmail/INBOX"   . ?i)
-                            ("/Gmail/Sent"    . ?s)
-                            ("/Gmail/Trash"   . ?t)
-                            ("/Gmail/Archive" . ?r)
-                            ("/Gmail/Drafts"  . ?d)))
+  (mu4e-refile-folder "/Gmail/All")
+  (mu4e-maildir-shortcuts '((:maildir "/Gmail/All"    :key ?a)
+                            (:maildir "/Gmail/INBOX"  :key ?i)
+                            (:maildir "/Gmail/Sent"   :key ?s)
+                            (:maildir "/Gmail/Drafts" :key ?d)
+                            (:maildir "/Gmail/Junk"   :key ?j)
+                            (:maildir "/Gmail/Trash"  :key ?t)))
 
   ;; beautiful icons. Copy from doom
   (mu4e-use-fancy-chars t)
@@ -73,8 +74,8 @@
   (mu4e-view-prefer-html t)
   ;; try to show images
   (mu4e-view-show-images t)
-  (mu4e-view-image-max-width 400)
-  (mu4e-view-image-max-height 300)
+  (mu4e-view-image-max-width 800)
+  (mu4e-view-image-max-height 600)
   ;; use imagemagick if available
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
@@ -95,12 +96,11 @@
         user-full-name "Zhiwei Chen")
 
   ;; evil integration
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key-for-mode 'mu4e-compose-mode
-      "s" 'message-send-and-exit
-      "d" 'message-kill-buffer
-      "S" 'message-dont-send
-      "a" 'mail-add-attachment))
+  (evil-leader/set-key-for-mode 'mu4e-compose-mode
+    "s" 'message-send-and-exit
+    "d" 'message-kill-buffer
+    "S" 'message-dont-send
+    "a" 'mail-add-attachment)
   )
 
 ;; bundled with `mu'
@@ -126,7 +126,7 @@
   :after mu4e
   :custom
   (smtpmail-smtp-server "smtp.gmail.com")
-  (smtpmail-smtp-user "condy0919@gmail.com")
+  (smtpmail-smtp-user user-mail-address)
   (smtpmail-smtp-service 587)
   (smptmail-stream-type 'starttls))
 
