@@ -312,6 +312,14 @@
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'"  . yaml-mode)))
 
+;; Syntax highlighting for systemd files
+(use-package conf-mode
+  :ensure nil
+  :mode ((rx "."
+             (or "automount" "busname" "link" "mount" "netdev" "network"
+                 "path" "service" "slice" "socket" "swap" "target" "timer")
+             string-end) . conf-toml-mode))
+
 (require 'init-cpp)
 (require 'init-rust)
 (require 'init-ocaml)

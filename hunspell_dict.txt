@@ -36,3 +36,4 @@ ansi
 hideshow
 speedbar
 ielm
+systemd
