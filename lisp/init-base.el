@@ -132,6 +132,8 @@
   (kill-do-not-save-duplicates t)
   ;; include '\n'
   (kill-whole-line t)
+  ;; show the name of character in `what-cursor-position'
+  (what-cursor-show-names t)
   :hook (after-init . (lambda ()
                         (line-number-mode)
                         (column-number-mode)

@@ -7,7 +7,7 @@
 
 (use-package page-break-lines
   :ensure t
-  :hook ((emacs-lisp-mode compilation-mode help-mode) . page-break-lines-mode))
+  :hook (after-init . global-page-break-lines-mode))
 
 (use-package all-the-icons
   :ensure t

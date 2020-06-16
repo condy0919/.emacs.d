@@ -43,6 +43,8 @@
                    ("*Org-Babel Error Output*" :select nil :align t :size 0.3)
                    ("*Async Shell Command*"    :ignore t)
                    ("*package update results*" :select nil :align t :size 10)
+                   ("*Process List*"           :select t   :align t :size 0.3)
+                   ("*Help*"                   :select t   :align t :size 0.3)
                    ("*Occur*"                  :select t   :align right)
                    ("\\*ivy-occur .*\\*"       :regexp t :select t :align right)))
   )
