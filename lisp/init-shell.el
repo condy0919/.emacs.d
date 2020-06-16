@@ -55,13 +55,22 @@
   :ensure nil
   :functions eshell/alias
   :custom
+  (eshell-banner-message
+   '(format "%s %s\n"
+            (propertize (format " %s " (string-trim (buffer-name)))
+                        'face 'mode-line-highlight)
+            (propertize (current-time-string)
+                        'face 'font-lock-keyword-face)))
   (eshell-scroll-to-bottom-on-input 'all)
   (eshell-scroll-to-bottom-on-output 'all)
   (eshell-kill-on-exit t)
   (eshell-kill-processes-on-exit t)
   (eshell-hist-ignoredups t)
-  (eshell-error-if-no-glob t)
+  (eshell-input-filter 'eshell-input-filter-initial-space)
   (eshell-glob-case-insensitive t)
+  (eshell-highlight-prompt nil)
+  (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
+  (eshell-prompt-function 'my/eshell-prompt)
   :hook (eshell-mode . (lambda ()
                          ;; Define aliases
                          (eshell/alias "q"    "exit")
@@ -76,6 +85,27 @@
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
+
+  (defun my/eshell-prompt ()
+    "Prompt for eshell."
+    ;; (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
+    (concat
+     (propertize user-login-name 'face 'font-lock-keyword-face)
+     "@"
+     "Youmu "
+     (abbreviate-file-name (eshell/pwd))
+     " "
+     (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory))))
+         (concat (propertize "(" 'face 'success)
+                 (format "%s" vc)
+                 (propertize ")" 'face 'success)
+                 (propertize "-" 'face 'font-lock-string-face)
+                 (propertize "[" 'face 'success)
+                 (propertize (car (vc-git-branches)) 'face 'font-lock-constant-face)
+                 (propertize "]" 'face 'success)
+                 " ")
+       "")
+     "% "))
   )
 
 (use-package em-hist
@@ -86,7 +116,7 @@
   (defun my/eshell-complete-history ()
     "Complete eshell commands history using `completing-read'."
     (interactive)
-    (let ((hist (ring-elements eshell-history-ring)))
+    (let ((hist (delete-dups (ring-elements eshell-history-ring))))
       (insert (completing-read "> " hist nil t))))
   )
 
