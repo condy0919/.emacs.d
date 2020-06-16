@@ -7,12 +7,14 @@
 
 (use-package gnus-start
   :ensure nil
+  :defer t
   :after gnus
   :custom
   (gnus-startup-file (no-littering-expand-var-file-name "gnus/.newsrc")))
 
 (use-package gnus-sum
   :ensure nil
+  :defer t
   :after gnus
   :custom
   (gnus-fetch-old-headers t)
@@ -52,6 +54,7 @@
 
 (use-package gnus-art
   :ensure nil
+  :defer t
   :after gnus
   :custom
   (gnus-article-browse-delete-temp-files t)
@@ -60,6 +63,7 @@
 
 (use-package gnus-async
   :ensure nil
+  :defer t
   :after gnus
   :custom
   (gnus-asynchronous t)
