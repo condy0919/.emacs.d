@@ -76,6 +76,11 @@
   (git-messenger:show-detail t)
   (git-messenger:use-magit-popup t))
 
+;; Setup gitignore mode
+(use-package conf-mode
+  :ensure nil
+  :mode (("\\.gitignore\\'" . conf-unix-mode)))
+
 (use-package smerge-mode
   :ensure nil
   :requires transient

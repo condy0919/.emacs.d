@@ -37,3 +37,4 @@ hideshow
 speedbar
 ielm
 systemd
+gitignore
