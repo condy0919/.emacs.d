@@ -70,7 +70,6 @@
     "Remove highlight overlay when user quit gud."
     (delete-overlay gud-overlay)))
 
-
 (use-package license
   :ensure t
   :straight (:host github :repo "condy0919/license.el")
@@ -168,6 +167,7 @@
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
 (use-package flymake
+  :ensure nil
   :disabled
   :custom
   (flymake-fringe-indicator-position 'right-fringe))
