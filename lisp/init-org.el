@@ -286,6 +286,35 @@
   (org-html-checkbox-type 'uncode)
   (org-html-validation-link nil))
 
+;; Write mails in org-mode
+(use-package org-mime
+  :ensure t
+  :after org
+  :bind (:map message-mode-map
+         ("C-c M-m" . org-mime-htmlize)
+         :map org-mode-map
+         ("C-c M-m" . org-mime-org-buffer-htmlize))
+  :hook (org-mime-html . my/org-mime-css-style)
+  :custom
+  ;; NO TOC
+  (org-mime-export-options '(:section-numbers nil
+                             :with-author nil
+                             :with-toc nil))
+  (org-mime-export-ascii 'utf-8)
+  (org-mime-beautify-quoted-mail t)
+  :config
+  (defun my/org-mime-css-style ()
+    (org-mime-change-element-style
+     "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
+                   "#E6E1DC" "#232323"))
+
+    (org-mime-change-element-style
+     "blockquote" "border-left: 2px solid gray; padding-left: 4px;")
+
+    (while (re-search-forward "@\\([^@]*\\)@" nil t)
+      (replace-match "<span style=\"color:red\">\\1</span>")))
+  )
+
 ;; Pretty symbols
 (use-package org-superstar
   :ensure t
@@ -295,6 +324,7 @@
   (org-superstar-leading-bullet ?\s)
   :hook (org-mode . org-superstar-mode))
 
+;; Super agenda mode
 (use-package org-super-agenda
   :ensure t
   :hook (org-agenda-mode . org-super-agenda-mode)
@@ -375,17 +405,6 @@
   :after org
   :custom
   (org-habit-graph-column 50))
-
-;; Bundled with `mu'
-(use-package mu4e-org
-  :ensure nil
-  :after mu4e
-  :bind (:map mu4e-headers-mode-map
-         ("C-c c" . mu4e-org-store-and-capture)
-         :map mu4e-view-mode-map
-         ("C-c c" . mu4e-org-store-and-capture))
-  :custom
-  (mu4e-org-link-query-in-headers-mode nil))
 
 (provide 'init-org)
 

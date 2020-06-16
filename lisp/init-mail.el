@@ -67,8 +67,6 @@
   (mu4e-headers-signed-mark    '("s" . ""))
   (mu4e-headers-unread-mark    '("u" . ""))
 
-  ;; visual-line-mode + auto-fill upon sending
-  (mu4e-compose-format-flowed t)
   (mu4e-view-show-addresses t)
   (mu4e-hide-index-messages t)
   (mu4e-view-prefer-html t)
@@ -102,16 +100,6 @@
     "S" 'message-dont-send
     "a" 'mail-add-attachment)
   )
-
-;; bundled with `mu'
-(use-package org-mu4e
-  :ensure nil
-  :after mu4e
-  :hook (mu4e-compose-mode . org-mu4e-compose-org-mode)
-  :hook (message-send-hook . (lambda ()
-                               (setq-local org-mu4e-convert-to-html nil)))
-  :custom
-  (org-mu4e-convert-to-html t))
 
 ;; sending mail
 (use-package message
