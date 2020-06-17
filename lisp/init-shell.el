@@ -7,6 +7,16 @@
 
 (require 'init-core)
 
+(defun my/term-mode-common-init ()
+  "The common initialization for term."
+  (setq-local scroll-margin 0)
+  (setq-local truncate-lines t)
+  (setq-local global-hl-line-mode nil)
+  (when (bound-and-true-p evil-mode)
+    (setq-local evil-insert-state-cursor 'box)
+    (evil-insert-state))
+  )
+
 ;; Beautiful term mode & friends
 (use-package vterm
   :ensure t
@@ -20,12 +30,9 @@
   (vterm-kill-buffer-on-exit t)
   (vterm-clear-scrollback-when-clearing t)
   :hook (vterm-mode . (lambda ()
-                        (setq-local evil-insert-state-cursor 'box)
-                        (setq-local global-hl-line-mode nil)
-                        (setq-local truncate-lines t)
+                        (my/term-mode-common-init)
                         ;; Dont prompt about processes when killing vterm
-                        (setq confirm-kill-processes nil)
-                        (evil-insert-state)))
+                        (setq confirm-kill-processes nil)))
   :config
   ;; Directory synchronization (linux-only)
   (defun my/vterm-directory-sync ()
@@ -71,13 +78,18 @@
   (eshell-highlight-prompt nil)
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
   (eshell-prompt-function 'my/eshell-prompt)
-  :hook (eshell-mode . (lambda ()
-                         ;; Define aliases
-                         (eshell/alias "q"    "exit")
-                         (eshell/alias "ll"   "ls -lh --color=auto $*")
-                         (eshell/alias "vi"   "find-file $1")
-                         (eshell/alias "vim"  "find-file $1")
-                         (eshell/alias "nvim" "find-file $1")))
+  :hook ((eshell-mode . (lambda ()
+                          (my/term-mode-common-init)
+                          ;; Define aliases
+                          (eshell/alias "ll"   "ls -lh --color=auto $*")
+                          (eshell/alias "vi"   "find-file $1")
+                          (eshell/alias "vim"  "find-file $1")
+                          (eshell/alias "nvim" "find-file $1")))
+         (eshell-first-time-mode . (lambda ()
+                                     (evil-collection-define-key 'insert 'eshell-mode-map
+                                       (kbd "C-d") 'eshell-life-is-too-much
+                                       (kbd "C-p") 'eshell-previous-input
+                                       (kbd "C-n") 'eshell-next-input))))
   :config
   (define-advice eshell-term-sentinel (:after (process exit-msg))
     "Cleanup the buffer of visual commands."
@@ -88,12 +100,12 @@
 
   (defun my/eshell-prompt ()
     "Prompt for eshell."
-    ;; (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
+    (require 'shrink-path)
     (concat
      (propertize user-login-name 'face 'font-lock-keyword-face)
      "@"
      "Youmu "
-     (abbreviate-file-name (eshell/pwd))
+     (abbreviate-file-name (shrink-path-file (eshell/pwd)))
      " "
      (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory))))
          (concat (propertize "(" 'face 'success)
@@ -124,11 +136,7 @@
 (use-package term
   :ensure nil
   :hook ((term-mode . my/buffer-auto-close)
-         (term-mode . (lambda ()
-                        (setq-local evil-insert-state-cursor 'box)
-                        (setq-local global-hl-line-mode nil)
-                        (setq-local truncate-lines t)
-                        (setq-local scroll-margin 0)))
+         (term-mode . my/term-mode-common-init)
          (term-mode . (lambda ()
                         (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
                           (setq-local term--process proc)
