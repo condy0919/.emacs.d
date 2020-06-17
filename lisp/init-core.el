@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'init-macros))
+
 ;;;###autoload
 (defun my/rename-file (file)
   "Rename `FILE'. If the `FILE' is opened, rename the corresponding buffer too."
@@ -70,23 +73,13 @@ confirmation."
   (message (kill-new (buffer-name))))
 
 ;;;###autoload
-(defun my/eshell-other-window (&rest _)
-  "Open a `eshell' in a new window."
-  (interactive)
-  (let ((buf (eshell)))
-    (switch-to-buffer (other-buffer buf))
-    (switch-to-buffer-other-window buf)))
+(my/other-windowize-for eshell)
 
 ;;;###autoload
-(defun my/term-other-window (&rest _)
-  "Open a `term' in a new window."
-  (interactive)
-  (let ((buf (ansi-term shell-file-name)))
-    (switch-to-buffer (other-buffer buf))
-    (switch-to-buffer-other-window buf)))
+(my/other-windowize-for ansi-term shell-file-name)
 
 ;;;###autoload
-(defun my/term (&rest _)
+(defun my/ansi-term (&rest _)
   "Open a `term' in current window."
   (interactive)
   (ansi-term shell-file-name))
@@ -103,12 +96,7 @@ confirmation."
                                 (delete-window)))))))
 
 ;;;###autoload
-(defun my/ielm-other-window (&rest _)
-  "Open a `ielm' in a new window."
-  (interactive)
-  (let ((buf (ielm)))
-    (switch-to-buffer (other-buffer buf))
-    (switch-to-buffer-other-window buf)))
+(my/other-windowize-for ielm)
 
 (provide 'init-core)
 ;;; init-core.el ends here

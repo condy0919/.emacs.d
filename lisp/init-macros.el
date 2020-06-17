@@ -15,6 +15,16 @@
          (setq-local company-backends ',backends))
        (add-hook ',hookname ',funcname))))
 
+(defmacro my/other-windowize-for (cmd &rest args)
+  "`other-window' version of CMD ARGS."
+  `(defun ,(intern (format "my/%s-other-window" cmd)) (&rest _)
+     ,(format "Open a `%s' in a new window." cmd)
+     (interactive)
+     (let ((buf (,cmd ,@args)))
+       (switch-to-buffer (other-buffer buf))
+       (switch-to-buffer-other-window buf)))
+  )
+
 (provide 'init-macros)
 
 ;;; init-macros.el ends here
