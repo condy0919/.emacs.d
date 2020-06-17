@@ -7,7 +7,8 @@
 
 (use-package evil
   :ensure t
-  :hook (after-init . evil-mode)
+  :hook ((after-init . evil-mode)
+         (minibuffer-setup . evil-emacs-state))
   :bind (:map evil-normal-state-map
          ("gs" . evil-avy-goto-char-timer)
          ("go" . evil-avy-goto-word-or-subword-1)
