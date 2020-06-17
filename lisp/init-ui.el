@@ -16,8 +16,11 @@
   :custom
   (doom-modeline-irc nil)
   (doom-modeline-mu4e nil)
+  (doom-modeline-gnus nil)
   (doom-modeline-github nil)
+  (doom-modeline-persp-name nil)
   (doom-modeline-unicode-fallback t)
+  (doom-modeline-enable-word-count nil)
   :hook (after-init . doom-modeline-mode))
 
 ;; Customize popwin behavior
