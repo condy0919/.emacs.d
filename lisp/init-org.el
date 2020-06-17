@@ -299,6 +299,8 @@
   ;; NO TOC
   (org-mime-export-options '(:section-numbers nil
                              :with-author nil
+                             :with-email nil
+                             :with-timestamps nil
                              :with-toc nil))
   (org-mime-export-ascii 'utf-8)
   (org-mime-beautify-quoted-mail t)
