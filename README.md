@@ -146,14 +146,14 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而
 获得了如下键绑定:
 
-| key           | function                                                         |
-|---------------|------------------------------------------------------------------|
-| <kbd>[b</kbd> | `previous-buffer` 切换至上一个 `buffer`                          |
-| <kbd>]b</kbd> | `next-buffer` 切换至下一个 `buffer`                              |
-| <kbd>[l</kbd> | `evil-collection-unimpaired-previous-error` 上一个错误           |
-| <kbd>]l</kbd> | `evil-collection-unimpaired-next-error` 下一个错误               |
-| <kbd>[ </kbd> | `evil-collection-unimpaired-insert-space-above` 在上方插入一空行 |
-| <kbd>] </kbd> | `evil-collection-unimpaired-insert-space-below` 在下方插入一空行 |
+| key              | function                                                         |
+|------------------|------------------------------------------------------------------|
+| <kbd>[b</kbd>    | `previous-buffer` 切换至上一个 `buffer`                          |
+| <kbd>]b</kbd>    | `next-buffer` 切换至下一个 `buffer`                              |
+| <kbd>[l</kbd>    | `evil-collection-unimpaired-previous-error` 上一个错误           |
+| <kbd>]l</kbd>    | `evil-collection-unimpaired-next-error` 下一个错误               |
+| <kbd>[ SPC</kbd> | `evil-collection-unimpaired-insert-space-above` 在上方插入一空行 |
+| <kbd>] SPC</kbd> | `evil-collection-unimpaired-insert-space-below` 在下方插入一空行 |
 
 本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常
 推荐使用`evil-mode`在`normal`状态下定义的键绑定。
@@ -168,9 +168,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
 
-提供了一个`Leader`键，绑定在`SPC`键上:
-
-文件相关的键绑定:
+此外另外提供了一个`Leader`键，绑定在`SPC`键上，相关键绑定如下:
 
 | key           | function                                            |
 |---------------|-----------------------------------------------------|
@@ -189,14 +187,14 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 打开其他程序的键绑定:
 
-| key           | function                 |
-|---------------|--------------------------|
-| <kbd>ot</kbd> | `vterm`                  |
-| <kbd>oT</kbd> | `vterm-other-window`     |
-| <kbd>oe</kbd> | `eshell`                 |
-| <kbd>oE</kbd> | `my/eshell-other-window` |
-| <kbd>oo</kbd> | `my/term`                |
-| <kbd>oO</kbd> | `my/term-other-window`                         |
+| key           | function                                        |
+|---------------|-------------------------------------------------|
+| <kbd>ot</kbd> | `vterm`打开`vterm`                              |
+| <kbd>oT</kbd> | `vterm-other-window`在其他窗口打开`vterm`       |
+| <kbd>oe</kbd> | `eshell`打开`eshell`                            |
+| <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`  |
+| <kbd>oo</kbd> | `my/term`打开`ansi-term`                        |
+| <kbd>oO</kbd> | `my/term-other-window`在其他窗口打开`ansi-term` |
 
 搜索相关的功能键绑定:
 
@@ -341,6 +339,12 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 (setq package-archives
       '(("gnu"   . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
+```
+3. 如果升级包遇到了错误，可以使用 [init-mini.el](init-mini.el) 这个最小的配置来
+   启动。
+
+``` bash
+emacs -Q -l init-mini.el
 ```
 
 [all-the-icons]: https://github.com/domtronn/all-the-icons.el/
