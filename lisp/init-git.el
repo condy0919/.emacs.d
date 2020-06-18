@@ -27,13 +27,7 @@
 ;; Todo integration
 (use-package magit-todos
   :ensure t
-  :hook (magit-status-mode . magit-todos-mode)
-  :config
-  ;; Supress the `jT' keybind warning
-  (define-advice magit-todos-mode (:around (func &rest args))
-    (cl-letf (((symbol-function 'message)
-               (lambda (&rest _) nil)))
-      (apply func args))))
+  :hook (magit-status-mode . magit-todos-mode))
 
 ;; NB `diff-hl' depends on `vc'
 (use-package vc
