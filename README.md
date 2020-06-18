@@ -146,14 +146,16 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而
 获得了如下键绑定:
 
-| key              | function                                                         |
-|------------------|------------------------------------------------------------------|
-| <kbd>[b</kbd>    | `previous-buffer` 切换至上一个 `buffer`                          |
-| <kbd>]b</kbd>    | `next-buffer` 切换至下一个 `buffer`                              |
-| <kbd>[l</kbd>    | `evil-collection-unimpaired-previous-error` 上一个错误           |
-| <kbd>]l</kbd>    | `evil-collection-unimpaired-next-error` 下一个错误               |
-| <kbd>[ SPC</kbd> | `evil-collection-unimpaired-insert-space-above` 在上方插入一空行 |
-| <kbd>] SPC</kbd> | `evil-collection-unimpaired-insert-space-below` 在下方插入一空行 |
+| key              | function                                                            |
+|------------------|---------------------------------------------------------------------|
+| <kbd>[b</kbd>    | `previous-buffer` 切换至上一个 `buffer`                             |
+| <kbd>]b</kbd>    | `next-buffer` 切换至下一个 `buffer`                                 |
+| <kbd>[l</kbd>    | `evil-collection-unimpaired-previous-error` 上一个错误              |
+| <kbd>]l</kbd>    | `evil-collection-unimpaired-next-error` 下一个错误                  |
+| <kbd>[ SPC</kbd> | `evil-collection-unimpaired-insert-newline-above` 在上方插入一空行  |
+| <kbd>] SPC</kbd> | `evil-collection-unimpaired-insert-newline-below` 在下方插入一空行  |
+| <kbd>[u</kbd>    | `evil-collection-unimpaired-url-encode` 对所选内容进行`url`参数编码 |
+| <kbd>]u</kbd>    | `evil-collection-unimpaired-url-decode` 对所选内容进行`url`参数解码 |
 
 本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常
 推荐使用`evil-mode`在`normal`状态下定义的键绑定。
