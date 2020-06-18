@@ -37,6 +37,9 @@
   ;; make dabbrev case-sensitive
   (company-dabbrev-ignore-case nil)
   (company-dabbrev-downcase nil)
+  ;; make dabbrev-code case-sensitive
+  (company-dabbrev-code-ignore-case nil)
+  (company-dabbrev-code-everywhere t)
   (company-backends '(company-capf
                       company-files
                       (company-dabbrev-code company-keywords)

@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'init-macros))
+
 ;; Compilation Mode
 (use-package compile
   :ensure nil
@@ -174,12 +177,7 @@
   ;; clang/gcc/cppcheck flycheckers never know the include path
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   :config
-  (define-advice flycheck-global-teardown (:around (func &rest args))
-    "Ignore errors.
-Such as \"Selete deleted buffer\"
-"
-    (ignore-errors (apply func args)))
-  )
+  (my/ignore-errors-for flycheck-global-teardown))
 
 (use-package flymake
   :ensure nil
