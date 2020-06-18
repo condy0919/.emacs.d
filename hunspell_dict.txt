@@ -38,3 +38,4 @@ speedbar
 ielm
 systemd
 gitignore
+minibuffer

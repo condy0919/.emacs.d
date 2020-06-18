@@ -7,8 +7,7 @@
 
 (use-package evil
   :ensure t
-  :hook ((after-init . evil-mode)
-         (minibuffer-setup . evil-emacs-state))
+  :hook (after-init . evil-mode)
   :bind (:map evil-normal-state-map
          ("gs" . evil-avy-goto-char-timer)
          ("go" . evil-avy-goto-word-or-subword-1)
@@ -35,6 +34,7 @@
   :ensure t
   :hook (evil-mode . evil-collection-init)
   :custom
+  (evil-collection-calendar-want-org-bindings t)
   (evil-collection-company-use-tng nil)
   (evil-collection-outline-bind-tab-p t)
   (evil-collection-term-sync-state-and-mode-p nil)
