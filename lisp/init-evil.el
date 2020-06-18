@@ -28,6 +28,8 @@
   (evil-want-abbrev-expand-on-insert-exit nil)
   (evil-symbol-word-search t)
   :config
+  ;; Stop copying visual selection to clipboard
+  (advice-add #'evil-visual-update-x-selection :override #'ignore)
   (evil-ex-define-cmd "q[uit]" 'kill-this-buffer))
 
 (use-package evil-collection
@@ -241,7 +243,9 @@
       "SPC a" "apps"
       "SPC b" "bookmark"
       "SPC f" "files"
+      "SPC g" "git"
       "SPC o" "open"
+      "SPC s" "search"
       "SPC p" "project")
     )
   )
