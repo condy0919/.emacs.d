@@ -139,9 +139,7 @@
          (term-mode . my/term-mode-common-init)
          (term-mode . (lambda ()
                         (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-                          (setq-local term--process proc)
-                          (set-process-sentinel proc (lambda (_process _exit-msg)
-                                                       (setq-local term--process nil)))))))
+                          (setq-local term--process proc)))))
   :config
   (defvar term--process nil)
 
@@ -149,8 +147,8 @@
   (defun my/term-directory-sync ()
     "Synchronize current working directory."
     (when term--process
-      (let* ((pid (process-id term--process))
-             (dir (file-truename (format "/proc/%d/cwd/" pid))))
+      (when-let* ((pid (process-id term--process))
+                  (dir (file-truename (format "/proc/%d/cwd/" pid))))
         (setq default-directory dir))))
 
   (when (eq system-type 'gnu/linux)
