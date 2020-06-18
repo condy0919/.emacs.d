@@ -378,6 +378,7 @@
          ("C-c n f" . org-roam-find-file)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-insert)
+         ("C-c n j" . org-roam-jump-to-index)
          ("C-c n l" . org-roam)))
 
 ;; Declarative Org Capture Templates
