@@ -137,7 +137,8 @@
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
   (projectile-ignored-project-function 'projectile-project-ignore-p)
   :config
-  (defconst projectile-ignored-project-directories '("/tmp/"))
+  (defconst projectile-ignored-project-directories `("/tmp/"
+                                                     ,(file-truename (expand-file-name "straight/" user-emacs-directory))))
   (defun projectile-project-ignore-p (file)
     (cl-loop for ig-dir in projectile-ignored-project-directories
              when (string-prefix-p ig-dir file)
