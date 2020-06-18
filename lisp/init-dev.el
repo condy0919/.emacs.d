@@ -135,8 +135,15 @@
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
-  (projectile-ignored-projects '("/tmp/"))
+  (projectile-ignored-project-function 'projectile-project-ignore-p)
   :config
+  (defconst projectile-ignored-project-directories '("/tmp/"))
+  (defun projectile-project-ignore-p (file)
+    (cl-loop for ig-dir in projectile-ignored-project-directories
+             when (string-prefix-p ig-dir file)
+             return t)
+    )
+
   (dolist (dir '(".ccls-cache"
                  ".clangd"
                  ".vscode"
@@ -164,7 +171,14 @@
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
-  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
+  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  :config
+  (define-advice flycheck-global-teardown (:around (func &rest args))
+    "Ignore errors.
+Such as \"Selete deleted buffer\"
+"
+    (ignore-errors (apply func args)))
+  )
 
 (use-package flymake
   :ensure nil

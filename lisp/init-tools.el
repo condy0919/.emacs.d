@@ -43,6 +43,7 @@
   (avy-background t)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   :config
+  ;; Force to use pre `avy-style'
   (define-advice avy-isearch (:around (func &rest args))
     (let ((avy-style 'pre))
       (apply func args)))
@@ -147,7 +148,11 @@
   (isearch-yank-on-move t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
-  (lazy-highlight-cleanup nil))
+  (lazy-highlight-cleanup nil)
+  :config
+  (define-advice isearch-occur (:after (_regexp &optional _nlines))
+    (isearch-exit))
+  )
 
 ;; isearch alternative
 (use-package swiper

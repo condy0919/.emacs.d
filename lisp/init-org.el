@@ -8,7 +8,8 @@
 (use-package org
   :ensure nil
   :mode ("\\.org\\'" . org-mode)
-  :hook (org-mode . auto-fill-mode)
+  :hook ((org-mode . auto-fill-mode)
+         (org-mode . visual-line-mode))
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
