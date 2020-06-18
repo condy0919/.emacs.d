@@ -68,7 +68,11 @@
   (ivy-height 10)
   (ivy-fixed-height-minibuffer t)     ;; fixed height
   (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
-  :preface
+  :config
+  ;; Bring C-' back
+  (use-package ivy-avy
+    :ensure t)
+
   ;; Copy from
   ;; https://github.com/honmaple/maple-emacs/blob/master/lisp/init-ivy.el
   (defun my/ivy-woccur ()
