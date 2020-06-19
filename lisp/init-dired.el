@@ -60,7 +60,7 @@
   (dired-guess-shell-alist-user `((,(rx "."
                                         (or
                                          ;; Videos
-                                         "mp4" "avi" "mkv" "flv" "ogv" "mov"
+                                         "mp4" "avi" "mkv" "flv" "ogv" "ogg" "mov"
                                          ;; Music
                                          "wav" "mp3" "flac"
                                          ;; Images
