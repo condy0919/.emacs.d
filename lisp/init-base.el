@@ -228,18 +228,19 @@
   :hook (calendar-today-visible . calendar-mark-today)
   :custom
   (calendar-chinese-all-holidays-flag t)
-  (holiday-local-holidays `(,@(cl-loop for i from 1 to 3
+  (holiday-local-holidays `((holiday-fixed 3 8  "Women's Day")
+                            (holiday-fixed 3 12 "Arbor Day")
+                            ,@(cl-loop for i from 1 to 3
                                        collect `(holiday-fixed 5 ,i "International Workers' Day"))
                             (holiday-fixed 5 4  "Chinese Youth Day")
+                            (holiday-fixed 6 1  "Children's Day")
                             (holiday-fixed 9 10 "Teachers' Day")
                             ,@(cl-loop for i from 1 to 7
                                        collect `(holiday-fixed 10 ,i "National Day"))
-                            (holiday-fixed 10 24 "Programmer's Day")))
-  (holiday-other-holidays '((holiday-fixed 3 8   "Women's Day")
-                            (holiday-fixed 3 12  "Arbor Day")
-                            (holiday-fixed 4 22  "Earth Day")
-                            (holiday-fixed 4 23  "World Book Day")
-                            (holiday-fixed 6 1   "Children's Day")
+                            (holiday-fixed 10 24 "Programmers' Day")
+                            (holiday-fixed 11 11 "Singles' Day")))
+  (holiday-other-holidays '((holiday-fixed 4 22 "Earth Day")
+                            (holiday-fixed 4 23 "World Book Day")
                             (holiday-sexp '(if (or (zerop (% year 400))
                                                    (and (% year 100) (zerop (% year 4))))
                                                (list 9 12 year)
@@ -255,7 +256,7 @@
   ;; start from Monday
   (calendar-week-start-day 1)
   ;; year/month/day
-  (calendar-date-string 'iso))
+  (calendar-date-style 'iso))
 
 ;; Appointment
 (use-package appt
