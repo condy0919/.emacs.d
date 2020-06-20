@@ -222,7 +222,7 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit)))
 
-;; What day is it today?
+;; Holidays
 (use-package calendar
   :ensure nil
   :hook (calendar-today-visible . calendar-mark-today)
@@ -256,7 +256,13 @@
   ;; start from Monday
   (calendar-week-start-day 1)
   ;; year/month/day
-  (calendar-date-style 'iso))
+  (calendar-date-style 'iso)
+  :config
+  (define-advice org-agenda-add-entry-to-org-agenda-diary-file (:after (_type text &optional _d1 _d2))
+    (when (string-match "\\S-" text)
+      (with-current-buffer (find-file-noselect org-agenda-diary-file)
+        (save-buffer))))
+  )
 
 ;; Appointment
 (use-package appt
