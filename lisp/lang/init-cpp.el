@@ -74,6 +74,9 @@
   :ensure t
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.cmake\\'"         . cmake-mode))
+  :bind (:map cmake-mode-map
+         ;; Compatible with lsp-mode keybindings
+         ("C-c d" . cmake-help))
   :config
   (my/set-company-backends-for cmake-mode company-cmake))
 
