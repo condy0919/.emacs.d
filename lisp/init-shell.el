@@ -105,7 +105,9 @@
      (propertize user-login-name 'face 'font-lock-keyword-face)
      "@"
      "Youmu "
-     (abbreviate-file-name (shrink-path-file (eshell/pwd)))
+     (if (equal (eshell/pwd) "~")
+         "~"
+       (abbreviate-file-name (shrink-path-file (eshell/pwd))))
      " "
      (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory))))
          (concat (propertize "(" 'face 'success)
