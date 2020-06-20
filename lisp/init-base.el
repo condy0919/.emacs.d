@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'init-macros))
+
 ;; Supress GUI features
 (setq use-file-dialog nil
       use-dialog-box nil
@@ -15,6 +18,9 @@
 ;; Linux specific
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
+
+;; Ignore errors on selecting text
+(my/ignore-errors-for x-get-selection-internal)
 
 ;; MacOS specific
 (setq ns-use-thing-smoothing t
