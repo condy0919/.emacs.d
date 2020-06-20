@@ -132,32 +132,6 @@
       (insert (completing-read "> " hist nil t))))
   )
 
-;; General term mode
-(use-package term
-  :ensure nil
-  :hook ((term-mode . my/buffer-auto-close)
-         (term-mode . my/term-mode-common-init)
-         (term-mode . (lambda ()
-                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-                          (setq-local term--process proc)))))
-  :config
-  (defvar term--process nil)
-
-  ;; Directory synchronization (linux-only)
-  (defun my/term-directory-sync ()
-    "Synchronize current working directory."
-    (when term--process
-      (when-let* ((pid (process-id term--process))
-                  (dir (file-truename (format "/proc/%d/cwd/" pid))))
-        (setq default-directory dir))))
-
-  (when (eq system-type 'gnu/linux)
-    (define-advice term-send-raw (:after nil)
-      "Synchronize current working directory."
-      (when (equal (this-command-keys) "\C-m")
-        (run-with-idle-timer 0.1 nil 'my/term-directory-sync))))
-  )
-
 ;; Popup a shell
 (use-package shell-pop
   :ensure t

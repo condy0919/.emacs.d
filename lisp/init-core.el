@@ -76,15 +76,6 @@ confirmation."
 (my/other-windowize-for eshell)
 
 ;;;###autoload
-(my/other-windowize-for ansi-term shell-file-name)
-
-;;;###autoload
-(defun my/ansi-term (&rest _)
-  "Open a `term' in current window."
-  (interactive)
-  (ansi-term shell-file-name))
-
-;;;###autoload
 (defun my/buffer-auto-close ()
   "Close buffer after exit."
   (when (ignore-errors (get-buffer-process (current-buffer)))

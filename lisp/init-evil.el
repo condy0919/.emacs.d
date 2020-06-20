@@ -158,9 +158,7 @@
     "ot" 'vterm
     "oT" 'vterm-other-window
     "oe" 'eshell
-    "oE" 'my/eshell-other-window
-    "oo" 'my/ansi-term
-    "oO" 'my/ansi-term-other-window)
+    "oE" 'my/eshell-other-window)
 
   ;; org-mode <Leader> m
   ;; Copy from doom-emacs

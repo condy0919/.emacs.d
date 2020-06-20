@@ -195,8 +195,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>oT</kbd> | `vterm-other-window`在其他窗口打开`vterm`       |
 | <kbd>oe</kbd> | `eshell`打开`eshell`                            |
 | <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`  |
-| <kbd>oo</kbd> | `my/term`打开`ansi-term`                        |
-| <kbd>oO</kbd> | `my/term-other-window`在其他窗口打开`ansi-term` |
 
 搜索相关的功能键绑定:
 
