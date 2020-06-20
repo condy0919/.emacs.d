@@ -87,7 +87,8 @@
                           (eshell/alias "nvim" "find-file $1")))
          (eshell-first-time-mode . (lambda ()
                                      (evil-collection-define-key 'insert 'eshell-mode-map
-                                       (kbd "C-d") 'eshell-life-is-too-much
+                                       (kbd "C-w") 'backward-kill-word
+                                       (kbd "C-d") 'my/eshell-quit-or-delete-char
                                        (kbd "C-p") 'eshell-previous-input
                                        (kbd "C-n") 'eshell-next-input))))
   :config
@@ -97,6 +98,14 @@
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
+
+  ;; Copy from doom
+  (defun my/eshell-quit-or-delete-char (arg)
+    "Delete a character or quit eshell if there's nothing to delete."
+    (interactive "p")
+    (if (and (eolp) (looking-back eshell-prompt-regexp nil))
+        (eshell-life-is-too-much)
+      (delete-char arg)))
 
   (defun my/eshell-prompt ()
     "Prompt for eshell."
