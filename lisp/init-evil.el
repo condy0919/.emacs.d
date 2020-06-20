@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(require 'init-core)
+
 (use-package evil
   :ensure t
   :hook (after-init . evil-mode)
@@ -100,6 +102,7 @@
   (evil-leader/set-key
     "w" 'evil-window-map)
   (evil-leader/set-key
+    "wu" 'my/transient-winner-undo
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
 

@@ -98,5 +98,19 @@ confirmation."
 ;;;###autoload
 (my/other-windowize-for ielm)
 
+;;;###autoload
+(defun my/transient-winner-undo ()
+  "Transient version of `winner-undo'."
+  (interactive)
+  (let ((echo-keystrokes nil))
+    (winner-undo)
+    (message "Winner: [u]ndo [r]edo")
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map [?u] #'winner-undo)
+       (define-key map [?r] #'winner-redo)
+       map)
+     t)))
+
 (provide 'init-core)
 ;;; init-core.el ends here

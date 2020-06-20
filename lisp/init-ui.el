@@ -55,6 +55,7 @@
 ;; Restore windows layout
 (use-package winner-mode
   :ensure nil
+  :custom (winner-dont-bind-my-keys t)
   :hook (after-init . winner-mode))
 
 (provide 'init-ui)
