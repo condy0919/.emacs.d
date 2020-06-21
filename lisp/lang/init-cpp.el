@@ -51,7 +51,12 @@
   :hook (c-mode-common . hide-ifdef-mode)
   :custom
   (hide-ifdef-initially t)
-  (hide-ifdef-shadow t))
+  (hide-ifdef-shadow t)
+  :config
+  (when (eq system-type 'gnu/linux)
+    (add-to-list 'hide-ifdef-env '(__linux__ . 1))
+    (add-to-list 'hide-ifdef-env '(__GNUC__ . 11)))
+  )
 
 (use-package modern-cpp-font-lock
   :ensure t
