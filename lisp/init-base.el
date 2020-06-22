@@ -167,6 +167,7 @@
   :ensure nil
   :custom
   (auto-revert-interval 3)
+  (auto-revert-avoid-polling t)
   (auto-revert-verbose nil)
   (auto-revert-remote-files t)
   (auto-revert-check-vc-info t)

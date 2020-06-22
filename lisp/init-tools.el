@@ -239,6 +239,12 @@ Show the heading too, if it is currently invisible."
   (gcmh-high-cons-threshold #x6400000) ;; 100 MB
   :hook (after-init . gcmh-mode))
 
+;; Which package causes Emacs slow?
+(use-package explain-pause-mode
+  :ensure t
+  :straight (:host github :repo "lastquestion/explain-pause-mode")
+  :hook (after-init . explain-pause-mode))
+
 ;; Write documentation comment in an easy way
 (use-package separedit
   :ensure t
