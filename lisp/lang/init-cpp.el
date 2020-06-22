@@ -25,7 +25,7 @@
                      (member-init-intro     . +)
                      (topmost-intro         . 0)
                      (inlambda              . 0) ;; better indentation for lambda
-                     (innamespace           . 0) ;; no indentation after namespace
+                     (innamespace           . -) ;; no indentation after namespace
                      (arglist-cont-nonempty . +)))
   :config
   (setq c-basic-offset 4)
