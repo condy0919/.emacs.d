@@ -333,7 +333,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
    依赖[all-the-icons][all-the-icons]，请确保`M-x all-the-icons-install-fonts`安
    装对应的字体以显示图标。
 2. 更新时提示对应版本的包不存在？
-   这多是因为国内镜像源泉同步慢导致的。如果出错，可以临时禁用镜像源。
+   这多是因为国内镜像源同步慢导致的。如果出错，可以临时禁用镜像源。
 
 ``` elisp
 (setq package-archives
