@@ -356,3 +356,7 @@ emacs -Q -l init-mini.el
 [ocp-indent]: https://melpa.org/#/ocp-indent
 [modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
 [ocaml-lsp-git]: https://aur.archlinux.org/packages/ocaml-lsp-git
+
+# 其他
+
+欢迎提`issue`给出建议，感谢！

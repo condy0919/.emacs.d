@@ -39,3 +39,11 @@ ielm
 systemd
 gitignore
 minibuffer
+IMAP
+TCP
+IMAPS
+mbsync
+stdout
+TTY
+SASL
+GMail
