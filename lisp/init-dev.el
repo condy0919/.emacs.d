@@ -282,7 +282,7 @@
   (defun hideshow-folded-overlay-fn (ov)
     (when (eq 'code (overlay-get ov 'hs))
       (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
-             (info (format " ... #%d " nlines)))
+             (info (format " ... [%d] " nlines)))
         (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
 
   (setq hs-set-up-overlay 'hideshow-folded-overlay-fn))
