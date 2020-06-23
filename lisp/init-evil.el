@@ -133,9 +133,12 @@
     "pC" 'projectile-configure-project
     "pP" 'projectile-test-project
     "pa" 'projectile-find-other-file
+    "pA" 'projectile-find-other-file-other-window
     "pb" 'projectile-switch-to-buffer
+    "pB" 'projectile-switch-to-buffer-other-window
     "pc" 'projectile-compile-project
     "pf" 'projectile-find-file
+    "pF" 'projectile-find-file-other-window
     "pg" 'projectile-ripgrep
     "pk" 'projectile-kill-buffers
     "po" 'projectile-multi-occur
