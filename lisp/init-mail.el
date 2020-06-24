@@ -28,6 +28,9 @@
   (mu4e-maildir (expand-file-name "~/Mail"))
   (mu4e-attachment-dir (expand-file-name "~/Mail/.attachments"))
 
+  ;; works better with mbsync
+  (mu4e-change-filenames-when-moving t)
+
   ;; obsolete
   ;; It must be nil
   (mu4e-user-mail-address-list nil)
