@@ -47,3 +47,5 @@ stdout
 TTY
 SASL
 GMail
+TLS
+SSL
