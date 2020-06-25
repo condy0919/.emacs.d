@@ -184,31 +184,6 @@
   :custom
   (flymake-fringe-indicator-position 'right-fringe))
 
-;; Interactive spell checker
-(use-package ispell
-  :ensure nil
-  :when (executable-find "hunspell")
-  :bind (("C-c i c" . ispell-comments-and-strings)
-         ("C-c i k" . ispell-kill-ispell)
-         ("C-c i m" . ispell-message)
-         ("C-c i r" . ispell-region))
-  :custom
-  (ispell-dictionary "en_US")
-  (ispell-program-name "hunspell")
-  (ispell-following-word t)
-  (ispell-personal-dictionary (expand-file-name "hunspell_dict.txt" user-emacs-directory)))
-
-;; Spell check on-the-fly
-(use-package flyspell
-  :ensure nil
-  :hook (git-commit-mode . flyspell-mode)
-  :custom
-  (flyspell-use-meta-tab nil)
-  (flyspell-issue-welcome-flag nil)
-  (flyspell-issue-message-flag nil)
-  ;; "C-;" is captured by fcitx
-  (flyspell-auto-correct-binding (kbd "C-M-;")))
-
 ;; xref
 (use-package ivy-xref
   :ensure t

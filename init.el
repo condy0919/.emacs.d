@@ -78,6 +78,7 @@
 (require 'init-mail)
 (require 'init-dired)
 (require 'init-shell)
+(require 'init-spell)
 (require 'init-gnus)
 
 ;; Facilities for myself

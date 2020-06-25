@@ -319,18 +319,6 @@ Show the heading too, if it is currently invisible."
   (bm-in-lifo-order t)
   (bm-recenter t))
 
-;; Grammar & Style checker
-(use-package langtool
-  :ensure t
-  :bind (("C-x 4 w" . langtool-check)
-         ("C-x 4 W" . langtool-check-done)
-         ("C-x 4 l" . langtool-switch-default-language)
-         ("C-x 4 4" . langtool-show-message-at-point)
-         ("C-x 4 c" . langtool-correct-buffer))
-  :custom
-  (langtool-http-server-host "localhost")
-  (langtool-http-server-port 8081))
-
 ;; RSS reader
 ;; The builtin newsticker is buggy
 (use-package elfeed
