@@ -30,8 +30,6 @@
   (evil-want-abbrev-expand-on-insert-exit nil)
   (evil-symbol-word-search t)
   :config
-  ;; Stop copying visual selection to clipboard
-  (advice-add #'evil-visual-update-x-selection :override #'ignore)
   (evil-ex-define-cmd "q[uit]" 'kill-this-buffer))
 
 (use-package evil-collection

@@ -196,6 +196,18 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>oe</kbd> | `eshell`打开`eshell`                            |
 | <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`  |
 
+| key           | function                             |
+|---------------|--------------------------------------|
+| <kbd>am</kbd> | `mu4e`打开邮件                       |
+| <kbd>ag</kbd> | `gnus`查看新闻组                     |
+| <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
+| <kbd>ad</kbd> | `deft`笔记管理                       |
+| <kbd>aa</kbd> | `org-agenda`日程                     |
+| <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
+| <kbd>aC</kbd> | `calendar`日历                       |
+| <kbd>al</kbd> | `org-store-link`存储URL              |
+| <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
+
 搜索相关的功能键绑定:
 
 | key           | function                        |
