@@ -181,7 +181,6 @@
 
 (use-package flymake
   :ensure nil
-  :disabled
   :custom
   (flymake-fringe-indicator-position 'right-fringe))
 
