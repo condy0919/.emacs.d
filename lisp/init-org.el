@@ -288,37 +288,6 @@
   (org-html-checkbox-type 'uncode)
   (org-html-validation-link nil))
 
-;; Write mails in org-mode
-(use-package org-mime
-  :ensure t
-  :after org
-  :bind (:map message-mode-map
-         ("C-c M-m" . org-mime-htmlize)
-         :map org-mode-map
-         ("C-c M-m" . org-mime-org-buffer-htmlize))
-  :hook (org-mime-html . my/org-mime-css-style)
-  :custom
-  ;; NO TOC
-  (org-mime-export-options '(:section-numbers nil
-                             :with-author nil
-                             :with-email nil
-                             :with-timestamps nil
-                             :with-toc nil))
-  (org-mime-export-ascii 'utf-8)
-  (org-mime-beautify-quoted-mail t)
-  :config
-  (defun my/org-mime-css-style ()
-    (org-mime-change-element-style
-     "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
-                   "#E6E1DC" "#232323"))
-
-    (org-mime-change-element-style
-     "blockquote" "border-left: 2px solid gray; padding-left: 4px;")
-
-    (while (re-search-forward "@\\([^@]*\\)@" nil t)
-      (replace-match "<span style=\"color:red\">\\1</span>")))
-  )
-
 ;; Pretty symbols
 (use-package org-superstar
   :ensure t

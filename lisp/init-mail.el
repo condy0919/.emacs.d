@@ -104,6 +104,13 @@
     "a" 'mail-add-attachment)
   )
 
+;; Write email with org-mode
+(use-package org-mu4e
+  :ensure nil
+  :hook (mu4e-compose-mode . org-mu4e-compose-org-mode)
+  :custom
+  (org-mu4e-convert-to-html t))
+
 ;; sending mail
 (use-package message
   :ensure nil
