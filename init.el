@@ -84,6 +84,7 @@
 ;; Facilities for myself
 (use-package init-blog
   :ensure nil
+  :commands mblog-find-post mblog-new-post
   :bind (:map markdown-mode-map
          ("C-c C-s r" . mblog-insert-ruby-tag)))
 
