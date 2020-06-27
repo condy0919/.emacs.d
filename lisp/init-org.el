@@ -288,6 +288,12 @@
   (org-html-checkbox-type 'uncode)
   (org-html-validation-link nil))
 
+(use-package htmlize
+  :ensure t
+  :defer t
+  :custom
+  (htmlize-output-type 'inline-css))
+
 ;; Pretty symbols
 (use-package org-superstar
   :ensure t
