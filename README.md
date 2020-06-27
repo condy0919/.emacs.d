@@ -32,6 +32,7 @@
     - [haskell-mode](#haskell-mode)
 - [截图](#截图)
 - [FAQ](#faq)
+- [其他](#其他)
 
 <!-- markdown-toc end -->
 
