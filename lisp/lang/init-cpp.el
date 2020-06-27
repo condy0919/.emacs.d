@@ -48,7 +48,7 @@
 ;; Highlight "#if 0" as comments
 (use-package hideif
   :ensure nil
-  :hook (c-mode-common . hide-ifdef-mode)
+  :hook ((c-mode c++-mode) . hide-ifdef-mode)
   :custom
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t)
