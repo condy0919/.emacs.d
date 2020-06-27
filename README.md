@@ -1,3 +1,17 @@
+<h3 align="center">A fast and incredible Emacs config</h3>
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EmacsIcon.svg/120px-EmacsIcon.svg.png" />
+</p>
+
+<div align="center">
+
+[![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
+[![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
+![Supports Emacs 26-28.x](https://img.shields.io/badge/Supports-Emacs_26.3_--_28.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+
+</div>
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -20,19 +34,6 @@
 - [FAQ](#faq)
 
 <!-- markdown-toc end -->
-<h3 align="center">A fast and incredible Emacs config</h3>
-
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EmacsIcon.svg/120px-EmacsIcon.svg.png" />
-</p>
-
-<div align="center">
-
-[![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
-[![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 26-28.x](https://img.shields.io/badge/Supports-Emacs_26.3_--_28.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
-
-</div>
 
 个人**Emacs**配置
 ====
