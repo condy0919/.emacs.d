@@ -50,7 +50,7 @@
     (when (bound-and-true-p evil-mode)
       (evil-force-normal-state)))
   (define-advice counsel-company (:after nil)
-    "Back to `evil-insert-state' after `counsel-company' finishes."
+    "Back to `evil-insert-state' after `counsel-company'."
     (when (bound-and-true-p evil-mode)
       (evil-insert-state)))
   )
@@ -58,7 +58,8 @@
 ;; lsp-mode
 (use-package lsp-mode
   :ensure t
-  :hook (prog-mode . lsp-deferred)
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (prog-mode . lsp-deferred))
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)               ;; no clickable links
