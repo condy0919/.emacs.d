@@ -25,20 +25,11 @@
                                      (`unflag (mu4e-action-retag-message msg "-\\Starred")))))
   :custom
   ;; path
-  (mu4e-maildir (expand-file-name "~/Mail"))
   (mu4e-attachment-dir (expand-file-name "~/Mail/.attachments"))
 
   ;; works better with mbsync
   (mu4e-change-filenames-when-moving t)
 
-  ;; obsolete
-  ;; It must be nil
-  (mu4e-user-mail-address-list nil)
-
-  (mu4e-user-mailing-lists '(("emacs-china.org"   . "Emacs China")
-                             ("aur.archlinux.org" . "Arch Linux")
-                             ("github.com"        . "GitHub")
-                             ("twitter.com"       . "Twitter")))
   ;; Gmail specific configs
   (mu4e-sent-messages-behavior 'delete)
   (mu4e-index-cleanup nil)
@@ -56,7 +47,7 @@
                             (:maildir "/Gmail/Junk"   :key ?j)
                             (:maildir "/Gmail/Trash"  :key ?t)))
 
-  ;; beautiful icons. Copy from doom
+  ;; Use fancy icons
   (mu4e-use-fancy-chars t)
   (mu4e-headers-draft-mark     '("D" . ""))
   (mu4e-headers-flagged-mark   '("F" . ""))
@@ -73,35 +64,32 @@
   (mu4e-view-show-addresses t)
   (mu4e-hide-index-messages t)
   (mu4e-view-prefer-html t)
+
   ;; try to show images
   (mu4e-view-show-images t)
   (mu4e-view-image-max-width 800)
   (mu4e-view-image-max-height 600)
-  ;; use imagemagick if available
-  (when (fboundp 'imagemagick-register-types)
-    (imagemagick-register-types))
 
   ;; start with the first (default) context
   (mu4e-context-policy 'pick-first)
   ;; compose with the current context, or ask
   (mu4e-compose-context-policy 'ask-if-none)
-  ;; `ivy' integration
-  (mu4e-completing-read-function #'ivy-completing-read)
-  ;; no need to ask
+  (mu4e-completing-read-function 'ivy-completing-read)
+
   (mu4e-confirm-quit nil)
-  (mu4e-compose-signature "Sent from my Emacs.")
+  (mu4e-compose-signature nil)
   :config
-  ;; general mail settings
+  ;; Html mails might be better rendered in a browser
+  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser))
+
+  ;; Use imagemagick if available
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+
+  ;; General mail settings
   (setq mail-user-agent 'mu4e-user-agent
         user-mail-address "condy0919@gmail.com"
         user-full-name "Zhiwei Chen")
-
-  ;; evil integration
-  (evil-leader/set-key-for-mode 'mu4e-compose-mode
-    "s" 'message-send-and-exit
-    "d" 'message-kill-buffer
-    "S" 'message-dont-send
-    "a" 'mail-add-attachment)
   )
 
 ;; Write email with org-mode
