@@ -233,6 +233,7 @@
 (use-package calendar
   :ensure nil
   :hook (calendar-today-visible . calendar-mark-today)
+  :defines org-agenda-diary-file
   :custom
   (calendar-chinese-all-holidays-flag t)
   (holiday-local-holidays `((holiday-fixed 3 8  "Women's Day")
@@ -397,6 +398,7 @@
 (use-package recentf
   :ensure nil
   :after no-littering
+  :defines no-littering-etc-directory no-littering-var-directory
   :hook ((after-init . recentf-mode)
          (focus-out-hook . (recentf-save-list recentf-cleanup)))
   :custom
