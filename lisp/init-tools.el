@@ -173,34 +173,6 @@
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
-;; View/Edit reStructuredText file
-(use-package rst
-  :ensure nil
-  :mode (("\\.rst\\'"  . rst-mode)
-         ("\\.rest\\'" . rst-mode)))
-
-;; Pixel alignment for org/markdown tables
-(use-package valign
-  :ensure t
-  :straight (:host github :repo "casouri/valign")
-  :hook ((markdown-mode org-mode) . valign-mode)
-  :config
-  ;; compatible with outline mode
-  (define-advice outline-show-entry (:override nil)
-    "Show the body directly following this heading.
-Show the heading too, if it is currently invisible."
-    (interactive)
-    (save-excursion
-      (outline-back-to-heading t)
-      (outline-flag-region (max (point-min) (1- (point)))
-                           (progn
-                             (outline-next-preface)
-                             (if (= 1 (- (point-max) (point)))
-                                 (point-max)
-                               (point)))
-                           nil)))
-  )
-
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
