@@ -281,14 +281,6 @@
   (appt-display-interval 3)
   (appt-message-warning-time 15))
 
-;; Lifelog
-(use-package diary-lib
-  :ensure nil
-  :defer t
-  :custom
-  (diary-number-of-entries 7)
-  (diary-comment-start "#"))
-
 ;; quick access to files/tags
 (use-package speedbar
   :ensure nil
