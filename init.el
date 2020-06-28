@@ -79,6 +79,7 @@
 (require 'init-dired)
 (require 'init-shell)
 (require 'init-spell)
+(require 'init-insert)
 (require 'init-gnus)
 
 ;; Facilities for myself

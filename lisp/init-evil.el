@@ -113,6 +113,11 @@
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point)
 
+  ;; prefix: <Leader> i, insert
+  (evil-leader/set-key
+    "it" 'insert-date-time
+    "is" 'insert-mail-signature)
+
   ;; prefix: <Leader> g, git
   (evil-leader/set-key
     "gb" 'magit-branch-checkout
@@ -246,6 +251,7 @@
       "SPC b" "bookmark"
       "SPC f" "files"
       "SPC g" "git"
+      "SPC i" "insert"
       "SPC o" "open"
       "SPC s" "search"
       "SPC p" "project")
