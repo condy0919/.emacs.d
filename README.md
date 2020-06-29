@@ -121,6 +121,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还
 有`separedit`,让人在代码里写`documentation comments`不再烦恼。
 
+[valign][valign]提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
+
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
 - evil-leader
@@ -363,6 +365,7 @@ emacs -Q -l init-mini.el
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
 [dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
+[valign]: https://github.com/casouri/valign/
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent
 [modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
