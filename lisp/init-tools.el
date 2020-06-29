@@ -325,8 +325,8 @@ Show the heading too, if it is currently invisible."
   :ensure t
   :bind ("C-x 4 n" . elfeed)
   :custom
-  (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" Planet-Emacslife)
-                  ("https://lwn.net/headlines/rss" LWN)))
+  (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" emacs)
+                  ("https://lwn.net/headlines/rss" linux)))
   (elfeed-search-title-max-width 100))
 
 (provide 'init-tools)
