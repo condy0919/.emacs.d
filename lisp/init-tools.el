@@ -148,6 +148,7 @@
   (isearch-lax-whitespace t)
   (isearch-regexp-lax-whitespace t)
   (search-whitespace-regexp "[ \t\r\n]+")
+  (isearch-allow-scroll t)
   (isearch-lazy-count t)
   (isearch-yank-on-move t)
   (lazy-count-prefix-format nil)
