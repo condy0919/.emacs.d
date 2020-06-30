@@ -14,6 +14,8 @@
          ("gs" . evil-avy-goto-char-timer)
          ("go" . evil-avy-goto-word-or-subword-1)
          ("gl" . evil-avy-goto-line))
+  :config
+  (evil-ex-define-cmd "q[uit]" 'kill-this-buffer)
   :custom
   ;; Switch to the new window after splitting
   (evil-split-window-below t)
@@ -28,20 +30,11 @@
   (evil-want-C-g-bindings t)
   (evil-want-Y-yank-to-eol t)
   (evil-want-abbrev-expand-on-insert-exit nil)
-  (evil-symbol-word-search t)
-  :config
-  (evil-ex-define-cmd "q[uit]" 'kill-this-buffer))
+  (evil-symbol-word-search t))
 
 (use-package evil-collection
   :ensure t
   :hook (evil-mode . evil-collection-init)
-  :custom
-  (evil-collection-calendar-want-org-bindings t)
-  (evil-collection-company-use-tng nil)
-  (evil-collection-outline-bind-tab-p t)
-  (evil-collection-term-sync-state-and-mode-p nil)
-  (evil-collection-setup-minibuffer nil)
-  (evil-collection-setup-debugger-keys nil)
   :config
   ;; Disable `evil-collection' in certain modes
   (dolist (ig-mode '())
@@ -51,13 +44,20 @@
   (evil-collection-define-key 'normal 'occur-mode-map
     ;; consistent with ivy
     (kbd "C-c C-e") 'occur-edit-mode)
-  )
+  :custom
+  (evil-collection-calendar-want-org-bindings t)
+  (evil-collection-company-use-tng nil)
+  (evil-collection-outline-bind-tab-p t)
+  (evil-collection-term-sync-state-and-mode-p nil)
+  (evil-collection-setup-minibuffer nil)
+  (evil-collection-setup-debugger-keys nil))
 
 (use-package evil-leader
   :ensure t
-  :custom (evil-leader/leader "<SPC>")
   :hook (after-init . global-evil-leader-mode)
   :config
+  (setq evil-leader/leader "SPC")
+
   ;; prefix: <Leader> f, file
   (evil-leader/set-key
     "fj" 'dired-jump
@@ -153,6 +153,7 @@
     "ag" 'gnus
     "an" 'elfeed
     "ad" 'deft
+    "aj" 'jblog
     "aa" 'org-agenda
     "ac" 'org-capture
     "aC" 'calendar

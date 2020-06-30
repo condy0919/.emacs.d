@@ -13,6 +13,7 @@
 
 (use-package doom-modeline
   :ensure t
+  :hook (after-init . doom-modeline-mode)
   :custom
   (doom-modeline-irc nil)
   (doom-modeline-mu4e nil)
@@ -20,8 +21,7 @@
   (doom-modeline-github nil)
   (doom-modeline-persp-name nil)
   (doom-modeline-unicode-fallback t)
-  (doom-modeline-enable-word-count nil)
-  :hook (after-init . doom-modeline-mode))
+  (doom-modeline-enable-word-count nil))
 
 ;; Customize popwin behavior
 (use-package shackle
@@ -55,8 +55,8 @@
 ;; Restore windows layout
 (use-package winner-mode
   :ensure nil
-  :custom (winner-dont-bind-my-keys t)
-  :hook (after-init . winner-mode))
+  :hook (after-init . winner-mode)
+  :custom (winner-dont-bind-my-keys t))
 
 (provide 'init-ui)
 

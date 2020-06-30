@@ -24,11 +24,6 @@
              (executable-find "cmake")
              (executable-find "make")
              (executable-find "libtool"))
-  :custom
-  (vterm-always-compile-module t)
-  (vterm-use-vterm-prompt nil)
-  (vterm-kill-buffer-on-exit t)
-  (vterm-clear-scrollback-when-clearing t)
   :hook (vterm-mode . (lambda ()
                         (my/term-mode-common-init)
                         ;; Dont prompt about processes when killing vterm
@@ -55,29 +50,17 @@
                      (lambda (s) (vterm-send-string s t))))
             (apply func args)))
       (apply func args)))
-  )
+  :custom
+  (vterm-always-compile-module t)
+  (vterm-use-vterm-prompt nil)
+  (vterm-kill-buffer-on-exit t)
+  (vterm-clear-scrollback-when-clearing t))
 
 ;; the Emacs shell & friends
 (use-package eshell
   :ensure nil
+  :defines eshell-prompt-regexp
   :functions eshell/alias
-  :custom
-  (eshell-banner-message
-   '(format "%s %s\n"
-            (propertize (format " %s " (string-trim (buffer-name)))
-                        'face 'mode-line-highlight)
-            (propertize (current-time-string)
-                        'face 'font-lock-keyword-face)))
-  (eshell-scroll-to-bottom-on-input 'all)
-  (eshell-scroll-to-bottom-on-output 'all)
-  (eshell-kill-on-exit t)
-  (eshell-kill-processes-on-exit t)
-  (eshell-hist-ignoredups t)
-  (eshell-input-filter 'eshell-input-filter-initial-space)
-  (eshell-glob-case-insensitive t)
-  (eshell-highlight-prompt nil)
-  (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
-  (eshell-prompt-function 'my/eshell-prompt)
   :hook ((eshell-mode . (lambda ()
                           (my/term-mode-common-init)
                           ;; Define aliases
@@ -129,7 +112,23 @@
                  " ")
        "")
      "% "))
-  )
+  :custom
+  (eshell-banner-message
+   '(format "%s %s\n"
+            (propertize (format " %s " (string-trim (buffer-name)))
+                        'face 'mode-line-highlight)
+            (propertize (current-time-string)
+                        'face 'font-lock-keyword-face)))
+  (eshell-scroll-to-bottom-on-input 'all)
+  (eshell-scroll-to-bottom-on-output 'all)
+  (eshell-kill-on-exit t)
+  (eshell-kill-processes-on-exit t)
+  (eshell-hist-ignoredups t)
+  (eshell-input-filter 'eshell-input-filter-initial-space)
+  (eshell-glob-case-insensitive t)
+  (eshell-highlight-prompt nil)
+  (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
+  (eshell-prompt-function 'my/eshell-prompt))
 
 (use-package em-hist
   :ensure nil

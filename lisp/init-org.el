@@ -297,11 +297,11 @@
 ;; Pretty symbols
 (use-package org-superstar
   :ensure t
+  :hook (org-mode . org-superstar-mode)
   :custom
   ;; hide leading stars, rendering in spaces
   (org-hide-leading-stars nil)
-  (org-superstar-leading-bullet ?\s)
-  :hook (org-mode . org-superstar-mode))
+  (org-superstar-leading-bullet ?\s))
 
 ;; Super agenda mode
 (use-package org-super-agenda
@@ -317,24 +317,23 @@
                              (:name "Due soon" :deadline future)
                              (:name "Important" :priority>= "B")
                              (:name "Started" :todo "INPROGRESS" :order 6)
-                             (:todo "WAITING" :order 9)))
-  )
+                             (:todo "WAITING" :order 9))))
 
 ;; Presentation
 (use-package org-tree-slide
   :ensure t
-  :bind (:map org-mode-map
-         ("C-<f8>" . org-tree-slide-mode)
-         :map org-tree-slide-mode-map
-         ("C-x s c" . org-tree-slide-content)
-         ("C-<"     . org-tree-slide-move-previous-tree)
-         ("C->"     . org-tree-slide-move-next-tree))
   :hook ((org-tree-slide-play . (lambda ()
                                   (text-scale-increase 4)
                                   (read-only-mode +1)))
          (org-tree-slide-stop . (lambda ()
                                   (text-scale-increase 0)
                                   (read-only-mode -1))))
+  :bind (:map org-mode-map
+         ("C-<f8>" . org-tree-slide-mode)
+         :map org-tree-slide-mode-map
+         ("C-x s c" . org-tree-slide-content)
+         ("C-<"     . org-tree-slide-move-previous-tree)
+         ("C->"     . org-tree-slide-move-next-tree))
   :custom
   (org-tree-slide-skip-outline-level 2)
   (org-tree-slide-heading-emphasis t))
@@ -344,10 +343,6 @@
   :ensure t
   :hook ((org-load . org-roam-mode)
          (org-roam-backlinks-mode . visual-line-mode))
-  :custom
-  (org-roam-directory (expand-file-name (concat org-directory "roam/")))
-  (org-roam-buffer-no-delete-other-windows t)
-  (org-roam-completion-system 'ivy)
   :bind (:map org-roam-mode-map
          ("C-c n b" . org-roam-switch-to-buffer)
          ("C-c n c" . org-roam-capture)
@@ -355,13 +350,17 @@
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-insert)
          ("C-c n j" . org-roam-jump-to-index)
-         ("C-c n l" . org-roam)))
+         ("C-c n l" . org-roam))
+  :custom
+  (org-roam-directory (expand-file-name (concat org-directory "/roam")))
+  (org-roam-buffer-no-delete-other-windows t)
+  (org-roam-completion-system 'ivy))
 
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t
-  :demand t
-  :commands (doct doct-get))
+  :commands doct doct-get
+  :demand t)
 
 ;; Ensure that emacsclient.desktop exists and server-mode is opened.
 ;;

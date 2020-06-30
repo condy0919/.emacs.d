@@ -11,14 +11,9 @@
 ;; Compilation Mode
 (use-package compile
   :ensure nil
-  :custom
-  (compilation-always-kill t)
-  (compilation-scroll-output t)
-  (compilation-ask-about-save nil) ;; save all buffers on `compile'
   :hook (compilation-filter . my/colorize-compilation-buffer)
   :config
   (add-to-list 'compilation-finish-functions 'my/notify-compilation-result)
-  :preface
   (defun my/colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
@@ -34,19 +29,16 @@
                             :body "Compilation failed :-("
                             :timeout 5000
                             :urgency 'critical)))
-  )
+  :custom
+  (compilation-always-kill t)
+  (compilation-scroll-output t)
+  ;; save all buffers on `compile'
+  (compilation-ask-about-save nil))
 
 ;; Debugger
 (use-package gdb-mi
   :ensure nil
   :hook (gud-mode . gud-tooltip-mode)
-  :custom
-  (gdb-show-main t)
-  (gdb-display-io-nopopup t)
-  (gdb-show-changed-values t)
-  (gdb-delete-out-of-scope t)
-  (gdb-use-colon-colon-notation t)
-  (gdb-restore-window-configuration-after-quit t)
   :config
   ;; Add color to the current GUD line
   ;; From https://kousik.blogspot.com/2005/10/highlight-current-line-in-gdbemacs.html
@@ -71,7 +63,14 @@
 
   (define-advice gud-sentinel (:after (_1 _2))
     "Remove highlight overlay when user quit gud."
-    (delete-overlay gud-overlay)))
+    (delete-overlay gud-overlay))
+  :custom
+  (gdb-show-main t)
+  (gdb-display-io-nopopup t)
+  (gdb-show-changed-values t)
+  (gdb-delete-out-of-scope t)
+  (gdb-use-colon-colon-notation t)
+  (gdb-restore-window-configuration-after-quit t))
 
 (use-package license
   :ensure t
@@ -85,11 +84,11 @@
 ;; Highlight TODO
 (use-package hl-todo
   :ensure t
+  :hook (after-init . global-hl-todo-mode)
   :bind (:map hl-todo-mode-map
          ("C-c t p" . hl-todo-previous)
          ("C-c t n" . hl-todo-next)
          ("C-c t o" . hl-todo-occur))
-  :hook (after-init . global-hl-todo-mode)
   :config
   (dolist (keyword '("BUG" "ISSUE" "NB"))
     (cl-pushnew `(,keyword . ,(face-foreground 'error)) hl-todo-keyword-faces)))
@@ -115,10 +114,10 @@
 ;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
+  :bind (("C-c x" . quickrun))
   :custom
   (quickrun-focus-p nil)
-  (quickrun-input-file-extension ".qr")
-  :bind (("C-c x" . quickrun)))
+  (quickrun-input-file-extension ".qr"))
 
 ;; Superb compiler explorer implementation
 (use-package rmsbolt
@@ -131,14 +130,9 @@
 ;; Project management
 (use-package projectile
   :ensure t
+  :hook (prog-mode . projectile-mode)
   :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
-  :hook (prog-mode . projectile-mode)
-  :custom
-  (projectile-completion-system 'ivy)
-  (projectile-indexing-method 'hybrid)
-  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
-  (projectile-ignored-project-function 'projectile-project-ignore-p)
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
                                                      ,(file-truename (expand-file-name "straight/" user-emacs-directory))))
@@ -157,7 +151,11 @@
     (add-to-list 'projectile-globally-ignored-directories dir))
   (dolist (file '(".DS_Store"))
     (add-to-list 'projectile-globally-ignored-files file))
-  )
+  :custom
+  (projectile-completion-system 'ivy)
+  (projectile-indexing-method 'hybrid)
+  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
+  (projectile-ignored-project-function 'projectile-project-ignore-p))
 
 ;; Comprehensive ivy integration for projectile
 (use-package counsel-projectile
@@ -169,15 +167,15 @@
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode)
+  :config
+  (my/ignore-errors-for flycheck-global-teardown)
   :custom
   (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
   ;; clang/gcc/cppcheck flycheckers never know the include path
-  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  :config
-  (my/ignore-errors-for flycheck-global-teardown))
+  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
 (use-package flymake
   :ensure nil
@@ -216,9 +214,6 @@
 ;; pulse current line
 (use-package pulse
   :ensure nil
-  :custom-face
-  (pulse-highlight-start-face ((t (:inherit highlight))))
-  (pulse-highlight-face ((t (:inherit highlight))))
   :preface
   (defun my/pulse-line (&rest _)
     "Pulse the current line."
@@ -227,10 +222,6 @@
     "Recenter and pulse the current line."
     (recenter)
     (my/pulse-line))
-  :hook ((counsel-grep-post-action
-          dumb-jump-after-jump
-          bookmark-after-jump
-          imenu-after-jump) . my/recenter-and-pulse)
   :init
   ;; better evil notification
   (advice-add #'evil-goto-line       :after #'my/recenter-and-pulse)
@@ -238,7 +229,14 @@
   (advice-add #'what-cursor-position :after #'my/pulse-line)
   (advice-add #'evil-window-top      :after #'my/pulse-line)
   (advice-add #'evil-window-middle   :after #'my/pulse-line)
-  (advice-add #'evil-window-bottom   :after #'my/pulse-line))
+  (advice-add #'evil-window-bottom   :after #'my/pulse-line)
+  :hook ((counsel-grep-post-action
+          dumb-jump-after-jump
+          bookmark-after-jump
+          imenu-after-jump) . my/recenter-and-pulse)
+  :custom-face
+  (pulse-highlight-start-face ((t (:inherit highlight))))
+  (pulse-highlight-face ((t (:inherit highlight)))))
 
 ;; Hiding structured data
 ;;
@@ -286,9 +284,9 @@
 ;; XML
 (use-package nxml-mode
   :ensure nil
+  :magic "<\\?xml"
   :mode (("\\.xml\\'" . nxml-mode)
          ("\\.rss\\'" . nxml-mode))
-  :magic "<\\?xml"
   :custom
   (nxml-slash-auto-complete-flag t)
   (nxml-auto-insert-xml-declaration-flag t))

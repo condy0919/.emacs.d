@@ -129,6 +129,10 @@
 ;; Show line/column number
 (use-package simple
   :ensure nil
+  :hook (after-init . (lambda ()
+                        (line-number-mode)
+                        (column-number-mode)
+                        (size-indication-mode)))
   :custom
   ;; column starts from 1
   (column-number-indicator-zero-based nil)
@@ -139,11 +143,7 @@
   ;; include '\n'
   (kill-whole-line t)
   ;; show the name of character in `what-cursor-position'
-  (what-cursor-show-names t)
-  :hook (after-init . (lambda ()
-                        (line-number-mode)
-                        (column-number-mode)
-                        (size-indication-mode))))
+  (what-cursor-show-names t))
 
 ;; Type text
 (use-package text-mode
@@ -165,14 +165,14 @@
 ;; Also revert dired buffer.
 (use-package autorevert
   :ensure nil
+  :hook (after-init . global-auto-revert-mode)
   :custom
   (auto-revert-interval 3)
   (auto-revert-avoid-polling t)
   (auto-revert-verbose nil)
   (auto-revert-remote-files t)
   (auto-revert-check-vc-info t)
-  (global-auto-revert-non-file-buffers t)
-  :hook (after-init . global-auto-revert-mode))
+  (global-auto-revert-non-file-buffers t))
 
 ;; Highlight current line
 (use-package hl-line
@@ -182,21 +182,7 @@
 ;; Switch window
 (use-package window
   :ensure nil
-  :bind (("M-o"   . other-window)
-         ("C-x o" . my/transient-other-window))
-  :preface
-  ;; `term-mode' translates 'M-o' to `term-send-raw-meta', so use 'C-x o' instead.
-  (defun my/transient-other-window (count &optional all-frames interactive)
-    (interactive "p\ni\np")
-    (let ((echo-keystrokes nil))
-      (other-window count all-frames interactive)
-      (message "Use o for further window switch")
-      (set-transient-map
-       (let ((map (make-sparse-keymap)))
-         (define-key map [?o] #'other-window)
-         map)
-       t)))
-  )
+  :bind ("M-o" . other-window))
 
 ;; Server mode.
 ;; Use emacsclient to connect
@@ -204,7 +190,6 @@
   :ensure nil
   :when (display-graphic-p)
   :defer 1
-  :commands (server-running-p)
   :config
   (unless (server-running-p)
     (server-start)))
@@ -232,8 +217,13 @@
 ;; Holidays
 (use-package calendar
   :ensure nil
-  :hook (calendar-today-visible . calendar-mark-today)
   :defines org-agenda-diary-file
+  :hook (calendar-today-visible . calendar-mark-today)
+  :config
+  (define-advice org-agenda-add-entry-to-org-agenda-diary-file (:after (_type text &optional _d1 _d2))
+    (when (string-match "\\S-" text)
+      (with-current-buffer (find-file-noselect org-agenda-diary-file)
+        (save-buffer))))
   :custom
   (calendar-chinese-all-holidays-flag t)
   (holiday-local-holidays `((holiday-fixed 3 8  "Women's Day")
@@ -264,13 +254,7 @@
   ;; start from Monday
   (calendar-week-start-day 1)
   ;; year/month/day
-  (calendar-date-style 'iso)
-  :config
-  (define-advice org-agenda-add-entry-to-org-agenda-diary-file (:after (_type text &optional _d1 _d2))
-    (when (string-match "\\S-" text)
-      (with-current-buffer (find-file-noselect org-agenda-diary-file)
-        (save-buffer))))
-  )
+  (calendar-date-style 'iso))
 
 ;; Appointment
 (use-package appt
@@ -354,7 +338,6 @@
 ;; Buffer manager
 (use-package ibuffer
   :ensure nil
-  :commands (ibuffer-switch-to-saved-filter-groups)
   :hook ((ibuffer-mode . ibuffer-auto-mode)
          (ibuffer-mode . (lambda ()
                            (ibuffer-switch-to-saved-filter-groups "Default"))))
@@ -397,20 +380,18 @@
       ("Magit" (name . "magit"))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
-                  (name . "\\*info\\*"))))
-     ))
-  )
+                  (name . "\\*info\\*")))))))
 
 ;; Notifications
 (use-package notifications
   :ensure nil
-  :commands (notifications-notify))
+  :commands notifications-notify)
 
 ;; Recently opened files
 (use-package recentf
   :ensure nil
-  :after no-littering
   :defines no-littering-etc-directory no-littering-var-directory
+  :after no-littering
   :hook ((after-init . recentf-mode)
          (focus-out-hook . (recentf-save-list recentf-cleanup)))
   :custom

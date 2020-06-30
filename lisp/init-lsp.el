@@ -24,6 +24,15 @@
          ([escape] . company-search-abort)
          ("C-p"    . company-select-previous)
          ("C-n"    . company-select-next))
+  :config
+  (define-advice company-abort (:after nil)
+    "Exit `evil-insert-state-mode' too."
+    (when (bound-and-true-p evil-mode)
+      (evil-force-normal-state)))
+  (define-advice counsel-company (:after nil)
+    "Back to `evil-insert-state' after `counsel-company'."
+    (when (bound-and-true-p evil-mode)
+      (evil-insert-state)))
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
@@ -43,23 +52,18 @@
   (company-backends '(company-capf
                       company-files
                       (company-dabbrev-code company-keywords)
-                      company-dabbrev))
-  :config
-  (define-advice company-abort (:after nil)
-    "Exit `evil-insert-state-mode' too."
-    (when (bound-and-true-p evil-mode)
-      (evil-force-normal-state)))
-  (define-advice counsel-company (:after nil)
-    "Back to `evil-insert-state' after `counsel-company'."
-    (when (bound-and-true-p evil-mode)
-      (evil-insert-state)))
-  )
+                      company-dabbrev)))
 
 ;; lsp-mode
 (use-package lsp-mode
   :ensure t
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (prog-mode . lsp-deferred))
+  :bind (:map lsp-mode-map
+              ("C-c f" . lsp-format-region)
+              ("C-c d" . lsp-describe-thing-at-point)
+              ("C-c a" . lsp-execute-code-action)
+              ("C-c r" . lsp-rename))
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)               ;; no clickable links
@@ -79,13 +83,7 @@
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; disable eldoc hover
   (lsp-signature-auto-activate t)      ;; show function signature
-  (lsp-signature-doc-lines 2)          ;; but dont take up more lines
-  :bind (:map lsp-mode-map
-         ("C-c f" . lsp-format-region)
-         ("C-c d" . lsp-describe-thing-at-point)
-         ("C-c a" . lsp-execute-code-action)
-         ("C-c r" . lsp-rename))
-  )
+  (lsp-signature-doc-lines 2))         ;; but dont take up more lines
 
 (provide 'init-lsp)
 

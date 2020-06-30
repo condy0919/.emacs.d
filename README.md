@@ -205,6 +205,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
 | <kbd>ad</kbd> | `deft`笔记管理                       |
 | <kbd>aa</kbd> | `org-agenda`日程                     |
+| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
 | <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
 | <kbd>aC</kbd> | `calendar`日历                       |
 | <kbd>al</kbd> | `org-store-link`存储URL              |
@@ -361,16 +362,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 emacs -Q -l init-mini.el
 ```
 
+# 其他
+
+欢迎提`issue`给出建议，感谢！
+
 [all-the-icons]: https://github.com/domtronn/all-the-icons.el/
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
 [dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
 [valign]: https://github.com/casouri/valign/
+[jblog]: https://github.com/condy0919/jblog/
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent
 [modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
 [ocaml-lsp-git]: https://aur.archlinux.org/packages/ocaml-lsp-git
-
-# 其他
-
-欢迎提`issue`给出建议，感谢！

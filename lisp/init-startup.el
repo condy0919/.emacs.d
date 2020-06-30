@@ -16,9 +16,6 @@
 
 (use-package dashboard
   :ensure t
-  :hook ((after-init . dashboard-setup-startup-hook)
-         (dashboard-mode . (lambda ()
-                             (setq-local global-hl-line-mode nil))))
   :init
   ;; Format: "(icon title help action face prefix suffix)"
   (setq dashboard-navigator-buttons `(((,(if (fboundp 'all-the-icons-octicon) (all-the-icons-octicon "mark-github"     :height 1.0 :v-adjust  0.0) "★")
@@ -29,6 +26,14 @@
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "update"         :height 1.1 :v-adjust -0.2) "♺")
                                         "Update" "Update packages synchronously" (lambda (&rest _) (auto-package-update-now)) success))))
+
+  :hook ((after-init . dashboard-setup-startup-hook)
+         (dashboard-mode . (lambda ()
+                             (setq-local global-hl-line-mode nil))))
+  :config
+  (defconst homepage-url "https://github.com/condy0919/.emacs.d")
+  (defconst stars-url (concat homepage-url "/stargazers"))
+  (defconst issue-url (concat homepage-url "/issues/new"))
   :custom
   (dashboard-startup-banner 'logo)
   (dashboard-set-heading-icons t)
@@ -37,11 +42,7 @@
   (dashboard-set-navigator t)
   (dashboard-items '((recents   . 10)
                      (projects  . 5)
-                     (bookmarks . 5)))
-  :config
-  (defconst homepage-url "https://github.com/condy0919/.emacs.d")
-  (defconst stars-url (concat homepage-url "/stargazers"))
-  (defconst issue-url (concat homepage-url "/issues/new")))
+                     (bookmarks . 5))))
 
 (provide 'init-startup)
 

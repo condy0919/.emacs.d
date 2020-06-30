@@ -9,9 +9,6 @@
 (use-package which-key
   :ensure t
   :hook (after-init . which-key-mode)
-  :custom
-  (which-key-idle-delay 0.5)
-  (which-key-add-column-padding 1)
   :config
   (dolist (k '(("C-c !" "flycheck")
                ("C-c @" "hideshow")
@@ -22,7 +19,9 @@
                ("C-x n" "narrow")))
     (cl-destructuring-bind (key name) k
       (which-key-add-key-based-replacements key name)))
-  )
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-add-column-padding 1))
 
 ;; The blazing grep tool
 ;; Press C-c s to search
@@ -37,17 +36,16 @@
   ;; integrate with isearch and others
   ;; C-' to select isearch-candidate with avy
   :hook (after-init . avy-setup-default)
-  :custom
-  (avy-timeout-seconds 0.2)
-  (avy-all-windows nil)
-  (avy-background t)
-  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   :config
   ;; Force to use pre `avy-style'
   (define-advice avy-isearch (:around (func &rest args))
     (let ((avy-style 'pre))
       (apply func args)))
-  )
+  :custom
+  (avy-timeout-seconds 0.2)
+  (avy-all-windows nil)
+  (avy-background t)
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))
 
 ;; ivy core
 (use-package ivy
@@ -60,14 +58,6 @@
          ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode)
          :map ivy-occur-grep-mode-map
          ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
-  :custom
-  (ivy-display-style 'fancy)          ;; fancy style
-  (ivy-count-format "%d/%d ")         ;; better counts
-  (ivy-use-virtual-buffers t)         ;; show recent files
-  (ivy-extra-directories '("./"))     ;; no ".." directories
-  (ivy-height 10)
-  (ivy-fixed-height-minibuffer t)     ;; fixed height
-  (ivy-on-del-error-function 'ignore) ;; dont quit minibuffer when del-error
   :config
   ;; Bring C-' back
   (use-package ivy-avy
@@ -80,7 +70,14 @@
     (interactive)
     (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
     (ivy-occur))
-  )
+  :custom
+  (ivy-display-style 'fancy)           ;; fancy style
+  (ivy-count-format "%d/%d ")          ;; better counts
+  (ivy-use-virtual-buffers t)          ;; show recent files
+  (ivy-extra-directories '("./"))      ;; no ".." directories
+  (ivy-height 10)
+  (ivy-fixed-height-minibuffer t)      ;; fixed height
+  (ivy-on-del-error-function 'ignore)) ;; dont quit minibuffer when del-error
 
 ;; Fuzzy matcher
 (use-package counsel
@@ -143,6 +140,9 @@
          ("C-c C-o" . isearch-occur)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
+  :config
+  (define-advice isearch-occur (:after (_regexp &optional _nlines))
+    (isearch-exit))
   :custom
   ;; One space can represent a sequence of whitespaces
   (isearch-lax-whitespace t)
@@ -153,11 +153,7 @@
   (isearch-yank-on-move t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
-  (lazy-highlight-cleanup nil)
-  :config
-  (define-advice isearch-occur (:after (_regexp &optional _nlines))
-    (isearch-exit))
-  )
+  (lazy-highlight-cleanup nil))
 
 ;; isearch alternative
 (use-package swiper
@@ -173,12 +169,6 @@
   :custom
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
-
-;; View/Edit reStructuredText file
-(use-package rst
-  :ensure nil
-  :mode (("\\.rst\\'"  . rst-mode)
-         ("\\.rest\\'" . rst-mode)))
 
 ;; Pixel alignment for org/markdown tables
 (use-package valign
@@ -202,14 +192,47 @@ Show the heading too, if it is currently invisible."
                            nil)))
   )
 
+;; Jekyll blog posts manager
+(use-package jblog
+  :ensure t
+  :straight (:host github :repo "condy0919/jblog")
+  :commands jblog
+  :defer t
+  :custom
+  (jblog-posts-directory (expand-file-name "~/blog/_posts"))
+  (jblog-post-headers [("Date"       12 t)
+                       ("Title"      36 t)
+                       ("Categories" 25 t)
+                       ("Tags"       25 t)])
+  (jblog-post-headers-format "---
+layout: post
+title: %s
+categories: note
+tags: note
+usemermaid: false
+usemathjax: false
+---
+
+* content
+{:toc}
+"))
+
+
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
-  :mode ("README\\(?:\\.md\\)?\\'" . gfm-mode)
-  :hook (markdown-mode . auto-fill-mode)
   :init
   (advice-add #'markdown--command-map-prompt :override #'ignore)
   (advice-add #'markdown--style-map-prompt   :override #'ignore)
+  :mode ("README\\(?:\\.md\\)?\\'" . gfm-mode)
+  :hook (markdown-mode . auto-fill-mode)
+  :bind (:map markdown-mode-style-map
+         ("r" . markdown-insert-ruby-tag))
+  :config
+  (defun markdown-insert-ruby-tag (text ruby)
+    "Quick insertion of ruby tag with `TEXT' and `RUBY'."
+    (interactive "sText: \nsRuby: \n")
+    (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text ruby)))
   :custom
   (markdown-header-scaling t)
   (markdown-enable-wiki-links t)
@@ -235,10 +258,10 @@ Show the heading too, if it is currently invisible."
 ;; GC optimization
 (use-package gcmh
   :ensure t
+  :hook (after-init . gcmh-mode)
   :custom
   (gcmh-idle-delay 10)
-  (gcmh-high-cons-threshold #x6400000) ;; 100 MB
-  :hook (after-init . gcmh-mode))
+  (gcmh-high-cons-threshold #x6400000)) ;; 100 MB
 
 ;; Which package causes Emacs slow?
 (use-package explain-pause-mode
@@ -249,13 +272,13 @@ Show the heading too, if it is currently invisible."
 ;; Write documentation comment in an easy way
 (use-package separedit
   :ensure t
+  :bind (:map prog-mode-map
+         ("C-c '" . separedit))
   :custom
   (separedit-default-mode 'markdown-mode)
   (separedit-remove-trailing-spaces-in-comment t)
   (separedit-continue-fill-column t)
-  (separedit-buffer-creation-hook #'auto-fill-mode)
-  :bind (:map prog-mode-map
-         ("C-c '" . separedit)))
+  (separedit-buffer-creation-hook #'auto-fill-mode))
 
 ;; Pastebin service
 (use-package webpaste
@@ -273,13 +296,13 @@ Show the heading too, if it is currently invisible."
   :commands (evil-set-initial-state)
   :hook ((emacs-startup . atomic-chrome-start-server)
          (atomic-chrome-edit-mode . delete-other-windows))
+  :config
+  ;; The browser is in "insert" state, makes it consistent
+  (evil-set-initial-state 'atomic-chrome-edit-mode 'insert)
   :custom
   (atomic-chrome-buffer-open-style 'frame)
   (atomic-chrome-default-major-mode 'markdown-mode)
-  (atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode)))
-  :config
-  ;; The browser is in "insert" state, makes it consistent
-  (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
+  (atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode))))
 
 ;; Open very large files
 (use-package vlf-setup

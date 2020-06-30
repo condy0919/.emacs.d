@@ -10,6 +10,9 @@
 ;; Use ( to toggle dired-hide-details-mode
 (use-package dired
   :ensure nil
+  :bind (:map dired-mode-map
+         ;; consistent with ivy
+         ("C-c C-e"   . wdired-change-to-wdired-mode))
   :custom
   (dired-dwim-target t)
   (dired-bind-vm nil)
@@ -18,17 +21,10 @@
   (dired-bind-jump nil)
   (dired-auto-revert-buffer t)
   (dired-hide-details-hide-symlink-targets nil)
-  (dired-listing-switches "-Afhlv")
-  :bind (:map dired-mode-map
-         ;; consistent with ivy
-         ("C-c C-e"   . wdired-change-to-wdired-mode)))
+  (dired-listing-switches "-Afhlv"))
 
 (use-package dired-aux
   :ensure nil
-  :custom
-  (dired-isearch-filenames 'dwim)
-  (dired-create-destination-dirs 'ask)
-  (dired-vc-rename-file t)
   :bind (:map dired-mode-map
          ("C-c +" . dired-create-empty-file))
   :config
@@ -43,7 +39,10 @@
           (dired-do-kill-lines))
       (revert-buffer)
       (setq-local dired-dotfiles-show-p t)))
-  )
+  :custom
+  (dired-isearch-filenames 'dwim)
+  (dired-create-destination-dirs 'ask)
+  (dired-vc-rename-file t))
 
 (use-package dired-x
   :ensure nil

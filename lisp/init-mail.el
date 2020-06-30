@@ -8,8 +8,8 @@
 ;; bundled with system package `mu'
 (use-package mu4e
   :ensure nil
-  :defer 1
   :commands (mu4e mu4e-compose-new)
+  :defer 1
   :hook ((mu4e-compose-mode . auto-fill-mode)
          (mu4e-compose-mode . flyspell-mode))
   ;; from doom
