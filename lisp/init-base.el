@@ -48,9 +48,12 @@
 ;; No gc for font caches
 (setq inhibit-compacting-font-caches t)
 
-;; Supress annoying features
-(setq ring-bell-function 'ignore
-      blink-cursor-mode nil)
+;; No annoying bell
+(setq ring-bell-function 'ignore)
+
+;; No eyes distraction
+(when (fboundp 'blink-cursor-mode)
+  (blink-cursor-mode -1))
 
 ;; Smooth scroll & friends
 (setq scroll-step 2
