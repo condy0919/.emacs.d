@@ -23,8 +23,9 @@
 (my/ignore-errors-for x-get-selection-internal)
 
 ;; MacOS specific
-(setq ns-use-thing-smoothing t
-      ns-pop-up-frames nil)
+(setq ns-pop-up-frames nil
+      mac-command-modifier 'meta
+      mac-option-modifier nil)
 
 ;; Optimize for very long lines
 (setq bidi-paragraph-direction 'left-to-right
