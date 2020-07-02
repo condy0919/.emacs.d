@@ -135,6 +135,7 @@
          ("C-c p" . projectile-command-map))
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
+                                                     "/private/tmp/"
                                                      ,(file-truename (expand-file-name "straight/" user-emacs-directory))))
   (defun projectile-project-ignore-p (file)
     (cl-loop for ig-dir in projectile-ignored-project-directories
