@@ -419,6 +419,12 @@
   :ensure t
   :demand t)
 
+;; MacOS specific
+(use-package exec-path-from-shell
+  :ensure t
+  :when (memq window-system '(mac ns x))
+  :hook (after-init . exec-path-from-shell-initialize))
+
 (provide 'init-base)
 
 ;;; init-base.el ends here
