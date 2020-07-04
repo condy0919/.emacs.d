@@ -198,6 +198,14 @@ Show the heading too, if it is currently invisible."
   :straight (:host github :repo "condy0919/jblog")
   :commands jblog
   :defer t
+  :config
+  (evil-set-initial-state 'jblog-mode 'normal)
+  (evil-collection-define-key 'normal 'jblog-mode-map
+    "C" 'jblog-create
+    "D" 'jblog-delete
+    "s" 'jblog-search
+    "gr" 'jblog-refresh
+    "q" 'quit-window)
   :custom
   (jblog-posts-directory (expand-file-name "~/blog/_posts"))
   (jblog-post-headers [("Date"       12 t)
