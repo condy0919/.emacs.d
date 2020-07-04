@@ -25,6 +25,7 @@
 
 (use-package dired-aux
   :ensure nil
+  :after dired
   :bind (:map dired-mode-map
          ("C-c +" . dired-create-empty-file))
   :config

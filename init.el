@@ -67,6 +67,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (require 'init-base)
+(require 'init-utils)
 (require 'init-startup)
 (require 'init-org)
 (require 'init-ui)
