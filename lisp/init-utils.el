@@ -12,7 +12,7 @@
   (let ((max-mini-window-height 0))
     (if (use-region-p)
         (shell-command-on-region (region-beginning) (region-end) "ydcv")
-      (shell-command (format "ydcv %s" (thing-at-point 'symbol))))))
+      (shell-command (format "ydcv %s" (word-at-point))))))
 
 (provide 'init-utils)
 
