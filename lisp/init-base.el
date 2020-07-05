@@ -276,7 +276,7 @@
   :custom-face
   ;; from lethe theme
   (speedbar-button-face ((t (:foreground "green4"))))
-  (speedbar-directory-face ((t (:foreground "blue4"))))
+  (speedbar-directory-face ((t (:foreground "blue"))))
   (speedbar-file-face ((t (:foreground "cyan4"))))
   (speedbar-highlight-face ((t (:background "green"))))
   (speedbar-selected-face ((t (:underline t :foreground "red"))))
