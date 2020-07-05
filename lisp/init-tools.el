@@ -203,6 +203,7 @@ Show the heading too, if it is currently invisible."
   (evil-collection-define-key 'normal 'jblog-mode-map
     "C" 'jblog-create
     "D" 'jblog-delete
+    "O" 'jblog-open-posts-directory
     "s" 'jblog-search
     "gr" 'jblog-refresh
     "q" 'quit-window)
