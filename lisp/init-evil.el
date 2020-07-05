@@ -106,6 +106,7 @@
 
   ;; prefix: <Leader> s, search
   (evil-leader/set-key
+    "sa" 'swiper-all
     "sb" 'swiper
     "si" 'imenu
     "sj" 'evil-show-jumps
