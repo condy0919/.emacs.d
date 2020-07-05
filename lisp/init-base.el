@@ -273,14 +273,28 @@
 ;; quick access to files/tags
 (use-package speedbar
   :ensure nil
-  :bind ("<f8>" . speedbar-get-focus)
   :custom-face
+  ;; from lethe theme
+  (speedbar-button-face ((t (:foreground "green4"))))
+  (speedbar-directory-face ((t (:foreground "blue4"))))
   (speedbar-file-face ((t (:foreground "cyan4"))))
-  (speedbar-selected-face ((t (:foreground "red3" :underline t))))
+  (speedbar-highlight-face ((t (:background "green"))))
+  (speedbar-selected-face ((t (:underline t :foreground "red"))))
+  (speedbar-tag-face ((t (:foreground "brown"))))
   :custom
   (speedbar-use-images nil)
   (speedbar-show-unknown-files t)
   (speedbar-indentation-width 2))
+
+;; make speedbar same frame
+(use-package sr-speedbar
+  :ensure t
+  :bind ("<f8>" . sr-speedbar-toggle)
+  :custom
+  (sr-speedbar-default-width 20)
+  (sr-speedbar-max-width 30)
+  (sr-speedbar-right-side nil)
+  (sr-speedbar-skip-other-window-p t))
 
 ;; transparent remote access
 (use-package tramp
