@@ -65,13 +65,12 @@
     "ff" 'find-file
     "fo" 'counsel-find-file-extern
     "fF" 'find-file-other-window
-    "fd" 'my/delete-current-file
+    "fD" 'my/delete-current-file
+    "fC" 'my/copy-current-file
     "fy" 'my/copy-current-filename
-    "fc" 'my/copy-current-file
-    "fr" 'counsel-recentf
     "fR" 'my/rename-current-file
-    "fl" 'find-file-literally
-    "fg" 'counsel-rg)
+    "fr" 'counsel-recentf
+    "fl" 'find-file-literally)
 
   ;; prefix: <Leader> b, buffer
   (evil-leader/set-key
@@ -108,6 +107,7 @@
   (evil-leader/set-key
     "sa" 'swiper-all
     "sb" 'swiper
+    "sg" 'counsel-rg
     "si" 'imenu
     "sj" 'evil-show-jumps
     "sr" 'evil-show-marks

@@ -172,7 +172,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
 
-此外另外提供了一个`Leader`键，绑定在`SPC`键上，相关键绑定如下:
+此外另外提供了一个`Leader`键，绑定在`SPC`键上。
+
+与文件相关的键绑定如下:
 
 | key           | function                                            |
 |---------------|-----------------------------------------------------|
@@ -181,13 +183,12 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ff</kbd> | `find-file`打开文件                                 |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开  |
 | <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件      |
-| <kbd>fd</kbd> | `my/delete-current-file`删除当前文件                |
-| <kbd>fc</kbd> | `my/copy-current-file`拷贝当前文件至其他地方        |
+| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                |
+| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方        |
 | <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径    |
 | <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件              |
 | <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件               |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件           |
-| <kbd>fg</kbd> | `counsel-rg`采用`rg`在当前目录下搜索                |
 
 打开其他程序的键绑定:
 
@@ -216,6 +217,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | key           | function                        |
 |---------------|---------------------------------|
 | <kbd>sb</kbd> | `swiper`                        |
+| <kbd>sg</kbd> | `counsel-rg`                    |
 | <kbd>si</kbd> | `imenu`                         |
 | <kbd>sj</kbd> | `evil-show-jumps`               |
 | <kbd>sr</kbd> | `evil-show-marks`               |
