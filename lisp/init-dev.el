@@ -314,6 +314,7 @@
 (require 'init-python)
 (require 'init-elisp)
 (require 'init-sql)
+(require 'init-go)
 
 (provide 'init-dev)
 
