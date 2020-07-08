@@ -27,6 +27,9 @@
       mac-command-modifier 'meta
       mac-option-modifier nil)
 
+;; Don't ping things that look like domain names.
+(setq ffap-machine-p-known 'reject)
+
 ;; Optimize for very long lines
 (setq bidi-paragraph-direction 'left-to-right
       bidi-inhibit-bpa t)
