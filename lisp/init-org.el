@@ -252,12 +252,12 @@
   :after org
   :custom
   (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("wg21"      . "https://wg21.link/%s")
-                           ("github"    . "https://github.com/%s")
-                           ("youtube"   . "https://youtube.com/watch?v=%s")
-                           ("wikipedia" . "https://en.wikipedia.org/wiki/%s")
-                           ("google"    . "https://google.com/search?q=")))
-  )
+  (org-link-abbrev-alist '(("GitHub"    . "https://github.com/%s")
+                           ("Google"    . "https://google.com/search?q=")
+                           ("LWN"       . "https://lwn.net/Articles/%s")
+                           ("WG21"      . "https://wg21.link/%s")
+                           ("WikiPedia" . "https://en.wikipedia.org/wiki/%s")
+                           ("YouTube"   . "https://youtube.com/watch?v=%s"))))
 
 ;; export
 (use-package ox
