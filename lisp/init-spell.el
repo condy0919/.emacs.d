@@ -12,8 +12,13 @@
          ("C-c i k" . ispell-kill-ispell)
          ("C-c i m" . ispell-message)
          ("C-c i r" . ispell-region))
+  :config
+  ;; MacOS is broken
+  (when (eq system-type 'darwin)
+    (setenv "DICTIONARY" "en_US"))
   :custom
-  (ispell-program-name (executable-find "hunspell"))
+  (ispell-really-hunspell t)
+  (ispell-program-name "hunspell")
   (ispell-dictionary "en_US")
   (ispell-following-word t)
   (ispell-personal-dictionary (expand-file-name "hunspell_dict.txt" user-emacs-directory)))
