@@ -21,14 +21,14 @@
   (defun my/notify-compilation-result (_comp-buffer exit-string)
     "Notify after the compilation is done."
     (if (string-match "^finished" exit-string)
-        (notifications-notify :title "Compilation"
-                              :body "Compilation successful :-)"
-                              :timeout 5000
-                              :urgency 'normal)
-      (notifications-notify :title "Compilation"
-                            :body "Compilation failed :-("
-                            :timeout 5000
-                            :urgency 'critical)))
+        (notify-send :title "Compilation"
+                     :body "Compilation successful :-)"
+                     :timeout 5000
+                     :urgency 'normal)
+      (notify-send :title "Compilation"
+                   :body "Compilation failed :-("
+                   :timeout 5000
+                   :urgency 'critical)))
   :custom
   (compilation-always-kill t)
   (compilation-scroll-output t)

@@ -129,7 +129,7 @@
 (use-package org-clock
   :ensure nil
   :after org
-  :functions notifications-notify
+  :functions notify-send
   :custom
   (org-clock-in-resume t)
   (org-clock-idle-time 15)
@@ -144,10 +144,10 @@
   (org-clock-out-remove-zero-time-clocks t)
   (org-clock-report-include-clocking-task t)
   (org-show-notification-handler (lambda (msg)
-                                   (notifications-notify :title "Org Clock"
-                                                         :body msg
-                                                         :timeout 5000
-                                                         :urgency 'critical)))
+                                   (notify-send :title "Org Clock"
+                                                :body msg
+                                                :timeout 5000
+                                                :urgency 'critical)))
   (org-clock-clocktable-default-properties '(:block day :maxlevel 3 :scope agenda
                                              :link t :compact t :formula % :step day
                                              :fileskip0 t :stepskip0 t :narrow 80
