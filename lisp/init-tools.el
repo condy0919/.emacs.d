@@ -272,12 +272,6 @@ usemathjax: false
   (gcmh-idle-delay 10)
   (gcmh-high-cons-threshold #x6400000)) ;; 100 MB
 
-;; Which package causes Emacs slow?
-(use-package explain-pause-mode
-  :ensure t
-  :straight (:host github :repo "lastquestion/explain-pause-mode")
-  :hook (after-init . explain-pause-mode))
-
 ;; Write documentation comment in an easy way
 (use-package separedit
   :ensure t
