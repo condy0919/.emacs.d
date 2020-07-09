@@ -8,14 +8,13 @@
 ;; z= `ispell-word'
 (use-package ispell
   :ensure nil
-  :when (executable-find "hunspell")
   :bind (("C-c i c" . ispell-comments-and-strings)
          ("C-c i k" . ispell-kill-ispell)
          ("C-c i m" . ispell-message)
          ("C-c i r" . ispell-region))
   :custom
+  (ispell-program-name (executable-find "hunspell"))
   (ispell-dictionary "en_US")
-  (ispell-program-name "hunspell")
   (ispell-following-word t)
   (ispell-personal-dictionary (expand-file-name "hunspell_dict.txt" user-emacs-directory)))
 
