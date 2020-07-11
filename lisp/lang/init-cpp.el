@@ -14,7 +14,7 @@
   :hook (c-mode . (lambda ()
                     (setq comment-start "// "
                           comment-end "")))
-  :defines (lsp-clients-clangd-args)
+  :defines lsp-clients-clangd-executable lsp-clients-clangd-args
   :custom
   (c-offsets-alist '((inline-open           . 0)
                      (brace-list-open       . 0)
@@ -29,15 +29,22 @@
                      (arglist-cont-nonempty . +)))
   :config
   (setq c-basic-offset 4)
+
+  (defconst ccls-args nil)
+  (defconst clangd-args '("-j=2"
+                          "--background-index"
+                          "--clang-tidy"
+                          "--completion-style=bundled"
+                          "--pch-storage=memory"
+                          "--suggest-missing-includes"
+                          "--header-insertion-decorators=0"))
+
   (with-eval-after-load 'lsp-mode
-    (setq lsp-clients-clangd-args
-          '("-j=2"
-            "--background-index"
-            "--clang-tidy"
-            "--completion-style=bundled"
-            "--pch-storage=memory"
-            "--suggest-missing-includes"
-            "--header-insertion-decorators=0")))
+    ;; Prefer `clangd' over `ccls'
+    (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
+                                            lsp-clients-clangd-args clangd-args))
+          ((executable-find "ccls") (setq lsp-clients-clangd-executable "ccls"
+                                          lsp-clients-clangd-args ccls-args))))
   )
 
 (use-package bison-mode
