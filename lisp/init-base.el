@@ -28,6 +28,10 @@
   (setq mac-option-modifier 'hyper
         mac-command-modifier 'meta)
 
+  ;; I heavily use frame in MacOS
+  (global-set-key (kbd "H-o") 'other-frame)
+  (global-set-key (kbd "H-g") 'select-frame-by-name)
+
   ;; CUA for MacOS
   (global-set-key (kbd "H-v") 'clipboard-yank)
   (global-set-key (kbd "H-c") 'clipboard-kill-ring-save)
