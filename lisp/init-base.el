@@ -23,9 +23,15 @@
 (my/ignore-errors-for x-get-selection-internal)
 
 ;; MacOS specific
-(setq ns-pop-up-frames nil
-      mac-command-modifier 'meta
-      mac-option-modifier nil)
+(when (eq system-type 'darwin)
+  (setq ns-pop-up-frames nil)
+  (setq mac-option-modifier 'hyper
+        mac-command-modifier 'meta)
+
+  ;; CUA for MacOS
+  (global-set-key (kbd "H-v") 'clipboard-yank)
+  (global-set-key (kbd "H-c") 'clipboard-kill-ring-save)
+  (global-set-key (kbd "H-x") 'clipboard-kill-region))
 
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
