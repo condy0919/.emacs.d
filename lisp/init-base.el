@@ -409,6 +409,8 @@
                     (mode . image-dired-thumbnail-mode)))
       ("Dired" (mode . dired-mode))
       ("Magit" (name . "magit"))
+      ("IRC" (or (name . "irc.freenode.net")
+                 (name . "chat.freenode.net")))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
                   (name . "\\*info\\*")))))))
