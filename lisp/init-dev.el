@@ -298,6 +298,14 @@
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'"  . yaml-mode)))
 
+;; The dot-language
+(use-package graphviz-dot-mode
+  :ensure t
+  :mode (("\\.dot\\'" . graphviz-dot-mode)
+         ("\\.gv\\'"  . graphviz-dot-mode))
+  :custom
+  (graphviz-dot-indent-width 2))
+
 ;; Syntax highlighting for systemd files
 (use-package conf-mode
   :ensure nil
