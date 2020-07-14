@@ -310,23 +310,6 @@ usemathjax: false
 (use-package vlf-setup
   :ensure vlf)
 
-;; Notes manager
-(use-package deft
-  :ensure t
-  :defines (org-directory)
-  :bind ("C-c n d" . deft)
-  :custom
-  (deft-recursive t)
-  ;; Disable auto save
-  (deft-auto-save-interval 0)
-  (deft-extensions '("org" "md"))
-  (deft-directory org-directory)
-  (deft-use-filename-as-title t)
-  (deft-use-filter-string-for-filename t)
-  (deft-file-naming-rules '((noslash . "-")
-                            (nospace . "-")
-                            (case-fn . downcase))))
-
 ;; Visual bookmarks
 (use-package bm
   :ensure t
@@ -344,16 +327,6 @@ usemathjax: false
   (bm-goto-position nil)
   (bm-in-lifo-order t)
   (bm-recenter t))
-
-;; RSS reader
-;; The builtin newsticker is buggy
-(use-package elfeed
-  :ensure t
-  :bind ("C-x 4 n" . elfeed)
-  :custom
-  (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" emacs)
-                  ("https://lwn.net/headlines/rss" linux)))
-  (elfeed-search-title-max-width 100))
 
 (provide 'init-tools)
 

@@ -81,6 +81,7 @@
 (require 'init-shell)
 (require 'init-spell)
 (require 'init-insert)
+(require 'init-reader)
 (require 'init-gnus)
 
 (when (file-exists-p custom-file)
