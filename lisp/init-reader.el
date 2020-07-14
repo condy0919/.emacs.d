@@ -30,6 +30,7 @@
   :custom
   (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" emacs)
                   ("https://lwn.net/headlines/rss" linux)))
+  (elfeed-search-remain-on-entry t)
   (elfeed-search-title-max-width 100))
 
 ;; The EPub reader
