@@ -60,6 +60,9 @@
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t)
   :config
+  ;; org src block doesn't have a corresponding file
+  (my/ignore-errors-for hide-ifdef-guts)
+
   (when (eq system-type 'gnu/linux)
     (add-to-list 'hide-ifdef-env '(__linux__ . 1))
     (add-to-list 'hide-ifdef-env '(__GNUC__ . 11)))
