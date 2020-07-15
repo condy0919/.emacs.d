@@ -363,7 +363,9 @@
   (browse-url-generic-program (or (executable-find "firefox")
                                   (executable-find "chromium")
                                   (executable-find "google-chrome-stable")
-                                  (executable-find "google-chrome")))
+                                  (executable-find "google-chrome")
+                                  (when (eq system-type 'darwin) "open")
+                                  (when (eq system-type 'gnu/linux) "xdg-open")))
   (browse-url-handlers '(("\\`file:" . browse-url-default-browser))))
 
 ;; Buffer manager
