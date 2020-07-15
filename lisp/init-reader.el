@@ -1,4 +1,4 @@
-;;; init-reader.el --- The reading staff -*- lexical-binding: t -*-
+;;; init-reader.el --- The reading stuff -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
 
