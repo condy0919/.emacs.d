@@ -38,6 +38,11 @@
   :ensure t
   :mode ("\\.epub\\'" . nov-mode))
 
+;; A gopher and a gemini client
+(use-package elpher
+  :ensure t
+  :defer t)
+
 (provide 'init-reader)
 
 ;;; init-reader.el ends here
