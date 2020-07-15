@@ -154,6 +154,7 @@
     "ag" 'gnus
     "an" 'elfeed
     "ad" 'deft
+    "ae" 'elpher
     "aj" 'jblog
     "aa" 'org-agenda
     "ac" 'org-capture
