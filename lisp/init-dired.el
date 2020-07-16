@@ -79,6 +79,18 @@
   :ensure t
   :hook (dired-mode . diredfl-mode))
 
+;; Make dired narrow-able
+(use-package dired-narrow
+  :ensure t
+  :after dired evil-collection
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "s" 'dired-narrow-regexp)
+  :custom
+  (dired-narrow-exit-when-one-left t)
+  (dired-narrow-enable-blinking t)
+  (dired-narrow-blink-time 0.3))
+
 (provide 'init-dired)
 
 ;;; init-dired.el ends here
