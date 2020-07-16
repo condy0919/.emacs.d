@@ -421,12 +421,18 @@
                   (name . "\\*info\\*")))))))
 
 ;; Notifications
-(if (not (eq system-type 'gnu/linux))
-    (defun notify-send (&rest _))
-  (use-package notifications
-    :ensure nil
-    :commands notifications-notify)
+(use-package notifications
+  :ensure nil
+  :when (eq system-type 'gnu/linux)
+  :commands notifications-notify
+  :config
   (defalias 'notify-send 'notifications-notify))
+
+(use-package notifications-notify
+  :ensure nil
+  :unless (eq system-type 'gnu/linux)
+  :config
+  (defalias 'notify-send 'ignore))
 
 ;; Recently opened files
 (use-package recentf
