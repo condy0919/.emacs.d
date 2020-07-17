@@ -428,7 +428,7 @@
   :config
   (defalias 'notify-send 'notifications-notify))
 
-(use-package notifications-notify
+(use-package notifications
   :ensure nil
   :unless (eq system-type 'gnu/linux)
   :config
