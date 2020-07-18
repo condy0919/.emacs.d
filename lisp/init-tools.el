@@ -334,6 +334,7 @@ usemathjax: false
   :hook (rcirc-mode . rcirc-track-minor-mode)
   :custom
   (rcirc-default-port 7000)
+  (rcirc-always-use-server-buffer-flag t)
   (rcirc-authenticate-before-join t)
   (rcirc-auto-authenticate-flag t)
   (rcirc-fill-column #'frame-text-width)
