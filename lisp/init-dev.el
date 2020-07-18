@@ -200,12 +200,9 @@
 (use-package dumb-jump
   :ensure t
   :bind (("M-g j" . dumb-jump-go)
-         ("M-g J" . dumb-jump-go-other-window)
-         ("M-g q" . dumb-jump-quick-look)
-         ("M-g b" . dumb-jump-back)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g o" . dumb-jump-go-prefer-external)
-         ("M-g O" . dumb-jump-go-prefer-external-other-window))
+         ("M-g J" . dumb-jump-go-other-window))
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :custom
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
