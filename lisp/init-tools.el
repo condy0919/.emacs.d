@@ -328,6 +328,17 @@ usemathjax: false
   (bm-in-lifo-order t)
   (bm-recenter t))
 
+;; IRC client
+(use-package rcirc
+  :ensure nil
+  :hook (rcirc-mode . rcirc-track-minor-mode)
+  :custom
+  (rcirc-default-port 7000)
+  (rcirc-authenticate-before-join t)
+  (rcirc-auto-authenticate-flag t)
+  (rcirc-fill-column #'frame-text-width)
+  (rcirc-kill-channel-buffers t))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
