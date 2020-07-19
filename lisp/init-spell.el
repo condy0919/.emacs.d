@@ -28,6 +28,7 @@
   :ensure nil
   :hook (git-commit-mode . flyspell-mode)
   :custom
+  (flyspell-mouse-map nil)
   (flyspell-use-meta-tab nil)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil))
