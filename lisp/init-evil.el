@@ -167,7 +167,8 @@
     "ot" 'vterm
     "oT" 'vterm-other-window
     "oe" 'eshell
-    "oE" 'my/eshell-other-window)
+    "oE" 'my/eshell-other-window
+    "oq" 'quickurl-prefix-map)
 
   ;; org-mode <Leader> m
   ;; Copy from doom-emacs

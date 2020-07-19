@@ -341,6 +341,21 @@ usemathjax: false
   (rcirc-fill-column #'frame-text-width)
   (rcirc-kill-channel-buffers t))
 
+;; Quickly insert url
+(use-package quickurl
+  :ensure nil
+  :config
+  (defvar quickurl-prefix-map (make-sparse-keymap))
+  (define-prefix-command 'quickurl-prefix-map)
+  (define-key quickurl-prefix-map "q" 'quickurl)
+  (define-key quickurl-prefix-map "l" 'quickurl-list)
+  (define-key quickurl-prefix-map "i" 'quickurl-ask)
+  (define-key quickurl-prefix-map "e" 'quickurl-edit-urls)
+  (define-key quickurl-prefix-map "a" 'quickurl-add-url)
+  (define-key quickurl-prefix-map "b" 'quickurl-browse-url-ask)
+  :custom
+  (quickurl-format-function #'quickurl-url-url))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
