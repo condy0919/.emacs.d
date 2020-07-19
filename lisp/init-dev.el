@@ -320,6 +320,7 @@
 (require 'init-elisp)
 (require 'init-sql)
 (require 'init-go)
+(require 'init-d)
 
 (provide 'init-dev)
 
