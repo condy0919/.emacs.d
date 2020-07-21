@@ -63,6 +63,8 @@
   :functions eshell/alias
   :hook ((eshell-mode . (lambda ()
                           (my/term-mode-common-init)
+                          ;; eshell is not fully functional
+                          (setenv "PAGER" "cat")
                           ;; Define aliases
                           (eshell/alias "ll"   "ls -lh --color=auto $*")
                           (eshell/alias "vi"   "find-file $1")
