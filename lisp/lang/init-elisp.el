@@ -32,7 +32,8 @@
 
 (use-package ielm
   :ensure nil
-  :hook (ielm-mode . my/buffer-auto-close))
+  :hook ((ielm-mode . my/buffer-auto-close)
+         (ielm-mode . company-mode)))
 
 (provide 'init-elisp)
 
