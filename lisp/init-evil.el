@@ -95,6 +95,11 @@
     "bt" 'bm-toggle
     "ba" 'bm-show-all)
 
+  ;; prefix: <Leader> c, code
+  (evil-leader/set-key
+    "cc" 'compile
+    "cC" 'recompile)
+
   ;; prefix: <Leader> w, window
   (evil-leader/set-key
     "w" 'evil-window-map)
