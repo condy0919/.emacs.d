@@ -428,13 +428,14 @@
 (use-package notifications
   :ensure nil
   :when (eq system-type 'gnu/linux)
-  :commands notifications-notify
+  :commands notify-send
   :config
   (defalias 'notify-send 'notifications-notify))
 
 (use-package notifications
   :ensure nil
   :unless (eq system-type 'gnu/linux)
+  :commands notify-send
   :config
   (defalias 'notify-send 'ignore))
 
