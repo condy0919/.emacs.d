@@ -63,8 +63,8 @@
     "fj" 'dired-jump
     "fJ" 'dired-jump-other-window
     "ff" 'find-file
-    "fo" 'counsel-find-file-extern
     "fF" 'find-file-other-window
+    "fo" 'counsel-find-file-extern
     "fD" 'my/delete-current-file
     "fC" 'my/copy-current-file
     "fy" 'my/copy-current-filename
