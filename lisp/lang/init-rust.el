@@ -7,8 +7,8 @@
 
 (use-package rust-mode
   :ensure t
-  :mode ("\\.rs\\'" . rust-mode)
   :defines lsp-rust-server
+  :mode ("\\.rs\\'" . rust-mode)
   :config
   ;; Prefer `rust-analyzer' over `rls'
   (with-eval-after-load 'lsp-mode

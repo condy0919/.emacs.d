@@ -13,8 +13,8 @@
 ;; Indentation tool for OCaml
 (use-package ocp-indent
   :ensure t
-  :hook (tuareg-mode . ocp-setup-indent)
-  :commands (ocp-indent-region ocp-indent-buffer))
+  :commands (ocp-indent-region ocp-indent-buffer)
+  :hook (tuareg-mode . ocp-setup-indent))
 
 (provide 'init-ocaml)
 
