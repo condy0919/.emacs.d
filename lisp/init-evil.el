@@ -121,8 +121,9 @@
 
   ;; prefix: <Leader> i, insert
   (evil-leader/set-key
-    "it" 'insert-date-time
-    "is" 'insert-mail-signature)
+    "iq" 'quickurl-prefix-map
+    "is" 'insert-mail-signature
+    "it" 'insert-date-time)
 
   ;; prefix: <Leader> g, git
   (evil-leader/set-key
@@ -172,8 +173,7 @@
     "ot" 'vterm
     "oT" 'vterm-other-window
     "oe" 'eshell
-    "oE" 'my/eshell-other-window
-    "oq" 'quickurl-prefix-map)
+    "oE" 'my/eshell-other-window)
 
   ;; org-mode <Leader> m
   ;; Copy from doom-emacs
