@@ -395,6 +395,8 @@
       ("Programming" (or (derived-mode . prog-mode)
                          (mode . makefile-mode)
                          (mode . cmake-mode)))
+      ("REPL" (or (mode . gnuplot-comint-mode)
+                  (mode . inferior-emacs-lisp-mode)))
       ("Text" (or (mode . org-mode)
                   (mode . markdown-mode)
                   (mode . gfm-mode)
