@@ -103,13 +103,14 @@
          "~"
        (abbreviate-file-name (shrink-path-file (eshell/pwd))))
      " "
-     (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory))))
+     (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory)))
+               (br (car (vc-git-branches))))
          (concat (propertize "(" 'face 'success)
                  (format "%s" vc)
                  (propertize ")" 'face 'success)
                  (propertize "-" 'face 'font-lock-string-face)
                  (propertize "[" 'face 'success)
-                 (propertize (car (vc-git-branches)) 'face 'font-lock-constant-face)
+                 (propertize br 'face 'font-lock-constant-face)
                  (propertize "]" 'face 'success)
                  " ")
        "")
