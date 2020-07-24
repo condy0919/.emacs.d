@@ -33,7 +33,8 @@
         mac-command-modifier 'meta)
 
   ;; I heavily use frame in MacOS
-  (global-set-key (kbd "H-o") 'other-frame)
+  (global-set-key (kbd "H-p") 'ns-prev-frame)
+  (global-set-key (kbd "H-n") 'ns-next-frame)
   (global-set-key (kbd "H-g") 'select-frame-by-name)
 
   ;; CUA for MacOS
