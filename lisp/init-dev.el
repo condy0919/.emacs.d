@@ -303,6 +303,14 @@
   :custom
   (graphviz-dot-indent-width 2))
 
+;; interactive frontend for gnuplot
+(use-package gnuplot
+  :ensure t
+  :mode ("\\.gp\\'" . gnuplot-mode)
+  :custom
+  (gnuplot-basic-offset 2)
+  (gnuplot-inline-image-mode 'inline))
+
 ;; Syntax highlighting for systemd files
 (use-package conf-mode
   :ensure nil

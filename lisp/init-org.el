@@ -174,6 +174,7 @@
                               (C          . t)
                               (dot        . t)
                               (emacs-lisp . t)
+                              (gnuplot    . t)
                               (ocaml      . t)
                               (python     . t)
                               (shell      . t)
