@@ -12,9 +12,14 @@
 
 ;; Indentation tool for OCaml
 (use-package ocp-indent
-  :ensure t
+  :ensure nil
   :commands (ocp-indent-region ocp-indent-buffer)
   :hook (tuareg-mode . ocp-setup-indent))
+
+;; The dune build system
+(use-package dune
+  :ensure nil
+  :mode ("dune\\(?:\\.inc\\)?\\'" . dune-mode))
 
 (provide 'init-ocaml)
 
