@@ -329,6 +329,16 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 所以这里额外使用了[ocp-indent][ocp-indent]，通过`ocp-indent-region`,
 `ocp-indent-buffer`来提供格式化代码的功能。
 
+同时也集成了[dune][dune]。
+
+`ocp-indent`和`dune`都依赖系统级别的包。
+
+如果你是`Arch Linux`可以直接通过如下命令安装:
+
+``` bash
+yay -S ocaml-ocp-indent dune
+```
+
 ## haskell-mode
 
 - 使用 `dante`
@@ -372,6 +382,7 @@ emacs -Q -l init-mini.el
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
 [dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
+[dune]: https://github.com/ocaml/dune/
 [valign]: https://github.com/casouri/valign/
 [jblog]: https://github.com/condy0919/jblog/
 [emacs-ccls]: https://melpa.org/#/ccls
