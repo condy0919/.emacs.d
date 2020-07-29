@@ -59,6 +59,9 @@
 ;; Always load the newest file
 (setq load-prefer-newer t)
 
+;; Make the prompt of "*Python*" buffer readonly
+(setq comint-prompt-read-only t)
+
 ;; Cutting and pasting use primary/clipboard
 (setq select-enable-primary t
       select-enable-clipboard t)
