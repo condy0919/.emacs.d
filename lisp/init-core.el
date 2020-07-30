@@ -103,5 +103,11 @@ confirmation."
        map)
      t)))
 
+;; Lock buffer to window
+(define-minor-mode sticky-buffer-mode
+  "Make the current window always display this buffer."
+  nil " sticky" nil
+  (set-window-dedicated-p (selected-window) sticky-buffer-mode))
+
 (provide 'init-core)
 ;;; init-core.el ends here
