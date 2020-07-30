@@ -310,24 +310,6 @@ usemathjax: false
 (use-package vlf-setup
   :ensure vlf)
 
-;; Visual bookmarks
-(use-package bm
-  :ensure t
-  :hook ((after-init   . bm-repository-load)
-         (find-file    . bm-buffer-restore)
-         (after-revert . bm-buffer-restore)
-         (kill-buffer  . bm-buffer-save)
-         (kill-emacs   . (lambda ()
-                           (bm-buffer-save-all)
-                           (bm-repository-save))))
-  :custom
-  (bm-annotate-on-create t)
-  (bm-buffer-persistence t)
-  (bm-cycle-all-buffers t)
-  (bm-goto-position nil)
-  (bm-in-lifo-order t)
-  (bm-recenter t))
-
 ;; IRC client
 (use-package rcirc
   :ensure nil

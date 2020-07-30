@@ -74,6 +74,8 @@
 
   ;; prefix: <Leader> b, buffer
   (evil-leader/set-key
+    "bp" 'previous-buffer
+    "bn" 'next-buffer
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
     "bi" 'list-buffers
@@ -87,13 +89,6 @@
     "bJ" 'bookmark-jump-other-window
     "bl" 'bookmark-bmenu-list
     "bs" 'bookmark-save)
-
-  ;; prefix: <Leader> b, bm
-  (evil-leader/set-key
-    "bp" 'bm-previous
-    "bn" 'bm-next
-    "bt" 'bm-toggle
-    "ba" 'bm-show-all)
 
   ;; prefix: <Leader> c, code
   (evil-leader/set-key
