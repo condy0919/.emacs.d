@@ -78,7 +78,6 @@
   (lsp-log-io nil)                     ;; enable log only for debug
   (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
   (lsp-lens-auto-enable t)             ;; enable lens
-  (lsp-prefer-capf t)                  ;; using `company-capf' by default
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)         ;; disable eldoc hover
