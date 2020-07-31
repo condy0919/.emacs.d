@@ -119,14 +119,6 @@
   (quickrun-focus-p nil)
   (quickrun-input-file-extension ".qr"))
 
-;; Superb compiler explorer implementation
-(use-package rmsbolt
-  :ensure t
-  :defer 1
-  :custom
-  (rmsbolt-asm-format nil)
-  (rmsbolt-default-directory "/tmp"))
-
 ;; Project management
 (use-package projectile
   :ensure t

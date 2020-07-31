@@ -45,6 +45,16 @@
                      (innamespace           . -) ;; no indentation after namespace
                      (arglist-cont-nonempty . +))))
 
+;; Superb compiler explorer implementation
+(use-package rmsbolt
+  :ensure t
+  :commands rmsbolt-compile
+  :defer 1
+  :custom
+  (rmsbolt-asm-format nil)
+  (rmsbolt-default-directory "/tmp"))
+
+;; Parser generator
 (use-package bison-mode
   :ensure t
   :mode (("\\.ll\\'" . flex-mode)

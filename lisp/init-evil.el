@@ -92,6 +92,7 @@
 
   ;; prefix: <Leader> c, code
   (evil-leader/set-key
+    "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile)
 
