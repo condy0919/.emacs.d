@@ -7,7 +7,7 @@
 ;; Notes manager
 (use-package deft
   :ensure t
-  :defines (org-directory)
+  :defines org-directory
   :bind ("C-c n d" . deft)
   :custom
   (deft-recursive t)
