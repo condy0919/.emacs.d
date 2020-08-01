@@ -463,8 +463,7 @@
                      "^/tmp/"
                      "/ssh:"
                      "/su\\(do\\)?:"
-                     "^/usr/include/"
-                     "COMMIT_EDITMSG\\'")))
+                     "^/usr/include/")))
 
 ;; Try out emacs package without installing
 (use-package try
