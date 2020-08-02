@@ -60,13 +60,14 @@
 
   ;; prefix: <Leader> f, file
   (evil-leader/set-key
-    "fj" 'dired-jump
-    "fJ" 'dired-jump-other-window
+    "fd" 'fd-dired
     "ff" 'find-file
     "fF" 'find-file-other-window
+    "fj" 'dired-jump
+    "fJ" 'dired-jump-other-window
     "fo" 'counsel-find-file-extern
-    "fD" 'my/delete-current-file
     "fC" 'my/copy-current-file
+    "fD" 'my/delete-current-file
     "fy" 'my/copy-current-filename
     "fR" 'my/rename-current-file
     "fr" 'counsel-recentf

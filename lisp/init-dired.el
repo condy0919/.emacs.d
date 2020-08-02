@@ -91,6 +91,11 @@
   (dired-narrow-enable-blinking t)
   (dired-narrow-blink-time 0.3))
 
+;; fast alternative to `find-name-dired' using fd
+(use-package fd-dired
+  :ensure t
+  :commands fd-dired)
+
 (provide 'init-dired)
 
 ;;; init-dired.el ends here
