@@ -344,7 +344,7 @@
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
-  :bind ("M-/" . hippie-expand)
+  :bind ([remap dabbrev-expand] . hippie-expand)
   :custom
   (hippie-expand-try-functions-list '(try-expand-dabbrev
                                       try-expand-dabbrev-all-buffers
