@@ -74,8 +74,6 @@
 
   ;; prefix: <Leader> b, buffer
   (evil-leader/set-key
-    "bp" 'previous-buffer
-    "bn" 'next-buffer
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
     "bi" 'list-buffers
