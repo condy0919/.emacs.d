@@ -37,6 +37,7 @@
                      (brace-list-open       . 0)
                      (inextern-lang         . 0)
                      (statement-case-open   . 4)
+                     (statement-cont        . (c-lineup-ternary-bodies +))
                      (access-label          . -)
                      (case-label            . 0)
                      (member-init-intro     . +)
