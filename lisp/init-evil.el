@@ -96,7 +96,8 @@
   (evil-leader/set-key
     "cd" 'rmsbolt-compile
     "cc" 'compile
-    "cC" 'recompile)
+    "cC" 'recompile
+    "cx" 'quickrun)
 
   ;; prefix: <Leader> w, window
   (evil-leader/set-key

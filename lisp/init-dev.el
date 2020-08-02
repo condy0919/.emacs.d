@@ -114,7 +114,7 @@
 ;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
-  :bind (("C-c x" . quickrun))
+  :bind ("C-c x" . quickrun)
   :custom
   (quickrun-focus-p nil)
   (quickrun-input-file-extension ".qr"))
