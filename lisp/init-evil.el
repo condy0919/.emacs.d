@@ -76,13 +76,16 @@
   (evil-leader/set-key
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
-    "bi" 'list-buffers
     "by" 'my/copy-current-buffer-name)
 
   ;; prefix: <Leader> b, bookmark
   (evil-leader/set-key
     "bm" 'bookmark-set
+    "bM" 'bookmark-set-no-overwrite
+    "bi" 'bookmark-insert
+    "br" 'bookmark-rename
     "bd" 'bookmark-delete
+    "bw" 'bookmark-write
     "bj" 'bookmark-jump
     "bJ" 'bookmark-jump-other-window
     "bl" 'bookmark-bmenu-list
