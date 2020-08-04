@@ -338,6 +338,11 @@ usemathjax: false
   :custom
   (quickurl-format-function #'quickurl-url-url))
 
+;; The builtin dictionary app in MacOS
+(use-package osx-dictionary
+  :ensure t
+  :when (eq system-type 'darwin))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here

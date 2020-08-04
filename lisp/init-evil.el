@@ -161,6 +161,9 @@
     "oT" 'vterm-other-window
     "oe" 'eshell
     "oE" 'my/eshell-other-window)
+  (when (commandp 'osx-dictionary-search-word-at-point)
+    (evil-leader/set-key
+      "os" 'osx-dictionary-search-word-at-point))
 
   ;; org-mode <Leader> m
   ;; Copy from doom-emacs
