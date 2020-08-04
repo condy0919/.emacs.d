@@ -339,9 +339,10 @@ usemathjax: false
   (quickurl-format-function #'quickurl-url-url))
 
 ;; The builtin dictionary app in MacOS
-(use-package osx-dictionary
-  :ensure t
-  :when (eq system-type 'darwin))
+(when (eq system-type 'darwin)
+  (use-package osx-dictionary
+    :ensure t
+    :commands osx-dictionary-search-word-at-point))
 
 (provide 'init-tools)
 
