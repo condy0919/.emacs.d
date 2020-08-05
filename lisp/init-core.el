@@ -103,6 +103,16 @@ confirmation."
        map)
      t)))
 
+;;;###autoload
+(defun my/ivy-fd ()
+  "Run `fd' in current directory and ivy it."
+  (interactive)
+  (or (executable-find "fd") (error "Please install fd"))
+  (ivy-read "Files: "
+            (split-string (shell-command-to-string "fd") "\n" t)
+            :action (lambda (f)
+                      (find-file f))))
+
 ;; Lock buffer to window
 (define-minor-mode sticky-buffer-mode
   "Make the current window always display this buffer."

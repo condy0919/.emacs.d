@@ -32,11 +32,12 @@
 ;; NB `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
-  :custom
+  :config
   ;; Disable vc for remote files, and `diff-hl' won't work as expected.
-  (vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
-                                vc-ignore-dir-regexp
-                                tramp-file-name-regexp))
+  (setq vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                     vc-ignore-dir-regexp
+                                     tramp-file-name-regexp))
+  :custom
   (vc-follow-symlinks t)
   (vc-handled-backends '(Git)))
 
