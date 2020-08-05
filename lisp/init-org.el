@@ -284,7 +284,7 @@
   (org-export-with-footnotes t)
   (org-export-with-smart-quotes t)
   (org-export-with-section-numbers t)
-  (org-export-with-sub-superscripts nil)
+  (org-export-with-sub-superscripts '{})
   (org-export-use-babel nil)
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
