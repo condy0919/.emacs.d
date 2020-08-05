@@ -28,6 +28,8 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
+  (setq delete-by-moving-to-trash t)
+
   (setq ns-pop-up-frames nil)
   (setq mac-option-modifier 'hyper
         mac-command-modifier 'meta)
