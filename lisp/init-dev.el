@@ -123,7 +123,7 @@
 (use-package projectile
   :ensure t
   :hook (prog-mode . projectile-mode)
-  :bind (:map projectile-mode-map
+  :bind (:map prog-mode-map
          ("C-c p" . projectile-command-map))
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
@@ -155,6 +155,15 @@
   :ensure t
   :after counsel projectile
   :hook (prog-mode . counsel-projectile-mode))
+
+;; The replacement of `projectile-find-file'
+(use-package find-file-in-project
+  :ensure t
+  :commands find-file-in-project find-file-in-project-by-selected
+  :config
+  (remove-hook 'file-name-at-point-functions 'ffap-guess-file-name-at-point)
+  :custom
+  (ffip-use-rust-fd (executable-find "fd")))
 
 ;; Lint tool
 (use-package flycheck
