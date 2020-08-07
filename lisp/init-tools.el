@@ -241,6 +241,10 @@ usemathjax: false
     "Quick insertion of ruby tag with `TEXT' and `RUBY'."
     (interactive "sText: \nsRuby: \n")
     (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text ruby)))
+
+  (evil-collection-define-key 'normal 'markdown-mode-map
+    (kbd "<tab>") 'markdown-cycle
+    (kbd "S-<tab>") 'markdown-shifttab)
   :custom
   (markdown-header-scaling t)
   (markdown-enable-wiki-links t)
