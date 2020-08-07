@@ -319,6 +319,22 @@
   (sr-speedbar-right-side nil)
   (sr-speedbar-skip-other-window-p t))
 
+;; window layout manager
+;;
+;; gt next-tab
+;; gT prev-tab
+(use-package tab-bar
+  :ensure nil
+  :when (>= emacs-major-version 27)
+  :hook (after-init . (lambda ()
+                        (tab-bar-mode)
+                        (tab-bar-history-mode)))
+  :custom
+  (tab-bar-show nil)
+  (tab-bar-new-button-show nil)
+  (tab-bar-close-button-show nil)
+  (tab-bar-tab-name-function 'tab-bar-tab-name-all))
+
 ;; transparent remote access
 (use-package tramp
   :ensure nil
