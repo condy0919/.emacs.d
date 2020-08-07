@@ -7,13 +7,10 @@
 
 (defmacro my/set-company-backends-for (mode &rest backends)
   "Set `company-backends' for MODE with BACKENDS."
-  (let ((funcname (intern (format "my/company-%s" mode)))
-        (hookname (intern (format "%s-hook" mode))))
-    `(progn
-       (defun ,funcname ()
-         (company-mode +1)
-         (setq-local company-backends ',backends))
-       (add-hook ',hookname ',funcname))))
+  `(add-hook (intern (format "%s-hook" ',mode))
+             (lambda ()
+               (company-mode +1)
+               (setq-local company-backends ',backends))))
 
 (defmacro my/other-windowize-for (cmd &rest args)
   "`other-window' version of CMD ARGS."
