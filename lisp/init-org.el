@@ -352,6 +352,7 @@
          ("C-<"     . org-tree-slide-move-previous-tree)
          ("C->"     . org-tree-slide-move-next-tree))
   :custom
+  (org-tree-slide-fold-subtrees-skipped nil)
   (org-tree-slide-skip-outline-level 2)
   (org-tree-slide-heading-emphasis t))
 
