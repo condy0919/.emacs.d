@@ -329,6 +329,14 @@
   :hook (after-init . (lambda ()
                         (tab-bar-mode)
                         (tab-bar-history-mode)))
+  :config
+  ;; HACK until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=42756 is resolved
+  (defun my/no-tab-bar-lines (&rest _)
+    (dolist (frame (frame-list))
+      (set-frame-parameter frame 'tab-bar-lines 0)))
+
+  (advice-add #'tab-bar-mode :after #'my/no-tab-bar-lines)
+  (advice-add #'make-frame   :after #'my/no-tab-bar-lines)
   :custom
   (tab-bar-show nil)
   (tab-bar-new-button-show nil)
