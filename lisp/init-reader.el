@@ -8,6 +8,7 @@
 (use-package deft
   :ensure t
   :defines org-directory
+  :after org
   :bind ("C-c n d" . deft)
   :custom
   (deft-recursive t)
