@@ -12,9 +12,10 @@
          (org-mode . visual-line-mode))
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :config
-  (evil-collection-define-key 'normal 'org-mode-map
-    (kbd "<tab>") 'org-cycle
-    (kbd "S-<tab>") 'org-shifttab)
+  (with-eval-after-load 'evil-collection
+    (evil-collection-define-key 'normal 'org-mode-map
+      (kbd "<tab>") 'org-cycle
+      (kbd "S-<tab>") 'org-shifttab))
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
