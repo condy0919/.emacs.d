@@ -157,7 +157,6 @@
 ;; isearch alternative
 (use-package swiper
   :ensure t
-  :defer t
   :custom
   (swiper-action-recenter t))
 
@@ -196,7 +195,6 @@ Show the heading too, if it is currently invisible."
   :ensure t
   :straight (:host github :repo "condy0919/jblog")
   :commands jblog
-  :defer t
   :config
   (evil-set-initial-state 'jblog-mode 'normal)
   (evil-collection-define-key 'normal 'jblog-mode-map
@@ -263,7 +261,6 @@ usemathjax: false
 ;; Free hands
 (use-package auto-package-update
   :ensure t
-  :defer t
   :custom
   (auto-package-update-delete-old-versions t))
 
@@ -289,12 +286,15 @@ usemathjax: false
 ;; Pastebin service
 (use-package webpaste
   :ensure t
-  :defer 1
   :custom
   (webpaste-open-in-browser t)
   (webpaste-paste-confirmation t)
   (webpaste-add-to-killring nil)
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io")))
+
+;; Upload to 0x0.st or other pb services
+(use-package 0x0
+  :ensure t)
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
