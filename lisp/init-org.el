@@ -360,8 +360,8 @@
 ;; Make better connection in your notes
 (use-package org-roam
   :ensure t
-  :after org
-  :hook ((org-load . org-roam-mode)
+  :defines org-directory
+  :hook ((after-init . org-roam-mode)
          (org-roam-backlinks-mode . visual-line-mode))
   :bind (:map org-roam-mode-map
          ("C-c n b" . org-roam-switch-to-buffer)
