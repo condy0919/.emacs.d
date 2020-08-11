@@ -162,6 +162,14 @@
   :commands find-file-in-project find-file-in-project-by-selected
   :config
   (remove-hook 'file-name-at-point-functions 'ffap-guess-file-name-at-point)
+
+  (dolist (dir '(".ccls-cache"
+                 ".clangd"
+                 ".vscode"
+                 "bazel-bin"
+                 "bazel-out"
+                 "bazel-testlogs"))
+    (add-to-list 'ffip-prune-patterns (concat "*/" dir)))
   :custom
   (ffip-use-rust-fd (executable-find "fd")))
 
