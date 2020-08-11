@@ -145,6 +145,7 @@
   (dolist (file '(".DS_Store"))
     (add-to-list 'projectile-globally-ignored-files file))
   :custom
+  (projectile-use-git-grep t)
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'hybrid)
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
