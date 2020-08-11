@@ -58,13 +58,18 @@
   :config
   (setq evil-leader/leader "SPC")
 
+  ;; prefix: <Leader> d, dired
+  (evil-leader/set-key
+    "df" 'fd-dired
+    "dj" 'dired-jump
+    "dJ" 'dired-jump-other-window)
+
   ;; prefix: <Leader> f, file
   (evil-leader/set-key
-    "fd" 'fd-dired
     "ff" 'find-file
     "fF" 'find-file-other-window
     "fj" 'dired-jump
-    "fJ" 'dired-jump-other-window
+    "fj" 'counsel-file-jump
     "fo" 'counsel-find-file-extern
     "fC" 'my/copy-current-file
     "fD" 'my/delete-current-file
