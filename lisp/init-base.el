@@ -337,6 +337,21 @@
 
   (advice-add #'tab-bar-mode :after #'my/no-tab-bar-lines)
   (advice-add #'make-frame   :after #'my/no-tab-bar-lines)
+
+  (with-eval-after-load 'evil-collection
+    (evil-set-initial-state 'tab-switcher-mode 'normal)
+    (evil-collection-define-key 'normal 'tab-switcher-mode-map
+      "j" 'tab-switcher-next-line
+      "k" 'tab-switcher-prev-line
+      (kbd "C-j") 'tab-switcher-next-line
+      (kbd "C-k") 'tab-switcher-prev-line
+
+      "d" 'tab-switcher-delete
+      (kbd "RET") 'tab-switcher-select
+      "u" 'tab-switcher-unmark
+      "x" 'tab-switcher-execute
+
+      "q" 'quit-window))
   :custom
   (tab-bar-show nil)
   (tab-bar-new-button-show nil)

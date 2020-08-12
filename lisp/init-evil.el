@@ -112,6 +112,14 @@
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
 
+  ;; prefix: <Leader> t, tab
+  (evil-leader/set-key
+    "tt" 'tab-bar-select-tab-by-name
+    "ti" 'tab-switcher
+    "tr" 'tab-bar-rename-tab-by-name
+    "tn" 'tab-bar-new-tab
+    "tu" 'tab-bar-undo-close-tab)
+
   ;; prefix: <Leader> s, search
   (evil-leader/set-key
     "sa" 'swiper-all
