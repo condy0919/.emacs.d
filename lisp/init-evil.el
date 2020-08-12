@@ -68,7 +68,6 @@
   (evil-leader/set-key
     "ff" 'find-file
     "fF" 'find-file-other-window
-    "fj" 'dired-jump
     "fj" 'counsel-file-jump
     "fo" 'counsel-find-file-extern
     "fC" 'my/copy-current-file
@@ -117,6 +116,7 @@
     "tt" 'tab-bar-select-tab-by-name
     "ti" 'tab-switcher
     "tr" 'tab-bar-rename-tab-by-name
+    "to" 'tab-bar-close-other-tabs
     "tn" 'tab-bar-new-tab
     "tu" 'tab-bar-undo-close-tab)
 
