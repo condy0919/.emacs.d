@@ -58,8 +58,14 @@
 ;; Parser generator
 (use-package bison-mode
   :ensure t
-  :mode (("\\.ll\\'" . flex-mode)
-         ("\\.yy\\'" . bison-mode)))
+  :mode (("\\.l\\'" . flex-mode)
+         ("\\.y\\'" . bison-mode)))
+
+;; LLVM IR
+(use-package llvm-mode
+  :quelpa (llvm-mode :fetcher url
+                     :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/llvm-mode.el")
+  :mode ("\\.ll\\'" . llvm-mode))
 
 ;; Highlight "#if 0" as comments
 (use-package hideif
