@@ -54,3 +54,4 @@ TOC
 ibuffer
 rcirc
 LLVM
+quelpa

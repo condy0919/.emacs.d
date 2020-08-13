@@ -50,6 +50,7 @@
   :ensure t
   :custom
   (quelpa-update-melpa-p nil)
+  (quelpa-self-upgrade-p nil)
   (quelpa-checkout-melpa-p nil))
 
 (use-package quelpa-use-package
