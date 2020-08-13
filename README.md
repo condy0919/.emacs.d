@@ -88,9 +88,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 插件配置、升级
 
-选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`straight.el`辅
-助下载。`straight.el`在自举过程中会连接`githubusercontent.com`这个域名，此域名在
-国内访问几乎不可达，建议`bypass`之。
+选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
 
 而自动升级选择了`auto-package-update`这个包。如果需要更新，`M-x`运行一下
 `auto-package-update-now`即可。需要注意的是，更新是同步的。

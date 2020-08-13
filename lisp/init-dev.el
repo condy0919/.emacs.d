@@ -73,8 +73,7 @@
   (gdb-restore-window-configuration-after-quit t))
 
 (use-package license
-  :ensure t
-  :straight (:host github :repo "condy0919/license.el")
+  :quelpa (license :fetcher github :repo "condy0919/license.el")
   :bind (:map prog-mode-map
          ("C-c i l" . license-insert))
   :custom
