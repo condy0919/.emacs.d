@@ -92,9 +92,9 @@
   (dired-narrow-blink-time 0.3))
 
 ;; fast alternative to `find-name-dired' using fd
-(use-package fd-dired
+(use-package counsel-fd
   :ensure t
-  :commands fd-dired)
+  :commands counsel-fd-dired-jump counsel-fd-file-jump)
 
 (provide 'init-dired)
 

@@ -60,7 +60,7 @@
 
   ;; prefix: <Leader> d, dired
   (evil-leader/set-key
-    "df" 'fd-dired
+    "df" 'counsel-fd-dired-jump
     "dj" 'dired-jump
     "dJ" 'dired-jump-other-window)
 
@@ -68,7 +68,7 @@
   (evil-leader/set-key
     "ff" 'find-file
     "fF" 'find-file-other-window
-    "fj" 'counsel-file-jump
+    "fj" 'counsel-fd-file-jump
     "fo" 'counsel-find-file-extern
     "fC" 'my/copy-current-file
     "fD" 'my/delete-current-file
