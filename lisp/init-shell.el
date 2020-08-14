@@ -52,8 +52,7 @@
       (apply func args)))
   :custom
   (vterm-always-compile-module t)
-  (vterm-use-vterm-prompt nil)
-  (vterm-kill-buffer-on-exit t)
+  (vterm-use-vterm-prompt-detection-method nil)
   (vterm-clear-scrollback-when-clearing t))
 
 ;; the Emacs shell & friends
