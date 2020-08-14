@@ -60,10 +60,10 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (prog-mode . lsp-deferred))
   :bind (:map lsp-mode-map
-              ("C-c f" . lsp-format-region)
-              ("C-c d" . lsp-describe-thing-at-point)
-              ("C-c a" . lsp-execute-code-action)
-              ("C-c r" . lsp-rename))
+         ("C-c f" . lsp-format-region)
+         ("C-c d" . lsp-describe-thing-at-point)
+         ("C-c a" . lsp-execute-code-action)
+         ("C-c r" . lsp-rename))
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)               ;; no clickable links
