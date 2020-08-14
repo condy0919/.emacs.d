@@ -337,26 +337,6 @@
                              (:name "Started" :todo "INPROGRESS" :order 6)
                              (:todo "WAITING" :order 9))))
 
-;; Presentation
-(use-package org-tree-slide
-  :ensure t
-  :hook ((org-tree-slide-play . (lambda ()
-                                  (text-scale-increase 4)
-                                  (read-only-mode +1)))
-         (org-tree-slide-stop . (lambda ()
-                                  (text-scale-increase 0)
-                                  (read-only-mode -1))))
-  :bind (:map org-mode-map
-         ("C-<f8>" . org-tree-slide-mode)
-         :map org-tree-slide-mode-map
-         ("C-x s c" . org-tree-slide-content)
-         ("C-<"     . org-tree-slide-move-previous-tree)
-         ("C->"     . org-tree-slide-move-next-tree))
-  :custom
-  (org-tree-slide-fold-subtrees-skipped nil)
-  (org-tree-slide-skip-outline-level 2)
-  (org-tree-slide-heading-emphasis t))
-
 ;; Make better connection in your notes
 (use-package org-roam
   :ensure t
