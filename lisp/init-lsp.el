@@ -76,7 +76,7 @@
   (lsp-enable-on-type-formatting nil)  ;; disable formatting on the fly
   (lsp-idle-delay 0.5)                 ;; lazy refresh
   (lsp-log-io nil)                     ;; enable log only for debug
-  (lsp-diagnostic-package :flycheck)   ;; prefer flycheck
+  (lsp-diagnostics-provider :flycheck) ;; prefer `flycheck'
   (lsp-lens-auto-enable t)             ;; enable lens
   (lsp-auto-guess-root t)              ;; auto guess root
   (lsp-keep-workspace-alive nil)       ;; auto kill lsp server
