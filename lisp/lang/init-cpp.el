@@ -63,6 +63,7 @@
 
 ;; LLVM IR
 (use-package llvm-mode
+  :ensure t
   :quelpa (llvm-mode :fetcher url
                      :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/llvm-mode.el")
   :mode ("\\.ll\\'" . llvm-mode))

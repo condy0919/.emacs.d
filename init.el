@@ -55,6 +55,8 @@
 
 (use-package quelpa-use-package
   :ensure t
+  :config
+  (quelpa-use-package-activate-advice)
   :custom
   (quelpa-use-package-inhibit-loading-quelpa t))
 

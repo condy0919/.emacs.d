@@ -171,6 +171,7 @@
 
 ;; Pixel alignment for org/markdown tables
 (use-package valign
+  :ensure t
   :quelpa (valign :fetcher github :repo "casouri/valign")
   :hook ((markdown-mode org-mode) . valign-mode)
   :config
@@ -192,6 +193,7 @@ Show the heading too, if it is currently invisible."
 
 ;; Jekyll blog posts manager
 (use-package jblog
+  :ensure t
   :quelpa (jblog :fetcher github :repo "condy0919/jblog")
   :commands jblog
   :config
