@@ -263,6 +263,17 @@ usemathjax: false
 ;; Free hands
 (use-package auto-package-update
   :ensure t
+  :config
+  ;; HACK: until https://github.com/rranelli/auto-package-update.el/pull/46 is merged
+  (define-advice apu--filter-quelpa-packages (:override (package-list))
+    (if (fboundp 'quelpa)
+        (let ((filtered-package-list package-list))
+          (dolist (package quelpa-cache)
+            (let ((package-name (car package)))
+              (setq filtered-package-list
+                    (delq package-name filtered-package-list))))
+          filtered-package-list)
+      package-list))
   :custom
   (auto-package-update-delete-old-versions t))
 
