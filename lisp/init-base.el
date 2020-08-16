@@ -330,7 +330,7 @@
                         (tab-bar-mode)
                         (tab-bar-history-mode)))
   :config
-  ;; HACK until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=42756 is resolved
+  ;; HACK no tab-bar-lines displayed
   (defun my/no-tab-bar-lines (&rest _)
     (dolist (frame (frame-list))
       (set-frame-parameter frame 'tab-bar-lines 0)))
