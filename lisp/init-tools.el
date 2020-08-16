@@ -268,6 +268,7 @@ usemathjax: false
   (define-advice apu--filter-quelpa-packages (:override (package-list))
     (if (fboundp 'quelpa)
         (let ((filtered-package-list package-list))
+          (quelpa-read-cache)
           (dolist (package quelpa-cache)
             (let ((package-name (car package)))
               (setq filtered-package-list
