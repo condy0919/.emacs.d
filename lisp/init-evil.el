@@ -107,6 +107,10 @@
   (evil-leader/set-key
     "w" 'evil-window-map)
   (evil-leader/set-key
+    "wdj" 'windmove-delete-down
+    "wdk" 'windmove-delete-up
+    "wdh" 'windmove-delete-left
+    "wdl" 'windmove-delete-right
     "wu" 'my/transient-winner-undo
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
