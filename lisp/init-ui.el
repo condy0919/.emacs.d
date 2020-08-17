@@ -56,7 +56,18 @@
 (use-package winner-mode
   :ensure nil
   :hook (after-init . winner-mode)
-  :custom (winner-dont-bind-my-keys t))
+  :custom
+  (winner-dont-bind-my-keys t)
+  (winner-boring-buffers '("*Completions*"
+                           "*Compile-Log*"
+                           "*inferior-lisp*"
+                           "*Fuzzy Completions*"
+                           "*Apropos*"
+                           "*Help*"
+                           "*cvs*"
+                           "*Buffer List*"
+                           "*Ibuffer*"
+                           "*esh command on file*")))
 
 (provide 'init-ui)
 
