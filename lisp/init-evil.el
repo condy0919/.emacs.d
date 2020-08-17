@@ -262,13 +262,14 @@
     (which-key-add-key-based-replacements
       "SPC a" "apps"
       "SPC b" "bookmark"
+      "SPC c" "code"
+      "SPC d" "dired"
       "SPC f" "files"
       "SPC g" "git"
       "SPC i" "insert"
       "SPC o" "open"
       "SPC s" "search"
-      "SPC p" "project")
-    )
+      "SPC p" "project"))
   )
 
 (use-package evil-nerd-commenter
