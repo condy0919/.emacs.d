@@ -278,6 +278,7 @@
                        ,@holiday-local-holidays))
   (calendar-mark-holidays-flag t)
   (calendar-mark-diary-entries-flag nil)
+  (calendar-time-zone-style 'numeric)
   ;; start from Monday
   (calendar-week-start-day 1)
   ;; year/month/day
