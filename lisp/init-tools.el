@@ -153,6 +153,7 @@
   (isearch-yank-on-move t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
+  (lazy-highlight-buffer t)
   (lazy-highlight-cleanup nil))
 
 ;; isearch alternative
