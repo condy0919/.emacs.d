@@ -95,6 +95,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 而自动升级选择了`auto-package-update`这个包。如果需要更新，`M-x`运行一下
 `auto-package-update-now`即可。需要注意的是，更新是同步的。
 
+注意：`llvm-mode`和`tablegen-mode`下载都是通过`raw.githubusercontent.com`，而这
+个域名在国内几乎不可达，需要科学上网一下。
+
 # 界面
 
 使用了`doom-themes`和`doom-modeline`，简直惊艳！`doom-one`的界面非常好看！
