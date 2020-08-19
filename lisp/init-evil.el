@@ -117,11 +117,12 @@
 
   ;; prefix: <Leader> t, tab
   (evil-leader/set-key
-    "tt" 'tab-bar-select-tab-by-name
+    "tc" 'tab-bar-close-tab
     "ti" 'tab-switcher
-    "tr" 'tab-bar-rename-tab-by-name
-    "to" 'tab-bar-close-other-tabs
     "tn" 'tab-bar-new-tab
+    "to" 'tab-bar-close-other-tabs
+    "tr" 'tab-bar-rename-tab-by-name
+    "tt" 'tab-bar-select-tab-by-name
     "tu" 'tab-bar-undo-close-tab)
 
   ;; prefix: <Leader> s, search
