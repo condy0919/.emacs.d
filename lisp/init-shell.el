@@ -157,7 +157,12 @@
 ;; Launch external terminal on current directory
 (use-package terminal-here
   :ensure t
-  :bind ("C-c M-=" . terminal-here-launch))
+  :bind ("C-c M-=" . terminal-here-launch)
+  :config
+  (when (eq system-type 'gnu/linux)
+    (setq terminal-here-terminal-command (list (or (executable-find "alacritty")
+                                                   (executable-find "xterm")
+                                                   (executable-find "urxvt"))))))
 
 (provide 'init-shell)
 
