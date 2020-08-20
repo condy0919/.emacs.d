@@ -144,7 +144,7 @@
       (insert (completing-read "> " hist nil t))))
   )
 
-;; Popup a shell
+;; Popup a shell inside Emacs
 (use-package shell-pop
   :ensure t
   :bind ("M-=" . shell-pop)
@@ -153,6 +153,11 @@
   (shell-pop-full-span t)
   (shell-pop-shell-type (if (fboundp 'vterm) '("vterm" "*vterm*" #'vterm)
                           '("eshell" "*eshell*" #'eshell))))
+
+;; Launch external terminal on current directory
+(use-package terminal-here
+  :ensure t
+  :bind ("C-c M-=" . terminal-here-launch))
 
 (provide 'init-shell)
 
