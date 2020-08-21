@@ -128,7 +128,7 @@
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
                                                      "/private/tmp/"
-                                                     ,(file-truename (expand-file-name "straight/" user-emacs-directory))))
+                                                     ,(file-truename (expand-file-name "elpa" user-emacs-directory))))
   (defun projectile-project-ignore-p (file)
     (cl-loop for ig-dir in projectile-ignored-project-directories
              when (string-prefix-p ig-dir file)
