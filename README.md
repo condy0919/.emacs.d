@@ -76,8 +76,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | hl-line    | 高亮当前行                                           |
 | paren      | 高亮匹配的括号                                       |
 | saveplace  | 自动记录上次打开文件的位置                           |
-| simple     | 在`modeline`里显示行号、列号以及当前文本的大小     |
+| simple     | 在`modeline`里显示行号、列号以及当前文本的大小       |
 | so-long    | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
+| tab-bar    | 窗口布局管理 (`Emacs` 27+ 自带)                      |
 
 而这几个包也是`Emacs`自带的。
 
