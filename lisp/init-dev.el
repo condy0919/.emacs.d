@@ -135,10 +135,7 @@
              return t)
     )
 
-  (dolist (dir '(".ccls-cache"
-                 ".clangd"
-                 ".vscode"
-                 "bazel-bin"
+  (dolist (dir '("bazel-bin"
                  "bazel-out"
                  "bazel-testlogs"))
     (add-to-list 'projectile-globally-ignored-directories dir))
