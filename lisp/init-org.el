@@ -165,6 +165,7 @@
 (use-package org-src
   :ensure nil
   :after org
+  :hook (org-babel-after-execute . org-redisplay-inline-images)
   :bind (:map org-src-mode-map
          ;; consistent with separedit/magit
          ("C-c C-c" . org-edit-src-exit))
