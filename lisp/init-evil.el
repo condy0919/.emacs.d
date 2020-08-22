@@ -129,7 +129,6 @@
   (evil-leader/set-key
     "sa" 'swiper-all
     "sb" 'swiper
-    "sf" 'my/ivy-fd
     "sg" 'counsel-rg
     "si" 'imenu
     "sj" 'evil-show-jumps
