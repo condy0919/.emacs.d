@@ -112,6 +112,7 @@
     "wdh" 'windmove-delete-left
     "wdl" 'windmove-delete-right
     "wu" 'my/transient-winner-undo
+    "wg" 'my/transient-other-window-nav
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally)
 
