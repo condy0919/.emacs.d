@@ -189,6 +189,8 @@
   ;; fill
   (adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
   (adaptive-fill-first-line-regexp "^* *$")
+  ;; better word wrapping for CJK characters
+  (word-wrap-by-category t)
   ;; paragraphs
   (sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
