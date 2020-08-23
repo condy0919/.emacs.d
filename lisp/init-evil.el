@@ -60,7 +60,7 @@
 
   ;; prefix: <Leader> d, dired
   (evil-leader/set-key
-    "df" 'counsel-fd-dired-jump
+    "dd" 'counsel-fd-dired-jump
     "dj" 'dired-jump
     "dJ" 'dired-jump-other-window)
 

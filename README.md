@@ -180,19 +180,26 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 与文件相关的键绑定如下:
 
-| key           | function                                            |
-|---------------|-----------------------------------------------------|
-| <kbd>fj</kbd> | `dired-jump`在当前文件所属目录进入`dired`           |
-| <kbd>fJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
-| <kbd>ff</kbd> | `find-file`打开文件                                 |
-| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开  |
-| <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件      |
-| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                |
-| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方        |
-| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径    |
-| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件              |
-| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件               |
-| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件           |
+| key           | function                                                 |
+|---------------|----------------------------------------------------------|
+| <kbd>ff</kbd> | `find-file`打开文件                                      |
+| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开       |
+| <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件 |
+| <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件           |
+| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                     |
+| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方             |
+| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径         |
+| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                   |
+| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                    |
+| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                |
+
+与目录相关的键绑定如下:
+
+| key           | functio                                                   |
+|---------------|-----------------------------------------------------------|
+| <kbd>dd</kbd> | `counsel-fd-dired-jump`进入由`fd`在当前目录下搜索到的目录 |
+| <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                            |
+| <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开       |
 
 打开其他程序的键绑定:
 
