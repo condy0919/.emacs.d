@@ -186,9 +186,6 @@
 (use-package text-mode
   :ensure nil
   :custom
-  ;; fill
-  (adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*")
-  (adaptive-fill-first-line-regexp "^* *$")
   ;; better word wrapping for CJK characters
   (word-wrap-by-category t)
   ;; paragraphs
