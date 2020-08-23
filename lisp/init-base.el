@@ -189,7 +189,7 @@
   ;; better word wrapping for CJK characters
   (word-wrap-by-category t)
   ;; paragraphs
-  (sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+  (sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
 
 ;; Back to the previous position
