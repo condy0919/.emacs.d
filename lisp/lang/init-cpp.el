@@ -94,6 +94,13 @@
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t))
 
+;; c-macro-expand
+;; C-c C-e to expand macros
+(use-package cmacexp
+  :ensure nil
+  :custom
+  (c-macro-shrink-window-flag t))
+
 (use-package modern-cpp-font-lock
   :ensure t
   :hook (c++-mode . modern-c++-font-lock-mode)
