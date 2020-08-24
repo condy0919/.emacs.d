@@ -86,6 +86,10 @@
   (when (eq system-type 'gnu/linux)
     (add-to-list 'hide-ifdef-env '(__linux__ . 1))
     (add-to-list 'hide-ifdef-env '(__GNUC__ . 11)))
+  (when (eq system-type 'darwin)
+    (add-to-list 'hide-ifdef-env '(__APPLE__ . 1))
+    (add-to-list 'hide-ifdef-env '(__clang__ . 1))
+    (add-to-list 'hide-ifdef-env '(__llvm__ . 1)))
   :custom
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t))
