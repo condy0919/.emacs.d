@@ -269,14 +269,15 @@
   :after org
   :custom
   (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("GitHub"      . "https://github.com/%s")
-                           ("Google"      . "https://google.com/search?q=")
-                           ("IETF"        . "https://tools.ietf.org/html/%s")
-                           ("LLVM-Review" . "https://reviews.llvm.org/%s")
-                           ("LWN"         . "https://lwn.net/Articles/%s")
-                           ("WG21"        . "https://wg21.link/%s")
-                           ("WikiPedia"   . "https://en.wikipedia.org/wiki/%s")
-                           ("YouTube"     . "https://youtube.com/watch?v=%s"))))
+  (org-link-abbrev-alist '(("GitHub"    . "https://github.com/%s")
+                           ("Google"    . "https://google.com/search?q=")
+                           ("IETF"      . "https://tools.ietf.org/html/%s")
+                           ("LLVM"      . "https://reviews.llvm.org/%s")
+                           ("LWN"       . "https://lwn.net/Articles/%s")
+                           ("WG21"      . "https://wg21.link/%s")
+                           ("WikiPedia" . "https://en.wikipedia.org/wiki/%s")
+                           ("YouTube"   . "https://youtube.com/watch?v=%s")
+                           ("Zhihu"     . "https://zhihu.com/question/%s"))))
 
 ;; export
 (use-package ox
