@@ -307,6 +307,31 @@ usemathjax: false
   (webpaste-add-to-killring nil)
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io")))
 
+;; Web search
+(use-package webjump
+  :ensure nil
+  :bind ("C-c /" . webjump)
+  :custom
+  (webjump-sites '(
+                   ;; Emacs.
+                   ("Emacs Home Page" .
+                    "www.gnu.org/software/emacs/emacs.html")
+                   ("Savannah Emacs page" .
+                    "savannah.gnu.org/projects/emacs")
+
+                   ;; Internet search engines.
+                   ("DuckDuckGo" .
+                    [simple-query "duckduckgo.com"
+                                  "duckduckgo.com/?q=" ""])
+                   ("Google" .
+                    [simple-query "www.google.com"
+                                  "www.google.com/search?q=" ""])
+                   ("Google Groups" .
+                    [simple-query "groups.google.com"
+                                  "groups.google.com/groups?q=" ""])
+                   ("Wikipedia" .
+                    [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
+
 ;; Upload to 0x0.st or other pb services
 (use-package 0x0
   :ensure t)
