@@ -12,15 +12,15 @@
          ;; consistent with inferior-python-shell
          ("C-c C-p" . my/ielm-other-window)
          ("C-c C-b" . eval-buffer)
-         ("C-c C-c" . my/eval-to-comment)
+         ("C-c C-c" . eval-to-comment)
          :map lisp-interaction-mode-map
-         ("C-c C-c" . my/eval-to-comment))
+         ("C-c C-c" . eval-to-comment))
   :config
   (defconst eval-as-comment-prefix ";;=> ")
 
   ;; Imitate scala-mode
   ;; from https://github.com/dakra/dmacs
-  (defun my/eval-to-comment (&optional arg)
+  (defun eval-to-comment (&optional arg)
     (interactive "P")
     (let ((start (point)))
       (eval-print-last-sexp arg)

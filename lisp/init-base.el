@@ -341,12 +341,12 @@
                         (tab-bar-history-mode)))
   :config
   ;; HACK no tab-bar-lines displayed
-  (defun my/no-tab-bar-lines (&rest _)
+  (defun no-tab-bar-lines (&rest _)
     (dolist (frame (frame-list))
       (set-frame-parameter frame 'tab-bar-lines 0)))
 
-  (advice-add #'tab-bar-mode :after #'my/no-tab-bar-lines)
-  (advice-add #'make-frame   :after #'my/no-tab-bar-lines)
+  (advice-add #'tab-bar-mode :after #'no-tab-bar-lines)
+  (advice-add #'make-frame   :after #'no-tab-bar-lines)
   :custom
   (tab-bar-show nil)
   (tab-bar-new-button-show nil)

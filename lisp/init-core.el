@@ -111,19 +111,19 @@ confirmation."
     (message "other-window-navigation: [j] [k] [C-f] [C-b]")
     (set-transient-map
      (let ((map (make-sparse-keymap)))
-       (define-key map "j" #'my/scroll-other-window-line)
-       (define-key map "k" #'my/scroll-other-window-down-line)
+       (define-key map "j" #'scroll-other-window-line)
+       (define-key map "k" #'scroll-other-window-down-line)
        (define-key map (kbd "C-f") #'scroll-other-window)
        (define-key map (kbd "C-b") #'scroll-other-window-down)
        map)
      t)))
 
-(defun my/scroll-other-window-line ()
+(defun scroll-other-window-line ()
   "Scroll up of one line in other window."
   (interactive)
   (scroll-other-window 1))
 
-(defun my/scroll-other-window-down-line ()
+(defun scroll-other-window-down-line ()
   "Scroll down of one line in other window."
   (interactive)
   (scroll-other-window-down 1))

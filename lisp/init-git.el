@@ -80,9 +80,9 @@
   :ensure nil
   :requires transient
   :bind (:map smerge-mode-map
-         ("C-c m" . my/smerge-menu))
+         ("C-c m" . smerge-menu))
   :config
-  (transient-define-prefix my/smerge-menu
+  (transient-define-prefix smerge-menu
     "Smerge"
     [["Navigation"
       ("p" "prev" smerge-prev)

@@ -7,7 +7,7 @@
 
 (require 'init-core)
 
-(defun my/term-mode-common-init ()
+(defun term-mode-common-init ()
   "The common initialization for term."
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
@@ -25,12 +25,12 @@
              (executable-find "make")
              (executable-find "libtool"))
   :hook (vterm-mode . (lambda ()
-                        (my/term-mode-common-init)
+                        (term-mode-common-init)
                         ;; Dont prompt about processes when killing vterm
                         (setq confirm-kill-processes nil)))
   :config
   ;; Directory synchronization (linux-only)
-  (defun my/vterm-directory-sync ()
+  (defun vterm-directory-sync ()
     "Synchronize current working directory."
     (when vterm--process
       (let* ((pid (process-id vterm--process))
@@ -40,7 +40,7 @@
   (when (eq system-type 'gnu/linux)
     (define-advice vterm-send-return (:after nil)
       "Synchronize current working directory."
-      (run-with-idle-timer 0.1 nil 'my/vterm-directory-sync)))
+      (run-with-idle-timer 0.1 nil 'vterm-directory-sync)))
 
   (define-advice counsel-yank-pop-action (:around (func &rest args))
     (if (eq major-mode 'vterm-mode)
@@ -61,7 +61,7 @@
   :defines eshell-prompt-regexp
   :functions eshell/alias
   :hook ((eshell-mode . (lambda ()
-                          (my/term-mode-common-init)
+                          (term-mode-common-init)
                           ;; eshell is not fully functional
                           (setenv "PAGER" "cat")
                           ;; Define aliases
@@ -72,7 +72,7 @@
          (eshell-first-time-mode . (lambda ()
                                      (evil-collection-define-key 'insert 'eshell-mode-map
                                        (kbd "C-w") 'backward-kill-word
-                                       (kbd "C-d") 'my/eshell-quit-or-delete-char
+                                       (kbd "C-d") 'eshell-quit-or-delete-char
                                        (kbd "C-p") 'eshell-previous-input
                                        (kbd "C-n") 'eshell-next-input))))
   :config
@@ -84,14 +84,14 @@
         (delete-window))))
 
   ;; Copy from doom
-  (defun my/eshell-quit-or-delete-char (arg)
+  (defun eshell-quit-or-delete-char (arg)
     "Delete a character or quit eshell if there's nothing to delete."
     (interactive "p")
     (if (and (eolp) (looking-back eshell-prompt-regexp nil))
         (eshell-life-is-too-much)
       (delete-char arg)))
 
-  (defun my/eshell-prompt ()
+  (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
     (concat
@@ -130,14 +130,14 @@
   (eshell-glob-case-insensitive t)
   (eshell-highlight-prompt nil)
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
-  (eshell-prompt-function 'my/eshell-prompt))
+  (eshell-prompt-function 'eshell-prompt))
 
 (use-package em-hist
   :ensure nil
   :bind (:map eshell-hist-mode-map
-         ("M-r" . my/eshell-complete-history))
+         ("M-r" . eshell-complete-history))
   :config
-  (defun my/eshell-complete-history ()
+  (defun eshell-complete-history ()
     "Complete eshell commands history using `completing-read'."
     (interactive)
     (let ((hist (delete-dups (ring-elements eshell-history-ring))))

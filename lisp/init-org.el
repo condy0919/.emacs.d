@@ -237,7 +237,7 @@
                :template "* TODO [[%:link][%:description]]\n %a\n %i")))
             ("Project"
              :keys "p"
-             :file ,(defun my/project-todo-file ()
+             :file ,(defun project-todo-file ()
                       (let ((file (expand-file-name "TODO.org"
                                                     (when (functionp 'projectile-project-root)
                                                       (projectile-project-root)))))

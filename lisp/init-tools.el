@@ -52,7 +52,7 @@
   :hook (after-init . ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
-         ("C-c C-e" . my/ivy-woccur)
+         ("C-c C-e" . ivy-woccur)
          :map ivy-occur-mode-map
          ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode)
          :map ivy-occur-grep-mode-map
@@ -64,7 +64,7 @@
 
   ;; Copy from
   ;; https://github.com/honmaple/maple-emacs/blob/master/lisp/init-ivy.el
-  (defun my/ivy-woccur ()
+  (defun ivy-woccur ()
     "ivy-occur with wgrep-mode enabled."
     (interactive)
     (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
@@ -85,7 +85,7 @@
   :hook (ivy-mode . counsel-mode)
   :bind (([remap evil-ex-registers]  . counsel-evil-registers)
          ([remap evil-show-marks]    . counsel-mark-ring)
-         ([remap evil-show-jumps]    . my/evil-jump-list)
+         ([remap evil-show-jumps]    . evil-jump-list)
          ([remap recentf-open-files] . counsel-recentf)
          ([remap swiper]             . counsel-grep-or-swiper)
          ("M-y"                      . counsel-yank-pop))
@@ -99,10 +99,10 @@
      ("x" counsel-find-file-as-root "open as root")))
 
   ;; Modified from doom
-  (defun my/evil-jump-list ()
+  (defun evil-jump-list ()
     "evil jump list with ivy enhancement."
     (interactive)
-    (ivy-read "evil jumplist: "
+    (ivy-read "Jump: "
               (nreverse
                (delete-dups
                 (mapcar (lambda (mark)

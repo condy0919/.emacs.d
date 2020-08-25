@@ -11,14 +11,14 @@
 ;; Compilation Mode
 (use-package compile
   :ensure nil
-  :hook (compilation-filter . my/colorize-compilation-buffer)
+  :hook (compilation-filter . colorize-compilation-buffer)
   :config
-  (add-to-list 'compilation-finish-functions 'my/notify-compilation-result)
-  (defun my/colorize-compilation-buffer ()
+  (add-to-list 'compilation-finish-functions 'notify-compilation-result)
+  (defun colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (defun my/notify-compilation-result (_comp-buffer exit-string)
+  (defun notify-compilation-result (_comp-buffer exit-string)
     "Notify after the compilation is done."
     (if (string-match "^finished" exit-string)
         (notify-send :title "Compilation"
@@ -203,25 +203,25 @@
 (use-package pulse
   :ensure nil
   :preface
-  (defun my/pulse-line (&rest _)
+  (defun pulse-line (&rest _)
     "Pulse the current line."
     (pulse-momentary-highlight-one-line (point)))
-  (defun my/recenter-and-pulse (&rest _)
+  (defun recenter-and-pulse (&rest _)
     "Recenter and pulse the current line."
     (recenter)
-    (my/pulse-line))
+    (pulse-line))
   :init
   ;; better evil notification
-  (advice-add #'evil-goto-line       :after #'my/recenter-and-pulse)
-  (advice-add #'evil-goto-mark-line  :after #'my/recenter-and-pulse)
-  (advice-add #'what-cursor-position :after #'my/pulse-line)
-  (advice-add #'evil-window-top      :after #'my/pulse-line)
-  (advice-add #'evil-window-middle   :after #'my/pulse-line)
-  (advice-add #'evil-window-bottom   :after #'my/pulse-line)
+  (advice-add #'evil-goto-line       :after #'recenter-and-pulse)
+  (advice-add #'evil-goto-mark-line  :after #'recenter-and-pulse)
+  (advice-add #'what-cursor-position :after #'pulse-line)
+  (advice-add #'evil-window-top      :after #'pulse-line)
+  (advice-add #'evil-window-middle   :after #'pulse-line)
+  (advice-add #'evil-window-bottom   :after #'pulse-line)
   :hook ((counsel-grep-post-action
           dumb-jump-after-jump
           bookmark-after-jump
-          imenu-after-jump) . my/recenter-and-pulse)
+          imenu-after-jump) . recenter-and-pulse)
   :custom-face
   (pulse-highlight-start-face ((t (:inherit highlight))))
   (pulse-highlight-face ((t (:inherit highlight)))))
