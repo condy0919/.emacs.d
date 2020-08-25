@@ -39,6 +39,12 @@
   :ensure t
   :mode ("\\.epub\\'" . nov-mode))
 
+;; The builtin doc viewer
+(use-package doc-view
+  :ensure nil
+  :custom
+  (doc-view-continuous t))
+
 ;; A gopher and a gemini client
 (use-package elpher
   :ensure t
