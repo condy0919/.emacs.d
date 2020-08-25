@@ -274,6 +274,7 @@
       "SPC i" "insert"
       "SPC o" "open"
       "SPC s" "search"
+      "SPC t" "tabs"
       "SPC p" "project"))
   )
 
