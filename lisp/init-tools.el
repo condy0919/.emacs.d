@@ -330,7 +330,15 @@ usemathjax: false
                     [simple-query "groups.google.com"
                                   "groups.google.com/groups?q=" ""])
                    ("Wikipedia" .
-                    [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
+                    [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+
+                   ;; ArchLinux
+                   ("ArchLinux Packages" .
+                    [simple-query "www.archlinux.org"
+                                  "www.archlinux.org/packages/?q=" ""])
+                   ("ArchLinux User Repository" .
+                    [simple-query "aur.archlinux.org"
+                                  "aur.archlinux.org/packages/?K=" ""]))))
 
 ;; Upload to 0x0.st or other pb services
 (use-package 0x0
