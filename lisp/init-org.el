@@ -8,8 +8,7 @@
 (use-package org
   :ensure nil
   :mode ("\\.org\\'" . org-mode)
-  :hook ((org-mode . auto-fill-mode)
-         (org-mode . visual-line-mode))
+  :hook (org-mode . visual-line-mode)
   :commands (org-find-exact-headline-in-buffer org-set-tags)
   :config
   (with-eval-after-load 'evil-collection
