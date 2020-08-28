@@ -34,10 +34,6 @@
   ;; NOTE Meaningless to railwaycat's emacs-mac build
   (setq ns-use-native-fullscreen nil)
 
-  ;; sane trackpad/mouse scroll settings
-  (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil)
-
   ;; Visit files opened outside of Emacs in existing frame, not a new one
   (setq ns-pop-up-frames nil)
 
