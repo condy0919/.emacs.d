@@ -83,6 +83,7 @@
 (require 'init-insert)
 (require 'init-reader)
 (require 'init-gnus)
+(require 'init-copy)
 
 (when (file-exists-p custom-file)
   (load custom-file))
