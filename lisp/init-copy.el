@@ -17,6 +17,7 @@
     ("l" copy-line-at-point "line")
     ("u" copy-url-at-point "url")
     ("e" copy-email-at-point "email")
+    ("r" copy-region "region")
     ("q" nil "cancel"))
 
   (defun copy-word-at-point ()
@@ -53,6 +54,17 @@
     (save-excursion
       (evil-avy-goto-word-or-subword-1)
       (kill-new (thing-at-point 'email))))
+
+  (defun copy-region ()
+    "Copy region."
+    (interactive)
+    (save-excursion
+      (evil-avy-goto-char)
+      (let* ((begin (point))
+             (end (prog2
+                      (evil-avy-goto-char)
+                      (1+ (point)))))
+        (copy-region-as-kill begin end))))
   )
 
 (provide 'init-copy)
