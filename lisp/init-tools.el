@@ -367,6 +367,7 @@ usemathjax: false
 ;; Quickly insert url
 (use-package quickurl
   :ensure nil
+  :bind ("C-c i q" . quickurl-prefix-map)
   :config
   (defvar quickurl-prefix-map (make-sparse-keymap))
   (define-prefix-command 'quickurl-prefix-map)
