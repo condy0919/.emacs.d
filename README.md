@@ -125,7 +125,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还
 有`separedit`,让人在代码里写`documentation comments`不再烦恼。
 
-[valign][valign]提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
+[valign][valign] 提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
 
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
@@ -178,7 +178,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 此外另外提供了一个`Leader`键，绑定在`SPC`键上。
 
-与文件相关的键绑定如下:
+与文件相关的`Leader`键绑定如下:
 
 | key           | function                                                 |
 |---------------|----------------------------------------------------------|
@@ -193,7 +193,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                    |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                |
 
-与目录相关的键绑定如下:
+与目录相关的`Leader`键绑定如下:
 
 | key           | functio                                                   |
 |---------------|-----------------------------------------------------------|
@@ -201,14 +201,15 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                            |
 | <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开       |
 
-打开其他程序的键绑定:
+打开其他程序的`Leader`键绑定:
 
-| key           | function                                        |
-|---------------|-------------------------------------------------|
-| <kbd>ot</kbd> | `vterm`打开`vterm`                              |
-| <kbd>oT</kbd> | `vterm-other-window`在其他窗口打开`vterm`       |
-| <kbd>oe</kbd> | `eshell`打开`eshell`                            |
-| <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`  |
+| key           | function                                                   |
+|---------------|------------------------------------------------------------|
+| <kbd>ot</kbd> | `vterm`打开`vterm`                                         |
+| <kbd>oT</kbd> | `vterm-other-window`在其他窗口打开`vterm`                  |
+| <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
+| <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`             |
+| <kbd>os</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
 
 | key           | function                             |
 |---------------|--------------------------------------|
@@ -216,6 +217,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ag</kbd> | `gnus`查看新闻组                     |
 | <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
 | <kbd>ad</kbd> | `deft`笔记管理                       |
+| <kbd>ae</kbd> | `elpher`拿来上 hackernews            |
 | <kbd>aa</kbd> | `org-agenda`日程                     |
 | <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
 | <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
@@ -223,7 +225,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>al</kbd> | `org-store-link`存储URL              |
 | <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
 
-搜索相关的功能键绑定:
+搜索相关的`Leader`键绑定:
 
 | key           | function                        |
 |---------------|---------------------------------|
@@ -235,7 +237,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ss</kbd> | `swiper-isearch`                |
 | <kbd>sS</kbd> | `swiper-isearch-thing-at-point` |
 
-
 ## Emacs
 
 | key                | function                                                                      |
@@ -244,6 +245,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
 | <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
 | <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                                     |
+| <kbd>C-c M-=</kbd> | 在当前目录打开一个外部终端                                                    |
 | <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
 | <kbd>C-c t o</kbd> | `hl-todo-occur`查找当前`buffer`内的**TODO**/**FIXME**等关键字                 |
 | <kbd>C-c t p</kbd> | 上一个高亮的关键字                                                            |
@@ -251,7 +253,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
 | <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
 | <kbd>M-o</kbd>     | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
-| <kbd>C-c [</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能, <kbd>C-c ]</kbd> 也有同样效果     |
+| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能, <kbd>C-c ]</kbd> 也有同样效果     |
 | <kbd>C-c i l</kbd> | 方便地插入`SPDX`形式的`license`头部                                           |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
