@@ -125,6 +125,7 @@
   (eshell-scroll-to-bottom-on-output 'all)
   (eshell-kill-on-exit t)
   (eshell-kill-processes-on-exit t)
+  (eshell-history-size 1024)
   (eshell-hist-ignoredups t)
   (eshell-input-filter 'eshell-input-filter-initial-space)
   (eshell-glob-case-insensitive t)
