@@ -96,8 +96,17 @@
 (use-package org-mu4e
   :ensure nil
   :hook (mu4e-compose-mode . org-mu4e-compose-org-mode)
+  :bind (:map mu4e-compose-mode-map
+         ("C-h t" . mu4e-html-toggle))
+  :config
+  (defun mu4e-html-toggle ()
+    "Toggle whether convert to html."
+    (interactive)
+    (let ((b (not org-mu4e-convert-to-html)))
+      (setq org-mu4e-convert-to-html b)
+      (message "Will send mail in html format? %s" b)))
   :custom
-  (org-mu4e-convert-to-html t))
+  (org-mu4e-convert-to-html nil))
 
 ;; sending mail
 (use-package message
