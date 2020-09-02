@@ -53,6 +53,7 @@
   :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
          ("C-c C-e" . ivy-woccur)
+         ("C-w"     . ivy-yank-word)
          :map ivy-occur-mode-map
          ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode)
          :map ivy-occur-grep-mode-map
