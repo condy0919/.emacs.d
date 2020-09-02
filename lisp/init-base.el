@@ -70,6 +70,9 @@
 ;; Make the prompt of "*Python*" buffer readonly
 (setq comint-prompt-read-only t)
 
+;; `auto-fill' inside comments
+(setq comment-auto-fill-only-comments t)
+
 ;; Cutting and pasting use primary/clipboard
 (setq select-enable-primary t
       select-enable-clipboard t)
