@@ -138,6 +138,8 @@
     "sr" 'evil-show-marks
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point)
+  (evil-leader/set-key-for-mode 'lsp-mode
+    "sw" 'lsp-ivy-workspace-symbol)
 
   ;; prefix: <Leader> i, insert
   (evil-leader/set-key

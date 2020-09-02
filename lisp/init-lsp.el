@@ -87,9 +87,7 @@
 ;; Jump to workspace symbol
 (use-package lsp-ivy
   :ensure t
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-         ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)))
+  :commands lsp-ivy-workspace-symbol)
 
 (provide 'init-lsp)
 
