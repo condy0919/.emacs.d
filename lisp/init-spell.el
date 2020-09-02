@@ -9,6 +9,7 @@
 (use-package ispell
   :ensure nil
   :bind (("C-c i c" . ispell-comments-and-strings)
+         ("C-c i p" . ispell-comment-or-string-at-point)
          ("C-c i k" . ispell-kill-ispell)
          ("C-c i m" . ispell-message)
          ("C-c i r" . ispell-region))
