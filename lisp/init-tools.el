@@ -63,6 +63,9 @@
   (use-package ivy-avy
     :ensure t)
 
+  (use-package ivy-hydra
+    :ensure t)
+
   ;; Copy from
   ;; https://github.com/honmaple/maple-emacs/blob/master/lisp/init-ivy.el
   (defun ivy-woccur ()
