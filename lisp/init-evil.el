@@ -24,6 +24,8 @@
   (evil-ex-interactive-search-highlight 'selected-window)
   (evil-disable-insert-state-bindings t)
   (evil-insert-skip-empty-lines t)
+  ;; j&k operate via visual line
+  (evil-respect-visual-line-mode t)
   (evil-want-integration t)
   (evil-want-keybinding nil)
   (evil-want-fine-undo t)
