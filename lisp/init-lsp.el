@@ -84,6 +84,13 @@
   (lsp-signature-auto-activate t)      ;; show function signature
   (lsp-signature-doc-lines 2))         ;; but dont take up more lines
 
+;; Jump to workspace symbol
+(use-package lsp-ivy
+  :ensure t
+  :after lsp-mode
+  :bind (:map lsp-mode-map
+         ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)))
+
 (provide 'init-lsp)
 
 ;;; init-lsp.el ends here
