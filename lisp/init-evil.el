@@ -281,10 +281,6 @@
       "SPC p" "project"))
   )
 
-(use-package evil-nerd-commenter
-  :ensure t
-  :bind ("M-;" . evilnc-comment-or-uncomment-lines))
-
 (use-package evil-surround
   :ensure t
   :hook (after-init . global-evil-surround-mode))

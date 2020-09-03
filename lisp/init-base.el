@@ -70,9 +70,6 @@
 ;; Make the prompt of "*Python*" buffer readonly
 (setq comint-prompt-read-only t)
 
-;; `auto-fill' inside comments
-(setq comment-auto-fill-only-comments t)
-
 ;; Cutting and pasting use primary/clipboard
 (setq select-enable-primary t
       select-enable-clipboard t)
@@ -351,6 +348,13 @@
   (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)
   (tab-bar-tab-name-function 'tab-bar-tab-name-all))
+
+(use-package newcomment
+  :ensure nil
+  :bind ([remap comment-dwim] . #'comment-line)
+  :custom
+  ;; `auto-fill' inside comments
+  (comment-auto-fill-only-comments t))
 
 ;; transparent remote access
 (use-package tramp
