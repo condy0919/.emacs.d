@@ -20,6 +20,7 @@
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
+  (magit-save-repository-buffers 'dontask)
   (magit-process-popup-time 30)
   (magit-ediff-dwim-show-on-hunks t)
   (magit-diff-refine-hunk t))
