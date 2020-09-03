@@ -351,7 +351,14 @@
 
 (use-package newcomment
   :ensure nil
-  :bind ([remap comment-dwim] . #'comment-line)
+  :bind ([remap comment-dwim] . #'comment-or-uncomment)
+  :config
+  (defun comment-or-uncomment ()
+    "Comment or uncomment the current line or region."
+    (interactive)
+    (if (region-active-p)
+        (comment-or-uncomment-region (region-beginning) (region-end))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
   :custom
   ;; `auto-fill' inside comments
   (comment-auto-fill-only-comments t))
