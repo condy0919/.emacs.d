@@ -109,10 +109,8 @@
   (evil-leader/set-key
     "w" 'evil-window-map)
   (evil-leader/set-key
-    "wdj" 'windmove-delete-down
-    "wdk" 'windmove-delete-up
-    "wdh" 'windmove-delete-left
-    "wdl" 'windmove-delete-right
+    ;; The spacemacs binding style
+    "wx" 'kill-buffer-and-window
     "wu" 'my/transient-winner-undo
     "wg" 'my/transient-other-window-nav
     "w-" 'split-window-vertically

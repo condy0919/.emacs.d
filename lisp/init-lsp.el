@@ -12,9 +12,9 @@
   :bind (:map company-mode-map
          ([remap completion-at-point] . company-complete)
          :map company-active-map
-         ([escape] . company-abort)
-         ;; consistent with ivy-occur
-         ("C-c C-o" . counsel-company)
+         ([escape]  . company-abort)
+         ;; The spacemacs binding style
+         ("C-/"     . counsel-company)
          ("C-p"     . company-select-previous)
          ("C-n"     . company-select-next)
          ("C-s"     . company-filter-candidates)
