@@ -28,6 +28,7 @@
   (org-return-follows-link t)
   (org-image-actual-width nil)
   (org-hide-emphasis-markers t)
+  (org-use-sub-superscripts '{})
   (org-fontify-done-headline t)
   (org-fontify-whole-heading-line t)
   (org-fontify-quote-and-verse-blocks t)
