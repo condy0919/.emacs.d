@@ -33,6 +33,14 @@
           ((executable-find "ccls") (setq lsp-clients-clangd-executable "ccls"
                                           lsp-clients-clangd-args ccls-args))))
   :custom
+  (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
+                             (c++-mode . "//+!?\\|\\**")
+                             (awk-mode . "#+")
+                             (other    . "//+\\|\\**")))
+  (c-doc-comment-style `((c-mode   . gtkdoc)
+                         ,(if (>= emacs-major-version 28)
+                               '(c++-mode . doxygen)
+                             '(c++-mode . gtkdoc))))
   (c-offsets-alist '((inline-open           . 0)
                      (brace-list-open       . 0)
                      (inextern-lang         . 0)
