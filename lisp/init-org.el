@@ -187,6 +187,7 @@
                         ("sqlite" . sql)))
   (org-babel-load-languages '((awk        . t)
                               (C          . t)
+                              (calc       . t)
                               (dot        . t)
                               (emacs-lisp . t)
                               (eshell     . t)
