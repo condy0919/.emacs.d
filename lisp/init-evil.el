@@ -54,20 +54,19 @@
   (evil-collection-setup-minibuffer nil)
   (evil-collection-setup-debugger-keys nil))
 
-(use-package evil-leader
+;; evil leader map
+(use-package general
   :ensure t
-  :hook (after-init . global-evil-leader-mode)
+  :after evil
   :config
-  (setq evil-leader/leader "SPC")
+  (general-create-definer leader-def
+    :states 'normal
+    :prefix "SPC"
+    :keymaps 'override)
 
-  ;; prefix: <Leader> d, dired
-  (evil-leader/set-key
-    "dd" 'counsel-fd-dired-jump
-    "dj" 'dired-jump
-    "dJ" 'dired-jump-other-window)
-
-  ;; prefix: <Leader> f, file
-  (evil-leader/set-key
+  (leader-def
+    ;; file
+    "f" '(:ignore t :which-key "file")
     "ff" 'find-file
     "fF" 'find-file-other-window
     "fj" 'counsel-fd-file-jump
@@ -77,16 +76,20 @@
     "fy" 'my/copy-current-filename
     "fR" 'my/rename-current-file
     "fr" 'counsel-recentf
-    "fl" 'find-file-literally)
+    "fl" 'find-file-literally
 
-  ;; prefix: <Leader> b, buffer
-  (evil-leader/set-key
+    ;; dired
+    "d" '(:ignore t :which-key "file")
+    "dd" 'counsel-fd-dired-jump
+    "dj" 'dired-jump
+    "dJ" 'dired-jump-other-window
+
+    ;; buffer & bookmark
+    "b" '(:ignore t :which-key "buffmark")
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
-    "by" 'my/copy-current-buffer-name)
-
-  ;; prefix: <Leader> b, bookmark
-  (evil-leader/set-key
+    "by" 'my/copy-current-buffer-name
+    ;; --------------
     "bm" 'bookmark-set
     "bM" 'bookmark-set-no-overwrite
     "bi" 'bookmark-insert
@@ -96,38 +99,35 @@
     "bj" 'bookmark-jump
     "bJ" 'bookmark-jump-other-window
     "bl" 'bookmark-bmenu-list
-    "bs" 'bookmark-save)
+    "bs" 'bookmark-save
 
-  ;; prefix: <Leader> c, code
-  (evil-leader/set-key
+    ;; code
+    "c" '(:ignore t :which-key "code")
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile
-    "cx" 'quickrun)
+    "cx" 'quickrun
 
-  ;; prefix: <Leader> w, window
-  (evil-leader/set-key
-    "w" 'evil-window-map)
-  (evil-leader/set-key
-    ;; The spacemacs binding style
+    ;; window
+    "w" '(:keymap evil-window-map :which-key "window")
     "wx" 'kill-buffer-and-window
     "wu" 'my/transient-winner-undo
     "wg" 'my/transient-other-window-nav
     "w-" 'split-window-vertically
-    "w/" 'split-window-horizontally)
+    "w/" 'split-window-horizontally
 
-  ;; prefix: <Leader> t, tab
-  (evil-leader/set-key
+    ;; tab
+    "t" '(:ignore t :which-key "tab")
     "tc" 'tab-bar-close-tab
     "ti" 'tab-switcher
     "tn" 'tab-bar-new-tab
     "to" 'tab-bar-close-other-tabs
     "tr" 'tab-bar-rename-tab-by-name
     "tt" 'tab-bar-select-tab-by-name
-    "tu" 'tab-bar-undo-close-tab)
+    "tu" 'tab-bar-undo-close-tab
 
-  ;; prefix: <Leader> s, search
-  (evil-leader/set-key
+    ;; search
+    "s" '(:ignore t :which-key "search")
     "sa" 'swiper-all
     "sb" 'swiper
     "sg" 'counsel-rg
@@ -136,16 +136,16 @@
     "sr" 'evil-show-marks
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point
-    "sw" 'my/lsp-ivy-workspace-symbol)
+    "sw" 'my/lsp-ivy-workspace-symbol
 
-  ;; prefix: <Leader> i, insert
-  (evil-leader/set-key
+    ;; insert
+    "i" '(:ignore t :which-key "insert")
     "iq" 'quickurl-prefix-map
     "is" 'insert-mail-signature
-    "it" 'insert-date-time)
+    "it" 'insert-date-time
 
-  ;; prefix: <Leader> g, git
-  (evil-leader/set-key
+    ;; git
+    "g" '(:ignore t :which-key "git")
     "gb" 'magit-branch-checkout
     "gB" 'magit-blame-addition
     "gc" 'magit-branch-and-checkout
@@ -155,14 +155,13 @@
     "gg" 'magit-status
     "gG" 'magit-status-here
     "gi" 'magit-init
-    "gr" 'magit-rebase-interactive)
+    "gr" 'magit-rebase-interactive
 
-  ;; prefix: <Leader> p, projectile
-  (evil-leader/set-key
-    "p" 'projectile-command-map)
+    ;; project
+    "p" '(:package projectile :keymap projectile-command-map :which-key "project")
 
-  ;; prefix: <Leader> a, apps
-  (evil-leader/set-key
+    ;; app
+    "a" '(:ignore t :which-key "app")
     "am" 'mu4e
     "ag" 'gnus
     "an" 'elfeed
@@ -173,110 +172,47 @@
     "ac" 'org-capture
     "aC" 'calendar
     "al" 'org-store-link
-    "at" 'org-todo-list)
+    "at" 'org-todo-list
 
-  ;; prefix: <Leader> o, open
-  (evil-leader/set-key
+    ;; open
+    "o" '(:ignore t :which-key "open")
     "ot" 'vterm
     "oT" 'vterm-other-window
     "oe" 'eshell
-    "oE" 'my/eshell-other-window)
-  (when (commandp 'osx-dictionary-search-word-at-point)
-    (evil-leader/set-key
-      "os" 'osx-dictionary-search-word-at-point))
+    "oE" 'my/eshell-other-window
+    "os" (when (commandp 'osx-dictionary-search-word-at-point) 'osx-dictionary-search-word-at-point))
 
-  ;; org-mode <Leader> m
-  ;; Copy from doom-emacs
-  (evil-leader/set-key-for-mode 'org-mode
-    "m'" 'org-edit-special
-    "m," 'org-switchb
-    "m." 'counsel-org-goto
-    "m/" 'counsel-org-goto-all
-    "mA" 'org-archive-subtree
-    "md" 'org-deadline
-    "me" 'org-export-dispatch
-    "mf" 'org-footnote-new
-    "mh" 'org-toggle-heading
-    "mi" 'org-toggle-item
-    "mI" 'org-toggle-inline-images
-    "mn" 'org-store-link
-    "mo" 'org-set-property
-    "mp" 'org-priority
-    "mq" 'org-set-tags-command
-    "ms" 'org-schedule
-    "mt" 'org-todo
-    "mT" 'org-todo-list
-    "maa" 'org-attach
-    "mad" 'org-attach-delete-one
-    "maD" 'org-attach-delete-all
-    "man" 'org-attach-new
-    "mao" 'org-attach-open
-    "maO" 'org-attach-open-in-emacs
-    "mar" 'org-attach-reveal
-    "maR" 'org-attach-reveal-in-emacs
-    "mau" 'org-attach-url
-    "mas" 'org-attach-set-directory
-    "maS" 'org-attach-sync
-    "mb-" 'org-table-insert-hline
-    "mba" 'org-table-align
-    "mbc" 'org-table-create-or-convert-from-region
-    "mbe" 'org-table-edit-field
-    "mbh" 'org-table-field-info
-    "mcc" 'org-clock-in
-    "mcC" 'org-clock-out
-    "mcd" 'org-clock-mark-default-task
-    "mce" 'org-clock-modify-effort-estimate
-    "mcE" 'org-set-effort
-    "mcl" 'org-clock-in-last
-    "mcg" 'org-clock-goto
-    "mcG" (lambda () (org-clock-goto 'select))
-    "mcr" 'org-clock-report
-    "mcx" 'org-clock-cancel
-    "mc=" 'org-clock-timestamps-up
-    "mc-" 'org-clock-timestamps-down
-    "mgg" 'counsel-org-goto
-    "mgG" 'counsel-org-goto-all
-    "mgc" 'org-clock-goto
-    "mgC" (lambda () (org-clock-goto 'select))
-    "mgi" 'org-id-goto
-    "mgr" 'org-refile-goto-last-stored
-    "mgx" 'org-capture-goto-last-stored
-    "mll" 'org-insert-link
-    "mlL" 'org-insert-all-links
-    "mls" 'org-store-link
-    "mlS" 'org-insert-last-stored-link
-    "mli" 'org-id-store-link
-    "mr" 'org-refile)
+  (general-create-definer local-leader-def
+    :states 'normal
+    :prefix "SPC m")
 
-  ;; org-agenda-mode <Leader> m
-  ;; Copy from doom-emacs
-  (evil-leader/set-key-for-mode 'org-agenda-mode
-    "md" 'org-agenda-deadline
-    "mcc" 'org-agenda-clock-in
-    "mcC" 'org-agenda-clock-out
-    "mcg" 'org-agenda-goto
-    "mcr" 'org-agenda-clockreport-mode
-    "mcs" 'org-agenda-show-clocking-issues
-    "mcx" 'org-agenda-clock-cancel
-    "mq" 'org-agenda-set-tags
-    "mr" 'org-agenda-refile
-    "ms" 'org-agenda-schedule
-    "mt" 'org-agenda-todo)
+  (local-leader-def
+    :keymaps 'org-mode-map
+    "." 'counsel-org-goto
+    "/" 'counsel-org-goto-all
+    "a" 'org-archive-subtree
+    "d" 'org-deadline
+    "e" 'org-export-dispatch
+    "f" 'org-footnote-new
+    "p" 'org-priority
+    "q" 'org-set-tags-command
+    "r" 'org-refile
+    "s" 'org-scheduled
+    "t" 'org-todo
+    "T" 'org-todo-list
 
-  ;; Replace with correct prefix names
-  (with-eval-after-load 'which-key
-    (which-key-add-key-based-replacements
-      "SPC a" "apps"
-      "SPC b" "bookmark"
-      "SPC c" "code"
-      "SPC d" "dired"
-      "SPC f" "files"
-      "SPC g" "git"
-      "SPC i" "insert"
-      "SPC o" "open"
-      "SPC s" "search"
-      "SPC t" "tabs"
-      "SPC p" "project"))
+    "c" '(:ignore t :which-key "clock")
+    "cc" 'org-clock-in
+    "cC" 'org-clock-out
+    "cd" 'org-clock-mark-default-task
+    "ce" 'org-clock-modify-effort-estimate
+    "cE" 'org-set-effort
+    "cl" 'org-clock-in-last
+    "cg" 'org-clock-goto
+    "cr" 'org-clock-report
+    "cx" 'org-clock-cancel
+    "c=" 'org-clock-timestamps-up
+    "c-" 'org-clock-timestamps-down)
   )
 
 (use-package evil-surround
