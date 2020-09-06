@@ -106,6 +106,7 @@
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile
+    "cw" 'delete-trailing-whitespace
     "cx" 'quickrun
 
     ;; window
