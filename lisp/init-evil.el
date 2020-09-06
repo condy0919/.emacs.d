@@ -194,6 +194,7 @@
     "d" 'org-deadline
     "e" 'org-export-dispatch
     "f" 'org-footnote-new
+    "l" 'org-lint
     "p" 'org-priority
     "q" 'org-set-tags-command
     "r" 'org-refile
