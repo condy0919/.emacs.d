@@ -1,4 +1,4 @@
-;;; init-copy.el --- copy thing while editing -*- lexical-binding: t -*-
+;;; init-hydra.el --- hydra tweaks -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -67,5 +67,5 @@
         (copy-region-as-kill begin end))))
   )
 
-(provide 'init-copy)
-;;; init-copy.el ends here
+(provide 'init-hydra)
+;;; init-hydra.el ends here
