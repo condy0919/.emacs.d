@@ -128,9 +128,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
-- evil-leader
 - evil-collection
-- evil-nerd-commenter
 - evil-surround
 - evil-magit
 
@@ -191,6 +189,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                   |
 | <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                    |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                |
+| <kbd>fz</kbd> | `counsel-fzf`使用`fzf`来索引打开文件                     |
 
 与目录相关的`Leader`键绑定如下:
 
@@ -246,13 +245,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                                     |
 | <kbd>C-c M-=</kbd> | 在当前目录打开一个外部终端                                                    |
 | <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
-| <kbd>C-c t o</kbd> | `hl-todo-occur`查找当前`buffer`内的**TODO**/**FIXME**等关键字                 |
-| <kbd>C-c t p</kbd> | 上一个高亮的关键字                                                            |
-| <kbd>C-c t n</kbd> | 下一个高亮的关键字                                                            |
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
 | <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
 | <kbd>M-o</kbd>     | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
-| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能, <kbd>C-c ]</kbd> 也有同样效果     |
+| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                                    |
 | <kbd>C-c i l</kbd> | 方便地插入`SPDX`形式的`license`头部                                           |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
@@ -278,6 +274,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c ! p</kbd> | `flycheck-previous-error`上一下`lint`错误 |
 
 更详细的按键绑定请直接看[代码](lisp/init-evil.el). :-)
+
+定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。
+为了能够在编辑模式中也能够使用，将其绑定在了<kbd>C-c h</kbd>上。
 
 # 通用开发设置
 
