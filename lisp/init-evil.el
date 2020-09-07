@@ -77,6 +77,7 @@
     "fR" 'my/rename-current-file
     "fr" 'counsel-recentf
     "fl" 'find-file-literally
+    "fz" 'counsel-fzf
 
     ;; dired
     "d" '(:ignore t :which-key "file")
