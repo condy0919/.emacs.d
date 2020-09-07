@@ -178,7 +178,7 @@
 ;; Pixel alignment for org/markdown tables
 (use-package valign
   :ensure t
-  :quelpa (valign :fetcher github :repo "casouri/valign")
+  :straight (:host github :repo "casouri/valign")
   :hook ((markdown-mode org-mode) . valign-mode)
   :config
   ;; compatible with outline mode
@@ -200,7 +200,7 @@ Show the heading too, if it is currently invisible."
 ;; Jekyll blog posts manager
 (use-package jblog
   :ensure t
-  :quelpa (jblog :fetcher github :repo "condy0919/jblog")
+  :straight (:host github :repo "condy0919/jblog")
   :commands jblog
   :config
   (evil-set-initial-state 'jblog-mode 'normal)
@@ -229,7 +229,6 @@ usemathjax: false
 * content
 {:toc}
 "))
-
 
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode

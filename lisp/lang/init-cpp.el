@@ -71,16 +71,12 @@
 
 ;; LLVM IR
 (use-package llvm-mode
-  :ensure t
-  :quelpa (llvm-mode :fetcher url
-                     :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/llvm-mode.el")
+  :ensure nil
   :mode ("\\.ll\\'" . llvm-mode))
 
 ;; TableGen description
 (use-package tablegen-mode
-  :ensure t
-  :quelpa (tablegen-mode :fetcher url
-                         :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/tablegen-mode.el")
+  :ensure nil
   :mode ("\\.td\\'" . tablegen-mode))
 
 ;; Highlight "#if 0" as comments

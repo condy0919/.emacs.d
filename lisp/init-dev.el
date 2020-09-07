@@ -74,7 +74,7 @@
 
 (use-package license
   :ensure t
-  :quelpa (license :fetcher github :repo "condy0919/license.el")
+  :straight (:host github :repo "condy0919/license.el")
   :bind (:map prog-mode-map
          ("C-c i l" . license-insert))
   :custom
@@ -128,6 +128,7 @@
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
                                                      "/private/tmp/"
+                                                     ,(file-truename (expand-file-name "straight" user-emacs-directory))
                                                      ,(file-truename (expand-file-name "elpa" user-emacs-directory))))
   (defun projectile-project-ignore-p (file)
     (cl-loop for ig-dir in projectile-ignored-project-directories

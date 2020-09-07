@@ -89,15 +89,14 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 插件配置、升级
 
-选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
-为什么我会从`straight.el`切换至`quelpa`呢？主要是`straight.el`不支持单个文件的下
-载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。
+选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`straight.el`辅
+助下载。`straight.el`在自举的过程中会连接`githubusercontent.com`这个域名，此域名
+在国内访问几乎不可达，需要科学上网一下。
 
 而自动升级选择了`auto-package-update`这个包。如果需要更新，`M-x`运行一下
 `auto-package-update-now`即可。需要注意的是，更新是同步的。
 
-注意：`llvm-mode`和`tablegen-mode`下载都是通过`raw.githubusercontent.com`，而这
-个域名在国内几乎不可达，需要科学上网一下。
+注意：`llvm-mode`和`tablegen-mode`都是在`site-lisp`目录下的，需要人工更新。
 
 # 界面
 
