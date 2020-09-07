@@ -215,7 +215,9 @@
     "cx" 'org-clock-cancel
     "c=" 'org-clock-timestamps-up
     "c-" 'org-clock-timestamps-down)
-  )
+  :custom
+  (general-implicit-kbd t)
+  (general-override-auto-enable t))
 
 (use-package evil-surround
   :ensure t
