@@ -12,7 +12,6 @@
   :bind (:map company-mode-map
          ([remap completion-at-point] . company-complete)
          :map company-active-map
-         ([escape]  . company-abort)
          ;; The spacemacs binding style
          ("C-/"     . counsel-company)
          ("C-p"     . company-select-previous)
@@ -21,18 +20,8 @@
          ([tab]     . company-complete-common-or-cycle)
          ([backtab] . company-select-previous-or-abort)
          :map company-search-map
-         ([escape] . company-search-abort)
          ("C-p"    . company-select-previous)
          ("C-n"    . company-select-next))
-  :config
-  (define-advice company-abort (:after nil)
-    "Exit `evil-insert-state-mode' too."
-    (when (bound-and-true-p evil-mode)
-      (evil-force-normal-state)))
-  (define-advice counsel-company (:after nil)
-    "Back to `evil-insert-state' after `counsel-company'."
-    (when (bound-and-true-p evil-mode)
-      (evil-insert-state)))
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
