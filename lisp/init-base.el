@@ -167,6 +167,8 @@
                         (column-number-mode)
                         (size-indication-mode)))
   :custom
+  ;; confusing if no fringes
+  (visual-line-fringe-indicators '(nil right-curly-arrow))
   ;; column starts from 1
   (column-number-indicator-zero-based nil)
   ;; save current clipboard text
