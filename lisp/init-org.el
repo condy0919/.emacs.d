@@ -277,7 +277,7 @@
                            ("LWN"           . "https://lwn.net/Articles/%s")
                            ("StackOverflow" . "https://stackoverflow.com/questions/%s/")
                            ("WG21"          . "https://wg21.link/%s")
-                           ("WikiPedia"     . "https://en.wikipedia.org/wiki/%s")
+                           ("Wikipedia"     . "https://en.wikipedia.org/wiki/%s")
                            ("YouTube"       . "https://youtube.com/watch?v=%s")
                            ("Zhihu"         . "https://zhihu.com/question/%s"))))
 
