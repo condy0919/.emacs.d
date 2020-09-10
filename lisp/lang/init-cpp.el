@@ -69,19 +69,21 @@
   :mode (("\\.l\\'" . flex-mode)
          ("\\.y\\'" . bison-mode)))
 
+;; See https://github.com/quelpa/quelpa/issues/205
+;;
 ;; LLVM IR
-(use-package llvm-mode
-  :ensure t
-  :quelpa (llvm-mode :fetcher url
-                     :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/llvm-mode.el")
-  :mode ("\\.ll\\'" . llvm-mode))
+;; (use-package llvm-mode
+;;   :ensure t
+;;   :quelpa (llvm-mode :fetcher url
+;;                      :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/llvm-mode.el")
+;;   :mode ("\\.ll\\'" . llvm-mode))
 
 ;; TableGen description
-(use-package tablegen-mode
-  :ensure t
-  :quelpa (tablegen-mode :fetcher url
-                         :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/tablegen-mode.el")
-  :mode ("\\.td\\'" . tablegen-mode))
+;; (use-package tablegen-mode
+;;   :ensure t
+;;   :quelpa (tablegen-mode :fetcher url
+;;                          :url "https://raw.githubusercontent.com/llvm/llvm-project/master/llvm/utils/emacs/tablegen-mode.el")
+;;   :mode ("\\.td\\'" . tablegen-mode))
 
 ;; Highlight "#if 0" as comments
 (use-package hideif
