@@ -203,6 +203,13 @@
   :custom
   (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
 
+(use-package org-goto
+  :ensure nil
+  :after org
+  :custom
+  (org-goto-auto-isearch nil)
+  (org-goto-interface 'outline-path-completion))
+
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil

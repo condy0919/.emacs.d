@@ -200,7 +200,7 @@
     "p" 'org-priority
     "q" 'org-set-tags-command
     "r" 'org-refile
-    "s" 'org-scheduled
+    "s" 'org-schedule
     "t" 'org-todo
     "T" 'org-todo-list
 
