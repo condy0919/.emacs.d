@@ -194,10 +194,10 @@
     "/" 'counsel-org-goto-all
     "a" 'org-archive-subtree
     "d" 'org-deadline
-    "e" 'org-export-dispatch
+    "e" 'org-set-effort
     "f" 'org-footnote-new
     "l" 'org-lint
-    "p" 'org-priority
+    "p" 'org-set-property
     "q" 'org-set-tags-command
     "r" 'org-refile
     "s" 'org-schedule
@@ -210,12 +210,17 @@
     "cd" 'org-clock-mark-default-task
     "ce" 'org-clock-modify-effort-estimate
     "cE" 'org-set-effort
-    "cl" 'org-clock-in-last
     "cg" 'org-clock-goto
+    "cl" 'org-clock-in-last
     "cr" 'org-clock-report
+    "cs" 'org-clock-display
     "cx" 'org-clock-cancel
     "c=" 'org-clock-timestamps-up
-    "c-" 'org-clock-timestamps-down)
+    "c-" 'org-clock-timestamps-down
+
+    "i" '(:ignore t :which-key "insert")
+    "id" 'org-insert-drawer
+    "in" 'org-add-note)
   :custom
   (general-implicit-kbd t)
   (general-override-auto-enable t))

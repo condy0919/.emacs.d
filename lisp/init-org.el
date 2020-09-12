@@ -18,45 +18,48 @@
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
-  (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
   (org-directory "~/.org/")
-  (org-tags-column -80)
+  (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
+  ;; prettify
+  (org-ellipsis " ▼ ")
+  (org-fontify-done-headline t)
+  (org-fontify-quote-and-verse-blocks t)
+  (org-fontify-whole-heading-line t)
+  (org-hide-emphasis-markers t)
   (org-pretty-entities t)
-  (org-imenu-depth 4)
   (org-startup-indented t)
   (org-startup-with-inline-images t)
-  (org-return-follows-link t)
-  (org-image-actual-width nil)
-  (org-hide-emphasis-markers t)
-  (org-use-sub-superscripts '{})
-  (org-fontify-done-headline t)
-  (org-fontify-whole-heading-line t)
-  (org-fontify-quote-and-verse-blocks t)
+  (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
+  (org-image-actual-width nil)
+  (org-imenu-depth 4)
+  ;; call C-c C-o explicitly
+  (org-return-follows-link nil)
+  (org-use-sub-superscripts '{})
   (org-yank-adjusted-subtrees t)
-  ;; block switching the parent to done state
-  (org-enforce-todo-dependencies t)
-  (org-enforce-todo-checkbox-dependencies t)
-  ;; nice look
-  (org-ellipsis " ▼ ")
-  (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
+  ;; todo
   (org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i!)" "WAITING(w!)"
-                                 "|" "DONE(d!)" "CANCELLED(c!)")))
+                                 "|" "DONE(d!)" "CANCELLED(c@)")))
   (org-todo-keyword-faces
    '(("TODO"       :foreground "#7c7c75" :weight bold)
      ("INPROGRESS" :foreground "#0098dd" :weight bold)
      ("WAITING"    :foreground "#9f7efe" :weight bold)
      ("DONE"       :foreground "#50a14f" :weight bold)
      ("CANCELLED"  :foreground "#ff6480" :weight bold)))
+  (org-use-fast-todo-selection 'expert)
+  (org-enforce-todo-dependencies t)
+  (org-enforce-todo-checkbox-dependencies t)
   (org-highest-priority ?A)
-  (org-lowest-priority ?E)
-  (org-default-priority ?C)
+  (org-lowest-priority ?C)
+  (org-default-priority ?B)
   (org-priority-faces '((?A :foreground "red")
                         (?B :foreground "orange")
-                        (?C :foreground "yellow")
-                        (?D :foreground "green")
-                        (?E :foreground "blue")))
+                        (?C :foreground "yellow")))
+  (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00")
+                           ("STYLE_ALL" . "habit")))
+  ;; Remove CLOSED: [timestamp] after switching to non-DONE states
+  (org-closed-keep-when-no-todo t)
   ;; log
   (org-log-done 'time)
   (org-log-repeat 'time)
@@ -71,6 +74,7 @@
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
   ;; tags
+  (org-tags-column -80)
   (org-fast-tag-selection-single-key t)
   (org-tag-alist '((:startgroup)
                    ("HandsOn" . ?o)
@@ -115,6 +119,7 @@
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
+  (org-agenda-skip-scheduled-delay-if-deadline t)
   (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-clockreport-parameter-plist
    '(:link t :maxlevel 5 :fileskip0 t :compact nil :narrow 80))
@@ -142,8 +147,8 @@
   (org-clock-out-when-done t)
   (org-clock-persist 'history)
   (org-clock-history-length 20)
-  (org-clock-mode-line-total 'current)
-  (org-clock-display-default-range 'thismonth)
+  (org-clock-mode-line-total 'today)
+  (org-clock-display-default-range 'thisweek)
   (org-clock-in-switch-to-state "INPROGRESS")
   (org-clock-out-switch-to-state "WAITING")
   (org-clock-out-remove-zero-time-clocks t)
@@ -153,11 +158,6 @@
                                                 :body msg
                                                 :timeout 5000
                                                 :urgency 'critical)))
-  (org-clock-clocktable-default-properties '(:block day :maxlevel 3 :scope agenda
-                                             :link t :compact t :formula % :step day
-                                             :fileskip0 t :stepskip0 t :narrow 80
-                                             :properties ("CLOCKSUM" "CLOCKSUM_T"
-                                                          "TODO")))
   :config
   (org-clock-persistence-insinuate))
 
@@ -214,6 +214,8 @@
 (use-package org-capture
   :ensure nil
   :after org doct
+  :hook (org-capture-mode . (lambda ()
+                              (setq org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
   (org-capture-use-agenda-date t)
   ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
