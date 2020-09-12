@@ -58,6 +58,7 @@
                         (?C :foreground "yellow")))
   (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00")
                            ("STYLE_ALL" . "habit")))
+  (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT")
   ;; Remove CLOSED: [timestamp] after switching to non-DONE states
   (org-closed-keep-when-no-todo t)
   ;; log
@@ -74,8 +75,9 @@
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
   ;; tags
-  (org-tags-column -80)
+  (org-tags-column 0)
   (org-fast-tag-selection-single-key t)
+  (org-track-ordered-property-with-tag t)
   (org-tag-alist '((:startgroup)
                    ("HandsOn" . ?o)
                    (:grouptags)
@@ -397,6 +399,17 @@
   :after org
   :custom
   (org-habit-graph-column 50))
+
+;; Dynamic headlines numbering
+(use-package org-num
+  :ensure nil
+  :commands org-num-mode
+  :after org
+  :custom
+  (org-num-skip-commented t)
+  (org-num-skip-footnotes t)
+  (org-num-skip-unnumbered t)
+  (org-num-skip-tags `(,org-archive-tag)))
 
 (provide 'init-org)
 
