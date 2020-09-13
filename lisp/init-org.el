@@ -298,19 +298,23 @@
   :after org
   :custom
   (org-export-with-toc t)
-  (org-export-with-email t)
-  (org-export-with-author t)
+  (org-export-with-author nil)
   (org-export-with-drawers nil)
-  (org-export-with-properties t)
   (org-export-with-footnotes t)
   (org-export-with-smart-quotes t)
-  (org-export-with-section-numbers t)
+  (org-export-with-section-numbers nil)
   (org-export-with-sub-superscripts '{})
   (org-export-use-babel nil)
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
   (org-export-with-broken-links 'mark)
   (org-export-backends '(ascii html md)))
+
+(use-package ox-ascii
+  :ensure nil
+  :after org
+  :custom
+  (org-ascii-charset 'utf-8))
 
 (use-package ox-html
   :ensure nil
