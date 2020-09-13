@@ -39,14 +39,18 @@
   (org-use-sub-superscripts '{})
   (org-yank-adjusted-subtrees t)
   ;; todo
-  (org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i!)" "WAITING(w!)"
-                                 "|" "DONE(d!)" "CANCELLED(c@)")))
+  (org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i!)" "WAITING(w!)" "|" "DONE(d!)" "CANCELLED(c@)")
+                       (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")))
   (org-todo-keyword-faces
    '(("TODO"       :foreground "#7c7c75" :weight bold)
      ("INPROGRESS" :foreground "#0098dd" :weight bold)
      ("WAITING"    :foreground "#9f7efe" :weight bold)
      ("DONE"       :foreground "#50a14f" :weight bold)
-     ("CANCELLED"  :foreground "#ff6480" :weight bold)))
+     ("CANCELLED"  :foreground "#ff6480" :weight bold)
+     ("REPORT"     :foreground "magenta" :weight bold)
+     ("BUG"        :foreground "red"     :weight bold)
+     ("KNOWNCAUSE" :foreground "yellow"  :weight bold)
+     ("FIXED"      :foreground "green"   :weight bold)))
   (org-use-fast-todo-selection 'expert)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -58,7 +62,7 @@
                         (?C :foreground "yellow")))
   (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00")
                            ("STYLE_ALL" . "habit")))
-  (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT")
+  (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT{:}")
   ;; Remove CLOSED: [timestamp] after switching to non-DONE states
   (org-closed-keep-when-no-todo t)
   ;; log

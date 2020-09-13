@@ -193,16 +193,32 @@
     "." 'counsel-org-goto
     "/" 'counsel-org-goto-all
     "a" 'org-archive-subtree
+    "C" 'org-columns
     "d" 'org-deadline
     "e" 'org-set-effort
     "f" 'org-footnote-new
     "l" 'org-lint
+    "o" 'org-toggle-ordered-property
     "p" 'org-set-property
     "q" 'org-set-tags-command
     "r" 'org-refile
     "s" 'org-schedule
     "t" 'org-todo
     "T" 'org-todo-list
+
+    "b" '(:ignore t :which-key "babel")
+    "bp" 'org-babel-previous-src-block
+    "bn" 'org-babel-next-src-block
+    "be" 'org-babel-expand-src-block
+    "bg" 'org-babel-goto-named-src-block
+    "bs" 'org-babel-execute-subtree
+    "bb" 'org-babel-execute-buffer
+    "bt" 'org-babel-tangle
+    "bf" 'org-babel-tangle-file
+    "bc" 'org-babel-check-src-block
+    "bi" 'org-babel-insert-header-arg
+    "bI" 'org-babel-view-src-block-info
+    "bk" 'org-babel-remove-result-one-or-many
 
     "c" '(:ignore t :which-key "clock")
     "cc" 'org-clock-in
