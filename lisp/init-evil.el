@@ -193,7 +193,6 @@
     "." 'counsel-org-goto
     "/" 'counsel-org-goto-all
     "a" 'org-archive-subtree
-    "C" 'org-columns
     "d" 'org-deadline
     "e" 'org-set-effort
     "f" 'org-footnote-new

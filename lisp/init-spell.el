@@ -17,6 +17,11 @@
   ;; MacOS is broken
   (when (eq system-type 'darwin)
     (setenv "DICTIONARY" "en_US"))
+
+  ;; no spell checking for org special blocks
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+  (add-to-list 'ispell-skip-region-alist '("#\\+begin_src" . "#\\+end_src"))
+  (add-to-list 'ispell-skip-region-alist '("#\\+begin_example" . "#\\+end_example"))
   :custom
   (ispell-really-hunspell t)
   (ispell-program-name "hunspell")

@@ -19,6 +19,7 @@
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
   (org-directory "~/.org/")
+  (org-default-notes-file (expand-file-name "notes.org" org-directory))
   (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
   ;; prettify
   (org-ellipsis " ▼ ")
@@ -82,17 +83,20 @@
   (org-tags-column 0)
   (org-fast-tag-selection-single-key t)
   (org-track-ordered-property-with-tag t)
+  (org-tag-persistent-alist '(("READ"  . ?R)
+                              ("MAIL"  . ?@)
+                              ("WRITE" . ?W)))
   (org-tag-alist '((:startgroup)
-                   ("HandsOn" . ?o)
-                   (:grouptags)
-                   ("Write" . ?w) ("Code" . ?c) ("Project" . ?p)
+                   ("DAILY"   . ?d)
+                   ("WEEKLY"  . ?w)
+                   ("MONTHLY" . ?m)
+                   ("YEARLY"  . ?y)
                    (:endgroup)
                    (:startgroup)
-                   ("HandsOff" . ?f)
-                   (:grouptags)
-                   ("Read" . ?r) ("View" . ?v) ("Listen" . ?l)
-                   (:endgroup)
-                   ("Mail" . ?@) ("Buy" . ?b)))
+                   ("EASY"   . ?e)
+                   ("NORMAL" . ?n)
+                   ("HARD"   . ?h)
+                   (:endgroup)))
   ;; archive
   (org-archive-location "%s_archive::date-tree"))
 
@@ -106,10 +110,9 @@
   (org-agenda-insert-diary-extract-time t)
   (org-agenda-compact-blocks t)
   (org-agenda-block-separator nil)
-  (org-habit-show-habits t)
   (org-agenda-sticky t)
-  (org-agenda-span 10)
-  (org-agenda-include-diary nil)
+  ;; holidays
+  (org-agenda-include-diary t)
   (org-agenda-include-deadlines t)
   (org-agenda-inhibit-startup t)
   (org-agenda-show-all-dates t)
@@ -136,9 +139,6 @@
   (org-agenda-start-on-weekday 1)
   (org-agenda-use-time-grid t)
   (org-agenda-timegrid-use-ampm nil)
-  (org-agenda-time-grid '((daily tody require-timed)
-                          (300 600 900 1200 1500 1800 2100 2400)
-                          "......" "----------------"))
   (org-agenda-search-headline-for-time nil))
 
 ;; Record the time
@@ -232,18 +232,10 @@
            (("Tasks"
              :keys "t"
              :file "tasks.org"
-             :clock-in t
-             :clock-resume t
              :children
-             (("Tasks" :keys "t" :type entry :headline "Tasks"
-               :datetree t :tree-type week :template "* TODO %?\n %i\n %a\n")
-              ("Reading" :keys "r" :type entry :headline "Reading"
-               :template "* TODO %^{name}\n %a\n")
-              ("Work" :keys "w" :type entry :headline "Work"
-               :template "* TODO %^{taskname}\n %a\n")
-              ("Shopping" :keys "s" :type checkitem :headline "Shopping"
-               :template "[ ] %i%?")
-              ("Reminder" :keys "r" :type entry :headline "Non-recurring"
+             (("Inbox" :keys "i" :type entry :headline "Inbox"
+               :datetree t :tree-type week :template "* %?\n%i\n")
+              ("Reminder" :keys "r" :type entry :headline "Reminders"
                :template "* TODO [#B] %i%?")))
             ("Capture"
              :keys "c"
