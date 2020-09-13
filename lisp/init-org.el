@@ -406,7 +406,8 @@
   :ensure nil
   :after org
   :custom
-  (org-habit-graph-column 50))
+  (org-habit-show-habits t)
+  (org-habit-show-all-today t))
 
 ;; Dynamic headlines numbering
 (use-package org-num
