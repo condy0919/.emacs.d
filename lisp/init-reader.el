@@ -4,35 +4,24 @@
 
 ;;; Code:
 
-;; Notes manager
-(use-package deft
-  :ensure t
-  :defines org-directory
-  :after org
-  :bind ("C-c n d" . deft)
-  :custom
-  (deft-recursive t)
-  ;; Disable auto save
-  (deft-auto-save-interval 0)
-  (deft-extensions '("org" "md"))
-  (deft-directory org-directory)
-  (deft-use-filename-as-title t)
-  (deft-use-filter-string-for-filename t)
-  (deft-file-naming-rules '((noslash . "-")
-                            (nospace . "-")
-                            (case-fn . downcase))))
-
-
 ;; RSS reader
-;; The builtin newsticker is buggy
-(use-package elfeed
-  :ensure t
-  :bind ("C-x 4 n" . elfeed)
+(use-package newsticker
+  :ensure nil
+  :defer t
   :custom
-  (elfeed-feeds '(("https://planet.emacslife.com/atom.xml" emacs)
-                  ("https://lwn.net/headlines/rss" linux)))
-  (elfeed-search-remain-on-entry t)
-  (elfeed-search-title-max-width 100))
+  (newsticker-download-logos nil)
+  (newsticker-enable-logo-manipulations nil)
+  (newsticker-date-format "%F %a, %T")
+  (newsticker-automatically-mark-items-as-old nil)
+  (newsticker-automatically-mark-visited-items-as-old t)
+  (newsticker-keep-obsolete-items t)
+  (newsticker-hide-old-items-in-newsticker-buffer t)
+  (newsticker-desc-format nil)
+  (newsticker-retrieval-method 'extern)
+  (newsticker-frontend 'newsticker-plainview)
+  (newsticker-url-list-defaults nil)
+  (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml")
+                         ("LWN (Linux Weekly News)" "https://lwn.net/headlines/rss"))))
 
 ;; The EPub reader
 (use-package nov

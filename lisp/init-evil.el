@@ -166,7 +166,7 @@
     "a" '(:ignore t :which-key "app")
     "am" 'mu4e
     "ag" 'gnus
-    "an" 'elfeed
+    "an" 'newsticker-show-news
     "ad" 'deft
     "ae" 'elpher
     "aj" 'jblog

@@ -23,6 +23,8 @@
   (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
   ;; prettify
   (org-ellipsis " ▼ ")
+  (org-loop-over-headlines-in-active-region t)
+  (org-fontify-todo-headline t)
   (org-fontify-done-headline t)
   (org-fontify-quote-and-verse-blocks t)
   (org-fontify-whole-heading-line t)
@@ -56,9 +58,6 @@
   (org-use-fast-todo-selection 'expert)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
-  (org-highest-priority ?A)
-  (org-lowest-priority ?C)
-  (org-default-priority ?B)
   (org-priority-faces '((?A :foreground "red")
                         (?B :foreground "orange")
                         (?C :foreground "yellow")))
