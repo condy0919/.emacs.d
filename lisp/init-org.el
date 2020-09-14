@@ -246,9 +246,7 @@
             ("Project"
              :keys "p"
              :file ,(defun project-todo-file ()
-                      (let ((file (expand-file-name "TODO.org"
-                                                    (when (functionp 'projectile-project-root)
-                                                      (projectile-project-root)))))
+                      (let ((file (expand-file-name "TODO.org" (projectile-project-root))))
                         (with-current-buffer (find-file-noselect file)
                           (org-mode)
                           ;; Set to UTF-8 because we may be visiting raw file
@@ -259,6 +257,7 @@
                               (insert "* " headline)
                               (org-set-tags (downcase headline))))
                           file)))
+             :contexts (:when (and (functionp 'projectile-project-root) (projectile-project-root)))
              :template (lambda () (concat "* %{todo-state} " (when (y-or-n-p "Link? ") "%A\n") "%?"))
              :todo-state "TODO"
              :children (("bug"           :keys "b" :headline "Bugs")
