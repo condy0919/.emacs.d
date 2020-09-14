@@ -223,6 +223,8 @@
   :hook (org-capture-mode . (lambda ()
                               (setq org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
+  ;; `doct' required
+  (org-capture-templates-contexts nil)
   (org-capture-use-agenda-date t)
   ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
   (org-capture-templates
