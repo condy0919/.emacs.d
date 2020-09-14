@@ -296,9 +296,10 @@
   :ensure nil
   :hook (after-init . appt-activate)
   :custom
-  (appt-display-mode-line t)
   (appt-audible nil)
-  (appt-display-interval 3)
+  (appt-display-diary nil)
+  (appt-display-interval 5)
+  (appt-display-mode-line t)
   (appt-message-warning-time 15))
 
 ;; quick access to files/tags
