@@ -40,11 +40,12 @@
   (org-use-sub-superscripts '{})
   (org-yank-adjusted-subtrees t)
   ;; todo
-  (org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i!)" "WAITING(w!)" "|" "DONE(d!)" "CANCELLED(c@)")
-                       (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")))
+  (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "NEXT(n!)" "WAITING(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
+                       (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")))
   (org-todo-keyword-faces
    '(("TODO"       :foreground "#7c7c75" :weight bold)
-     ("INPROGRESS" :foreground "#0098dd" :weight bold)
+     ("HOLD"       :foreground "#feb24c" :weight bold)
+     ("NEXT"       :foreground "#0098dd" :weight bold)
      ("WAITING"    :foreground "#9f7efe" :weight bold)
      ("DONE"       :foreground "#50a14f" :weight bold)
      ("CANCELLED"  :foreground "#ff6480" :weight bold)
