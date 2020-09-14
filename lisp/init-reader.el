@@ -4,21 +4,50 @@
 
 ;;; Code:
 
-;; RSS reader
+;; The builtin RSS reader
 (use-package newsticker
   :ensure nil
-  :defer t
+  :hook (newsticker-mode . (lambda ()
+                             (setq line-spacing 2)))
+  :config
+  (with-eval-after-load 'evil-collection
+    (evil-set-initial-state 'newsticker-mode 'normal)
+    (evil-collection-define-key 'normal 'newsticker-mode-map
+      ;; move
+      "k" 'newsticker-previous-item
+      "j" 'newsticker-next-item
+      "gk" 'newsticker-previous-feed
+      "gj" 'newsticker-next-feed
+
+      ;; mark
+      "r" 'newsticker-mark-item-at-point-as-read
+      "i" 'newsticker-mark-item-at-point-as-immortal
+
+      ;; show/hide
+      "o" 'newsticker-show-old-items
+      "O" 'newsticker-hide-old-items
+
+      ;; refresh
+      "gr" 'newsticker-buffer-force-update
+      "gR" 'newsticker-get-all-news
+
+      ;; quit
+      "q" 'newsticker-close-buffer))
   :custom
-  (newsticker-download-logos nil)
-  (newsticker-enable-logo-manipulations nil)
-  (newsticker-date-format "%F %a, %T")
-  (newsticker-automatically-mark-items-as-old nil)
-  (newsticker-automatically-mark-visited-items-as-old t)
-  (newsticker-keep-obsolete-items t)
-  (newsticker-hide-old-items-in-newsticker-buffer t)
-  (newsticker-desc-format nil)
   (newsticker-retrieval-method 'extern)
   (newsticker-frontend 'newsticker-plainview)
+  (newsticker-download-logos nil)
+  (newsticker-enable-logo-manipulations nil)
+  (newsticker-date-format "%F %a, %H:%M")
+  (newsticker-desc-format "")
+  (newsticker-heading-format "%t %d %s")
+  (newsticker-html-renderer nil)
+  (newsticker-justification nil)
+  (newsticker-show-descriptions-of-new-items nil)
+  (newsticker-hide-old-items-in-newsticker-buffer t)
+  (newsticker-automatically-mark-items-as-old nil)
+  (newsticker-automatically-mark-visited-items-as-old t)
+  (newsticker-keep-obsolete-items nil)
   (newsticker-url-list-defaults nil)
   (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml")
                          ("LWN (Linux Weekly News)" "https://lwn.net/headlines/rss"))))
