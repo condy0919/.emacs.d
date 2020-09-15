@@ -14,8 +14,7 @@
   (setq-local global-hl-line-mode nil)
   (when (bound-and-true-p evil-mode)
     (setq-local evil-insert-state-cursor 'box)
-    (evil-insert-state))
-  )
+    (evil-insert-state)))
 
 ;; Beautiful term mode & friends
 (use-package vterm
