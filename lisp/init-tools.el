@@ -243,7 +243,7 @@ usemathjax: false
          ("r" . markdown-insert-ruby-tag))
   :config
   (defun markdown-insert-ruby-tag (text ruby)
-    "Quick insertion of ruby tag with `TEXT' and `RUBY'."
+    "Insert ruby tag with `TEXT' and `RUBY' quickly."
     (interactive "sText: \nsRuby: \n")
     (insert (format "<ruby>%s<rp>(</rp><rt>%s</rt><rp>)</rp></ruby>" text ruby)))
 
