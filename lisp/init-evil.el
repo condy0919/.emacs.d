@@ -167,7 +167,6 @@
     "am" 'mu4e
     "ag" 'gnus
     "an" 'newsticker-show-news
-    "ad" 'deft
     "ae" 'elpher
     "aj" 'jblog
     "aa" 'org-agenda
