@@ -40,6 +40,7 @@
   ;; call C-c C-o explicitly
   (org-return-follows-link nil)
   (org-use-sub-superscripts '{})
+  (org-clone-delete-id t)
   (org-yank-adjusted-subtrees t)
   ;; todo
   (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "NEXT(n!)" "WAITING(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
@@ -114,6 +115,7 @@
   ;; holidays
   (org-agenda-include-diary t)
   (org-agenda-include-deadlines t)
+  (org-agenda-follow-indirect t)
   (org-agenda-inhibit-startup t)
   (org-agenda-show-all-dates t)
   (org-agenda-time-leading-zero t)
@@ -129,6 +131,7 @@
   (org-agenda-skip-timestamp-if-done t)
   (org-agenda-skip-unavailable-files t)
   (org-agenda-skip-scheduled-delay-if-deadline t)
+  (org-agenda-skip-additional-timestamps-same-entry t)
   (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-clockreport-parameter-plist
    '(:link t :maxlevel 5 :fileskip0 t :compact nil :narrow 80))
@@ -155,7 +158,7 @@
   (org-clock-history-length 20)
   (org-clock-mode-line-total 'today)
   (org-clock-display-default-range 'thisweek)
-  (org-clock-in-switch-to-state "INPROGRESS")
+  (org-clock-in-switch-to-state "NEXT")
   (org-clock-out-switch-to-state "WAITING")
   (org-clock-out-remove-zero-time-clocks t)
   (org-clock-report-include-clocking-task t)
@@ -342,16 +345,17 @@
   :ensure t
   :hook (org-agenda-mode . org-super-agenda-mode)
   :custom
-  (org-super-agenda-groups '((:log t)
+  (org-super-agenda-groups '((:order-multi (1 (:name "Done Today"
+                                               :log closed)
+                                              (:name "Clocked Today"
+                                               :log clocked)))
                              (:name "Schedule" :time-grid t)
-                             (:name "Scheduled" :scheduled past)
                              (:name "Today" :scheduled today)
-                             (:name "Due today" :deadline today)
-                             (:name "Overdue" :deadline past)
-                             (:name "Due soon" :deadline future)
-                             (:name "Important" :priority>= "B")
-                             (:name "Started" :todo "INPROGRESS" :order 6)
-                             (:todo "WAITING" :order 9))))
+                             (:habit t)
+                             (:name "Due Today" :deadline today :face warning)
+                             (:name "Overdue" :deadline past :face error)
+                             (:name "Due Soon" :deadline future)
+                             (:name "Scheduled Earlier" :scheduled past))))
 
 ;; Make better connection in your notes
 (use-package org-roam
