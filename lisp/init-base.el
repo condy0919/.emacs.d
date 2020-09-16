@@ -246,7 +246,11 @@
          :map minibuffer-local-must-match-map
          ([escape] . abort-recursive-edit)
          :map minibuffer-local-isearch-map
-         ([escape] . abort-recursive-edit)))
+         ([escape] . abort-recursive-edit))
+  :custom
+  (minibuffer-depth-indicate-mode t)
+  (minibuffer-electric-default-mode t)
+  (enable-recursive-minibuffers t))
 
 ;; Holidays
 (use-package calendar
