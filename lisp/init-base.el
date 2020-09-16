@@ -509,15 +509,16 @@ Else, call `comment-or-uncomment-region' on the current line."
   :commands notify-send
   :config
   (defun notify-send (&rest params)
+    "Send notifications via `terminal-notifier'."
     (let ((title (plist-get params :title))
           (body (plist-get params :body)))
-      (call-process "terminal-notifier"
-                    nil 0 nil
-                    "-group" "Emacs"
-                    "-title" title
-                    "-sender" "org.gnu.Emacs"
-                    "-message" body
-                    "-activate" "org.gnu.Emacs"))))
+      (start-process "terminal-notifier"
+                     nil
+                     "terminal-notifier"
+                     "-group" "Emacs"
+                     "-title" title
+                     "-message" body
+                     "-activate" "org.gnu.Emacs"))))
 
 (use-package notifications
   :ensure nil
