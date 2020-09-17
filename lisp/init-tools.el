@@ -305,8 +305,7 @@ usemathjax: false
   :ensure nil
   :bind ("C-c /" . webjump)
   :custom
-  (webjump-sites '(
-                   ;; Emacs.
+  (webjump-sites '(;; Emacs.
                    ("Emacs Home Page" .
                     "www.gnu.org/software/emacs/emacs.html")
                    ("Savannah Emacs page" .
@@ -324,6 +323,14 @@ usemathjax: false
                                   "groups.google.com/groups?q=" ""])
                    ("Wikipedia" .
                     [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+
+                   ;; Language specific engines.
+                   ("Python Docs" .
+                    [simple-query "docs.python.org"
+                                  "docs.python.org/3/search.html?q=" ""])
+                   ("Cpp Reference" .
+                    [simple-query "en.cppreference.com"
+                                  "en.cppreference.com/mwiki/index.php?search=" ""])
 
                    ;; ArchLinux
                    ("ArchLinux Packages" .
@@ -371,7 +378,7 @@ usemathjax: false
 ;; Quickly insert url
 (use-package quickurl
   :ensure nil
-  :bind ("C-c i q" . quickurl-prefix-map)
+  :bind ("C-c i q" . #'quickurl-prefix-map)
   :config
   (defvar quickurl-prefix-map (make-sparse-keymap))
   (define-prefix-command 'quickurl-prefix-map)

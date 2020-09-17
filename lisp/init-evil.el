@@ -223,7 +223,6 @@
     "cC" 'org-clock-out
     "cd" 'org-clock-mark-default-task
     "ce" 'org-clock-modify-effort-estimate
-    "cE" 'org-set-effort
     "cg" 'org-clock-goto
     "cl" 'org-clock-in-last
     "cr" 'org-clock-report

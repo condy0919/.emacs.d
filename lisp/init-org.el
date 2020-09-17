@@ -107,8 +107,8 @@
   :after org
   :hook (org-agenda-finalize . org-agenda-to-appt)
   :config
-  ;; update appt list per 10 minutes
-  (run-at-time nil 600 'org-agenda-to-appt)
+  ;; update appt list every 10 minutes
+  (run-at-time t 600 #'org-agenda-to-appt)
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
