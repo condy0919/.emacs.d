@@ -337,7 +337,7 @@
   (sr-speedbar-default-width 20)
   (sr-speedbar-max-width 30)
   (sr-speedbar-right-side nil)
-  (sr-speedbar-skip-other-window-p t))
+  (sr-speedbar-skip-other-window-p nil))
 
 ;; window layout manager
 ;;
