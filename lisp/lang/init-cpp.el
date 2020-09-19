@@ -111,6 +111,100 @@
   :custom
   (c-macro-shrink-window-flag t))
 
+(use-package ebrowse
+  :ensure nil
+  :hook (ebrowse-tree-mode . ebrowse-toggle-file-name-display)
+  :config
+  (with-eval-after-load 'evil-collection
+    (evil-set-initial-state 'ebrowse-mode 'normal)
+    (evil-collection-define-key 'normal 'ebrowse-tree-mode-map
+      ;; view
+      (kbd "TAB") 'ebrowse-pop/switch-to-member-buffer-for-same-tree
+      (kbd "RET") 'ebrowse-find-class-declaration
+      (kbd "SPC") 'ebrowse-view-class-declaration
+      (kbd "C-l") 'ebrowse-redraw-tree
+
+      "J" 'ebrowse-read-class-name-and-go
+      "D" 'ebrowse-remove-class-at-point
+
+      ;; mark
+      "m" 'ebrowse-toggle-mark-at-point
+      "M" 'ebrowse-mark-all-classes
+
+      ;; show
+      "L" 'ebrowse-tree-show/body
+      "s" 'ebrowse-statistics
+
+      ;; fold
+      "zr" 'ebrowse-expand-all
+      "zo" 'ebrowse-expand-branch
+      "zc" 'ebrowse-collapse-branch
+
+      ;; quit
+      "q" 'bury-buffer)
+
+    (evil-set-initial-state 'ebrowse-member-mode 'normal)
+    (evil-collection-define-key 'normal 'ebrowse-member-mode-map
+      ;; view
+      (kbd "TAB") 'ebrowse-pop-from-member-to-tree-buffer
+      (kbd "RET") 'ebrowse-find-member-definition
+      (kbd "SPC") 'ebrowse-view-member-definition
+      (kbd "C-l") 'ebrowse-redisplay-member-buffer
+
+      "J" 'ebrowse-goto-visible-member/all-member-lists
+      "C" 'ebrowse-member-switch/body
+
+      ;; show
+      "L" 'ebrowse-member-display/body
+      "F" 'ebrowse-member-filter/body
+      "T" 'ebrowse-member-toggle/body
+
+      ;; quit
+      "q" 'bury-buffer))
+
+  (with-eval-after-load 'hydra
+    (defhydra ebrowse-tree-show (:color blue)
+      "Show"
+      ("F" ebrowse-tree-command:show-static-member-functions "static member functions")
+      ("V" ebrowse-tree-command:show-static-member-variables "static member variables")
+      ("d" ebrowse-tree-command:show-friends "friend classes & functions")
+      ("f" ebrowse-tree-command:show-member-functions "member functions")
+      ("t" ebrowse-tree-command:show-types "types")
+      ("v" ebrowse-tree-command:show-member-variables "member variables"))
+
+    (defhydra ebrowse-member-switch (:color blue)
+      "Switch"
+      ("b" ebrowse-switch-member-buffer-to-base-class "base class")
+      ("c" ebrowse-switch-member-buffer-to-any-class "any class")
+      ("d" ebrowse-switch-member-buffer-to-derived-class "derived class")
+      ("n" ebrowse-switch-member-buffer-to-next-sibling-class "next sibling class")
+      ("p" ebrowse-switch-member-buffer-to-previous-sibling-class "previous sibling class"))
+    (defhydra ebrowse-member-display (:color blue)
+      "Display"
+      ("F" ebrowse-display-static-functions-member-list "static member functions")
+      ("V" ebrowse-display-static-variables-member-list "static member variables")
+      ("d" ebrowse-display-friends-member-list "friend classes & functions")
+      ("f" ebrowse-display-function-member-list "member functions")
+      ("t" ebrowse-display-types-member-list "types")
+      ("v" ebrowse-display-variables-member-list "member variables"))
+    (defhydra ebrowse-member-filter (:color blue)
+      "Filter"
+      ("c" ebrowse-toggle-const-member-filter "const")
+      ("i" ebrowse-toggle-inline-member-filter "inline")
+      ("p" ebrowse-toggle-pure-member-filter "pure")
+      ("a" ebrowse-remove-all-member-filters "all")
+      ("v" ebrowse-toggle-virtual-member-filter "virtual")
+      ("r" ebrowse-toggle-private-member-filter "private")
+      ("o" ebrowse-toggle-protected-member-filter "protected")
+      ("u" ebrowse-toggle-public-member-filter "public"))
+    (defhydra ebrowse-member-toggle (:color blue)
+      "Toggle"
+      ("a" ebrowse-toggle-member-attributes-display "attributes")
+      ("b" ebrowse-toggle-base-class-display "base class")
+      ("l" ebrowse-toggle-long-short-display "long display")))
+  :custom
+  (ebrowse--indentation 2))
+
 (use-package modern-cpp-font-lock
   :ensure t
   :hook (c++-mode . modern-c++-font-lock-mode)

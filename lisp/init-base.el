@@ -494,6 +494,8 @@ Else, call `comment-or-uncomment-region' on the current line."
                  (mode . erc-mode)))
       ("News" (or (name . "\\*elfeed-search\\*")
                   (name . "\\*elfeed-entry\\*")
+      ("EBrowse" (or (mode . ebrowse-tree-mode)
+                     (mode . ebrowse-member-mode)))
                   (name . "\\*elpher\\*")))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
