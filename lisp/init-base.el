@@ -543,6 +543,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
   (recentf-exclude `(,(expand-file-name package-user-dir)
+                     ,quelpa-packages-dir
                      ,no-littering-var-directory
                      ,no-littering-etc-directory
                      ".cache"
