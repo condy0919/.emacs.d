@@ -162,11 +162,11 @@
 ;; Show line/column number
 (use-package simple
   :ensure nil
-  :hook (after-init . (lambda ()
-                        (line-number-mode)
-                        (column-number-mode)
-                        (size-indication-mode)))
   :custom
+  ;; show line/column/filesize in modeline
+  (line-number-mode t)
+  (column-number-mode t)
+  (size-indication-mode t)
   ;; confusing if no fringes
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   ;; column starts from 1
