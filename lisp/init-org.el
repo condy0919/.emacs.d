@@ -125,7 +125,7 @@
   (org-agenda-time-leading-zero t)
   (org-agenda-start-with-log-mode t)
   (org-agenda-start-with-clockreport-mode t)
-  (org-agenda-hide-tags-regexp ":\\w+:")
+  (org-agenda-remove-tags t)
   (org-agenda-todo-ignore-with-date nil)
   (org-agenda-todo-ignore-deadlines 'far)
   (org-agenda-todo-ignore-scheduled 'all)
