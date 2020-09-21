@@ -99,7 +99,7 @@
                    ("HARD"   . ?h)
                    (:endgroup)))
   ;; archive
-  (org-archive-location "%s_archive::date-tree"))
+  (org-archive-location "%s_archive::datetree/"))
 
 ;; Keep track of tasks
 (use-package org-agenda
