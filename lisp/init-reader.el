@@ -9,30 +9,6 @@
   :ensure nil
   :hook (newsticker-mode . (lambda ()
                              (setq line-spacing 2)))
-  :config
-  (with-eval-after-load 'evil-collection
-    (evil-set-initial-state 'newsticker-mode 'normal)
-    (evil-collection-define-key 'normal 'newsticker-mode-map
-      ;; move
-      "k" 'newsticker-previous-item
-      "j" 'newsticker-next-item
-      "gk" 'newsticker-previous-feed
-      "gj" 'newsticker-next-feed
-
-      ;; mark
-      "r" 'newsticker-mark-item-at-point-as-read
-      "i" 'newsticker-mark-item-at-point-as-immortal
-
-      ;; show/hide
-      "o" 'newsticker-show-old-items
-      "O" 'newsticker-hide-old-items
-
-      ;; refresh
-      "gr" 'newsticker-buffer-force-update
-      "gR" 'newsticker-get-all-news
-
-      ;; quit
-      "q" 'newsticker-close-buffer))
   :custom
   (newsticker-retrieval-method 'extern)
   (newsticker-frontend 'newsticker-plainview)
