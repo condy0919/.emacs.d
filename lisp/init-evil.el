@@ -69,7 +69,7 @@
     "f" '(:ignore t :which-key "file")
     "ff" 'find-file
     "fF" 'find-file-other-window
-    "fj" 'counsel-fd-file-jump
+    "fj" 'counsel-file-jump
     "fo" 'counsel-find-file-extern
     "fC" 'my/copy-current-file
     "fD" 'my/delete-current-file
@@ -80,8 +80,7 @@
     "fz" 'counsel-fzf
 
     ;; dired
-    "d" '(:ignore t :which-key "file")
-    "dd" 'counsel-fd-dired-jump
+    "d" '(:ignore t :which-key "dired")
     "dj" 'dired-jump
     "dJ" 'dired-jump-other-window
 
