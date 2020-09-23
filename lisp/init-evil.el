@@ -233,7 +233,9 @@
 
     "i" '(:ignore t :which-key "insert")
     "id" 'org-insert-drawer
-    "in" 'org-add-note)
+    "in" 'org-add-note
+    "it" 'org-time-stamp-inactive
+    "iT" 'org-time-stamp)
   :custom
   (general-implicit-kbd t)
   (general-override-auto-enable t))
