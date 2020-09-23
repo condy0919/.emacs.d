@@ -307,6 +307,8 @@ usemathjax: false
                                   "groups.google.com/groups?q=" ""])
                    ("Wikipedia" .
                     [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+                   ("Urban Dictionary" .
+                    [simple-query "urbandictionary.com" "www.urbandictionary.com/define.php?term=" ""])
 
                    ;; Language specific engines.
                    ("Python Docs" .
