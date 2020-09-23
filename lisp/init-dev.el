@@ -36,7 +36,7 @@
   (compilation-ask-about-save nil))
 
 ;; Debugger
-(use-package gdb-mi
+(use-package gud
   :ensure nil
   :hook (gud-mode . gud-tooltip-mode)
   :config
@@ -63,7 +63,11 @@
 
   (define-advice gud-sentinel (:after (_1 _2))
     "Remove highlight overlay when user quit gud."
-    (delete-overlay gud-overlay))
+    (delete-overlay gud-overlay)))
+
+;; GDB specific config
+(use-package gdb-mi
+  :ensure nil
   :custom
   (gdb-show-main t)
   (gdb-display-io-nopopup t)
