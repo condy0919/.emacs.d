@@ -87,12 +87,12 @@
 (use-package counsel
   :ensure t
   :hook (ivy-mode . counsel-mode)
-  :bind (([remap evil-ex-registers]  . counsel-evil-registers)
-         ([remap evil-show-marks]    . counsel-mark-ring)
-         ([remap evil-show-jumps]    . evil-jump-list)
-         ([remap recentf-open-files] . counsel-recentf)
-         ([remap swiper]             . counsel-grep-or-swiper)
-         ("M-y"                      . counsel-yank-pop))
+  :bind (([remap evil-show-registers] . counsel-evil-registers)
+         ([remap evil-show-marks]     . counsel-evil-marks)
+         ([remap evil-show-jumps]     . evil-jump-list)
+         ([remap recentf-open-files]  . counsel-recentf)
+         ([remap swiper]              . counsel-grep-or-swiper)
+         ("M-y"                       . counsel-yank-pop))
   :config
   (ivy-set-actions
    'counsel-find-file
