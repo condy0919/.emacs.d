@@ -243,7 +243,7 @@
              :file "tasks.org"
              :children
              (("Inbox" :keys "i" :type entry :headline "Inbox"
-               :datetree t :tree-type week :template "* %?\n%i\n")
+               :template "* %?\n%i\n")
               ("Reminder" :keys "r" :type entry :headline "Reminders"
                :template "* TODO [#B] %i%?")))
             ("Capture"
@@ -251,7 +251,9 @@
              :file "capture.org"
              :children
              (("Web" :keys "w" :type entry :headline "Web" :immediate-finish t
-               :template "* TODO [[%:link][%:description]]\n %a\n %i")))
+               :template "* TODO [[%:link][%:description]]\n %a\n %i")
+              ("Note" :file "notes.org" :keys "n" :type entry :headline "Inbox"
+               :template "* %? %^g\n%i\n")))
             ("Project"
              :keys "p"
              :file ,(defun project-todo-file ()
