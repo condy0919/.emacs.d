@@ -134,7 +134,8 @@
     "sg" 'counsel-rg
     "si" 'imenu
     "sj" 'evil-show-jumps
-    "sr" 'evil-show-marks
+    "sm" 'evil-show-marks
+    "sr" 'evil-show-registers
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point
     "sw" 'my/lsp-ivy-workspace-symbol
