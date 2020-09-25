@@ -287,7 +287,8 @@
   :after org
   :custom
   (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("GitHub"        . "https://github.com/%s")
+  (org-link-abbrev-alist '(("Arxiv"         . "https://arxiv.org/abs/%s")
+                           ("GitHub"        . "https://github.com/%s")
                            ("Google"        . "https://google.com/search?q=")
                            ("IETF"          . "https://tools.ietf.org/html/%s")
                            ("LLVM"          . "https://reviews.llvm.org/%s")
