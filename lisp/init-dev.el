@@ -148,7 +148,7 @@
   :custom
   (projectile-use-git-grep t)
   (projectile-completion-system 'ivy)
-  (projectile-indexing-method 'hybrid)
+  (projectile-indexing-method 'alien)
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
   (projectile-ignored-project-function 'projectile-project-ignore-p))
 
