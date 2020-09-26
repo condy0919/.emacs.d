@@ -104,12 +104,76 @@
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t))
 
-;; c-macro-expand
-;; C-c C-e to expand macros
-(use-package cmacexp
+;; Snippets for C/C++
+(use-package tempo
   :ensure nil
-  :custom
-  (c-macro-shrink-window-flag t))
+  :after cc-mode
+  :hook ((c-mode . c-mode-tempo-setup)
+         (c++-mode . c++-mode-tempo-setup))
+  :bind (:map c++-mode-map
+         ([tab] . expand-or-indent)
+         :map c-mode-map
+         ([tab] . expand-or-indent))
+  :config
+  (defun expand-or-indent (&optional arg)
+    "Expand tempo or indent current line."
+    (interactive "P")
+    (unless (tempo-expand-if-complete)
+      (indent-for-tab-command arg)))
+
+  (defvar c-tempo-tags nil)
+  (defvar c++-tempo-tags nil)
+
+  (defun c-mode-tempo-setup ()
+    (tempo-use-tag-list 'c-tempo-tags))
+  (defun c++-mode-tempo-setup ()
+    (tempo-use-tag-list 'c-tempo-tags)
+    (tempo-use-tag-list 'c++-tempo-tags))
+
+  (tempo-define-template "c-ifndef"
+                         '("#ifndef " (P "ifndef-clause: " clause) > n
+                           "#define " (s clause) n> p n
+                           "#endif // " (s clause) n>
+                           )
+                         "ifndef"
+                         "Insert #ifndef #define #endif directives"
+                         'c-tempo-tags)
+  (tempo-define-template "c-main"
+                         '("int main(int argc, char* argv[]) {" > n>
+                           p n
+                           "}" > n>
+                           )
+                         "main"
+                         "Insert a main function"
+                         'c-tempo-tags)
+  (tempo-define-template "c++-class-comparison-operators"
+                         '((P "type: " type 'noinsert)
+                           (tempo-save-named 'inline (if (y-or-n-p "inline? ") "inline " ""))
+                           (tempo-save-named 'constexpr (if (y-or-n-p "constexpr? ") "constexpr " ""))
+                           (tempo-save-named 'noexcept (if (y-or-n-p "noexcept? ") "noexcept " ""))
+                           (s inline) (s constexpr) "bool operator==(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           p n
+                           "}" > n>
+                           (s inline) (s constexpr) "bool operator!=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           "return !(lhs == rhs);" > n>
+                           "}" > n>
+                           (s inline) (s constexpr) "bool operator<(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           p n
+                           "}" > n>
+                           (s inline) (s constexpr) "bool operator>(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           "return rhs < lhs;" > n>
+                           "}" > n>
+                           (s inline) (s constexpr) "bool operator<=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           "return !(lhs > rhs);" > n>
+                           "}" > n>
+                           (s inline) (s constexpr) "bool operator>=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
+                           "return !(lhs < rhs);" > n>
+                           "}" > n>
+                           )
+                         "cmpop"
+                         "Insert C++ class comparison operators"
+                         'c++-tempo-tags)
+  )
 
 (use-package ebrowse
   :ensure nil
