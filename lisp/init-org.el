@@ -253,6 +253,8 @@
              :children
              (("Inbox" :keys "i" :type entry :headline "Inbox"
                :template "* %?\n%i\n")
+              ("Email" :keys "e" :type entry :headline "Inbox"
+               :template "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
               ("Reminder" :keys "r" :type entry :headline "Reminders"
                :template "* TODO [#B] %i%?")))
             ("Capture"
