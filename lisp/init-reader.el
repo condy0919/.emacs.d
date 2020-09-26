@@ -9,6 +9,11 @@
   :ensure nil
   :hook (newsticker-mode . (lambda ()
                              (setq line-spacing 2)))
+  :config
+  (define-advice newsticker--cache-read (:around (func &rest args))
+    "Read cache data without prompt."
+    (cl-letf* (((symbol-function 'y-or-n-p) (lambda (_) t)))
+      (apply func args)))
   :custom
   (newsticker-retrieval-method 'extern)
   (newsticker-frontend 'newsticker-plainview)
