@@ -106,8 +106,8 @@
   :after org
   :hook (org-agenda-finalize . org-agenda-to-appt)
   :config
-  ;; update appt list every 10 minutes
-  (run-at-time t 600 #'org-agenda-to-appt)
+  ;; update appt list every 1 minute
+  (run-at-time t 60 #'org-agenda-to-appt)
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
@@ -222,6 +222,15 @@
   :custom
   (org-goto-auto-isearch nil)
   (org-goto-interface 'outline-path-completion))
+
+(use-package org-table
+  :ensure nil
+  :after org
+  :custom
+  (org-table-header-line-p t)
+  (org-table-fix-formulas-confirm 'y-or-n-p)
+  (org-table-export-default-format "orgtbl-to-csv")
+  (org-table-formula-constants '(("PI" . "3.14159265358979323846264"))))
 
 ;; Create structured information quickly
 (use-package org-capture
@@ -388,6 +397,13 @@
   :ensure t
   :commands doct doct-get
   :demand t)
+
+(use-package org-edna
+  :ensure t
+  :hook (org-mode . org-edna-mode)
+  :custom
+  (org-edna-finder-use-cache t)
+  (org-edna-timestamp-format 'long))
 
 ;; Ensure that emacsclient.desktop exists and server-mode is opened.
 ;;
