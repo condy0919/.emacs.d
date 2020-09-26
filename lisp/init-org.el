@@ -373,25 +373,6 @@
                              (:name "Due Soon" :deadline future)
                              (:name "Scheduled Earlier" :scheduled past))))
 
-;; Make better connection in your notes
-(use-package org-roam
-  :ensure t
-  :defines org-directory
-  :hook ((after-init . org-roam-mode)
-         (org-roam-backlinks-mode . visual-line-mode))
-  :bind (:map org-roam-mode-map
-         ("C-c n b" . org-roam-switch-to-buffer)
-         ("C-c n c" . org-roam-capture)
-         ("C-c n f" . org-roam-find-file)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-insert)
-         ("C-c n j" . org-roam-jump-to-index)
-         ("C-c n l" . org-roam))
-  :custom
-  (org-roam-directory (expand-file-name (concat org-directory "/roam")))
-  (org-roam-buffer-no-delete-other-windows t)
-  (org-roam-completion-system 'ivy))
-
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t
