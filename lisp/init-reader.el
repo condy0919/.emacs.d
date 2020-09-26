@@ -41,7 +41,7 @@
 
 (use-package mixed-pitch
   :ensure t
-  :hook (nov-mode . mixed-pitch-mode))
+  :hook ((nov-mode Info-mode) . mixed-pitch-mode))
 
 ;; A gopher and a gemini client
 (use-package elpher
