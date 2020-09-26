@@ -406,6 +406,16 @@ Else, call `comment-or-uncomment-region' on the current line."
   (proced-auto-update-interval 2)
   (proced-auto-update-flag t))
 
+(use-package calculator
+  :ensure nil
+  :config
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'calculator-mode 'emacs))
+  :custom
+  (calculator-use-menu nil)
+  (calculator-unary-style 'prefix)
+  (calculator-user-operators nil))
+
 ;; mouse wheel optimization
 (use-package mwheel
   :ensure nil

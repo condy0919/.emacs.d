@@ -187,14 +187,15 @@
   :quelpa (jblog :fetcher github :repo "condy0919/jblog")
   :commands jblog
   :config
-  (evil-set-initial-state 'jblog-mode 'normal)
-  (evil-collection-define-key 'normal 'jblog-mode-map
-    "C" 'jblog-create
-    "D" 'jblog-delete
-    "O" 'jblog-open-posts-directory
-    "s" 'jblog-search
-    "gr" 'jblog-refresh
-    "q" 'quit-window)
+  (with-eval-after-load 'evil-collection
+    (evil-set-initial-state 'jblog-mode 'normal)
+    (evil-collection-define-key 'normal 'jblog-mode-map
+      "C" 'jblog-create
+      "D" 'jblog-delete
+      "O" 'jblog-open-posts-directory
+      "s" 'jblog-search
+      "gr" 'jblog-refresh
+      "q" 'quit-window))
   :custom
   (jblog-posts-directory (expand-file-name "~/blog/_posts"))
   (jblog-post-headers [("Date"       12 t)
