@@ -5,7 +5,8 @@
 
 ;;; Code:
 
-(require 'skeleton)
+(eval-when-compile
+  (require 'skeleton))
 
 (define-skeleton insert-date-time
   "Insert current date time with 2 date formats available."
@@ -19,7 +20,7 @@
   ""
   > "Regards,\n\n"
   > "#+begin_signature\n"
-  > "-- *" (skeleton-read "Your signature: ") "*\n"
+  > "-- *" (skeleton-read "Your signature: " user-full-name) "*\n"
   > "#+end_signature\n")
 
 (provide 'init-insert)
