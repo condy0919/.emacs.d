@@ -197,8 +197,7 @@
       "D" 'jblog-delete
       "O" 'jblog-open-posts-directory
       "s" 'jblog-search
-      "gr" 'jblog-refresh
-      "q" 'quit-window))
+      "gr" 'jblog-refresh))
   :custom
   (jblog-posts-directory (expand-file-name "~/blog/_posts"))
   (jblog-post-headers [("Date"       12 t)
