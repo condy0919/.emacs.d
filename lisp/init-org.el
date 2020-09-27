@@ -106,8 +106,8 @@
   :after org
   :hook (org-agenda-finalize . org-agenda-to-appt)
   :config
-  ;; update appt list every 1 minute
-  (run-at-time t 60 #'org-agenda-to-appt)
+  ;; update appt list every 5 minutes
+  (run-at-time t 300 #'org-agenda-to-appt)
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
@@ -228,7 +228,6 @@
   :after org
   :custom
   (org-table-header-line-p t)
-  (org-table-fix-formulas-confirm 'y-or-n-p)
   (org-table-export-default-format "orgtbl-to-csv")
   (org-table-formula-constants '(("PI" . "3.14159265358979323846264"))))
 
