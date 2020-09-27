@@ -135,8 +135,9 @@
 ;; Enable the disabled dired commands
 (put 'dired-find-alternate-file 'disabled nil)
 
-;; Enable the disabled `list-timers' command
+;; Enable the disabled `list-timers', `list-threads' commands
 (put 'list-timers 'disabled nil)
+(put 'list-threads 'disabled nil)
 
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
