@@ -371,22 +371,25 @@
   :ensure nil
   :bind ([remap comment-dwim] . #'comment-or-uncomment)
   :config
-  (defun comment-or-uncomment ()
+  (defun comment-or-uncomment (arg)
     "Comment or uncomment the current line or region.
 
-If the region is active and `transient-mark-mode' is on, call
-`comment-or-uncomment-region'.
+If the prefix ARG is specified, call `comment-indent' on the
+current line.
+Else, if the region is active and `transient-mark-mode' is on,
+call `comment-or-uncomment-region'.
 Else, if the current line is empty, insert a comment and indent
 it.
 Else, call `comment-or-uncomment-region' on the current line."
-    (interactive)
-    (if (region-active-p)
-        (comment-or-uncomment-region (region-beginning) (region-end))
-      (if (save-excursion
-            (beginning-of-line)
-            (looking-at "\\s-*$"))
-          (call-interactively 'comment-dwim)
-        (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
+    (interactive "*P")
+    (if arg (comment-indent)
+      (if (region-active-p)
+          (comment-or-uncomment-region (region-beginning) (region-end))
+        (if (save-excursion
+              (beginning-of-line)
+              (looking-at "\\s-*$"))
+            (comment-dwim nil)
+          (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
   :custom
   ;; `auto-fill' inside comments
   (comment-auto-fill-only-comments t))
