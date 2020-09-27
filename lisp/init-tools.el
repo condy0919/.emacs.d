@@ -140,9 +140,12 @@
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
-         ("C-o" . swiper-from-isearch)
+         ("M-<return>"                . isearch-repeat-forward)
+         ("M-S-<return>"              . isearch-repeat-backward)
+         ("C-o"                       . swiper-from-isearch)
          ;; consistent with ivy-occur
-         ("C-c C-o" . isearch-occur)
+         ("C-c C-o"                   . isearch-occur)
+         ([escape]                    . isearch-cancel)
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :config

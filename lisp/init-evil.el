@@ -69,6 +69,7 @@
     "f" '(:ignore t :which-key "file")
     "ff" 'find-file
     "fF" 'find-file-other-window
+    "fg" 'rgrep
     "fj" 'counsel-file-jump
     "fo" 'counsel-find-file-extern
     "fC" 'my/copy-current-file
@@ -106,7 +107,7 @@
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile
-    "cw" 'delete-trailing-whitespace
+    "ck" 'kill-compilation
     "cx" 'quickrun
 
     ;; window
@@ -126,6 +127,16 @@
     "tr" 'tab-bar-rename-tab-by-name
     "tt" 'tab-bar-select-tab-by-name
     "tu" 'tab-bar-undo-close-tab
+
+    ;; text
+    "x" '(:ignore t :which-key "text")
+    "xjc" 'set-justification-center
+    "xjf" 'set-justification-full
+    "xjl" 'set-justification-left
+    "xjn" 'set-justification-none
+    "xjr" 'set-justification-right
+    "xw" 'delete-trailing-whitespace
+    "x TAB" 'indent-rigidly
 
     ;; search
     "s" '(:ignore t :which-key "search")
@@ -164,15 +175,16 @@
 
     ;; app
     "a" '(:ignore t :which-key "app")
-    "am" 'mu4e
-    "ag" 'gnus
-    "an" 'newsticker-show-news
-    "ae" 'elpher
-    "aj" 'jblog
+    "aC" 'calendar
     "aa" 'org-agenda
     "ac" 'org-capture
-    "aC" 'calendar
+    "ae" 'elpher
+    "ag" 'gnus
+    "ai" 'rcirc
+    "aj" 'jblog
     "al" 'org-store-link
+    "am" 'mu4e
+    "an" 'newsticker-show-news
     "at" 'org-todo-list
 
     ;; open
