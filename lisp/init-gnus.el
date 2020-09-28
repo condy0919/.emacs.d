@@ -73,7 +73,10 @@
   :ensure nil
   :defer t
   :custom
-  (gnus-select-method '(nntp "nntp.lore.kernel.org"))
+  (gnus-select-method '(nnnil))
+  (gnus-secondary-select-methods '((nntp "gmane" (nntp-address "news.gmane.io"))
+                                   (nntp "news.gwene.org")
+                                   (nntp "nntp.lore.kernel.org")))
   (gnus-inhibit-startup-message t)
   (gnus-interactive-exit nil)
   (gnus-use-adaptive-scoring '(word line))
