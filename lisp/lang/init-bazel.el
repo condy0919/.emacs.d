@@ -7,15 +7,10 @@
 
 (use-package bazel-mode
   :ensure t
-  :mode (("bazel\\.bazelrc\\'"   . bazelrc-mode)
-         ("bazel\\.rc\\'"        . bazelrc-mode)
-         ("\\.bazelrc\\'"        . bazelrc-mode)
-         ("\\.bzl\\'"            . bazel-starlark-mode)
-         ("WORKSPACE\\'"         . bazel-workspace-mode)
-         ("WORKSPACE\\.bazel\\'" . bazel-workspace-mode)
-         ("BUILD\\'"             . bazel-build-mode)
-         ("BUILD.bazel\\'"       . bazel-build-mode))
-  :custom (bazel-mode-buildifier-before-save t))
+  :mode (("/WORKSPACE\\'"         . bazel-workspace-mode)
+         ("/WORKSPACE\\.bazel\\'" . bazel-workspace-mode))
+  :custom
+  (bazel-mode-buildifier-before-save t))
 
 ;; Bundled with `bazel-mode'
 (use-package bazel-build
