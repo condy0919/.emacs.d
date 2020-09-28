@@ -259,7 +259,8 @@
 ;; Shell mode
 (use-package sh-script
   :ensure nil
-  :mode ("\\.sh\\'" . sh-mode)
+  :mode (("\\.sh\\'"     . sh-mode)
+         ("/PKGBUILD\\'" . sh-mode))
   :hook (sh-mode . sh-mode-setup)
   :bind (:map sh-mode-map
          ("C-c C-e" . sh-execute-region))
