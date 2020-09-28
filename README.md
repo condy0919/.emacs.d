@@ -48,8 +48,7 @@
 git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
-仅包含**C/C++/Rust/OCaml/Haskell**相关配置，且全线使用`lsp`。当前由于
-`haskell-ide-engine`水土不服，故`haskell`没有采用`lsp`。
+仅包含**C/C++/Rust/OCaml/Haskell**相关配置，且全线使用`lsp`。当前由于`haskell-ide-engine`水土不服，故`haskell`没有采用`lsp`。
 
 保持着尽量使用`Emacs`自带功能的原则，能用自带的就用自带的。
 
@@ -71,33 +70,34 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | 包名       | 功能                                                 |
 |------------|------------------------------------------------------|
 | align      | `align-regexp`可以自动对齐选择的符号                 |
+| appt       | 任务提醒，可以与`org-mode`结合                       |
 | autorevert | 当文本被其他编辑器修改后，可自动更新                 |
 | delsel     | 选中文本可以直接覆盖着写，一般编辑器都默认开这个功能 |
 | hl-line    | 高亮当前行                                           |
+| newcomment | 注释功能，已取代`evil-nerd-commenter`                |
 | paren      | 高亮匹配的括号                                       |
 | saveplace  | 自动记录上次打开文件的位置                           |
 | simple     | 在`modeline`里显示行号、列号以及当前文本的大小       |
 | so-long    | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
+| speedbar   | 侧边栏，可以显示当前目录下的文件、打开的`buffer`     |
 | tab-bar    | 窗口布局管理 (`Emacs` 27+ 自带)                      |
+| tramp      | 远程编辑就靠它                                                     |
 
 而这几个包也是`Emacs`自带的。
 
 为了保持界面的整洁，禁用了菜单栏、工具栏和滚动条。
 
-在跳转之后会闪烁一下当前行，这样就比较容易知道当前光标在哪里了。这个功能也是基于
-自带的`pulse`。
+在跳转之后会闪烁一下当前行，这样就比较容易知道当前光标在哪里了。这个功能也是基于自带的`pulse`。
 
 # 插件配置、升级
 
-选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
-为什么我会从`straight.el`切换至`quelpa`呢？主要是`straight.el`不支持单个文件的下
-载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。
+选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。为什么我会从`straight.el`切换至`quelpa`呢？主要是`straight.el`不支持单个文件的下载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。
 
-而自动升级选择了`auto-package-update`这个包。如果需要更新，`M-x`运行一下
-`auto-package-update-now`即可。需要注意的是，更新是同步的。
+而自动升级选择了`auto-package-update`这个包。如果需要更新，<kbd>M-x auto-package-update-now</kbd>即可。需要注意的是，更新是同步的。
 
-注意：`llvm-mode`和`tablegen-mode`下载都是通过`raw.githubusercontent.com`，而这
-个域名在国内几乎不可达，需要科学上网一下。
+注意：
+
+`llvm-mode`和`tablegen-mode`下载都是通过`raw.githubusercontent.com`，而这个域名在国内几乎不可达，需要科学上网一下。
 
 # 界面
 
@@ -105,25 +105,15 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 趁手的工具
 
-`which-key`,`rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、
-运行变得更加方便。而且还有`counsel-projectile`的加成，在原有`projectile`的基础上
-又添加了许多`ivy action`，更一步提升了便捷性。
+`which-key`,`rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、运行变得更加方便。而且还有`counsel-projectile`的加成，在原有`projectile`的基础上又添加了许多`ivy action`，更一步提升了便捷性。
 
-`avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开
-`relative line number`来`8k` `9j`这样跳了。
+`avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的`M-x`根本无法
-让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于
-`ivy`的设置)，搜索时肯定是比较在意上下文。而自带的`isearch`在稍加设置之后，效果
-也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来
-触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文
-件、修改」变成了「搜索、修改」。
+自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的<kbd>M-x</kbd>根本无法让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于`ivy`的设置)，搜索时肯定是比较在意上下文。而自带的`isearch`在稍加设置之后，效果也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文件、修改」变成了「搜索、修改」。
 
-`vterm`作为一个与原生终端更加接近的终端模拟器，单就外观来看已经比`Emacs`自带的
-`eshell`好看。再加上`shell-pop`的辅助，美观又实用的`terminal`模拟器就出现了。
+`vterm`作为一个与原生终端更加接近的终端模拟器，单就外观来看已经比`Emacs`自带的`eshell`好看。再加上`shell-pop`的辅助，美观又实用的`terminal`模拟器就出现了。
 
-`Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还
-有`separedit`,让人在代码里写`documentation comments`不再烦恼。
+`Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
 [valign][valign] 提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
 
@@ -147,8 +137,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 `avy`真乃神器也！
 
-同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而
-获得了如下键绑定:
+同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而获得了如下键绑定:
 
 | key              | function                                                            |
 |------------------|---------------------------------------------------------------------|
@@ -161,8 +150,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>[u</kbd>    | `evil-collection-unimpaired-url-encode` 对所选内容进行`url`参数编码 |
 | <kbd>]u</kbd>    | `evil-collection-unimpaired-url-decode` 对所选内容进行`url`参数解码 |
 
-本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常
-推荐使用`evil-mode`在`normal`状态下定义的键绑定。
+本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常推荐使用`evil-mode`在`normal`状态下定义的键绑定。
 
 | key           | function                                            |
 |---------------|-----------------------------------------------------|
@@ -174,7 +162,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
 
-此外另外提供了一个`Leader`键，绑定在`SPC`键上。
+此外另外提供了一个`Leader`键，绑定在了`SPC`键上。
 
 与文件相关的`Leader`键绑定如下:
 
@@ -182,6 +170,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 |---------------|----------------------------------------------------------|
 | <kbd>ff</kbd> | `find-file`打开文件                                      |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开       |
+| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                                         |
 | <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件 |
 | <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件           |
 | <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                     |
@@ -196,7 +185,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | functio                                                   |
 |---------------|-----------------------------------------------------------|
-| <kbd>dd</kbd> | `counsel-fd-dired-jump`进入由`fd`在当前目录下搜索到的目录 |
 | <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                            |
 | <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开       |
 
@@ -212,29 +200,32 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                             |
 |---------------|--------------------------------------|
-| <kbd>am</kbd> | `mu4e`打开邮件                       |
-| <kbd>ag</kbd> | `gnus`查看新闻组                     |
-| <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
-| <kbd>ad</kbd> | `deft`笔记管理                       |
-| <kbd>ae</kbd> | `elpher`拿来上 hackernews            |
-| <kbd>aa</kbd> | `org-agenda`日程                     |
-| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
-| <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
 | <kbd>aC</kbd> | `calendar`日历                       |
+| <kbd>aa</kbd> | `org-agenda`日程                     |
+| <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
+| <kbd>ae</kbd> | `elpher`拿来上 hackernews            |
+| <kbd>ag</kbd> | `gnus`查看新闻组                     |
+| <kbd>ai</kbd> | `rcirc`上 IRC                                     |
+| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
 | <kbd>al</kbd> | `org-store-link`存储URL              |
+| <kbd>am</kbd> | `mu4e`打开邮件                       |
+| <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
 | <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
 
 搜索相关的`Leader`键绑定:
 
-| key           | function                        |
-|---------------|---------------------------------|
-| <kbd>sb</kbd> | `swiper`                        |
-| <kbd>sg</kbd> | `counsel-rg`                    |
-| <kbd>si</kbd> | `imenu`                         |
-| <kbd>sj</kbd> | `evil-show-jumps`               |
-| <kbd>sr</kbd> | `evil-show-marks`               |
-| <kbd>ss</kbd> | `swiper-isearch`                |
-| <kbd>sS</kbd> | `swiper-isearch-thing-at-point` |
+| key           | function                                                              |
+|---------------|-----------------------------------------------------------------------|
+| <kbd>sa</kbd> | `swiper-all`在所有打开的`buffer`中搜索                                |
+| <kbd>sb</kbd> | `swiper`在当前`buffer`中搜索                                          |
+| <kbd>sg</kbd> | `counsel-rg`在当前目录中使用`rg`搜索                                  |
+| <kbd>si</kbd> | `imenu`                                                               |
+| <kbd>sj</kbd> | `evil-show-jumps`                                                     |
+| <kbd>sm</kbd> | `evil-show-marks`                                                     |
+| <kbd>sr</kbd> | `evil-show-registers`                                                 |
+| <kbd>ss</kbd> | `swiper-isearch`采用`isearch`的方式来搜索，不显示行号                 |
+| <kbd>sS</kbd> | `swiper-isearch-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
+| <kbd>sw</kbd> | `my/lsp-ivy-workspace-symbol`仅在`lsp-mode`开启的情况下生效，查找符号 |
 
 ## Emacs
 
@@ -264,7 +255,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c p u</kbd>   | `projectile-run-project`运行当前项目                                 |
 | <kbd>C-c p P</kbd>   | `projectile-test-project`测试当前项目                                |
 | <kbd>C-c p p</kbd>   | `projectile-switch-project`切换至其他项目                            |
-| <kbd>C-c p s r</kbd> | `projectile-ripgrep`使用`ripgrep`来搜索当前项目内的文本。此功能依赖`ripgrep`这个包，不过在`counsel-projectile`加持下被重新`remap`过。              |
+| <kbd>C-c p s r</kbd> | `projectile-ripgrep`使用`ripgrep`来搜索当前项目内的文本。             |
 
 基于同样的理由，把`flycheck`单独拎了出来。
 
@@ -276,8 +267,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 更详细的按键绑定请直接看[代码](lisp/init-evil.el). :-)
 
-定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。
-为了能够在编辑模式中也能够使用，将其绑定在了<kbd>C-c h</kbd>上。
+定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。为了在编辑模式中也能够使用，将其绑定在了<kbd>C-c h</kbd>上。
 
 # 通用开发设置
 
@@ -312,13 +302,11 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 - `c++-mode`启用了[modern-cpp-font-lock][modern-cpp-font-lock]
 - `cmake-mode`可使用`company-mode`进行符号补全
-- 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也
-  可以`#define`一些宏，放入`hide-ifdef-env`中生效。
+- 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中生效。
 
 ## rust-mode
 
-使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟
-`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
 
 ``` emacs-lisp
 (setq lsp-rust-server 'rust-analyzer)
@@ -333,13 +321,11 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## ocaml-mode
 
-使用`lsp-mode`作为补全、符号查找的工具。在`Arch Linux`上，可以使用
-[ocaml-lsp-git][ocaml-lsp-git]这个包。
+使用`lsp-mode`作为补全、符号查找的工具。在`Arch Linux`上，可以使用 [ocaml-lsp-git][ocaml-lsp-git] 这个包。
 
 由于`ocaml-lsp-git`目前**只**实现了`lsp-format-buffer`且额外依赖`ocamlformat`。
 
-所以这里额外使用了[ocp-indent][ocp-indent]，通过`ocp-indent-region`,
-`ocp-indent-buffer`来提供格式化代码的功能。
+所以这里额外使用了[ocp-indent][ocp-indent]，通过`ocp-indent-region`, `ocp-indent-buffer`来提供格式化代码的功能。
 
 同时也集成了[dune][dune]。
 
@@ -368,8 +354,8 @@ yay -S ocaml-ocp-indent dune
 
 # FAQ
 
-1. [dashboard][dashboard]里图标显示不正确？
-   依赖[all-the-icons][all-the-icons]，请确保`M-x all-the-icons-install-fonts`安
+1. [dashboard][dashboard] 里图标显示不正确？
+   依赖 [all-the-icons][all-the-icons], 请确保`M-x all-the-icons-install-fonts`安
    装对应的字体以显示图标。
 2. 更新时提示对应版本的包不存在？
    这多是因为国内镜像源同步慢导致的。如果出错，可以临时禁用镜像源。
