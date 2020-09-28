@@ -63,6 +63,7 @@
   (use-package ivy-avy
     :ensure t)
 
+  ;; Additional key bindings for ivy
   (use-package ivy-hydra
     :ensure t)
 
@@ -74,6 +75,7 @@
     (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
     (ivy-occur))
   :custom
+  (ivy-use-selectable-prompt t)        ;; make the prompt selectable
   (ivy-display-style 'fancy)           ;; fancy style
   (ivy-count-format "%d/%d ")          ;; better counts
   (ivy-use-virtual-buffers t)          ;; show recent files
