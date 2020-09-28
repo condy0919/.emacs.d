@@ -109,6 +109,7 @@
     "cC" 'recompile
     "ck" 'kill-compilation
     "cx" 'quickrun
+    "cX" 'quickrun-shell
 
     ;; window
     "w" '(:keymap evil-window-map :which-key "window")

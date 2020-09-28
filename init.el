@@ -61,6 +61,7 @@
   (quelpa-use-package-inhibit-loading-quelpa t))
 
 (setq debug-on-error t)
+(setq-default lexical-binding t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
