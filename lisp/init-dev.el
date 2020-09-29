@@ -126,8 +126,8 @@
 ;; Project management
 (use-package projectile
   :ensure t
-  :hook (prog-mode . projectile-mode)
-  :bind (:map prog-mode-map
+  :hook (after-init . projectile-mode)
+  :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
   :config
   (defconst projectile-ignored-project-directories `("/tmp/"
@@ -155,8 +155,7 @@
 ;; Comprehensive ivy integration for projectile
 (use-package counsel-projectile
   :ensure t
-  :after counsel projectile
-  :hook (prog-mode . counsel-projectile-mode))
+  :hook (after-init . counsel-projectile-mode))
 
 ;; Lint tool
 (use-package flycheck

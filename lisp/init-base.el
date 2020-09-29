@@ -351,9 +351,6 @@
 (use-package tab-bar
   :ensure nil
   :when (>= emacs-major-version 27)
-  :hook (after-init . (lambda ()
-                        (tab-bar-mode)
-                        (tab-bar-history-mode)))
   :config
   ;; HACK no tab-bar-lines displayed
   (defun no-tab-bar-lines (&rest _)
@@ -363,6 +360,8 @@
   (advice-add #'tab-bar-mode :after #'no-tab-bar-lines)
   (advice-add #'make-frame   :after #'no-tab-bar-lines)
   :custom
+  (tab-bar-mode t)
+  (tab-bar-history-mode t)
   (tab-bar-show nil)
   (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)

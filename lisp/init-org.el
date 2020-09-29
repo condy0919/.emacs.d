@@ -89,8 +89,6 @@
                               ("MAIL"  . ?@)
                               ("WRITE" . ?w)))
   (org-tag-alist '((:startgroup)
-                   ("ROLE"     . ?R)
-                   (:grouptags)
                    ("OWNER"    . ?o)
                    ("ASSIGNEE" . ?a)
                    ("OBSERVER" . ?b)
