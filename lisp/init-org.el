@@ -28,6 +28,7 @@
   (org-fontify-done-headline t)
   (org-fontify-quote-and-verse-blocks t)
   (org-fontify-whole-heading-line t)
+  (org-hide-macro-markers t)
   (org-hide-emphasis-markers t)
   (org-pretty-entities t)
   (org-startup-indented t)
@@ -311,6 +312,7 @@
   :after org
   :custom
   (org-export-with-toc t)
+  (org-export-with-tags 'not-in-toc)
   (org-export-with-author nil)
   (org-export-with-drawers nil)
   (org-export-with-footnotes t)
@@ -321,7 +323,7 @@
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
   (org-export-with-broken-links 'mark)
-  (org-export-backends '(ascii html md)))
+  (org-export-backends '(ascii html md icalendar)))
 
 (use-package ox-ascii
   :ensure nil
@@ -343,6 +345,21 @@
   :defer t
   :custom
   (htmlize-output-type 'inline-css))
+
+(use-package ox-md
+  :ensure nil
+  :after org
+  :custom
+  (org-md-headline-style 'atx))
+
+(use-package ox-icalendar
+  :ensure nil
+  :after org
+  :custom
+  (org-icalendar-include-todo 'all)
+  (org-icalendar-use-scheduled '(todo-start event-if-todo event-if-not-todo))
+  (org-icalendar-use-deadline '(todo-due event-if-todo event-if-not-todo))
+  (org-icalendar-store-UID t))
 
 ;; Pretty symbols
 (use-package org-superstar
