@@ -84,6 +84,7 @@
   (org-tags-column 0)
   (org-use-tag-inheritance nil)
   (org-agenda-use-tag-inheritance nil)
+  (org-use-fast-tag-selection t)
   (org-fast-tag-selection-single-key t)
   (org-track-ordered-property-with-tag t)
   (org-tag-persistent-alist '(("READ"  . ?r)
