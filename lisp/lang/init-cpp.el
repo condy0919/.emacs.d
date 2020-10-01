@@ -111,16 +111,10 @@
   :hook ((c-mode . c-mode-tempo-setup)
          (c++-mode . c++-mode-tempo-setup))
   :bind (:map c++-mode-map
-         ([tab] . expand-or-indent)
+         ("C-c C-e" . tempo-expand-if-complete)
          :map c-mode-map
-         ([tab] . expand-or-indent))
+         ("C-c C-e" . tempo-expand-if-complete))
   :config
-  (defun expand-or-indent (&optional arg)
-    "Expand tempo or indent current line."
-    (interactive "P")
-    (unless (tempo-expand-if-complete)
-      (indent-for-tab-command arg)))
-
   (defvar c-tempo-tags nil)
   (defvar c++-tempo-tags nil)
 
