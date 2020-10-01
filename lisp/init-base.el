@@ -318,6 +318,12 @@
   (appt-message-warning-time 15)
   (appt-disp-window-function #'appt-display-with-notification))
 
+;; EasyPG
+(use-package epg-config
+  :ensure nil
+  :custom
+  (epg-pinentry-mode 'loopback))
+
 ;; quick access to files/tags
 (use-package speedbar
   :ensure nil
