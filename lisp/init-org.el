@@ -151,6 +151,8 @@
   :ensure nil
   :after org
   :functions notify-send
+  :config
+  (org-clock-persistence-insinuate)
   :custom
   (org-clock-in-resume t)
   (org-clock-idle-time 15)
@@ -168,9 +170,7 @@
                                    (notify-send :title "Org Clock"
                                                 :body msg
                                                 :timeout 5000
-                                                :urgency 'critical)))
-  :config
-  (org-clock-persistence-insinuate))
+                                                :urgency 'critical))))
 
 ;; Write codes in org-mode
 (use-package org-src
