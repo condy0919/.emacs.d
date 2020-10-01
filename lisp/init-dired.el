@@ -52,7 +52,8 @@
   (dired-omit-files (rx (or ".DS_Store"
                             ".cache"
                             ".vscode"
-                            ".ccls-cache" ".clangd")))
+                            ".ccls-cache" ".clangd")
+                        string-end))
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-guess-shell-alist-user `((,(rx "."
