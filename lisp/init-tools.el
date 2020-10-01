@@ -314,6 +314,8 @@ usemathjax: false
                     [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
                    ("Urban Dictionary" .
                     [simple-query "urbandictionary.com" "www.urbandictionary.com/define.php?term=" ""])
+                   ("Ludwig Guru" .
+                    [simple-query "ludwig.guru" "ludwig.guru/s/" ""])
 
                    ;; Language specific engines.
                    ("Python Docs" .
