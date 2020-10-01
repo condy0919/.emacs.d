@@ -134,7 +134,7 @@
   :custom
   (counsel-preselect-current-file t)
   (counsel-yank-pop-preselect-last t)
-  (counsel-yank-pop-separator "\n-----------\n")
+  (counsel-yank-pop-separator "\n───────────\n")
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
