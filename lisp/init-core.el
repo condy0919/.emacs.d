@@ -11,9 +11,9 @@
 (defun my/rename-file (file)
   "Rename `FILE'. If the `FILE' is opened, rename the corresponding buffer too."
   (interactive)
-  (let* ((new-name (read-string "NewName: "))
-         (old-dir (file-name-directory file))
-         (new-file (concat old-dir new-name)))
+  (let* ((dir (file-name-directory file))
+         (new-name (read-file-name "New name: " dir nil 'confirm (file-name-nondirectory file)))
+         (new-file (expand-file-name new-name dir)))
     (rename-file file new-file)
     (when-let* ((buf (find-buffer-visiting file)))
       (if (string= file (buffer-file-name))
