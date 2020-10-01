@@ -316,6 +316,7 @@
   (org-export-with-tags 'not-in-toc)
   (org-export-with-author nil)
   (org-export-with-drawers nil)
+  (org-export-with-priority t)
   (org-export-with-footnotes t)
   (org-export-with-smart-quotes t)
   (org-export-with-section-numbers nil)
