@@ -49,11 +49,5 @@
   :ensure t
   :hook ((nov-mode Info-mode) . mixed-pitch-mode))
 
-;; A gopher and a gemini client
-(use-package elpher
-  :ensure t
-  :defer t)
-
 (provide 'init-reader)
-
 ;;; init-reader.el ends here

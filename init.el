@@ -83,7 +83,6 @@
 (require 'init-spell)
 (require 'init-insert)
 (require 'init-reader)
-(require 'init-gnus)
 (require 'init-hydra)
 
 (when (file-exists-p custom-file)

@@ -1,129 +1,151 @@
-;;; init-mail.el --- Read mails in Emacs -*- lexical-binding: t -*-
+;;; init-mail.el --- Read mails in Emacs (powered by Gnus) -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
 
 ;;; Code:
 
-;; bundled with system package `mu'
-(use-package mu4e
+;; A newsreader in Emacs
+;; TODO REVISE
+(use-package gnus
   :ensure nil
-  :commands (mu4e mu4e-compose-new)
-  :defer 1
-  :hook ((mu4e-compose-mode . auto-fill-mode)
-         (mu4e-compose-mode . flyspell-mode))
-  ;; from doom
-  ;; This hook correctly modifies gmail flags on emails when they are marked.
-  ;; Without it, refiling (archiving), trashing, and flagging (starring) email
-  ;; won't properly result in the corresponding gmail action, since the marks
-  ;; are ineffectual otherwise.
-  :hook (mu4e-mark-execute-pre . (lambda (mark msg)
-                                   (pcase mark
-                                     (`trash  (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
-                                     (`refile (mu4e-action-retag-message msg "-\\Inbox"))
-                                     (`flag   (mu4e-action-retag-message msg "+\\Starred"))
-                                     (`unflag (mu4e-action-retag-message msg "-\\Starred")))))
   :custom
-  ;; path
-  (mu4e-attachment-dir (expand-file-name "~/Mail/.attachments"))
+  (gnus-use-cache t)
+  (gnus-use-scoring nil)
+  (gnus-suppress-duplicates t)
+  (gnus-novice-user nil)
+  (gnus-interactive-exit nil)
+  (gnus-interactive-catchup nil)
+  (gnus-use-cross-reference nil)
+  (gnus-inhibit-startup-message nil)
+  (gnus-home-directory (no-littering-expand-var-file-name "gnus/"))
+  (gnus-select-method '(nnimap "GMail"
+                               (nnimap-address "imap.gmail.com")
+                               (nnimap-inbox "INBOX")
+                               (nnimap-expunge t)
+                               (nnimap-server-port 993)
+                               (nnimap-stream ssl)))
+  (gnus-secondary-select-methods '((nntp "gmane" (nntp-address "news.gmane.io"))
+                                   (nntp "news.gwene.org")
+                                   (nntp "nntp.lore.kernel.org"))))
 
-  ;; works better with mbsync
-  (mu4e-change-filenames-when-moving t)
-
-  ;; Gmail specific configs
-  (mu4e-sent-messages-behavior 'delete)
-  (mu4e-index-cleanup nil)
-  (mu4e-index-lazy-check t)
-
-  ;; folders & shortcuts
-  (mu4e-drafts-folder "/Gmail/Drafts")
-  (mu4e-sent-folder   "/Gmail/Sent")
-  (mu4e-trash-folder  "/Gmail/Trash")
-  (mu4e-refile-folder "/Gmail/All")
-  (mu4e-maildir-shortcuts '((:maildir "/Gmail/All"    :key ?a)
-                            (:maildir "/Gmail/INBOX"  :key ?i)
-                            (:maildir "/Gmail/Sent"   :key ?s)
-                            (:maildir "/Gmail/Drafts" :key ?d)
-                            (:maildir "/Gmail/Junk"   :key ?j)
-                            (:maildir "/Gmail/Trash"  :key ?t)))
-
-  ;; Use fancy icons
-  (mu4e-use-fancy-chars t)
-  (mu4e-headers-draft-mark     '("D" . ""))
-  (mu4e-headers-flagged-mark   '("F" . ""))
-  (mu4e-headers-new-mark       '("N" . ""))
-  (mu4e-headers-passed-mark    '("P" . ""))
-  (mu4e-headers-replied-mark   '("R" . ""))
-  (mu4e-headers-seen-mark      '("S" . ""))
-  (mu4e-headers-trashed-mark   '("T" . ""))
-  (mu4e-headers-attach-mark    '("a" . ""))
-  (mu4e-headers-encrypted-mark '("x" . ""))
-  (mu4e-headers-signed-mark    '("s" . ""))
-  (mu4e-headers-unread-mark    '("u" . ""))
-
-  (mu4e-view-show-addresses t)
-  (mu4e-hide-index-messages t)
-  (mu4e-view-prefer-html t)
-
-  ;; try to show images
-  (mu4e-view-show-images t)
-  (mu4e-view-image-max-width 800)
-  (mu4e-view-image-max-height 600)
-
-  ;; start with the first (default) context
-  (mu4e-context-policy 'pick-first)
-  ;; compose with the current context, or ask
-  (mu4e-compose-context-policy 'ask-if-none)
-  (mu4e-completing-read-function 'ivy-completing-read)
-
-  (mu4e-confirm-quit nil)
-  (mu4e-compose-signature nil)
-  :config
-  ;; Html mails might be better rendered in a browser
-  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser))
-
-  ;; Use imagemagick if available
-  (when (fboundp 'imagemagick-register-types)
-    (imagemagick-register-types))
-
-  ;; General mail settings
-  (setq mail-user-agent 'mu4e-user-agent
-        user-mail-address "condy0919@gmail.com"
-        user-full-name "Zhiwei Chen")
-  )
-
-;; Write email with org-mode
-(use-package org-mu4e
+;; Article mode for Gnus
+;; TODO REVISE
+(use-package gnus-art
   :ensure nil
-  :hook (mu4e-compose-mode . org-mu4e-compose-org-mode)
-  :bind (:map mu4e-compose-mode-map
-         ("C-h t" . mu4e-html-toggle))
-  :config
-  (defun mu4e-html-toggle ()
-    "Toggle whether convert to html."
-    (interactive)
-    (let ((b (not org-mu4e-convert-to-html)))
-      (setq org-mu4e-convert-to-html b)
-      (message "Will send mail in html format? %s" b)))
+  :after gnus
   :custom
-  (org-mu4e-convert-to-html nil))
+  (gnus-article-browse-delete-temp t)
+  (gnus-treat-strip-trailing-blank-lines 'last)
+  (gnus-mime-display-multipart-related-as-mixed t))
 
-;; sending mail
+;; Asynchronous support for Gnus
+(use-package gnus-async
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-asynchronous t)
+  (gnus-use-header-prefetch t))
+
+;; Startup functions for Gnus
+(use-package gnus-start
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-use-dribble-file t)
+  (gnus-always-read-dribble-file t)
+  (gnus-save-newsrc-file nil)
+  (gnus-read-newsrc-file nil)
+  (gnus-check-new-newsgroups nil)
+  (gnus-subscribe-newsgroup-method 'gnus-subscribe-interactively))
+
+;; Unplugged support for Gnus
+(use-package gnus-agent
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-agent-expire-days 30))
+
+;; Mail and post interface for Gnus
+(use-package gnus-msg
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-gcc-mark-as-read t))
+
+;; Cache interface for Gnus
+(use-package gnus-cache
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-cache-enter-articles '(ticked dormant read unread))
+  (gnus-cache-remove-articles nil)
+  (gnus-cacheable-groups "^\\(nntp\\|nnimap\\)"))
+
+(use-package gnus-sum
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-fetch-old-headers t)
+  (gnus-view-pseudo-asynchronously t)
+  (gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M")))
+  (gnus-thread-sort-functions '(gnus-thread-sort-by-date))
+  (gnus-thread-hide-subtree t)
+  (gnus-thread-indent-level 1)
+  (gnus-summary-ignore-duplicates t)
+  (gnus-summary-to-prefix        "→")
+  (gnus-summary-newsgroup-prefix "⇶")
+  ;; Summary thread guides.
+  (gnus-sum-thread-tree-indent          "  ")
+  (gnus-sum-thread-tree-single-indent   "◎ ")
+  (gnus-sum-thread-tree-root            "● ")
+  (gnus-sum-thread-tree-false-root      "◌ ")
+  (gnus-sum-thread-tree-vertical        "│ ")
+  (gnus-sum-thread-tree-leaf-with-other "├─▶ ")
+  (gnus-sum-thread-tree-single-leaf     "└─▶ ")
+  ;; Mark characters.
+  (gnus-score-over-mark  ?↑)
+  (gnus-score-below-mark ?↓)
+  (gnus-ticked-mark      ?⚑)
+  (gnus-dormant-mark     ?⚐)
+  (gnus-expirable-mark   ?♻)
+  (gnus-read-mark        ?✓)
+  (gnus-del-mark         ?✗)
+  (gnus-killed-mark      ?☠)
+  (gnus-replied-mark     ?⟲)
+  (gnus-forwarded-mark   ?⤳)
+  (gnus-cached-mark      ?☍)
+  (gnus-recent-mark      ?★)
+  (gnus-unseen-mark      ?✩)
+  (gnus-unread-mark      ?✉)
+  (gnus-simplify-subject-functions '(gnus-simplify-subject-re gnus-simplify-whitespace))
+  (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+  (gnus-summary-display-arrow nil)
+  (gnus-build-sparse-threads 'some)
+  (gnus-auto-select-first nil))
+
+;; Composing mail and news messages
 (use-package message
   :ensure nil
-  :after mu4e
   :custom
+  (user-full-name "Zhiwei Chen")
+  (user-mail-address "condy0919@gmail.com")
   (message-kill-buffer-on-exit t)
-  (message-send-mail-function #'smtpmail-send-it))
+  (message-use-mail-followup-to nil)
+  (message-mail-alias-type 'ecomplete)
+  (message-wide-reply-confirm-recipients t)
+  (message-send-mail-function #'smtpmail-send-it)
+  (message-signature (concat "\n\n-- \n" user-full-name)))
 
+;; Sending mails
 (use-package smtpmail
   :ensure nil
-  :after mu4e
   :custom
   (smtpmail-smtp-server "smtp.gmail.com")
   (smtpmail-smtp-user user-mail-address)
   (smtpmail-smtp-service 587)
   (smptmail-stream-type 'starttls))
+
 
 (provide 'init-mail)
 ;;; init-mail.el ends here

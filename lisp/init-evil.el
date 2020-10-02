@@ -184,7 +184,6 @@
     "ai" 'rcirc
     "aj" 'jblog
     "al" 'org-store-link
-    "am" 'mu4e
     "an" 'newsticker-show-news
     "at" 'org-todo-list
 
