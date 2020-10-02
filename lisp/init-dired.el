@@ -81,10 +81,7 @@
 ;; Make dired narrow-able
 (use-package dired-narrow
   :ensure t
-  :after dired evil-collection
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "s" 'dired-narrow-regexp)
+  :after dired
   :custom
   (dired-narrow-exit-when-one-left t)
   (dired-narrow-enable-blinking t)
