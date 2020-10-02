@@ -42,7 +42,8 @@
 (use-package doc-view
   :ensure nil
   :custom
-  (doc-view-continuous t))
+  (doc-view-continuous t)
+  (doc-view-scale-internally nil))
 
 (use-package mixed-pitch
   :ensure t
