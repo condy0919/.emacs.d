@@ -20,7 +20,7 @@
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
-  (org-modules '(ol-info org-habit org-protocol org-tempo ol-eww))
+  (org-modules '(ol-bibtex ol-gnus ol-info ol-eww org-habit org-protocol))
   ;; prettify
   (org-ellipsis " ▼ ")
   (org-loop-over-headlines-in-active-region t)
