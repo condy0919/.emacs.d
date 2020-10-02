@@ -90,6 +90,13 @@
   (dired-narrow-enable-blinking t)
   (dired-narrow-blink-time 0.3))
 
+;; Show subtree in dired
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :custom
+  (dired-subtree-use-backgrounds nil))
+
 (provide 'init-dired)
 
 ;;; init-dired.el ends here
