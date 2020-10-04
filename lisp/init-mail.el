@@ -79,8 +79,10 @@
   (gnus-treat-from-picon nil)
   (gnus-treat-mail-picon nil)
   (gnus-treat-newsgroups-picon nil)
+  (gnus-treat-newsgroups-picon nil)
   (gnus-treat-from-gravatar nil)
   (gnus-treat-mail-gravatar nil)
+  (gnus-treat-body-boundary nil)
   ;; Block images
   (gnus-blocked-images ".")
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
