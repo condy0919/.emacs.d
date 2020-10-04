@@ -15,13 +15,5 @@
           (local (format-time-string "%c")))
       (completing-read "datetime: " `(,full ,local))))
 
-(define-skeleton insert-mail-signature
-  "Insert mail signature in org-mode format."
-  ""
-  > "Regards,\n\n"
-  > "#+begin_signature\n"
-  > "-- *" (skeleton-read "Your signature: " user-full-name) "*\n"
-  > "#+end_signature\n")
-
 (provide 'init-insert)
 ;;; init-insert.el ends here
