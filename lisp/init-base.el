@@ -221,7 +221,12 @@
 ;; Switch window
 (use-package window
   :ensure nil
-  :bind ("M-o" . other-window))
+  :bind (("M-o" . other-window)
+         ("M-O" . other-window-backward))
+  :config
+  (defun other-window-backward ()
+    (interactive)
+    (other-window -1)))
 
 ;; Server mode.
 ;; Use emacsclient to connect
