@@ -258,8 +258,9 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit))
   :custom
-  (minibuffer-depth-indicate-mode t)
+  (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
+  (minibuffer-depth-indicate-mode t)
   (enable-recursive-minibuffers t))
 
 ;; Holidays
