@@ -87,6 +87,7 @@
   (gnus-blocked-images ".")
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
                                  (not gnus-article-sort-by-date)))
+  (gnus-article-show-cursor t)
   (gnus-article-browse-delete-temp t)
   (gnus-mime-display-multipart-as-mixed t)
   (gnus-mime-display-multipart-related-as-mixed t)
@@ -117,7 +118,10 @@
   :ensure nil
   :after gnus
   :custom
+  (gnus-agent-mark-unread-after-downloaded t)
+  (gnus-agent-cache t)
   (gnus-agent-go-online t)
+  (gnus-agent-expire-all nil)
   (gnus-agent-expire-days 30))
 
 ;; Mail and post interface for Gnus
