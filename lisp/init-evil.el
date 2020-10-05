@@ -104,12 +104,14 @@
 
     ;; code
     "c" '(:ignore t :which-key "code")
+    "ca" 'add-change-log-entry-other-window
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile
     "ck" 'kill-compilation
     "cx" 'quickrun
     "cX" 'quickrun-shell
+    "c TAB" 'indent-code-rigidly
 
     ;; window
     "w" '(:keymap evil-window-map :which-key "window")
