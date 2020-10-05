@@ -131,6 +131,7 @@
 
     ;; text
     "x" '(:ignore t :which-key "text")
+    "xj" '(:ignore t :which-key "justification")
     "xjc" 'set-justification-center
     "xjf" 'set-justification-full
     "xjl" 'set-justification-left
