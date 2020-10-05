@@ -5,7 +5,8 @@
 
 ;;; Code:
 
-(require 'init-core)
+(eval-when-compile
+  (require 'init-core))
 
 (defun term-mode-common-init ()
   "The common initialization for term."

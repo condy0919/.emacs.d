@@ -13,7 +13,7 @@
   ""
   > (let ((full (format-time-string "%F %T"))
           (local (format-time-string "%c")))
-      (completing-read "datetime: " `(,full ,local))))
+      (completing-read "datetime: " `(,full ,local) nil t)))
 
 (provide 'init-insert)
 ;;; init-insert.el ends here

@@ -77,13 +77,15 @@
 (require 'init-lsp)
 (require 'init-git)
 (require 'init-dev)
-(require 'init-mail)
 (require 'init-dired)
+(require 'init-insert)
+(require 'init-hydra)
+
+;; standalone apps
+(require 'init-mail)
 (require 'init-shell)
 (require 'init-spell)
-(require 'init-insert)
 (require 'init-reader)
-(require 'init-hydra)
 
 (when (file-exists-p custom-file)
   (load custom-file))

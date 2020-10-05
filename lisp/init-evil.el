@@ -158,8 +158,8 @@
     ;; insert
     "i" '(:ignore t :which-key "insert")
     "iq" 'quickurl-prefix-map
-    "is" 'insert-mail-signature
     "it" 'insert-date-time
+    "iy" 'clipboard-yank
 
     ;; git
     "g" '(:ignore t :which-key "git")
