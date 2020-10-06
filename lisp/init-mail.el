@@ -170,6 +170,7 @@
 ;; Composing mail and news messages
 (use-package message
   :ensure nil
+  :hook (message-mode . auto-fill-mode)
   :custom
   (user-full-name "Zhiwei Chen")
   (user-mail-address "condy0919@gmail.com")
