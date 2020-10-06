@@ -330,6 +330,16 @@
   :custom
   (epg-pinentry-mode 'loopback))
 
+;; Simple HTML Renderer
+(use-package shr
+  :ensure nil
+  :custom
+  (shr-use-fonts nil)
+  (shr-use-colors nil)
+  (shr-cookie-policy nil)
+  (shr-image-animate nil)
+  (shr-blocked-images "."))
+
 ;; quick access to files/tags
 (use-package speedbar
   :ensure nil
