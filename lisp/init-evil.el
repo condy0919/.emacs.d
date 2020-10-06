@@ -130,6 +130,8 @@
     "tr" 'tab-bar-rename-tab-by-name
     "tt" 'tab-bar-select-tab-by-name
     "tu" 'tab-bar-undo-close-tab
+    "tf" 'tab-bar-history-forward
+    "tb" 'tab-bar-history-back
 
     ;; text
     "x" '(:ignore t :which-key "text")
