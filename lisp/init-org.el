@@ -62,6 +62,7 @@
                         (?B :foreground "orange")
                         (?C :foreground "yellow")))
   (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00")
+                           ("RISK_ALL" . "Low Medium High")
                            ("STYLE_ALL" . "habit")))
   (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT{:}")
   ;; Remove CLOSED: [timestamp] after switching to non-DONE states
@@ -235,10 +236,9 @@
   :hook (org-capture-mode . (lambda ()
                               (setq org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
-  ;; `doct' required
+  ;; `doct' requires that
   (org-capture-templates-contexts nil)
   (org-capture-use-agenda-date t)
-  ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
   (org-capture-templates
    (doct `(:group
            :empty-lines 1
@@ -247,20 +247,56 @@
              :keys "t"
              :file "tasks.org"
              :children
-             (("Inbox" :keys "i" :type entry :headline "Inbox"
+             (("Inbox"
+               :keys "i"
+               :type entry
+               :headline "Inbox"
                :template "* %?\n%i\n")
-              ("Email" :keys "e" :type entry :headline "Inbox"
+              ("Mail"
+               :keys "m"
+               :type entry
+               :headline "Inbox"
                :template "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
-              ("Reminder" :keys "r" :type entry :headline "Reminders"
-               :template "* TODO [#B] %i%?")))
+              ("Reminder"
+               :keys "r"
+               :type entry
+               :headline "Reminders"
+               :template "* TODO %i%?")))
             ("Capture"
              :keys "c"
              :file "capture.org"
              :children
-             (("Web" :keys "w" :type entry :headline "Web" :immediate-finish t
-               :template "* TODO [[%:link][%:description]]\n %a\n %i")
-              ("Note" :file "notes.org" :keys "n" :type entry :headline "Inbox"
-               :template "* %? %^g\n%i\n")))
+             (("Bookmark"
+               :keys "b"
+               :type entry
+               :headline "Bookmarks"
+               :immediate-finish t
+               :template "* [[%:link][%:description]] :READ:\n %a\n %i")
+              ("Note"
+               :keys "n"
+               :type entry
+               :headline "Notes"
+               :template "* %? %^g\n%i\n")
+              ("Meeting"
+               :keys "m"
+               :type entry
+               :olp ("Meeting")
+               :datetree t
+               :jump-to-captured t
+               :template ,(concat "* %^{Subject} :MEETING:\n"
+                                  "%^{KEYWORDS}p\n"
+                                  "** Present at meeting\n"
+                                  "- [ ] %^{Attendees}\n"
+                                  "** Agenda\n"
+                                  "- %?\n"
+                                  "- Discussion\n"
+                                  "** Notes\n"
+                                  "#+BEGIN: columnview :id local :match \"NEW\" :format \"\\%ITEM(New)\"\n#+END:\n"
+                                  "*** Discussion\n"
+                                  "#+begin: columnview :id local :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%PRIORITY(Priority) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
+                                  )
+               )))
+            ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
             ("Project"
              :keys "p"
              :file ,(defun project-todo-file ()
@@ -324,7 +360,7 @@
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
   (org-export-with-broken-links 'mark)
-  (org-export-backends '(ascii html md icalendar)))
+  (org-export-backends '(ascii html md icalendar man)))
 
 (use-package ox-ascii
   :ensure nil
@@ -345,6 +381,7 @@
   :ensure t
   :defer t
   :custom
+  (htmlize-pre-style t)
   (htmlize-output-type 'inline-css))
 
 (use-package ox-md
@@ -361,6 +398,12 @@
   (org-icalendar-use-scheduled '(todo-start event-if-todo event-if-not-todo))
   (org-icalendar-use-deadline '(todo-due event-if-todo event-if-not-todo))
   (org-icalendar-store-UID t))
+
+(use-package ox-man
+  :ensure nil
+  :after org
+  :custom
+  (org-man-source-highlight t))
 
 ;; Pretty symbols
 (use-package org-superstar
@@ -416,7 +459,7 @@
   :ensure nil
   :after org
   :custom
-  (org-protocol-default-template-key "cw"))
+  (org-protocol-default-template-key "cb"))
 
 (use-package org-habit
   :ensure nil
