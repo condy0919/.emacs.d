@@ -301,15 +301,12 @@ usemathjax: false
                     "savannah.gnu.org/projects/emacs")
 
                    ;; Internet search engines.
-                   ("DuckDuckGo" .
-                    [simple-query "duckduckgo.com"
-                                  "duckduckgo.com/?q=" ""])
+                   ("DogeDoge" .
+                    [simple-query "dogedoge.com"
+                                  "dogedoge.com/results?q=" ""])
                    ("Google" .
                     [simple-query "www.google.com"
                                   "www.google.com/search?q=" ""])
-                   ("Google Groups" .
-                    [simple-query "groups.google.com"
-                                  "groups.google.com/groups?q=" ""])
                    ("Wikipedia" .
                     [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
                    ("Urban Dictionary" .
