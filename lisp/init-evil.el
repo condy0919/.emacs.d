@@ -16,7 +16,14 @@
          ("gl" . evil-avy-goto-line))
   :config
   (evil-ex-define-cmd "q[uit]" 'kill-this-buffer)
+
+  ;; Install `undo-fu' when necessary
+  (when (< emacs-major-version 28)
+    (use-package undo-fu
+      :ensure t))
   :custom
+  ;; undo will never freeze my Emacs
+  (evil-undo-system (if (>= emacs-major-version 28) 'undo-redo 'undo-fu))
   ;; Switch to the new window after splitting
   (evil-split-window-below t)
   (evil-vsplit-window-right t)
