@@ -5,26 +5,33 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'rx))
+
 ;; A newsreader in Emacs
 (use-package gnus
   :ensure nil
   :custom
   (gnus-use-cache t)
   (gnus-use-scoring nil)
-  (gnus-keep-backlog nil)
+  (gnus-keep-backlog 10)
   (gnus-suppress-duplicates t)
   (gnus-novice-user nil)
+  (gnus-expert-user t)
   (gnus-interactive-exit nil)
-  (gnus-interactive-catchup nil)
   (gnus-use-cross-reference nil)
   (gnus-inhibit-startup-message nil)
   (gnus-home-directory (no-littering-expand-var-file-name "gnus/"))
   (gnus-select-method '(nnimap "GMail"
                                (nnimap-address "imap.gmail.com")
-                               (nnimap-inbox "INBOX")
-                               (nnimap-expunge t)
-                               (nnimap-server-port 993)
-                               (nnimap-stream ssl)))
+                               (nnimap-server-port "imaps")
+                               (nnimap-stream ssl)
+                               (nnimap-expunge 'on-exit)
+                               (nnimap-streaming t)
+                               (nnimap-fetch-partial-articles "text/")
+                               (nnimap-record-commands t)
+                               ;; Client-Side settings
+                               (nnimap-inbox "INBOX")))
   (gnus-secondary-select-methods '((nntp "gmane" (nntp-address "news.gmane.io"))
                                    (nntp "news.gwene.org")
                                    (nntp "nntp.lore.kernel.org"))))
@@ -32,43 +39,107 @@
 ;; Group mode commands for Gnus
 (use-package gnus-group
   :ensure nil
+  :defines gnus-tmp-group
   :after gnus
-  :hook (gnus-group-mode . gnus-topic-mode)
+  :hook ((gnus-group-mode . gnus-topic-mode)
+         (gnus-select-group . gnus-group-set-timestamp))
+  :config
+  (defun gnus-user-format-function-d (_)
+    (let ((time (gnus-group-timestamp gnus-tmp-group)))
+      (if time
+          (format-time-string "%F %H:%M" time)
+        "")))
+  :custom-face
+  (gnus-group-mail-1         ((t (:foreground "DeepPink1" :bold t))))
+  (gnus-group-mail-1-empty   ((t (:foreground "DeepPink4" :italic t))))
+  (gnus-group-mail-2         ((t (:foreground "HotPink1" :bold t))))
+  (gnus-group-mail-2-empty   ((t (:foreground "HotPink4" :italic t))))
+  (gnus-group-mail-3         ((t (:foreground "magenta1" :bold t))))
+  (gnus-group-mail-3-empty   ((t (:foreground "magenta4" :italic t))))
+  (gnus-group-mail-low       ((t (:foreground "SteelBlue1" :bold t))))
+  (gnus-group-mail-low-empty ((t (:foreground "SteelBlue4" :italic t))))
+  (gnus-group-news-1         ((t (:foreground "DarkSeaGreen1" :bold t))))
+  (gnus-group-news-1-empty   ((t (:foreground "DarkSeaGreen4" :italic t))))
+  (gnus-group-news-2         ((t (:foreground "CadetBlue1" :bold t))))
+  (gnus-group-news-2-empty   ((t (:foreground "CadetBlue4" :italic t))))
+  (gnus-group-news-3         ((t (:foreground "RoyalBlue1" :bold t))))
+  (gnus-group-news-3-empty   ((t (:foreground "RoyalBlue4" :italic t))))
+  (gnus-group-news-low       ((t (:foreground "SkyBlue1" :bold t))))
+  (gnus-group-news-low-empty ((t (:foreground "SkyBlue4" :italic t))))
   :custom
-  ;;                                 Ticked    New     Unread  open-status Group
-  (gnus-group-line-format "%M%S%p%P %1(%7i%) %3(%7U%) %3(%7y%) %4(%B%-45G%)\n")
+  ;;          indentation ------------.
+  ;;  #      process mark ----------. |
+  ;;                level --------. | |
+  ;;           subscribed ------. | | |
+  ;;  %          new mail ----. | | | |
+  ;;  *   marked articles --. | | | | |
+  ;;                        | | | | | |  Ticked    New     Unread  open-status Group
+  (gnus-group-line-format "%M%m%S%L%p%P %1(%7i%) %3(%7U%) %3(%7y%) %4(%B%-45G%) %ud\n")
   (gnus-group-sort-function '(gnus-group-sort-by-level gnus-group-sort-by-alphabet))
-  (gnus-no-groups-message "")
-  (gnus-group-goto-unread nil))
+  (gnus-group-highlight '(;; Mail
+                          ((and mailp (eq level 1) (= unread 0)) . gnus-group-mail-1-empty)
+                          ((and mailp (eq level 1))              . gnus-group-mail-1)
+                          ((and mailp (eq level 2) (= unread 0)) . gnus-group-mail-2-empty)
+                          ((and mailp (eq level 2))              . gnus-group-mail-2)
+                          ((and mailp (eq level 3) (= unread 0)) . gnus-group-mail-3-empty)
+                          ((and mailp (eq level 3))              . gnus-group-mail-3)
+                          ((and mailp              (= unread 0)) . gnus-group-mail-low-empty)
+                          ((and mailp)                           . gnus-group-mail-low)
+                          ;; News
+                          ((and (eq level 1) (= unread 0)) . gnus-group-news-1-empty)
+                          ((and (eq level 1))              . gnus-group-news-1)
+                          ((and (eq level 2) (= unread 0)) . gnus-group-news-2-empty)
+                          ((and (eq level 2))              . gnus-group-news-2)
+                          ((and (eq level 3) (= unread 0)) . gnus-group-news-3-empty)
+                          ((and (eq level 3))              . gnus-group-news-3)
+                          ((and              (= unread 0)) . gnus-group-news-low-empty)
+                          (t                               . gnus-group-news-low))))
 
 ;; A folding minor mode for Gnus group buffers
 (use-package gnus-topic
   :ensure nil
   :after gnus
   :custom
-  (gnus-topic-display-empty-topics nil))
+  (gnus-topic-indent-level 2)
+  (gnus-topic-display-empty-topics t))
 
 ;; Summary mode commands for Gnus
 (use-package gnus-sum
   :ensure nil
   :after gnus
   :custom
-  (gnus-auto-select-first nil)
-  (gnus-auto-select-next nil)
-  (gnus-single-article-buffer t)
+  ;; Pretty marks
+  (gnus-sum-thread-tree-root            "┌ ")
+  (gnus-sum-thread-tree-false-root      "◌ ")
+  (gnus-sum-thread-tree-single-indent   "◎ ")
+  (gnus-sum-thread-tree-vertical        "│")
+  (gnus-sum-thread-tree-indent          "  ")
+  (gnus-sum-thread-tree-leaf-with-other "├─►")
+  (gnus-sum-thread-tree-single-leaf     "╰─►")
+  (gnus-summary-line-format "%U%R %3d %[%-23,23f%] %B %s\n")
+  ;; Loose threads
+  (gnus-summary-make-false-root 'adopt)
+  (gnus-simplify-subject-functions '(gnus-simplify-subject-re gnus-simplify-whitespace))
+  (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+  ;; Filling in threads
+  (gnus-fetch-old-headers 'some)
+  (gnus-fetch-old-ephemeral-headers 'some)
   (gnus-build-sparse-threads 'some)
-  (gnus-view-pseudo-asynchronously t)
-  (gnus-simplify-subject-functions '(gnus-simplify-subject-re))
-  (gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
-  (gnus-subthread-sort-functions '(gnus-thread-sort-by-date))
+  ;; More threading
+  (gnus-show-threads t)
   (gnus-thread-indent-level 2)
   (gnus-thread-hide-subtree nil)
-  (gnus-thread-ignore-subject nil)
-  (gnus-summary-gather-subject-limit 'fuzzy)
-  (gnus-summary-next-group-on-exit nil)
-  (gnus-summary-display-while-building t)
+  (gnus-sort-gathered-threads-function 'gnus-thread-sort-by-date)
+  ;; Sorting
+  (gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
+  (gnus-subthread-sort-functions '(gnus-thread-sort-by-date))
+  ;; Viewing
+  (gnus-view-pseudos 'automatic)
+  (gnus-view-pseudos-separately t)
+  (gnus-view-pseudo-asynchronously t)
+  ;; Misc
   (gnus-summary-ignore-duplicates t)
-  (gnus-summary-display-arrow nil))
+  (gnus-summary-display-while-building t))
 
 ;; Article mode for Gnus
 (use-package gnus-art
@@ -83,8 +154,21 @@
   (gnus-treat-from-gravatar nil)
   (gnus-treat-mail-gravatar nil)
   (gnus-treat-body-boundary nil)
+  (gnus-treat-display-x-face nil)
+  (gnus-treat-display-face nil)
+  (gnus-visible-headers (rx line-start (or "From"
+                                           "Subject"
+                                           "Date"
+                                           "To"
+                                           "Cc"
+                                           "Newsgroups"
+                                           "User-Agent"
+                                           "X-Mailer"
+                                           "X-Newsreader")
+                            ":"))
   ;; Block images
   (gnus-blocked-images ".")
+  (gnus-inhibit-images t)
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
                                  (not gnus-article-sort-by-date)))
   (gnus-article-show-cursor t)
@@ -106,23 +190,15 @@
   :ensure nil
   :after gnus
   :custom
+  ;; No, thanks
   (gnus-check-new-newsgroups nil)
+  (gnus-save-killed-list nil)
+  ;; Record Gnus data (reading articles, killing/subscribing groups)
   (gnus-use-dribble-file t)
   (gnus-always-read-dribble-file t)
   (gnus-save-newsrc-file nil)
   (gnus-read-newsrc-file nil)
   (gnus-subscribe-newsgroup-method 'gnus-subscribe-interactively))
-
-;; Unplugged support for Gnus
-(use-package gnus-agent
-  :ensure nil
-  :after gnus
-  :custom
-  (gnus-agent-mark-unread-after-downloaded t)
-  (gnus-agent-cache t)
-  (gnus-agent-go-online t)
-  (gnus-agent-expire-all nil)
-  (gnus-agent-expire-days 30))
 
 ;; Mail and post interface for Gnus
 (use-package gnus-msg
@@ -156,14 +232,21 @@
   :custom
   (gnus-bookmark-bookmark-inline-details '(subject author)))
 
+;; Extract (uu)encoded files in Gnus
+(use-package gnus-uu
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-uu-kill-carriage-return t)
+  (gnus-uu-ignore-files-by-type "audio/\\|video/mpeg"))
+
 ;; Mail support functions for the Gnus mail backends
 (use-package nnmail
   :ensure nil
   :after gnus
   :custom
-  (nnimap-expiry-wait 'never)
-  (nnmail-expiry-target "nnml:expired")
   (nnmail-expiry-wait 'never)
+  (nnmail-expiry-target "nnml:expired")
   (nnmail-split-methods 'nnmail-split-fancy)
   (nnmail-treat-duplicates 'delete))
 
@@ -177,7 +260,6 @@
   (message-kill-buffer-on-exit t)
   (message-use-mail-followup-to nil)
   (message-mail-alias-type 'ecomplete)
-  (message-wide-reply-confirm-recipients t)
   (message-send-mail-function #'smtpmail-send-it)
   (message-signature user-full-name))
 
@@ -188,7 +270,7 @@
   (smtpmail-smtp-server "smtp.gmail.com")
   (smtpmail-smtp-user user-mail-address)
   (smtpmail-smtp-service 587)
-  (smptmail-stream-type 'starttls))
+  (smptmail-stream-type 'ssl))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here

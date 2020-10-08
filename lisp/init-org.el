@@ -294,8 +294,7 @@
                                   "#+BEGIN: columnview :id local :match \"NEW\" :format \"\\%ITEM(New)\"\n#+END:\n"
                                   "*** Discussion\n"
                                   "#+begin: columnview :id local :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%PRIORITY(Priority) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
-                                  )
-               )))
+                                  ))))
             ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
             ("Project"
              :keys "p"
