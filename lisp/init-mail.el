@@ -30,6 +30,8 @@
                                (nnimap-streaming t)
                                (nnimap-fetch-partial-articles "text/")
                                (nnimap-record-commands t)
+                               (nnmail-expiry-target "nnimap+GMail:[Gmail]/Trash")
+                               (nnir-search-engine imap)
                                ;; Client-Side settings
                                (nnimap-inbox "INBOX")))
   (gnus-secondary-select-methods '((nntp "gmane" (nntp-address "news.gmane.io"))
@@ -120,7 +122,7 @@
   ;; Loose threads
   (gnus-summary-make-false-root 'adopt)
   (gnus-simplify-subject-functions '(gnus-simplify-subject-re gnus-simplify-whitespace))
-  (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+  (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-subject)
   ;; Filling in threads
   (gnus-fetch-old-headers 'some)
   (gnus-fetch-old-ephemeral-headers 'some)
@@ -245,8 +247,7 @@
   :ensure nil
   :after gnus
   :custom
-  (nnmail-expiry-wait 'never)
-  (nnmail-expiry-target "nnml:expired")
+  (nnmail-expiry-wait 30)
   (nnmail-split-methods 'nnmail-split-fancy)
   (nnmail-treat-duplicates 'delete))
 
