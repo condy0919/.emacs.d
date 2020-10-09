@@ -97,6 +97,7 @@
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
     "by" 'my/copy-current-buffer-name
+    "bv" 'revert-buffer
     ;; --------------
     "bm" 'bookmark-set
     "bM" 'bookmark-set-no-overwrite
@@ -118,7 +119,6 @@
     "ck" 'kill-compilation
     "cx" 'quickrun
     "cX" 'quickrun-shell
-    "c TAB" 'indent-code-rigidly
 
     ;; window
     "w" '(:keymap evil-window-map :which-key "window")
