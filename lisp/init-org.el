@@ -15,6 +15,16 @@
     (evil-collection-define-key 'normal 'org-mode-map
       (kbd "<tab>") 'org-cycle
       (kbd "S-<tab>") 'org-shifttab))
+
+  (define-advice org-fast-tag-selection (:around (func &rest args))
+    "Hide the modeline in *Org tags* buffer so you can actually see its
+content."
+    (cl-letf* (((symbol-function 'org-fit-window-to-buffer)
+                (lambda (&optional window _max-height _min-height _shrink-only)
+                  (when-let (buf (window-buffer window))
+                    (with-current-buffer buf
+                      (setq mode-line-format nil))))))
+      (apply func args)))
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
