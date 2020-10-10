@@ -158,6 +158,7 @@
     "sg" 'counsel-rg
     "si" 'imenu
     "sj" 'evil-show-jumps
+    "sl" 'ivy-resume
     "sm" 'evil-show-marks
     "sr" 'evil-show-registers
     "ss" 'swiper-isearch
