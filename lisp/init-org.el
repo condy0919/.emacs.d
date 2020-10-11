@@ -304,32 +304,7 @@ content."
                                   "#+BEGIN: columnview :id local :match \"NEW\" :format \"\\%ITEM(New)\"\n#+END:\n"
                                   "*** Discussion\n"
                                   "#+begin: columnview :id local :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%PRIORITY(Priority) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
-                                  ))))
-            ;; https://www.reddit.com/r/emacs/comments/fs7tk3/how_to_manage_todo_tasks_in_my_project/
-            ("Project"
-             :keys "p"
-             :file ,(defun project-todo-file ()
-                      (let ((file (expand-file-name "TODO.org" (projectile-project-root))))
-                        (with-current-buffer (find-file-noselect file)
-                          (org-mode)
-                          ;; Set to UTF-8 because we may be visiting raw file
-                          (setq buffer-file-coding-system 'utf-8-unix)
-                          (when-let* ((headline (doct-get :headline)))
-                            (unless (org-find-exact-headline-in-buffer headline)
-                              (goto-char (point-max))
-                              (insert "* " headline)
-                              (org-set-tags (downcase headline))))
-                          file)))
-             :contexts (:when (and (functionp 'projectile-project-root) (projectile-project-root)))
-             :template (lambda () (concat "* %{todo-state} " (when (y-or-n-p "Link? ") "%A\n") "%?"))
-             :todo-state "TODO"
-             :children (("bug"           :keys "b" :headline "Bugs")
-                        ("documentation" :keys "d" :headline "Documentation")
-                        ("enhancement"   :keys "e" :headline "Enhancements")
-                        ("feature"       :keys "f" :headline "Features")
-                        ("optimization"  :keys "o" :headline "Optimizations")
-                        ("miscellaneous" :keys "m" :headline "Miscellaneous")
-                        ("security"      :keys "s" :headline "Security")))))
+                                  ))))))
          ))
   )
 

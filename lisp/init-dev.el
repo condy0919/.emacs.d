@@ -161,7 +161,25 @@
 ;; Comprehensive ivy integration for projectile
 (use-package counsel-projectile
   :ensure t
-  :hook (after-init . counsel-projectile-mode))
+  :hook (after-init . counsel-projectile-mode)
+  :custom
+  (counsel-projectile-org-capture-templates
+   (doct `(:group
+           :empty-lines 1
+           :children
+           (("Project"
+             :keys "p"
+             :file "${root}/TODO.org"
+             :type entry
+             :template (lambda () (concat "* TODO " (when (y-or-n-p "Link? ") "%A\n") "%?"))
+             :children (("bug"           :keys "b" :headline "Bugs")
+                        ("documentation" :keys "d" :headline "Documentation")
+                        ("enhancement"   :keys "e" :headline "Enhancements")
+                        ("feature"       :keys "f" :headline "Features")
+                        ("optimization"  :keys "o" :headline "Optimizations")
+                        ("miscellaneous" :keys "m" :headline "Miscellaneous")
+                        ("security"      :keys "s" :headline "Security")))))))
+  )
 
 ;; Lint tool
 (use-package flycheck
