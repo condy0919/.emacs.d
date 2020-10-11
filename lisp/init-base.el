@@ -414,7 +414,10 @@ Else, call `comment-or-uncomment-region' on the current line."
             (comment-dwim nil)
           (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
   :custom
-  ;; `auto-fill' inside comments
+  ;; `auto-fill' inside comments.
+  ;;
+  ;; The quoted text in `message-mode' are identified as comments, so only
+  ;; quoted text can be `auto-fill'ed.
   (comment-auto-fill-only-comments t))
 
 ;; transparent remote access
