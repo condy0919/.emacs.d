@@ -35,7 +35,6 @@
                                ;; Client-Side settings
                                (nnimap-inbox "INBOX")))
   (gnus-secondary-select-methods '((nntp "gmane" (nntp-address "news.gmane.io"))
-                                   (nntp "news.gwene.org")
                                    (nntp "nntp.lore.kernel.org"))))
 
 ;; Group mode commands for Gnus
