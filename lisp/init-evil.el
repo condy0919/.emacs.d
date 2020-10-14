@@ -153,22 +153,23 @@
 
     ;; search
     "s" '(:ignore t :which-key "search")
-    "sa" 'swiper-all
-    "sb" 'swiper
-    "sg" 'counsel-rg
-    "si" 'imenu
-    "sj" 'evil-show-jumps
-    "sl" 'ivy-resume
-    "sm" 'evil-show-marks
-    "sr" 'evil-show-registers
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point
+    "sb" 'swiper-all
+    "sB" 'swiper-all-thing-at-point
+    "sj" 'evil-show-jumps
+    "sm" 'evil-show-marks
+    "sr" 'evil-show-registers
+    "si" 'imenu
+    "sl" 'ivy-resume
+    "sg" 'counsel-rg
     "sw" 'my/lsp-ivy-workspace-symbol
 
     ;; insert
     "i" '(:ignore t :which-key "insert")
     "iq" 'quickurl-prefix-map
     "it" 'insert-date-time
+    "iu" 'counsel-unicode-char
     "iy" 'clipboard-yank
 
     ;; git
