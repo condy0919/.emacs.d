@@ -341,7 +341,8 @@ usemathjax: false
          (atomic-chrome-edit-mode . delete-other-windows))
   :config
   ;; The browser is in "insert" state, makes it consistent
-  (evil-set-initial-state 'atomic-chrome-edit-mode 'insert)
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'atomic-chrome-edit-mode 'insert))
   :custom
   (atomic-chrome-buffer-open-style 'frame)
   (atomic-chrome-default-major-mode 'markdown-mode)
