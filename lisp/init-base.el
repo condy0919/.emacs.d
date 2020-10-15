@@ -117,14 +117,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-;; Evilify `indent-rigidly'
-(dolist (b '(("h" indent-rigidly-left)
-             ("l" indent-rigidly-right)
-             ("H" indent-rigidly-left-to-tab-stop)
-             ("L" indent-rigidly-right-to-tab-stop)))
-  (cl-destructuring-bind (k f) b
-    (define-key indent-rigidly-map (kbd k) f)))
-
 ;; Font size
 (set-face-attribute 'default nil :height 110)
 
