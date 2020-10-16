@@ -233,6 +233,7 @@
     (pulse-line))
   :init
   ;; better evil notification
+  (advice-add #'pop-tag-mark         :after #'recenter-and-pulse)
   (advice-add #'evil-goto-line       :after #'recenter-and-pulse)
   (advice-add #'evil-goto-mark-line  :after #'recenter-and-pulse)
   (advice-add #'what-cursor-position :after #'pulse-line)
