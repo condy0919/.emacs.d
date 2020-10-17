@@ -69,7 +69,7 @@
   (lsp-idle-delay 0.5)                   ;; lazy refresh
   (lsp-log-io nil)                       ;; enable log only for debug
   (lsp-diagnostics-provider :flycheck)   ;; prefer `flycheck'
-  (lsp-lens-auto-enable t)               ;; enable lens
+  (lsp-lens-enable t)                    ;; enable lens
   (lsp-auto-guess-root t)                ;; auto guess root
   (lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
