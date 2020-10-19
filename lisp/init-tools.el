@@ -293,13 +293,7 @@ usemathjax: false
   :ensure nil
   :bind ("C-c /" . webjump)
   :custom
-  (webjump-sites '(;; Emacs.
-                   ("Emacs Home Page" .
-                    "www.gnu.org/software/emacs/emacs.html")
-                   ("Savannah Emacs page" .
-                    "savannah.gnu.org/projects/emacs")
-
-                   ;; Internet search engines.
+  (webjump-sites '(;; Internet search engines.
                    ("DogeDoge" .
                     [simple-query "dogedoge.com"
                                   "dogedoge.com/results?q=" ""])
