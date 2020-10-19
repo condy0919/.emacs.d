@@ -104,6 +104,45 @@ confirmation."
      t)))
 
 ;;;###autoload
+(defun my/transient-tab-bar-switch-to-next-tab ()
+  "Transient version of `tab-bar-switch-to-next-tab'."
+  (interactive)
+  (let ((echo-keystrokes nil))
+    (tab-bar-switch-to-next-tab)
+    (message "Tab: [t]")
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map "t" #'tab-bar-switch-to-next-tab)
+       map)
+     t)))
+
+;;;###autoload
+(defun my/transient-tab-bar-history ()
+  "Transient version of `tab-bar-history-*'."
+  (interactive)
+  (let ((echo-keystrokes nil))
+    (message "Tab History: [h] = back [l] = forward")
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map "h" #'tab-bar-history-back)
+       (define-key map "l" #'tab-bar-history-forward)
+       map)
+     t)))
+
+;;;###autoload
+(defun my/transient-tab-bar-undo-close-tab ()
+  "Transient version of `tab-bar-undo-close-tab'."
+  (interactive)
+  (let ((echo-keystrokes nil))
+    (tab-bar-undo-close-tab)
+    (message "Tab: [u]ndo")
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map "u" #'tab-bar-undo-close-tab)
+       map)
+     t)))
+
+;;;###autoload
 (defun my/transient-other-window-nav ()
   "Transient version of other-window-navigation."
   (interactive)

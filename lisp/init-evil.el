@@ -130,15 +130,19 @@
 
     ;; tab
     "t" '(:ignore t :which-key "tab")
+    "tb" 'switch-to-buffer-other-tab
     "tc" 'tab-bar-close-tab
+    "td" 'dired-other-tab
+    "tf" 'find-file-other-tab
     "ti" 'tab-switcher
+    "tm" 'tab-bar-move-tab
     "tn" 'tab-bar-new-tab
     "to" 'tab-bar-close-other-tabs
-    "tr" 'tab-bar-rename-tab-by-name
-    "tt" 'tab-bar-select-tab-by-name
-    "tu" 'tab-bar-undo-close-tab
-    "tf" 'tab-bar-history-forward
-    "tb" 'tab-bar-history-back
+    "tp" 'tab-bar-switch-to-recent-tab
+    "tr" 'tab-bar-rename-tab
+    "tt" 'my/transient-tab-bar-switch-to-next-tab
+    "tu" 'my/transient-tab-bar-undo-close-tab
+    "th" 'my/transient-tab-bar-history
 
     ;; text
     "x" '(:ignore t :which-key "text")
