@@ -377,6 +377,10 @@ usemathjax: false
   :custom
   (quickurl-format-function #'quickurl-url-url))
 
+;; Quote text with a semi-box.
+(use-package boxquote
+  :ensure t)
+
 ;; The builtin dictionary app in MacOS
 (when (eq system-type 'darwin)
   (use-package osx-dictionary
