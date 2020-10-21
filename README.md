@@ -216,22 +216,23 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                                                              |
 |---------------|-----------------------------------------------------------------------|
-| <kbd>sa</kbd> | `swiper-all`在所有打开的`buffer`中搜索                                |
-| <kbd>sb</kbd> | `swiper`在当前`buffer`中搜索                                          |
+| <kbd>sb</kbd> | `swiper-all`在所有打开的`buffer`中搜索                                |
+| <kbd>sB</kbd> | `swiper-all-thing-at-point`与上面类似，默认输入是当前光标处的文本     |
+| <kbd>ss</kbd> | `swiper-isearch`采用`isearch`的方式来搜索，不显示行号                 |
+| <kbd>sS</kbd> | `swiper-isearch-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
 | <kbd>sg</kbd> | `counsel-rg`在当前目录中使用`rg`搜索                                  |
+| <kbd>sl</kbd> | `ivy-resume`方便恢复上一次`swiper`的搜索                              |
 | <kbd>si</kbd> | `imenu`                                                               |
 | <kbd>sj</kbd> | `evil-show-jumps`                                                     |
 | <kbd>sm</kbd> | `evil-show-marks`                                                     |
 | <kbd>sr</kbd> | `evil-show-registers`                                                 |
-| <kbd>ss</kbd> | `swiper-isearch`采用`isearch`的方式来搜索，不显示行号                 |
-| <kbd>sS</kbd> | `swiper-isearch-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
 | <kbd>sw</kbd> | `my/lsp-ivy-workspace-symbol`仅在`lsp-mode`开启的情况下生效，查找符号 |
 
 ## Emacs
 
 | key                | function                                                                      |
 |--------------------|-------------------------------------------------------------------------------|
-| <kbd>M-;</kbd>     | `evilnc-comment-or-uncomment-lines` 注释与反注释                              |
+| <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释                                           |
 | <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
 | <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
 | <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                                     |
