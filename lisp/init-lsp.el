@@ -29,6 +29,7 @@
   (company-show-numbers t)
   (company-require-match nil)
   (company-minimum-prefix-length 3)
+  (company-tooltip-width-grow-only t)
   (company-tooltip-align-annotations t)
   ;; complete `abbrev' only in current buffer
   (company-dabbrev-other-buffers nil)
