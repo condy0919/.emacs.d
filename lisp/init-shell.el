@@ -60,21 +60,14 @@
   :ensure nil
   :defines eshell-prompt-regexp
   :functions eshell/alias
-  :hook ((eshell-mode . (lambda ()
-                          (term-mode-common-init)
-                          ;; eshell is not fully functional
-                          (setenv "PAGER" "cat")
-                          ;; Define aliases
-                          (eshell/alias "ll"   "ls -lh --color=auto $*")
-                          (eshell/alias "vi"   "find-file $1")
-                          (eshell/alias "vim"  "find-file $1")
-                          (eshell/alias "nvim" "find-file $1")))
-         (eshell-first-time-mode . (lambda ()
-                                     (evil-collection-define-key 'insert 'eshell-mode-map
-                                       (kbd "C-w") 'backward-kill-word
-                                       (kbd "C-d") 'eshell-quit-or-delete-char
-                                       (kbd "C-p") 'eshell-previous-input
-                                       (kbd "C-n") 'eshell-next-input))))
+  :hook (eshell-mode . (lambda ()
+                         (term-mode-common-init)
+                         ;; eshell is not fully functional
+                         (setenv "PAGER" "cat")
+                         ;; Define aliases
+                         (eshell/alias "vi"   "find-file $1")
+                         (eshell/alias "vim"  "find-file $1")
+                         (eshell/alias "nvim" "find-file $1")))
   :config
   (define-advice eshell-term-sentinel (:after (process exit-msg))
     "Cleanup the buffer of visual commands."
@@ -82,14 +75,6 @@
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
-
-  ;; Copy from doom
-  (defun eshell-quit-or-delete-char (arg)
-    "Delete a character or quit eshell if there's nothing to delete."
-    (interactive "p")
-    (if (and (eolp) (looking-back eshell-prompt-regexp nil))
-        (eshell-life-is-too-much)
-      (delete-char arg)))
 
   (defun eshell-prompt ()
     "Prompt for eshell."
@@ -144,6 +129,21 @@
     (let ((hist (delete-dups (ring-elements eshell-history-ring))))
       (insert (completing-read "> " hist nil t))))
   )
+
+(use-package esh-mode
+  :ensure nil
+  :bind (:map eshell-mode-map
+         ("C-w" . backward-kill-word)
+         ("C-d" . eshell-quit-or-delete-char)
+         ("C-p" . eshell-previous-input)
+         ("C-n" . eshell-next-input))
+  :config
+  (defun eshell-quit-or-delete-char (arg)
+    "Delete a character or quit eshell if there's nothing to delete."
+    (interactive "p")
+    (if (and (eolp) (looking-back eshell-prompt-regexp nil))
+        (eshell-life-is-too-much)
+      (delete-char arg))))
 
 ;; Popup a shell inside Emacs
 (use-package shell-pop
