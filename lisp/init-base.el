@@ -17,6 +17,10 @@
       inhibit-startup-message t
       inhibit-startup-buffer-menu t)
 
+;; Pixelwise resize
+(setq window-resize-pixelwise t
+      frame-resize-pixelwise t)
+
 ;; Linux specific
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
