@@ -173,6 +173,13 @@
   :custom
   (ebrowse--indentation 2))
 
+;; Expand C macros
+(use-package cmacexp
+  :ensure nil
+  :custom
+  (c-macro-prompt-flag t)
+  (c-macro-shrink-window-flag t))
+
 (use-package modern-cpp-font-lock
   :ensure t
   :hook (c++-mode . modern-c++-font-lock-mode)
