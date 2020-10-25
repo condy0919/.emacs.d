@@ -464,9 +464,9 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :bind ([remap dabbrev-expand] . hippie-expand)
   :config
-  (with-eval-after-load 'tempo
-    (defun try-expand-tempo (_old)
-      (tempo-expand-if-complete)))
+  (defun try-expand-tempo (_old)
+    (require 'tempo)
+    (tempo-expand-if-complete))
   :custom
   (hippie-expand-try-functions-list '(try-expand-tempo
                                       try-expand-dabbrev
