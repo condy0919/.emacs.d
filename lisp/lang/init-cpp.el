@@ -108,10 +108,6 @@
   :after cc-mode
   :hook ((c-mode . c-mode-tempo-setup)
          (c++-mode . c++-mode-tempo-setup))
-  :bind (:map c++-mode-map
-         ("C-c C-e" . tempo-expand-if-complete)
-         :map c-mode-map
-         ("C-c C-e" . tempo-expand-if-complete))
   :config
   (defvar c-tempo-tags nil)
   (defvar c++-tempo-tags nil)
@@ -162,7 +158,7 @@
                            "return !(lhs < rhs);" > n>
                            "}" > n>
                            )
-                         "cmpop"
+                         "cmp"
                          "Insert C++ class comparison operators"
                          'c++-tempo-tags)
   )
