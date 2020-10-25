@@ -596,12 +596,11 @@ Else, call `comment-or-uncomment-region' on the current line."
                      ,quelpa-packages-dir
                      ,no-littering-var-directory
                      ,no-littering-etc-directory
-                     ".cache"
-                     "cache"
                      "^/tmp/"
                      "/ssh:"
                      "/su\\(do\\)?:"
                      "^/usr/include/"
+                     "/TAGS\\'"
                      "COMMIT_EDITMSG\\'")))
 
 ;; Try out emacs package without installing
