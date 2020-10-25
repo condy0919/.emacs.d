@@ -274,21 +274,6 @@
   :ensure nil
   :mode ("\\.g4\\'" . antlr-mode))
 
-;; Shell mode
-(use-package sh-script
-  :ensure nil
-  :mode (("\\.sh\\'"     . sh-mode)
-         ("/PKGBUILD\\'" . sh-mode))
-  :hook (sh-mode . sh-mode-setup)
-  :bind (:map sh-mode-map
-         ("C-c C-e" . sh-execute-region))
-  :config
-  (defun sh-mode-setup ()
-    (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p nil t))
-  :custom
-  (sh-basic-offset 2)
-  (sh-indentation 2))
-
 ;; XML
 (use-package nxml-mode
   :ensure nil
@@ -340,7 +325,7 @@
 (require 'init-elisp)
 (require 'init-sql)
 (require 'init-go)
-(require 'init-d)
+(require 'init-sh)
 
 (provide 'init-dev)
 
