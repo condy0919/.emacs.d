@@ -60,3 +60,4 @@ backend
 precompiled
 WIP
 PKGBUILD
+flycheck
