@@ -80,8 +80,8 @@ confirmation."
   "Close buffer after exit."
   (when (ignore-errors (get-buffer-process (current-buffer)))
     (set-process-sentinel (get-buffer-process (current-buffer))
-                          (lambda (process exit-msg)
-                            (when (string-match "\\(finished\\|exited\\)" exit-msg)
+                          (lambda (process _exit-msg)
+                            (when (memq (process-status process) '(exit stop))
                               (kill-buffer (process-buffer process))
                               (when (> (count-windows) 1)
                                 (delete-window)))))))
