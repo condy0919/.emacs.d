@@ -65,6 +65,26 @@
                          "test"
                          "Insert a test function"
                          'rust-tempo-tags)
+  (tempo-define-template "rust-display"
+                         '("impl Display for " (P "type: " type) " {" > n>
+                           "fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {" > n>
+                           "write!(f, \"\")" > n>
+                           "}" > n>
+                           "}" > n>
+                           )
+                         "display"
+                         "impl Display for type"
+                         'rust-tempo-tags)
+  (tempo-define-template "rust-error"
+                         '("impl std::error::Error for " (P "type: " type) " {" > n>
+                           "fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {" > n>
+                           "None" > n>
+                           "}" > n>
+                           "}" > n>
+                           )
+                         "error"
+                         "impl Error for type"
+                         'rust-tempo-tags)
   )
 
 (provide 'init-rust)
