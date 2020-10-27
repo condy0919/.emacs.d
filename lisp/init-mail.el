@@ -261,7 +261,7 @@
   (message-kill-buffer-on-exit t)
   (message-use-mail-followup-to nil)
   (message-mail-alias-type 'ecomplete)
-  (message-send-mail-function #'smtpmail-send-it)
+  (message-send-mail-function #'message-use-send-mail-function)
   (message-signature user-full-name))
 
 ;; Sending mails
@@ -272,6 +272,11 @@
   (smtpmail-smtp-user user-mail-address)
   (smtpmail-smtp-service 587)
   (smptmail-stream-type 'ssl))
+
+(use-package sendmail
+  :ensure nil
+  :custom
+  (send-mail-function #'smtpmail-send-it))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
