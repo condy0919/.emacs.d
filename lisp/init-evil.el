@@ -96,6 +96,8 @@
     "b" '(:ignore t :which-key "buffmark")
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
+    "bc" 'clone-indirect-buffer
+    "bC" 'clone-indirect-buffer-other-window
     "by" 'my/copy-current-buffer-name
     "bv" 'revert-buffer
     ;; --------------
