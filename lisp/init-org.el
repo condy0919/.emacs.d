@@ -72,6 +72,7 @@ content."
                         (?B :foreground "orange")
                         (?C :foreground "yellow")))
   (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00")
+                           ("APPT_WARNTIME_ALL" . "0 5 10 15 20 25 30 45 60")
                            ("RISK_ALL" . "Low Medium High")
                            ("STYLE_ALL" . "habit")))
   (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT{:}")
