@@ -92,8 +92,7 @@
          ([remap evil-show-marks]     . counsel-evil-marks)
          ([remap evil-show-jumps]     . evil-jump-list)
          ([remap recentf-open-files]  . counsel-recentf)
-         ([remap swiper]              . counsel-grep-or-swiper)
-         ("M-y"                       . counsel-yank-pop))
+         ([remap swiper]              . counsel-grep-or-swiper))
   :config
   (ivy-set-actions
    'counsel-find-file
