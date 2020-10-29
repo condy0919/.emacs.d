@@ -62,3 +62,4 @@ WIP
 PKGBUILD
 flycheck
 PCH
+RSS

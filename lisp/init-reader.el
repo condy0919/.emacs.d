@@ -31,6 +31,7 @@
   (newsticker-keep-obsolete-items nil)
   (newsticker-url-list-defaults nil)
   (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml")
+                         ("Demonastery" "https://demonastery.org/atom.xml")
                          ("LWN (Linux Weekly News)" "https://lwn.net/headlines/rss"))))
 
 ;; The EPub reader
