@@ -69,9 +69,9 @@
                          (eshell/alias "vim"  "find-file $1")
                          (eshell/alias "nvim" "find-file $1")))
   :config
-  (define-advice eshell-term-sentinel (:after (process exit-msg))
+  (define-advice eshell-term-sentinel (:after (process _exit-msg))
     "Cleanup the buffer of visual commands."
-    (when (string-match "\\(finished\\|exited\\)" exit-msg)
+    (when (memq (process-status process) '(exit stop))
       (kill-buffer (process-buffer process))
       (when (> (count-windows) 1)
         (delete-window))))
