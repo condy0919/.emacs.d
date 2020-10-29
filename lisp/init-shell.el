@@ -57,9 +57,8 @@
                          ;; eshell is not fully functional
                          (setenv "PAGER" "cat")
                          ;; Define aliases
-                         (eshell/alias "vi"   "find-file $1")
-                         (eshell/alias "vim"  "find-file $1")
-                         (eshell/alias "nvim" "find-file $1")))
+                         (eshell/alias "vi"  "find-file $1")
+                         (eshell/alias "vim" "find-file $1")))
   :config
   (defun eshell-prompt ()
     "Prompt for eshell."
@@ -118,13 +117,17 @@
 (use-package em-term
   :ensure nil
   :custom
+  (eshell-visual-commands '("top" "htop" "less" "more" "bat"))
+  (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
+  (eshell-visual-options '(("git" "--help" "--paginate")))
   (eshell-destroy-buffer-when-process-dies t))
 
 (use-package em-cmpl
   :ensure nil
   :custom
+  (eshell-cmpl-autolist t)
   (eshell-cmpl-ignore-case t)
-  (eshell-cmpl-cycle-completions t)
+  (eshell-cmpl-cycle-completions nil)
   (eshell-cmpl-dir-ignore (rx line-start
                               (or "." ".." "CVS" ".svn" ".git")
                               line-end))

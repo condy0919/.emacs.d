@@ -63,3 +63,4 @@ PKGBUILD
 flycheck
 PCH
 RSS
+eshell

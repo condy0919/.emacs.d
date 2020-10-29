@@ -13,7 +13,6 @@
   (dolist (k '(("C-c !" "flycheck")
                ("C-c @" "hideshow")
                ("C-c i" "ispell")
-               ("C-c n" "org-roam")
                ("C-c t" "hl-todo")
                ("C-x a" "abbrev")
                ("C-x n" "narrow")))
