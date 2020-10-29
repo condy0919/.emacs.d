@@ -6,6 +6,7 @@
 ;;; Code:
 
 (eval-when-compile
+  (require 'rx)
   (require 'init-core))
 
 (defun term-mode-common-init ()
@@ -41,15 +42,6 @@
     (define-advice vterm-send-return (:after nil)
       "Synchronize current working directory."
       (run-with-idle-timer 0.1 nil 'vterm-directory-sync)))
-
-  (define-advice counsel-yank-pop-action (:around (func &rest args))
-    (if (eq major-mode 'vterm-mode)
-        (let ((inhibit-read-only t)
-              (yank-undo-function (lambda (_start _end) (vterm-undo))))
-          (cl-letf (((symbol-function 'insert-for-yank)
-                     (lambda (s) (vterm-send-string s t))))
-            (apply func args)))
-      (apply func args)))
   :custom
   (vterm-always-compile-module t)
   (vterm-use-vterm-prompt-detection-method nil)
@@ -69,13 +61,6 @@
                          (eshell/alias "vim"  "find-file $1")
                          (eshell/alias "nvim" "find-file $1")))
   :config
-  (define-advice eshell-term-sentinel (:after (process _exit-msg))
-    "Cleanup the buffer of visual commands."
-    (when (memq (process-status process) '(exit stop))
-      (kill-buffer (process-buffer process))
-      (when (> (count-windows) 1)
-        (delete-window))))
-
   (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
@@ -130,6 +115,22 @@
       (insert (completing-read "> " hist nil t))))
   )
 
+(use-package em-term
+  :ensure nil
+  :custom
+  (eshell-destroy-buffer-when-process-dies t))
+
+(use-package em-cmpl
+  :ensure nil
+  :custom
+  (eshell-cmpl-ignore-case t)
+  (eshell-cmpl-cycle-completions t)
+  (eshell-cmpl-dir-ignore (rx line-start
+                              (or "." ".." "CVS" ".svn" ".git")
+                              line-end))
+  (eshell-cmpl-file-ignore (rx (or "~" ".elc" ".pyc" ".swp")
+                               line-end)))
+
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
@@ -143,7 +144,10 @@
     (interactive "p")
     (if (and (eolp) (looking-back eshell-prompt-regexp nil))
         (eshell-life-is-too-much)
-      (delete-char arg))))
+      (delete-char arg)))
+  :custom
+  ;; !3 to run the third history command
+  (eshell-expand-input-functions '(eshell-expand-history-references)))
 
 ;; Popup a shell inside Emacs
 (use-package shell-pop
