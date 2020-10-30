@@ -39,6 +39,9 @@
          ("C-x" . nil)
          ("C-u" . nil))
   :config
+  (when (eq system-type 'darwin)
+    (define-key term-raw-map (kbd "H-v") 'term-paste))
+
   (defvar term--process nil)
 
   ;; Directory synchronization (linux-only)
