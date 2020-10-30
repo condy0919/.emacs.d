@@ -201,7 +201,6 @@
     "aC" 'calendar
     "aa" 'org-agenda
     "ac" 'org-capture
-    "ae" 'elpher
     "ag" 'gnus
     "ai" 'rcirc
     "aj" 'jblog

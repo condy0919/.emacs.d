@@ -201,13 +201,11 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>aC</kbd> | `calendar`日历                       |
 | <kbd>aa</kbd> | `org-agenda`日程                     |
 | <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
-| <kbd>ae</kbd> | `elpher`拿来上 hackernews            |
 | <kbd>ag</kbd> | `gnus`查看新闻组                     |
 | <kbd>ai</kbd> | `rcirc`上 IRC                                     |
 | <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
 | <kbd>al</kbd> | `org-store-link`存储URL              |
-| <kbd>am</kbd> | `mu4e`打开邮件                       |
-| <kbd>an</kbd> | `elfeed`查看RSS订阅                  |
+| <kbd>an</kbd> | `newsticker`查看RSS订阅                  |
 | <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
 
 搜索相关的`Leader`键绑定:
@@ -234,7 +232,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
 | <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
 | <kbd>M-=</kbd>     | 在下方弹出一个`ansi-term`终端                                                     |
-| <kbd>C-c M-=</kbd> | 在当前目录打开一个外部终端                                                    |
 | <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
 | <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
