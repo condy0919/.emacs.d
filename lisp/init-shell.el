@@ -29,9 +29,15 @@
                          (set-process-query-on-exit-flag proc nil)
                          (setq-local term--process proc))))
   :bind (:map term-raw-map
+         ("C-c C-y" . term-paste)
          ;; Don't capture my keys!
-         ("M-o" . other-window)
-         ("M-=" . shell-pop))
+         ("M-o" . nil)
+         ("M-=" . nil)
+         ("M-:" . nil)
+         ("M-x" . nil)
+         ("C-h" . nil)
+         ("C-x" . nil)
+         ("C-u" . nil))
   :config
   (defvar term--process nil)
 

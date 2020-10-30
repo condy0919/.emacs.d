@@ -54,7 +54,10 @@
   ;; CUA for MacOS
   (global-set-key (kbd "H-v") 'clipboard-yank)
   (global-set-key (kbd "H-c") 'clipboard-kill-ring-save)
-  (global-set-key (kbd "H-x") 'clipboard-kill-region))
+  (global-set-key (kbd "H-x") 'clipboard-kill-region)
+
+  ;; term
+  (define-key term-raw-map (kbd "H-v") 'term-paste))
 
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
