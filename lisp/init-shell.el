@@ -25,8 +25,11 @@
                        (term-mode-common-init)
                        (my/buffer-auto-close)
                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+                         ;; Don't prompt about processes when killing vterm
+                         (set-process-query-on-exit-flag proc nil)
                          (setq-local term--process proc))))
   :bind (:map term-raw-map
+         ;; Don't capture my keys!
          ("M-o" . other-window)
          ("M-=" . shell-pop))
   :config
