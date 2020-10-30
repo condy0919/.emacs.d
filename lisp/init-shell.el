@@ -54,7 +54,9 @@
   :functions eshell/alias
   :hook (eshell-mode . (lambda ()
                          (term-mode-common-init)
-                         ;; eshell is not fully functional
+                         ;; Remove cmd args word by word
+                         (modify-syntax-entry ?- "w")
+                         ;; Eshell is not fully functional
                          (setenv "PAGER" "cat")
                          ;; Define aliases
                          (eshell/alias "vi"  "find-file $1")
@@ -94,9 +96,9 @@
   (eshell-scroll-to-bottom-on-output 'all)
   (eshell-kill-on-exit t)
   (eshell-kill-processes-on-exit t)
-  (eshell-history-size 1024)
-  (eshell-hist-ignoredups t)
+  ;; Don't record command in history if starts with whitespace
   (eshell-input-filter 'eshell-input-filter-initial-space)
+  (eshell-error-if-no-glob t)
   (eshell-glob-case-insensitive t)
   (eshell-highlight-prompt nil)
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
@@ -112,7 +114,10 @@
     (interactive)
     (let ((hist (delete-dups (ring-elements eshell-history-ring))))
       (insert (completing-read "> " hist nil t))))
-  )
+  :custom
+  (eshell-history-size 1024)
+  (eshell-hist-ignoredups t)
+  (eshell-save-history-on-exit t))
 
 (use-package em-term
   :ensure nil
@@ -162,16 +167,5 @@
   (shell-pop-shell-type (if (fboundp 'vterm) '("vterm" "*vterm*" #'vterm)
                           '("eshell" "*eshell*" #'eshell))))
 
-;; Launch external terminal on current directory
-(use-package terminal-here
-  :ensure t
-  :bind ("C-c M-=" . terminal-here-launch)
-  :config
-  (when (eq system-type 'gnu/linux)
-    (setq terminal-here-terminal-command (list (or (executable-find "alacritty")
-                                                   (executable-find "xterm")
-                                                   (executable-find "urxvt"))))))
-
 (provide 'init-shell)
-
 ;;; init-shell.el ends here
