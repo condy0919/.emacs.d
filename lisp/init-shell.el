@@ -18,34 +18,31 @@
     (setq-local evil-insert-state-cursor 'box)
     (evil-insert-state)))
 
-;; Beautiful term mode & friends
-(use-package vterm
-  :ensure t
-  :when (and (bound-and-true-p module-file-suffix)
-             (executable-find "cmake")
-             (executable-find "make")
-             (executable-find "libtool"))
-  :hook (vterm-mode . (lambda ()
-                        (term-mode-common-init)
-                        ;; Dont prompt about processes when killing vterm
-                        (setq confirm-kill-processes nil)))
+;; General term mode
+(use-package term
+  :ensure nil
+  :hook (term-mode . (lambda ()
+                       (term-mode-common-init)
+                       (my/buffer-auto-close)
+                       (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+                         (setq-local term--process proc))))
+  :bind (:map term-raw-map
+         ("M-o" . other-window)
+         ("M-=" . shell-pop))
   :config
-  ;; Directory synchronization (linux-only)
-  (defun vterm-directory-sync ()
-    "Synchronize current working directory."
-    (when vterm--process
-      (let* ((pid (process-id vterm--process))
-             (dir (file-truename (format "/proc/%d/cwd/" pid))))
-        (setq default-directory dir))))
+  (defvar term--process nil)
 
-  (when (eq system-type 'gnu/linux)
-    (define-advice vterm-send-return (:after nil)
-      "Synchronize current working directory."
-      (run-with-idle-timer 0.1 nil 'vterm-directory-sync)))
+  ;; Directory synchronization (linux-only)
+  (defun term-directory-sync ()
+    "Synchronize current working directories."
+    (when term--process
+      (when-let* ((pid (process-id term--process))
+                  (dir (file-truename (format "/proc/%d/cwd/" pid))))
+        (setq default-directory dir))))
   :custom
-  (vterm-always-compile-module t)
-  (vterm-use-vterm-prompt-detection-method nil)
-  (vterm-clear-scrollback-when-clearing t))
+  (term-input-ignoredups t)
+  (term-completion-autolist t)
+  (term-scroll-to-bottom-on-output 'all))
 
 ;; the Emacs shell & friends
 (use-package eshell
@@ -162,9 +159,10 @@
   :ensure t
   :bind ("M-=" . shell-pop)
   :custom
-  (shell-pop-window-size 40)
   (shell-pop-full-span t)
-  (shell-pop-shell-type (if (fboundp 'vterm) '("vterm" "*vterm*" #'vterm)
+  (shell-pop-window-size 40)
+  (shell-pop-shell-type (if (not (eq system-type 'windows-nt))
+                            '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell)))
                           '("eshell" "*eshell*" #'eshell))))
 
 (provide 'init-shell)

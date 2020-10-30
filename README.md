@@ -59,7 +59,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `rg` 更快的`grep`
 - `pandoc` 文本转换工具，`markdown-mode`渲染需要
 - `fd` 更现代的 `find`
-- `cmake` 编译`vterm`的模块、`c++`项目的构建工具
+- `cmake` `c++`项目的构建工具
 - `git` 这个就不用说了吧？
 - `gcc` 这个就不用说了吧？
 
@@ -110,8 +110,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
 自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的<kbd>M-x</kbd>根本无法让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于`ivy`的设置)，搜索时肯定是比较在意上下文。而自带的`isearch`在稍加设置之后，效果也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文件、修改」变成了「搜索、修改」。
-
-`vterm`作为一个与原生终端更加接近的终端模拟器，单就外观来看已经比`Emacs`自带的`eshell`好看。再加上`shell-pop`的辅助，美观又实用的`terminal`模拟器就出现了。
 
 `Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
@@ -192,8 +190,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                                                   |
 |---------------|------------------------------------------------------------|
-| <kbd>ot</kbd> | `vterm`打开`vterm`                                         |
-| <kbd>oT</kbd> | `vterm-other-window`在其他窗口打开`vterm`                  |
+| <kbd>ot</kbd> | `my/ansi-term`打开`ansi-term`                                         |
+| <kbd>oT</kbd> | `my/ansi-term-other-window`在其他窗口打开`ansi-term`                  |
 | <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
 | <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`             |
 | <kbd>os</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
@@ -235,7 +233,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释                                           |
 | <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
 | <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
-| <kbd>M-=</kbd>     | 在下方弹出一个`vterm`终端                                                     |
+| <kbd>M-=</kbd>     | 在下方弹出一个`ansi-term`终端                                                     |
 | <kbd>C-c M-=</kbd> | 在当前目录打开一个外部终端                                                    |
 | <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |

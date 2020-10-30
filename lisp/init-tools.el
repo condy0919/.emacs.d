@@ -10,14 +10,13 @@
   :ensure t
   :hook (after-init . which-key-mode)
   :config
-  (dolist (k '(("C-c !" "flycheck")
-               ("C-c @" "hideshow")
-               ("C-c i" "ispell")
-               ("C-c t" "hl-todo")
-               ("C-x a" "abbrev")
-               ("C-x n" "narrow")))
-    (cl-destructuring-bind (key name) k
-      (which-key-add-key-based-replacements key name)))
+  (which-key-add-key-based-replacements
+    "C-c !" "flycheck"
+    "C-c @" "hideshow"
+    "C-c i" "ispell"
+    "C-c t" "hl-todo"
+    "C-x a" "abbrev"
+    "C-x n" "narrow")
   :custom
   (which-key-idle-delay 0.5)
   (which-key-add-column-padding 1))

@@ -212,8 +212,8 @@
 
     ;; open
     "o" '(:ignore t :which-key "open")
-    "ot" 'vterm
-    "oT" 'vterm-other-window
+    "ot" 'my/ansi-term
+    "oT" 'my/ansi-term-other-window
     "oe" 'eshell
     "oE" 'my/eshell-other-window
     "os" (when (commandp 'osx-dictionary-search-word-at-point) 'osx-dictionary-search-word-at-point))
