@@ -273,7 +273,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `magit`作为`git`客户端
 - `hideshow`来显示/隐藏结构化的代码块，如 "{ }" 函数体等
 - `rmsbolt`作为一个本地的 **Compiler Explorer** 相比于`godbolt`友好一点
-- `ispell`拼写检查器, `evil`用户可以快速通过<kbd>zm</kbd> (`ispell-word`) 来检查
+- `ispell`拼写检查器, `evil`用户可以快速通过<kbd>z=</kbd> (`ispell-word`) 来检查
 - `flyspell`拼写检查器，仅在`magit`写提交信息时启用
 - `quickrun`作为一个能够执行部分区域内的代码块，方便快速验证函数功能
 
@@ -299,6 +299,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `c++-mode`启用了[modern-cpp-font-lock][modern-cpp-font-lock]
 - `cmake-mode`可使用`company-mode`进行符号补全
 - 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中生效。
+- 部分常用`snippet`，如`ifndef`,`main`等等。详细列表见[`init-cpp.el`](lisp/lang/init-cpp.el)文件
 
 ## rust-mode
 
