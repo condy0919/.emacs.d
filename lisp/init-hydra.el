@@ -10,6 +10,23 @@
   :after evil
   :bind ("C-c h" . hydra-copy/body)
   :config
+  (defhydra hydra-other-window-scroll (nil nil)
+    "Scroll in other window"
+    ("j" scroll-other-window-line "down")
+    ("k" scroll-other-window-down-line "up")
+    ("C-f" scroll-other-window "down")
+    ("C-b" scroll-other-window-down "up"))
+
+  (defun scroll-other-window-line ()
+    "Scroll up of one line in other window."
+    (interactive)
+    (scroll-other-window 1))
+
+  (defun scroll-other-window-down-line ()
+    "Scroll down of one line in other window."
+    (interactive)
+    (scroll-other-window-down 1))
+
   (defhydra hydra-copy (:color blue)
     "Copy"
     ("w" copy-word-at-point "word")
@@ -17,8 +34,7 @@
     ("l" copy-line-at-point "line")
     ("u" copy-url-at-point "url")
     ("e" copy-email-at-point "email")
-    ("r" copy-region "region")
-    ("q" nil "cancel"))
+    ("r" copy-region "region"))
 
   (defun copy-word-at-point ()
     "Copy word at point."

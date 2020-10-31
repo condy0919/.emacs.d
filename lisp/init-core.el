@@ -113,32 +113,6 @@ confirmation."
      t)))
 
 ;;;###autoload
-(defun my/transient-tab-bar-switch-to-next-tab ()
-  "Transient version of `tab-bar-switch-to-next-tab'."
-  (interactive)
-  (let ((echo-keystrokes nil))
-    (tab-bar-switch-to-next-tab)
-    (message "Tab: [t]")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map "t" #'tab-bar-switch-to-next-tab)
-       map)
-     t)))
-
-;;;###autoload
-(defun my/transient-tab-bar-history ()
-  "Transient version of `tab-bar-history-*'."
-  (interactive)
-  (let ((echo-keystrokes nil))
-    (message "Tab History: [h] = back [l] = forward")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map "h" #'tab-bar-history-back)
-       (define-key map "l" #'tab-bar-history-forward)
-       map)
-     t)))
-
-;;;###autoload
 (defun my/transient-tab-bar-undo-close-tab ()
   "Transient version of `tab-bar-undo-close-tab'."
   (interactive)
@@ -150,31 +124,6 @@ confirmation."
        (define-key map "u" #'tab-bar-undo-close-tab)
        map)
      t)))
-
-;;;###autoload
-(defun my/transient-other-window-nav ()
-  "Transient version of other-window-navigation."
-  (interactive)
-  (let ((echo-keystrokes nil))
-    (message "other-window-navigation: [j] [k] [C-f] [C-b]")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map "j" #'scroll-other-window-line)
-       (define-key map "k" #'scroll-other-window-down-line)
-       (define-key map (kbd "C-f") #'scroll-other-window)
-       (define-key map (kbd "C-b") #'scroll-other-window-down)
-       map)
-     t)))
-
-(defun scroll-other-window-line ()
-  "Scroll up of one line in other window."
-  (interactive)
-  (scroll-other-window 1))
-
-(defun scroll-other-window-down-line ()
-  "Scroll down of one line in other window."
-  (interactive)
-  (scroll-other-window-down 1))
 
 ;; Lock buffer to window
 (define-minor-mode sticky-buffer-mode

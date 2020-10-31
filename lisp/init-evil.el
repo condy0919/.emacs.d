@@ -125,7 +125,7 @@
     "w" '(:keymap evil-window-map :which-key "window")
     "wx" 'kill-buffer-and-window
     "wu" 'my/transient-winner-undo
-    "wg" 'my/transient-other-window-nav
+    "wg" 'hydra-other-window-scroll/body
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally
 
@@ -133,17 +133,13 @@
     "t" '(:ignore t :which-key "tab")
     "tb" 'switch-to-buffer-other-tab
     "tc" 'tab-bar-close-tab
-    "td" 'dired-other-tab
-    "tf" 'find-file-other-tab
     "ti" 'tab-switcher
-    "tm" 'tab-bar-move-tab
     "tn" 'tab-bar-new-tab
     "to" 'tab-bar-close-other-tabs
+    "tt" 'tab-bar-switch-to-tab
     "tp" 'tab-bar-switch-to-recent-tab
     "tr" 'tab-bar-rename-tab
-    "tt" 'my/transient-tab-bar-switch-to-next-tab
     "tu" 'my/transient-tab-bar-undo-close-tab
-    "th" 'my/transient-tab-bar-history
 
     ;; text
     "x" '(:ignore t :which-key "text")
