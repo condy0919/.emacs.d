@@ -25,7 +25,7 @@
                        (term-mode-common-init)
                        (my/buffer-auto-close)
                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-                         ;; Don't prompt about processes when killing vterm
+                         ;; Don't prompt about processes when killing term
                          (set-process-query-on-exit-flag proc nil)
                          (setq-local term--process proc))))
   :bind (:map term-raw-map
