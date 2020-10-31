@@ -313,18 +313,17 @@ content."
   :after org
   :custom
   (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("Arxiv"         . "https://arxiv.org/abs/%s")
-                           ("GitHub"        . "https://github.com/%s")
-                           ("GitLab"        . "https://gitlab.com/%s")
+  (org-link-abbrev-alist '(("Arxiv"         . "https://arxiv.org/abs/")
+                           ("GitHub"        . "https://github.com/")
+                           ("GitLab"        . "https://gitlab.com/")
                            ("Google"        . "https://google.com/search?q=")
-                           ("IETF"          . "https://tools.ietf.org/html/%s")
-                           ("LLVM"          . "https://reviews.llvm.org/%s")
-                           ("LWN"           . "https://lwn.net/Articles/%s")
+                           ("RFCs"          . "https://tools.ietf.org/html/")
+                           ("LWN"           . "https://lwn.net/Articles/")
                            ("StackOverflow" . "https://stackoverflow.com/questions/%s/")
-                           ("WG21"          . "https://wg21.link/%s")
-                           ("Wikipedia"     . "https://en.wikipedia.org/wiki/%s")
-                           ("YouTube"       . "https://youtube.com/watch?v=%s")
-                           ("Zhihu"         . "https://zhihu.com/question/%s"))))
+                           ("WG21"          . "https://wg21.link/")
+                           ("Wikipedia"     . "https://en.wikipedia.org/wiki/")
+                           ("YouTube"       . "https://youtube.com/watch?v=")
+                           ("Zhihu"         . "https://zhihu.com/question/"))))
 
 ;; export
 (use-package ox
