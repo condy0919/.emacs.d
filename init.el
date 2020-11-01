@@ -70,7 +70,6 @@
 (require 'init-base)
 (require 'init-utils)
 (require 'init-startup)
-(require 'init-org)
 (require 'init-ui)
 (require 'init-tools)
 (require 'init-evil)
@@ -82,10 +81,12 @@
 (require 'init-hydra)
 
 ;; standalone apps
+(require 'init-org)
 (require 'init-mail)
 (require 'init-shell)
 (require 'init-spell)
 (require 'init-reader)
+(require 'init-hyperbole)
 
 (when (file-exists-p custom-file)
   (load custom-file))
