@@ -46,9 +46,5 @@
   (doc-view-continuous t)
   (doc-view-scale-internally nil))
 
-(use-package mixed-pitch
-  :ensure t
-  :hook ((nov-mode Info-mode) . mixed-pitch-mode))
-
 (provide 'init-reader)
 ;;; init-reader.el ends here
