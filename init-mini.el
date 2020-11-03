@@ -55,8 +55,8 @@
 ;; Incremental complete in minibuffer
 (use-package icomplete
   :ensure nil
+  :hook (emacs-startup . icomplete-mode)
   :custom
-  (fido-mode t)
   (icomplete-hide-common-prefix nil)
   (icomplete-separator "\n")
   (icomplete-show-matches-on-no-input nil))
