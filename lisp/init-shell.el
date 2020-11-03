@@ -1,4 +1,4 @@
-;;; init-shell.el --- All about shell -*- lexical-binding: t -*-
+;;; init-shell.el --- All about shell not shell scripts -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

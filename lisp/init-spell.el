@@ -1,4 +1,4 @@
-;;; init-spell.el --- Spell chceker -*- lexical-binding: t -*-
+;;; init-spell.el --- Spell checker -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
 
