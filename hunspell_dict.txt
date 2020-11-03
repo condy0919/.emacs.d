@@ -64,3 +64,4 @@ flycheck
 PCH
 RSS
 eshell
+icomplete

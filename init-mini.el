@@ -36,6 +36,15 @@
 
 (require 'init-base)
 
+;; Incremental complete in minibuffer
+(use-package icomplete
+  :ensure nil
+  :custom
+  (fido-mode t)
+  (icomplete-hide-common-prefix nil)
+  (icomplete-separator "\n")
+  (icomplete-show-matches-on-no-input nil))
+
 (when (file-exists-p custom-file)
   (load custom-file))
 
