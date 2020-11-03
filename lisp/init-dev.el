@@ -161,6 +161,7 @@
 ;; Comprehensive ivy integration for projectile
 (use-package counsel-projectile
   :ensure t
+  :after doct
   :hook (after-init . counsel-projectile-mode)
   :custom
   (counsel-projectile-org-capture-templates
