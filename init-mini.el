@@ -28,7 +28,23 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Bootstrap `quelpa'.
+(use-package quelpa
+  :ensure t
+  :custom
+  (quelpa-update-melpa-p nil)
+  (quelpa-self-upgrade-p nil)
+  (quelpa-checkout-melpa-p nil))
+
+(use-package quelpa-use-package
+  :ensure t
+  :config
+  (quelpa-use-package-activate-advice)
+  :custom
+  (quelpa-use-package-inhibit-loading-quelpa t))
+
 (setq debug-on-error t)
+(setq-default lexical-binding t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "lisp/lang" user-emacs-directory))
