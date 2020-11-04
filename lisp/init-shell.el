@@ -61,7 +61,7 @@
   :ensure nil
   :defines eshell-prompt-regexp
   :functions eshell/alias
-  :hook (eshell-mode . (lambda ()
+  :hook ((eshell-mode . (lambda ()
                          (term-mode-common-init)
                          ;; Remove cmd args word by word
                          (modify-syntax-entry ?- "w")
@@ -70,6 +70,7 @@
                          ;; Define aliases
                          (eshell/alias "vi"  "find-file $1")
                          (eshell/alias "vim" "find-file $1")))
+         (eshell-after-prompt . eshell-prompt-read-only))
   :config
   (defun eshell-prompt ()
     "Prompt for eshell."
@@ -94,6 +95,16 @@
                  " ")
        "")
      "% "))
+
+  (defun eshell-prompt-read-only ()
+    "Make eshell's prompt read-only."
+    (add-text-properties
+     (point-at-bol)
+     (point)
+     '(rear-nonsticky t
+       field output
+       read-only t
+       inhibit-line-move-field-capture t)))
   :custom
   (eshell-banner-message
    '(format "%s %s\n"
