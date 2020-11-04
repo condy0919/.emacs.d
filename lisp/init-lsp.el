@@ -23,8 +23,6 @@
          ("C-p"    . company-select-previous)
          ("C-n"    . company-select-next))
   :custom
-  (company-idle-delay 0)
-  (company-echo-delay 0)
   ;; Easy navigation to candidates with M-<n>
   (company-show-numbers t)
   (company-require-match nil)
