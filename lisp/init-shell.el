@@ -159,20 +159,17 @@
   (eshell-cmpl-file-ignore (rx (or "~" ".elc" ".pyc" ".swp")
                                line-end)))
 
+(use-package em-rebind
+  :ensure nil
+  :commands eshell-delchar-or-maybe-eof)
+
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
          ("C-w" . backward-kill-word)
-         ("C-d" . eshell-quit-or-delete-char)
+         ("C-d" . eshell-delchar-or-maybe-eof)
          ("C-p" . eshell-previous-input)
          ("C-n" . eshell-next-input))
-  :config
-  (defun eshell-quit-or-delete-char (arg)
-    "Delete a character or quit eshell if there's nothing to delete."
-    (interactive "p")
-    (if (and (eolp) (looking-back eshell-prompt-regexp nil))
-        (eshell-life-is-too-much)
-      (delete-char arg)))
   :custom
   ;; !3 to run the third history command
   (eshell-expand-input-functions '(eshell-expand-history-references)))
