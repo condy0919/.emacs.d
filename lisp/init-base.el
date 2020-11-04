@@ -246,7 +246,6 @@
 ;; Workaround with minified source files
 (use-package so-long
   :ensure nil
-  :when (>= emacs-major-version 27)
   :hook (after-init . global-so-long-mode))
 
 ;; Make escape more nature
@@ -377,10 +376,7 @@
 ;; gT prev-tab
 (use-package tab-bar
   :ensure nil
-  :when (>= emacs-major-version 27)
-  :hook (after-init . (lambda ()
-                        (tab-bar-mode)
-                        (tab-bar-history-mode)))
+  :hook (after-init . tab-bar-mode)
   :config
   ;; HACK no tab-bar-lines displayed
   (defun no-tab-bar-lines (&rest _)
