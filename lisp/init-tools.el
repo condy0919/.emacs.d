@@ -333,7 +333,7 @@ usemathjax: false
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
   :ensure t
-  :commands (evil-set-initial-state)
+  :when (display-graphic-p)
   :hook ((emacs-startup . atomic-chrome-start-server)
          (atomic-chrome-edit-mode . delete-other-windows))
   :config
