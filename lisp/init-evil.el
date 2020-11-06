@@ -171,9 +171,6 @@
     "it" 'insert-date-time
     "iu" 'counsel-unicode-char
     "iy" 'clipboard-yank
-    "ib" '(:ignore t :which-key "boxquote")
-    "ibt" 'boxquote-text
-    "iby" 'boxquote-yank
 
     ;; git
     "g" '(:ignore t :which-key "git")
