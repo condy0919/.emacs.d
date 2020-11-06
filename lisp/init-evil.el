@@ -98,6 +98,7 @@
     "bC" 'clone-indirect-buffer-other-window
     "by" 'my/copy-current-buffer-name
     "bv" 'revert-buffer
+    "bz" 'bury-buffer
     ;; --------------
     "bm" 'bookmark-set
     "bM" 'bookmark-set-no-overwrite
