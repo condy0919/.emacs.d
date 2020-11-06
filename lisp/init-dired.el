@@ -20,7 +20,7 @@
   (dired-bind-info nil)
   (dired-auto-revert-buffer t)
   (dired-hide-details-hide-symlink-targets nil)
-  (dired-listing-switches "-Afhlv"))
+  (dired-listing-switches "-AFhlv"))
 
 (use-package dired-aux
   :ensure nil
