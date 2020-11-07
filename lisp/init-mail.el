@@ -169,7 +169,6 @@
                                            "X-Newsreader")
                             ":"))
   ;; Block images
-  (gnus-blocked-images ".")
   (gnus-inhibit-images t)
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
                                  (not gnus-article-sort-by-date)))
