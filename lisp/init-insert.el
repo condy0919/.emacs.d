@@ -5,15 +5,15 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'skeleton))
-
-(define-skeleton insert-date-time
-  "Insert current date time with 2 date formats available."
-  ""
-  > (let ((full (format-time-string "%F %T"))
-          (local (format-time-string "%c")))
-      (completing-read "datetime: " `(,full ,local) nil t)))
+(use-package skeleton
+  :ensure nil
+  :config
+  (define-skeleton insert-date-time
+    "Insert current date time with 2 date formats available."
+    ""
+    > (let ((full (format-time-string "%F %T"))
+            (local (format-time-string "%c")))
+        (completing-read "datetime: " (list full local) nil t))))
 
 ;; Quickly insert url
 (use-package quickurl
