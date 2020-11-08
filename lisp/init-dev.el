@@ -13,11 +13,12 @@
   :ensure nil
   :hook (compilation-filter . colorize-compilation-buffer)
   :config
-  (add-to-list 'compilation-finish-functions 'notify-compilation-result)
   (defun colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
+
+  (add-to-list 'compilation-finish-functions 'notify-compilation-result)
   (defun notify-compilation-result (_comp-buffer exit-string)
     "Notify after the compilation is done."
     (if (string-match "^finished" exit-string)
