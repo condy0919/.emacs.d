@@ -575,13 +575,14 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; Recently opened files
 (use-package recentf
   :ensure nil
-  :defines no-littering-etc-directory no-littering-var-directory
+  :defines no-littering-etc-directory no-littering-var-directory quelpa-packages-dir
   :after no-littering
   :hook ((after-init . recentf-mode)
          (focus-out-hook . (recentf-save-list recentf-cleanup)))
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
+  (recentf-filename-handlers '(abbreviate-file-name))
   (recentf-exclude `(,(expand-file-name package-user-dir)
                      ,quelpa-packages-dir
                      ,no-littering-var-directory
