@@ -448,14 +448,6 @@ Else, call `comment-or-uncomment-region' on the current line."
   (calculator-unary-style 'prefix)
   (calculator-user-operators nil))
 
-;; mouse wheel optimization
-(use-package mwheel
-  :ensure nil
-  :defer t
-  :custom
-  (mouse-wheel-progressive-speed nil)
-  (mouse-wheel-scroll-amount '(1 ((shift) . 2) ((control)))))
-
 ;; Better abbrev expansion
 (use-package hippie-exp
   :ensure nil
