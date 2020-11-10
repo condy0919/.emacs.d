@@ -49,7 +49,8 @@
   :hook (dired-mode . dired-omit-mode)
   :custom
   (dired-omit-verbose nil)
-  (dired-omit-files (rx (or ".DS_Store"
+  (dired-omit-files (rx string-start
+                        (or ".DS_Store"
                             ".cache"
                             ".vscode"
                             ".ccls-cache" ".clangd")
@@ -71,7 +72,7 @@
                                           ((eq system-type 'darwin) "open")
                                           ((eq system-type 'windows-nt) "start")
                                           (t "")))))
-   )
+  )
 
 ;; Make dired colorful
 (use-package diredfl

@@ -153,11 +153,11 @@
   (eshell-cmpl-autolist t)
   (eshell-cmpl-ignore-case t)
   (eshell-cmpl-cycle-completions nil)
-  (eshell-cmpl-dir-ignore (rx line-start
+  (eshell-cmpl-dir-ignore (rx string-start
                               (or "." ".." "CVS" ".svn" ".git")
-                              line-end))
+                              string-end))
   (eshell-cmpl-file-ignore (rx (or "~" ".elc" ".pyc" ".swp")
-                               line-end)))
+                               string-end)))
 
 (use-package em-rebind
   :ensure nil
