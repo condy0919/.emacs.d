@@ -127,13 +127,7 @@
 (use-package em-hist
   :ensure nil
   :bind (:map eshell-hist-mode-map
-         ("M-r" . eshell-complete-history))
-  :config
-  (defun eshell-complete-history ()
-    "Complete eshell commands history using `completing-read'."
-    (interactive)
-    (let ((hist (delete-dups (ring-elements eshell-history-ring))))
-      (insert (completing-read "> " hist nil t))))
+         ("M-r" . counsel-esh-history))
   :custom
   (eshell-history-size 1024)
   (eshell-hist-ignoredups t)
