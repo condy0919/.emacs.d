@@ -245,7 +245,20 @@ content."
   :ensure nil
   :after org doct
   :hook (org-capture-mode . (lambda ()
-                              (setq org-complete-tags-always-offer-all-agenda-tags t)))
+                              (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
+  :config
+  ;; These variables/functions are used when capturing a minutes of meeting.
+  (defvar org-capture--id-copy nil)
+
+  (defun org-id-new-and-save ()
+    "Get a new org-id via `org-id-new' then save it."
+    (let ((id (org-id-new)))
+      (setq org-capture--id-copy id)
+      id))
+
+  (defun org-id-load-from-copy ()
+    "Read previously allocated org-id from local copy."
+    org-capture--id-copy)
   :custom
   ;; `doct' requires that
   (org-capture-templates-contexts nil)
@@ -295,14 +308,21 @@ content."
                :datetree t
                :jump-to-captured t
                :template ,(concat "* %^{Subject} :MEETING:\n"
-                                  "%^{KEYWORDS}p\n"
+                                  ":PROPERTIES:\n"
+                                  ":ID:         %(org-id-new-and-save)\n"
+                                  ":CREATED:    %<%FT%T%z>\n"
+                                  ":END:\n"
                                   "** Present at meeting\n"
                                   "- [ ] %^{Attendees}\n"
-                                  "** Background\n%?\n"
-                                  "** Notes\n"
-                                  "#+BEGIN: columnview :id local :match \"NEW\" :format \"\\%ITEM(New)\"\n#+END:\n"
-                                  "*** Progress\n"
-                                  "#+begin: columnview :id local :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%PRIORITY(Priority) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
+                                  "** Agenda\n"
+                                  "- Comments and corrections to last meeting notes (delete me)\n"
+                                  "- Reports from the sub teams (delete me)\n"
+                                  "- Discussion (delete me)\n"
+                                  "** Notes\n%?\n"
+                                  "** Actions\n"
+                                  "#+begin: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
+                                  "** Decisions\n"
+                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"DECISION\" :format \"\\%ITEM(Decision)\"\n#+END:\n"
                                   ))))))
          ))
   )
@@ -402,6 +422,7 @@ content."
   :ensure t
   :hook (org-agenda-mode . org-super-agenda-mode)
   :custom
+  (org-super-agenda-fontify-whole-header-line t)
   (org-super-agenda-groups '((:order-multi (1 (:name "Done Today"
                                                :log closed)
                                               (:name "Clocked Today"
