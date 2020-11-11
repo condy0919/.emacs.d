@@ -32,11 +32,9 @@
          ("C-c C-y" . term-paste)
          ;; Don't capture my keys!
          ("M-o" . nil)
-         ("M-=" . nil)
          ("M-:" . nil)
          ("M-x" . nil)
          ("C-h" . nil)
-         ("C-x" . nil)
          ("C-u" . nil))
   :config
   (when (eq system-type 'darwin)
@@ -171,12 +169,12 @@
 ;; Popup a shell inside Emacs
 (use-package shell-pop
   :ensure t
-  :bind ("M-=" . shell-pop)
   :custom
+  (shell-pop-universal-key "M-=")
   (shell-pop-full-span t)
   (shell-pop-window-size 40)
   (shell-pop-shell-type (if (not (eq system-type 'windows-nt))
-                            '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell)))
+                            '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))
                           '("eshell" "*eshell*" #'eshell))))
 
 (provide 'init-shell)
