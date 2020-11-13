@@ -22,10 +22,13 @@
   (defconst clangd-args '("-j=2"
                           "--background-index"
                           "--clang-tidy"
+                          "--recovery-ast"
+                          "--cross-file-rename"
                           "--completion-style=bundled"
                           "--pch-storage=memory"
                           "--suggest-missing-includes"
-                          "--header-insertion-decorators=0"))
+                          "--header-insertion=iwyu"
+                          "--header-insertion-decorators"))
   (with-eval-after-load 'lsp-mode
     ;; Prefer `clangd' over `ccls'
     (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
