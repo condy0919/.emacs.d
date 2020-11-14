@@ -35,7 +35,7 @@
   (vc-follow-symlinks t)
   (vc-handled-backends '(Git)))
 
-;; Highlight uncommitted changes using git
+;; Highlight uncommitted changes using VC
 (use-package diff-hl
   :ensure t
   :hook ((after-init         . (lambda ()
@@ -44,6 +44,17 @@
          (magit-pre-refresh  . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode         . diff-hl-dired-mode-unless-remote)))
+
+;; Visual diff interface
+(use-package ediff
+  :ensure nil
+  :hook (ediff-quit . winner-undo) ;; restore windows layout
+  :custom
+  (ediff-diff-options "-w") ;; turn off whitespace checking
+  (ediff-highlight-all-diffs t)
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-merge-split-window-function 'split-window-horizontally))
 
 ;; Open current file in browser
 (use-package browse-at-remote
