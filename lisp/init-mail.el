@@ -18,7 +18,7 @@
   (gnus-suppress-duplicates t)
   (gnus-novice-user nil)
   (gnus-expert-user t)
-  (gnus-interactive-exit nil)
+  (gnus-interactive-exit 'quiet)
   (gnus-dbus-close-on-sleep t)
   (gnus-use-cross-reference nil)
   (gnus-inhibit-startup-message nil)
