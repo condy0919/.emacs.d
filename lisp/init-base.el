@@ -427,6 +427,8 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :defer t
   :custom
+  ;; Always use file cache when using tramp
+  (remote-file-name-inhibit-cache nil)
   (tramp-default-method "ssh"))
 
 ;; htop like monitor
