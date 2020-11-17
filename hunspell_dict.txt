@@ -66,3 +66,4 @@ RSS
 eshell
 icomplete
 clangd
+natively

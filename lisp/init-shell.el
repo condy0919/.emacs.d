@@ -19,6 +19,9 @@
     (evil-insert-state)))
 
 ;; General term mode
+;;
+;; If you use bash, directory track is supported natively.
+;; See https://www.emacswiki.org/emacs/AnsiTermHints for more information.
 (use-package term
   :ensure nil
   :hook (term-mode . (lambda ()
@@ -26,8 +29,7 @@
                        (my/buffer-auto-close)
                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
                          ;; Don't prompt about processes when killing term
-                         (set-process-query-on-exit-flag proc nil)
-                         (setq-local term--process proc))))
+                         (set-process-query-on-exit-flag proc nil))))
   :bind (:map term-raw-map
          ("C-c C-y" . term-paste)
          ;; Don't capture my keys!
@@ -39,16 +41,6 @@
   :config
   (when (eq system-type 'darwin)
     (define-key term-raw-map (kbd "H-v") 'term-paste))
-
-  (defvar term--process nil)
-
-  ;; Directory synchronization (linux-only)
-  (defun term-directory-sync ()
-    "Synchronize current working directories."
-    (when term--process
-      (when-let* ((pid (process-id term--process))
-                  (dir (file-truename (format "/proc/%d/cwd/" pid))))
-        (setq default-directory dir))))
   :custom
   (term-input-ignoredups t)
   (term-completion-autolist t)
