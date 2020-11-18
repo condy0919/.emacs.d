@@ -233,6 +233,13 @@
   :custom
   (gnus-bookmark-bookmark-inline-details '(subject author)))
 
+;; Search in Gnus
+(use-package gnus-search
+  :ensure nil
+  :after gnus
+  :custom
+  (gnus-search-use-parsed-queries t))
+
 ;; Extract (uu)encoded files in Gnus
 (use-package gnus-uu
   :ensure nil
