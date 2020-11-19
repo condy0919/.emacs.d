@@ -579,8 +579,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :defines no-littering-etc-directory no-littering-var-directory quelpa-packages-dir
   :after no-littering
-  :hook ((after-init . recentf-mode)
-         (focus-out-hook . (recentf-save-list recentf-cleanup)))
+  :hook (after-init . recentf-mode)
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
