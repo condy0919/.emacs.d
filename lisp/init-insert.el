@@ -12,8 +12,9 @@
     "Insert current date time with 2 date formats available."
     ""
     > (let ((full (format-time-string "%F %T"))
-            (local (format-time-string "%c")))
-        (completing-read "datetime: " (list full local) nil t))))
+            (local (format-time-string "%c"))
+            (long (format-time-string "%B %d, %Y")))
+        (completing-read "datetime: " (list full local long) nil t))))
 
 ;; Quickly insert url
 (use-package quickurl
