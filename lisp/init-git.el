@@ -63,7 +63,7 @@
   (with-eval-after-load 'hydra
     (defhydra hydra-smerge (:color pink
                             :hint nil
-                            :pre (smerge-mode +1)
+                            :pre (unless smerge-mode (smerge-mode +1))
                             :post (smerge-auto-leave))
       "
 ^Move^       ^Keep^               ^Diff^                 ^Other^
