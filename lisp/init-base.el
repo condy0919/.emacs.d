@@ -272,11 +272,6 @@
   :ensure nil
   :defines org-agenda-diary-file
   :hook (calendar-today-visible . calendar-mark-today)
-  :config
-  (define-advice org-agenda-add-entry-to-org-agenda-diary-file (:after (_type text &optional _d1 _d2))
-    (when (string-match "\\S-" text)
-      (with-current-buffer (find-file-noselect org-agenda-diary-file)
-        (save-buffer))))
   :custom
   (calendar-chinese-all-holidays-flag t)
   (holiday-local-holidays `((holiday-fixed 3 8  "Women's Day")
@@ -327,6 +322,12 @@
   (appt-display-mode-line t)
   (appt-message-warning-time 15)
   (appt-disp-window-function #'appt-display-with-notification))
+
+;; Build regexp with visual feedback
+(use-package re-builder
+  :ensure nil
+  :custom
+  (reb-re-syntax 'string))
 
 ;; EasyPG
 (use-package epg-config
@@ -399,12 +400,10 @@
   (defun comment-or-uncomment (arg)
     "Comment or uncomment the current line or region.
 
-If the prefix ARG is specified, call `comment-indent' on the
-current line.
+If the prefix ARG is specified, call `comment-indent' on the current line.
 Else, if the region is active and `transient-mark-mode' is on,
 call `comment-or-uncomment-region'.
-Else, if the current line is empty, insert a comment and indent
-it.
+Else, if the current line is empty, insert a comment and indent it.
 Else, call `comment-or-uncomment-region' on the current line."
     (interactive "*P")
     (if arg (comment-indent)
