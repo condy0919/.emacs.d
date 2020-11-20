@@ -215,6 +215,9 @@
 (use-package pulse
   :ensure nil
   :preface
+  (defun pulse-region (beg end &rest _)
+    "Pulse the current region."
+    (pulse-momentary-highlight-region beg end))
   (defun pulse-line (&rest _)
     "Pulse the current line."
     (pulse-momentary-highlight-one-line (point)))
@@ -231,6 +234,7 @@
   (advice-add #'evil-window-top      :after #'pulse-line)
   (advice-add #'evil-window-middle   :after #'pulse-line)
   (advice-add #'evil-window-bottom   :after #'pulse-line)
+  (advice-add #'evil-yank            :after #'pulse-region)
   :hook ((counsel-grep-post-action
           dumb-jump-after-jump
           bookmark-after-jump
