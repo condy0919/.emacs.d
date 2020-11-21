@@ -57,12 +57,13 @@
                          ;; Remove cmd args word by word
                          (modify-syntax-entry ?- "w")
                          ;; Eshell is not fully functional
-                         (setenv "PAGER" "cat")
-                         ;; Define aliases
-                         (eshell/alias "vi"  "find-file $1")
-                         (eshell/alias "vim" "find-file $1")))
+                         (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
   :config
+  ;; aliases
+  (defalias 'eshell/vi 'find-file)
+  (defalias 'eshell/vim 'find-file)
+
   (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
