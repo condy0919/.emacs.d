@@ -44,7 +44,8 @@
   :custom
   (term-input-ignoredups t)
   (term-completion-autolist t)
-  (term-scroll-to-bottom-on-output 'all))
+  (term-scroll-to-bottom-on-output 'all)
+  (term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
 
 ;; the Emacs shell & friends
 (use-package eshell
