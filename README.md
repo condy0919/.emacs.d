@@ -55,13 +55,13 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 # 需要的依赖
 
 - `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
-- `languagetool` 更好的拼写检查、语法纠错工具
 - `rg` 更快的`grep`
 - `pandoc` 文本转换工具，`markdown-mode`渲染需要
-- `fd` 更现代的 `find`
 - `cmake` `c++`项目的构建工具
 - `git` 这个就不用说了吧？
 - `gcc` 这个就不用说了吧？
+- `fd` (optional) 更现代的 `find`, `projectile` 会自动检测
+- `languagetool` (optional) 更好的拼写检查、语法纠错工具
 
 # 基础配置
 
