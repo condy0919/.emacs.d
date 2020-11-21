@@ -307,6 +307,10 @@ usemathjax: false
                     [simple-query "urbandictionary.com" "www.urbandictionary.com/define.php?term=" ""])
                    ("Ludwig Guru" .
                     [simple-query "ludwig.guru" "ludwig.guru/s/" ""])
+                   ("Stack Overflow" .
+                    [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
+                   ("GitHub" .
+                    [simple-query "github.com" "github.com/search?ref=simplesearch&q=" ""])
 
                    ;; Language specific engines.
                    ("Python Docs" .
