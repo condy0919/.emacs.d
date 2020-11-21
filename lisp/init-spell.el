@@ -5,6 +5,7 @@
 ;;; Code:
 
 ;; Interactive spell checker
+;;
 ;; z= `ispell-word'
 (use-package ispell
   :ensure nil
@@ -32,9 +33,9 @@
 ;; Spell check on-the-fly
 (use-package flyspell
   :ensure nil
-  :hook (git-commit-mode . flyspell-mode)
   :custom
-  (flyspell-use-meta-tab nil)
+  ;; Use M-C-i instead if M-TAB is shadowed by your window manager
+  (flyspell-use-meta-tab t)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil))
 

@@ -8,6 +8,7 @@
 ;; The awesome git client
 (use-package magit
   :ensure t
+  :hook (git-commit-mode . flyspell-mode)
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch))
   :custom
