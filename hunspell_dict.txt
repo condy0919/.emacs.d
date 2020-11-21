@@ -67,3 +67,4 @@ eshell
 icomplete
 clangd
 natively
+Minic

@@ -73,7 +73,9 @@
     ;; file
     "f" '(:ignore t :which-key "file")
     "ff" 'find-file
+    "f." 'find-file
     "fF" 'find-file-other-window
+    "f/" 'find-file-other-window
     "fg" 'rgrep
     "fj" 'counsel-file-jump
     "fo" 'counsel-find-file-extern
