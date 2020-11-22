@@ -422,7 +422,6 @@ content."
   :ensure t
   :hook (org-agenda-mode . org-super-agenda-mode)
   :custom
-  (org-super-agenda-fontify-whole-header-line t)
   (org-super-agenda-groups '((:order-multi (1 (:name "Done Today"
                                                :log closed)
                                               (:name "Clocked Today"
