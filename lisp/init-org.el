@@ -136,8 +136,9 @@ content."
   (org-agenda-remove-tags t)
   (org-agenda-todo-ignore-with-date nil)
   (org-agenda-todo-ignore-deadlines 'far)
-  (org-agenda-todo-ignore-scheduled 'all)
+  (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-todo-ignore-timestamp nil)
+  (org-agenda-tags-todo-honor-ignore-options t)
   (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
@@ -352,6 +353,7 @@ content."
   :custom
   (org-export-with-toc t)
   (org-export-with-tags 'not-in-toc)
+  (org-export-with-email nil)
   (org-export-with-author nil)
   (org-export-with-drawers nil)
   (org-export-with-priority t)
@@ -359,7 +361,8 @@ content."
   (org-export-with-smart-quotes t)
   (org-export-with-section-numbers nil)
   (org-export-with-sub-superscripts '{})
-  (org-export-use-babel nil)
+  ;; Use :eval never-export header argument to avoid evaluating.
+  (org-export-use-babel t)
   (org-export-headline-levels 5)
   (org-export-coding-system 'utf-8)
   (org-export-with-broken-links 'mark)
