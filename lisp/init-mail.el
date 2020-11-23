@@ -124,8 +124,9 @@
   (gnus-simplify-subject-functions '(gnus-simplify-subject-re gnus-simplify-whitespace))
   (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-subject)
   ;; Filling in threads
-  (gnus-fetch-old-headers 'some)
-  (gnus-fetch-old-ephemeral-headers 'some)
+  ;; 2 old articles are enough for context
+  (gnus-fetch-old-headers 2)
+  (gnus-fetch-old-ephemeral-headers 2)
   (gnus-build-sparse-threads 'some)
   ;; More threading
   (gnus-show-threads t)
@@ -139,6 +140,8 @@
   (gnus-view-pseudos 'automatic)
   (gnus-view-pseudos-separately t)
   (gnus-view-pseudo-asynchronously t)
+  (gnus-auto-select-first nil)
+  (gnus-auto-select-next nil)
   ;; Misc
   (gnus-summary-ignore-duplicates t)
   (gnus-summary-display-while-building t))
@@ -151,7 +154,6 @@
   ;; No way to slow down my Gnus
   (gnus-treat-from-picon nil)
   (gnus-treat-mail-picon nil)
-  (gnus-treat-newsgroups-picon nil)
   (gnus-treat-newsgroups-picon nil)
   (gnus-treat-from-gravatar nil)
   (gnus-treat-mail-gravatar nil)
@@ -270,6 +272,11 @@
   (message-send-mail-function #'message-use-send-mail-function)
   (message-signature user-full-name))
 
+(use-package sendmail
+  :ensure nil
+  :custom
+  (send-mail-function #'smtpmail-send-it))
+
 ;; Sending mails
 (use-package smtpmail
   :ensure nil
@@ -278,11 +285,6 @@
   (smtpmail-smtp-user user-mail-address)
   (smtpmail-smtp-service 587)
   (smptmail-stream-type 'ssl))
-
-(use-package sendmail
-  :ensure nil
-  :custom
-  (send-mail-function #'smtpmail-send-it))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
