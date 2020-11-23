@@ -275,6 +275,7 @@ content."
              (("Inbox"
                :keys "i"
                :type entry
+               :prepend t
                :headline "Inbox"
                :template "* %?\n%i\n")
               ("Mail"
