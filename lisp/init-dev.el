@@ -201,10 +201,10 @@
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t
+  :init
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate t)
   :bind (("M-g j" . dumb-jump-go)
          ("M-g J" . dumb-jump-go-other-window))
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :custom
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
