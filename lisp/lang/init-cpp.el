@@ -234,6 +234,7 @@
   (modern-c++-literal-dec-infix-face     'font-lock-constant-face)
   (modern-c++-literal-dec-suffix-face    'font-lock-constant-face))
 
+;; cmake, the de factor build system for C++
 (use-package cmake-mode
   :ensure t
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
@@ -247,6 +248,80 @@
 (use-package cmake-font-lock
   :ensure t
   :hook (cmake-mode . cmake-font-lock-activate))
+
+
+;; Snippets for cmake
+(use-package tempo
+  :ensure nil
+  :after cmake-mode
+  :hook (cmake-mode . cmake-mode-tempo-setup)
+  :config
+  (defvar cmake-tempo-tags nil)
+
+  (defun cmake-mode-tempo-setup ()
+    (tempo-use-tag-list 'cmake-tempo-tags))
+
+  ;; Make sure you have the following directory hierarchy
+  ;;
+  ;; .
+  ;; ├── CMakeLists.txt
+  ;; ├── include
+  ;; └── src
+  ;;     └── lib.cpp
+  (tempo-define-template "cmake-library"
+                         '("cmake_minimum_required(VERSION 3.11)" n n
+                           "project(" (P "name: " proj) n
+                           "  VERSION 0.1.0" n
+                           "  LANGUAGES CXX" n
+                           "  DESCRIPTION \"\"" n
+                           "  HOMEPAGE_URL \"\"" n
+                           ")" n n
+                           "# Sources for the library are specified at the end" n
+                           "add_library(" (s proj) " \"\")" n n
+                           "### Commpile options" n n
+                           "# Enable C++17 (Required)" n
+                           "target_compile_features(" (s proj) n
+                           "  PUBLIC" n
+                           "    cxx_std_17" n
+                           ")" n n
+                           "# Common GCC/Clang options" n
+                           "target_compile_options(" (s proj) n
+                           "  PRIVATE" n
+                           "    -Wall" n
+                           "    -Wextra" n
+                           ")" n n
+                           "### Libraries" n n
+                           "# Enable threading support" n
+                           "set(THREADS_PREFER_PTHREAD_FLAG ON)" n
+                           "find_package(Threads REQUIRED)" n
+                           "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
+                           "### Definitions" n n
+                           "### Includes" n n
+                           "target_include_directories(" (s proj) " PRIVATE include)" n n
+                           "### Install" n n
+                           "install(TARGETS " (s proj) " RUNTIME DESTINATION bin)" n n
+                           "### Sources" n n
+                           "target_sources(" (s proj) n
+                           "  PRIVATE" n
+                           "    src/lib.cpp" n
+                           ")" n n
+                           "### Obtain version information from Git" n n
+                           "# if(NOT VERSION)"
+                           "#   execute_process(COMMAND git describe --tag --long HEAD" n
+                           "#     OUTPUT_VARIABLE VERSION" n
+                           "#     OUTPUT_STRIP_TRAILING_WHITESPACE" n
+                           "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n n
+                           "#   if(NOT VERSION)" n
+                           "#     set(VERSION \"<unknown>\")" n
+                           "#   endif()" n
+                           "# endif()" n n
+                           "# set_property(SOURCE src/main.cpp APPEND PROPERTY" n
+                           "#              COMPILE_DEFINITIONS VERSION=\\\"${VERSION}\\\")" n
+                           )
+                         "lib"
+                         "Insert a cmake library"
+                         'cmake-tempo-tags)
+  )
 
 (provide 'init-cpp)
 
