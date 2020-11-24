@@ -77,9 +77,9 @@
   (gdb-use-colon-colon-notation t)
   (gdb-restore-window-configuration-after-quit t))
 
-(use-package license
+(use-package spdx
   :ensure t
-  :quelpa (license :fetcher github :repo "condy0919/license.el")
+  :quelpa (spdx :fetcher github :repo "condy0919/spdx.el")
   :bind (:map prog-mode-map
          ("C-c i l" . license-insert))
   :custom
