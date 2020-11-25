@@ -140,8 +140,10 @@
   (gnus-view-pseudos 'automatic)
   (gnus-view-pseudos-separately t)
   (gnus-view-pseudo-asynchronously t)
+  ;; No auto select
   (gnus-auto-select-first nil)
   (gnus-auto-select-next nil)
+  (gnus-paging-select-next nil)
   ;; Misc
   (gnus-summary-ignore-duplicates t)
   (gnus-summary-display-while-building t))
