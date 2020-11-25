@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'init-core))
+
 (use-package org
   :ensure nil
   :mode ("\\.org\\'" . org-mode)
@@ -117,6 +120,7 @@ content."
   :config
   ;; update appt list every 5 minutes
   (run-at-time t 300 #'org-agenda-to-appt)
+  (advice-add #'org-agenda-to-appt :around #'my/suppress-message)
   :custom
   (org-agenda-files `(,org-directory))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))

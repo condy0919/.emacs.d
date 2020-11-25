@@ -131,5 +131,11 @@ confirmation."
   nil " sticky" nil
   (set-window-dedicated-p (selected-window) sticky-buffer-mode))
 
+;;;###autoload
+(defun my/suppress-message (func &rest args)
+  "Suppress `message'."
+  (let ((inhibit-message t))
+    (apply func args)))
+
 (provide 'init-core)
 ;;; init-core.el ends here
