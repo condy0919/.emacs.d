@@ -273,10 +273,6 @@
   :ensure t
   :hook (after-init . global-evil-surround-mode))
 
-(use-package evil-magit
-  :ensure t
-  :after evil magit)
-
 (provide 'init-evil)
 
 ;;; init-evil.el ends here
