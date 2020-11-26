@@ -264,6 +264,11 @@
   ;; ├── include
   ;; └── src
   ;;     └── lib.cpp
+  ;;
+  ;; # Features
+  ;;
+  ;; - Option to use libc++
+  ;; - Tag based version
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
                            "cmake_minimum_required(VERSION 3.11)" n n
