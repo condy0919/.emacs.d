@@ -77,11 +77,11 @@
   (gdb-use-colon-colon-notation t)
   (gdb-restore-window-configuration-after-quit t))
 
+;; Insert SPDX license header
 (use-package spdx
   :ensure t
   :quelpa (spdx :fetcher github :repo "condy0919/spdx.el")
-  :bind (:map prog-mode-map
-         ("C-c i l" . license-insert))
+  :hook (prog-mode . spdx-tempo-setup)
   :custom
   (license-copyright-holder 'auto)
   (license-project-detection 'projectile))

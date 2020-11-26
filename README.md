@@ -226,18 +226,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## Emacs
 
-| key                | function                                                                      |
-|--------------------|-------------------------------------------------------------------------------|
-| <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释                                           |
-| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                           |
-| <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
-| <kbd>M-=</kbd>     | 在下方弹出一个`ansi-term`终端                                                     |
-| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
-| <kbd>C-x g</kbd>   | 呼出 `magit`                                                                  |
-| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
-| <kbd>M-o</kbd>     | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
-| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                                    |
-| <kbd>C-c i l</kbd> | 方便地插入`SPDX`形式的`license`头部                                           |
+| key              | function                                                                      |
+|------------------|-------------------------------------------------------------------------------|
+| <kbd>M-;</kbd>   | `comment-or-uncomment` 注释与反注释                                           |
+| <kbd>C-c '</kbd> | 通过`separedit`在注释中快乐地写代码                                           |
+| <kbd>C-c x</kbd> | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！                    |
+| <kbd>M-=</kbd>   | 在下方弹出一个`ansi-term`终端                                                 |
+| <kbd>C-c p</kbd> | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能                      |
+| <kbd>C-x g</kbd> | 呼出 `magit`                                                                  |
+| <kbd>C-M-;</kbd> | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正            |
+| <kbd>M-o</kbd>   | 原生`C-x o`来切换`window`有点反人类，绑定在单键上就可以快速的切换至其他窗口了 |
+| <kbd>C-c =</kbd> | 调用`align-regexp`提供以一个对齐符号的功能                                    |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
 说。本配置中还使用了`counsel-projectile`来令`projectile`更加方便。
@@ -276,6 +275,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `ispell`拼写检查器, `evil`用户可以快速通过<kbd>z=</kbd> (`ispell-word`) 来检查
 - `flyspell`拼写检查器，仅在`magit`写提交信息时启用
 - `quickrun`作为一个能够执行部分区域内的代码块，方便快速验证函数功能
+- `tempo`作为代码片段展开工具, `spdx`然后再<kbd>M-x tempo-expand-if-complete</kbd>即可
 
 # prog-mode
 
@@ -300,6 +300,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `cmake-mode`可使用`company-mode`进行符号补全
 - 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中生效。
 - 部分常用`snippet`，如`ifndef`,`main`等等。详细列表见[`init-cpp.el`](lisp/lang/init-cpp.el)文件
+- `cmake-mode`增加了一个简单 lib 的`snippet`，可以通过`lib`关键字展开
 
 ## rust-mode
 
