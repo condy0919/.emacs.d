@@ -88,6 +88,10 @@
 (require 'init-reader)
 (require 'init-hyperbole)
 
+;; MacOS specific
+(when (eq system-type 'darwin)
+  (require 'init-osx))
+
 (when (file-exists-p custom-file)
   (load custom-file))
 

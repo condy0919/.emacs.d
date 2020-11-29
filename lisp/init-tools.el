@@ -366,12 +366,6 @@ usemathjax: false
   (rcirc-fill-column #'frame-text-width)
   (rcirc-kill-channel-buffers t))
 
-;; The builtin dictionary app in MacOS
-(when (eq system-type 'darwin)
-  (use-package osx-dictionary
-    :ensure t
-    :commands osx-dictionary-search-word-at-point))
-
 (provide 'init-tools)
 
 ;;; init-tools.el ends here

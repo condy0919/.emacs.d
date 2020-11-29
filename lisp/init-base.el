@@ -28,34 +28,6 @@
 ;; Ignore errors on selecting text
 (my/ignore-errors-for x-get-selection-internal)
 
-;; MacOS specific
-(when (eq system-type 'darwin)
-  ;; Make titlebar dark
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-
-  (setq delete-by-moving-to-trash t)
-
-  ;; Curse Lion and its sudden but inevitable fullscreen mode!
-  ;; NOTE Meaningless to railwaycat's emacs-mac build
-  (setq ns-use-native-fullscreen nil)
-
-  ;; Visit files opened outside of Emacs in existing frame, not a new one
-  (setq ns-pop-up-frames nil)
-
-  (setq mac-option-modifier 'hyper
-        mac-command-modifier 'meta)
-
-  ;; I heavily use frame in MacOS
-  (global-set-key (kbd "H-p") 'ns-prev-frame)
-  (global-set-key (kbd "H-n") 'ns-next-frame)
-  (global-set-key (kbd "H-g") 'select-frame-by-name)
-
-  ;; CUA for MacOS
-  (global-set-key (kbd "H-v") 'clipboard-yank)
-  (global-set-key (kbd "H-c") 'clipboard-kill-ring-save)
-  (global-set-key (kbd "H-x") 'clipboard-kill-region))
-
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
 
