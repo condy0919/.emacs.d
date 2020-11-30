@@ -311,6 +311,8 @@ usemathjax: false
                     [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
                    ("GitHub" .
                     [simple-query "github.com" "github.com/search?ref=simplesearch&q=" ""])
+                   ("TLDR" .
+                    [simple-query "linux.cn" "tldr.linux.cn/cmd/" ""])
 
                    ;; Language specific engines.
                    ("Python Docs" .
