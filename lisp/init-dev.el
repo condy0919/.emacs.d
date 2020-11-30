@@ -126,27 +126,21 @@
   :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
   :config
-  (defconst projectile-ignored-project-directories `("/tmp/"
-                                                     "/private/tmp/"
-                                                     ,(file-truename (expand-file-name "elpa" user-emacs-directory))))
-  (defun projectile-project-ignore-p (file)
-    (cl-loop for ig-dir in projectile-ignored-project-directories
-             when (string-prefix-p ig-dir file)
-             return t)
-    )
-
   (dolist (dir '("bazel-bin"
                  "bazel-out"
                  "bazel-testlogs"))
     (add-to-list 'projectile-globally-ignored-directories dir))
-  (dolist (file '(".DS_Store"))
-    (add-to-list 'projectile-globally-ignored-files file))
   :custom
   (projectile-use-git-grep t)
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'alien)
-  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so"))
-  (projectile-ignored-project-function 'projectile-project-ignore-p))
+  ;; Ignore uninterested files
+  (projectile-globally-ignored-files '("TAGS" ".DS_Store"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so" ".a"))
+  (projectile-ignored-projects `("~/"
+                                 "/tmp/"
+                                 "/private/tmp/"
+                                 ,(file-truename (expand-file-name "elpa" user-emacs-directory)))))
 
 ;; Comprehensive ivy integration for projectile
 (use-package counsel-projectile
