@@ -51,7 +51,6 @@
 (use-package eshell
   :ensure nil
   :defines eshell-prompt-regexp
-  :functions eshell/alias
   :hook ((eshell-mode . (lambda ()
                          (term-mode-common-init)
                          ;; Remove cmd args word by word
