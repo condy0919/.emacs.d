@@ -14,7 +14,7 @@
   :bind (;; I heavily use frame in MacOS
          ("H-p" . ns-prev-frame)
          ("H-n" . ns-next-frame)
-         ("H-g" . 'select-frame-by-name)
+         ("H-g" . select-frame-by-name)
          ;; CUA for MacOS
          ("H-v" . clipboard-yank)
          ("H-c" . clipboard-kill-ring-save)
