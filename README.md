@@ -141,6 +141,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 |------------------|---------------------------------------------------------------------|
 | <kbd>[b</kbd>    | `previous-buffer` 切换至上一个 `buffer`                             |
 | <kbd>]b</kbd>    | `next-buffer` 切换至下一个 `buffer`                                 |
+| <kbd>[e</kbd>    | `evil-collection-unimpaired-move-text-up` 将当前行移动至上一行      |
+| <kbd>]e</kbd>    | `evil-collection-unimpaired-move-text-down` 将当前行移动至下一行    |
 | <kbd>[l</kbd>    | `evil-collection-unimpaired-previous-error` 上一个错误              |
 | <kbd>]l</kbd>    | `evil-collection-unimpaired-next-error` 下一个错误                  |
 | <kbd>[ SPC</kbd> | `evil-collection-unimpaired-insert-newline-above` 在上方插入一空行  |
