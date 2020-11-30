@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'cl-macs))
+
 ;; The builtin dictionary app in MacOS
 (use-package osx-dictionary
   :ensure t
@@ -23,6 +26,12 @@
   ;; Make titlebar dark
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  ;; Useful when use an external keyboard
+  (defun my/osx-swap-option-and-command ()
+    "Swap `mac-option-modifier' with `mac-command-modifier'."
+    (interactive)
+    (cl-rotatef mac-option-modifier mac-command-modifier)
+    (message "mac-option-modifier: %s, mac-command-modifier: %s" mac-option-modifier mac-command-modifier))
   :custom
   (mac-option-modifier 'hyper)
   (mac-command-modifier 'meta)
