@@ -272,6 +272,7 @@
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
                            "cmake_minimum_required(VERSION 3.11)" n n
+                           "include(FetchContent)" n n
                            "project(" (s proj) n
                            "  VERSION 0.1.0" n
                            "  LANGUAGES CXX" n
@@ -300,6 +301,7 @@
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Link libc++" n
                            "if(" (proj-prefixed "_USE_LIBCPP)") n
+                           "  target_compile_options(" (s proj) " PRIVATE -stdlib=libc++)" n
                            "  target_link_libraries(" (s proj) " PRIVATE c++ c++abi)" n
                            "endif()" n n
                            "### Definitions" n n
