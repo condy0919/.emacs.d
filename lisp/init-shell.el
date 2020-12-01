@@ -156,7 +156,7 @@
          ("C-p" . eshell-previous-input)
          ("C-n" . eshell-next-input))
   :custom
-  ;; !3 to run the third history command
+  ;; !foo expands to the last command beginning with foo
   (eshell-expand-input-functions '(eshell-expand-history-references)))
 
 ;; Popup a shell inside Emacs
