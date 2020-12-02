@@ -304,6 +304,16 @@
                            "  target_compile_options(" (s proj) " PRIVATE -stdlib=libc++)" n
                            "  target_link_libraries(" (s proj) " PRIVATE c++ c++abi)" n
                            "endif()" n n
+                           "# Benchmark" n
+                           "set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
+                           "FetchContent_Declare(" n
+                           "  benchmark" n
+                           "  GIT_REPOSITORY https://github.com/google/benchmark.git" n
+                           "  GIT_TAG        v1.5.0" n
+                           "  GIT_SHALLOW    true" n
+                           "  GIT_PROGRESS   true" n
+                           ")" n
+                           "FetchContent_MakeAvailable(benchmark)" n n
                            "### Definitions" n n
                            "### Includes" n n
                            "target_include_directories(" (s proj) " PRIVATE include)" n n
