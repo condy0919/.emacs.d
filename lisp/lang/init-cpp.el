@@ -309,11 +309,21 @@
                            "FetchContent_Declare(" n
                            "  benchmark" n
                            "  GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "  GIT_TAG        v1.5.0" n
+                           "  GIT_TAG        v1.5.2" n
                            "  GIT_SHALLOW    true" n
                            "  GIT_PROGRESS   true" n
                            ")" n
                            "FetchContent_MakeAvailable(benchmark)" n n
+                           "# Test" n
+                           "# libgtest.a and libgtest_main.a will be built" n
+                           "FetchContent_Declare(" n
+                           "  gtest" n
+                           "  GIT_REPOSITORY https://github.com/google/googletest" n
+                           "  GIT_TAG        release-1.10.0" n
+                           "  GIT_SHALLOW    true" n
+                           "  GIT_PROGRESS   true" n
+                           ")" n
+                           "FetchContent_MakeAvailable(gtest)" n n
                            "### Definitions" n n
                            "### Includes" n n
                            "target_include_directories(" (s proj) " PRIVATE include)" n n
