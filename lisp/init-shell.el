@@ -170,5 +170,10 @@
                             '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))
                           '("eshell" "*eshell*" #'eshell))))
 
+;; Used as a `sh-mode' REPL
+(use-package shell
+  :ensure nil
+  :hook (shell-mode . term-mode-common-init))
+
 (provide 'init-shell)
 ;;; init-shell.el ends here

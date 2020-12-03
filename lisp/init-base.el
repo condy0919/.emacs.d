@@ -45,9 +45,6 @@
 ;; Always load the newest file
 (setq load-prefer-newer t)
 
-;; Make the prompt of "*Python*" buffer readonly
-(setq comint-prompt-read-only t)
-
 ;; Cutting and pasting use primary/clipboard
 (setq select-enable-primary t
       select-enable-clipboard t)
@@ -372,7 +369,7 @@
   (defun comment-or-uncomment ()
     "Comment or uncomment the current line or region.
 
-If the region is active and `transient-mark-mode' is on,call `comment-or-uncomment-region'.
+If the region is active and `transient-mark-mode' is on, call `comment-or-uncomment-region'.
 Else, if the current line is empty, insert a comment and indent it.
 Else, call `comment-or-uncomment-region' on the current line."
     (interactive)
@@ -408,15 +405,16 @@ Else, call `comment-or-uncomment-region' on the current line."
   (proced-auto-update-interval 2)
   (proced-auto-update-flag t))
 
-(use-package calculator
+;; Command line interpreter
+(use-package comint
   :ensure nil
-  :config
-  (with-eval-after-load 'evil
-    (evil-set-initial-state 'calculator-mode 'emacs))
   :custom
-  (calculator-use-menu nil)
-  (calculator-unary-style 'prefix)
-  (calculator-user-operators nil))
+  (comint-input-ignoredups t)
+  ;; Make the prompt of "*Python*" buffer readonly
+  (comint-prompt-read-only t)
+  ;; Move the point to the end
+  (comint-scroll-to-bottom-on-input 'all)
+  (comint-scroll-to-bottom-on-output 'all))
 
 ;; Better abbrev expansion
 (use-package hippie-exp
