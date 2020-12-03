@@ -112,7 +112,8 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
          ("m" . git-messenger:copy-message))
   :custom
   (git-messenger:show-detail t)
-  (git-messenger:use-magit-popup t))
+  (git-messenger:use-magit-popup t)
+  (git-messenger:handled-backends '(git)))
 
 ;; Setup gitignore mode
 (use-package conf-mode
