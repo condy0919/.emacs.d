@@ -210,7 +210,9 @@
     "oT" 'my/ansi-term-other-window
     "oe" 'eshell
     "oE" 'my/eshell-other-window
-    "os" (when (commandp 'osx-dictionary-search-word-at-point) 'osx-dictionary-search-word-at-point))
+    "os" 'shell
+    "ow" (when (commandp 'osx-dictionary-search-word-at-point)
+           'osx-dictionary-search-word-at-point))
 
   (general-create-definer local-leader-def
     :states 'normal

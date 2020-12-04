@@ -170,10 +170,14 @@
                             '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))
                           '("eshell" "*eshell*" #'eshell))))
 
-;; Used as a `sh-mode' REPL
+;; Used as a `sh-mode' REPL.
+;;
+;; `shell' is recommended to use when in `tramp-mode'.
 (use-package shell
   :ensure nil
-  :hook (shell-mode . term-mode-common-init))
+  :hook (shell-mode . (lambda ()
+                        (term-mode-common-init)
+                        (my/buffer-auto-close))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
