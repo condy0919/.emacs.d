@@ -177,7 +177,9 @@
   :ensure nil
   :hook (shell-mode . (lambda ()
                         (term-mode-common-init)
-                        (my/buffer-auto-close))))
+                        (my/buffer-auto-close)))
+  :bind (:map shell-mode-map
+         ("M-r" . counsel-shell-history)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
