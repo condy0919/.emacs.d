@@ -189,6 +189,9 @@
 (use-package ivy-xref
   :ensure t
   :custom
+  ;; `project-find-regexp' benefits from that
+  (xref-search-program 'ripgrep)
+  ;; enhanced by `ivy'
   (xref-show-definitions-function #'ivy-xref-show-defs)
   (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
