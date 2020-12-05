@@ -154,7 +154,17 @@
          ("C-w" . backward-kill-word)
          ("C-d" . eshell-delchar-or-maybe-eof)
          ("C-p" . eshell-previous-input)
-         ("C-n" . eshell-next-input))
+         ("C-n" . eshell-next-input)
+         ("M-." . eshell-yank-last-arg))
+  :config
+  ;; $_ is a builtin variable referring to the last arg of the previous command
+  ;;
+  ;; See https://www.gnu.org/software/emacs/manual/html_mono/eshell.html#Expansion
+  (defun eshell-yank-last-arg ()
+    "Insert the last arg of the previous command."
+    (interactive)
+    (insert "$_")
+    (pcomplete-expand))
   :custom
   ;; !foo expands to the last command beginning with foo
   (eshell-expand-input-functions '(eshell-expand-history-references)))
