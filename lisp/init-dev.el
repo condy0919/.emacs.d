@@ -206,7 +206,8 @@
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
   (dumb-jump-selector 'ivy)
-  (dumb-jump-prefer-searcher 'rg))
+  (dumb-jump-prefer-searcher 'rg)
+  (dumb-jump-disable-obsolete-warnings t))
 
 ;; pulse current line
 (use-package pulse
