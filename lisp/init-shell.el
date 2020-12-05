@@ -159,17 +159,6 @@
   ;; !foo expands to the last command beginning with foo
   (eshell-expand-input-functions '(eshell-expand-history-references)))
 
-;; Popup a shell inside Emacs
-(use-package shell-pop
-  :ensure t
-  :custom
-  (shell-pop-universal-key "M-=")
-  (shell-pop-full-span t)
-  (shell-pop-window-size 40)
-  (shell-pop-shell-type (if (not (eq system-type 'windows-nt))
-                            '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))
-                          '("eshell" "*eshell*" #'eshell))))
-
 ;; Used as a `sh-mode' REPL.
 ;;
 ;; `shell' is recommended to use when in `tramp-mode'.
@@ -180,6 +169,17 @@
                         (my/buffer-auto-close)))
   :bind (:map shell-mode-map
          ("M-r" . counsel-shell-history)))
+
+;; Popup a shell inside Emacs
+(use-package shell-pop
+  :ensure t
+  :custom
+  (shell-pop-universal-key "M-=")
+  (shell-pop-full-span t)
+  (shell-pop-window-size 40)
+  (shell-pop-shell-type (if (not (eq system-type 'windows-nt))
+                            '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))
+                          '("eshell" "*eshell*" #'eshell))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
