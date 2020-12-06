@@ -81,7 +81,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | so-long    | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
 | speedbar   | 侧边栏，可以显示当前目录下的文件、打开的`buffer`     |
 | tab-bar    | 窗口布局管理 (`Emacs` 27+ 自带)                      |
-| tramp      | 远程编辑就靠它                                                     |
+| tramp      | 远程编辑就靠它                                       |
 
 而这几个包也是`Emacs`自带的。
 
@@ -170,7 +170,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 |---------------|----------------------------------------------------------|
 | <kbd>ff</kbd> | `find-file`打开文件                                      |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开       |
-| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                                         |
+| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                    |
 | <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件 |
 | <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件           |
 | <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                     |
@@ -192,8 +192,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                                                   |
 |---------------|------------------------------------------------------------|
-| <kbd>ot</kbd> | `my/ansi-term`打开`ansi-term`                                         |
-| <kbd>oT</kbd> | `my/ansi-term-other-window`在其他窗口打开`ansi-term`                  |
+| <kbd>ot</kbd> | `my/ansi-term`打开`ansi-term`                              |
+| <kbd>oT</kbd> | `my/ansi-term-other-window`在其他窗口打开`ansi-term`       |
 | <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
 | <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`             |
 | <kbd>os</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
@@ -204,10 +204,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>aa</kbd> | `org-agenda`日程                     |
 | <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
 | <kbd>ag</kbd> | `gnus`查看新闻组                     |
-| <kbd>ai</kbd> | `rcirc`上 IRC                                     |
+| <kbd>ai</kbd> | `rcirc`上 IRC                        |
 | <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
 | <kbd>al</kbd> | `org-store-link`存储URL              |
-| <kbd>an</kbd> | `newsticker`查看RSS订阅                  |
+| <kbd>an</kbd> | `newsticker`查看RSS订阅              |
 | <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
 
 搜索相关的`Leader`键绑定:
@@ -252,7 +252,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c p u</kbd>   | `projectile-run-project`运行当前项目                                 |
 | <kbd>C-c p P</kbd>   | `projectile-test-project`测试当前项目                                |
 | <kbd>C-c p p</kbd>   | `projectile-switch-project`切换至其他项目                            |
-| <kbd>C-c p s r</kbd> | `projectile-ripgrep`使用`ripgrep`来搜索当前项目内的文本。             |
+| <kbd>C-c p s r</kbd> | `projectile-ripgrep`使用`ripgrep`来搜索当前项目内的文本。            |
 
 基于同样的理由，把`flycheck`单独拎了出来。
 
