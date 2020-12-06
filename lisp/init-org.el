@@ -122,7 +122,7 @@ content."
   (run-at-time t 300 #'org-agenda-to-appt)
   (advice-add #'org-agenda-to-appt :around #'my/suppress-message)
   :custom
-  (org-agenda-files `(,org-directory))
+  (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
   (org-agenda-insert-diary-extract-time t)
   (org-agenda-compact-blocks t)
