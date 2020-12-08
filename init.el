@@ -81,6 +81,7 @@
 
 ;; standalone apps
 (require 'init-org)
+(require 'init-text)
 (require 'init-mail)
 (require 'init-shell)
 (require 'init-spell)
