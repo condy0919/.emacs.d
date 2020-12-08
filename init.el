@@ -69,7 +69,6 @@
 
 (require 'init-base)
 (require 'init-utils)
-(require 'init-startup)
 (require 'init-ui)
 (require 'init-tools)
 (require 'init-evil)
