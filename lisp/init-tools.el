@@ -307,6 +307,8 @@ usemathjax: false
                     [simple-query "urbandictionary.com" "www.urbandictionary.com/define.php?term=" ""])
                    ("Ludwig Guru" .
                     [simple-query "ludwig.guru" "ludwig.guru/s/" ""])
+                   ("Etymology" .
+                    [simple-query "etymonline.com" "etymonline.com/word/" ""])
                    ("Stack Overflow" .
                     [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
                    ("GitHub" .
