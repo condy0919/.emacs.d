@@ -211,7 +211,7 @@
     "oe" 'eshell
     "oE" 'my/eshell-other-window
     "os" 'shell
-    "ow" (when (commandp 'osx-dictionary-search-word-at-point)
+    "od" (when (commandp 'osx-dictionary-search-word-at-point)
            'osx-dictionary-search-word-at-point))
 
   (general-create-definer local-leader-def
