@@ -67,21 +67,22 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 最基础的配置包含了那些在所有`mode`下都不会变更的配置，包含了：
 
-| 包名       | 功能                                                 |
-|------------|------------------------------------------------------|
-| align      | `align-regexp`可以自动对齐选择的符号                 |
-| appt       | 任务提醒，可以与`org-mode`结合                       |
-| autorevert | 当文本被其他编辑器修改后，可自动更新                 |
-| delsel     | 选中文本可以直接覆盖着写，一般编辑器都默认开这个功能 |
-| hl-line    | 高亮当前行                                           |
-| newcomment | 注释功能，已取代`evil-nerd-commenter`                |
-| paren      | 高亮匹配的括号                                       |
-| saveplace  | 自动记录上次打开文件的位置                           |
-| simple     | 在`modeline`里显示行号、列号以及当前文本的大小       |
-| so-long    | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
-| speedbar   | 侧边栏，可以显示当前目录下的文件、打开的`buffer`     |
-| tab-bar    | 窗口布局管理 (`Emacs` 27+ 自带)                      |
-| tramp      | 远程编辑就靠它                                       |
+| 包名          | 功能                                                 |
+|---------------|------------------------------------------------------|
+| align         | `align-regexp`可以自动对齐选择的符号                 |
+| appt          | 任务提醒，可以与`org-mode`结合                       |
+| autorevert    | 当文本被其他编辑器修改后，可自动更新                 |
+| delsel        | 选中文本可以直接覆盖着写，一般编辑器都默认开这个功能 |
+| hl-line       | 高亮当前行                                           |
+| hippie-expand | 用来展开文本                                         |
+| newcomment    | 注释功能，已取代`evil-nerd-commenter`                |
+| paren         | 高亮匹配的括号                                       |
+| saveplace     | 自动记录上次打开文件的位置                           |
+| simple        | 在`modeline`里显示行号、列号以及当前文本的大小       |
+| so-long       | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
+| speedbar      | 侧边栏，可以显示当前目录下的文件、打开的`buffer`     |
+| tab-bar       | 窗口布局管理 (`Emacs` 27+ 自带)                      |
+| tramp         | 远程编辑就靠它                                       |
 
 而这几个包也是`Emacs`自带的。
 
