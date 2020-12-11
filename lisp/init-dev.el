@@ -132,7 +132,6 @@
     (add-to-list 'projectile-globally-ignored-directories dir))
   :custom
   (projectile-use-git-grep t)
-  (projectile-completion-system 'ivy)
   (projectile-indexing-method 'alien)
   ;; Ignore uninterested files
   (projectile-globally-ignored-files '("TAGS" ".DS_Store"))
