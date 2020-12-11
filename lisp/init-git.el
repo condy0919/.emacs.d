@@ -9,8 +9,9 @@
 (use-package magit
   :ensure t
   :hook (git-commit-mode . flyspell-mode)
-  :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch))
+  :bind (("C-x g"   . magit-status)
+         ("C-x M-g" . magit-dispatch)
+         ("C-c M-g" . magit-file-dispatch))
   :custom
   ;; Supress message
   (magit-no-message '("Turning on magit-auto-revert-mode..."))
