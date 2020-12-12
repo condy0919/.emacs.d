@@ -7,7 +7,7 @@
 
 ;; The awesome git client
 ;;
-;; Explicit binding makes load lazily although it's the default.
+;; Explicit binding makes it load lazily although it's the default.
 ;; See `magit-define-global-key-bindings' for more information.
 (use-package magit
   :ensure t
