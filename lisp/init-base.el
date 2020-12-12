@@ -318,13 +318,14 @@
 (use-package speedbar
   :ensure nil
   :custom-face
-  ;; from lethe theme
-  (speedbar-button-face ((t (:foreground "green4"))))
-  (speedbar-directory-face ((t (:foreground "blue"))))
+  ;; Colors from Nord theme at https://www.nordtheme.com
+  (speedbar-button-face ((t (:foreground "#616E87" :weight light))))
+  (speedbar-directory-face ((t (:foreground "#ECEFF4" :weight bold))))
   (speedbar-file-face ((t (:foreground "cyan4"))))
-  (speedbar-highlight-face ((t (:background "green"))))
-  (speedbar-selected-face ((t (:underline t :foreground "red"))))
-  (speedbar-tag-face ((t (:foreground "brown"))))
+  (speedbar-highlight-face ((t (:background "#81A1C1"))))
+  (speedbar-selected-face ((t (:underline t :foreground "#434C5E" :weight light))))
+  (speedbar-separator-face ((t (:foreground "#616E87" :weight light))))
+  (speedbar-tag-face ((t (:foreground "#616E87" :weight light))))
   :custom
   (speedbar-use-images nil)
   (speedbar-show-unknown-files t)
