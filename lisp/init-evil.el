@@ -178,6 +178,7 @@
 
     ;; git
     "g" '(:ignore t :which-key "git")
+    "g." 'magit-file-dispatch
     "gb" 'magit-branch-checkout
     "gB" 'magit-blame-addition
     "gc" 'magit-branch-and-checkout
