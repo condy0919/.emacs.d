@@ -6,6 +6,9 @@
 ;;; Code:
 
 ;; The awesome git client
+;;
+;; Explicit binding makes load lazily although it's the default.
+;; See `magit-define-global-key-bindings' for more information.
 (use-package magit
   :ensure t
   :hook (git-commit-mode . flyspell-mode)
