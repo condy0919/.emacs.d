@@ -195,18 +195,17 @@
 
     ;; app
     "a" '(:ignore t :which-key "app")
-    "aC" 'calendar
+    "ac" 'calendar
     "aa" 'org-agenda
-    "ac" 'org-capture
     "ag" 'gnus
     "ai" 'rcirc
     "aj" 'jblog
-    "al" 'org-store-link
     "an" 'newsticker-show-news
-    "at" 'org-todo-list
 
     ;; open
     "o" '(:ignore t :which-key "open")
+    "oc" 'org-capture
+    "ol" 'org-store-link
     "ot" 'my/ansi-term
     "oT" 'my/ansi-term-other-window
     "oe" 'eshell
