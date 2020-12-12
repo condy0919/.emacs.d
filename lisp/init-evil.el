@@ -84,7 +84,7 @@
     "fD" 'my/delete-current-file
     "fy" 'my/copy-current-filename
     "fR" 'my/rename-current-file
-    "fr" 'counsel-recentf
+    "fr" 'recentf-open-files
     "fl" 'find-file-literally
     "fz" 'counsel-fzf
 
