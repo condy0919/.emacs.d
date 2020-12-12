@@ -268,6 +268,8 @@
   ;; # Features
   ;;
   ;; - Option to use libc++
+  ;; - Option to enable tests
+  ;; - Option to enabel benchmarks
   ;; - Tag based version
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
@@ -279,10 +281,12 @@
                            "  DESCRIPTION \"\"" n
                            "  HOMEPAGE_URL \"\"" n
                            ")" n n
-                           "OPTION(" (proj-prefixed "_USE_LIBCPP") " \"Use the libc++ library\" OFF)" n n
+                           "OPTION(" (proj-prefixed "_USE_LIBCPP") " \"Use the libc++ library\" OFF)" n
+                           "OPTION(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
+                           "OPTION(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
                            "add_library(" (s proj) " \"\")" n n
-                           "### Commpile options" n n
+                           "### Commpile options" n
                            "# Enable C++17 (Required)" n
                            "target_compile_features(" (s proj) n
                            "  PUBLIC" n
@@ -294,7 +298,7 @@
                            "    -Wall" n
                            "    -Wextra" n
                            ")" n n
-                           "### Libraries" n n
+                           "### Libraries" n
                            "# Enable threading support" n
                            "set(THREADS_PREFER_PTHREAD_FLAG ON)" n
                            "find_package(Threads REQUIRED)" n
@@ -305,36 +309,41 @@
                            "  target_link_libraries(" (s proj) " PRIVATE c++ c++abi)" n
                            "endif()" n n
                            "# Benchmark" n
-                           "set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
-                           "FetchContent_Declare(" n
-                           "  benchmark" n
-                           "  GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "  GIT_TAG        v1.5.2" n
-                           "  GIT_SHALLOW    true" n
-                           "  GIT_PROGRESS   true" n
-                           ")" n
-                           "FetchContent_MakeAvailable(benchmark)" n n
+                           "if(" (proj-prefixed "_ENABLE_BENCHMARKS)") n
+                           "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
+                           "  FetchContent_Declare(" n
+                           "    benchmark" n
+                           "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
+                           "    GIT_TAG        v1.5.2" n
+                           "    GIT_SHALLOW    true" n
+                           "    GIT_PROGRESS   true" n
+                           "  )" n
+                           "  FetchContent_MakeAvailable(benchmark)" n
+                           "endif()" n n
                            "# Test" n
-                           "# libgtest.a and libgtest_main.a will be built" n
-                           "FetchContent_Declare(" n
-                           "  gtest" n
-                           "  GIT_REPOSITORY https://github.com/google/googletest" n
-                           "  GIT_TAG        release-1.10.0" n
-                           "  GIT_SHALLOW    true" n
-                           "  GIT_PROGRESS   true" n
-                           ")" n
-                           "FetchContent_MakeAvailable(gtest)" n n
+                           "if(" (proj-prefixed "_ENABLE_TESTS)") n
+                           "  enable_testing()" n n
+                           "  # libgtest.a and libgtest_main.a will be built" n
+                           "  FetchContent_Declare(" n
+                           "    gtest" n
+                           "    GIT_REPOSITORY https://github.com/google/googletest" n
+                           "    GIT_TAG        release-1.10.0" n
+                           "    GIT_SHALLOW    true" n
+                           "    GIT_PROGRESS   true" n
+                           "  )" n
+                           "  FetchContent_MakeAvailable(gtest)" n
+                           "endif()" n n
                            "### Definitions" n n
                            "### Includes" n n
                            "target_include_directories(" (s proj) " PRIVATE include)" n n
-                           "### Install" n n
+                           "### Install" n
                            "install(TARGETS " (s proj) " RUNTIME DESTINATION bin)" n n
-                           "### Sources" n n
+                           "### Sources" n
                            "target_sources(" (s proj) n
                            "  PRIVATE" n
                            "    src/lib.cpp" n
                            ")" n n
-                           "### Obtain version information from Git" n n
+                           "### Obtain version information from Git" n
                            "# if(NOT " (proj-prefixed "_VERSION)") n
                            "#   execute_process(COMMAND git describe --tag --long HEAD" n
                            "#     OUTPUT_VARIABLE " (proj-prefixed "_VERSION") n
