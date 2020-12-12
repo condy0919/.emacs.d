@@ -66,7 +66,7 @@
                                          ;; Images
                                          "jpg" "jpeg" "png" "gif" "xpm" "svg" "bmp"
                                          ;; Docs
-                                         "pdf" "md" "djvu" "ps" "eps")
+                                         "pdf" "md" "djvu" "ps" "eps" "doc" "docx" "xls" "xlsx" "ppt" "pptx")
                                         string-end)
                                    ,(cond ((eq system-type 'gnu/linux) "xdg-open")
                                           ((eq system-type 'darwin) "open")
