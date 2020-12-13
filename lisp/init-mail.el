@@ -240,6 +240,7 @@
 ;; Search in Gnus
 (use-package gnus-search
   :ensure nil
+  :when (>= emacs-major-version 28)
   :after gnus
   :custom
   (gnus-search-use-parsed-queries t))
