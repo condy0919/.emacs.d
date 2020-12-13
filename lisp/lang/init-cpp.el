@@ -254,6 +254,9 @@
   (defun cmake-mode-tempo-setup ()
     (tempo-use-tag-list 'cmake-tempo-tags))
 
+  ;; cmake provides `PROJECT_NAME` to refer the name defined with `project`
+  ;; function. Unluckily converting a string to upper case is not an easy way in
+  ;; cmake.
   (defun proj-prefixed (arg)
     (tempo-process-and-insert-string (concat (upcase (tempo-lookup-named 'proj)) arg)))
 
@@ -264,6 +267,21 @@
   ;; ├── include
   ;; └── src
   ;;     └── lib.cpp
+  ;;
+  ;; If you want to put all headers in `src` directory, don't forget to export them.
+  ;;
+  ;; ``` cmake
+  ;; # method 1
+  ;; set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
+  ;;
+  ;; # method 2
+  ;; target_sources(yourlib
+  ;;   PRIVATE
+  ;;     implementation.cpp
+  ;;   PUBLIC
+  ;;     header.hpp
+  ;; )
+  ;; ```
   ;;
   ;; # Features
   ;;
@@ -335,7 +353,7 @@
                            "endif()" n n
                            "### Definitions" n n
                            "### Includes" n n
-                           "target_include_directories(" (s proj) " PRIVATE include)" n n
+                           "target_include_directories(" (s proj) " PUBLIC include)" n n
                            "### Install" n
                            "install(TARGETS " (s proj) " RUNTIME DESTINATION bin)" n n
                            "### Sources" n
