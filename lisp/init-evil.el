@@ -195,12 +195,13 @@
 
     ;; app
     "a" '(:ignore t :which-key "app")
-    "ac" 'calendar
     "aa" 'org-agenda
+    "ac" 'calendar
     "ag" 'gnus
     "ai" 'rcirc
     "aj" 'jblog
     "an" 'newsticker-show-news
+    "ap" 'proced
 
     ;; open
     "o" '(:ignore t :which-key "open")
