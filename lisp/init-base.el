@@ -561,6 +561,7 @@ Else, call `comment-or-uncomment-region' on the current line."
                      ,no-littering-var-directory
                      ,no-littering-etc-directory
                      "^/tmp/"
+                     "^/private/tmp/"
                      "/ssh\\(x\\)?:"
                      "/su\\(do\\)?:"
                      "^/usr/include/"
