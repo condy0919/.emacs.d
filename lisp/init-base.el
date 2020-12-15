@@ -497,6 +497,8 @@ Else, call `comment-or-uncomment-region' on the current line."
                   (name . "\\.newsrc-dribble")))
       ("Conf" (or (mode . yaml-mode)
                   (mode . conf-mode)))
+      ("Dict" (or (mode . osx-dictionary-mode)
+                  (mode . dictionary-mode)))
       ("Text" (and (derived-mode . text-mode)
                    (not (starred-name))))
       ("Magit" (or (mode . magit-repolist-mode)

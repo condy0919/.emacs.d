@@ -289,6 +289,15 @@
   (rcirc-fill-column #'frame-text-width)
   (rcirc-kill-channel-buffers t))
 
+;; Client to dict server
+(use-package dictionary
+  :ensure nil
+  :when (>= emacs-major-version 28)
+  :commands dictionary-search
+  :custom
+  (dictionary-default-popup-strategy "lev")
+  (dictionary-server "dict.org"))
+
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
