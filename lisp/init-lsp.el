@@ -53,6 +53,8 @@
          ("C-c d" . lsp-describe-thing-at-point)
          ("C-c a" . lsp-execute-code-action)
          ("C-c r" . lsp-rename))
+  :config
+  (require 'lsp-lens)
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)                 ;; no clickable links
