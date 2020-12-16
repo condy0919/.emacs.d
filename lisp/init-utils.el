@@ -11,25 +11,27 @@
 (defun ydcv-dwim ()
   "Call `ydcv' with active region or current symbol."
   (interactive)
-  (let ((max-mini-window-height 0))
+  (let ((max-mini-window-height 0)
+        (buf (get-buffer-create ydcv-buffer-name)))
     (if (use-region-p)
-        (shell-command-on-region (region-beginning) (region-end) "ydcv" ydcv-buffer-name)
-      (shell-command (format "ydcv %s" (word-at-point)) ydcv-buffer-name))
-    (with-current-buffer ydcv-buffer-name
+        (shell-command-on-region (region-beginning) (region-end) "ydcv" buf)
+      (shell-command (format "ydcv %s" (word-at-point)) buf))
+    (with-current-buffer buf
       (view-mode +1))))
+
+(defconst qrcode-buffer-name "*qrcode*")
 
 ;;;###autoload
 (defun qrencode-on-region (start end)
   "Call `qrencode' from START to END."
   (interactive "r")
-  (let ((buf (get-buffer-create "*QRCode*"))
+  (let ((buf (get-buffer-create qrcode-buffer-name))
+        (coding-system-for-read 'raw-text)
         (inhibit-read-only t))
+    (shell-command-on-region start end "qrencode -o -" buf)
     (with-current-buffer buf
-      (erase-buffer))
-    (let ((coding-system-for-read 'raw-text))
-      (shell-command-on-region start end "qrencode -o -" buf))
-    (switch-to-buffer buf)
-    (image-mode)))
+      (image-mode))
+    (switch-to-buffer buf)))
 
 (provide 'init-utils)
 
