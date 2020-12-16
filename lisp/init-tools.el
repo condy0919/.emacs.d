@@ -16,7 +16,8 @@
     "C-c i" "ispell"
     "C-c t" "hl-todo"
     "C-x a" "abbrev"
-    "C-x n" "narrow")
+    "C-x n" "narrow"
+    "C-x t" "tab")
   :custom
   (which-key-idle-delay 0.5)
   (which-key-add-column-padding 1))

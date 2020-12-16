@@ -14,7 +14,9 @@
   (let ((max-mini-window-height 0))
     (if (use-region-p)
         (shell-command-on-region (region-beginning) (region-end) "ydcv" ydcv-buffer-name)
-      (shell-command (format "ydcv %s" (word-at-point)) ydcv-buffer-name))))
+      (shell-command (format "ydcv %s" (word-at-point)) ydcv-buffer-name))
+    (with-current-buffer ydcv-buffer-name
+      (view-mode +1))))
 
 ;;;###autoload
 (defun qrencode-on-region (start end)
