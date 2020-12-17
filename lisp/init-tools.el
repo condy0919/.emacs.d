@@ -296,8 +296,10 @@
   :when (>= emacs-major-version 28)
   :commands dictionary-search
   :custom
+  (dictionary-server "dict.org")
   (dictionary-default-popup-strategy "lev")
-  (dictionary-server "dict.org"))
+  (dictionary-description-open-delimiter "<<")
+  (dictionary-description-close-delimiter ">>"))
 
 (provide 'init-tools)
 
