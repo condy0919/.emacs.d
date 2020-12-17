@@ -212,7 +212,8 @@
 ;; Web search
 (use-package webjump
   :ensure nil
-  :bind ("C-c /" . webjump)
+  ;; C-c / will be shadowed by `org-sparse-tree' in org-mode
+  :bind ("C-c C-/" . webjump)
   :custom
   (webjump-sites '(;; Internet search engines.
                    ("DogeDoge" .
