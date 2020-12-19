@@ -70,3 +70,4 @@ natively
 Minic
 docstring
 TLDR
+SPDX
