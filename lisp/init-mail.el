@@ -164,6 +164,7 @@
   (gnus-treat-display-face nil)
   (gnus-visible-headers (rx line-start (or "From"
                                            "Subject"
+                                           "Mail-Followup-To"
                                            "Date"
                                            "To"
                                            "Cc"
@@ -270,7 +271,6 @@
   (user-full-name "Zhiwei Chen")
   (user-mail-address "condy0919@gmail.com")
   (message-kill-buffer-on-exit t)
-  (message-use-mail-followup-to nil)
   (message-mail-alias-type 'ecomplete)
   (message-send-mail-function #'message-use-send-mail-function)
   (message-signature user-full-name))
