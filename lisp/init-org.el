@@ -385,7 +385,7 @@ content."
   :custom
   (org-html-doctype "html5")
   (org-html-html5-fancy t)
-  (org-html-checkbox-type 'uncode)
+  (org-html-checkbox-type 'unicode)
   (org-html-validation-link nil))
 
 (use-package htmlize
