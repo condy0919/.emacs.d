@@ -80,11 +80,7 @@
 ;; Insert SPDX license header
 (use-package spdx
   :ensure t
-  :quelpa (spdx :fetcher github :repo "condy0919/spdx.el")
-  :hook (prog-mode . spdx-tempo-setup)
-  :custom
-  (license-copyright-holder 'auto)
-  (license-project-detection 'projectile))
+  :hook (prog-mode . spdx-tempo-setup))
 
 ;; Highlight TODO
 (use-package hl-todo
