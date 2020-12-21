@@ -326,7 +326,7 @@ content."
                                   "- Discussion (delete me)\n"
                                   "** Notes\n%?\n"
                                   "** Actions\n"
-                                  "#+begin: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
+                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
                                   "** Decisions\n"
                                   "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"DECISION\" :format \"\\%ITEM(Decision)\"\n#+END:\n"
                                   ))))))
