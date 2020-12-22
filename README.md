@@ -167,20 +167,20 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 与文件相关的`Leader`键绑定如下:
 
-| key           | function                                                 |
-|---------------|----------------------------------------------------------|
-| <kbd>ff</kbd> | `find-file`打开文件                                      |
-| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开       |
-| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                    |
-| <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件 |
-| <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件           |
-| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                     |
-| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方             |
-| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径         |
-| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                   |
-| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                    |
-| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                |
-| <kbd>fz</kbd> | `counsel-fzf`使用`fzf`来索引打开文件                     |
+| key           | function                                                                    |
+|---------------|-----------------------------------------------------------------------------|
+| <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
+| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
+| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
+| <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件                    |
+| <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件                              |
+| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                                        |
+| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方                                |
+| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径                            |
+| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                                      |
+| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                                       |
+| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                                   |
+| <kbd>fz</kbd> | `counsel-fzf`使用`fzf`来索引打开文件                                        |
 
 与目录相关的`Leader`键绑定如下:
 
@@ -197,19 +197,20 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>oT</kbd> | `my/ansi-term-other-window`在其他窗口打开`ansi-term`       |
 | <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
 | <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`             |
-| <kbd>os</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
+| <kbd>os</kbd> | `shell`打开`shell`                                         |
+| <kbd>od</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
+| <kbd>ow</kbd> | `dictionary-search`搜索单词定义                            |
+| <kbd>ol</kbd> | `org-store-link`存储URL                                    |
+| <kbd>oc</kbd> | `org-capture`随时记录一些想法、URL等                       |
 
 | key           | function                             |
 |---------------|--------------------------------------|
-| <kbd>aC</kbd> | `calendar`日历                       |
+| <kbd>ac</kbd> | `calendar`日历                       |
 | <kbd>aa</kbd> | `org-agenda`日程                     |
-| <kbd>ac</kbd> | `org-capture`随时记录一些想法、URL等 |
 | <kbd>ag</kbd> | `gnus`查看新闻组                     |
 | <kbd>ai</kbd> | `rcirc`上 IRC                        |
 | <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
-| <kbd>al</kbd> | `org-store-link`存储URL              |
 | <kbd>an</kbd> | `newsticker`查看RSS订阅              |
-| <kbd>at</kbd> | `org-todo-list`浏览相关的`todo`列表  |
 
 搜索相关的`Leader`键绑定:
 
