@@ -583,7 +583,7 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; MacOS specific
 (use-package exec-path-from-shell
   :ensure t
-  :when (memq window-system '(mac ns x))
+  :when (eq system-type 'darwin)
   :hook (after-init . exec-path-from-shell-initialize))
 
 (provide 'init-base)

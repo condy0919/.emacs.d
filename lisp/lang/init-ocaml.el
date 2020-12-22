@@ -15,7 +15,7 @@
 (use-package ocp-indent
   :ensure nil
   :when (executable-find "ocp-indent")
-  :commands (ocp-indent-region ocp-indent-buffer)
+  :commands ocp-indent-region ocp-indent-buffer
   :hook (tuareg-mode . ocp-setup-indent))
 
 ;; The dune build system

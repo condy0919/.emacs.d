@@ -311,8 +311,6 @@
 (require 'init-haskell)
 (require 'init-python)
 (require 'init-elisp)
-(require 'init-sql)
-(require 'init-go)
 (require 'init-sh)
 
 (provide 'init-dev)
