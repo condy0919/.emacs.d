@@ -66,6 +66,7 @@
   (lsp-enable-symbol-highlighting nil)   ;; as above
   (lsp-enable-indentation nil)           ;; indent by ourself
   (lsp-enable-on-type-formatting nil)    ;; disable formatting on the fly
+  (lsp-headerline-breadcrumb-enable nil) ;; keep headline clean
   (lsp-modeline-code-actions-enable nil) ;; keep modeline clean
   (lsp-modeline-diagnostics-enable nil)  ;; as above
   (lsp-idle-delay 0.5)                   ;; lazy refresh
