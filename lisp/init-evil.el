@@ -128,7 +128,6 @@
     "w" '(:keymap evil-window-map :which-key "window")
     "wx" 'kill-buffer-and-window
     "wu" 'my/transient-winner-undo
-    "wg" 'hydra-other-window-scroll/body
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally
 
