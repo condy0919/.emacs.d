@@ -8,7 +8,10 @@
 ;; Ocaml mode
 (use-package tuareg
   :ensure t
-  :mode ("\\.ml\\'" . tuareg-mode))
+  :mode ("\\.ml\\'" . tuareg-mode)
+  :custom
+  (tuareg-match-patterns-aligned t)
+  (tuareg-indent-align-with-first-arg t))
 
 ;; Indentation tool for OCaml
 ;; Bundled with system package `ocaml-ocp-indent'
