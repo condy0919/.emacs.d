@@ -557,13 +557,19 @@ Else, call `comment-or-uncomment-region' on the current line."
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
+  ;; `recentf-add-file' will apply handlers first, then call `string-prefix-p'
+  ;; to check if it can be pushed to recentf list.
   (recentf-filename-handlers '(abbreviate-file-name))
-  (recentf-exclude `(,(expand-file-name package-user-dir)
-                     ,quelpa-packages-dir
-                     ,no-littering-var-directory
-                     ,no-littering-etc-directory
-                     "^/tmp/"
+  (recentf-exclude `(,@(cl-loop for f in `(,package-user-dir
+                                           ,quelpa-packages-dir
+                                           ,no-littering-var-directory
+                                           ,no-littering-etc-directory)
+                                collect (abbreviate-file-name f))
+                     ;; Folders on MacOS start
                      "^/private/tmp/"
+                     "^/var/folders/"
+                     ;; Folders on MacOS end
+                     "^/tmp/"
                      "/ssh\\(x\\)?:"
                      "/su\\(do\\)?:"
                      "^/usr/include/"
