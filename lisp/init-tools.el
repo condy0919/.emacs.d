@@ -216,9 +216,6 @@
   :bind ("C-c C-/" . webjump)
   :custom
   (webjump-sites '(;; Internet search engines.
-                   ("DogeDoge" .
-                    [simple-query "dogedoge.com"
-                                  "dogedoge.com/results?q=" ""])
                    ("Google" .
                     [simple-query "www.google.com"
                                   "www.google.com/search?q=" ""])
@@ -232,8 +229,6 @@
                     [simple-query "etymonline.com" "etymonline.com/word/" ""])
                    ("Stack Overflow" .
                     [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
-                   ("GitHub" .
-                    [simple-query "github.com" "github.com/search?ref=simplesearch&q=" ""])
                    ("TLDR" .
                     [simple-query "linux.cn" "tldr.linux.cn/cmd/" ""])
 
@@ -243,15 +238,7 @@
                                   "docs.python.org/3/search.html?q=" ""])
                    ("Cpp Reference" .
                     [simple-query "en.cppreference.com"
-                                  "en.cppreference.com/mwiki/index.php?search=" ""])
-
-                   ;; ArchLinux
-                   ("ArchLinux Packages" .
-                    [simple-query "www.archlinux.org"
-                                  "www.archlinux.org/packages/?q=" ""])
-                   ("ArchLinux User Repository" .
-                    [simple-query "aur.archlinux.org"
-                                  "aur.archlinux.org/packages/?K=" ""]))))
+                                  "en.cppreference.com/mwiki/index.php?search=" ""]))))
 
 ;; Upload to 0x0.st or other pb services
 (use-package 0x0
