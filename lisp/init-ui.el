@@ -42,6 +42,7 @@
                    (rg-mode              :select t :align t)
                    ("*Flycheck errors*"         :select t   :align t :size 10)
                    ("*Backtrace*"               :select t   :align t :size 15)
+                   ("*ydcv*"                    :select nil :align t :size 0.4)
                    ("*Shell Command Output*"    :select nil :align t :size 0.4)
                    ("*Async Shell Command*"     :select nil :align t :size 0.4)
                    ("*Org-Babel Error Output*"  :select nil :align t :size 0.3)
