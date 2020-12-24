@@ -7,13 +7,14 @@
 
 (use-package doom-themes
   :ensure t
-  :config
+  :init
   (load-theme 'doom-one t)
+  :config
   (doom-themes-org-config))
 
 (use-package doom-modeline
   :ensure t
-  :hook (window-setup . doom-modeline-mode)
+  :hook (after-init . doom-modeline-mode)
   :custom
   (doom-modeline-irc nil)
   (doom-modeline-mu4e nil)
