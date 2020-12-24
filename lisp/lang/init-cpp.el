@@ -299,7 +299,7 @@
                            "  DESCRIPTION \"\"" n
                            "  HOMEPAGE_URL \"\"" n
                            ")" n n
-                           "OPTION(" (proj-prefixed "_USE_LIBCPP") " \"Use the libc++ library\" OFF)" n
+                           "OPTION(" (proj-prefixed "_ENABLE_LIBCXX") " \"Use the libc++ library\" OFF)" n
                            "OPTION(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
                            "OPTION(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
@@ -322,7 +322,7 @@
                            "find_package(Threads REQUIRED)" n
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Link libc++" n
-                           "if(" (proj-prefixed "_USE_LIBCPP)") n
+                           "if(" (proj-prefixed "_ENABLE_LIBCXX)") n
                            "  target_compile_options(" (s proj) " PRIVATE -stdlib=libc++)" n
                            "  target_link_libraries(" (s proj) " PRIVATE c++ c++abi)" n
                            "endif()" n n
