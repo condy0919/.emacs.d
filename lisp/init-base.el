@@ -264,13 +264,13 @@
                             (holiday-fixed 10 10 "World Mental Health Day")))
   (calendar-holidays `(,@holiday-general-holidays
                        ,@holiday-oriental-holidays
+                       ,@holiday-christian-holidays
                        ,@holiday-other-holidays
                        ,@holiday-local-holidays))
   (calendar-mark-holidays-flag t)
   (calendar-mark-diary-entries-flag nil)
+  ;; Prefer +0800 over CST
   (calendar-time-zone-style 'numeric)
-  ;; start from Monday
-  (calendar-week-start-day 1)
   ;; year/month/day
   (calendar-date-style 'iso))
 
