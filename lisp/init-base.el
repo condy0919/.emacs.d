@@ -239,7 +239,6 @@
 ;; Holidays
 (use-package calendar
   :ensure nil
-  :defines org-agenda-diary-file
   :hook (calendar-today-visible . calendar-mark-today)
   :custom
   (calendar-chinese-all-holidays-flag t)
