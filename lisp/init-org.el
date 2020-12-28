@@ -345,7 +345,7 @@ content."
                            ("Google"        . "https://google.com/search?q=")
                            ("RFCs"          . "https://tools.ietf.org/html/")
                            ("LWN"           . "https://lwn.net/Articles/")
-                           ("StackOverflow" . "https://stackoverflow.com/questions/%s/")
+                           ("StackOverflow" . "https://stackoverflow.com/q/%s")
                            ("WG21"          . "https://wg21.link/")
                            ("Wikipedia"     . "https://en.wikipedia.org/wiki/")
                            ("YouTube"       . "https://youtube.com/watch?v=")
