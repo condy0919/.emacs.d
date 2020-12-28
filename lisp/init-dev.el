@@ -181,14 +181,22 @@
   (flymake-fringe-indicator-position 'right-fringe))
 
 ;; xref
-(use-package ivy-xref
-  :ensure t
+(use-package xref
+  :ensure nil
+  :when (>= emacs-major-version 28)
   :custom
   ;; `project-find-regexp' benefits from that
   (xref-search-program 'ripgrep)
-  ;; enhanced by `ivy'
-  (xref-show-definitions-function #'ivy-xref-show-defs)
-  (xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  (xref-show-xrefs-function #'xref-show-definitions-completing-read)
+  (xref-show-definitions-function #'xref-show-definitions-completing-read))
+
+;; ivy enhancement
+(when (< emacs-major-version 28)
+  (use-package ivy-xref
+    :ensure t
+    :custom
+    (xref-show-xrefs-function #'ivy-xref-show-xrefs)
+    (xref-show-definitions-function #'ivy-xref-show-defs)))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
