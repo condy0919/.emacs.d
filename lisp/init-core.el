@@ -99,6 +99,21 @@ confirmation."
 (my/other-windowize-for ielm)
 
 ;;;###autoload
+(defun my/transient-spc ()
+  "Bring SPC back. Useful when SPC is used as a leader key."
+  (interactive)
+  (when-let* ((local-map (current-local-map))
+              (f (lookup-key local-map (kbd "SPC")))
+              (itf (lambda () (interactive) (funcall f))))
+    (funcall f)
+    (message "SPC")
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map (kbd "SPC") itf)
+       map)
+     t)))
+
+;;;###autoload
 (defun my/transient-winner-undo ()
   "Transient version of `winner-undo'."
   (interactive)
@@ -133,7 +148,7 @@ confirmation."
 
 ;;;###autoload
 (defun my/suppress-message (func &rest args)
-  "Suppress `message'."
+  "Suppress `message' when apply FUNC with ARGS."
   (let ((inhibit-message t))
     (apply func args)))
 
