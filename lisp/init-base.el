@@ -52,6 +52,9 @@
 ;; No gc for font caches
 (setq inhibit-compacting-font-caches t)
 
+;; Improve display
+(setq display-raw-bytes-as-hex t)
+
 ;; No annoying bell
 (setq ring-bell-function 'ignore)
 
@@ -409,6 +412,7 @@ Else, call `comment-or-uncomment-region' on the current line."
 (use-package comint
   :ensure nil
   :custom
+  (comint-history-isearch 'dwim)
   (comint-input-ignoredups t)
   ;; Make the prompt of "*Python*" buffer readonly
   (comint-prompt-read-only t)
