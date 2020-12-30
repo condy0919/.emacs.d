@@ -64,7 +64,7 @@
   (lsp-enable-text-document-color nil)   ;; as above
   (lsp-enable-symbol-highlighting nil)   ;; as above
   (lsp-enable-on-type-formatting nil)    ;; as above
-  (lsp-enable-indentation nil)           ;; don't change my codes without my permission
+  (lsp-enable-indentation nil)           ;; don't change my code without my permission
   (lsp-headerline-breadcrumb-enable nil) ;; keep headline clean
   (lsp-modeline-code-actions-enable nil) ;; keep modeline clean
   (lsp-modeline-diagnostics-enable nil)  ;; as above
@@ -72,8 +72,7 @@
   (lsp-lens-enable t)                    ;; enable lens
   (lsp-auto-guess-root t)                ;; auto guess root
   (lsp-keep-workspace-alive nil)         ;; auto kill lsp server
-  (lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
-  (lsp-signature-doc-lines 10))          ;; but dont take up more lines
+  (lsp-eldoc-enable-hover nil))          ;; disable eldoc hover
 
 ;; Jump to workspace symbol
 (use-package lsp-ivy
