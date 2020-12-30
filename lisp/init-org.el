@@ -416,15 +416,6 @@ content."
   :custom
   (org-man-source-highlight t))
 
-;; Pretty symbols
-(use-package org-superstar
-  :ensure t
-  :hook (org-mode . org-superstar-mode)
-  :custom
-  ;; hide leading stars, rendering in spaces
-  (org-hide-leading-stars nil)
-  (org-superstar-leading-bullet ?\s))
-
 ;; Super agenda mode
 (use-package org-super-agenda
   :ensure t
