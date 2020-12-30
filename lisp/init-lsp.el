@@ -59,25 +59,21 @@
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)                 ;; no clickable links
   (lsp-enable-folding nil)               ;; use `hideshow' instead
-  (lsp-enable-snippet nil)               ;; no snippet
-  (lsp-enable-file-watchers nil)         ;; turn off for better performance
+  (lsp-enable-snippet nil)               ;; no snippets, it requires `yasnippet'
+  (lsp-enable-file-watchers nil)         ;; performance matters
   (lsp-enable-text-document-color nil)   ;; as above
-  (lsp-enable-semantic-highlighting nil) ;; as above
   (lsp-enable-symbol-highlighting nil)   ;; as above
-  (lsp-enable-indentation nil)           ;; indent by ourself
-  (lsp-enable-on-type-formatting nil)    ;; disable formatting on the fly
+  (lsp-enable-on-type-formatting nil)    ;; as above
+  (lsp-enable-indentation nil)           ;; don't change my codes without my permission
   (lsp-headerline-breadcrumb-enable nil) ;; keep headline clean
   (lsp-modeline-code-actions-enable nil) ;; keep modeline clean
   (lsp-modeline-diagnostics-enable nil)  ;; as above
-  (lsp-idle-delay 0.5)                   ;; lazy refresh
-  (lsp-log-io nil)                       ;; enable log only for debug
-  (lsp-diagnostics-provider :flycheck)   ;; prefer `flycheck'
+  (lsp-log-io nil)                       ;; debug only
   (lsp-lens-enable t)                    ;; enable lens
   (lsp-auto-guess-root t)                ;; auto guess root
   (lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
-  (lsp-signature-auto-activate t)        ;; show function signature
-  (lsp-signature-doc-lines 2))           ;; but dont take up more lines
+  (lsp-signature-doc-lines 10))          ;; but dont take up more lines
 
 ;; Jump to workspace symbol
 (use-package lsp-ivy
