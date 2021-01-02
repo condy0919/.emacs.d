@@ -122,11 +122,6 @@
                      ;; foo {};
                      (topmost-intro         . 0)
                      (topmost-intro-cont    . c-lineup-topmost-intro-cont)
-
-                     ;; TODO ??
-                     (annotation-top-cont   . +)
-                     (annotation-var-cont   . +)
-
                      ;; class member initialization list
                      ;;
                      ;; struct foo {
@@ -196,9 +191,8 @@
                      (comment-intro         . c-lineup-comment)
                      ;; funcall with arglist
                      ;;
-                     ;; sum(1,
-                     ;;     2,
-                     ;;     3
+                     ;; sum(
+                     ;;     1, 2, 3
                      ;; );
                      (arglist-intro         . +)
                      (arglist-cont          . 0)
