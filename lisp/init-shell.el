@@ -69,6 +69,27 @@
       (cl-destructuring-bind (d) dir
         (insert (concat "cd " d)))
       (eshell-send-input)))
+
+  (defun eshell/for-each (cmd &rest args)
+    "Run CMD for each ARG."
+    (let ((f (intern cmd))
+          (orig-dir default-directory))
+      (dolist (arg (flatten-list args))
+        (let ((default-directory orig-dir))
+          (funcall f arg)))))
+
+  (defun eshell/in-term (program &rest args)
+    "Run the specified PROGRAM in a terminal emulation buffer.
+ARGS are passed to the PROGRAM."
+    (let* ((term-buf (generate-new-buffer (concat "*" program "*")))
+           (eshell-buf (current-buffer)))
+      (pop-to-buffer term-buf)
+      (with-current-buffer term-buf
+        (term-mode)
+        (setq-local eshell-parent-buffer eshell-buf)
+        (term-exec term-buf program program nil args)
+        (term-char-mode))))
+
   (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
