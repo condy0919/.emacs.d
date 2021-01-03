@@ -56,7 +56,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 - `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
 - `rg` 更快的`grep`
-- `pandoc` 文本转换工具，`markdown-mode`渲染需要
+- `pandoc` (optional) 文本转换工具，`markdown-mode`渲染需要
+- `markdown` (optional) 文本转换工具，`markdown-mode`渲染需要
 - `cmake` `c++`项目的构建工具
 - `git` 这个就不用说了吧？
 - `gcc` 这个就不用说了吧？
@@ -73,9 +74,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | appt          | 任务提醒，可以与`org-mode`结合                       |
 | autorevert    | 当文本被其他编辑器修改后，可自动更新                 |
 | delsel        | 选中文本可以直接覆盖着写，一般编辑器都默认开这个功能 |
-| hl-line       | 高亮当前行                                           |
 | hippie-expand | 用来展开文本                                         |
-| newcomment    | 注释功能，已取代`evil-nerd-commenter`                |
+| hl-line       | 高亮当前行                                           |
+| newcomment    | 注释、反注释功能                                     |
 | paren         | 高亮匹配的括号                                       |
 | saveplace     | 自动记录上次打开文件的位置                           |
 | simple        | 在`modeline`里显示行号、列号以及当前文本的大小       |
@@ -98,7 +99,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 注意：
 
-`llvm-mode`和`tablegen-mode`下载都是通过`raw.githubusercontent.com`，而这个域名在国内几乎不可达，需要科学上网一下。
+`llvm-mode`和`tablegen-mode`下载通过`raw.githubusercontent.com`，而这个域名在国内几乎不可达，需要科学上网。因此现在已使用`gitee`的镜像服务来中转。
 
 # 界面
 
@@ -110,17 +111,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的<kbd>M-x</kbd>根本无法让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于`ivy`的设置)，搜索时肯定是比较在意上下文。而自带的`isearch`在稍加设置之后，效果也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文件、修改」变成了「搜索、修改」。
+自然`ivy`,`counsel`是要上的，补全功能太好用了。没有`counsel`加持的<kbd>M-x</kbd>根本无法让人按下去。这里推荐尽量使用`isearch`，因为`swiper`下方占用空间过大(继承于`ivy`的设置)，搜索时必然是比较在意上下文的。而自带的`isearch`在稍加设置之后，效果也还可以接受。当`evil-search-module`设置成`isearch`后，也可以使用相同的快捷键来触发`ivy-occur`。再加上`ivy-occur`可以与`wgrep`配合，将原来的「搜索、打开对应文件、修改」变成了「搜索、修改」。
 
-`Emacs`下的`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
+`Emacs`下的`org-mode`/`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
 [valign][valign] 提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
 
 从`neovim`迁移过来的我，自然是常开`evil-mode`，相关的`evil`套件有:
 
-- evil-collection
-- evil-surround
-- evil-magit
+- `evil`
+- `evil-collection` (已包含 `evil-magit`)
+- `evil-surround`
 
 # 按键绑定
 
@@ -165,12 +166,20 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 此外另外提供了一个`Leader`键，绑定在了`SPC`键上。
 
+`special-mode`专用。通常在`special-mode`里会定义一个`SPC`用来翻页 (如`Info`)，但是由于`SPC`已经作为`Leader`键了。这里曲线救国，用`SPC SPC`来代替原来的`SPC`单键行为，并且会进入`transient`状态，接下来仅按`SPC`即可触发原函数。
+
+| key            | function                                |
+|----------------|-----------------------------------------|
+| <kbd>SPC</kbd> | 调用当前`mode`下原来绑定至`SPC`上的函数 |
+
 与文件相关的`Leader`键绑定如下:
 
 | key           | function                                                                    |
 |---------------|-----------------------------------------------------------------------------|
 | <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
+| <kbd>f.</kbd> | 同上                                                                        |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
+| <kbd>f/</kbd> | 同上                                                                        |
 | <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
 | <kbd>fj</kbd> | `counsel-fd-file-jump`打开由`fd`在当前目录下搜索到的文件                    |
 | <kbd>fo</kbd> | `counsel-find-file-extern`使用外部程序打开文件                              |
@@ -184,10 +193,35 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 与目录相关的`Leader`键绑定如下:
 
-| key           | functio                                                   |
-|---------------|-----------------------------------------------------------|
-| <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                            |
-| <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开       |
+| key           | function                                            |
+|---------------|-----------------------------------------------------|
+| <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                      |
+| <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
+
+与`buffer`、`bookmark`相关的键绑定:
+
+| key           | function                                                                              |
+|---------------|---------------------------------------------------------------------------------------|
+| <kbd>bb</kbd> | `switch-to-buffer`切换`buffer`                                                        |
+| <kbd>bB</kbd> | `switch-to-buffer-other-window`同上，不过是在另一窗口打开                             |
+| <kbd>bc</kbd> | `clone-indirect-buffer`将当前`buffer`克隆至另一`buffer`，它们可以使用不同`major-mode` |
+| <kbd>bC</kbd> | `clone-indirect-buffer-other-window`同上，不过是在另一窗口打开                        |
+| <kbd>bv</kbd> | `revert-buffer`重新读取当前`buffer`对应的文件                                         |
+| <kbd>by</kbd> | `my/copy-current-buffer-name`复制当前`buffer`的名字                                   |
+| <kbd>bz</kbd> | `bury-buffer`退出当前`buffer`的显示，当前`buffer`未被 kill                            |
+
+| key           | function                                                |
+|---------------|---------------------------------------------------------|
+| <kbd>bj</kbd> | `bookmark-jump`跳转至书签                               |
+| <kbd>bJ</kbd> | `bookmark-jump-other-window`同上，不过是在另一窗口打开  |
+| <kbd>bm</kbd> | `bookmark-set`设置书签                                  |
+| <kbd>bM</kbd> | `bookmark-set-no-overwrite`同上，但是不会覆盖同名的书签 |
+| <kbd>bd</kbd> | `bookmark-delete`删除书签                               |
+| <kbd>bi</kbd> | `bookmark-insert`插入书签的内容                         |
+| <kbd>bl</kbd> | `bookmark-bmenu-list`打开书签列表                       |
+| <kbd>br</kbd> | `bookmark-rename`重命名书签                             |
+| <kbd>bs</kbd> | `bookmark-save`保存书签                                 |
+| <kbd>bw</kbd> | `bookmark-write`将书签保存至其他文件                    |
 
 打开其他程序的`Leader`键绑定:
 
@@ -203,14 +237,16 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ol</kbd> | `org-store-link`存储URL                                    |
 | <kbd>oc</kbd> | `org-capture`随时记录一些想法、URL等                       |
 
-| key           | function                             |
-|---------------|--------------------------------------|
-| <kbd>ac</kbd> | `calendar`日历                       |
-| <kbd>aa</kbd> | `org-agenda`日程                     |
-| <kbd>ag</kbd> | `gnus`查看新闻组                     |
-| <kbd>ai</kbd> | `rcirc`上 IRC                        |
-| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章         |
-| <kbd>an</kbd> | `newsticker`查看RSS订阅              |
+打开一些看起来像是独立的应用:
+
+| key           | function                     |
+|---------------|------------------------------|
+| <kbd>ac</kbd> | `calendar`日历               |
+| <kbd>aa</kbd> | `org-agenda`日程             |
+| <kbd>ag</kbd> | `gnus`查看新闻组             |
+| <kbd>ai</kbd> | `rcirc`上 IRC                |
+| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章 |
+| <kbd>an</kbd> | `newsticker`查看RSS订阅      |
 
 搜索相关的`Leader`键绑定:
 
@@ -227,6 +263,26 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>sm</kbd> | `evil-show-marks`                                                     |
 | <kbd>sr</kbd> | `evil-show-registers`                                                 |
 | <kbd>sw</kbd> | `my/lsp-ivy-workspace-symbol`仅在`lsp-mode`开启的情况下生效，查找符号 |
+
+与文本相关的`Leader`键绑定:
+
+| key              | function                                     |
+|------------------|----------------------------------------------|
+| <kbd>x TAB</kbd> | `indent-rigidly`在一个`region`上统一进行缩进 |
+| <kbd>xw</kbd>    | `delete-trailing-whitespace`删除行末空白字符 |
+| <kbd>xj</kbd>    | `set-justification`文本对齐                  |
+
+与代码相关的`Leader`键绑定:
+
+| key           | function                                               |
+|---------------|--------------------------------------------------------|
+| <kbd>cc</kbd> | `compile`编译                                          |
+| <kbd>cC</kbd> | `recompile`重新编译                                    |
+| <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程                   |
+| <kbd>cx</kbd> | `quickrun`快速运行当前程序                             |
+| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出                   |
+| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示      |
+| <kbd>ca</kbd> | `add-change-log-entry-other-window`打开`ChangeLog`文件 |
 
 ## Emacs
 
