@@ -25,6 +25,12 @@
   `(define-advice ,func (:around (f &rest args))
      (ignore-errors (apply f args))))
 
+(defmacro my/interactive (fmt &rest args)
+  "A function wrapper of `interactive' with FMT and ARGS."
+  `(call-interactively (lambda ,args
+                         (interactive ,fmt)
+                         (list ,@args))))
+
 (provide 'init-macros)
 
 ;;; init-macros.el ends here

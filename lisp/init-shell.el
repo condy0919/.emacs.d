@@ -59,10 +59,16 @@
                          (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
   :config
-  ;; aliases
+  ;; Prevent accident typing
   (defalias 'eshell/vi 'find-file)
   (defalias 'eshell/vim 'find-file)
 
+  (defun eshell/icd ()
+    "Interactive cd."
+    (let ((dir (my/interactive "Dcd " dir)))
+      (cl-destructuring-bind (d) dir
+        (insert (concat "cd " d)))
+      (eshell-send-input)))
   (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
