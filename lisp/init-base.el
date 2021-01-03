@@ -508,6 +508,8 @@ Else, call `comment-or-uncomment-region' on the current line."
                    (mode . magit-submodule-list-mode)
                    (mode . git-rebase-mode)
                    (derived-mode . magit-section-mode)))
+      ("VC" (or (mode . diff-mode)
+                (derived-mode . log-view-mode)))
       ("Prog" (and (derived-mode . prog-mode)
                    (not (starred-name))))
       ("Dired" (mode . dired-mode))
