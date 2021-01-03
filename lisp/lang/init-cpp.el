@@ -172,7 +172,7 @@
                      ;;     glabel:                             // <- substatement-label
                      ;;         assert(argc == 1);
                      ;;
-                     ;;  error:                                 // <- label
+                     ;; error:                                  // <- label, with zero `c-label-minimum-indentation'
                      ;;     return -1;
                      ;; }
                      (statement             . 0)
