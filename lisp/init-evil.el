@@ -95,6 +95,10 @@
     "d" '(:ignore t :which-key "dired")
     "dj" 'dired-jump
     "dJ" 'dired-jump-other-window
+    "dM" 'make-directory
+    "dC" 'copy-directory
+    "dD" 'delete-directory
+    "dl" 'list-directory
 
     ;; buffer & bookmark
     "b" '(:ignore t :which-key "buffmark")

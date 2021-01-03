@@ -197,6 +197,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 |---------------|-----------------------------------------------------|
 | <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                      |
 | <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
+| <kbd>dM</kbd> | `make-directory`创建目录                                                    |
+| <kbd>dC</kbd> | `copy-directory`拷贝目录                            |
+| <kbd>dD</kbd> | `delete-directory`删除目录                          |
+| <kbd>dl</kbd> | `list-directory`列出目录下的文件                    |
 
 与`buffer`、`bookmark`相关的键绑定:
 

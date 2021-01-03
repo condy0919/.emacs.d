@@ -96,10 +96,9 @@
 ;; Font size
 (set-face-attribute 'default nil :height 110)
 
-;; Prefer shorter names
+;; Sane defaults
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(defalias 'list-buffers 'ibuffer)
+(fset 'list-buffers 'ibuffer)
 
 ;; A simple frame title
 (setq frame-title-format '("%b - Emacs")
