@@ -2,6 +2,7 @@
 
 ;;; Commentary:
 ;;
+;; git-messenger has been superseded by {C-x v h} (`vc-region-history')
 
 ;;; Code:
 
@@ -102,22 +103,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package browse-at-remote
   :ensure t
   :bind (:map vc-prefix-map
-         ("b" . bar-browse)
+         ("b" . bar-browse)         ;; was `vc-switch-backend'
          ("c" . bar-to-clipboard))
   :custom
   (browse-at-remote-add-line-number-if-no-region-selected nil))
-
-;; Pop up last commit information of current line
-(use-package git-messenger
-  :ensure t
-  :bind (:map vc-prefix-map
-         ("p" . git-messenger:popup-message)
-         :map git-messenger-map
-         ("m" . git-messenger:copy-message))
-  :custom
-  (git-messenger:show-detail t)
-  (git-messenger:use-magit-popup t)
-  (git-messenger:handled-backends '(git)))
 
 ;; Setup gitignore mode
 (use-package conf-mode
