@@ -32,13 +32,9 @@
 ;; NB `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
-  :config
-  ;; Disable vc for remote files, and `diff-hl' won't work as expected.
-  (setq vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
-                                     vc-ignore-dir-regexp
-                                     tramp-file-name-regexp))
   :custom
   (vc-follow-symlinks t)
+  (vc-allow-async-revert t)
   (vc-handled-backends '(Git)))
 
 ;; Highlight uncommitted changes using VC
