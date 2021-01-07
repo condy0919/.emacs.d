@@ -100,6 +100,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (fset 'list-buffers 'ibuffer)
 
+;; Inhibit switching out from `y-or-n-p' and `read-char-choice'
+(setq y-or-n-p-use-read-key t
+      read-char-choice-use-read-key t)
+
 ;; A simple frame title
 (setq frame-title-format '("%b - Emacs")
       icon-title-format frame-title-format)
