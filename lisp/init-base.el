@@ -53,7 +53,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;; Improve display
-(setq display-raw-bytes-as-hex t)
+(setq display-raw-bytes-as-hex t
+      redisplay-skip-fontification-on-input t)
 
 ;; No annoying bell
 (setq ring-bell-function 'ignore)
@@ -144,7 +145,7 @@
   :ensure nil
   :hook (after-init . delete-selection-mode))
 
-;; Show line/column number
+;; Show line/column number and more
 (use-package simple
   :ensure nil
   :custom
