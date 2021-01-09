@@ -443,8 +443,15 @@
   ;; .
   ;; ├── CMakeLists.txt
   ;; ├── include
-  ;; └── src
-  ;;     └── lib.cpp
+  ;; │   └── lib.hpp
+  ;; ├── src
+  ;; │   └── lib.cpp
+  ;; ├── benchmarks
+  ;; │   └── CMakeLists.txt
+  ;; └── tests
+  ;;     └── CMakeLists.txt
+  ;;
+  ;; Where `benchmarks` are optional.
   ;;
   ;; If you want to put all headers in `src` directory, don't forget to export them.
   ;;
@@ -507,20 +514,22 @@
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
-                           "  FetchContent_MakeAvailable(benchmark)" n
+                           "  FetchContent_MakeAvailable(benchmark)" n n
+                           "  add_subdirectory(benchmarks)" n
                            "endif()" n n
                            "# Test" n
                            "if(" (proj-prefixed "_ENABLE_TESTS)") n
                            "  enable_testing()" n n
-                           "  # libgtest.a and libgtest_main.a will be built" n
+                           "  # libdoctest.a and libdoctest_with_main.a will be built" n
                            "  FetchContent_Declare(" n
-                           "    gtest" n
-                           "    GIT_REPOSITORY https://github.com/google/googletest" n
-                           "    GIT_TAG        release-1.10.0" n
+                           "    doctest" n
+                           "    GIT_REPOSITORY https://github.com/onqtam/doctest" n
+                           "    GIT_TAG        2.4.4" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
-                           "  FetchContent_MakeAvailable(gtest)" n
+                           "  FetchContent_MakeAvailable(doctest)" n n
+                           "  add_subdirectory(tests)" n
                            "endif()" n n
                            "### Definitions" n n
                            "### Includes" n n
