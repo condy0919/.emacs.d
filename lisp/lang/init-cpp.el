@@ -487,6 +487,8 @@
                            "OPTION(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
                            "add_library(" (s proj) " \"\")" n n
+                           "# Alias to avoid name conflicts" n
+                           "# add_library(ANameWithDoubleColons ALIAS " (s proj) ")" n n
                            "### Commpile options" n
                            "# Enable C++17 (Required)" n
                            "target_compile_features(" (s proj) n
@@ -535,7 +537,7 @@
                            "### Includes" n n
                            "target_include_directories(" (s proj) " PUBLIC include)" n n
                            "### Install" n
-                           "install(TARGETS " (s proj) " RUNTIME DESTINATION bin)" n n
+                           "install(TARGETS " (s proj) " LIBRARY DESTINATION lib RUNTIME DESTINATION bin)" n n
                            "### Sources" n
                            "target_sources(" (s proj) n
                            "  PRIVATE" n
@@ -546,13 +548,13 @@
                            "#   execute_process(COMMAND git describe --tag --long HEAD" n
                            "#     OUTPUT_VARIABLE " (proj-prefixed "_VERSION") n
                            "#     OUTPUT_STRIP_TRAILING_WHITESPACE" n
-                           "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n n
+                           "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n
+                           "#" n
                            "#   if(NOT " (proj-prefixed "_VERSION)") n
                            "#     set(" (proj-prefixed "_VERSION") " \"<unknown>\")" n
                            "#   endif()" n
                            "# endif()" n n
-                           "# set_property(SOURCE src/main.cpp APPEND PROPERTY" n
-                           "#              COMPILE_DEFINITIONS VERSION=\\\"${" (proj-prefixed "_VERSION") "}\\\")" n
+                           "# target_compile_definitions(" (s proj) " PRIVATE " (proj-prefixed "_VERSION=${") (proj-prefixed "_VERSION") "})" n
                            )
                          "lib"
                          "Insert a cmake library"
