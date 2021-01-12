@@ -275,7 +275,7 @@
   (rcirc-always-use-server-buffer-flag t)
   (rcirc-authenticate-before-join t)
   (rcirc-auto-authenticate-flag t)
-  (rcirc-fill-column #'frame-text-width)
+  (rcirc-fill-column #'window-text-width)
   (rcirc-kill-channel-buffers t))
 
 ;; Client to dict server
