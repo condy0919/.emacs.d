@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
         emacs_version:
@@ -16,7 +17,7 @@ jobs:
       with:
         version: ${{ matrix.emacs_version }}
 
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Check startup
       run: |
         sed 's,https://mirrors.cloud.tencent.com/elpa/gnu/,https://elpa.gnu.org/packages/,' init.el -i
