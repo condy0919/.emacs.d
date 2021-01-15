@@ -102,8 +102,7 @@ confirmation."
 (defun my/transient-spc ()
   "Bring SPC back. Useful when SPC is used as a leader key."
   (interactive)
-  (when-let* ((local-map (current-local-map))
-              (f (lookup-key local-map (kbd "SPC")))
+  (when-let* ((f (local-key-binding (kbd "SPC")))
               (itf (lambda () (interactive) (funcall f))))
     (funcall f)
     (message "SPC")
