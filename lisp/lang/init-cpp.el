@@ -477,6 +477,7 @@
                          '((P "project: " proj 'noinsert)
                            "cmake_minimum_required(VERSION 3.11)" n n
                            "include(FetchContent)" n n
+                           "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n n
                            "project(" (s proj) n
                            "  VERSION 0.1.0" n
                            "  LANGUAGES CXX" n
