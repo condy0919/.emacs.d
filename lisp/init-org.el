@@ -42,6 +42,7 @@ content."
   (org-fontify-whole-heading-line t)
   (org-hide-macro-markers t)
   (org-hide-emphasis-markers t)
+  (org-highlight-latex-and-related '(native script entities))
   (org-pretty-entities t)
   (org-startup-indented t)
   (org-startup-with-inline-images t)
