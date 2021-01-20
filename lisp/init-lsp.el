@@ -38,7 +38,10 @@
   ;; make dabbrev-code case-sensitive
   (company-dabbrev-code-ignore-case nil)
   (company-dabbrev-code-everywhere t)
-  (company-backends '(company-capf
+  ;; call `tempo-expand-if-complete' after completion
+  (company-tempo-expand t)
+  ;; the backends
+  (company-backends '((company-capf :with company-tempo)
                       company-files
                       (company-dabbrev-code company-etags company-keywords)
                       company-dabbrev)))
