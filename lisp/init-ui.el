@@ -69,6 +69,7 @@
                            "*cvs*"
                            "*Buffer List*"
                            "*Ibuffer*"
+                           "*info*"
                            "*esh command on file*")))
 
 (use-package page-break-lines
