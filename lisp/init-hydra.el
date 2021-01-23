@@ -10,7 +10,7 @@
   :after evil
   :bind (("C-c h c" . hydra-copy/body)
          ("C-c h m" . hydra-macro/body)
-         ("C-c h w" . hydra-other-window-scroll/body))
+         ("C-c h s" . hydra-other-window-scroll/body))
   :config
   (defhydra hydra-other-window-scroll (nil nil)
     "Scroll in other window"
