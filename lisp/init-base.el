@@ -193,9 +193,10 @@
   (auto-revert-check-vc-info t)
   (global-auto-revert-non-file-buffers t))
 
-;; Highlight current line
+;; Highlight current line in GUI
 (use-package hl-line
   :ensure nil
+  :when (display-graphic-p)
   :hook (after-init . global-hl-line-mode))
 
 ;; Switch window
