@@ -60,8 +60,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; No eyes distraction
-(when (fboundp 'blink-cursor-mode)
-  (blink-cursor-mode -1))
+(setq blink-cursor-mode nil)
 
 ;; Smooth scroll & friends
 (setq scroll-step 2
