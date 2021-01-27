@@ -485,8 +485,8 @@
                            "  DESCRIPTION \"\"" n
                            "  HOMEPAGE_URL \"\"" n
                            ")" n n
-                           "OPTION(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
-                           "OPTION(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
+                           "option(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
+                           "option(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
                            "add_library(" (s proj) " \"\")" n n
                            "# Alias to avoid name conflicts" n
