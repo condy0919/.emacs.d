@@ -237,6 +237,9 @@
                     [simple-query "archlinux.org" "man.archlinux.org/search?q=" "&go=Go"])
 
                    ;; Language specific engines.
+                   ("x86 Instructions Reference" .
+                    [simple-query "www.felixcloutier.com"
+                                  "www.felixcloutier.com/x86/" ""])
                    ("Python Docs" .
                     [simple-query "docs.python.org"
                                   "docs.python.org/3/search.html?q=" ""])
