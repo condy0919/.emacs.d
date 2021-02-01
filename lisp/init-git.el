@@ -33,6 +33,12 @@
   (vc-allow-async-revert t)
   (vc-handled-backends '(Git)))
 
+;; Change log
+(use-package add-log
+  :ensure nil
+  :custom
+  (add-log-keep-changes-together t))
+
 ;; Highlight uncommitted changes using VC
 (use-package diff-hl
   :ensure t

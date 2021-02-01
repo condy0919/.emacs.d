@@ -88,12 +88,6 @@
   :custom
   (whitespace-style '(face trailing)))
 
-;; Change log
-(use-package add-log
-  :ensure nil
-  :custom
-  (add-log-keep-changes-together t))
-
 ;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
