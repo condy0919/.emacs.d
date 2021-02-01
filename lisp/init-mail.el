@@ -178,10 +178,7 @@
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
                                  (not gnus-article-sort-by-date)))
   (gnus-article-show-cursor t)
-  (gnus-article-browse-delete-temp t)
-  (gnus-mime-display-multipart-as-mixed t)
-  (gnus-mime-display-multipart-related-as-mixed t)
-  (gnus-mime-display-multipart-alternative-as-mixed t))
+  (gnus-article-browse-delete-temp t))
 
 ;; Asynchronous support for Gnus
 (use-package gnus-async
