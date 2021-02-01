@@ -321,15 +321,13 @@ content."
                                   ":END:\n"
                                   "** Present at meeting\n"
                                   "- [ ] %^{Attendees}\n"
-                                  "** Agenda\n"
+                                  "** Subjects\n"
                                   "- Comments and corrections to last meeting notes (delete me)\n"
                                   "- Reports from the sub teams (delete me)\n"
                                   "- Discussion (delete me)\n"
-                                  "** Notes\n%?\n"
-                                  "** Actions\n"
+                                  "** Conclusion\n%?\n"
+                                  "** Track\n"
                                   "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
-                                  "** Decisions\n"
-                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"DECISION\" :format \"\\%ITEM(Decision)\"\n#+END:\n"
                                   ))))))
          ))
   )
