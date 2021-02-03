@@ -70,7 +70,6 @@
   (lsp-modeline-code-actions-enable nil) ;; keep modeline clean
   (lsp-modeline-diagnostics-enable nil)  ;; as above
   (lsp-log-io nil)                       ;; debug only
-  (lsp-lens-enable t)                    ;; enable lens
   (lsp-auto-guess-root t)                ;; auto guess root
   (lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil))          ;; disable eldoc hover
