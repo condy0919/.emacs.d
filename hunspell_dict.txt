@@ -73,3 +73,5 @@ TLDR
 SPDX
 stackoverflow
 fontification
+RTTI
+errno
