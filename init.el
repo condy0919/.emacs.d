@@ -87,7 +87,6 @@
 (require 'init-shell)
 (require 'init-spell)
 (require 'init-reader)
-(require 'init-hyperbole)
 
 ;; MacOS specific
 (when (eq system-type 'darwin)
