@@ -75,3 +75,10 @@ stackoverflow
 fontification
 RTTI
 errno
+pseudocode
+setjmp
+longjmp
+nonlocal
+resumable
+RAII
+destructor
