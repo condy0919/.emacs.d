@@ -199,15 +199,11 @@
   :when (display-graphic-p)
   :hook (after-init . global-hl-line-mode))
 
-;; Switch window
-(use-package window
+;; Enable `repeat-mode' if available
+(use-package repeat
   :ensure nil
-  :bind (("M-o" . other-window)
-         ("M-O" . other-window-backward))
-  :config
-  (defun other-window-backward ()
-    (interactive)
-    (other-window -1)))
+  :when (boundp repeat-mode)
+  :hook (after-init . repeat-mode))
 
 ;; Server mode.
 ;; Use emacsclient to connect
