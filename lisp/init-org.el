@@ -327,7 +327,7 @@ content."
                                   "- Discussion (delete me)\n"
                                   "** Conclusion\n%?\n"
                                   "** Track\n"
-                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(When) \\%TODO(State)\"\n#+END:\n"
+                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(Due) \\%TODO(State)\"\n#+END:\n"
                                   ))))))
          ))
   )
