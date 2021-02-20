@@ -52,11 +52,11 @@
   :ensure nil
   :defines eshell-prompt-regexp
   :hook ((eshell-mode . (lambda ()
-                         (term-mode-common-init)
-                         ;; Remove cmd args word by word
-                         (modify-syntax-entry ?- "w")
-                         ;; Eshell is not fully functional
-                         (setenv "PAGER" "cat")))
+                          (term-mode-common-init)
+                          ;; Remove cmd args word by word
+                          (modify-syntax-entry ?- "w")
+                          ;; Eshell is not fully functional
+                          (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
   :config
   ;; Prevent accident typing
