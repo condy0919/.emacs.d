@@ -199,12 +199,11 @@
   :when (display-graphic-p)
   :hook (after-init . global-hl-line-mode))
 
-;; Enable `repeat-mode' if available
+;; Enable `repeat-mode' to reduce key sequence length
 (use-package repeat
   :ensure nil
-  :when (boundp repeat-mode)
-  :hook (after-init . repeat-mode)
   :custom
+  (repeat-mode t)
   (repeat-exit-key (kbd "RET")))
 
 ;; Server mode.
