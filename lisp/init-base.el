@@ -203,7 +203,9 @@
 (use-package repeat
   :ensure nil
   :when (boundp repeat-mode)
-  :hook (after-init . repeat-mode))
+  :hook (after-init . repeat-mode)
+  :custom
+  (repeat-exit-key (kbd "RET")))
 
 ;; Server mode.
 ;; Use emacsclient to connect
