@@ -140,6 +140,7 @@
 
     ;; tab
     "t" '(:ignore t :which-key "tab")
+    "t9" 'tab-bar-switch-to-last-tab
     "tb" 'switch-to-buffer-other-tab
     "tc" 'tab-bar-close-tab
     "ti" 'tab-switcher
