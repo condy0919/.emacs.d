@@ -97,6 +97,7 @@
 (set-face-attribute 'default nil :height 110)
 
 ;; Sane defaults
+(setq use-short-answers t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (fset 'list-buffers 'ibuffer)
 
