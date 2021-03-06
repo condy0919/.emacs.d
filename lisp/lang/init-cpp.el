@@ -510,6 +510,7 @@
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Benchmark" n
                            "if(" (proj-prefixed "_ENABLE_BENCHMARKS)") n
+                           "  enable_testing()" n n
                            "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
                            "  FetchContent_Declare(" n
                            "    benchmark" n
