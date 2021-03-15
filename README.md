@@ -245,12 +245,13 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                     |
 |---------------|------------------------------|
-| <kbd>ac</kbd> | `calendar`日历               |
 | <kbd>aa</kbd> | `org-agenda`日程             |
+| <kbd>ac</kbd> | `calendar`日历               |
 | <kbd>ag</kbd> | `gnus`查看新闻组             |
 | <kbd>ai</kbd> | `rcirc`上 IRC                |
 | <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章 |
 | <kbd>an</kbd> | `newsticker`查看RSS订阅      |
+| <kbd>ap</kbd> | `proced`查看进程             |
 
 搜索相关的`Leader`键绑定:
 
@@ -326,7 +327,11 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 更详细的按键绑定请直接看[代码](lisp/init-evil.el). :-)
 
-定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。为了在编辑模式中也能够使用，将其绑定在了<kbd>C-c h</kbd>上。
+定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。为了在编辑模式中也能够使用，将其绑定在了<kbd>C-c h c</kbd>上。<kbd>C-c h</kbd>是所有`hydra`的前缀，目前有3个，分别是:
+
+1. `hydra-copy`通过`avy`用来快速拷贝
+2. `hydra-macro`方便执行`kmacro`
+3. `hydra-other-window-scroll`在不改变焦点的情况下移动另一窗口的`buffer`
 
 # 通用开发设置
 
