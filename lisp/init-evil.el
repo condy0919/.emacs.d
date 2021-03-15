@@ -142,6 +142,7 @@
     "t" '(:ignore t :which-key "tab")
     "t9" 'tab-bar-switch-to-last-tab
     "tc" 'tab-bar-close-tab
+    "tC" 'tab-bar-close-group-tabs
     "tg" 'tab-bar-change-tab-group
     "ti" 'tab-switcher
     "tn" 'tab-bar-new-tab
