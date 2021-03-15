@@ -54,23 +54,15 @@
                    ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t)))
   )
 
-;; Restore windows layout
-(use-package winner-mode
+;; Windows layout recorder
+;;
+;; You can still use `winner-mode' on Emacs 26 or early. On Emacs 27, it's
+;; prefered over `winner-mode' for better compatibility with `tab-bar-mode'.
+(use-package tab-bar
   :ensure nil
-  :hook (after-init . winner-mode)
+  :hook (after-init . tab-bar-history-mode)
   :custom
-  (winner-dont-bind-my-keys t)
-  (winner-boring-buffers '("*Completions*"
-                           "*Compile-Log*"
-                           "*inferior-lisp*"
-                           "*Fuzzy Completions*"
-                           "*Apropos*"
-                           "*Help*"
-                           "*cvs*"
-                           "*Buffer List*"
-                           "*Ibuffer*"
-                           "*info*"
-                           "*esh command on file*")))
+  (tab-bar-history-buttons-show nil))
 
 (use-package page-break-lines
   :ensure t

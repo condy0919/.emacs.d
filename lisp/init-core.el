@@ -113,16 +113,16 @@ confirmation."
      t)))
 
 ;;;###autoload
-(defun my/transient-winner-undo ()
-  "Transient version of `winner-undo'."
+(defun my/transient-tab-bar-history ()
+  "Transient map of command `tab-bar-history-back' and command `tab-bar-history-forward'."
   (interactive)
   (let ((echo-keystrokes nil))
-    (winner-undo)
-    (message "Winner: [u]ndo [r]edo")
+    (tab-bar-history-back)
+    (message "tab-bar-history: [u]back [r]forward")
     (set-transient-map
      (let ((map (make-sparse-keymap)))
-       (define-key map "u" #'winner-undo)
-       (define-key map "r" #'winner-redo)
+       (define-key map "u" #'tab-bar-history-back)
+       (define-key map "r" #'tab-bar-history-forward)
        map)
      t)))
 

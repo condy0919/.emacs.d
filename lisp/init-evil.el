@@ -134,7 +134,7 @@
     ;; window
     "w" '(:keymap evil-window-map :which-key "window")
     "wx" 'kill-buffer-and-window
-    "wu" 'my/transient-winner-undo
+    "wu" 'my/transient-tab-bar-history
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally
 
