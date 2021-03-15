@@ -24,15 +24,15 @@ jobs:
         sed 's,https://mirrors.cloud.tencent.com/elpa/melpa/,https://melpa.org/packages/,' init.el -i
         ${EMACS:=emacs} --version
         echo "Attempting startup..."
-        ${EMACS:=emacs} -nw --batch --eval '(let ((debug-on-error (>=  emacs-major-version 26)) \
-        (url-show-status nil) \
-        (user-emacs-directory default-directory) \
-        (early-init-file (expand-file-name "early-init.el")) \
-        (user-init-file (expand-file-name "init.el")) \
-        (load-path (delq default-directory load-path))) \
-        (when (>= emacs-major-version 27) (load-file early-init-file)) \
-        (load-file user-init-file) \
-        (when (>= emacs-major-version 26) \
-        (run-hooks (quote after-init-hook)) \
-        (run-hooks (quote emacs-startup-hook))))'
+        ${EMACS:=emacs} -nw --batch --eval \
+        '(progn
+           (require (quote package))
+           (require (quote url-vars))
+           (let ((url-show-status nil)
+                 (user-emacs-directory default-directory)
+                 (user-init-file (expand-file-name "init.el"))
+                 (load-path (delq default-directory load-path)))
+             (load-file user-init-file)
+             (run-hooks (quote after-init-hook))
+             (run-hooks (quote emacs-startup-hook))))'
         echo "Startup successful"
