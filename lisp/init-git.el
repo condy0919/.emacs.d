@@ -20,11 +20,6 @@
   (magit-diff-refine-hunk t)
   (magit-ediff-dwim-show-on-hunks t))
 
-;; Todo integration
-(use-package magit-todos
-  :ensure t
-  :hook (magit-status-mode . magit-todos-mode))
-
 ;; NB `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
