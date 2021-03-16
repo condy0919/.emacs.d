@@ -104,7 +104,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 ;; Setup gitignore mode
 (use-package conf-mode
   :ensure nil
-  :mode (("\\.gitignore\\'" . conf-unix-mode)))
+  :mode (("\\.gitignore\\'"     . conf-unix-mode)
+         ("\\.gitconfig\\'"     . conf-unix-mode)
+         ("\\.gitattributes\\'" . conf-unix-mode)))
 
 (provide 'init-git)
 
