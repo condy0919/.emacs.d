@@ -154,7 +154,7 @@ ARGS are passed to the PROGRAM."
 (use-package em-term
   :ensure nil
   :custom
-  (eshell-visual-commands '("top" "htop" "less" "more" "bat"))
+  (eshell-visual-commands '("top" "htop" "less" "more" "bat" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
   (eshell-destroy-buffer-when-process-dies t))

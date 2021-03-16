@@ -52,7 +52,7 @@
 ;; Visual diff interface
 (use-package ediff
   :ensure nil
-  :hook (ediff-quit . winner-undo) ;; restore windows layout
+  :hook (ediff-quit . tab-bar-history-back)
   :custom
   (ediff-diff-options "-w") ;; turn off whitespace checking
   (ediff-highlight-all-diffs t)
