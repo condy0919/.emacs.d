@@ -261,6 +261,9 @@
   (nnmail-treat-duplicates 'delete))
 
 ;; Composing mail and news messages
+;;
+;; When use `ecomplete', <kbd>M-n</kbd> and <kbd>M-p</kbd> can be used for mail
+;; address selection.
 (use-package message
   :ensure nil
   :hook (message-mode . auto-fill-mode)
