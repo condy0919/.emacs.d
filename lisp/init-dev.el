@@ -196,7 +196,7 @@
 ;; pulse current line
 (use-package pulse
   :ensure nil
-  :preface
+  :init
   (defun pulse-region (beg end &rest _)
     "Pulse the current region."
     (pulse-momentary-highlight-region beg end))
@@ -207,7 +207,7 @@
     "Recenter and pulse the current line."
     (recenter)
     (pulse-line))
-  :init
+
   ;; better evil notification
   (advice-add #'pop-tag-mark         :after #'recenter-and-pulse)
   (advice-add #'evil-goto-line       :after #'recenter-and-pulse)
