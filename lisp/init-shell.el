@@ -33,7 +33,6 @@
   :bind (:map term-raw-map
          ("C-c C-y" . term-paste)
          ;; Don't capture my keys!
-         ("M-o" . nil)
          ("M-:" . nil)
          ("M-x" . nil)
          ("C-h" . nil)
