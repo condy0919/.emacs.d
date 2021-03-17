@@ -294,6 +294,13 @@
   (hide-ifdef-initially t)
   (hide-ifdef-shadow t))
 
+;; Expand C macros
+(use-package cmacexp
+  :ensure nil
+  :custom
+  (c-macro-prompt-flag t)
+  (c-macro-shrink-window-flag t))
+
 ;; Snippets for C/C++
 (use-package tempo
   :ensure nil
