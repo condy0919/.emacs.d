@@ -220,10 +220,7 @@
   :hook ((counsel-grep-post-action
           dumb-jump-after-jump
           bookmark-after-jump
-          imenu-after-jump) . recenter-and-pulse)
-  :custom-face
-  (pulse-highlight-start-face ((t (:inherit highlight))))
-  (pulse-highlight-face ((t (:inherit highlight)))))
+          imenu-after-jump) . recenter-and-pulse))
 
 ;; Hiding structured data
 ;;
