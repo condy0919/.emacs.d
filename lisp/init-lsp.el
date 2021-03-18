@@ -80,11 +80,12 @@
   :commands my/lsp-ivy-workspace-symbol
   :config
   (defun my/lsp-ivy-workspace-symbol ()
-    "A `lsp-ivy-workspace-symbol' wrapper that effective only
-when `lsp-mode' is enabled."
+    "A `lsp-ivy-workspace-symbol' wrapper that effective only when
+`lsp-mode' is enabled."
     (interactive)
-    (when (bound-and-true-p lsp-mode)
-      (call-interactively 'lsp-ivy-workspace-symbol))))
+    (if (bound-and-true-p lsp-mode)
+        (call-interactively 'lsp-ivy-workspace-symbol)
+      (message "Please enable `lsp-mode' first"))))
 
 (provide 'init-lsp)
 
