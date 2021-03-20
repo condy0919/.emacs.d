@@ -8,6 +8,9 @@
 ;; Edit shell scripts
 ;;
 ;; awesoome. sh-mode provides `sh-while-getopts' to automate getopts.
+;;
+;; Emacs master enables `sh-mode' when editing archlinux PKGBUILD.
+;; See https://debbugs.gnu.org/cgi/bugreport.cgi?bug=46660
 (use-package sh-script
   :ensure nil
   :mode (("\\.sh\\'"     . sh-mode)
