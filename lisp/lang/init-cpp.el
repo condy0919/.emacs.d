@@ -430,6 +430,9 @@
   :hook (cmake-mode . cmake-font-lock-activate))
 
 ;; Snippets for cmake
+;;
+;; Visit https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html for
+;; more information about cmake.
 (use-package tempo
   :ensure nil
   :after cmake-mode
@@ -458,7 +461,7 @@
   ;; └── tests
   ;;     └── CMakeLists.txt
   ;;
-  ;; Where `benchmarks` are optional.
+  ;; The `benchmarks` directory is optional.
   ;;
   ;; If you want to put all headers in `src` directory, don't forget to export them.
   ;;
@@ -544,9 +547,11 @@
                            "endif()" n n
                            "### Definitions" n n
                            "### Includes" n n
-                           "target_include_directories(" (s proj) " PUBLIC include)" n n
-                           "### Install" n
-                           "install(TARGETS " (s proj) " LIBRARY DESTINATION lib RUNTIME DESTINATION bin)" n n
+                           "target_include_directories(" (s proj) " PUBLIC" n
+                           "  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" n
+                           "  $<INSTALL_INTERFACE:include>" n
+                           ")" n n
+                           "### Install" n n
                            "### Sources" n
                            "target_sources(" (s proj) n
                            "  PRIVATE" n
@@ -563,7 +568,7 @@
                            "#     set(" (proj-prefixed "_VERSION") " \"<unknown>\")" n
                            "#   endif()" n
                            "# endif()" n n
-                           "# target_compile_definitions(" (s proj) " PRIVATE " (proj-prefixed "_VERSION=${") (proj-prefixed "_VERSION") "})" n
+                           "# target_compile_definitions(" (s proj) " PRIVATE " (proj-prefixed "_VERSION=\"${") (proj-prefixed "_VERSION") "}\")" n
                            )
                          "lib"
                          "Insert a cmake library"
