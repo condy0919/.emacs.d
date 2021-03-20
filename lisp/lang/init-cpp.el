@@ -507,8 +507,7 @@
                            "# Common GCC/Clang options" n
                            "target_compile_options(" (s proj) n
                            "  PRIVATE" n
-                           "    -Wall" n
-                           "    -Wextra" n
+                           "    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra>" n
                            ")" n n
                            "### Libraries" n
                            "# Enable threading support" n
