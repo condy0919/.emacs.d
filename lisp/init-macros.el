@@ -17,8 +17,8 @@
   `(defun ,(intern (format "my/%s-other-window" cmd)) (&rest _)
      ,(format "Open a `%s' in a new window." cmd)
      (interactive)
-     (let ((buf (save-window-excursion (,cmd ,@args))))
-       (switch-to-buffer-other-window buf))))
+     (other-window-prefix)
+     (,cmd ,@args)))
 
 (defmacro my/ignore-errors-for (func)
   "Apply FUNC with `ignore-errors' guarded."
