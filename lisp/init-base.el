@@ -352,14 +352,6 @@
 (use-package tab-bar
   :ensure nil
   :hook (after-init . tab-bar-mode)
-  :config
-  ;; HACK no tab-bar-lines displayed
-  (defun no-tab-bar-lines (&rest _)
-    (dolist (frame (frame-list))
-      (set-frame-parameter frame 'tab-bar-lines 0)))
-
-  (advice-add #'tab-bar-mode :after #'no-tab-bar-lines)
-  (advice-add #'make-frame   :after #'no-tab-bar-lines)
   :custom
   (tab-bar-show nil)
   (tab-bar-tab-hints t)
