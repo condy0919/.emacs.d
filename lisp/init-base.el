@@ -75,10 +75,6 @@
 ;; Disable auto vertical scroll for tall lines
 (setq auto-window-vscroll nil)
 
-;; Newline behaviour
-(global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "S-<return>") 'comment-indent-new-line)
-
 ;; Dont move points out of eyes
 (setq mouse-yank-at-point t)
 
