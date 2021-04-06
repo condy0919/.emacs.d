@@ -197,10 +197,13 @@
   :hook (after-init . global-hl-line-mode))
 
 ;; Enable `repeat-mode' to reduce key sequence length
+;;
+;; `repeat-keep-prefix' makes lambda repeated
 (use-package repeat
   :ensure nil
   :custom
   (repeat-mode t)
+  (repeat-keep-prefix t)
   (repeat-exit-key (kbd "RET")))
 
 ;; Server mode.
