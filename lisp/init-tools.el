@@ -153,12 +153,15 @@
   (isearch-lax-whitespace t)
   (isearch-regexp-lax-whitespace t)
   (search-whitespace-regexp "[ \t\r\n]+")
+  (isearch-repeat-on-direction-change t)
   (isearch-allow-scroll t)
-  (isearch-lazy-count t)
   (isearch-yank-on-move t)
+  ;; lazy isearch
+  (isearch-lazy-count t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
   (lazy-highlight-buffer t)
+  ;; Mimic Vim
   (lazy-highlight-cleanup nil))
 
 ;; isearch alternative
