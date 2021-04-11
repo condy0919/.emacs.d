@@ -164,7 +164,7 @@
     "sm" 'evil-show-marks
     "sr" 'evil-show-registers
     "si" 'imenu
-    "sl" 'ivy-resume
+    "so" 'consult-outline
     "sg" 'consult-ripgrep
 
     ;; insert

@@ -235,6 +235,8 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit))
   :custom
+  (completion-auto-help nil)
+  (completion-cycle-threshold 3)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)

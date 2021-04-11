@@ -145,6 +145,14 @@
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
+(when (< emacs-major-version 28)
+  (use-package xref
+    :ensure nil
+    :custom
+    ;; Use Consult to select xref locations with preview
+    (xref-show-xrefs-function #'consult-xref)
+    (xref-show-definitions-function #'consult-xref)))
+
 ;; ivy enhancement
 (when (< emacs-major-version 28)
   (use-package ivy-xref

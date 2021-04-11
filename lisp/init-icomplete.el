@@ -32,16 +32,7 @@
   :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
          ("C-c C-o" . embark-collect-snapshot)
-         ("C-c C-c" . embark-export)
-         ("C-c C-e" . embark-wcollect)
-         :map embark-collect-mode-map
-         ("C-c C-e" . wgrep-change-to-wgrep-mode))
-  :config
-  (defun embark-wcollect ()
-    "embark-collect-snapshot with wgrep-mode enabled."
-    (interactive)
-    (run-with-idle-timer 0 nil 'wgrep-change-to-wgrep-mode)
-    (embark-collect-snapshot)))
+         ("C-c C-c" . embark-export)))
 
 ;; Consulting `completing-read'
 (use-package consult
@@ -50,8 +41,7 @@
          ([remap bookmark-jump]      . consult-bookmark)
          ([remap imenu]              . consult-imenu)
          ([remap recentf-open-files] . consult-recent-file)
-         ([remap yank-pop]           . consult-yank-pop)
-         ([remap yank]               . consult-yank))
+         ([remap yank-pop]           . consult-yank-pop))
   :custom
   ;; Disable preview
   (consult-preview-key nil))
