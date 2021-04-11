@@ -241,10 +241,6 @@
                     [simple-query "en.cppreference.com"
                                   "en.cppreference.com/mwiki/index.php?search=" ""]))))
 
-;; Upload to 0x0.st or other pb services
-(use-package 0x0
-  :ensure t)
-
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
   :ensure t

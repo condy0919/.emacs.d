@@ -187,9 +187,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方                                |
 | <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径                            |
 | <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                                      |
-| <kbd>fr</kbd> | `counsel-recentf`访问最近使用过的文件                                       |
+| <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件                                       |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                                   |
-| <kbd>fz</kbd> | `counsel-fzf`使用`fzf`来索引打开文件                                        |
 
 与目录相关的`Leader`键绑定如下:
 
