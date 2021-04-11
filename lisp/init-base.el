@@ -241,6 +241,8 @@
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
+  ;; Ignore case when complete
+  (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   (completion-styles '(basic partial-completion substring initials)))
