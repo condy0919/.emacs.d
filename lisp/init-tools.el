@@ -49,8 +49,7 @@
 (use-package ivy
   :ensure t
   :hook (after-init . ivy-mode)
-  :bind (("C-c C-r" . ivy-resume)
-         :map ivy-minibuffer-map
+  :bind (:map ivy-minibuffer-map
          ("C-c C-e" . ivy-woccur)
          ("C-w"     . ivy-yank-word)
          :map ivy-occur-mode-map
@@ -88,8 +87,7 @@
   :bind (([remap evil-show-registers] . counsel-evil-registers)
          ([remap evil-show-marks]     . counsel-evil-marks)
          ([remap evil-show-jumps]     . evil-jump-list)
-         ([remap recentf-open-files]  . counsel-recentf)
-         ([remap swiper]              . counsel-grep-or-swiper))
+         ([remap recentf-open-files]  . counsel-recentf))
   :config
   (ivy-set-actions
    'counsel-find-file
@@ -133,13 +131,12 @@
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
 
-;; Use swiper less, it takes up `ivy-height' lines.
+;; The builtin incremental search
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
          ("M-<return>"                . isearch-repeat-forward)
          ("M-S-<return>"              . isearch-repeat-backward)
-         ("C-o"                       . swiper-from-isearch)
          ;; consistent with ivy-occur
          ("C-c C-o"                   . isearch-occur)
          ([escape]                    . isearch-cancel)
@@ -163,12 +160,6 @@
   (lazy-highlight-buffer t)
   ;; Mimic Vim
   (lazy-highlight-cleanup nil))
-
-;; isearch alternative
-(use-package swiper
-  :ensure t
-  :custom
-  (swiper-action-recenter t))
 
 ;; Writable grep buffer. company well with ivy-occur
 (use-package wgrep

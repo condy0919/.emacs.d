@@ -160,10 +160,8 @@
 
     ;; search
     "s" '(:ignore t :which-key "search")
-    "ss" 'swiper-isearch
-    "sS" 'swiper-isearch-thing-at-point
-    "sb" 'swiper-all
-    "sB" 'swiper-all-thing-at-point
+    "ss" 'isearch-forward
+    "sS" 'isearch-forward-symbol-at-point
     "sj" 'evil-show-jumps
     "sm" 'evil-show-marks
     "sr" 'evil-show-registers

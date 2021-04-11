@@ -255,19 +255,17 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 搜索相关的`Leader`键绑定:
 
-| key           | function                                                              |
-|---------------|-----------------------------------------------------------------------|
-| <kbd>sb</kbd> | `swiper-all`在所有打开的`buffer`中搜索                                |
-| <kbd>sB</kbd> | `swiper-all-thing-at-point`与上面类似，默认输入是当前光标处的文本     |
-| <kbd>ss</kbd> | `swiper-isearch`采用`isearch`的方式来搜索，不显示行号                 |
-| <kbd>sS</kbd> | `swiper-isearch-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
-| <kbd>sg</kbd> | `counsel-rg`在当前目录中使用`rg`搜索                                  |
-| <kbd>sl</kbd> | `ivy-resume`方便恢复上一次`swiper`的搜索                              |
-| <kbd>si</kbd> | `imenu`                                                               |
-| <kbd>sj</kbd> | `evil-show-jumps`                                                     |
-| <kbd>sm</kbd> | `evil-show-marks`                                                     |
-| <kbd>sr</kbd> | `evil-show-registers`                                                 |
-| <kbd>sw</kbd> | `my/lsp-ivy-workspace-symbol`仅在`lsp-mode`开启的情况下生效，查找符号 |
+| key           | function                                                                |
+|---------------|-------------------------------------------------------------------------|
+| <kbd>ss</kbd> | `isearch-forward`使用`isearch`的方式来搜索符号                          |
+| <kbd>sS</kbd> | `isearch-forward-symbol-at-point`与上面类似，默认输入是当前光标处的文本 |
+| <kbd>sg</kbd> | `counsel-rg`在当前目录中使用`rg`搜索                                    |
+| <kbd>sl</kbd> | `ivy-resume`方便恢复上一次`swiper`的搜索                                |
+| <kbd>si</kbd> | `imenu`                                                                 |
+| <kbd>sj</kbd> | `evil-show-jumps`                                                       |
+| <kbd>sm</kbd> | `evil-show-marks`                                                       |
+| <kbd>sr</kbd> | `evil-show-registers`                                                   |
+| <kbd>sw</kbd> | `my/lsp-ivy-workspace-symbol`仅在`lsp-mode`开启的情况下生效，查找符号   |
 
 与文本相关的`Leader`键绑定:
 
