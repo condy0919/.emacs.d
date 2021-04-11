@@ -235,10 +235,13 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit))
   :custom
+  (enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
-  (minibuffer-depth-indicate-mode t)
-  (enable-recursive-minibuffers t))
+  (read-buffer-completion-ignore-case t)
+  (read-file-name-completion-ignore-case t)
+  (completion-styles '(basic partial-completion substring initials)))
 
 ;; Holidays
 (use-package calendar

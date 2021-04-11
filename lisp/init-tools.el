@@ -45,92 +45,6 @@
   (avy-background t)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))
 
-;; ivy core
-(use-package ivy
-  :ensure t
-  :hook (after-init . ivy-mode)
-  :bind (:map ivy-minibuffer-map
-         ("C-c C-e" . ivy-woccur)
-         ("C-w"     . ivy-yank-word)
-         :map ivy-occur-mode-map
-         ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode)
-         :map ivy-occur-grep-mode-map
-         ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
-  :config
-  ;; Bring C-' back
-  (use-package ivy-avy
-    :ensure t)
-
-  ;; Additional key bindings for ivy
-  (use-package ivy-hydra
-    :ensure t)
-
-  (defun ivy-woccur ()
-    "ivy-occur with wgrep-mode enabled."
-    (interactive)
-    (run-with-idle-timer 0 nil 'ivy-wgrep-change-to-wgrep-mode)
-    (ivy-occur))
-  :custom
-  (ivy-display-style 'fancy)           ;; fancy style
-  (ivy-count-format "%d/%d ")          ;; better counts
-  (ivy-use-virtual-buffers t)          ;; show recent files
-  (ivy-extra-directories '("./"))      ;; no ".." directories
-  (ivy-height 10)
-  (ivy-sort-max-size 3000)             ;; the default value 30000 is too large
-  (ivy-fixed-height-minibuffer t)      ;; fixed height
-  (ivy-on-del-error-function 'ignore)) ;; dont quit minibuffer when del-error
-
-;; Fuzzy matcher
-(use-package counsel
-  :ensure t
-  :hook (ivy-mode . counsel-mode)
-  :bind (([remap evil-show-registers] . counsel-evil-registers)
-         ([remap evil-show-marks]     . counsel-evil-marks)
-         ([remap evil-show-jumps]     . evil-jump-list)
-         ([remap recentf-open-files]  . counsel-recentf))
-  :config
-  (ivy-set-actions
-   'counsel-find-file
-   '(("d" my/delete-file "delete")
-     ("r" my/rename-file "rename")
-     ("l" vlf            "view large file")
-     ("b" hexl-find-file "open file in binary mode")
-     ("x" counsel-find-file-as-root "open as root")))
-
-  ;; Modified from doom
-  (defun evil-jump-list ()
-    "evil jump list with ivy enhancement."
-    (interactive)
-    (ivy-read "Jump: "
-              (nreverse
-               (delete-dups
-                (mapcar (lambda (mark)
-                          (cl-destructuring-bind (pt path) mark
-                            (let ((buf (get-file-buffer path)))
-                              (unless buf
-                                (setq buf (find-file-noselect path t)))
-                              (with-current-buffer buf
-                                (goto-char pt)
-                                (font-lock-fontify-region (line-beginning-position) (line-end-position))
-                                (cons (format "%s:%d %s"
-                                              (buffer-name)
-                                              (line-number-at-pos)
-                                              (string-trim-right (or (thing-at-point 'line) "")))
-                                      (point-marker))))))
-                        (evil--jumps-savehist-sync))))
-              :sort nil
-              :require-match t
-              :action (lambda (cand)
-                        (let ((mark (cdr cand)))
-                          (with-current-buffer (switch-to-buffer (marker-buffer mark))
-                            (goto-char (marker-position mark)))))))
-  :custom
-  (counsel-preselect-current-file t)
-  (counsel-yank-pop-preselect-last t)
-  (counsel-yank-pop-separator "\n───────────\n")
-  (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"))
-
 ;; The builtin incremental search
 (use-package isearch
   :ensure nil
@@ -160,14 +74,6 @@
   (lazy-highlight-buffer t)
   ;; Mimic Vim
   (lazy-highlight-cleanup nil))
-
-;; Writable grep buffer. company well with ivy-occur
-(use-package wgrep
-  :ensure t
-  :defer 1
-  :custom
-  (wgrep-auto-save-buffer t)
-  (wgrep-change-readonly-file t))
 
 ;; Auto update packages
 (use-package auto-package-update

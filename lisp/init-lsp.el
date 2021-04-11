@@ -12,8 +12,6 @@
   :bind (:map company-mode-map
          ([remap completion-at-point] . company-complete)
          :map company-active-map
-         ;; The spacemacs binding style
-         ("C-/"     . counsel-company)
          ("C-p"     . company-select-previous)
          ("C-n"     . company-select-next)
          ("C-s"     . company-filter-candidates)
@@ -74,19 +72,5 @@
   (lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil))          ;; disable eldoc hover
 
-;; Jump to workspace symbol
-(use-package lsp-ivy
-  :ensure t
-  :commands my/lsp-ivy-workspace-symbol
-  :config
-  (defun my/lsp-ivy-workspace-symbol ()
-    "A `lsp-ivy-workspace-symbol' wrapper that effective only when
-`lsp-mode' is enabled."
-    (interactive)
-    (if (bound-and-true-p lsp-mode)
-        (call-interactively 'lsp-ivy-workspace-symbol)
-      (message "Please enable `lsp-mode' first"))))
-
 (provide 'init-lsp)
-
 ;;; init-lsp.el ends here

@@ -81,8 +81,7 @@
     "fF" 'find-file-other-window
     "f/" 'find-file-other-window
     "fg" 'rgrep
-    "fj" 'counsel-file-jump
-    "fo" 'counsel-find-file-extern
+    "fj" 'consult-find
     "fC" 'my/copy-current-file
     "fD" 'my/delete-current-file
     "fy" 'my/copy-current-filename
@@ -166,14 +165,12 @@
     "sr" 'evil-show-registers
     "si" 'imenu
     "sl" 'ivy-resume
-    "sg" 'counsel-rg
-    "sw" 'my/lsp-ivy-workspace-symbol
+    "sg" 'consult-ripgrep
 
     ;; insert
     "i" '(:ignore t :which-key "insert")
     "iq" 'quickurl-prefix-map
     "it" 'insert-date-time
-    "iu" 'counsel-unicode-char
     "iy" 'clipboard-yank
 
     ;; git
@@ -222,8 +219,7 @@
 
   (local-leader-def
     :keymaps 'org-mode-map
-    "." 'counsel-org-goto
-    "/" 'counsel-org-goto-all
+    "." 'org-goto
     "a" 'org-archive-subtree
     "d" 'org-deadline
     "e" 'org-set-effort

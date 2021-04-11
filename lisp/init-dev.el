@@ -110,7 +110,7 @@
   :custom
   (projectile-use-git-grep t)
   (projectile-indexing-method 'alien)
-  ;; Ignore uninteresting files
+  ;; Ignore uninteresting files. It has not effects when use alien mode.
   (projectile-globally-ignored-files '("TAGS" ".DS_Store"))
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so" ".a"))
   (projectile-ignored-projects `("~/"
@@ -118,36 +118,10 @@
                                  "/private/tmp/"
                                  ,(file-truename (expand-file-name "elpa" user-emacs-directory)))))
 
-;; Comprehensive ivy integration for projectile
-(use-package counsel-projectile
-  :ensure t
-  :after doct
-  :hook (after-init . counsel-projectile-mode)
-  :custom
-  (counsel-projectile-org-capture-templates
-   (doct `(:group
-           :empty-lines 1
-           :children
-           (("Project"
-             :keys "p"
-             :file "${root}/TODO.org"
-             :type entry
-             :template (lambda () (concat "* TODO " (when (y-or-n-p "Link? ") "%A\n") "%?"))
-             :children (("bug"           :keys "b" :headline "Bugs")
-                        ("documentation" :keys "d" :headline "Documentation")
-                        ("enhancement"   :keys "e" :headline "Enhancements")
-                        ("feature"       :keys "f" :headline "Features")
-                        ("optimization"  :keys "o" :headline "Optimizations")
-                        ("miscellaneous" :keys "m" :headline "Miscellaneous")
-                        ("security"      :keys "s" :headline "Security")))))))
-  )
-
 ;; Lint tool
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode)
-  :config
-  (my/ignore-errors-for flycheck-global-teardown)
   :custom
   (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
@@ -217,8 +191,7 @@
   (advice-add #'evil-window-middle   :after #'pulse-line)
   (advice-add #'evil-window-bottom   :after #'pulse-line)
   (advice-add #'evil-yank            :after #'pulse-region)
-  :hook ((counsel-grep-post-action
-          dumb-jump-after-jump
+  :hook ((dumb-jump-after-jump
           bookmark-after-jump
           imenu-after-jump) . recenter-and-pulse))
 

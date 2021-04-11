@@ -143,8 +143,6 @@ ARGS are passed to the PROGRAM."
 
 (use-package em-hist
   :ensure nil
-  :bind (:map eshell-hist-mode-map
-         ("M-r" . counsel-esh-history))
   :custom
   (eshell-history-size 1024)
   (eshell-hist-ignoredups t)
@@ -202,9 +200,7 @@ ARGS are passed to the PROGRAM."
   :ensure nil
   :hook (shell-mode . (lambda ()
                         (term-mode-common-init)
-                        (my/buffer-auto-close)))
-  :bind (:map shell-mode-map
-         ("M-r" . counsel-shell-history)))
+                        (my/buffer-auto-close))))
 
 ;; Popup a shell inside Emacs
 (use-package shell-pop

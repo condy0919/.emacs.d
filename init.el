@@ -79,6 +79,7 @@
 (require 'init-dired)
 (require 'init-insert)
 (require 'init-hydra)
+(require 'init-icomplete)
 
 ;; standalone apps
 (require 'init-org)
