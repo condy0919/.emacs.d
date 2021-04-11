@@ -169,7 +169,7 @@
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
-;; Free hands
+;; Auto update packages
 (use-package auto-package-update
   :ensure t
   :custom
