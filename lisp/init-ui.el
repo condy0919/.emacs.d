@@ -50,7 +50,7 @@
                    ("*Process List*"            :select t   :align t :size 0.3)
                    ("*Help*"                    :select t   :align t :size 0.3)
                    ("*Occur*"                   :select t   :align right)
-                   ("\\*ivy-occur .*\\*"        :select t   :align right :regexp t)
+                   ("\\*Embark Collect\\*.*"    :select t   :align right :regexp t)
                    ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t)))
   )
 
