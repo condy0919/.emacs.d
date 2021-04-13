@@ -44,7 +44,8 @@
          ([remap yank-pop]           . consult-yank-pop))
   :custom
   ;; Disable preview
-  (consult-preview-key nil))
+  (consult-preview-key nil)
+  (consult-narrow-key "<"))
 
 (provide 'init-icomplete)
 ;;; init-icomplete.el ends here
