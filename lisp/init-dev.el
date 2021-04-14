@@ -67,7 +67,9 @@
 ;; Insert SPDX license header
 (use-package spdx
   :ensure t
-  :hook (prog-mode . spdx-tempo-setup))
+  :hook (prog-mode . spdx-tempo-setup)
+  :custom
+  (spdx-ignore-deprecated t))
 
 ;; Highlight TODO
 (use-package hl-todo
@@ -145,21 +147,13 @@
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
-(when (< emacs-major-version 28)
-  (use-package xref
-    :ensure nil
-    :custom
-    ;; Use Consult to select xref locations with preview
-    (xref-show-xrefs-function #'consult-xref)
-    (xref-show-definitions-function #'consult-xref)))
-
-;; ivy enhancement
-(when (< emacs-major-version 28)
-  (use-package ivy-xref
-    :ensure t
-    :custom
-    (xref-show-xrefs-function #'ivy-xref-show-xrefs)
-    (xref-show-definitions-function #'ivy-xref-show-defs)))
+(use-package xref
+  :ensure nil
+  :unless (>= emacs-major-version 28)
+  :custom
+  ;; Use Consult to select xref locations with preview
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
