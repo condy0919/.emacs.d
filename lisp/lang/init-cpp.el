@@ -294,6 +294,7 @@
 ;; Expand C macros
 (use-package cmacexp
   :ensure nil
+  :defer t
   :custom
   (c-macro-prompt-flag t)
   (c-macro-shrink-window-flag t))

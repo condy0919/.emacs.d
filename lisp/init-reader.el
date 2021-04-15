@@ -38,12 +38,5 @@
   :ensure t
   :mode ("\\.epub\\'" . nov-mode))
 
-;; The builtin doc viewer
-(use-package doc-view
-  :ensure nil
-  :custom
-  (doc-view-continuous t)
-  (doc-view-scale-internally nil))
-
 (provide 'init-reader)
 ;;; init-reader.el ends here

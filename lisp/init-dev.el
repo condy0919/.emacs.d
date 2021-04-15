@@ -132,11 +132,6 @@
   ;; clang/gcc/cppcheck flycheckers never know the include path
   (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
 
-(use-package flymake
-  :ensure nil
-  :custom
-  (flymake-fringe-indicator-position 'right-fringe))
-
 ;; xref
 (use-package xref
   :ensure nil
