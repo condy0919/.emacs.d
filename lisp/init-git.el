@@ -18,6 +18,7 @@
          ("C-c M-g" . magit-file-dispatch))
   :custom
   (magit-diff-refine-hunk t)
+  (magit-diff-paint-whitespace nil)
   (magit-ediff-dwim-show-on-hunks t))
 
 ;; NB `diff-hl' depends on `vc'
