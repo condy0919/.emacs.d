@@ -12,7 +12,7 @@
 ;; See `magit-define-global-key-bindings' for more information.
 (use-package magit
   :ensure t
-  :hook (git-commit-mode . flyspell-mode)
+  :hook (git-commit-setup . git-commit-turn-on-flyspell)
   :bind (("C-x g"   . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-dispatch))
