@@ -9,9 +9,10 @@
   (require 'cl-macs)
   (require 'init-macros))
 
-;; Supress GUI features
+;; Supress GUI features and more
 (setq use-file-dialog nil
       use-dialog-box nil
+      inhibit-x-resources t
       inhibit-default-init t
       inhibit-startup-screen t
       inhibit-startup-message t
@@ -94,7 +95,8 @@
 
 ;; Sane defaults
 (setq use-short-answers t)
-(fset 'yes-or-no-p 'y-or-n-p)
+(unless (>= emacs-major-version 28)
+  (fset 'yes-or-no-p 'y-or-n-p))
 (fset 'list-buffers 'ibuffer)
 
 ;; Inhibit switching out from `y-or-n-p' and `read-char-choice'
