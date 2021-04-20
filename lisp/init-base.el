@@ -8,7 +8,7 @@
 (eval-and-compile
   (require 'init-macros))
 
-;; Supress GUI features and more
+;; Suppress GUI features and more
 (setq use-file-dialog nil
       use-dialog-box nil
       inhibit-x-resources t
