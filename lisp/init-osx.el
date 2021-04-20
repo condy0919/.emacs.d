@@ -4,9 +4,6 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'cl-macs))
-
 ;; The builtin dictionary app in MacOS
 (use-package osx-dictionary
   :ensure t

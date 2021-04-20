@@ -139,12 +139,6 @@ confirmation."
        map)
      t)))
 
-;; Lock buffer to window
-(define-minor-mode sticky-buffer-mode
-  "Make the current window always display this buffer."
-  nil " sticky" nil
-  (set-window-dedicated-p (selected-window) sticky-buffer-mode))
-
 ;;;###autoload
 (defun my/suppress-message (func &rest args)
   "Suppress `message' when apply FUNC with ARGS."

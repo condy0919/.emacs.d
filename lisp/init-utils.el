@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-and-compile
+  (require 'thingatpt))
+
 (defconst ydcv-buffer-name "*ydcv*")
 
 ;;;###autoload

@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'cl-macs)
+(eval-and-compile
   (require 'init-macros))
 
 ;; Supress GUI features and more

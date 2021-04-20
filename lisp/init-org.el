@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
+(eval-and-compile
   (require 'init-core))
 
 (use-package org
