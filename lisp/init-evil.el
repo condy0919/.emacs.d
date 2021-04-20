@@ -218,7 +218,8 @@
     :prefix "SPC m")
 
   (local-leader-def
-    :keymaps 'org-mode-map
+    :major-modes '(org-mode)
+    :keymaps '(org-mode-map)
     "." 'org-goto
     "a" 'org-archive-subtree
     "d" 'org-deadline
@@ -265,6 +266,11 @@
     "in" 'org-add-note
     "it" 'org-time-stamp-inactive
     "iT" 'org-time-stamp)
+
+  (local-leader-def
+    :major-modes '(emacs-lisp-mode lisp-interaction-mode)
+    :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+    "i" 'info-lookup-symbol)
   :custom
   (general-implicit-kbd t)
   (general-override-auto-enable t))
