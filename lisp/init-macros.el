@@ -20,11 +20,6 @@
      (other-window-prefix)
      (,cmd ,@args)))
 
-(defmacro my/ignore-errors-for (func)
-  "Apply FUNC with `ignore-errors' guarded."
-  `(define-advice ,func (:around (f &rest args))
-     (ignore-errors (apply f args))))
-
 (provide 'init-macros)
 
 ;;; init-macros.el ends here

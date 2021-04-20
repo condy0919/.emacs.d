@@ -26,9 +26,6 @@
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
 
-;; Ignore errors on selecting text
-(my/ignore-errors-for x-get-selection-internal)
-
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
 
