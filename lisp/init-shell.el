@@ -62,6 +62,16 @@
   (defalias 'eshell/vi 'find-file)
   (defalias 'eshell/vim 'find-file)
 
+  (defun eshell/bat (file)
+    "cat FILE with syntax highlight."
+    (with-temp-buffer
+      (insert-file-contents file)
+      (let ((buffer-file-name file))
+        (delay-mode-hooks
+          (set-auto-mode)
+          (font-lock-ensure)))
+      (buffer-string)))
+
   (defun eshell-prompt ()
     "Prompt for eshell."
     (require 'shrink-path)
