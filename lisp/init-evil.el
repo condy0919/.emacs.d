@@ -209,7 +209,8 @@
     "oe" 'eshell
     "oE" 'my/eshell-other-window
     "os" 'shell
-    "ow" 'dictionary-search
+    "ow" (when (>= emacs-major-version 28)
+           'dictionary-search)
     "od" (when (commandp 'osx-dictionary-search-word-at-point)
            'osx-dictionary-search-word-at-point))
 
