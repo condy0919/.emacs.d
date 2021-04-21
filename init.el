@@ -79,7 +79,7 @@
 (require 'init-dired)
 (require 'init-insert)
 (require 'init-hydra)
-(require 'init-icomplete)
+(require 'init-selectrum)
 
 ;; standalone apps
 (require 'init-org)

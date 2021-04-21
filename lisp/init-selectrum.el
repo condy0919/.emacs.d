@@ -1,22 +1,18 @@
-;;; init-icomplete.el --- Incremental completion system and other tools -*- lexical-binding: t -*-
+;;; init-selectrum.el --- Incremental completion system and other tools -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
 
 ;;; Code:
 
-;; The builtin incremental completion system
-(use-package icomplete
-  :ensure nil
-  :hook (after-init . icomplete-mode)
+;; Easily select item from list
+;;
+;; faster than the builtin `icomplete-mode'
+(use-package selectrum
+  :ensure t
+  :hook (after-init . selectrum-mode)
   :custom
-  (icomplete-vertical-mode t)
-  (icomplete-prospects-height 10)
-  (icomplete-hide-common-prefix nil)
-  (icomplete-show-matches-on-no-input t)
-  :custom-face
-  ;; More obvious to distinguish
-  (icomplete-first-match ((t (:inherit highlight)))))
+  (selectrum-fix-vertical-window-height t))
 
 ;; Writable grep buffer
 (use-package wgrep
@@ -47,5 +43,5 @@
   (consult-preview-key nil)
   (consult-narrow-key "<"))
 
-(provide 'init-icomplete)
-;;; init-icomplete.el ends here
+(provide 'init-selectrum)
+;;; init-selectrum.el ends here

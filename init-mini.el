@@ -58,8 +58,9 @@
   :ensure nil
   :hook (emacs-startup . icomplete-mode)
   :custom
+  (icomplete-vertical-mode t)
+  (icomplete-prospects-height 10)
   (icomplete-hide-common-prefix nil)
-  (icomplete-separator "\n")
   (icomplete-show-matches-on-no-input nil))
 
 (when (file-exists-p custom-file)
