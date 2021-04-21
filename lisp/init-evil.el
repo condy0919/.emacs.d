@@ -158,8 +158,7 @@
 
     ;; search
     "s" '(:ignore t :which-key "search")
-    "ss" 'isearch-forward
-    "sS" 'isearch-forward-symbol-at-point
+    "ss" 'consult-line
     "sj" 'evil-show-jumps
     "sm" 'evil-show-marks
     "sr" 'evil-show-registers
