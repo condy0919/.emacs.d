@@ -244,7 +244,7 @@
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   ;; `selectrum' and `icomplete' will honoring
-  (completion-styles '(basic partial-completion substring initials)))
+  (completion-styles '(basic partial-completion substring initials flex)))
 
 ;; Holidays
 (use-package calendar
