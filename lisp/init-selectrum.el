@@ -17,7 +17,6 @@
 ;; Writable grep buffer
 (use-package wgrep
   :ensure t
-  :defer 1
   :custom
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
