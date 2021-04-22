@@ -23,12 +23,14 @@
   (wgrep-change-readonly-file t))
 
 ;; Emacs Mini-Buffer Actions Rooted in Keymaps
+;;
+;; `embark-export' is more like `ivy-occur'.
 (use-package embark
   :ensure t
   :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
-         ("C-c C-o" . embark-collect-snapshot)
-         ("C-c C-c" . embark-export)))
+         ("C-c C-o" . embark-export)
+         ("C-c C-c" . embark-collect-snapshot)))
 
 ;; Consulting `completing-read'
 (use-package consult
@@ -40,8 +42,15 @@
          ([remap yank-pop]           . consult-yank-pop))
   :custom
   ;; Disable preview
-  (consult-preview-key nil)
-  (consult-narrow-key "<"))
+  (consult-preview-key nil))
+
+;; Make `embark-export' to `occur-mode' or `grep-mode'
+;;
+;; `consult-grep' -> `embark-export' -> `grep-mode'
+;; `consult-line' -> `embark-export' -> `occur-mode'
+(use-package embark-consult
+  :ensure t
+  :after embark consult)
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here
