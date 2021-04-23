@@ -84,7 +84,7 @@ current directory."
                 " -type f"
                 " -and"
                 " -iname '*" filename "*'")))
-      (shell-command-to-string cmd)))
+      (eshell-command-result cmd)))
 
   (defun eshell-prompt ()
     "Prompt for eshell."
