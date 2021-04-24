@@ -157,6 +157,8 @@
   (kill-do-not-save-duplicates t)
   ;; include '\n'
   (kill-whole-line t)
+  ;; show cwd when `shell-command' and `async-shell-command'
+  (shell-command-prompt-show-cwd t)
   ;; show the name of character in `what-cursor-position'
   (what-cursor-show-names t))
 
