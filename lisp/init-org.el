@@ -292,7 +292,15 @@ content."
                :keys "r"
                :type entry
                :headline "Reminders"
-               :template "* TODO %i%?")))
+               :template "* TODO %i%?")
+              ("ABCD analysis"
+               :keys "a"
+               :type entry
+               :headline "ABCD"
+               :template ,(concat "* A: Urgent & Important\n\n"
+                                  "* B: Important & NOT Urgent\n\n"
+                                  "* C: Urgent & Unimportant\n\n"
+                                  "* D: Unimportant & NOT Urgent\n\n"))))
             ("Capture"
              :keys "c"
              :file "capture.org"
