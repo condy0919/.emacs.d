@@ -45,7 +45,9 @@ content."
   (org-highlight-latex-and-related '(native script entities))
   (org-pretty-entities t)
   (org-startup-indented t)
+  ;; image
   (org-startup-with-inline-images t)
+  (org-display-remote-inline-images 'cache)
   (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
