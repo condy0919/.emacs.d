@@ -22,6 +22,9 @@
 ;; when gccemacs is installed.
 (setq comp-deferred-compilation nil)
 
+;; \xff is a word!
+(setq words-include-escapes t)
+
 ;; Pixelwise resize
 (setq window-resize-pixelwise t
       frame-resize-pixelwise t)
