@@ -210,8 +210,8 @@
       (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
              (info (format " ... [%d] " nlines)))
         (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
-
-  (setq hs-set-up-overlay 'hideshow-folded-overlay-fn))
+  :custom
+  (hs-set-up-overlay 'hideshow-folded-overlay-fn))
 
 ;; Antlr mode
 (use-package antlr-mode
