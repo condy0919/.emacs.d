@@ -1,4 +1,4 @@
-;;; init-core.el --- core functions -*- lexical-binding: t -*-
+;;; init-funcs.el --- core functions -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
 
@@ -145,5 +145,5 @@ confirmation."
   (let ((inhibit-message t))
     (apply func args)))
 
-(provide 'init-core)
-;;; init-core.el ends here
+(provide 'init-funcs)
+;;; init-funcs.el ends here

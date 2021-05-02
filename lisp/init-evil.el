@@ -6,7 +6,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'init-core))
+  (require 'init-funcs))
 
 (use-package evil
   :ensure t

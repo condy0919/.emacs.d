@@ -6,7 +6,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'init-core))
+  (require 'init-funcs))
 
 (use-package org
   :ensure nil

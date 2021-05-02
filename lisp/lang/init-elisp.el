@@ -4,7 +4,7 @@
 
 ;;; Code:
 (eval-when-compile
-  (require 'init-core))
+  (require 'init-funcs))
 
 (use-package elisp-mode
   :ensure nil

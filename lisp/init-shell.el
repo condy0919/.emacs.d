@@ -7,7 +7,7 @@
 
 (eval-and-compile
   (require 'rx)
-  (require 'init-core))
+  (require 'init-funcs))
 
 (defun term-mode-common-init ()
   "The common initialization for term."
