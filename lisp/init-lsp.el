@@ -38,6 +38,8 @@
   (company-dabbrev-code-everywhere t)
   ;; call `tempo-expand-if-complete' after completion
   (company-tempo-expand t)
+  ;; No icons
+  (company-format-margin-function nil)
   ;; the backends
   (company-backends '((company-capf :with company-tempo)
                       company-files
