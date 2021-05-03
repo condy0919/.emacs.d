@@ -28,17 +28,18 @@
   :bind (:map dired-mode-map
          ("C-c +" . dired-create-empty-file))
   :config
-  ;; with the help of `evil-collection', P is bound to `dired-do-print'.
-  (define-advice dired-do-print (:override (&optional _))
-    "Show/hide dotfiles."
-    (interactive)
-    (if (or (not (boundp 'dired-dotfiles-show-p)) dired-dotfiles-show-p)
-        (progn
-          (setq-local dired-dotfiles-show-p nil)
-          (dired-mark-files-regexp "^\\.")
-          (dired-do-kill-lines))
-      (revert-buffer)
-      (setq-local dired-dotfiles-show-p t)))
+  (with-no-warnings
+    (defvar dired-dotfiles-show nil)
+    (defun dired-dotfiles-toggle (&rest _)
+      "Show/hide dotfiles."
+      (interactive)
+      (if (not dired-dotfiles-show)
+          (revert-buffer)
+        (dired-mark-files-regexp "^\\.")
+        (dired-do-kill-lines))
+      (setq-local dired-dotfiles-show (not dired-dotfiles-show)))
+
+  (advice-add 'dired-do-print :override #'dired-dotfiles-toggle))
   :custom
   (dired-isearch-filenames 'dwim)
   (dired-create-destination-dirs 'ask)
