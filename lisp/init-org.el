@@ -426,13 +426,6 @@ content."
   (org-html-checkbox-type 'unicode)
   (org-html-validation-link nil))
 
-(use-package htmlize
-  :ensure t
-  :defer t
-  :custom
-  (htmlize-pre-style t)
-  (htmlize-output-type 'inline-css))
-
 (use-package ox-md
   :ensure nil
   :after org
