@@ -142,13 +142,12 @@
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
-(use-package xref
-  :ensure nil
-  :unless (>= emacs-major-version 28)
-  :custom
-  ;; Use Consult to select xref locations with preview
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref))
+(unless (>= emacs-major-version 28)
+  (use-package ivy-xref
+    :ensure t
+    :custom
+    (xref-show-xrefs-function #'ivy-xref-show-xrefs)
+    (xref-show-definitions-function #'ivy-xref-show-defs)))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump

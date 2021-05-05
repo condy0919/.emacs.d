@@ -81,7 +81,7 @@
     "fF" 'find-file-other-window
     "f/" 'find-file-other-window
     "fg" 'rgrep
-    "fj" 'consult-find
+    "fj" 'counsel-file-jump
     "fC" 'my/copy-current-file
     "fD" 'my/delete-current-file
     "fy" 'my/copy-current-filename
@@ -158,20 +158,16 @@
 
     ;; search
     "s" '(:ignore t :which-key "search")
-    "ss" 'consult-line
+    "ss" 'swiper-isearch
+    "sS" 'swiper-isearch-thing-at-point
+    "sb" 'swiper-all
+    "sB" 'swiper-all-thing-at-point
     "sj" 'evil-show-jumps
     "sm" 'evil-show-marks
     "sr" 'evil-show-registers
     "si" 'imenu
-    "sl" 'selectrum-repeat
-    "so" 'consult-outline
-    "sg" 'consult-ripgrep
-
-    ;; insert
-    "i" '(:ignore t :which-key "insert")
-    "iq" 'quickurl-prefix-map
-    "it" 'insert-date-time
-    "iy" 'clipboard-yank
+    "sl" 'ivy-resume
+    "sg" 'counsel-rg
 
     ;; git
     "g" '(:ignore t :which-key "git")

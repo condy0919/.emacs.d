@@ -76,9 +76,8 @@
 (require 'init-git)
 (require 'init-dev)
 (require 'init-dired)
-(require 'init-insert)
 (require 'init-hydra)
-(require 'init-selectrum)
+(require 'init-ivy)
 
 ;; standalone apps
 (require 'init-org)
