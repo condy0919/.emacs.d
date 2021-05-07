@@ -20,11 +20,9 @@
   (defconst clangd-args '("-j=2"
                           "--background-index"
                           "--clang-tidy"
-                          "--recovery-ast"
                           "--cross-file-rename"
                           "--completion-style=bundled"
                           "--pch-storage=memory"
-                          "--suggest-missing-includes"
                           "--header-insertion=iwyu"
                           "--header-insertion-decorators"))
   (with-eval-after-load 'lsp-mode
