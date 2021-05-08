@@ -49,8 +49,9 @@
 (use-package quelpa
   :ensure t
   :custom
-  (quelpa-update-melpa-p nil)
+  (quelpa-git-clone-depth 1)
   (quelpa-self-upgrade-p nil)
+  (quelpa-update-melpa-p nil)
   (quelpa-checkout-melpa-p nil))
 
 (use-package quelpa-use-package
