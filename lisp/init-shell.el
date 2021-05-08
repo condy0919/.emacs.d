@@ -192,7 +192,7 @@ current directory."
 
 ;; Used as a `sh-mode' REPL.
 ;;
-;; `shell' is recommended to use when in `tramp-mode'.
+;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
   :hook (shell-mode . (lambda ()
