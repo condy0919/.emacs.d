@@ -10,6 +10,8 @@
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-disable-insert-state-bindings t)
   :hook (after-init . evil-mode)
   :bind (:map evil-normal-state-map
          ("gs" . evil-avy-goto-char-timer)
@@ -30,8 +32,7 @@
   (evil-vsplit-window-right t)
   (evil-ex-complete-emacs-commands nil)
   (evil-ex-interactive-search-highlight 'selected-window)
-  (evil-disable-insert-state-bindings t)
-  ;; j&k operate via visual line
+  ;; when `visual-line-mode' enabled, make j/k like gj/gk
   (evil-respect-visual-line-mode t)
   (evil-want-integration t)
   (evil-want-keybinding nil)
