@@ -10,13 +10,10 @@
   (require 'init-funcs))
 
 (defun term-mode-common-init ()
-  "The common initialization for term."
+  "The common initialization for term/shell."
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
-  (setq-local global-hl-line-mode nil)
-  (when (bound-and-true-p evil-mode)
-    (setq-local evil-insert-state-cursor 'box)
-    (evil-insert-state)))
+  (setq-local global-hl-line-mode nil))
 
 ;; General term mode
 ;;
