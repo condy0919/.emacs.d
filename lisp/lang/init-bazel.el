@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(use-package bazel-mode
+(use-package bazel
   :ensure t
   :commands bazel-build bazel-run bazel-test bazel-coverage
   :mode (("/WORKSPACE\\'"         . bazel-workspace-mode)
