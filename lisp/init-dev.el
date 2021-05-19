@@ -142,12 +142,12 @@
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
-(unless (>= emacs-major-version 28)
-  (use-package ivy-xref
-    :ensure t
-    :custom
-    (xref-show-xrefs-function #'ivy-xref-show-xrefs)
-    (xref-show-definitions-function #'ivy-xref-show-defs)))
+(use-package xref
+  :ensure nil
+  :unless (>= emacs-major-version 28)
+  :custom
+  (xref-show-xrefs-function #'xref-show-definitions-buffer-at-bottom)
+  (xref-show-definitions-function #'xref-show-definitions-buffer-at-bottom))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
