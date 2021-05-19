@@ -206,12 +206,14 @@
 
 ;; Enable `repeat-mode' to reduce key sequence length
 ;;
-;; `repeat-keep-prefix' makes lambda repeated
+;; - `repeat-keep-prefix' makes lambda repeated.
+;; - If we have been idle for `repeat-exit-timeout', exit the repeated state.
 (use-package repeat
   :ensure nil
   :custom
   (repeat-mode t)
   (repeat-keep-prefix t)
+  (repeat-exit-timeout 3)
   (repeat-exit-key (kbd "RET")))
 
 ;; Server mode.
