@@ -39,9 +39,10 @@
 
   (advice-add 'dired-do-print :override #'dired-dotfiles-toggle))
   :custom
+  (dired-vc-rename-file t)
+  (dired-do-revert-buffer t)
   (dired-isearch-filenames 'dwim)
-  (dired-create-destination-dirs 'ask)
-  (dired-vc-rename-file t))
+  (dired-create-destination-dirs 'ask))
 
 (use-package dired-x
   :ensure nil
