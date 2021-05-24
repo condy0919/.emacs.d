@@ -169,10 +169,7 @@
 ;; IRC client
 (use-package rcirc
   :ensure nil
-  :hook ((rcirc-mode . rcirc-track-minor-mode)
-         (rcirc-mode . rcirc-omit-mode))
-  :config
-  (add-to-list 'yank-excluded-properties 'rcirc-text)
+  :hook (rcirc-mode . rcirc-omit-mode)
   :custom
   (rcirc-default-port 7000)
   (rcirc-always-use-server-buffer-flag t)
