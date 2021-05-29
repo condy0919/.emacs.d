@@ -28,9 +28,8 @@
   (company-minimum-prefix-length 3)
   (company-tooltip-width-grow-only t)
   (company-tooltip-align-annotations t)
-  ;; complete `abbrev' only in current buffer
+  ;; complete `abbrev' only in current buffer and make dabbrev case-sensitive
   (company-dabbrev-other-buffers nil)
-  ;; make dabbrev case-sensitive
   (company-dabbrev-ignore-case nil)
   (company-dabbrev-downcase nil)
   ;; make dabbrev-code case-sensitive
@@ -38,13 +37,16 @@
   (company-dabbrev-code-everywhere t)
   ;; call `tempo-expand-if-complete' after completion
   (company-tempo-expand t)
+  ;; Stop annoying me
+  (company-etags-use-main-table-list nil)
   ;; No icons
   (company-format-margin-function nil)
-  ;; the backends
   (company-backends '((company-capf :with company-tempo)
                       company-files
                       (company-dabbrev-code company-etags company-keywords)
-                      company-dabbrev)))
+                      company-dabbrev
+                      ;; HACK: prevent `lsp-mode' to add `company-capf' back.
+                      company-capf)))
 
 ;; lsp-mode
 (use-package lsp-mode
