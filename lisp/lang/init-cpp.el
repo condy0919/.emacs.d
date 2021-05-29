@@ -365,32 +365,7 @@
                            )
                          "ord"
                          "Class totally ordered comparison"
-                         'c++-tempo-tags)
-  (tempo-define-template "c++-test-suite"
-                         '("BOOST_AUTO_TEST_SUITE(" (P "test-suite: ") ")" > n>
-                           p n
-                           "BOOST_AUTO_TEST_SUITE_END()" > n>
-                           )
-                         "ts"
-                         "Test suite for C++"
-                         'c++-tempo-tags)
-  (tempo-define-template "c++-test-case"
-                         '("BOOST_AUTO_TEST_CASE(" (P "test-case: ") ") {" > n>
-                           p n
-                           "}" > n>
-                           )
-                         "tc"
-                         "Test case for C++"
-                         'c++-tempo-tags)
-  (tempo-define-template "c++-fixture"
-                         '("BOOST_FIXTURE_TEST_SUITE(" (P "name: ") ", " (P "fixture: ") ")" > n>
-                           p n
-                           "BOOST_AUTO_TEST_SUITE_END()" > n>
-                           )
-                         "fixt"
-                         "Fixture for C++"
-                         'c++-tempo-tags)
-  )
+                         'c++-tempo-tags))
 
 (use-package modern-cpp-font-lock
   :ensure t
