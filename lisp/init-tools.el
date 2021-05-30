@@ -170,6 +170,18 @@
 (use-package rcirc
   :ensure nil
   :hook (rcirc-mode . rcirc-omit-mode)
+  :config
+  (with-no-warnings
+    (defun rcirc-notify-me (proc sender _response target text)
+      "Notify me if SENDER sends a TEXT that matches my nick."
+      (when (and (not (string= (rcirc-nick proc) sender)) ;; Skip my own message
+                 (rcirc-channel-p target))
+        (when (string-match (rcirc-nick proc) text)
+          (notify-send :title (format "%s mention you" sender)
+                       :body text
+                       :urgency 'critical))))
+
+    (add-hook 'rcirc-print-functions #'rcirc-notify-me))
   :custom
   (rcirc-default-port 7000)
   (rcirc-always-use-server-buffer-flag t)
