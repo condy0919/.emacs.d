@@ -174,7 +174,8 @@
   (with-no-warnings
     (defun rcirc-notify-me (proc sender _response target text)
       "Notify me if SENDER sends a TEXT that matches my nick."
-      (when (and (not (string= (rcirc-nick proc) sender)) ;; Skip my own message
+      (when (and (not (string= (rcirc-nick proc) sender))        ;; Skip my own message
+                 (not (string= (rcirc-server-name proc) sender)) ;; Skip the response of server
                  (rcirc-channel-p target))
         (when (string-match (rcirc-nick proc) text)
           (notify-send :title (format "%s mention you" sender)
