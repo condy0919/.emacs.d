@@ -35,6 +35,12 @@
     (cl-loop for font in fonts
              when (member font (font-family-list))
              return (set-fontset-font t 'symbol (font-spec :family font) nil 'prepend)))
+
+  ;; Better variable-pitch font
+  (let ((fonts '("Bookerly" "Overpass" "Verdana" "Lucida Grande")))
+    (cl-loop for font in fonts
+             when (member font (font-family-list))
+             return (custom-set-faces `(variable-pitch ((t (:family ,font)))))))
   :custom
   (mac-option-modifier 'hyper)
   (mac-command-modifier 'meta)
