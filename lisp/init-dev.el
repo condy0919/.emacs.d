@@ -163,6 +163,12 @@
   (dumb-jump-selector 'completing-read)
   (dumb-jump-disable-obsolete-warnings t))
 
+;; Browse devdoc.io
+(use-package devdocs-browser
+  :ensure t
+  :bind (("C-c b" . devdocs-browser-open)
+         ("C-c B" . devdocs-browser-open-in)))
+
 ;; pulse current line
 (use-package pulse
   :ensure nil
