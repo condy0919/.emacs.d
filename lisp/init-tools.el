@@ -185,7 +185,8 @@
     (add-hook 'rcirc-print-functions #'rcirc-notify-me))
   :custom
   (rcirc-default-port 7000)
-  (rcirc-always-use-server-buffer-flag t)
+  ;; print messages in current channel buffer
+  (rcirc-always-use-server-buffer-flag nil)
   (rcirc-authenticate-before-join t)
   (rcirc-auto-authenticate-flag t)
   (rcirc-fill-column #'window-text-width)
