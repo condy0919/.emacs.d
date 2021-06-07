@@ -164,10 +164,9 @@
   (dumb-jump-disable-obsolete-warnings t))
 
 ;; Browse devdoc.io
-(use-package devdocs-browser
+(use-package devdocs
   :ensure t
-  :bind (("C-c b" . devdocs-browser-open)
-         ("C-c B" . devdocs-browser-open-in)))
+  :bind (("C-c b" . devdocs-lookup)))
 
 ;; pulse current line
 (use-package pulse
