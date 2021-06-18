@@ -11,14 +11,14 @@
 (defconst ydcv-buffer-name "*ydcv*")
 
 ;;;###autoload
-(defun ydcv-dwim ()
-  "Call `ydcv' with active region or current symbol."
-  (interactive)
+(defun ydcv-dwim (word)
+  "Call `ydcv' on WORD."
+  (interactive (list (if (use-region-p)
+                         (buffer-substring-no-properties (region-beginning) (region-end))
+                       (word-at-point))))
   (let ((max-mini-window-height 0)
         (buf (get-buffer-create ydcv-buffer-name)))
-    (if (use-region-p)
-        (shell-command-on-region (region-beginning) (region-end) "ydcv" buf)
-      (shell-command (format "ydcv %s" (word-at-point)) buf))
+    (shell-command (format "ydcv %s" word) buf)
     (with-current-buffer buf
       (view-mode +1))))
 
