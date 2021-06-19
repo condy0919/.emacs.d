@@ -22,7 +22,6 @@
   (gnus-dbus-close-on-sleep t)
   (gnus-use-cross-reference nil)
   (gnus-inhibit-startup-message nil)
-  (gnus-home-directory (no-littering-expand-var-file-name "gnus/"))
   (gnus-select-method '(nnimap "GMail"
                                (nnimap-address "imap.gmail.com")
                                (nnimap-server-port "imaps")
