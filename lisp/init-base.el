@@ -17,11 +17,6 @@
       inhibit-startup-message t
       inhibit-startup-buffer-menu t)
 
-;; Prevent unwanted runtime builds in gccemacs (native-comp); packages are
-;; compiled ahead-of-time when they are installed and site files are compiled
-;; when gccemacs is installed.
-(setq native-comp-deferred-compilation nil)
-
 ;; \xff is a word!
 (setq words-include-escapes t)
 

@@ -49,8 +49,6 @@
 (use-package isearch
   :ensure nil
   :bind (:map isearch-mode-map
-         ("M-<return>"                . isearch-repeat-forward)
-         ("M-S-<return>"              . isearch-repeat-backward)
          ;; consistent with ivy-occur
          ("C-c C-o"                   . isearch-occur)
          ([escape]                    . isearch-cancel)
