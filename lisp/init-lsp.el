@@ -43,7 +43,7 @@
   (company-format-margin-function nil)
   (company-backends '((company-capf :with company-tempo)
                       company-files
-                      (company-dabbrev-code company-etags company-keywords)
+                      (company-dabbrev-code company-keywords)
                       company-dabbrev
                       ;; HACK: prevent `lsp-mode' to add `company-capf' back.
                       company-capf)))
