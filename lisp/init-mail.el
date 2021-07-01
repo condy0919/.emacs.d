@@ -172,8 +172,8 @@
                                            "X-Mailer"
                                            "X-Newsreader")
                             ":"))
-  ;; Block images
-  (gnus-inhibit-images t)
+  ;; Allow images
+  (gnus-inhibit-images nil)
   (gnus-article-sort-functions '((not gnus-article-sort-by-number)
                                  (not gnus-article-sort-by-date)))
   (gnus-article-show-cursor t)
