@@ -44,7 +44,8 @@
                         (let ((buf (get-buffer-create tldr-buffer-name)))
                           (with-current-buffer buf
                             (insert (base64-decode-string content))
-                            (markdown-mode)
+                            (when (functionp 'markdown-mode)
+                              (markdown-mode))
                             (view-mode +1)
                             (pop-to-buffer buf)))))))))
 
