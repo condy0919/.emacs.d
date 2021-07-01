@@ -3,8 +3,8 @@
 ;;
 
 ;;; Code:
-(eval-when-compile
-  (require 'init-funcs))
+
+(require 'init-funcs)
 
 (use-package elisp-mode
   :ensure nil

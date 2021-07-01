@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-and-compile
-  (require 'init-macros))
+(require 'init-macros)
 
 ;; Suppress GUI features and more
 (setq use-file-dialog nil

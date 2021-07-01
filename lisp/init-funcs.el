@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'init-macros))
+(require 'init-macros)
 
 ;;;###autoload
 (defun my/rename-file (file)

@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'rx))
+(require 'rx)
 
 ;; Use ( to toggle dired-hide-details-mode
 (use-package dired

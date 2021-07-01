@@ -5,9 +5,8 @@
 
 ;;; Code:
 
-(eval-and-compile
-  (require 'rx)
-  (require 'init-funcs))
+(require 'rx)
+(require 'init-funcs)
 
 (defun term-mode-common-init ()
   "The common initialization for term/shell."

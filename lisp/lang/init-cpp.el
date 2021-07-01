@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'init-macros))
+(require 'init-macros)
 
 (use-package cc-mode
   :ensure nil

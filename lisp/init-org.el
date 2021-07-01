@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-and-compile
-  (require 'init-funcs))
+(require 'init-funcs)
 
 (use-package org
   :ensure nil

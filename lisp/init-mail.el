@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'rx))
+(require 'rx)
 
 ;; A newsreader in Emacs
 (use-package gnus

@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'init-macros))
+(require 'init-macros)
 
 ;; Compilation Mode
 (use-package compile
