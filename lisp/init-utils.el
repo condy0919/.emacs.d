@@ -19,7 +19,7 @@
                        (word-at-point))))
   (let ((max-mini-window-height 0)
         (buf (get-buffer-create ydcv-buffer-name)))
-    (shell-command (format "ydcv '%s'" word) buf)
+    (shell-command (concat "ydcv " (shell-quote-argument word)) buf)
     (with-current-buffer buf
       (view-mode +1)
       (pop-to-buffer buf))))
