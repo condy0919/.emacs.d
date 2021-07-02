@@ -25,17 +25,27 @@
       (pop-to-buffer buf))))
 
 (defconst tldr-buffer-name "*tldr*")
-(defconst tldr-url-template "https://api.github.com/repos/tldr-pages/tldr/contents/pages/common/%s.md")
+(defconst tldr-url-template "https://api.github.com/repos/tldr-pages/tldr/contents/pages/%s/%s.md")
 
 ;;;###autoload
-(defun tldr (cmd)
-  "View tldr page for CMD."
+(defun tldr (cmd &optional op)
+  "View tldr page of CMD.
+If OP is non-nil and search failed, OP will be used as platform
+name and search again. Typically OP is nil or \"common\"."
   (interactive "sCommand: ")
-  (let ((url (format tldr-url-template cmd)))
+  (let* ((platform (or op
+                     (pcase system-type
+                       ('gnu "linux")
+                       ('gnu/linux "linux")
+                       ('darwin "osx")
+                       ('ms-dos "windows"))))
+         (url (format tldr-url-template platform cmd)))
     (url-retrieve url
                   (lambda (status)
                     (if (or (not status) (plist-member status :error))
-                        (user-error "Something went wrong.\n\n%s" (pp-to-string (plist-get status :error)))
+                        (if (not op)
+                            (tldr cmd "common")
+                          (user-error "Something went wrong.\n\n%s" (pp-to-string (plist-get status :error))))
                       (search-forward "\n\n")
                       (let* ((req (json-read))
                              (encoding (alist-get 'encoding req))
