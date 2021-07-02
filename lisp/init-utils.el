@@ -9,6 +9,8 @@
 (require 'json)
 (require 'thingatpt)
 
+(defvar url-http-end-of-headers)
+
 (defconst ydcv-buffer-name "*ydcv*")
 
 ;;;###autoload
@@ -46,7 +48,7 @@ name and search again. Typically OP is nil or \"common\"."
                         (if (not op)
                             (tldr cmd "common")
                           (user-error "Something went wrong.\n\n%s" (pp-to-string (plist-get status :error))))
-                      (search-forward "\n\n")
+                      (goto-char url-http-end-of-headers)
                       (let* ((req (json-read))
                              (encoding (alist-get 'encoding req))
                              (content (alist-get 'content req)))
