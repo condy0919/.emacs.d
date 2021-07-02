@@ -41,8 +41,10 @@
                              (encoding (alist-get 'encoding req))
                              (content (alist-get 'content req)))
                         (cl-assert (string= encoding "base64"))
-                        (let ((buf (get-buffer-create tldr-buffer-name)))
+                        (let ((buf (get-buffer-create tldr-buffer-name))
+                              (inhibit-read-only t))
                           (with-current-buffer buf
+                            (erase-buffer)
                             (insert (base64-decode-string content))
                             (when (functionp 'markdown-mode)
                               (markdown-mode))
