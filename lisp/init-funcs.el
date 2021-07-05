@@ -84,17 +84,6 @@ confirmation."
   (ansi-term shell-file-name))
 
 ;;;###autoload
-(defun my/buffer-auto-close ()
-  "Close buffer after exit."
-  (when (ignore-errors (get-buffer-process (current-buffer)))
-    (set-process-sentinel (get-buffer-process (current-buffer))
-                          (lambda (process _exit-msg)
-                            (when (memq (process-status process) '(exit stop))
-                              (kill-buffer (process-buffer process))
-                              (when (> (count-windows) 1)
-                                (delete-window)))))))
-
-;;;###autoload
 (my/other-windowize-for ielm)
 
 ;;;###autoload

@@ -406,6 +406,17 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; Command line interpreter
 (use-package comint
   :ensure nil
+  :hook (comint-mode . buffer-auto-close)
+  :config
+  (defun buffer-auto-close ()
+    "Close buffer after exit."
+    (when (ignore-errors (get-buffer-process (current-buffer)))
+      (set-process-sentinel (get-buffer-process (current-buffer))
+                            (lambda (process _exit-msg)
+                              (when (memq (process-status process) '(exit stop))
+                                (kill-buffer (process-buffer process))
+                                (when (> (count-windows) 1)
+                                  (delete-window)))))))
   :custom
   (comint-history-isearch 'dwim)
   (comint-input-ignoredups t)

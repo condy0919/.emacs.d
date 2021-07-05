@@ -22,7 +22,6 @@
   :ensure nil
   :hook (term-mode . (lambda ()
                        (term-mode-common-init)
-                       (my/buffer-auto-close)
                        (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
                          ;; Don't prompt about processes when killing term
                          (set-process-query-on-exit-flag proc nil))))
@@ -191,9 +190,7 @@ current directory."
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook (shell-mode . (lambda ()
-                        (term-mode-common-init)
-                        (my/buffer-auto-close))))
+  :hook (shell-mode . term-mode-common-init))
 
 ;; Popup a shell inside Emacs
 (use-package shell-pop
