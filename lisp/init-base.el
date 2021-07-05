@@ -16,9 +16,6 @@
       inhibit-startup-message t
       inhibit-startup-buffer-menu t)
 
-;; \xff is a word!
-(setq words-include-escapes t)
-
 ;; Pixelwise resize
 (setq window-resize-pixelwise t
       frame-resize-pixelwise t)
