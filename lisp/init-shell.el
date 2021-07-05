@@ -1,4 +1,4 @@
-;;; init-shell.el --- All about shell not shell scripts -*- lexical-binding: t -*-
+;;; init-shell.el --- All about shell/term -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -20,11 +20,8 @@
 ;; See https://www.emacswiki.org/emacs/AnsiTermHints for more information.
 (use-package term
   :ensure nil
-  :hook (term-mode . (lambda ()
-                       (term-mode-common-init)
-                       (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-                         ;; Don't prompt about processes when killing term
-                         (set-process-query-on-exit-flag proc nil))))
+  :hook ((term-mode . term-mode-common-init)
+         (term-exec . term-mode-no-query))
   :bind (:map term-raw-map
          ("C-c C-y" . term-paste)
          ;; Don't capture my keys!
@@ -35,6 +32,11 @@
   :config
   (when (eq system-type 'darwin)
     (define-key term-raw-map (kbd "H-v") 'term-paste))
+
+  (defun term-mode-no-query ()
+    "No prompt about processes when killing term."
+    (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+      (set-process-query-on-exit-flag proc nil)))
   :custom
   (term-input-ignoredups t)
   (term-completion-autolist t)

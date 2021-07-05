@@ -406,14 +406,15 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; Command line interpreter
 (use-package comint
   :ensure nil
-  :hook (comint-mode . buffer-auto-close)
+  ;; NOTE: `term' and `ielm' are not derived from `comint-mode'
+  :hook ((comint-exec term-exec ielm-mode) . buffer-auto-close)
   :config
   (defun buffer-auto-close ()
     "Close buffer after exit."
-    (when (ignore-errors (get-buffer-process (current-buffer)))
-      (set-process-sentinel (get-buffer-process (current-buffer))
+    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+      (set-process-sentinel proc
                             (lambda (process _exit-msg)
-                              (when (memq (process-status process) '(exit stop))
+                              (when (memq (process-status process) '(exit signal))
                                 (kill-buffer (process-buffer process))
                                 (when (> (count-windows) 1)
                                   (delete-window)))))))
