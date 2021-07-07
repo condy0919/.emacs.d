@@ -141,34 +141,6 @@
   :ensure t
   :bind (("C-c b" . devdocs-lookup)))
 
-;; pulse current line
-(use-package pulse
-  :ensure nil
-  :init
-  (defun pulse-region (beg end &rest _)
-    "Pulse the current region."
-    (pulse-momentary-highlight-region beg end))
-  (defun pulse-line (&rest _)
-    "Pulse the current line."
-    (pulse-momentary-highlight-one-line (point)))
-  (defun recenter-and-pulse (&rest _)
-    "Recenter and pulse the current line."
-    (recenter)
-    (pulse-line))
-
-  ;; better evil notification
-  (advice-add #'pop-tag-mark         :after #'recenter-and-pulse)
-  (advice-add #'evil-goto-line       :after #'recenter-and-pulse)
-  (advice-add #'evil-goto-mark-line  :after #'recenter-and-pulse)
-  (advice-add #'what-cursor-position :after #'pulse-line)
-  (advice-add #'evil-window-top      :after #'pulse-line)
-  (advice-add #'evil-window-middle   :after #'pulse-line)
-  (advice-add #'evil-window-bottom   :after #'pulse-line)
-  (advice-add #'evil-yank            :after #'pulse-region)
-  :hook ((dumb-jump-after-jump
-          bookmark-after-jump
-          imenu-after-jump) . recenter-and-pulse))
-
 ;; Hiding structured data
 ;;
 ;; zm hide-all
@@ -178,17 +150,7 @@
 ;; zc hide-block
 (use-package hideshow
   :ensure nil
-  :hook (prog-mode . hs-minor-mode)
-  :config
-  (defconst hideshow-folded-face '((t (:inherit 'font-lock-comment-face :box t))))
-
-  (defun hideshow-folded-overlay-fn (ov)
-    (when (eq 'code (overlay-get ov 'hs))
-      (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
-             (info (format " ... [%d] " nlines)))
-        (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
-  :custom
-  (hs-set-up-overlay 'hideshow-folded-overlay-fn))
+  :hook (prog-mode . hs-minor-mode))
 
 ;; Antlr mode
 (use-package antlr-mode
