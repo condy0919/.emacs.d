@@ -21,7 +21,7 @@
   (magit-diff-paint-whitespace nil)
   (magit-ediff-dwim-show-on-hunks t))
 
-;; NB `diff-hl' depends on `vc'
+;; NOTE: `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
   :custom
