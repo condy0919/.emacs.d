@@ -53,10 +53,8 @@
   :bind (:map hl-todo-mode-map
          ("C-c t p" . hl-todo-previous)
          ("C-c t n" . hl-todo-next)
-         ("C-c t o" . hl-todo-occur))
-  :config
-  (dolist (keyword '("BUG" "ISSUE" "NB"))
-    (cl-pushnew `(,keyword . ,(face-foreground 'error)) hl-todo-keyword-faces)))
+         ("C-c t i" . hl-todo-insert)
+         ("C-c t o" . hl-todo-occur)))
 
 ;; Show trailing whitespaces
 (use-package whitespace
