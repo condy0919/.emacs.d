@@ -84,9 +84,6 @@ confirmation."
   (ansi-term shell-file-name))
 
 ;;;###autoload
-(my/other-windowize-for ielm)
-
-;;;###autoload
 (defun my/transient-spc ()
   "Bring SPC back. Useful when SPC is used as a leader key."
   (interactive)
