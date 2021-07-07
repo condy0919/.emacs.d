@@ -23,34 +23,10 @@
   (compilation-ask-about-save nil))
 
 ;; Debugger
+;; WIP: upstreaming
 (use-package gud
   :ensure nil
-  :hook (gud-mode . gud-tooltip-mode)
-  :config
-  ;; Add color to the current GUD line
-  ;; From https://kousik.blogspot.com/2005/10/highlight-current-line-in-gdbemacs.html
-  (defconst gud-highlight-face 'secondary-selection)
-
-  (defvar gud-overlay
-    (let ((overlay (make-overlay (point) (point))))
-      (overlay-put overlay 'face gud-highlight-face)
-      overlay)
-    "Overlay variable for GUD highlighting.")
-
-  (define-advice gud-display-line (:after (true-file _line))
-    "Highlight gud current line."
-    (when-let* ((buffer (gud-find-file true-file)))
-      (with-current-buffer buffer
-        (move-overlay gud-overlay (line-beginning-position) (line-end-position)
-                      (current-buffer)))))
-
-  (define-advice gud-kill-buffer-hook (:after nil)
-    "Remove highlight overlay."
-    (delete-overlay gud-overlay))
-
-  (define-advice gud-sentinel (:after (_1 _2))
-    "Remove highlight overlay when user quit gud."
-    (delete-overlay gud-overlay)))
+  :hook (gud-mode . gud-tooltip-mode))
 
 ;; GDB specific config
 (use-package gdb-mi
