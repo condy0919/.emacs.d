@@ -89,7 +89,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 为了保持界面的整洁，禁用了菜单栏、工具栏和滚动条。
 
-在跳转之后会闪烁一下当前行，这样就比较容易知道当前光标在哪里了。这个功能也是基于自带的`pulse`。
+~~在跳转之后会闪烁一下当前行，这样就比较容易知道当前光标在哪里了。这个功能也是基于自带的pulse。~~ 太卡了，禁用了。
 
 # 插件配置、升级
 
@@ -111,9 +111,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-~~自然 ivy, counsel 是要上的，补全功能太好用了。没有 counsel 加持的 M-x 根本无法让人按下去。这里推荐尽量使用 isearch，因为 swiper 下方占用空间过大(继承于 ivy 的设置)，搜索时必然是比较在意上下文的。而自带的 isearch 在稍加设置之后，效果也还可以接受。当 evil-search-module 设置成 isearch 后，也可以使用相同的快捷键来触发 occur。而 occur 自带也是可以配合 wgrep 来获得快速的编辑能力。~~
-
-~~以前，使用的是 ivy 全家桶。现在由于 Emacs 28 已经自带 icomplete-vertical-mode 了，所以切换至了自带的 icomplete-mode`.~~
+自然 `ivy`, `counsel` 是要上的，补全功能太好用了。没有 `counsel` 加持的 <kbd>M-x</kbd> 根本无法让人按下去。这里推荐尽量使用 `isearch`，因为 `swiper` 下方占用空间过大(继承于 `ivy` 的设置)，搜索时必然是比较在意上下文的。而自带的 `isearch` 在稍加设置之后，效果也还可以接受。当 evil-search-module 设置成 `isearch` 后，也可以使用相同的快捷键来触发 `occur`。而 `occur` 自带也是可以配合 `wgrep` 来获得快速的编辑能力。
 
 曾经有段时间切换至了 selectrum, embark 和 consult, 虽然多数情况下没有问题，但是没有 `counsel-projectile` 还是挺影响工作效率的。
 
