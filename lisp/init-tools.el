@@ -135,13 +135,7 @@
                    ;; Language specific engines.
                    ("x86 Instructions Reference" .
                     [simple-query "www.felixcloutier.com"
-                                  "www.felixcloutier.com/x86/" ""])
-                   ("Python Docs" .
-                    [simple-query "docs.python.org"
-                                  "docs.python.org/3/search.html?q=" ""])
-                   ("Cpp Reference" .
-                    [simple-query "en.cppreference.com"
-                                  "en.cppreference.com/mwiki/index.php?search=" ""]))))
+                                  "www.felixcloutier.com/x86/" ""]))))
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome

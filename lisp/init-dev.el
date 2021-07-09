@@ -170,8 +170,7 @@
 ;; Config files mode
 (use-package yaml-mode
   :ensure t
-  :mode (("\\.yaml\\'" . yaml-mode)
-         ("\\.yml\\'"  . yaml-mode)))
+  :mode ("\\.ya?ml\\'" . yaml-mode))
 
 ;; The dot-language
 (use-package graphviz-dot-mode
