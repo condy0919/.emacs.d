@@ -17,6 +17,7 @@
   (dired-bind-vm nil)
   (dired-bind-man nil)
   (dired-bind-info nil)
+  (dired-kill-when-opening-new-dired-buffer t)
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-AFhlv"))
