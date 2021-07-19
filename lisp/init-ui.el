@@ -62,10 +62,6 @@
   :custom
   (tab-bar-history-buttons-show nil))
 
-(use-package page-break-lines
-  :ensure t
-  :hook (after-init . global-page-break-lines-mode))
-
 (use-package all-the-icons
   :ensure t
   :when (display-graphic-p)
