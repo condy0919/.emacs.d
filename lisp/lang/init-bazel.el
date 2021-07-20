@@ -11,7 +11,7 @@
   :mode (("/WORKSPACE\\'"         . bazel-workspace-mode)
          ("/WORKSPACE\\.bazel\\'" . bazel-workspace-mode))
   :custom
-  (bazel-mode-buildifier-before-save (executable-find "buildifier")))
+  (bazel-buildifier-before-save (executable-find "buildifier")))
 
 (provide 'init-bazel)
 
