@@ -101,9 +101,7 @@
   (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
-  (flycheck-indication-mode 'right-fringe)
-  ;; clang/gcc/cppcheck flycheckers never know the include path
-  (flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
+  (flycheck-indication-mode 'right-fringe))
 
 ;; xref
 (use-package xref
@@ -133,8 +131,7 @@
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
   (dumb-jump-prefer-searcher 'rg)
-  (dumb-jump-selector 'completing-read)
-  (dumb-jump-disable-obsolete-warnings t))
+  (dumb-jump-selector 'completing-read))
 
 ;; Browse devdoc.io
 (use-package devdocs

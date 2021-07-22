@@ -23,7 +23,7 @@
         (find-file-noselect new-file)))))
 
 ;;;###autoload
-(defun my/rename-current-file (&rest _)
+(defun my/rename-current-file ()
   "Rename current visiting file."
   (interactive)
   (or (buffer-file-name) (error "No file is visiting"))
@@ -39,7 +39,7 @@
     (delete-file file)))
 
 ;;;###autoload
-(defun my/delete-current-file (&rest _)
+(defun my/delete-current-file ()
   "Delete current visiting file, and kill the corresponding buffer."
   (interactive)
   (or (buffer-file-name) (error "No file is visiting"))
@@ -78,7 +78,7 @@ confirmation."
 (my/other-windowize-for ansi-term shell-file-name)
 
 ;;;###autoload
-(defun my/ansi-term (&rest _)
+(defun my/ansi-term ()
   "Open a `term' in current window."
   (interactive)
   (ansi-term shell-file-name))

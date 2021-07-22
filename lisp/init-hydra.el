@@ -67,8 +67,8 @@
     ("s" copy-symbol-at-point "symbol")
     ("l" copy-line-at-point "line")
     ("u" copy-url-at-point "url")
-    ("e" copy-email-at-point "email")
-    ("r" copy-region "region"))
+    ("f" copy-filename-at-point "filename")
+    ("e" copy-email-at-point "email"))
 
   (defun copy-word-at-point ()
     "Copy word at point."
@@ -98,24 +98,19 @@
       (evil-avy-goto-word-or-subword-1)
       (kill-new (thing-at-point 'url))))
 
+  (defun copy-filename-at-point ()
+    "Copy filename at point."
+    (interactive)
+    (save-excursion
+      (evil-avy-goto-word-or-subword-1)
+      (kill-new (thing-at-point 'filename))))
+
   (defun copy-email-at-point ()
     "Copy email at point."
     (interactive)
     (save-excursion
       (evil-avy-goto-word-or-subword-1)
-      (kill-new (thing-at-point 'email))))
-
-  (defun copy-region ()
-    "Copy region."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-char)
-      (let* ((begin (point))
-             (end (prog2
-                      (evil-avy-goto-char)
-                      (1+ (point)))))
-        (copy-region-as-kill begin end))))
-  )
+      (kill-new (thing-at-point 'email)))))
 
 (provide 'init-hydra)
 ;;; init-hydra.el ends here

@@ -4,19 +4,10 @@
 
 ;;; Code:
 
-;; The builtin dictionary app in MacOS
-(use-package osx-dictionary
-  :ensure t
-  :commands osx-dictionary-search-word-at-point)
-
 (use-package emacs
   :ensure nil
-  :bind (;; I heavily use frame in MacOS
-         ("H-p" . ns-prev-frame)
-         ("H-n" . ns-next-frame)
-         ("H-g" . select-frame-by-name)
-         ;; CUA for MacOS
-         ("H-v" . clipboard-yank)
+  ;; CUA for MacOS
+  :bind (("H-v" . clipboard-yank)
          ("H-c" . clipboard-kill-ring-save)
          ("H-x" . clipboard-kill-region))
   :config

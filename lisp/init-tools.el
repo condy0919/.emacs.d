@@ -185,21 +185,6 @@
   (rcirc-fill-column #'window-text-width)
   (rcirc-kill-channel-buffers t))
 
-;; Client to dict server
-(use-package dictionary
-  :ensure nil
-  :when (>= emacs-major-version 28)
-  :commands dictionary-search
-  :hook (dictionary-mode . dictionary-imenu-setup)
-  :config
-  (defun dictionary-imenu-setup ()
-    (setq imenu-generic-expression '((nil "^From <<\\(.+\\)>>" 1))))
-  :custom
-  (dictionary-server "dict.org")
-  (dictionary-default-popup-strategy "lev")
-  (dictionary-description-open-delimiter "<<")
-  (dictionary-description-close-delimiter ">>"))
-
 (provide 'init-tools)
 
 ;;; init-tools.el ends here
