@@ -169,10 +169,21 @@ current directory."
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
+         ;; C-n and C-p are widely used in most modes. However, C-n takes
+         ;; precedence over [remap next-line] which may cause inconvenience if
+         ;; 3rd party packages remap next-line only.
+         ;;
+         ;; e.g. `next-line' is remapped to `corfu-next' in `corfu-mode'. When
+         ;; completion pops up in eshell and type C-n, Emacs first trys to find
+         ;; C-n in `corfu-map' but nothing found. Finally `eshell-next-input'
+         ;; will be found which confuses people that overriding keymap
+         ;; (corfu-map is in `minor-mode-overriding-map-alist') has a low
+         ;; priority than major keymap.
+         ;;
+         ([remap next-line]     . eshell-next-input)
+         ([remap previous-line] . eshell-previous-input)
          ("C-w" . backward-kill-word)
          ("C-d" . eshell-delchar-or-maybe-eof)
-         ("C-p" . eshell-previous-input)
-         ("C-n" . eshell-next-input)
          ("M-." . eshell-yank-last-arg))
   :config
   ;; $_ is a builtin variable referring to the last arg of the previous command
