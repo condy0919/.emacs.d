@@ -34,6 +34,9 @@
   ;; integrate with isearch and others
   ;; C-' to select isearch-candidate with avy
   :hook (after-init . avy-setup-default)
+  :bind (("M-g M-o" . avy-goto-word-or-subword-1)
+         ("M-g M-s" . avy-goto-char-timer)
+         ("M-g M-l" . avy-goto-line))
   :config
   ;; Force to use pre `avy-style'
   (define-advice avy-isearch (:around (func &rest args))

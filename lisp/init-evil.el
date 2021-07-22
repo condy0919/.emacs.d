@@ -12,13 +12,9 @@
   :init
   (setq evil-disable-insert-state-bindings t)
   :hook (after-init . evil-mode)
-  :bind (:map evil-normal-state-map
-         ("gs" . evil-avy-goto-char-timer)
-         ("go" . evil-avy-goto-word-or-subword-1)
-         ("gl" . evil-avy-goto-line))
+  ;; Don't quit Emacs on :q
+  :bind ([remap evil-quit] . kill-this-buffer)
   :config
-  (evil-ex-define-cmd "q[uit]" 'kill-this-buffer)
-
   ;; Install `undo-fu' when necessary
   (when (< emacs-major-version 28)
     (use-package undo-fu
@@ -31,7 +27,7 @@
   (evil-vsplit-window-right t)
   (evil-ex-complete-emacs-commands nil)
   (evil-ex-interactive-search-highlight 'selected-window)
-  ;; when `visual-line-mode' enabled, make j/k like gj/gk
+  ;; when `visual-line-mode' enabled, exchange j/k with gj/gk
   (evil-respect-visual-line-mode t)
   (evil-want-integration t)
   (evil-want-keybinding nil)
