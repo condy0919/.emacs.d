@@ -27,7 +27,7 @@
   :after dired
   :config
   (with-no-warnings
-    (defvar dired-dotfiles-show nil)
+    (defvar dired-dotfiles-show t)
     (defun dired-dotfiles-toggle (&rest _)
       "Show/hide dotfiles."
       (interactive)

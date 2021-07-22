@@ -12,14 +12,9 @@
   :bind (:map company-mode-map
          ([remap completion-at-point] . company-complete)
          :map company-active-map
-         ("C-p"     . company-select-previous)
-         ("C-n"     . company-select-next)
          ("C-s"     . company-filter-candidates)
          ([tab]     . company-complete-common-or-cycle)
-         ([backtab] . company-select-previous-or-abort)
-         :map company-search-map
-         ("C-p"    . company-select-previous)
-         ("C-n"    . company-select-next))
+         ([backtab] . company-select-previous-or-abort))
   :custom
   (company-idle-delay 0)
   ;; Easy navigation to candidates with M-<n>
