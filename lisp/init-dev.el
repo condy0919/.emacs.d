@@ -175,7 +175,7 @@
   :mode (("\\.dot\\'" . graphviz-dot-mode)
          ("\\.gv\\'"  . graphviz-dot-mode))
   :config
-  (my/set-company-backends-for graphviz-dot-mode company-graphviz-dot-backend)
+  (set-company-backends-for! graphviz-dot-mode company-graphviz-dot-backend)
   :custom
   (graphviz-dot-indent-width 2))
 

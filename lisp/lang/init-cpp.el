@@ -392,7 +392,7 @@
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . cmake-help))
   :config
-  (my/set-company-backends-for cmake-mode company-cmake))
+  (set-company-backends-for! cmake-mode company-cmake))
 
 ;; Extra font locks for cmake
 (use-package cmake-font-lock

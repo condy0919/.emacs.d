@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(defmacro my/set-company-backends-for (mode &rest backends)
+(defmacro set-company-backends-for! (mode &rest backends)
   "Set `company-backends' for MODE with BACKENDS."
   `(add-hook (intern (format "%s-hook" ',mode))
              (lambda ()
