@@ -59,14 +59,14 @@ confirmation."
     (copy-file old-path new-path (or overwrite-p 1))))
 
 ;;;###autoload
-(defun my/copy-current-filename (&rest _)
+(defun my/copy-current-filename ()
   "Copy the full path to the current file."
   (interactive)
   (or (buffer-file-name) (error "No file is visiting"))
   (message (kill-new (buffer-file-name))))
 
 ;;;###autoload
-(defun my/copy-current-buffer-name (&rest _)
+(defun my/copy-current-buffer-name ()
   "Copy the name to the current buffer."
   (interactive)
   (message (kill-new (buffer-name))))
