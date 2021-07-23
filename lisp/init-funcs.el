@@ -72,20 +72,6 @@ confirmation."
   (message (kill-new (buffer-name))))
 
 ;;;###autoload
-(defun my/transient-spc ()
-  "Bring SPC back. Useful when SPC is used as a leader key."
-  (interactive)
-  (when-let* ((f (local-key-binding (kbd "SPC")))
-              (itf (lambda () (interactive) (funcall f))))
-    (funcall f)
-    (message "SPC")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map (kbd "SPC") itf)
-       map)
-     t)))
-
-;;;###autoload
 (defun my/transient-tab-bar-history ()
   "Transient map of command `tab-bar-history-back' and command `tab-bar-history-forward'."
   (interactive)

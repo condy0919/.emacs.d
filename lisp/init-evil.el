@@ -63,9 +63,6 @@
     :keymaps 'override)
 
   (leader-def
-    ;; SPC is back!
-    "SPC" '(my/transient-spc :which-key "SPC")
-
     ;; file
     "f" '(:ignore t :which-key "file")
     "ff" 'find-file
