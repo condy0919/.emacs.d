@@ -7,72 +7,67 @@
 (require 'init-macros)
 
 ;;;###autoload
-(defun my/rename-file (file)
-  "Rename `FILE'. If the `FILE' is opened, rename the corresponding buffer too."
-  (interactive)
-  (let* ((dir (file-name-directory file))
-         (new-name (read-file-name "New name: " dir nil 'confirm (file-name-nondirectory file)))
-         (new-file (expand-file-name new-name dir)))
-    (rename-file file new-file)
-    (when-let* ((buf (find-buffer-visiting file)))
-      (if (string= file (buffer-file-name))
-          (progn
-            (set-visited-file-name new-file)
-            (rename-buffer new-file))
-        (kill-buffer buf)
-        (find-file-noselect new-file)))))
+(defun +rename-current-file (newname)
+  "Rename current visiting file to NEWNAME.
+If NEWNAME is a directory, move file to it."
+  (interactive
+   (progn
+     (unless buffer-file-name
+       (user-error "No file is visiting"))
+     (let ((name (read-file-name "Rename to: " nil buffer-file-name 'confirm)))
+       (when (equal (file-truename name)
+                    (file-truename buffer-file-name))
+         (user-error "Can't rename file to itself"))
+       (list name))))
+  ;; NEWNAME is a directory
+  (when (equal newname (file-name-as-directory newname))
+    (setq newname (concat newname (file-name-nondirectory buffer-file-name))))
+  (rename-file buffer-file-name newname)
+  (set-visited-file-name newname)
+  (rename-buffer newname))
 
 ;;;###autoload
-(defun my/rename-current-file ()
-  "Rename current visiting file."
-  (interactive)
-  (or (buffer-file-name) (error "No file is visiting"))
-  (my/rename-file (buffer-file-name)))
-
-;;;###autoload
-(defun my/delete-file (file)
-  "Delete `FILE'. If the `FILE' is opened, kill the corresponding buffer too."
-  (interactive)
+(defun +delete-current-file (file)
+  "Delete current visiting FILE."
+  (interactive
+   (list (or buffer-file-name
+             (user-error "No file is visiting"))))
   (when (y-or-n-p (format "Really delete '%s'? " file))
-    (when-let* ((buf (find-buffer-visiting file)))
-      (kill-buffer buf))
+    (kill-this-buffer)
     (delete-file file)))
 
 ;;;###autoload
-(defun my/delete-current-file ()
-  "Delete current visiting file, and kill the corresponding buffer."
-  (interactive)
-  (or (buffer-file-name) (error "No file is visiting"))
-  (my/delete-file (buffer-file-name)))
-
-;;;###autoload
-(defun my/copy-current-file (new-path &optional overwrite-p)
+(defun +copy-current-file (new-path &optional overwrite-p)
   "Copy current buffer's file to `NEW-PATH'.
 If `OVERWRITE-P', overwrite the destination file without
 confirmation."
-  (interactive (list (read-file-name "Copy file to: ")
-                     current-prefix-arg))
-  (or (buffer-file-name) (error "No file is visiting"))
+  (interactive
+   (progn
+     (unless buffer-file-name
+       (user-error "No file is visiting"))
+     (list (read-file-name "Copy file to: ")
+           current-prefix-arg)))
   (let ((old-path (buffer-file-name))
         (new-path (expand-file-name new-path)))
-    (make-directory (file-name-directory new-path) 't)
+    (make-directory (file-name-directory new-path) t)
     (copy-file old-path new-path (or overwrite-p 1))))
 
 ;;;###autoload
-(defun my/copy-current-filename ()
-  "Copy the full path to the current file."
-  (interactive)
-  (or (buffer-file-name) (error "No file is visiting"))
-  (message (kill-new (buffer-file-name))))
+(defun +copy-current-filename (file)
+  "Copy the full path to the current FILE."
+  (interactive
+   (list (or buffer-file-name
+             (user-error "No file is visiting"))))
+  (message (kill-new file)))
 
 ;;;###autoload
-(defun my/copy-current-buffer-name ()
+(defun +copy-current-buffer-name ()
   "Copy the name to the current buffer."
   (interactive)
   (message (kill-new (buffer-name))))
 
 ;;;###autoload
-(defun my/transient-tab-bar-history ()
+(defun +transient-tab-bar-history ()
   "Transient map of command `tab-bar-history-back' and command `tab-bar-history-forward'."
   (interactive)
   (let ((echo-keystrokes nil))
@@ -86,7 +81,7 @@ confirmation."
      t)))
 
 ;;;###autoload
-(defun my/transient-tab-bar-undo-close-tab ()
+(defun +transient-tab-bar-undo-close-tab ()
   "Transient version of `tab-bar-undo-close-tab'."
   (interactive)
   (let ((echo-keystrokes nil))
@@ -99,7 +94,7 @@ confirmation."
      t)))
 
 ;;;###autoload
-(defun my/suppress-message (func &rest args)
+(defun +suppress-message (func &rest args)
   "Suppress `message' when apply FUNC with ARGS."
   (let ((inhibit-message t))
     (apply func args)))

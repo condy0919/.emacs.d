@@ -71,10 +71,10 @@
     "f/" 'find-file-other-window
     "fg" 'rgrep
     "fj" 'counsel-file-jump
-    "fC" 'my/copy-current-file
-    "fD" 'my/delete-current-file
-    "fy" 'my/copy-current-filename
-    "fR" 'my/rename-current-file
+    "fC" '+copy-current-file
+    "fD" '+delete-current-file
+    "fy" '+copy-current-filename
+    "fR" '+rename-current-file
     "fr" 'recentf-open-files
     "fl" 'find-file-literally
 
@@ -93,7 +93,7 @@
     "bB" 'switch-to-buffer-other-window
     "bc" 'clone-indirect-buffer
     "bC" 'clone-indirect-buffer-other-window
-    "by" 'my/copy-current-buffer-name
+    "by" '+copy-current-buffer-name
     "bv" 'revert-buffer
     "bz" 'bury-buffer
     ;; --------------
@@ -121,7 +121,7 @@
     ;; window
     "w" '(:keymap evil-window-map :which-key "window")
     "wx" 'kill-buffer-and-window
-    "wu" 'my/transient-tab-bar-history
+    "wu" '+transient-tab-bar-history
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally
 
@@ -137,7 +137,7 @@
     "tt" 'tab-bar-switch-to-tab
     "tp" 'tab-bar-switch-to-recent-tab
     "tr" 'tab-bar-rename-tab
-    "tu" 'my/transient-tab-bar-undo-close-tab
+    "tu" '+transient-tab-bar-undo-close-tab
 
     ;; text
     "x" '(:ignore t :which-key "text")

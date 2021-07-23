@@ -15,7 +15,7 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   ;; Useful when use an external keyboard
-  (defun my/osx-swap-option-and-command ()
+  (defun +osx-swap-option-and-command ()
     "Swap `mac-option-modifier' and `mac-command-modifier'."
     (interactive)
     (cl-rotatef mac-option-modifier mac-command-modifier)

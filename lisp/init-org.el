@@ -122,7 +122,7 @@ content."
   :config
   ;; update appt list every 5 minutes
   (run-at-time t 300 #'org-agenda-to-appt)
-  (advice-add #'org-agenda-to-appt :around #'my/suppress-message)
+  (advice-add #'org-agenda-to-appt :around #'+suppress-message)
   :custom
   (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
