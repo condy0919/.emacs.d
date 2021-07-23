@@ -20,7 +20,6 @@
     (interactive)
     (cl-rotatef mac-option-modifier mac-command-modifier)
     (message "mac-option-modifier: %s, mac-command-modifier: %s" mac-option-modifier mac-command-modifier))
-
   ;; Emoji support
   (let ((fonts '("Apple Color Emoji")))
     (cl-loop for font in fonts

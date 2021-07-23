@@ -184,10 +184,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>f/</kbd> | 同上                                                                        |
 | <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
 | <kbd>fj</kbd> | `counsel-file-jump`打开由`find`在当前目录下搜索到的文件                    |
-| <kbd>fD</kbd> | `my/delete-current-file`删除当前文件                                        |
-| <kbd>fC</kbd> | `my/copy-current-file`拷贝当前文件至其他地方                                |
-| <kbd>fy</kbd> | `my/copy-current-filename`拷贝当前文件的绝对路径                            |
-| <kbd>fR</kbd> | `my/rename-current-file`重命名当前文件                                      |
+| <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                        |
+| <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                |
+| <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                            |
+| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                                      |
 | <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件                                       |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                                   |
 
@@ -211,7 +211,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>bc</kbd> | `clone-indirect-buffer`将当前`buffer`克隆至另一`buffer`，它们可以使用不同`major-mode` |
 | <kbd>bC</kbd> | `clone-indirect-buffer-other-window`同上，不过是在另一窗口打开                        |
 | <kbd>bv</kbd> | `revert-buffer`重新读取当前`buffer`对应的文件                                         |
-| <kbd>by</kbd> | `my/copy-current-buffer-name`复制当前`buffer`的名字                                   |
+| <kbd>by</kbd> | `+copy-current-buffer-name`复制当前`buffer`的名字                                   |
 | <kbd>bz</kbd> | `bury-buffer`退出当前`buffer`的显示，当前`buffer`未被 kill                            |
 
 | key           | function                                                |
@@ -231,13 +231,9 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 | key           | function                                                   |
 |---------------|------------------------------------------------------------|
-| <kbd>ot</kbd> | `my/ansi-term`打开`ansi-term`                              |
-| <kbd>oT</kbd> | `my/ansi-term-other-window`在其他窗口打开`ansi-term`       |
+| <kbd>ot</kbd> | `ansi-term`打开`ansi-term`                              |
 | <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
-| <kbd>oE</kbd> | `my/eshell-other-window`在其他窗口打开`eshell`             |
 | <kbd>os</kbd> | `shell`打开`shell`                                         |
-| <kbd>od</kbd> | `osx-dictionary-search-word-at-point`打开 MacOS 自带的词典 |
-| <kbd>ow</kbd> | `dictionary-search`搜索单词定义                            |
 | <kbd>ol</kbd> | `org-store-link`存储URL                                    |
 | <kbd>oc</kbd> | `org-capture`随时记录一些想法、URL等                       |
 
