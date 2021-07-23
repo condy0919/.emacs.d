@@ -72,18 +72,6 @@ confirmation."
   (message (kill-new (buffer-name))))
 
 ;;;###autoload
-(my/other-windowize-for eshell)
-
-;;;###autoload
-(my/other-windowize-for ansi-term shell-file-name)
-
-;;;###autoload
-(defun my/ansi-term ()
-  "Open a `term' in current window."
-  (interactive)
-  (ansi-term shell-file-name))
-
-;;;###autoload
 (defun my/transient-spc ()
   "Bring SPC back. Useful when SPC is used as a leader key."
   (interactive)

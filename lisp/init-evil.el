@@ -192,10 +192,8 @@
     "o" '(:ignore t :which-key "open")
     "oc" 'org-capture
     "ol" 'org-store-link
-    "ot" 'my/ansi-term
-    "oT" 'my/ansi-term-other-window
+    "ot" 'ansi-term
     "oe" 'eshell
-    "oE" 'my/eshell-other-window
     "os" 'shell)
 
   (general-create-definer local-leader-def
