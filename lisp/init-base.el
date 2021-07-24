@@ -451,6 +451,10 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :bind ("C-c =" . align-regexp))
 
+;; Buffer index
+(use-package imenu
+  :hook (imenu-after-jump . recenter))
+
 ;; Needed by `webpaste'
 (use-package browse-url
   :ensure nil

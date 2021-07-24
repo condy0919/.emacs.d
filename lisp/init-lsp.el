@@ -18,7 +18,7 @@
   :custom
   (company-idle-delay 0)
   ;; Easy navigation to candidates with M-<n>
-  (company-show-numbers t)
+  (company-show-quick-access t)
   (company-require-match nil)
   (company-minimum-prefix-length 3)
   (company-tooltip-width-grow-only t)
