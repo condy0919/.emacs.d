@@ -174,12 +174,12 @@ current directory."
          ;; 3rd party packages remap next-line only.
          ;;
          ;; e.g. `next-line' is remapped to `corfu-next' in `corfu-mode'. When
-         ;; completion pops up in eshell and type C-n, Emacs first trys to find
-         ;; C-n in `corfu-map' but nothing found. Finally `eshell-next-input'
-         ;; will be found which confuses people that overriding keymap
-         ;; (corfu-map is in `minor-mode-overriding-map-alist') has a low
-         ;; priority than major keymap.
-         ;;
+         ;; completion pops up in eshell and C-n is typed, Emacs first trys to
+         ;; find C-n in `corfu-map' but nothing is found. Finally
+         ;; `eshell-next-input' in `eshell-mode-map' will be found which
+         ;; confuses people that overriding keymap (corfu-map is in
+         ;; `minor-mode-overriding-map-alist') has a low priority than major
+         ;; keymap.
          ([remap next-line]     . eshell-next-input)
          ([remap previous-line] . eshell-previous-input)
          ("C-w" . backward-kill-word)
