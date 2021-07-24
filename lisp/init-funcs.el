@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(require 'init-macros)
-
 ;;;###autoload
 (defun +rename-current-file (newname)
   "Rename current visiting file to NEWNAME.
