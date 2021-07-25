@@ -9,25 +9,27 @@
 (require 'json)
 (require 'thingatpt)
 
-(defvar url-http-end-of-headers)
-
-(defconst ydcv-buffer-name "*ydcv*")
+(defconst ydcv-url-template "https://dict.cn/%s")
 
 ;;;###autoload
 (defun ydcv-dwim (word)
-  "Call `ydcv' on WORD."
-  (interactive (list (if (use-region-p)
-                         (buffer-substring-no-properties (region-beginning) (region-end))
-                       (word-at-point))))
-  (let ((max-mini-window-height 0)
-        (buf (get-buffer-create ydcv-buffer-name)))
-    (shell-command (concat "ydcv " (shell-quote-argument word)) buf)
-    (with-current-buffer buf
-      (view-mode +1)
-      (pop-to-buffer buf))))
+  "Translate WORD."
+  (interactive
+   (let* ((default (if (use-region-p)
+                       (buffer-substring-no-properties (region-beginning) (region-end))
+                     (thing-at-point 'word t)))
+          (prompt (if (stringp default)
+                      (format "Search Word (default \"%s\"): " default)
+                    "Search Word: ")))
+     (list (read-string prompt nil nil default))))
+  (let ((url (format ydcv-url-template word)))
+    (eww-browse-url url t)))
 
 (defconst tldr-buffer-name "*tldr*")
 (defconst tldr-url-template "https://api.github.com/repos/tldr-pages/tldr/contents/pages/%s/%s.md")
+
+;; Silence compile warnings
+(defvar url-http-end-of-headers)
 
 ;;;###autoload
 (defun tldr (cmd &optional op)
