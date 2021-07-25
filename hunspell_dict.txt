@@ -84,3 +84,4 @@ RAII
 destructor
 GTK
 imenu
+fmtlib
