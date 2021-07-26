@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(require 'init-macros)
-
 ;; Suppress GUI features and more
 (setq use-file-dialog nil
       use-dialog-box nil
