@@ -136,6 +136,7 @@
 ;; A fancy ctags frontend
 (use-package citre
   :ensure t
+  :hook (prog-mode . citre-auto-enable-citre-mode)
   :bind (("C-c c j" . citre-jump)
          ("C-c c J" . citre-jump-back)
          ("C-c c p" . citre-ace-peek)
