@@ -133,10 +133,22 @@
   (dumb-jump-prefer-searcher 'rg)
   (dumb-jump-selector 'completing-read))
 
+;; A fancy ctags frontend
+(use-package citre
+  :ensure t
+  :bind (("C-c c j" . citre-jump)
+         ("C-c c J" . citre-jump-back)
+         ("C-c c p" . citre-ace-peek)
+         ("C-c c u" . citre-update-this-tags-file))
+  :custom
+  (citre-prompt-language-for-ctags-command t)
+  (citre-ctags-program (executable-find "ctags"))
+  (citre-readtags-program (executable-find "readtags")))
+
 ;; Browse devdoc.io
 (use-package devdocs
   :ensure t
-  :bind (("C-c b" . devdocs-lookup)))
+  :bind ("C-c b" . devdocs-lookup))
 
 ;; Hiding structured data
 ;;
