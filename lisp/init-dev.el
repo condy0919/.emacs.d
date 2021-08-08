@@ -106,6 +106,10 @@
 ;; xref
 (use-package xref
   :ensure nil
+  :hook ((xref-after-return xref-after-jump) . recenter))
+
+(use-package xref
+  :ensure nil
   :when (>= emacs-major-version 28)
   :custom
   ;; `project-find-regexp' benefits from that
