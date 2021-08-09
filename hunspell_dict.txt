@@ -86,3 +86,4 @@ GTK
 imenu
 fmtlib
 UI
+melpa
