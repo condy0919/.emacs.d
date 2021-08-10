@@ -40,7 +40,6 @@
                    (comint-mode          :select t :align t :size 0.4)
                    (grep-mode            :select t :align t)
                    (rg-mode              :select t :align t)
-                   (fanyi-mode                  :select nil :align t :size 0.4)
                    ("*Flycheck errors*"         :select t   :align t :size 10)
                    ("*Backtrace*"               :select t   :align t :size 15)
                    ("*Shell Command Output*"    :select nil :align t :size 0.4)
