@@ -126,8 +126,6 @@
                     [simple-query "urbandictionary.com" "www.urbandictionary.com/define.php?term=" ""])
                    ("Ludwig Guru" .
                     [simple-query "ludwig.guru" "ludwig.guru/s/" ""])
-                   ("Etymology" .
-                    [simple-query "etymonline.com" "etymonline.com/word/" ""])
                    ("Stack Overflow" .
                     [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
                    ("Man Search" .
@@ -139,6 +137,11 @@
                    ("x86 Instructions Reference" .
                     [simple-query "www.felixcloutier.com"
                                   "www.felixcloutier.com/x86/" ""]))))
+
+;; Translator for Emacs
+;; M-x fanyi-dwim, that's all.
+(use-package fanyi
+  :ensure t)
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
