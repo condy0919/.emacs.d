@@ -7,23 +7,6 @@
 
 (require 'url)
 (require 'json)
-(require 'thingatpt)
-
-(defconst ydcv-url-template "https://dict.cn/%s")
-
-;;;###autoload
-(defun ydcv-dwim (word)
-  "Translate WORD."
-  (interactive
-   (let* ((default (if (use-region-p)
-                       (buffer-substring-no-properties (region-beginning) (region-end))
-                     (thing-at-point 'word t)))
-          (prompt (if (stringp default)
-                      (format "Search Word (default \"%s\"): " default)
-                    "Search Word: ")))
-     (list (read-string prompt nil nil default))))
-  (let ((url (format ydcv-url-template word)))
-    (eww-browse-url url t)))
 
 (defconst tldr-buffer-name "*tldr*")
 (defconst tldr-url-template "https://api.github.com/repos/tldr-pages/tldr/contents/pages/%s/%s.md")
