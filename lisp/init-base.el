@@ -441,8 +441,7 @@ Else, call `comment-or-uncomment-region' on the current line."
                                       try-expand-list
                                       try-expand-line
                                       try-complete-lisp-symbol-partially
-                                      try-complete-lisp-symbol))
-  )
+                                      try-complete-lisp-symbol)))
 
 ;; Make align be a simple thing
 (use-package align
@@ -493,8 +492,7 @@ Else, call `comment-or-uncomment-region' on the current line."
       ("Repl" (or (mode . gnuplot-comint-mode)
                   (mode . inferior-emacs-lisp-mode)
                   (mode . inferior-python-mode)))
-      ("Term" (or (mode . vterm-mode)
-                  (mode . term-mode)
+      ("Term" (or (mode . term-mode)
                   (mode . shell-mode)
                   (mode . eshell-mode)))
       ("Mail" (or (mode . mail-mode)
@@ -506,7 +504,7 @@ Else, call `comment-or-uncomment-region' on the current line."
                   (name . "\\.newsrc-dribble")))
       ("Conf" (or (mode . yaml-mode)
                   (mode . conf-mode)))
-      ("Dict" (or (mode . osx-dictionary-mode)
+      ("Dict" (or (mode . fanyi-mode)
                   (mode . dictionary-mode)))
       ("Text" (and (derived-mode . text-mode)
                    (not (starred-name))))
@@ -521,8 +519,6 @@ Else, call `comment-or-uncomment-region' on the current line."
       ("Dired" (mode . dired-mode))
       ("IRC" (or (mode . rcirc-mode)
                  (mode . erc-mode)))
-      ("EBrowse" (or (mode . ebrowse-tree-mode)
-                     (mode . ebrowse-member-mode)))
       ("Images" (or (mode . image-mode)
                     (mode . image-dired-display-image-mode)
                     (mode . image-dired-thumbnail-mode)))))))

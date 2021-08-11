@@ -220,7 +220,6 @@ content."
                               (dot        . t)
                               (emacs-lisp . t)
                               (eshell     . t)
-                              (gnuplot    . t)
                               (ocaml      . t)
                               (python     . t)
                               (shell      . t)

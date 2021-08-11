@@ -193,20 +193,11 @@
 ;; The dot-language
 (use-package graphviz-dot-mode
   :ensure t
-  :mode (("\\.dot\\'" . graphviz-dot-mode)
-         ("\\.gv\\'"  . graphviz-dot-mode))
+  :mode ("\\.dot\\'" . graphviz-dot-mode)
   :config
-  (set-company-backends-for! graphviz-dot-mode company-graphviz-dot-backend)
+  (set-company-backends-for! graphviz-dot-mode company-dabbrev-code company-dabbrev company-graphviz-dot-backend)
   :custom
   (graphviz-dot-indent-width 2))
-
-;; interactive frontend for gnuplot
-(use-package gnuplot
-  :ensure t
-  :mode ("\\.gp\\'" . gnuplot-mode)
-  :custom
-  (gnuplot-basic-offset 2)
-  (gnuplot-inline-image-mode 'inline))
 
 ;; Syntax highlighting for systemd files
 (use-package conf-mode
