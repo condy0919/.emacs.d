@@ -29,18 +29,10 @@
   (vc-allow-async-revert t)
   (vc-handled-backends '(Git)))
 
-;; Change log
-(use-package add-log
-  :ensure nil
-  :custom
-  (add-log-keep-changes-together t))
-
 ;; Highlight uncommitted changes using VC
 (use-package diff-hl
   :ensure t
-  :hook ((after-init         . (lambda ()
-                                 (global-diff-hl-mode)
-                                 (diff-hl-flydiff-mode)))
+  :hook ((after-init         . global-diff-hl-mode)
          (magit-pre-refresh  . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode         . diff-hl-dired-mode-unless-remote)))
@@ -50,7 +42,6 @@
   :ensure nil
   :hook (ediff-quit . tab-bar-history-back)
   :custom
-  (ediff-diff-options "-w") ;; turn off whitespace checking
   (ediff-highlight-all-diffs t)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)

@@ -66,7 +66,6 @@
     ;; file
     "f" '(:ignore t :which-key "file")
     "ff" 'find-file
-    "f." 'find-file
     "fF" 'find-file-other-window
     "f/" 'find-file-other-window
     "fg" 'rgrep
@@ -110,7 +109,6 @@
 
     ;; code
     "c" '(:ignore t :which-key "code")
-    "ca" 'add-change-log-entry-other-window
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile

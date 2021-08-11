@@ -314,33 +314,6 @@
   :custom
   (epg-pinentry-mode 'loopback))
 
-;; quick access to files/tags
-(use-package speedbar
-  :ensure nil
-  :custom-face
-  ;; Colors from Nord theme at https://www.nordtheme.com
-  (speedbar-button-face ((t (:foreground "#616E87" :weight light))))
-  (speedbar-directory-face ((t (:foreground "#ECEFF4" :weight bold))))
-  (speedbar-file-face ((t (:foreground "cyan4"))))
-  (speedbar-highlight-face ((t (:background "#81A1C1"))))
-  (speedbar-selected-face ((t (:underline t :foreground "#434C5E" :weight light))))
-  (speedbar-separator-face ((t (:foreground "#616E87" :weight light))))
-  (speedbar-tag-face ((t (:foreground "#616E87" :weight light))))
-  :custom
-  (speedbar-use-images nil)
-  (speedbar-show-unknown-files t)
-  (speedbar-indentation-width 2))
-
-;; make speedbar same frame
-(use-package sr-speedbar
-  :ensure t
-  :bind ("<f8>" . sr-speedbar-toggle)
-  :custom
-  (sr-speedbar-default-width 20)
-  (sr-speedbar-max-width 30)
-  (sr-speedbar-right-side nil)
-  (sr-speedbar-skip-other-window-p nil))
-
 ;; window layout manager
 ;;
 ;; gt next-tab
@@ -389,15 +362,6 @@ Else, call `comment-or-uncomment-region' on the current line."
   (remote-file-name-inhibit-cache nil)
   (tramp-default-method "ssh"))
 
-;; htop like monitor
-(use-package proced
-  :ensure nil
-  :defer t
-  :custom
-  ;; same with htop
-  (proced-auto-update-interval 2)
-  (proced-auto-update-flag t))
-
 ;; Command line interpreter
 (use-package comint
   :ensure nil
@@ -442,11 +406,6 @@ Else, call `comment-or-uncomment-region' on the current line."
                                       try-expand-line
                                       try-complete-lisp-symbol-partially
                                       try-complete-lisp-symbol)))
-
-;; Make align be a simple thing
-(use-package align
-  :ensure nil
-  :bind ("C-c =" . align-regexp))
 
 ;; Buffer index
 (use-package imenu
