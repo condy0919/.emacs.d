@@ -78,13 +78,6 @@ usemathjax: false
   (markdown-gfm-uppercase-checkbox t)
   (markdown-fontify-code-blocks-natively t))
 
-;; Generate table of contents for markdown-mode
-(use-package markdown-toc
-  :ensure t
-  :after markdown-mode
-  :bind (:map markdown-mode-command-map
-         ("r" . markdown-toc-generate-or-refresh-toc)))
-
 ;; ReStructuredText
 (use-package rst
   :ensure nil

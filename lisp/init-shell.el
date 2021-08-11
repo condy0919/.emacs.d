@@ -135,13 +135,6 @@ current directory."
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
   (eshell-prompt-function 'eshell-prompt))
 
-(use-package em-hist
-  :ensure nil
-  :custom
-  (eshell-history-size 1024)
-  (eshell-hist-ignoredups t)
-  (eshell-save-history-on-exit t))
-
 (use-package em-term
   :ensure nil
   :custom
@@ -155,12 +148,7 @@ current directory."
   :custom
   (eshell-cmpl-autolist t)
   (eshell-cmpl-ignore-case t)
-  (eshell-cmpl-cycle-completions nil)
-  (eshell-cmpl-dir-ignore (rx string-start
-                              (or "." ".." "CVS" ".svn" ".git")
-                              string-end))
-  (eshell-cmpl-file-ignore (rx (or "~" ".elc" ".pyc" ".swp")
-                               string-end)))
+  (eshell-cmpl-cycle-completions nil))
 
 (use-package em-rebind
   :ensure nil
@@ -183,20 +171,7 @@ current directory."
          ([remap next-line]     . eshell-next-input)
          ([remap previous-line] . eshell-previous-input)
          ("C-w" . backward-kill-word)
-         ("C-d" . eshell-delchar-or-maybe-eof)
-         ("M-." . eshell-yank-last-arg))
-  :config
-  ;; $_ is a builtin variable referring to the last arg of the previous command
-  ;;
-  ;; See https://www.gnu.org/software/emacs/manual/html_mono/eshell.html#Expansion
-  (defun eshell-yank-last-arg ()
-    "Insert the last arg of the previous command."
-    (interactive)
-    (insert "$_")
-    (pcomplete-expand))
-  :custom
-  ;; !foo expands to the last command beginning with foo
-  (eshell-expand-input-functions '(eshell-expand-history-references)))
+         ("C-d" . eshell-delchar-or-maybe-eof)))
 
 ;; Used as a `sh-mode' REPL.
 ;;

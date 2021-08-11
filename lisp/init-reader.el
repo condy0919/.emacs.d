@@ -10,7 +10,7 @@
   :config
   (define-advice newsticker--cache-read (:around (func &rest args))
     "Read cache data without prompt."
-    (cl-letf* (((symbol-function 'y-or-n-p) (lambda (_) t)))
+    (cl-letf (((symbol-function 'y-or-n-p) (lambda (_) t)))
       (apply func args)))
   :custom-face
   (newsticker-treeview-old-face ((nil (:inherit 'newsticker-treeview-face :foreground "#7c7c75"))))
