@@ -87,3 +87,4 @@ imenu
 fmtlib
 UI
 melpa
+README
