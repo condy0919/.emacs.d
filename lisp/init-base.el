@@ -157,7 +157,17 @@
   ;; show cwd when `shell-command' and `async-shell-command'
   (shell-command-prompt-show-cwd t)
   ;; show the name of character in `what-cursor-position'
-  (what-cursor-show-names t))
+  (what-cursor-show-names t)
+  ;; List only applicable commands.
+  ;;
+  ;; ``` elisp
+  ;; (defun foo ()
+  ;;   (interactive nil org-mode)
+  ;;   (message "foo"))
+  ;; ```
+  ;;
+  ;; M-x foo should only be available in `org-mode` or modes derived from `org-mode`.
+  (read-extended-command-predicate #'command-completion-default-include-p))
 
 ;; Type text
 (use-package text-mode
