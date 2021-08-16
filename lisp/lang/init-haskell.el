@@ -17,13 +17,5 @@
   (haskell-process-suggest-overloaded-strings nil)
   (haskell-process-suggest-restart nil))
 
-(use-package dante
-  :ensure t
-  :hook (haskell-mode . dante-mode)
-  :bind (:map haskell-mode-map
-         ;; Compatible with lsp-mode keybindings
-         ("C-c d" . dante-info)
-         ("C-c C-c" . dante-eval-block)))
-
 (provide 'init-haskell)
 ;;; init-haskell.el ends here

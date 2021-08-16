@@ -366,10 +366,6 @@
                          "Class totally ordered comparison"
                          'c++-tempo-tags))
 
-(use-package modern-cpp-font-lock
-  :ensure t
-  :hook (c++-mode . modern-c++-font-lock-mode))
-
 ;; cmake, the de factor build system for C++
 (use-package cmake-mode
   :ensure t
