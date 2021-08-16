@@ -62,7 +62,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `git` 这个就不用说了吧？
 - `gcc` 这个就不用说了吧？
 - `fd` (optional) 更现代的 `find`, `projectile` 会自动检测
-- `languagetool` (optional) 更好的拼写检查、语法纠错工具
 
 # 基础配置
 
@@ -81,7 +80,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | saveplace     | 自动记录上次打开文件的位置                           |
 | simple        | 在`modeline`里显示行号、列号以及当前文本的大小       |
 | so-long       | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
-| speedbar      | 侧边栏，可以显示当前目录下的文件、打开的`buffer`     |
 | tab-bar       | 窗口布局管理 (`Emacs` 27+ 自带)                      |
 | tramp         | 远程编辑就靠它                                       |
 
@@ -129,17 +127,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## evil-mode
 
-`normal`状态下增加了如下键绑定:
-
-| key           | function                                             |
-|---------------|------------------------------------------------------|
-| <kbd>gs</kbd> | `evil-avy-goto-char-timer` 来跳转到目标字符          |
-| <kbd>go</kbd> | `evil-avy-goto-word-or-subword-1` 来跳转至目标单词处 |
-| <kbd>gl</kbd> | `evil-avy-goto-line` 来跳转到对应行                  |
-
-`avy`真乃神器也！
-
-同时，因为开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而获得了如下键绑定:
+开启了`evil-collection-want-unimpaired-p` (由`evil-collection`提供) 而获得了如下键绑定:
 
 | key              | function                                                            |
 |------------------|---------------------------------------------------------------------|
@@ -165,14 +153,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>zc</kbd> | `evil-close-fold`显示当前被隐藏的代码块             |
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
-
-此外另外提供了一个`Leader`键，绑定在了`SPC`键上。
-
-`special-mode`专用。通常在`special-mode`里会定义一个`SPC`用来翻页 (如`Info`)，但是由于`SPC`已经作为`Leader`键了。这里曲线救国，用`SPC SPC`来代替原来的`SPC`单键行为，并且会进入`transient`状态，接下来仅按`SPC`即可触发原函数。
-
-| key            | function                                |
-|----------------|-----------------------------------------|
-| <kbd>SPC</kbd> | 调用当前`mode`下原来绑定至`SPC`上的函数 |
 
 与文件相关的`Leader`键绑定如下:
 
@@ -271,29 +251,30 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 与代码相关的`Leader`键绑定:
 
-| key           | function                                               |
-|---------------|--------------------------------------------------------|
-| <kbd>cc</kbd> | `compile`编译                                          |
-| <kbd>cC</kbd> | `recompile`重新编译                                    |
-| <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程                   |
-| <kbd>cx</kbd> | `quickrun`快速运行当前程序                             |
-| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出                   |
-| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示      |
-| <kbd>ca</kbd> | `add-change-log-entry-other-window`打开`ChangeLog`文件 |
+| key           | function                                          |
+|---------------|---------------------------------------------------|
+| <kbd>cc</kbd> | `compile`编译                                     |
+| <kbd>cC</kbd> | `recompile`重新编译                               |
+| <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程              |
+| <kbd>cx</kbd> | `quickrun`快速运行当前程序                        |
+| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出              |
+| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示 |
 
 ## Emacs
 
-| key              | function                                                           |
-|------------------|--------------------------------------------------------------------|
-| <kbd>M-;</kbd>   | `comment-or-uncomment` 注释与反注释                                |
-| <kbd>C-c '</kbd> | 通过`separedit`在注释中快乐地写代码                                |
-| <kbd>C-c x</kbd> | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！         |
-| <kbd>M-=</kbd>   | 在下方弹出一个`ansi-term`终端                                      |
-| <kbd>C-c p</kbd> | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能           |
-| <kbd>C-x g</kbd> | 呼出 `magit`                                                       |
-| <kbd>C-M-;</kbd> | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
-| <kbd>C-x o</kbd> | 开启`repeat-mode`, 方便原生`C-x o`切换`window`                     |
-| <kbd>C-c =</kbd> | 调用`align-regexp`提供以一个对齐符号的功能                         |
+| key                | function                                                           |
+|--------------------|--------------------------------------------------------------------|
+| <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释                                |
+| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                |
+| <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！         |
+| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能           |
+| <kbd>C-x g</kbd>   | 呼出 `magit`                                                       |
+| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
+| <kbd>C-x o</kbd>   | 开启`repeat-mode`, 方便原生`C-x o`切换`window`                     |
+| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                         |
+| <kbd>M-g M-o</kbd> | 调用`avy-goto-word-or-subword-1`                                   |
+| <kbd>M-g M-s</kbd> | 调用`avy-goto-char-timer`                                          |
+| <kbd>M-g M-l</kbd> | 调用`avy-goto-line`                                                |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
 说。本配置中还使用了`counsel-projectile`来令`projectile`更加方便。
@@ -357,7 +338,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 此外，
 
-- `c++-mode`启用了[modern-cpp-font-lock][modern-cpp-font-lock]
 - `cmake-mode`可使用`company-mode`进行符号补全
 - 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中生效。
 - 部分常用`snippet`，如`ifndef`,`main`等等。详细列表见[`init-cpp.el`](lisp/lang/init-cpp.el)文件
@@ -365,7 +345,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## rust-mode
 
-使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟
+`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
 
 ``` emacs-lisp
 (setq lsp-rust-server 'rust-analyzer)
@@ -398,7 +379,7 @@ yay -S ocaml-ocp-indent dune
 
 ## haskell-mode
 
-- 使用 `dante`
+非常纯粹, ~~其实是平常不怎么写 haskell~~
 
 # 截图
 
