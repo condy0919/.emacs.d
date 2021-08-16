@@ -65,11 +65,6 @@ usemathjax: false
     "Insert details tag (collapsible) quickly."
     (interactive "sTitle: ")
     (insert (format "<details><summary>%s</summary>\n\n</details>" title)))
-
-  (with-eval-after-load 'evil-collection
-    (evil-collection-define-key 'normal 'markdown-mode-map
-      (kbd "<tab>") 'markdown-cycle
-      (kbd "S-<tab>") 'markdown-shifttab))
   :custom
   (markdown-header-scaling t)
   (markdown-enable-wiki-links t)
