@@ -23,9 +23,7 @@
   :bind (:map haskell-mode-map
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . dante-info)
-         ("C-c C-c" . dante-eval-block))
-  )
+         ("C-c C-c" . dante-eval-block)))
 
 (provide 'init-haskell)
-
 ;;; init-haskell.el ends here

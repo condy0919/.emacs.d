@@ -84,7 +84,7 @@
   :ensure t
   :after dired
   :custom
-  (dired-narrow-exit-when-one-left t)
+  (dired-narrow-exit-when-one-left nil)
   (dired-narrow-enable-blinking t)
   (dired-narrow-blink-time 0.3))
 
