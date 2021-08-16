@@ -117,12 +117,7 @@ current directory."
        read-only t
        inhibit-line-move-field-capture t)))
   :custom
-  (eshell-banner-message
-   '(format "%s %s\n"
-            (propertize (format " %s " (string-trim (buffer-name)))
-                        'face 'mode-line-highlight)
-            (propertize (current-time-string)
-                        'face 'font-lock-keyword-face)))
+  (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all)
   (eshell-scroll-to-bottom-on-output 'all)
   (eshell-kill-on-exit t)
