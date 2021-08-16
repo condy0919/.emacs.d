@@ -85,6 +85,9 @@ content."
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
+  ;; goto
+  (org-goto-auto-isearch nil)
+  (org-goto-interface 'outline-path-completion)
   ;; tags
   (org-use-tag-inheritance nil)
   (org-agenda-use-tag-inheritance nil)
@@ -92,7 +95,9 @@ content."
   (org-fast-tag-selection-single-key t)
   (org-track-ordered-property-with-tag t)
   ;; archive
-  (org-archive-location "%s_archive::datetree/"))
+  (org-archive-location "%s_archive::datetree/")
+  ;; id
+  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
 
 ;; Keep track of tasks
 (use-package org-agenda
@@ -107,7 +112,6 @@ content."
   (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
   (org-agenda-insert-diary-extract-time t)
-  ;; holidays
   (org-agenda-inhibit-startup t)
   (org-agenda-time-leading-zero t)
   (org-agenda-remove-tags t)
@@ -144,68 +148,23 @@ content."
                               (python     . t)
                               (shell      . t))))
 
-(use-package org-id
-  :ensure nil
-  :after org
-  :custom
-  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
-
-(use-package org-goto
-  :ensure nil
-  :after org
-  :custom
-  (org-goto-auto-isearch nil)
-  (org-goto-interface 'outline-path-completion))
-
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
-  :after org doct
+  :after org
   :hook (org-capture-mode . (lambda ()
                               (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
-  ;; `doct' requires that
-  (org-capture-templates-contexts nil)
   (org-capture-use-agenda-date t)
-  (org-capture-templates
-   (doct `(:group
-           :empty-lines 1
-           :children
-           (("Tasks"
-             :keys "t"
-             :file "tasks.org"
-             :children
-             (("Inbox"
-               :keys "i"
-               :type entry
-               :prepend t
-               :headline "Inbox"
-               :template "* %?\n%i\n")
-              ("Mail"
-               :keys "m"
-               :type entry
-               :headline "Inbox"
-               :template "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
-              ("Reminder"
-               :keys "r"
-               :type entry
-               :headline "Reminders"
-               :template "* TODO %i%?")))
-            ("Capture"
-             :keys "c"
-             :file "capture.org"
-             :children
-             (("Bookmark"
-               :keys "b"
-               :type entry
-               :headline "Bookmarks"
-               :immediate-finish t
-               :template "* [[%:link][%:description]] :READ:\n %a\n %i")
-              ("Note"
-               :keys "n"
-               :type entry
-               :headline "Notes"
-               :template "* %? %^g\n%i\n"))))))))
+  (org-capture-templates-contexts nil)
+  (org-capture-templates '(("t" "Tasks")
+                           ("ti" "Inbox" entry (file+headline "tasks.org" "Inbox")
+                            "* %?\n%i\n")
+                           ("tm" "Mail" entry (file+headline "tasks.org" "Inbox")
+                            "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
+                           ("c" "Capture")
+                           ("cn" "Note" entry (file+headline "capture.org" "Notes")
+                            "* %? %^g\n%i\n"))))
 
 ;; org links
 (use-package ol
@@ -223,12 +182,5 @@ content."
                            ("YouTube"       . "https://youtube.com/watch?v=")
                            ("Zhihu"         . "https://zhihu.com/question/"))))
 
-;; Declarative Org Capture Templates
-(use-package doct
-  :ensure t
-  :commands doct doct-get
-  :demand t)
-
 (provide 'init-org)
-
 ;;; init-org.el ends here
