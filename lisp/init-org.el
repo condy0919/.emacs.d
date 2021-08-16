@@ -9,9 +9,7 @@
 
 (use-package org
   :ensure nil
-  :mode ("\\.org\\'" . org-mode)
   :hook (org-mode . visual-line-mode)
-  :commands (org-find-exact-headline-in-buffer org-set-tags)
   :config
   (with-eval-after-load 'evil-collection
     (evil-collection-define-key 'normal 'org-mode-map
@@ -164,32 +162,6 @@ content."
   (org-agenda-timegrid-use-ampm nil)
   (org-agenda-search-headline-for-time nil))
 
-;; Record the time
-(use-package org-clock
-  :ensure nil
-  :after org
-  :functions notify-send
-  :config
-  (org-clock-persistence-insinuate)
-  :custom
-  (org-clock-in-resume t)
-  (org-clock-idle-time 15)
-  (org-clock-into-drawer t)
-  (org-clock-out-when-done t)
-  (org-clock-persist 'history)
-  (org-clock-history-length 20)
-  (org-clock-mode-line-total 'today)
-  (org-clock-display-default-range 'thisweek)
-  (org-clock-in-switch-to-state "WIP")
-  (org-clock-out-switch-to-state "WAIT")
-  (org-clock-out-remove-zero-time-clocks t)
-  (org-clock-report-include-clocking-task t)
-  (org-show-notification-handler (lambda (msg)
-                                   (notify-send :title "Org Clock"
-                                                :body msg
-                                                :timeout 5000
-                                                :urgency 'critical))))
-
 ;; Write codes in org-mode
 (use-package org-src
   :ensure nil
@@ -238,14 +210,6 @@ content."
   (org-goto-auto-isearch nil)
   (org-goto-interface 'outline-path-completion))
 
-(use-package org-table
-  :ensure nil
-  :after org
-  :custom
-  (org-table-header-line-p t)
-  (org-table-export-default-format "orgtbl-to-csv")
-  (org-table-formula-constants '(("PI" . "3.14159265358979323846264"))))
-
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
@@ -292,44 +256,7 @@ content."
                :keys "r"
                :type entry
                :headline "Reminders"
-               :template "* TODO %i%?")
-              ("ABCD analysis"
-               :keys "a"
-               :type entry
-               :headline "ABCD"
-               :template ,(concat "* %<%F %T>\n"
-                                  "** A: Urgent & Important\n\n"
-                                  "** B: Important & NOT Urgent\n\n"
-                                  "** C: Urgent & Unimportant\n\n"
-                                  "** D: Unimportant & NOT Urgent\n\n"))
-              ("Pomodoro"
-               :keys "p"
-               :type entry
-               :headline "Pomodoro"
-               :template ,(concat "* %<%F %T>\n"
-                                  "** Principle\n"
-                                  "1. 一个番茄时间（25分钟）不可分割，不存在半个或一个半番茄时间\n"
-                                  "2. 一个番茄时间内如果做与任务无关的事情，则该番茄时间作废\n"
-                                  "3. 永远不要在非工作时间内使用\n"
-                                  "4. 不要拿自己的番茄数据与他人的番茄数据比较\n"
-                                  "5. 番茄的数量不可能决定任务最终的成败\n"
-                                  "6. 必须有一份适合自己的作息时间表\n\n"
-                                  "** Today\n"
-                                  "| todo | start | estimate |\n"
-                                  "|------+-------+----------|\n"
-                                  "|      |       |          |\n\n"
-                                  "** Nonscheduled\n"
-                                  "| todo | start | estimate |\n"
-                                  "|------+-------+----------|\n"
-                                  "|      |       |          |\n\n"
-                                  "** Retrospective\n"
-                                  "| Actions | estimate | actual | difference | reason | analysis |\n"
-                                  "|---------+----------+--------+------------+--------+----------|\n"
-                                  "|         |          |        |            |        |          |\n\n"
-                                  "** Conclusion\n"
-                                  "1. ...\n"
-                                  "2. ...\n"))
-              ))
+               :template "* TODO %i%?")))
             ("Capture"
              :keys "c"
              :file "capture.org"
@@ -374,9 +301,7 @@ content."
   :ensure nil
   :after org
   :custom
-  (org-link-keep-stored-after-insertion t)
-  (org-link-abbrev-alist '(("Arxiv"         . "https://arxiv.org/abs/")
-                           ("GitHub"        . "https://github.com/")
+  (org-link-abbrev-alist '(("GitHub"        . "https://github.com/")
                            ("GitLab"        . "https://gitlab.com/")
                            ("Google"        . "https://google.com/search?q=")
                            ("RFCs"          . "https://tools.ietf.org/html/")
@@ -387,128 +312,11 @@ content."
                            ("YouTube"       . "https://youtube.com/watch?v=")
                            ("Zhihu"         . "https://zhihu.com/question/"))))
 
-;; export
-(use-package ox
-  :ensure nil
-  :after org
-  :custom
-  (org-export-with-toc t)
-  (org-export-with-tags 'not-in-toc)
-  (org-export-with-email nil)
-  (org-export-with-author nil)
-  (org-export-with-drawers nil)
-  (org-export-with-priority t)
-  (org-export-with-footnotes t)
-  (org-export-with-smart-quotes t)
-  (org-export-with-section-numbers nil)
-  (org-export-with-sub-superscripts '{})
-  ;; Use :eval never-export header argument to avoid evaluating.
-  (org-export-use-babel t)
-  (org-export-headline-levels 5)
-  (org-export-coding-system 'utf-8)
-  (org-export-with-broken-links 'mark)
-  (org-export-backends '(ascii html md icalendar man)))
-
-(use-package ox-ascii
-  :ensure nil
-  :after org
-  :custom
-  (org-ascii-charset 'utf-8))
-
-(use-package ox-html
-  :ensure nil
-  :after org
-  :custom
-  (org-html-doctype "html5")
-  (org-html-html5-fancy t)
-  (org-html-checkbox-type 'unicode)
-  (org-html-validation-link nil))
-
-(use-package ox-md
-  :ensure nil
-  :after org
-  :custom
-  (org-md-headline-style 'atx))
-
-(use-package ox-icalendar
-  :ensure nil
-  :after org
-  :custom
-  (org-icalendar-include-todo 'all)
-  (org-icalendar-use-scheduled '(todo-start event-if-todo event-if-not-todo))
-  (org-icalendar-use-deadline '(todo-due event-if-todo event-if-not-todo))
-  (org-icalendar-store-UID t))
-
-(use-package ox-man
-  :ensure nil
-  :after org
-  :custom
-  (org-man-source-highlight t))
-
-;; Super agenda mode
-(use-package org-super-agenda
-  :ensure t
-  :hook (org-agenda-mode . org-super-agenda-mode)
-  :custom
-  (org-super-agenda-groups '((:order-multi (1 (:name "Done Today"
-                                               :log closed)
-                                              (:name "Clocked Today"
-                                               :log clocked)))
-                             (:name "Schedule" :time-grid t)
-                             (:name "Today" :scheduled today)
-                             (:habit t)
-                             (:name "Due Today" :deadline today :face warning)
-                             (:name "Overdue" :deadline past :face error)
-                             (:name "Due Soon" :deadline future)
-                             (:name "Scheduled Earlier" :scheduled past))))
-
 ;; Declarative Org Capture Templates
 (use-package doct
   :ensure t
   :commands doct doct-get
   :demand t)
-
-(use-package org-edna
-  :ensure t
-  :hook (org-mode . org-edna-mode)
-  :custom
-  (org-edna-finder-use-cache t)
-  (org-edna-timestamp-format 'long))
-
-;; Ensure that emacsclient.desktop exists and server-mode is opened.
-;;
-;; cat > ~/.local/share/applications/emacsclient.desktop << EOF
-;; [Desktop Entry]
-;; Name=Emacs Client
-;; Exec=emacsclient %u
-;; Icon=emacs-icon
-;; Type=Application
-;; Terminal=false
-;; MimeType=x-scheme-handler/org-protocol;
-;; EOF
-(use-package org-protocol
-  :ensure nil
-  :after org
-  :custom
-  (org-protocol-default-template-key "cb"))
-
-(use-package org-habit
-  :ensure nil
-  :after org
-  :custom
-  (org-habit-show-habits t)
-  (org-habit-show-all-today t))
-
-;; Dynamic headlines numbering
-(use-package org-num
-  :ensure nil
-  :commands org-num-mode
-  :after org
-  :custom
-  (org-num-skip-commented t)
-  (org-num-skip-footnotes t)
-  (org-num-skip-unnumbered t)
-  (org-num-skip-tags `(,org-archive-tag)))
 
 (provide 'init-org)
 
