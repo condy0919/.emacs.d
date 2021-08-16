@@ -19,11 +19,11 @@
   (define-advice org-fast-tag-selection (:around (func &rest args))
     "Hide the modeline in *Org tags* buffer so you can actually see its
 content."
-    (cl-letf* (((symbol-function 'org-fit-window-to-buffer)
-                (lambda (&optional window _max-height _min-height _shrink-only)
-                  (when-let (buf (window-buffer window))
-                    (with-current-buffer buf
-                      (setq mode-line-format nil))))))
+    (cl-letf (((symbol-function 'org-fit-window-to-buffer)
+               (lambda (&optional window _max-height _min-height _shrink-only)
+                 (when-let (buf (window-buffer window))
+                   (with-current-buffer buf
+                     (setq mode-line-format nil))))))
       (apply func args)))
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
@@ -32,15 +32,10 @@ content."
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
   (org-modules '(ol-bibtex ol-gnus ol-info ol-eww org-habit org-protocol))
   ;; prettify
-  (org-loop-over-headlines-in-active-region t)
   (org-fontify-todo-headline t)
   (org-fontify-done-headline t)
   (org-fontify-quote-and-verse-blocks t)
   (org-fontify-whole-heading-line t)
-  (org-hide-macro-markers t)
-  (org-hide-emphasis-markers t)
-  (org-highlight-latex-and-related '(native script entities))
-  (org-pretty-entities t)
   (org-startup-indented t)
   ;; image
   (org-startup-with-inline-images t)
@@ -82,12 +77,8 @@ content."
   ;; Remove CLOSED: [timestamp] after switching to non-DONE states
   (org-closed-keep-when-no-todo t)
   ;; log
-  (org-log-done 'time)
   (org-log-repeat 'time)
-  (org-log-redeadline 'note)
-  (org-log-reschedule 'note)
   (org-log-into-drawer t)
-  (org-log-state-notes-insert-after-drawers nil)
   ;; refile
   (org-refile-use-cache t)
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
@@ -95,20 +86,11 @@ content."
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
   ;; tags
-  (org-tags-column 0)
   (org-use-tag-inheritance nil)
   (org-agenda-use-tag-inheritance nil)
   (org-use-fast-tag-selection t)
   (org-fast-tag-selection-single-key t)
   (org-track-ordered-property-with-tag t)
-  (org-tag-persistent-alist '(("READ"  . ?r)
-                              ("MAIL"  . ?@)
-                              ("WRITE" . ?w)))
-  (org-tag-alist '((:startgroup)
-                   ("OWNER"    . ?o)
-                   ("ASSIGNEE" . ?a)
-                   ("OBSERVER" . ?b)
-                   (:endgroup)))
   ;; archive
   (org-archive-location "%s_archive::datetree/"))
 
@@ -125,42 +107,13 @@ content."
   (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))
   (org-agenda-insert-diary-extract-time t)
-  (org-agenda-compact-blocks t)
-  (org-agenda-block-separator nil)
-  (org-agenda-sticky t)
   ;; holidays
-  (org-agenda-include-diary t)
-  (org-agenda-include-deadlines t)
-  (org-agenda-follow-indirect t)
   (org-agenda-inhibit-startup t)
-  (org-agenda-show-all-dates t)
   (org-agenda-time-leading-zero t)
-  (org-agenda-start-with-log-mode t)
-  (org-agenda-start-with-clockreport-mode t)
   (org-agenda-remove-tags t)
-  (org-agenda-todo-ignore-with-date nil)
-  (org-agenda-todo-ignore-deadlines 'far)
-  (org-agenda-todo-ignore-scheduled 'future)
-  (org-agenda-todo-ignore-timestamp nil)
-  (org-agenda-tags-todo-honor-ignore-options t)
-  (org-agenda-skip-deadline-if-done t)
-  (org-agenda-skip-scheduled-if-done t)
-  (org-agenda-skip-timestamp-if-done t)
-  (org-agenda-skip-unavailable-files t)
-  (org-agenda-skip-scheduled-delay-if-deadline t)
-  (org-agenda-skip-scheduled-if-deadline-is-shown t)
-  (org-agenda-skip-additional-timestamps-same-entry t)
-  (org-agenda-text-search-extra-files '(agenda-archives))
-  (org-agenda-clockreport-parameter-plist
-   '(:link t :maxlevel 5 :fileskip0 t :compact nil :narrow 80))
   (org-agenda-columns-add-appointments-to-effort-sum t)
   (org-agenda-restore-windows-after-quit t)
-  (org-agenda-window-setup 'current-window)
-  ;; starts from Monday
-  (org-agenda-start-on-weekday 1)
-  (org-agenda-use-time-grid t)
-  (org-agenda-timegrid-use-ampm nil)
-  (org-agenda-search-headline-for-time nil))
+  (org-agenda-window-setup 'current-window))
 
 ;; Write codes in org-mode
 (use-package org-src
@@ -171,31 +124,25 @@ content."
          ;; consistent with separedit/magit
          ("C-c C-c" . org-edit-src-exit))
   :custom
+  (org-confirm-babel-evaluate nil)
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)
   (org-src-preserve-indentation t)
-  (org-src-window-setup 'current-window)
-  (org-confirm-babel-evaluate nil)
-  (org-edit-src-content-indentation 0)
+  (org-src-window-setup 'other-window)
   (org-src-lang-modes '(("C"      . c)
                         ("C++"    . c++)
                         ("bash"   . sh)
                         ("cpp"    . c++)
-                        ("dot"    . graphviz-dot)
+                        ("dot"    . graphviz-dot) ;; was `fundamental-mode'
                         ("elisp"  . emacs-lisp)
                         ("ocaml"  . tuareg)
-                        ("shell"  . sh)
-                        ("sqlite" . sql)))
-  (org-babel-load-languages '((awk        . t)
-                              (C          . t)
-                              (calc       . t)
+                        ("shell"  . sh)))
+  (org-babel-load-languages '((C          . t)
                               (dot        . t)
                               (emacs-lisp . t)
                               (eshell     . t)
-                              (ocaml      . t)
                               (python     . t)
-                              (shell      . t)
-                              (sql        . t))))
+                              (shell      . t))))
 
 (use-package org-id
   :ensure nil
@@ -216,19 +163,6 @@ content."
   :after org doct
   :hook (org-capture-mode . (lambda ()
                               (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
-  :config
-  ;; These variables/functions are used when capturing a minutes of meeting.
-  (defvar org-capture--id-copy nil)
-
-  (defun org-id-new-and-save ()
-    "Get a new org-id via `org-id-new' then save it."
-    (let ((id (org-id-new)))
-      (setq org-capture--id-copy id)
-      id))
-
-  (defun org-id-load-from-copy ()
-    "Read previously allocated org-id from local copy."
-    org-capture--id-copy)
   :custom
   ;; `doct' requires that
   (org-capture-templates-contexts nil)
@@ -271,30 +205,7 @@ content."
                :keys "n"
                :type entry
                :headline "Notes"
-               :template "* %? %^g\n%i\n")
-              ("Meeting"
-               :keys "m"
-               :type entry
-               :olp ("Meeting")
-               :datetree t
-               :jump-to-captured t
-               :template ,(concat "* %^{Subject} :MEETING:\n"
-                                  ":PROPERTIES:\n"
-                                  ":ID:         %(org-id-new-and-save)\n"
-                                  ":CREATED:    %<%FT%T%z>\n"
-                                  ":END:\n"
-                                  "** Present at meeting\n"
-                                  "- [ ] %^{Attendees}\n"
-                                  "** Subjects\n"
-                                  "- Comments and corrections to last meeting notes (delete me)\n"
-                                  "- Reports from the sub teams (delete me)\n"
-                                  "- Discussion (delete me)\n"
-                                  "** Conclusion\n%?\n"
-                                  "** Track\n"
-                                  "#+BEGIN: columnview :id %(org-id-load-from-copy) :match \"/TODO|DONE\" :format \"\\%ITEM(What) \\%TAGS(Who) \\%RISK(Risk Level) \\%DEADLINE(Due) \\%TODO(State)\"\n#+END:\n"
-                                  ))))))
-         ))
-  )
+               :template "* %? %^g\n%i\n"))))))))
 
 ;; org links
 (use-package ol

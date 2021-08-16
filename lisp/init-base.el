@@ -379,12 +379,8 @@ Else, call `comment-or-uncomment-region' on the current line."
                                   (delete-window)))))))
   :custom
   (comint-history-isearch 'dwim)
-  (comint-input-ignoredups t)
   ;; Make the prompt of "*Python*" buffer readonly
-  (comint-prompt-read-only t)
-  ;; Move the point to the end
-  (comint-scroll-to-bottom-on-input 'all)
-  (comint-scroll-to-bottom-on-output 'all))
+  (comint-prompt-read-only t))
 
 ;; Better abbrev expansion
 (use-package hippie-exp
