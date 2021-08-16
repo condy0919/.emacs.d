@@ -33,10 +33,5 @@
   (newsticker-url-list '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml")
                          ("LWN (Linux Weekly News)" "https://lwn.net/headlines/rss"))))
 
-;; The EPub reader
-(use-package nov
-  :ensure t
-  :mode ("\\.epub\\'" . nov-mode))
-
 (provide 'init-reader)
 ;;; init-reader.el ends here
