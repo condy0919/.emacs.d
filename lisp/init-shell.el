@@ -180,16 +180,5 @@ current directory."
   :ensure nil
   :hook (shell-mode . term-mode-common-init))
 
-;; Popup a shell inside Emacs
-(use-package shell-pop
-  :ensure t
-  :custom
-  (shell-pop-universal-key "M-=")
-  (shell-pop-full-span t)
-  (shell-pop-window-size 40)
-  (shell-pop-shell-type (if (eq system-type 'windows-nt)
-                            '("eshell" "*eshell*" #'eshell)
-                          '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))))
-
 (provide 'init-shell)
 ;;; init-shell.el ends here
