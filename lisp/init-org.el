@@ -30,7 +30,7 @@ content."
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
-  (org-modules '(ol-bibtex ol-gnus ol-info ol-eww org-habit org-protocol))
+  (org-modules '(ol-eww org-id ol-info ol-eshell))
   ;; prettify
   (org-fontify-todo-headline t)
   (org-fontify-done-headline t)
