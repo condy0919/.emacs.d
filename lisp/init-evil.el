@@ -74,13 +74,14 @@
   ;;
   ;; If you know how to fix that, let me know. Thanks.
   (evil-set-leader 'normal (kbd "SPC"))
+  (evil-set-leader 'normal (kbd "<leader>m") :localleader)
 
   (defun define-leader-key (state map localleader &rest bindings)
     "Define leader key in MAP when STATE, a wrapper for
 `evil-define-key*'. All BINDINGS are prefixed with \"<leader>\"
-if LOCALLEADER is nil, otherwise \"<leader>m\"."
+if LOCALLEADER is nil, otherwise \"<localleader>\"."
     (cl-assert (cl-evenp (length bindings)))
-    (let ((prefix (if localleader "<leader>m" "<leader>")))
+    (let ((prefix (if localleader "<localleader>" "<leader>")))
       (while bindings
         (let ((key (pop bindings))
               (def (pop bindings)))
