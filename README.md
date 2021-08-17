@@ -159,7 +159,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | key           | function                                                                    |
 |---------------|-----------------------------------------------------------------------------|
 | <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
-| <kbd>f.</kbd> | 同上                                                                        |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
 | <kbd>f/</kbd> | 同上                                                                        |
 | <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
@@ -332,9 +331,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
 如果想使用`ccls`的`lsp`扩展功能，需要安装[ccls][emacs-ccls]扩展。
-
-禁用了`flycheck`自带的3个`checker`(分别为`c/c++-clang`, `c/c++-cppcheck`,
-`c/c++-gcc`)，因为它们都无法正确包含自定义的头文件路径。
 
 此外，
 
