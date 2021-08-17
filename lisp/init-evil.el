@@ -11,6 +11,7 @@
   :ensure t
   :init
   (setq evil-disable-insert-state-bindings t)
+  (setq evil-want-Y-yank-to-eol t)
   :hook (after-init . evil-mode)
   ;; Don't quit Emacs on :q
   :bind ([remap evil-quit] . kill-this-buffer)
@@ -33,9 +34,12 @@
   (evil-want-keybinding nil)
   (evil-want-fine-undo t)
   (evil-want-C-g-bindings t)
-  (evil-want-Y-yank-to-eol t)
   (evil-want-abbrev-expand-on-insert-exit nil)
   (evil-symbol-word-search t))
+
+(use-package evil-surround
+  :ensure t
+  :hook (after-init . global-evil-surround-mode))
 
 (use-package evil-collection
   :ensure t
@@ -52,18 +56,38 @@
   (evil-collection-setup-debugger-keys nil))
 
 ;; evil leader map
-(use-package general
-  :ensure t
-  :after evil
+(use-package evil
+  :ensure nil
   :config
-  (general-create-definer leader-def
-    :states 'normal
-    :prefix "SPC"
-    :keymaps 'override)
+  ;; We use "SPC" as the leader key, "SPC m" as the localleader key. Due to the
+  ;; limitation of `evil-set-leader', we can't easily set localleader key with
+  ;;
+  ;; ``` elisp
+  ;; (evil-set-leader 'normal (kbd "SPC m") :localleader)
+  ;; ```
+  ;;
+  ;; An error is prompted:
+  ;;
+  ;; ``` elisp
+  ;; (error "Key sequence SPC m starts with non-prefix key SPC")
+  ;; ```
+  ;;
+  ;; If you know how to fix that, let me know. Thanks.
+  (evil-set-leader 'normal (kbd "SPC"))
 
-  (leader-def
+  (defun define-leader-key (state map localleader &rest bindings)
+    "Define leader key in MAP when STATE, a wrapper for
+`evil-define-key*'. All BINDINGS are prefixed with \"<leader>\"
+if LOCALLEADER is nil, otherwise \"<leader>m\"."
+    (cl-assert (cl-evenp (length bindings)))
+    (let ((prefix (if localleader "<leader>m" "<leader>")))
+      (while bindings
+        (let ((key (pop bindings))
+              (def (pop bindings)))
+          (evil-define-key* state map (kbd (concat prefix key)) def)))))
+
+  (define-leader-key 'normal 'global nil
     ;; file
-    "f" '(:ignore t :which-key "file")
     "ff" 'find-file
     "fF" 'find-file-other-window
     "f/" 'find-file-other-window
@@ -77,7 +101,6 @@
     "fl" 'find-file-literally
 
     ;; dired
-    "d" '(:ignore t :which-key "dired")
     "dj" 'dired-jump
     "dJ" 'dired-jump-other-window
     "dM" 'make-directory
@@ -86,7 +109,6 @@
     "dl" 'list-directory
 
     ;; buffer & bookmark
-    "b" '(:ignore t :which-key "buffmark")
     "bb" 'switch-to-buffer
     "bB" 'switch-to-buffer-other-window
     "bc" 'clone-indirect-buffer
@@ -107,7 +129,6 @@
     "bs" 'bookmark-save
 
     ;; code
-    "c" '(:ignore t :which-key "code")
     "cd" 'rmsbolt-compile
     "cc" 'compile
     "cC" 'recompile
@@ -116,14 +137,13 @@
     "cX" 'quickrun-shell
 
     ;; window
-    "w" '(:keymap evil-window-map :which-key "window")
+    "w" 'evil-window-map
     "wx" 'kill-buffer-and-window
     "wu" '+transient-tab-bar-history
     "w-" 'split-window-vertically
     "w/" 'split-window-horizontally
 
     ;; tab
-    "t" '(:ignore t :which-key "tab")
     "t9" 'tab-bar-switch-to-last-tab
     "tc" 'tab-bar-close-tab
     "tC" 'tab-bar-close-group-tabs
@@ -137,13 +157,11 @@
     "tu" '+transient-tab-bar-undo-close-tab
 
     ;; text
-    "x" '(:ignore t :which-key "text")
     "xj" 'set-justification
     "xw" 'delete-trailing-whitespace
     "x TAB" 'indent-rigidly
 
     ;; search
-    "s" '(:ignore t :which-key "search")
     "ss" 'swiper-isearch
     "sS" 'swiper-isearch-thing-at-point
     "sb" 'swiper-all
@@ -156,7 +174,6 @@
     "sg" 'counsel-rg
 
     ;; git
-    "g" '(:ignore t :which-key "git")
     "g." 'magit-file-dispatch
     "gb" 'magit-branch-checkout
     "gB" 'magit-blame-addition
@@ -170,10 +187,9 @@
     "gr" 'magit-rebase-interactive
 
     ;; project
-    "p" '(:package projectile :keymap projectile-command-map :which-key "project")
+    "p" 'projectile-command-map
 
     ;; app
-    "a" '(:ignore t :which-key "app")
     "aa" 'org-agenda
     "ac" 'calendar
     "ag" 'gnus
@@ -183,79 +199,65 @@
     "ap" 'proced
 
     ;; open
-    "o" '(:ignore t :which-key "open")
     "oc" 'org-capture
     "ol" 'org-store-link
     "ot" 'ansi-term
     "oe" 'eshell
     "os" 'shell)
 
-  (general-create-definer local-leader-def
-    :states 'normal
-    :prefix "SPC m")
+  (with-eval-after-load 'org
+    (define-leader-key 'normal org-mode-map :localleader
+      "." 'org-goto
+      "a" 'org-archive-subtree
+      "d" 'org-deadline
+      "e" 'org-set-effort
+      "f" 'org-footnote-new
+      "l" 'org-lint
+      "o" 'org-toggle-ordered-property
+      "p" 'org-set-property
+      "q" 'org-set-tags-command
+      "r" 'org-refile
+      "s" 'org-schedule
+      "t" 'org-todo
+      "T" 'org-todo-list
 
-  (local-leader-def
-    :major-modes '(org-mode)
-    :keymaps '(org-mode-map)
-    "." 'org-goto
-    "a" 'org-archive-subtree
-    "d" 'org-deadline
-    "e" 'org-set-effort
-    "f" 'org-footnote-new
-    "l" 'org-lint
-    "o" 'org-toggle-ordered-property
-    "p" 'org-set-property
-    "q" 'org-set-tags-command
-    "r" 'org-refile
-    "s" 'org-schedule
-    "t" 'org-todo
-    "T" 'org-todo-list
+      ;; babel
+      "bp" 'org-babel-previous-src-block
+      "bn" 'org-babel-next-src-block
+      "be" 'org-babel-expand-src-block
+      "bg" 'org-babel-goto-named-src-block
+      "bs" 'org-babel-execute-subtree
+      "bb" 'org-babel-execute-buffer
+      "bt" 'org-babel-tangle
+      "bf" 'org-babel-tangle-file
+      "bc" 'org-babel-check-src-block
+      "bi" 'org-babel-insert-header-arg
+      "bI" 'org-babel-view-src-block-info
+      "bk" 'org-babel-remove-result-one-or-many
 
-    "b" '(:ignore t :which-key "babel")
-    "bp" 'org-babel-previous-src-block
-    "bn" 'org-babel-next-src-block
-    "be" 'org-babel-expand-src-block
-    "bg" 'org-babel-goto-named-src-block
-    "bs" 'org-babel-execute-subtree
-    "bb" 'org-babel-execute-buffer
-    "bt" 'org-babel-tangle
-    "bf" 'org-babel-tangle-file
-    "bc" 'org-babel-check-src-block
-    "bi" 'org-babel-insert-header-arg
-    "bI" 'org-babel-view-src-block-info
-    "bk" 'org-babel-remove-result-one-or-many
+      ;; clock
+      "cc" 'org-clock-in
+      "cC" 'org-clock-out
+      "cd" 'org-clock-mark-default-task
+      "ce" 'org-clock-modify-effort-estimate
+      "cg" 'org-clock-goto
+      "cl" 'org-clock-in-last
+      "cr" 'org-clock-report
+      "cs" 'org-clock-display
+      "cx" 'org-clock-cancel
+      "c=" 'org-clock-timestamps-up
+      "c-" 'org-clock-timestamps-down
 
-    "c" '(:ignore t :which-key "clock")
-    "cc" 'org-clock-in
-    "cC" 'org-clock-out
-    "cd" 'org-clock-mark-default-task
-    "ce" 'org-clock-modify-effort-estimate
-    "cg" 'org-clock-goto
-    "cl" 'org-clock-in-last
-    "cr" 'org-clock-report
-    "cs" 'org-clock-display
-    "cx" 'org-clock-cancel
-    "c=" 'org-clock-timestamps-up
-    "c-" 'org-clock-timestamps-down
+      ;; insert
+      "id" 'org-insert-drawer
+      "in" 'org-add-note
+      "it" 'org-time-stamp-inactive
+      "iT" 'org-time-stamp))
 
-    "i" '(:ignore t :which-key "insert")
-    "id" 'org-insert-drawer
-    "in" 'org-add-note
-    "it" 'org-time-stamp-inactive
-    "iT" 'org-time-stamp)
-
-  (local-leader-def
-    :major-modes '(emacs-lisp-mode lisp-interaction-mode)
-    :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "i" 'info-lookup-symbol)
-  :custom
-  (general-implicit-kbd t)
-  (general-override-auto-enable t))
-
-(use-package evil-surround
-  :ensure t
-  :hook (after-init . global-evil-surround-mode))
+  (with-eval-after-load 'elisp-mode
+    (dolist (keymap (list emacs-lisp-mode-map lisp-interaction-mode-map))
+      (define-leader-key 'normal keymap :localleader
+        "i" 'info-lookup-symbol))))
 
 (provide 'init-evil)
-
 ;;; init-evil.el ends here
