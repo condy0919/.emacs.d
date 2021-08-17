@@ -91,11 +91,5 @@ confirmation."
        map)
      t)))
 
-;;;###autoload
-(defun +suppress-message (func &rest args)
-  "Suppress `message' when apply FUNC with ARGS."
-  (let ((inhibit-message t))
-    (apply func args)))
-
 (provide 'init-funcs)
 ;;; init-funcs.el ends here

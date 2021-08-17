@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(require 'init-funcs)
+(require 'init-macros)
 
 (use-package org
   :ensure nil
@@ -107,7 +107,7 @@ content."
   :config
   ;; update appt list every 5 minutes
   (run-at-time t 300 #'org-agenda-to-appt)
-  (advice-add #'org-agenda-to-appt :around #'+suppress-message)
+  (shut-up! #'org-agenda-to-appt)
   :custom
   (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
   (org-agenda-diary-file (expand-file-name "diary.org" org-directory))

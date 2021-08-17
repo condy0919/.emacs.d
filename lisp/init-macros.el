@@ -12,6 +12,13 @@
                (company-mode +1)
                (setq-local company-backends ',backends))))
 
+(defmacro shut-up! (func)
+  "Silence FUNC."
+  `(advice-add ,func :around
+               (defun ,(intern (format "shut-up-%s" func)) (f &rest args)
+                 (let ((inhibit-message t))
+                   (apply f args)))))
+
 (provide 'init-macros)
 
 ;;; init-macros.el ends here
