@@ -156,10 +156,6 @@
   (atomic-chrome-default-major-mode 'markdown-mode)
   (atomic-chrome-url-major-mode-alist '(("github\\.com" . gfm-mode))))
 
-;; Open very large files
-(use-package vlf-setup
-  :ensure vlf)
-
 ;; IRC client
 (use-package rcirc
   :ensure nil
