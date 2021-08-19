@@ -44,11 +44,6 @@
 (use-package evil-collection
   :ensure t
   :hook (evil-mode . evil-collection-init)
-  :config
-  ;; Keybindings tweaks
-  (evil-collection-define-key 'normal 'occur-mode-map
-    ;; consistent with ivy
-    (kbd "C-c C-e") 'occur-edit-mode)
   :custom
   (evil-collection-calendar-want-org-bindings t)
   (evil-collection-outline-bind-tab-p t)
@@ -104,10 +99,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       ;; dired
       "dj" 'dired-jump
       "dJ" 'dired-jump-other-window
-      "dM" 'make-directory
-      "dC" 'copy-directory
-      "dD" 'delete-directory
-      "dl" 'list-directory
 
       ;; buffer & bookmark
       "bb" 'switch-to-buffer

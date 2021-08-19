@@ -35,7 +35,7 @@
 
   (defun term-mode-no-query ()
     "No prompt about processes when killing term."
-    (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
       (set-process-query-on-exit-flag proc nil)))
   :custom
   (term-input-ignoredups t)
