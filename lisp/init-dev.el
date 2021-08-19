@@ -177,7 +177,6 @@
 ;; XML
 (use-package nxml-mode
   :ensure nil
-  :magic "<\\?xml"
   :mode (("\\.xml\\'" . nxml-mode)
          ("\\.rss\\'" . nxml-mode))
   :custom

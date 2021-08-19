@@ -231,7 +231,7 @@
   :ensure nil
   :hook (after-init . global-so-long-mode))
 
-;; Make escape more nature
+;; Completion engine
 (use-package minibuffer
   :ensure nil
   :bind (:map minibuffer-local-map
@@ -245,19 +245,23 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit))
   :custom
-  (completion-auto-help nil)
+  (completion-auto-help t)
+  (completion-show-help nil)
   (completion-cycle-threshold 3)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
-  ;; Ignore case when complete
+  ;; Ignore cases when complete
   (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   ;; `selectrum' and `icomplete' will honoring
   (completion-styles '(basic partial-completion substring initials flex))
-  (completion-category-defaults nil))
+  (completion-category-defaults nil)
+  ;; vertical view
+  (completions-format 'one-column)
+  (completions-detailed t))
 
 ;; Holidays
 (use-package calendar
