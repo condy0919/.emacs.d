@@ -250,7 +250,8 @@
   (completion-cycle-threshold 3)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
-  (minibuffer-eldef-shorten-default t)
+  ;; `minibuffer-eldef-shorten-default' can't play well with
+  ;; `embark-collect-completions' since it modifies minibuffer prompt.
   (minibuffer-electric-default-mode t)
   ;; Ignore cases when complete
   (completion-ignore-case t)
