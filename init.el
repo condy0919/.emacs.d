@@ -78,6 +78,7 @@
 (require 'init-dev)
 (require 'init-dired)
 (require 'init-hydra)
+(require 'init-minibuffer)
 
 ;; standalone apps
 (require 'init-org)

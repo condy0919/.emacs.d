@@ -17,7 +17,7 @@
   `(advice-add ,func :around
                (defun ,(intern (format "shut-up-%s" func)) (f &rest args)
                  (let ((inhibit-message t))
-                   (apply f args)))))
+                   (ignore-errors (apply f args))))))
 
 (provide 'init-macros)
 

@@ -6,6 +6,7 @@
 ;;; Code:
 
 (require 'init-funcs)
+(require 'init-macros)
 
 (use-package evil
   :ensure t
@@ -20,6 +21,9 @@
   (when (< emacs-major-version 28)
     (use-package undo-fu
       :ensure t))
+
+  ;; Silence line out of range error.
+  (shut-up! #'evil-indent)
   :custom
   ;; undo will never freeze my Emacs
   (evil-undo-system (if (>= emacs-major-version 28) 'undo-redo 'undo-fu))

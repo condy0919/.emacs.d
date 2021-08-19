@@ -139,6 +139,7 @@
 ;; Show line/column number and more
 (use-package simple
   :ensure nil
+  :bind ([remap just-one-space] . cycle-spacing)
   :custom
   ;; show line/column/filesize in modeline
   (line-number-mode t)
@@ -255,7 +256,8 @@
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   ;; `selectrum' and `icomplete' will honoring
-  (completion-styles '(basic partial-completion substring initials flex)))
+  (completion-styles '(basic partial-completion substring initials flex))
+  (completion-category-defaults nil))
 
 ;; Holidays
 (use-package calendar
