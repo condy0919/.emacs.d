@@ -109,9 +109,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-自然 `ivy`, `counsel` 是要上的，补全功能太好用了。没有 `counsel` 加持的 <kbd>M-x</kbd> 根本无法让人按下去。这里推荐尽量使用 `isearch`，因为 `swiper` 下方占用空间过大(继承于 `ivy` 的设置)，搜索时必然是比较在意上下文的。而自带的 `isearch` 在稍加设置之后，效果也还可以接受。当 evil-search-module 设置成 `isearch` 后，也可以使用相同的快捷键来触发 `occur`。而 `occur` 自带也是可以配合 `wgrep` 来获得快速的编辑能力。
-
-曾经有段时间切换至了 selectrum, embark 和 consult, 虽然多数情况下没有问题，但是没有 `counsel-projectile` 还是挺影响工作效率的。
+以前是 `ivy` 用户，现在则是仅使用 `embark` 和 `consult` 了。
 
 `Emacs`下的`org-mode`/`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
@@ -162,7 +160,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
 | <kbd>f/</kbd> | 同上                                                                        |
 | <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
-| <kbd>fj</kbd> | `counsel-file-jump`打开由`find`在当前目录下搜索到的文件                    |
 | <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                        |
 | <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                |
 | <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                            |
@@ -226,15 +223,14 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 搜索相关的`Leader`键绑定:
 
-| key           | function                                                              |
-|---------------|-----------------------------------------------------------------------|
-| <kbd>ss</kbd> | `swiper-isearch`使用`isearch`的方式来搜索符号                         |
-| <kbd>sS</kbd> | `swiper-isearch-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
-| <kbd>sg</kbd> | `counsel-ripgrep`在当前目录中使用`rg`搜索                             |
-| <kbd>si</kbd> | `imenu`                                                               |
-| <kbd>sj</kbd> | `evil-show-jumps`                                                     |
-| <kbd>sm</kbd> | `evil-show-marks`                                                     |
-| <kbd>sr</kbd> | `evil-show-registers`                                                 |
+| key           | function                                                               |
+|---------------|------------------------------------------------------------------------|
+| <kbd>ss</kbd> | `isearch-forward`使用`isearch`的方式来搜索符号                         |
+| <kbd>sS</kbd> | `isearch-forward-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
+| <kbd>si</kbd> | `imenu`                                                                |
+| <kbd>sj</kbd> | `evil-show-jumps`                                                      |
+| <kbd>sm</kbd> | `evil-show-marks`                                                      |
+| <kbd>sr</kbd> | `evil-show-registers`                                                  |
 
 与文本相关的`Leader`键绑定:
 
@@ -272,7 +268,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>M-g M-l</kbd> | 调用`avy-goto-line`                                                |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
-说。本配置中还使用了`counsel-projectile`来令`projectile`更加方便。
+说。
 
 | key                  | function                                                             |
 |----------------------|----------------------------------------------------------------------|

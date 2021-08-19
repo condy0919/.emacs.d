@@ -33,7 +33,20 @@
   :custom
   ;; Supersede `which-key'
   (prefix-help-command #'embark-prefix-help-command)
-  (embark-collect-initial-view-alist '((t . list))))
+  (embark-collect-initial-view-alist '((t . list)))
+  (embark-collect-live-initial-delay 0.15)
+  (embark-collect-live-update-delay 0.15))
+
+(use-package consult
+  :ensure t
+  :bind (([remap imenu]              . consult-imenu)
+         ([remap bookmark-jump]      . consult-bookmark)
+         ([remap recentf-open-files] . consult-recent-file)
+         ([remap evil-show-marks]    . consult-mark))
+  :custom
+  (consult-preview-key nil)
+  (consult-fontify-preserve nil)
+  (consult-project-root-function #'projectile-project-root))
 
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here

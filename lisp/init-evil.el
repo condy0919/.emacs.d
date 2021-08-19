@@ -92,7 +92,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "fF" 'find-file-other-window
       "f/" 'find-file-other-window
       "fg" 'rgrep
-      "fj" 'counsel-file-jump
       "fC" '+copy-current-file
       "fD" '+delete-current-file
       "fy" '+copy-current-filename
@@ -158,16 +157,12 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "x TAB" 'indent-rigidly
 
       ;; search
-      "ss" 'swiper-isearch
-      "sS" 'swiper-isearch-thing-at-point
-      "sb" 'swiper-all
-      "sB" 'swiper-all-thing-at-point
+      "ss" 'isearch-forward
+      "sS" 'isearch-forward-thing-at-point
       "sj" 'evil-show-jumps
       "sm" 'evil-show-marks
       "sr" 'evil-show-registers
       "si" 'imenu
-      "sl" 'ivy-resume
-      "sg" 'counsel-rg
 
       ;; git
       "g." 'magit-file-dispatch
