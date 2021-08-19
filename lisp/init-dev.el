@@ -134,7 +134,6 @@
   :custom
   (dumb-jump-quiet t)
   (dumb-jump-aggressive t)
-  (dumb-jump-prefer-searcher 'rg)
   (dumb-jump-selector 'completing-read))
 
 ;; A fancy ctags frontend
