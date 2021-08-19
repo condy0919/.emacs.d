@@ -31,8 +31,6 @@
                  (window-parameters . ((no-other-window . t)
                                        (mode-line-format . none)))))
   :custom
-  ;; Supersede `which-key'
-  (prefix-help-command #'embark-prefix-help-command)
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
   (embark-collect-live-update-delay 0.15))
