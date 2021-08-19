@@ -68,11 +68,11 @@
                                          ;; Docs
                                          "pdf" "md" "djvu" "ps" "eps" "doc" "docx" "xls" "xlsx" "ppt" "pptx")
                                         string-end)
-                                   ,(cond ((eq system-type 'gnu/linux) "xdg-open")
-                                          ((eq system-type 'darwin) "open")
-                                          ((eq system-type 'windows-nt) "start")
-                                          (t "")))))
-  )
+                                   ,(pcase system-type
+                                      ('gnu/linux "xdg-open")
+                                      ('darwin "open")
+                                      ('windows-nt "start")
+                                      (_ ""))))))
 
 ;; Make dired colorful
 (use-package diredfl
