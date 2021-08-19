@@ -46,5 +46,10 @@
   (consult-fontify-preserve nil)
   (consult-project-root-function #'projectile-project-root))
 
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t
+  :after embark consult)
+
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here
