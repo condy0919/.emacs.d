@@ -76,6 +76,13 @@
   ;; Mimic Vim
   (lazy-highlight-cleanup nil))
 
+;; Writable grep buffer
+(use-package wgrep
+  :ensure t
+  :custom
+  (wgrep-auto-save-buffer t)
+  (wgrep-change-readonly-file t))
+
 ;; Auto update packages
 (use-package auto-package-update
   :ensure t
