@@ -105,7 +105,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 趁手的工具
 
-`which-key`,`rg`是比较常用的工具。更有`projectile`管理项目，让项目编译、测试、运行变得更加方便。
+`rg`是比较常用的工具，更有`projectile`管理项目，让项目编译、测试、运行变得更加方便。
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 

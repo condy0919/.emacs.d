@@ -46,8 +46,7 @@
 ;; lsp-mode
 (use-package lsp-mode
   :ensure t
-  :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (prog-mode . lsp-deferred))
+  :hook (prog-mode . lsp-deferred)
   :bind (:map lsp-mode-map
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
