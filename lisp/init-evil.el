@@ -50,7 +50,7 @@
   :hook (evil-mode . evil-collection-init)
   :custom
   (evil-collection-calendar-want-org-bindings t)
-  (evil-collection-outline-bind-tab-p t)
+  (evil-collection-outline-bind-tab-p nil)
   (evil-collection-setup-debugger-keys nil))
 
 ;; evil leader map

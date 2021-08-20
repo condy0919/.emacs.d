@@ -15,6 +15,11 @@
          ("C-s"     . company-filter-candidates)
          ([tab]     . company-complete-common-or-cycle)
          ([backtab] . company-select-previous-or-abort))
+  :config
+  (define-advice company-capf--candidates (:around (func &rest args))
+    "Try default completion styles."
+    (let ((completion-styles '(basic partial-completion)))
+      (apply func args)))
   :custom
   (company-idle-delay 0)
   ;; Easy navigation to candidates with M-<n>
