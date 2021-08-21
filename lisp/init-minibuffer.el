@@ -13,6 +13,7 @@
          ("C-c C-c" . embark-collect-snapshot)
         (:map minibuffer-local-completion-map
          ("TAB"     . minibuffer-force-complete)
+         ("C-o"     . toggle-between-minibuffer-and-embark-collect-completions)
          ("SPC"     . nil)))
   :hook ((minibuffer-setup . embark-collect-completions-after-input)
          (embark-collect-post-revert . resize-embark-collect-completions))
@@ -22,13 +23,27 @@
     (fit-window-to-buffer (get-buffer-window)
                           (floor (* 0.4 (frame-height))) 1))
 
+  (defun toggle-between-minibuffer-and-embark-collect-completions ()
+    (interactive)
+    (let ((w (if (eq (active-minibuffer-window) (selected-window))
+                 (get-buffer-window "*Embark Collect Completions*")
+             (active-minibuffer-window))))
+      (when (window-live-p w)
+        (select-window w t)
+        (select-frame-set-input-focus (selected-frame) t))))
+
+  (with-eval-after-load 'evil-collection
+    (evil-collection-define-key 'normal 'embark-collect-mode-map
+      (kbd "C-o") 'toggle-between-minibuffer-and-embark-collect-completions))
+
   ;; Hide the mode line of the Embark live/completions buffers
   ;;
   ;; `shackle' can't customize the window-parameters.
   (add-to-list 'display-buffer-alist
                '("\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  (display-buffer-at-bottom)
-                 (window-parameters . ((mode-line-format . none)))))
+                 (window-parameters . ((no-other-window . t)
+                                       (mode-line-format . none)))))
   :custom
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
