@@ -24,6 +24,10 @@
                           (floor (* 0.4 (frame-height))) 1))
 
   (defun toggle-between-minibuffer-and-embark-collect-completions ()
+    "Embark Collect can't play well with \"complex\" completions.
+
+M-x `consult-git-grep' then press TAB, the minibuffer will be
+cleared and the result of `consult-git-grep' is inserted."
     (interactive)
     (let ((w (if (eq (active-minibuffer-window) (selected-window))
                  (get-buffer-window "*Embark Collect Completions*")
