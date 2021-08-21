@@ -8,7 +8,7 @@
 (use-package doom-themes
   :ensure t
   :init
-  (load-theme 'doom-one t)
+  (load-theme 'doom-dracula t)
   :config
   (doom-themes-org-config))
 

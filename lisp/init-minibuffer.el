@@ -28,8 +28,7 @@
   (add-to-list 'display-buffer-alist
                '("\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  (display-buffer-at-bottom)
-                 (window-parameters . ((no-other-window . t)
-                                       (mode-line-format . none)))))
+                 (window-parameters . ((mode-line-format . none)))))
   :custom
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
