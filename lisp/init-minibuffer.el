@@ -11,10 +11,10 @@
          ("M-o"     . embark-act)
          ("C-c C-o" . embark-export)
          ("C-c C-c" . embark-collect-snapshot)
-        (:map minibuffer-local-completion-map
+         :map minibuffer-local-completion-map
          ("TAB"     . minibuffer-force-complete)
          ("C-o"     . toggle-between-minibuffer-and-embark-collect-completions)
-         ("SPC"     . nil)))
+         ("SPC"     . nil))
   :hook ((minibuffer-setup . embark-collect-completions-after-input)
          (embark-collect-post-revert . resize-embark-collect-completions))
   :config
