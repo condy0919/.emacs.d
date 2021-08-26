@@ -13,7 +13,7 @@
     (cl-letf (((symbol-function 'y-or-n-p) (lambda (_) t)))
       (apply func args)))
   :custom-face
-  (newsticker-treeview-old-face ((nil (:inherit 'newsticker-treeview-face :foreground "#7c7c75"))))
+  (newsticker-treeview-old-face ((t :inherit 'newsticker-treeview-face :foreground "#7c7c75")))
   :custom
   ;; Keep obsolete items for a month
   (newsticker-keep-obsolete-items t)
