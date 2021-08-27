@@ -28,8 +28,7 @@
                                            (nnimap-address "imap.gmail.com")
                                            (nnimap-server-port "imaps")
                                            (nnimap-stream ssl)
-                                           (nnimap-expunge 'never)
-                                           (nnir-search-engine imap)))))
+                                           (nnimap-expunge 'never)))))
 
 ;; Startup functions
 (use-package gnus
