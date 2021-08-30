@@ -165,15 +165,19 @@ current directory."
          ;; keymap.
          ([remap next-line]     . eshell-next-input)
          ([remap previous-line] . eshell-previous-input)
-         ("C-w" . backward-kill-word)
-         ("C-d" . eshell-delchar-or-maybe-eof)))
+         ([remap kill-region]   . backward-kill-word)
+         ([remap delete-char]   . eshell-delchar-or-maybe-eof)))
 
 ;; Used as a `sh-mode' REPL.
 ;;
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook (shell-mode . term-mode-common-init))
+  :hook ((shell-mode . term-mode-common-init)
+         (shell-mode . shell-turn-off-echo))
+  :config
+  (defun shell-turn-off-echo ()
+    (setq-local comint-process-echoes t)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
