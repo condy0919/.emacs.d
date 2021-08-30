@@ -7,7 +7,9 @@
 
 (use-package vertico
   :ensure t
-  :hook (after-init . vertico-mode))
+  :hook (after-init . vertico-mode)
+  :custom
+  (vertico-sort-function nil))
 
 (use-package embark
   :ensure t
