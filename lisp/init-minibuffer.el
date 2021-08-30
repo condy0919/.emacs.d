@@ -5,49 +5,16 @@
 
 ;;; Code:
 
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
+
 (use-package embark
   :ensure t
   :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
          ("C-c C-o" . embark-export)
-         ("C-c C-c" . embark-collect-snapshot)
-         :map minibuffer-local-completion-map
-         ("TAB"     . minibuffer-force-complete)
-         ("C-o"     . toggle-between-minibuffer-and-embark-collect-completions)
-         ("SPC"     . nil))
-  :hook ((minibuffer-setup . embark-collect-completions-after-input)
-         (embark-collect-post-revert . resize-embark-collect-completions))
-  :config
-  (defun resize-embark-collect-completions ()
-    "Resize current window to fit buffer or 40% of the frame height."
-    (fit-window-to-buffer (get-buffer-window)
-                          (floor (* 0.4 (frame-height))) 1))
-
-  (defun toggle-between-minibuffer-and-embark-collect-completions ()
-    "Embark Collect can't play well with \"complex\" completions.
-
-M-x `consult-git-grep' then press TAB, the minibuffer will be
-cleared and the result of `consult-git-grep' is inserted."
-    (interactive)
-    (let ((w (if (eq (active-minibuffer-window) (selected-window))
-                 (get-buffer-window "*Embark Collect Completions*")
-             (active-minibuffer-window))))
-      (when (window-live-p w)
-        (select-window w t)
-        (select-frame-set-input-focus (selected-frame) t))))
-
-  (with-eval-after-load 'evil-collection
-    (evil-collection-define-key 'normal 'embark-collect-mode-map
-      (kbd "C-o") 'toggle-between-minibuffer-and-embark-collect-completions))
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  ;;
-  ;; `shackle' can't customize the window-parameters.
-  (add-to-list 'display-buffer-alist
-               '("\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 (display-buffer-at-bottom)
-                 (window-parameters . ((no-other-window . t)
-                                       (mode-line-format . none)))))
+         ("C-c C-c" . embark-collect-snapshot))
   :custom
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
@@ -62,6 +29,10 @@ cleared and the result of `consult-git-grep' is inserted."
   :custom
   (consult-preview-key nil)
   (consult-fontify-preserve nil)
+  (consult-async-min-input 2)
+  (consult-async-refresh-delay 0.15)
+  (consult-async-input-throttle 0.2)
+  (consult-async-input-debounce 0.1)
   (consult-project-root-function #'projectile-project-root))
 
 ;; Consult users will also want the embark-consult package.
