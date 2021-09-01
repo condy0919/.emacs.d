@@ -34,16 +34,13 @@
   ;; integrate with isearch and others
   ;; C-' to select isearch-candidate with avy
   :hook (after-init . avy-setup-default)
-  :bind (("M-g M-o" . avy-goto-word-or-subword-1)
-         ("M-g M-s" . avy-goto-char-timer)
-         ("M-g M-l" . avy-goto-line))
+  :bind ("M-g M-l" . avy-goto-line)
   :config
   ;; Force to use pre `avy-style'
   (define-advice avy-isearch (:around (func &rest args))
     (let ((avy-style 'pre))
       (apply func args)))
   :custom
-  (avy-timeout-seconds 0.2)
   (avy-all-windows nil)
   (avy-background t)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))

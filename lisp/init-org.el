@@ -102,7 +102,6 @@ content."
 ;; Keep track of tasks
 (use-package org-agenda
   :ensure nil
-  :after org
   :hook (org-agenda-finalize . org-agenda-to-appt)
   :config
   ;; update appt list every 5 minutes
@@ -122,7 +121,6 @@ content."
 ;; Write codes in org-mode
 (use-package org-src
   :ensure nil
-  :after org
   :hook (org-babel-after-execute . org-redisplay-inline-images)
   :bind (:map org-src-mode-map
          ;; consistent with separedit/magit
@@ -151,7 +149,6 @@ content."
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
-  :after org
   :hook (org-capture-mode . (lambda ()
                               (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
@@ -169,18 +166,13 @@ content."
 ;; org links
 (use-package ol
   :ensure nil
-  :after org
   :custom
-  (org-link-abbrev-alist '(("GitHub"        . "https://github.com/")
-                           ("GitLab"        . "https://gitlab.com/")
-                           ("Google"        . "https://google.com/search?q=")
-                           ("RFCs"          . "https://tools.ietf.org/html/")
-                           ("LWN"           . "https://lwn.net/Articles/")
-                           ("StackOverflow" . "https://stackoverflow.com/q/%s")
-                           ("WG21"          . "https://wg21.link/")
-                           ("Wikipedia"     . "https://en.wikipedia.org/wiki/")
-                           ("YouTube"       . "https://youtube.com/watch?v=")
-                           ("Zhihu"         . "https://zhihu.com/question/"))))
+  (org-link-abbrev-alist '(("GitHub" . "https://github.com/")
+                           ("GitLab" . "https://gitlab.com/")
+                           ("Google" . "https://google.com/search?q=")
+                           ("RFCs"   . "https://tools.ietf.org/html/")
+                           ("LWN"    . "https://lwn.net/Articles/")
+                           ("WG21"   . "https://wg21.link/"))))
 
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -14,8 +14,14 @@
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-Y-yank-to-eol t)
   :hook (after-init . evil-mode)
-  ;; Don't quit Emacs on :q
-  :bind ([remap evil-quit] . kill-this-buffer)
+  ;; Don't quit Emacs on `:q'.
+  ;;
+  ;; Rebind `f'/`s' to mimic `evil-snipe'.
+  :bind (([remap evil-quit] . kill-this-buffer)
+         :map evil-motion-state-map
+         ("f" . evil-avy-goto-char-in-line)
+         :map evil-normal-state-map
+         ("s" . evil-avy-goto-char-timer))
   :config
   ;; Install `undo-fu' when necessary
   (when (< emacs-major-version 28)
@@ -91,7 +97,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "ff" 'find-file
       "fF" 'find-file-other-window
       "f/" 'find-file-other-window
-      "fg" 'rgrep
       "fC" '+copy-current-file
       "fD" '+delete-current-file
       "fy" '+copy-current-filename
@@ -157,25 +162,10 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "x TAB" 'indent-rigidly
 
       ;; search
-      "ss" 'isearch-forward
-      "sS" 'isearch-forward-thing-at-point
       "sj" 'evil-show-jumps
       "sm" 'evil-show-marks
       "sr" 'evil-show-registers
       "si" 'imenu
-
-      ;; git
-      "g." 'magit-file-dispatch
-      "gb" 'magit-branch-checkout
-      "gB" 'magit-blame-addition
-      "gc" 'magit-branch-and-checkout
-      "gC" 'magit-commit-create
-      "gd" 'magit-diff
-      "gf" 'magit-find-file
-      "gg" 'magit-status
-      "gG" 'magit-status-here
-      "gi" 'magit-init
-      "gr" 'magit-rebase-interactive
 
       ;; project
       "p" 'projectile-command-map
@@ -187,7 +177,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "ai" 'rcirc
       "aj" 'jblog
       "an" 'newsticker-show-news
-      "ap" 'proced
 
       ;; open
       "oc" 'org-capture
