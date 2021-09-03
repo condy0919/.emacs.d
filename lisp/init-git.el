@@ -40,7 +40,18 @@
 ;; Visual diff interface
 (use-package ediff
   :ensure nil
-  :hook (ediff-quit . tab-bar-history-back)
+  ;; Restore window config after quitting ediff
+  :hook ((ediff-before-setup . ediff-save-window-conf)
+         (ediff-quit         . ediff-restore-window-conf))
+  :config
+  (defvar local-ediff-saved-window-conf nil)
+
+  (defun ediff-save-window-conf ()
+    (setq local-ediff-saved-window-conf (current-window-configuration)))
+
+  (defun ediff-restore-window-conf ()
+    (when (window-configuration-p local-ediff-saved-window-conf)
+      (set-window-configuration local-ediff-saved-window-conf)))
   :custom
   (ediff-highlight-all-diffs t)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
