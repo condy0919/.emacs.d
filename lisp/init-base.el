@@ -384,8 +384,6 @@ Else, call `comment-or-uncomment-region' on the current line."
   ;; NOTE: `term' and `ielm' are not derived from `comint-mode'
   :hook ((comint-exec term-exec ielm-mode) . buffer-auto-close)
   :bind (:map comint-mode-map
-         ([remap next-line]     . comint-next-input)
-         ([remap previous-line] . comint-previous-input)
          ([remap kill-region]   . backward-kill-word))
   :config
   (defun buffer-auto-close ()

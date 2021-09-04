@@ -152,19 +152,6 @@ current directory."
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
-         ;; C-n and C-p are widely used in most modes. However, C-n takes
-         ;; precedence over [remap next-line] which may cause inconvenience if
-         ;; 3rd party packages remap next-line only.
-         ;;
-         ;; e.g. `next-line' is remapped to `corfu-next' in `corfu-mode'. When
-         ;; completion pops up in eshell and C-n is typed, Emacs first trys to
-         ;; find C-n in `corfu-map' but nothing is found. Finally
-         ;; `eshell-next-input' in `eshell-mode-map' will be found which
-         ;; confuses people that overriding keymap (corfu-map is in
-         ;; `minor-mode-overriding-map-alist') has a low priority than major
-         ;; keymap.
-         ([remap next-line]     . eshell-next-input)
-         ([remap previous-line] . eshell-previous-input)
          ([remap kill-region]   . backward-kill-word)
          ([remap delete-char]   . eshell-delchar-or-maybe-eof)))
 
