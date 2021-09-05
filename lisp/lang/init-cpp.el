@@ -17,6 +17,7 @@
   :config
   (defconst ccls-args nil)
   (defconst clangd-args '("-j=2"
+                          "--malloc-trim"
                           "--background-index"
                           "--clang-tidy"
                           "--cross-file-rename"
