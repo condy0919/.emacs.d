@@ -19,6 +19,11 @@
                  (let ((inhibit-message t))
                    (ignore-errors (apply f args))))))
 
+(defmacro lazy! (&rest body)
+  "Delay the evaluation of BODY."
+  `(lambda ()
+     ,@body))
+
 (provide 'init-macros)
 
 ;;; init-macros.el ends here

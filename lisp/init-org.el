@@ -151,17 +151,43 @@ content."
   :ensure nil
   :hook (org-capture-mode . (lambda ()
                               (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
+  :config
+  (with-no-warnings
+    (defun project-todo-org-file (headline)
+      (let* ((file (expand-file-name "TODO.org" (projectile-acquire-root)))
+             (buf (find-file-noselect file)))
+        (set-buffer buf)
+        ;; Set to UTF-8 because we may be visiting raw file.
+        (setq buffer-file-coding-system 'utf-8-unix)
+        (unless (org-find-exact-headline-in-buffer headline)
+          (goto-char (point-max))
+          (insert "* " headline)
+          (org-set-tags (downcase headline))))))
   :custom
   (org-capture-use-agenda-date t)
   (org-capture-templates-contexts nil)
-  (org-capture-templates '(("t" "Tasks")
+  (org-capture-templates `(;; Tasks
+                           ("t" "Tasks")
+                           ("tt" "Today" entry (file+olp+datetree "tasks.org")
+                            "* %? %^{EFFORT}p"
+                            :prepend t)
                            ("ti" "Inbox" entry (file+headline "tasks.org" "Inbox")
                             "* %?\n%i\n")
                            ("tm" "Mail" entry (file+headline "tasks.org" "Inbox")
                             "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
+                           ;; Capture
                            ("c" "Capture")
                            ("cn" "Note" entry (file+headline "capture.org" "Notes")
-                            "* %? %^g\n%i\n"))))
+                            "* %? %^g\n%i\n")
+                           ;; Project
+                           ("p" "Project")
+                           ("pb" "Bug"           entry (function ,(lazy! (project-todo-org-file "Bugs")))          "* %?")
+                           ("pf" "Feature"       entry (function ,(lazy! (project-todo-org-file "Features")))      "* %?")
+                           ("ps" "Security"      entry (function ,(lazy! (project-todo-org-file "Security")))      "* %?")
+                           ("pe" "Enhancement"   entry (function ,(lazy! (project-todo-org-file "Enhancements")))  "* %?")
+                           ("po" "Optimization"  entry (function ,(lazy! (project-todo-org-file "Optimizations"))) "* %?")
+                           ("pd" "Documentation" entry (function ,(lazy! (project-todo-org-file "Documentation"))) "* %?")
+                           ("pm" "Miscellaneous" entry (function ,(lazy! (project-todo-org-file "Miscellaneous"))) "* %?"))))
 
 ;; org links
 (use-package ol
