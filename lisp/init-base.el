@@ -257,7 +257,7 @@
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   ;; `selectrum', `vertico' and `icomplete' will honoring
-  (completion-styles '(basic partial-completion substring initials flex))
+  (completion-styles '(basic partial-completion substring flex))
   (completion-category-overrides '((buffer (styles . (flex)))))
   ;; vertical view
   (completions-format 'one-column)
