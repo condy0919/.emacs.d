@@ -64,9 +64,11 @@
   (search-whitespace-regexp "[ \t\r\n]+")
   (isearch-repeat-on-direction-change t)
   (isearch-allow-scroll t)
+  (isearch-allow-motion t)
   (isearch-yank-on-move t)
   ;; lazy isearch
   (isearch-lazy-count t)
+  (isearch-lazy-highlight t)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " [%s/%s]")
   (lazy-highlight-buffer t)
