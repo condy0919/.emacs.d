@@ -191,7 +191,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
         "a" 'org-archive-subtree
         "d" 'org-deadline
         "e" 'org-set-effort
-        "f" 'org-footnote-new
+        "f" 'org-footnote-action
         "l" 'org-lint
         "o" 'org-toggle-ordered-property
         "p" 'org-set-property
