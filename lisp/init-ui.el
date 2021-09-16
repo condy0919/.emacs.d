@@ -70,9 +70,9 @@
   :ensure t
   :init
   ;; Format: "(icon title help action face prefix suffix)"
-  (setq dashboard-navigator-buttons `(((,(if (fboundp 'all-the-icons-octicon) (all-the-icons-octicon "mark-github"     :height 1.0 :v-adjust  0.0) "★")
+  (setq dashboard-navigator-buttons `(((,(if (fboundp 'all-the-icons-octicon) (all-the-icons-octicon "mark-github"      :height 1.0 :v-adjust  0.0) "★")
                                         "GitHub" "Browse" (lambda (&rest _) (browse-url homepage-url)))
-                                       (,(if (fboundp 'all-the-icons-octicon) (all-the-icons-octicon "heart"           :height 1.1 :v-adjust  0.0) "♥")
+                                       (,(if (fboundp 'all-the-icons-octicon) (all-the-icons-octicon "heart"            :height 1.1 :v-adjust  0.0) "♥")
                                         "Stars" "Show stars" (lambda (&rest _) (browse-url stars-url)))
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "report_problem" :height 1.1 :v-adjust -0.2) "⚑")
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
