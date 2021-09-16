@@ -14,7 +14,7 @@
 ;; python -m venv ENV_DIR
 (use-package pyvenv
   :ensure t
-  :after python)
+  :commands pyvenv-deactivate pyvenv-deactivate)
 
 (provide 'init-python)
 ;;; init-python.el ends here

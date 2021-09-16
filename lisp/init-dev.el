@@ -19,10 +19,10 @@
   :custom
   (compilation-always-kill t)
   (compilation-scroll-output t)
-  ;; save all buffers on `compile'
+  ;; Save all buffers on `compile'
   (compilation-ask-about-save nil))
 
-;; Debugger
+;; The unified debugger
 ;; WIP: upstreaming
 (use-package gud
   :ensure nil
@@ -31,6 +31,7 @@
 ;; GDB specific config
 (use-package gdb-mi
   :ensure nil
+  :commands gdb
   :custom
   (gdb-show-main t)
   (gdb-display-io-nopopup t)
@@ -106,23 +107,14 @@
 ;; xref
 (use-package xref
   :ensure nil
+  :init
+  ;; On Emacs 28, `xref-search-program' can be set to `ripgrep'.
+  ;; `project-find-regexp' benefits from that.
+  (when (>= emacs-major-version 28)
+    (setq xref-search-program 'ripgrep)
+    (setq xref-show-xrefs-function #'xref-show-definitions-completing-read)
+    (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
   :hook ((xref-after-return xref-after-jump) . recenter))
-
-(use-package xref
-  :ensure nil
-  :when (>= emacs-major-version 28)
-  :custom
-  ;; `project-find-regexp' benefits from that
-  (xref-search-program 'ripgrep)
-  (xref-show-xrefs-function #'xref-show-definitions-completing-read)
-  (xref-show-definitions-function #'xref-show-definitions-completing-read))
-
-(use-package xref
-  :ensure nil
-  :unless (>= emacs-major-version 28)
-  :custom
-  (xref-show-xrefs-function #'xref-show-definitions-buffer-at-bottom)
-  (xref-show-definitions-function #'xref-show-definitions-buffer-at-bottom))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump

@@ -248,7 +248,6 @@
 (use-package rmsbolt
   :ensure t
   :commands rmsbolt-compile
-  :defer 1
   :custom
   (rmsbolt-asm-format nil)
   (rmsbolt-default-directory "/tmp"))
@@ -290,9 +289,11 @@
   (hide-ifdef-shadow t))
 
 ;; Expand C macros
+;;
+;; Useful when writing quick tests.
 (use-package cmacexp
   :ensure nil
-  :defer t
+  :commands c-macro-expand
   :custom
   (c-macro-prompt-flag t)
   (c-macro-shrink-window-flag t))
