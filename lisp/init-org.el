@@ -17,39 +17,45 @@
       (kbd "S-<tab>") 'org-shifttab))
 
   (define-advice org-fast-tag-selection (:around (func &rest args))
-    "Hide the modeline in *Org tags* buffer so you can actually see its
-content."
-    (cl-letf (((symbol-function 'org-fit-window-to-buffer)
-               (lambda (&optional window _max-height _min-height _shrink-only)
+    "Widen the *Org tags* buffer."
+    (cl-letf (((symbol-function 'delete-window)        #'ignore)
+              ((symbol-function 'delete-other-windows) #'ignore)
+              ((symbol-function 'org-fit-window-to-buffer)
+               (lambda (&optional window max-height _min-height _shrink-only)
+                 ;; Hide the modeline.
                  (when-let (buf (window-buffer window))
                    (with-current-buffer buf
-                     (setq mode-line-format nil))))))
+                     (setq mode-line-format nil)))
+                 ;; At least `window-min-height'+1 so that we can actually see
+                 ;; the buffer content. Hide the modeline for better display.
+                 (fit-window-to-buffer window max-height (1+ (max window-min-height
+                                                                  (window-buffer-height window)))))))
       (apply func args)))
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
-  (org-modules '(ol-eww org-id ol-info ol-eshell))
   ;; prettify
+  (org-startup-indented t)
   (org-fontify-todo-headline t)
   (org-fontify-done-headline t)
-  (org-fontify-quote-and-verse-blocks t)
   (org-fontify-whole-heading-line t)
-  (org-startup-indented t)
-  ;; image
-  (org-startup-with-inline-images t)
-  (org-display-remote-inline-images 'cache)
+  (org-fontify-quote-and-verse-blocks t)
   (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
+  ;; image
+  (org-image-actual-width nil)
+  (org-display-remote-inline-images 'cache)
+  ;; more user-friendly
+  (org-imenu-depth 4)
+  (org-clone-delete-id t)
+  (org-use-sub-superscripts '{})
+  (org-yank-adjusted-subtrees t)
+  (org-ctrl-k-protect-subtree 'error)
   (org-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
-  (org-image-actual-width nil)
-  (org-imenu-depth 4)
   ;; call C-c C-o explicitly
   (org-return-follows-link nil)
-  (org-use-sub-superscripts '{})
-  (org-clone-delete-id t)
-  (org-yank-adjusted-subtrees t)
   ;; todo
   (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "WIP(i!)" "WAIT(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
                        (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")))
@@ -71,7 +77,6 @@ content."
                         (?C :foreground "yellow")))
   (org-global-properties '(("EFFORT_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 7:00 8:00")
                            ("APPT_WARNTIME_ALL" . "0 5 10 15 20 25 30 45 60")
-                           ("RISK_ALL" . "Low Medium High")
                            ("STYLE_ALL" . "habit")))
   (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT{:}")
   ;; Remove CLOSED: [timestamp] after switching to non-DONE states
@@ -80,24 +85,30 @@ content."
   (org-log-repeat 'time)
   (org-log-into-drawer t)
   ;; refile
-  (org-refile-use-cache t)
+  (org-refile-use-cache nil)
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
-  ;; goto
+  ;; goto. We use minibuffer to filter instead of isearch.
   (org-goto-auto-isearch nil)
   (org-goto-interface 'outline-path-completion)
-  ;; tags
+  ;; tags, e.g. #+TAGS: keyword in your file
   (org-use-tag-inheritance nil)
   (org-agenda-use-tag-inheritance nil)
   (org-use-fast-tag-selection t)
   (org-fast-tag-selection-single-key t)
-  (org-track-ordered-property-with-tag t)
   ;; archive
   (org-archive-location "%s_archive::datetree/")
   ;; id
-  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+  ;; abbreviation for url
+  (org-link-abbrev-alist '(("GitHub" . "https://github.com/")
+                           ("GitLab" . "https://gitlab.com/")
+                           ("Google" . "https://google.com/search?q=")
+                           ("RFCs"   . "https://tools.ietf.org/html/")
+                           ("LWN"    . "https://lwn.net/Articles/")
+                           ("WG21"   . "https://wg21.link/"))))
 
 ;; Keep track of tasks
 (use-package org-agenda
@@ -149,10 +160,12 @@ content."
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
-  :hook (org-capture-mode . (lambda ()
-                              (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
+  :hook (org-capture-mode . org-capture-setup)
   :config
   (with-no-warnings
+    (defun org-capture-setup ()
+      (setq-local org-complete-tags-always-offer-all-agenda-tags t))
+
     (defun project-todo-org-file (headline)
       (let* ((file (expand-file-name "TODO.org" (projectile-acquire-root)))
              (buf (find-file-noselect file)))
@@ -188,17 +201,6 @@ content."
                            ("po" "Optimization"  entry (function ,(lazy! (project-todo-org-file "Optimizations"))) "* %?")
                            ("pd" "Documentation" entry (function ,(lazy! (project-todo-org-file "Documentation"))) "* %?")
                            ("pm" "Miscellaneous" entry (function ,(lazy! (project-todo-org-file "Miscellaneous"))) "* %?"))))
-
-;; org links
-(use-package ol
-  :ensure nil
-  :custom
-  (org-link-abbrev-alist '(("GitHub" . "https://github.com/")
-                           ("GitLab" . "https://gitlab.com/")
-                           ("Google" . "https://google.com/search?q=")
-                           ("RFCs"   . "https://tools.ietf.org/html/")
-                           ("LWN"    . "https://lwn.net/Articles/")
-                           ("WG21"   . "https://wg21.link/"))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
