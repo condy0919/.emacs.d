@@ -152,23 +152,16 @@
   (user-full-name "Zhiwei Chen")
   (user-mail-address "condy0919@gmail.com")
   (message-kill-buffer-on-exit t)
+  (message-signature user-full-name)
   (message-mail-alias-type 'ecomplete)
+  ;; Sadly, Emacs 27 obsoletes `message-smtpmail-send-it'.
   (message-send-mail-function #'message-use-send-mail-function)
-  (message-signature user-full-name))
-
-(use-package sendmail
-  :ensure nil
-  :custom
-  (send-mail-function #'smtpmail-send-it))
-
-;; Sending mails
-(use-package smtpmail
-  :ensure nil
-  :custom
+  ;; Use sendmail package to send mails.
+  (send-mail-function #'smtpmail-send-it)
+  ;; And sendmail relies on `smtpmail'.
   (smtpmail-smtp-server "smtp.gmail.com")
   (smtpmail-smtp-user user-mail-address)
-  (smtpmail-smtp-service 587)
-  (smptmail-stream-type 'ssl))
+  (smtpmail-smtp-service 587))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
