@@ -37,7 +37,7 @@
         (dired-do-kill-lines))
       (setq-local dired-dotfiles-show (not dired-dotfiles-show)))
 
-  (advice-add 'dired-do-print :override #'dired-dotfiles-toggle))
+    (advice-add 'dired-do-print :override #'dired-dotfiles-toggle))
   :custom
   (dired-vc-rename-file t)
   (dired-do-revert-buffer t)
@@ -82,11 +82,7 @@
 ;; Make dired narrow-able
 (use-package dired-narrow
   :ensure t
-  :after dired
-  :custom
-  (dired-narrow-exit-when-one-left nil)
-  (dired-narrow-enable-blinking t)
-  (dired-narrow-blink-time 0.3))
+  :after dired)
 
 ;; Show subtree in dired
 (use-package dired-subtree
