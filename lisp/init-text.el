@@ -11,39 +11,6 @@
   :ensure t
   :hook ((markdown-mode org-mode) . valign-mode))
 
-;; Jekyll blog posts manager
-(use-package jblog
-  :ensure t
-  :quelpa (jblog :fetcher github :repo "condy0919/jblog")
-  :commands jblog
-  :config
-  (with-eval-after-load 'evil-collection
-    (evil-set-initial-state 'jblog-mode 'normal)
-    (evil-collection-define-key 'normal 'jblog-mode-map
-      "C" 'jblog-create
-      "D" 'jblog-delete
-      "O" 'jblog-open-posts-directory
-      "s" 'jblog-search
-      "gr" 'jblog-refresh))
-  :custom
-  (jblog-posts-directory (expand-file-name "~/blog/_posts"))
-  (jblog-post-headers [("Date"       12 t)
-                       ("Title"      36 t)
-                       ("Categories" 25 t)
-                       ("Tags"       25 t)])
-  (jblog-post-headers-format "---
-layout: post
-title: %s
-categories: note
-tags: note
-usemermaid: false
-usemathjax: false
----
-
-* content
-{:toc}
-"))
-
 ;; The markdown mode is awesome! unbeatable
 (use-package markdown-mode
   :ensure t
