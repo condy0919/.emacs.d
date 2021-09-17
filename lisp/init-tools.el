@@ -61,8 +61,8 @@
 ;; Writable grep buffer
 (use-package wgrep
   :ensure t
+  :hook (grep-setup . wgrep-setup)
   :custom
-  (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t))
 
 ;; Auto update packages
