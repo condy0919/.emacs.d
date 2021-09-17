@@ -84,6 +84,7 @@
 ;; Auto update packages
 (use-package auto-package-update
   :ensure t
+  :commands auto-package-update-now
   :custom
   (auto-package-update-delete-old-versions t))
 
@@ -109,6 +110,7 @@
 ;; Pastebin service
 (use-package webpaste
   :ensure t
+  :commands webpaste-paste-buffer-or-region
   :custom
   (webpaste-open-in-browser t)
   (webpaste-paste-confirmation t)
@@ -142,9 +144,10 @@
                                   "www.felixcloutier.com/x86/" ""]))))
 
 ;; Translator for Emacs
-;; M-x fanyi-dwim, that's all.
+;; M-x fanyi-dwim{,2}, that's all.
 (use-package fanyi
-  :ensure t)
+  :ensure t
+  :commands fanyi-dwim fanyi-dwim2)
 
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
@@ -188,5 +191,4 @@
   (rcirc-kill-channel-buffers t))
 
 (provide 'init-tools)
-
 ;;; init-tools.el ends here

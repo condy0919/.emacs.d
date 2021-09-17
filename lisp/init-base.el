@@ -558,7 +558,7 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
-  :defer t)
+  :commands try try-and-refresh)
 
 ;; Keep ~/.emacs.d clean
 (use-package no-littering
