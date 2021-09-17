@@ -496,42 +496,35 @@ Else, call `comment-or-uncomment-region' on the current line."
                     (mode . image-dired-thumbnail-mode)))))))
 
 ;; Notifications
-(use-package notifications
-  :ensure nil
-  :when (eq system-type 'gnu/linux)
-  :commands notify-send
-  :config
-  (defalias 'notify-send 'notifications-notify))
-
-(use-package notifications
-  :ensure nil
-  :when (eq system-type 'darwin)
-  :commands notify-send
-  :config
-  (defun notify-send (&rest params)
-    "Send notifications via `terminal-notifier'."
-    (let ((title (plist-get params :title))
-          (body (plist-get params :body)))
-      (start-process "terminal-notifier"
-                     nil
-                     "terminal-notifier"
-                     "-group" "Emacs"
-                     "-title" title
-                     "-message" body
-                     "-activate" "org.gnu.Emacs"))))
-
-(use-package notifications
-  :ensure nil
-  :unless (memq system-type '(gnu/linux darwin))
-  :commands notify-send
-  :config
-  (defalias 'notify-send 'ignore))
+;;
+;; Actually, `notify-send' is not defined in notifications package, but the
+;; autoload cookie will make Emacs load `notifications' first, then our
+;; `defalias' will be evaluated.
+(pcase system-type
+  ('gnu/linux
+   (use-package notifications
+     :ensure nil
+     :commands notify-send
+     :config
+     (defalias 'notify-send 'notifications-notify)))
+  ('darwin
+   (defun notify-send (&rest params)
+     "Send notifications via `terminal-notifier'."
+     (let ((title (plist-get params :title))
+           (body (plist-get params :body)))
+       (start-process "terminal-notifier"
+                      nil
+                      "terminal-notifier"
+                      "-group" "Emacs"
+                      "-title" title
+                      "-message" body
+                      "-activate" "org.gnu.Emacs"))))
+  (t
+   (defalias 'notify-send 'ignore)))
 
 ;; Recently opened files
 (use-package recentf
   :ensure nil
-  :defines no-littering-etc-directory no-littering-var-directory quelpa-packages-dir
-  :after no-littering
   :hook (after-init . recentf-mode)
   :custom
   (recentf-max-saved-items 300)
@@ -540,9 +533,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   ;; to check if it can be pushed to recentf list.
   (recentf-filename-handlers '(abbreviate-file-name))
   (recentf-exclude `(,@(cl-loop for f in `(,package-user-dir
-                                           ,quelpa-packages-dir
-                                           ,no-littering-var-directory
-                                           ,no-littering-etc-directory)
+                                           ,quelpa-packages-dir)
                                 collect (abbreviate-file-name f))
                      ;; Folders on MacOS start
                      "^/private/tmp/"
