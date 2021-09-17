@@ -3,10 +3,8 @@
 ;;; Code:
 
 ;; A big contributor to startup times is garbage collection. We up the gc
-;; threshold to temporarily prevent it from running, and then reset it later
-;; using a hook.
-;;
-;; It's reset by the `gcmh' module.
+;; threshold to temporarily prevent it from running, and then reset it by the
+;; `gcmh' package.
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
@@ -21,7 +19,7 @@
                 (setq file-name-handler-alist default-file-name-handler-alist)))))
 
 ;; Increase how much is read from processes in a single chunk (default is 4kb).
-;; `lsp-mode' gains a much
+;; `lsp-mode' benefits from that.
 (setq read-process-output-max (* 1024 1024))
 
 (require 'package)
@@ -57,9 +55,7 @@
 (use-package quelpa-use-package
   :ensure t
   :config
-  (quelpa-use-package-activate-advice)
-  :custom
-  (quelpa-use-package-inhibit-loading-quelpa t))
+  (quelpa-use-package-activate-advice))
 
 (setq debug-on-error t)
 (setq-default lexical-binding t)
