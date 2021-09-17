@@ -17,6 +17,8 @@
          ("M-o"     . embark-act)
          ("C-c C-o" . embark-export)
          ("C-c C-c" . embark-collect-snapshot))
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command)
   :custom
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
