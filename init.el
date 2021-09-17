@@ -28,6 +28,12 @@
         ("gnu"    . "https://elpa.gnu.org/packages/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
+;; Emacs 27 introduces a quickstart mechanism which concatenate autoloads of all
+;; packages to reduce the IO time.
+;;
+;; Don't forget to M-x package-quickstart-refresh if a new package is installed.
+(setq package-quickstart t)
+
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -46,16 +52,12 @@
 ;; Bootstrap `quelpa'.
 (use-package quelpa
   :ensure t
+  :commands quelpa
   :custom
   (quelpa-git-clone-depth 1)
   (quelpa-self-upgrade-p nil)
   (quelpa-update-melpa-p nil)
   (quelpa-checkout-melpa-p nil))
-
-(use-package quelpa-use-package
-  :ensure t
-  :config
-  (quelpa-use-package-activate-advice))
 
 (setq debug-on-error t)
 (setq-default lexical-binding t)

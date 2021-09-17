@@ -259,17 +259,29 @@
          ("\\.y\\'" . bison-mode)))
 
 ;; LLVM IR
+;;
+;; Install with
+;;
+;; ```elisp
+;; (quelpa
+;;  '(llvm-mode :fetcher url
+;;              :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/llvm-mode.el"))
+;; ```
 (use-package llvm-mode
-  :ensure t
-  :quelpa (llvm-mode :fetcher url
-                     :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/llvm-mode.el")
+  :ensure nil
   :mode ("\\.ll\\'" . llvm-mode))
 
 ;; TableGen description
+;;
+;; Install with
+;;
+;; ```elisp
+;; (quelpa
+;;  '(tablegen-mode :fetcher url
+;;                  :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/tablegen-mode.el"))
+;; ```
 (use-package tablegen-mode
-  :ensure t
-  :quelpa (tablegen-mode :fetcher url
-                         :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/tablegen-mode.el")
+  :ensure nil
   :mode ("\\.td\\'" . tablegen-mode))
 
 ;; Highlight "#if 0" as comments

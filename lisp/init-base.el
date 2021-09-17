@@ -321,18 +321,6 @@
   (appt-message-warning-time 15)
   (appt-disp-window-function #'appt-display-with-notification))
 
-;; Build regexp with visual feedback
-(use-package re-builder
-  :ensure nil
-  :custom
-  (reb-re-syntax 'string))
-
-;; EasyPG
-(use-package epg-config
-  :ensure nil
-  :custom
-  (epg-pinentry-mode 'loopback))
-
 ;; window layout manager
 ;;
 ;; gt next-tab
@@ -529,13 +517,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
-  ;; `recentf-add-file' will apply handlers first, then call `string-prefix-p'
-  ;; to check if it can be pushed to recentf list.
-  (recentf-filename-handlers '(abbreviate-file-name))
-  (recentf-exclude `(,@(cl-loop for f in `(,package-user-dir
-                                           ,quelpa-packages-dir)
-                                collect (abbreviate-file-name f))
-                     ;; Folders on MacOS start
+  (recentf-exclude '( ;; Folders on MacOS start
                      "^/private/tmp/"
                      "^/var/folders/"
                      ;; Folders on MacOS end
