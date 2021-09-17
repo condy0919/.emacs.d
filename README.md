@@ -91,13 +91,12 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 插件配置、升级
 
-选用`use-package`来管理插件。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。为什么我会从`straight.el`切换至`quelpa`呢？主要是`straight.el`不支持单个文件的下载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。
+使用`package.el`(自带的)来安装包、`use-package`来管理配置。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。为什么我会从`straight.el`切换至`quelpa`呢？主要
+是`straight.el`不支持单个文件的下载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，
+`llvm-mode`和`tablegen-mode`需要用户自己执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，
+所以实际上也没差多少。
 
 而自动升级选择了`auto-package-update`这个包。如果需要更新，<kbd>M-x auto-package-update-now</kbd>即可。需要注意的是，更新是同步的。
-
-注意：
-
-`llvm-mode`和`tablegen-mode`下载通过`raw.githubusercontent.com`，而这个域名在国内几乎不可达，需要科学上网。因此现在已使用`gitee`的镜像服务来中转。
 
 # 界面
 
@@ -217,16 +216,12 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ac</kbd> | `calendar`日历               |
 | <kbd>ag</kbd> | `gnus`查看新闻组             |
 | <kbd>ai</kbd> | `rcirc`上 IRC                |
-| <kbd>aj</kbd> | [`jblog`][jblog]管理博客文章 |
 | <kbd>an</kbd> | `newsticker`查看RSS订阅      |
-| <kbd>ap</kbd> | `proced`查看进程             |
 
 搜索相关的`Leader`键绑定:
 
 | key           | function                                                               |
 |---------------|------------------------------------------------------------------------|
-| <kbd>ss</kbd> | `isearch-forward`使用`isearch`的方式来搜索符号                         |
-| <kbd>sS</kbd> | `isearch-forward-thing-at-point`与上面类似，默认输入是当前光标处的文本 |
 | <kbd>si</kbd> | `imenu`                                                                |
 | <kbd>sj</kbd> | `evil-show-jumps`                                                      |
 | <kbd>sm</kbd> | `evil-show-marks`                                                      |
@@ -411,8 +406,6 @@ emacs -Q -l init-mini.el
 [dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
 [dune]: https://github.com/ocaml/dune/
 [valign]: https://github.com/casouri/valign/
-[jblog]: https://github.com/condy0919/jblog/
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent
-[modern-cpp-font-lock]: https://github.com/ludwigpacifici/modern-cpp-font-lock/
 [ocaml-lsp-git]: https://aur.archlinux.org/packages/ocaml-lsp-git
