@@ -46,7 +46,6 @@
 ;; the Emacs shell & friends
 (use-package eshell
   :ensure nil
-  :defines eshell-prompt-regexp
   :hook ((eshell-mode . (lambda ()
                           (term-mode-common-init)
                           ;; Remove cmd args word by word
@@ -92,7 +91,9 @@ current directory."
      "Youmu "
      (if (equal (eshell/pwd) "~")
          "~"
-       (abbreviate-file-name (shrink-path-file (eshell/pwd))))
+       (abbreviate-file-name (if (require 'shrink-path nil t)
+                                 (shrink-path-file (eshell/pwd))
+                               (eshell/pwd))))
      " "
      (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory)))
                (br (car (vc-git-branches))))
@@ -128,20 +129,13 @@ current directory."
   (eshell-glob-case-insensitive t)
   (eshell-highlight-prompt nil)
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
-  (eshell-prompt-function 'eshell-prompt))
-
-(use-package em-term
-  :ensure nil
-  :custom
+  (eshell-prompt-function 'eshell-prompt)
+  ;; The following cmds will run on term.
   (eshell-visual-commands '("top" "htop" "less" "more" "bat" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
-  (eshell-destroy-buffer-when-process-dies t))
-
-(use-package em-cmpl
-  :ensure nil
-  :custom
-  (eshell-cmpl-autolist t)
+  (eshell-destroy-buffer-when-process-dies t)
+  ;; Completion like bash
   (eshell-cmpl-ignore-case t)
   (eshell-cmpl-cycle-completions nil))
 
@@ -152,8 +146,8 @@ current directory."
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
-         ([remap kill-region]   . backward-kill-word)
-         ([remap delete-char]   . eshell-delchar-or-maybe-eof)))
+         ([remap kill-region] . backward-kill-word)
+         ([remap delete-char] . eshell-delchar-or-maybe-eof)))
 
 ;; Used as a `sh-mode' REPL.
 ;;
