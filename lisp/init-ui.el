@@ -47,9 +47,21 @@
                    ("*Org-Babel Error Output*"  :select nil :align t :size 0.3)
                    ("*package update results*"  :select nil :align t :size 10)
                    ("*Process List*"            :select t   :align t :size 0.3)
-                   ("*Help*"                    :select t   :align t :size 0.3)
                    ("*Occur*"                   :select t   :align t)
                    ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t))))
+
+;; All `temp-buffer's, e.g. *Completions*, will never mess up window layout.
+(use-package help
+  :ensure nil
+  :hook (after-init . temp-buffer-resize-mode)
+  :config
+  (defun temp-buffer-fit (buf)
+    "Resize the window height of BUF upto 40% of the frame."
+    (min (floor (* 0.4 (frame-height)))
+         (window-height (get-buffer-window buf))))
+  :custom
+  (help-window-select t)
+  (temp-buffer-max-height #'temp-buffer-fit))
 
 ;; Windows layout recorder
 ;;

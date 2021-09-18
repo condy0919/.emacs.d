@@ -259,6 +259,8 @@
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
+  ;; One frame one minibuffer.
+  (minibuffer-follows-selected-frame nil)
   ;; Ignore cases when complete
   (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
