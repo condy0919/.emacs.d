@@ -13,8 +13,6 @@
 
 (use-package embark
   :ensure t
-  :init
-  (setq prefix-help-command #'embark-prefix-help-command)
   :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
          ("C-c C-o" . embark-export)
