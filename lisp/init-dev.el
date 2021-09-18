@@ -14,7 +14,7 @@
   :config
   (defun colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
-    (when (eq major-mode 'compilation-mode)
+    (with-silent-modifications
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   :custom
   (compilation-always-kill t)
@@ -92,7 +92,7 @@
   (projectile-ignored-projects `("~/"
                                  "/tmp/"
                                  "/private/tmp/"
-                                 ,(file-truename (expand-file-name "elpa" user-emacs-directory)))))
+                                 ,package-user-dir)))
 
 ;; Lint tool
 (use-package flycheck

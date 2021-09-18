@@ -25,6 +25,10 @@
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
 
+;; With GPG 2.1+, this forces gpg-agent to use the Emacs minibuffer to prompt
+;; for the key passphrase.
+(setq epg-pinentry-mode 'loopback)
+
 ;; Optimize for very long lines
 (setq bidi-paragraph-direction 'left-to-right
       bidi-inhibit-bpa t)
@@ -320,6 +324,17 @@
   (appt-display-mode-line t)
   (appt-message-warning-time 15)
   (appt-disp-window-function #'appt-display-with-notification))
+
+;; Build regexp with visual feedback
+(use-package re-builder
+  :ensure nil
+  :commands re-builder
+  :bind (:map reb-mode-map
+         ("C-c C-k" . reb-quit)
+         ("C-c C-p" . reb-prev-match)
+         ("C-c C-n" . reb-next-match))
+  :custom
+  (reb-re-syntax 'string))
 
 ;; window layout manager
 ;;
