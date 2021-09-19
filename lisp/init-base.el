@@ -138,11 +138,6 @@
   (show-paren-when-point-inside-paren t)
   (show-paren-when-point-in-periphery t))
 
-;; The selected region of text can be deleted
-(use-package delsel
-  :ensure nil
-  :hook (after-init . delete-selection-mode))
-
 ;; Show line/column number and more
 (use-package simple
   :ensure nil
@@ -160,7 +155,7 @@
   (save-interprogram-paste-before-kill t)
   ;; eliminate duplicates
   (kill-do-not-save-duplicates t)
-  ;; include '\n'
+  ;; include '\n' when point starts at the beginning-of-line
   (kill-whole-line t)
   ;; show cwd when `shell-command' and `async-shell-command'
   (shell-command-prompt-show-cwd t)
