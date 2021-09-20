@@ -519,7 +519,7 @@ Else, call `comment-or-uncomment-region' on the current line."
                       "-title" title
                       "-message" body
                       "-activate" "org.gnu.Emacs"))))
-  (t
+  (_
    (defalias 'notify-send 'ignore)))
 
 ;; Recently opened files
