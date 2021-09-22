@@ -32,8 +32,8 @@
 (setq debug-on-error t)
 (setq-default lexical-binding t)
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(add-to-list 'load-path (file-name-as-directory (locate-user-emacs-file "lisp")))
+(setq custom-file (locate-user-emacs-file "custom.el"))
 
 (require 'init-base)
 
