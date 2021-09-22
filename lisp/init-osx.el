@@ -24,7 +24,7 @@
   (let ((fonts '("Apple Color Emoji")))
     (cl-loop for font in fonts
              when (member font (font-family-list))
-             return (set-fontset-font t 'symbol (font-spec :family font) nil 'prepend)))
+             return (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend)))
 
   ;; Better variable-pitch font
   (let ((fonts '("Bookerly" "Overpass" "Verdana" "Lucida Grande")))

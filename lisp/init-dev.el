@@ -19,7 +19,7 @@
   :custom
   (compilation-always-kill t)
   (compilation-scroll-output t)
-  ;; Save all buffers on `compile'
+  ;; Save all buffers on M-x `compile'
   (compilation-ask-about-save nil))
 
 ;; The unified debugger
