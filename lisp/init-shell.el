@@ -84,16 +84,13 @@ current directory."
 
   (defun eshell-prompt ()
     "Prompt for eshell."
-    (require 'shrink-path)
     (concat
      (propertize user-login-name 'face 'font-lock-keyword-face)
      "@"
      "Youmu "
      (if (equal (eshell/pwd) "~")
          "~"
-       (abbreviate-file-name (if (require 'shrink-path nil t)
-                                 (shrink-path-file (eshell/pwd))
-                               (eshell/pwd))))
+       (abbreviate-file-name (eshell/pwd)))
      " "
      (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory)))
                (br (car (vc-git-branches))))
