@@ -249,7 +249,8 @@
   :custom
   (completion-auto-help t)
   (completion-show-help nil)
-  (completion-cycle-threshold 3)
+  ;; Cycle completions regardless of the count
+  (completion-cycle-threshold t)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
