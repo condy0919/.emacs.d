@@ -59,6 +59,8 @@
   (define-advice isearch-occur (:after (_regexp &optional _nlines))
     (isearch-exit))
   :custom
+  ;; Record isearch in minibuffer history, so C-x ESC ESC can repeat it.
+  (isearch-resume-in-command-history t)
   ;; One space can represent a sequence of whitespaces
   (isearch-lax-whitespace t)
   (isearch-regexp-lax-whitespace t)
