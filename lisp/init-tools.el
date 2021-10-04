@@ -65,9 +65,9 @@
   (isearch-lax-whitespace t)
   (isearch-regexp-lax-whitespace t)
   (isearch-repeat-on-direction-change t)
-  (isearch-allow-scroll t)
+  ;; M-< and M-> move to the first/last occurrence of the current search string.
   (isearch-allow-motion t)
-  (isearch-yank-on-move t)
+  (isearch-motion-changes-direction t)
   ;; lazy isearch
   (isearch-lazy-count t)
   (isearch-lazy-highlight t)
