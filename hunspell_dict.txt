@@ -89,3 +89,5 @@ UI
 melpa
 README
 nano
+subtyping
+Dereference
