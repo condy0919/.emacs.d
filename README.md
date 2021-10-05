@@ -139,6 +139,13 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>[u</kbd>    | `evil-collection-unimpaired-url-encode` 对所选内容进行`url`参数编码 |
 | <kbd>]u</kbd>    | `evil-collection-unimpaired-url-decode` 对所选内容进行`url`参数解码 |
 
+此外，凭借 avy 模拟了 [evil-snipe][evil-snipe] 了的 `s` 和 `f` 功能。
+
+| key          | function                     |
+|--------------|------------------------------|
+| <kbd>s</kbd> | `evil-avy-goto-char-timer`   |
+| <kbd>f</kbd> | `evil-avy-goto-char-in-line` |
+
 本配置里使用`hideshow`来`fold`代码块。由于`hideshow`本身提供的快捷键非常长，非常推荐使用`evil-mode`在`normal`状态下定义的键绑定。
 
 | key           | function                                            |
@@ -158,7 +165,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
 | <kbd>f/</kbd> | 同上                                                                        |
-| <kbd>fg</kbd> | `rgrep`递归地在目录下`grep`给定字符串                                       |
 | <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                        |
 | <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                |
 | <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                            |
@@ -255,11 +261,8 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！         |
 | <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能           |
 | <kbd>C-x g</kbd>   | 呼出 `magit`                                                       |
-| <kbd>C-M-;</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
+| <kbd>C-M-i</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
 | <kbd>C-x o</kbd>   | 开启`repeat-mode`, 方便原生`C-x o`切换`window`                     |
-| <kbd>C-c =</kbd>   | 调用`align-regexp`提供以一个对齐符号的功能                         |
-| <kbd>M-g M-o</kbd> | 调用`avy-goto-word-or-subword-1`                                   |
-| <kbd>M-g M-s</kbd> | 调用`avy-goto-char-timer`                                          |
 | <kbd>M-g M-l</kbd> | 调用`avy-goto-line`                                                |
 
 因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
@@ -409,3 +412,4 @@ emacs -Q -l init-mini.el
 [emacs-ccls]: https://melpa.org/#/ccls
 [ocp-indent]: https://melpa.org/#/ocp-indent
 [ocaml-lsp-git]: https://aur.archlinux.org/packages/ocaml-lsp-git
+[evil-snipe]: https://github.com/hlissner/evil-snipe

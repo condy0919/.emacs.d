@@ -36,12 +36,9 @@
   ;; C-' to select isearch-candidate with avy
   :hook (after-init . avy-setup-default)
   :bind ("M-g M-l" . avy-goto-line)
-  :config
-  ;; Force to use pre `avy-style'
-  (define-advice avy-isearch (:around (func &rest args))
-    (let ((avy-style 'pre))
-      (apply func args)))
   :custom
+  ;; overlay is used during isearch, `pre' style makes avy keys evident.
+  (avy-styles-alist '((avy-isearch . pre)))
   (avy-all-windows nil)
   (avy-background t)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p)))
