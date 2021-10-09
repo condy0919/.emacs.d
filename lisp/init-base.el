@@ -147,6 +147,8 @@
   (line-number-mode t)
   (column-number-mode t)
   (size-indication-mode t)
+  ;; No visual feedback on copy.
+  (copy-region-blink-delay 0)
   ;; confusing if no fringes (GUI only).
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   ;; column starts from 1
