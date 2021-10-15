@@ -1,6 +1,7 @@
 ;;; init-dired.el --- dired tweaks -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
+;; dired-narrow is superseded by `consult-focus-lines'.
 
 ;;; Code:
 

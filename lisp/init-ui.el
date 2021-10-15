@@ -35,7 +35,7 @@
                    (magit-log-mode       :select t :inhibit-window-quit t :same t)
                    ("*quickrun*"         :select t :inhibit-window-quit t :same t)
                    (profiler-report-mode :select t)
-                   (apropos-mode         :select t :align t :size 0.3)
+                   (apropos-mode         :select t :align t :size 0.4)
                    (help-mode            :select t :align t :size 0.4)
                    (comint-mode          :select t :align t :size 0.4)
                    (grep-mode            :select t :align t)

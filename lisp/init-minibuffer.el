@@ -15,8 +15,8 @@
   :ensure t
   :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
-         ("C-c C-o" . embark-export)
-         ("C-c C-c" . embark-collect-snapshot))
+         ("C-c C-c" . embark-export)
+         ("C-c C-o" . embark-collect-snapshot))
   :custom
   (embark-collect-initial-view-alist '((t . list)))
   (embark-collect-live-initial-delay 0.15)
@@ -25,11 +25,18 @@
 (use-package consult
   :ensure t
   :bind (([remap imenu]              . consult-imenu)
+         ([remap goto-line]          . consult-goto-line)
          ([remap bookmark-jump]      . consult-bookmark)
          ([remap recentf-open-files] . consult-recent-file)
          ([remap evil-show-marks]    . consult-mark))
+  :config
+  (with-no-warnings
+    (consult-customize consult-ripgrep consult-git-grep consult-grep
+                       consult-bookmark
+                       consult-recent-file
+                       consult-buffer
+                       :preview-key nil))
   :custom
-  (consult-preview-key nil)
   (consult-fontify-preserve nil)
   (consult-async-min-input 2)
   (consult-async-refresh-delay 0.15)
