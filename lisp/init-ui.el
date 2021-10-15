@@ -54,14 +54,8 @@
 (use-package help
   :ensure nil
   :hook (after-init . temp-buffer-resize-mode)
-  :config
-  (defun temp-buffer-fit (buf)
-    "Resize the window height of BUF upto 40% of the frame."
-    (min (floor (* 0.4 (frame-height)))
-         (window-height (get-buffer-window buf))))
   :custom
-  (help-window-select t)
-  (temp-buffer-max-height #'temp-buffer-fit))
+  (help-window-select t))
 
 ;; Windows layout recorder
 ;;
