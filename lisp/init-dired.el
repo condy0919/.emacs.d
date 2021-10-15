@@ -79,18 +79,5 @@
   :ensure t
   :hook (dired-mode . diredfl-mode))
 
-;; Make dired narrow-able
-(use-package dired-narrow
-  :ensure t
-  :after dired)
-
-;; Show subtree in dired
-(use-package dired-subtree
-  :ensure t
-  :after dired
-  :custom
-  (dired-subtree-use-backgrounds nil))
-
 (provide 'init-dired)
-
 ;;; init-dired.el ends here
