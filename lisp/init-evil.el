@@ -93,6 +93,9 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
             (evil-define-key* state map (kbd (concat prefix key)) def)))))
 
     (define-leader-key 'normal 'global nil
+      ;; SPC, quit minibuffer.
+      "SPC" 'keyboard-escape-quit
+
       ;; file
       "ff" 'find-file
       "fF" 'find-file-other-window
