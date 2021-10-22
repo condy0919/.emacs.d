@@ -22,9 +22,6 @@
 (setq x-gtk-use-system-tooltips nil
       x-underline-at-descent-line t)
 
-;; Don't ping things that look like domain names.
-(setq ffap-machine-p-known 'reject)
-
 ;; With GPG 2.1+, this forces gpg-agent to use the Emacs minibuffer to prompt
 ;; for the key passphrase.
 (setq epg-pinentry-mode 'loopback)
@@ -352,13 +349,15 @@
 
 (use-package newcomment
   :ensure nil
-  :bind ([remap comment-dwim] . #'comment-or-uncomment)
+  :bind ([remap comment-dwim] . comment-or-uncomment)
   :config
   (defun comment-or-uncomment ()
     "Comment or uncomment the current line or region.
 
-If the region is active and `transient-mark-mode' is on, call `comment-or-uncomment-region'.
-Else, if the current line is empty, insert a comment and indent it.
+If the region is active and `transient-mark-mode' is on, call
+`comment-or-uncomment-region'.
+Else, if the current line is empty, insert a comment and indent
+it.
 Else, call `comment-or-uncomment-region' on the current line."
     (interactive)
     (if (region-active-p)
