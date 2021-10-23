@@ -2,14 +2,15 @@
 
 ;;; Commentary:
 ;;
+;; `hydra-copy' is superseded by avy. See
+;; https://karthinks.com/software/avy-can-do-anything/
 
 ;;; Code:
 
 (use-package hydra
   :ensure t
   :after evil
-  :bind (("C-c h c" . hydra-copy/body)
-         ("C-c h m" . hydra-macro/body)
+  :bind (("C-c h m" . hydra-macro/body)
          ("C-c h s" . hydra-other-window-scroll/body))
   :config
   (defhydra hydra-other-window-scroll (nil nil)
@@ -59,58 +60,7 @@
     ("B" insert-kbd-macro)
     ("x" kmacro-to-register)
     ("'" kmacro-edit-macro)
-    ("," edit-kbd-macro))
-
-  (defhydra hydra-copy (:color blue)
-    "Copy"
-    ("w" copy-word-at-point "word")
-    ("s" copy-symbol-at-point "symbol")
-    ("l" copy-line-at-point "line")
-    ("u" copy-url-at-point "url")
-    ("f" copy-filename-at-point "filename")
-    ("e" copy-email-at-point "email"))
-
-  (defun copy-word-at-point ()
-    "Copy word at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-word-or-subword-1)
-      (kill-new (thing-at-point 'word))))
-
-  (defun copy-symbol-at-point ()
-    "Copy symbol at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-symbol-1)
-      (kill-new (thing-at-point 'symbol))))
-
-  (defun copy-line-at-point ()
-    "Copy line at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-line)
-      (kill-new (thing-at-point 'line))))
-
-  (defun copy-url-at-point ()
-    "Copy url at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-word-or-subword-1)
-      (kill-new (thing-at-point 'url))))
-
-  (defun copy-filename-at-point ()
-    "Copy filename at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-word-or-subword-1)
-      (kill-new (thing-at-point 'filename))))
-
-  (defun copy-email-at-point ()
-    "Copy email at point."
-    (interactive)
-    (save-excursion
-      (evil-avy-goto-word-or-subword-1)
-      (kill-new (thing-at-point 'email)))))
+    ("," edit-kbd-macro)))
 
 (provide 'init-hydra)
 ;;; init-hydra.el ends here
