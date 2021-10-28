@@ -15,22 +15,6 @@
     (evil-collection-define-key 'normal 'org-mode-map
       (kbd "<tab>") 'org-cycle
       (kbd "S-<tab>") 'org-shifttab))
-
-  (define-advice org-fast-tag-selection (:around (func &rest args))
-    "Widen the *Org tags* buffer."
-    (cl-letf (((symbol-function 'delete-window)        #'ignore)
-              ((symbol-function 'delete-other-windows) #'ignore)
-              ((symbol-function 'org-fit-window-to-buffer)
-               (lambda (&optional window max-height _min-height _shrink-only)
-                 ;; Hide the modeline.
-                 (when-let (buf (window-buffer window))
-                   (with-current-buffer buf
-                     (setq mode-line-format nil)))
-                 ;; At least `window-min-height'+1 so that we can actually see
-                 ;; the buffer content. Hide the modeline for better display.
-                 (fit-window-to-buffer window max-height (1+ (max window-min-height
-                                                                  (window-buffer-height window)))))))
-      (apply func args)))
   :custom-face
   (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
