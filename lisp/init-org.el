@@ -10,13 +10,6 @@
 (use-package org
   :ensure nil
   :hook (org-mode . visual-line-mode)
-  :config
-  (with-eval-after-load 'evil-collection
-    (evil-collection-define-key 'normal 'org-mode-map
-      (kbd "<tab>") 'org-cycle
-      (kbd "S-<tab>") 'org-shifttab))
-  :custom-face
-  (org-document-title ((t (:height 1.75 :weight bold))))
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
