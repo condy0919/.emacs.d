@@ -83,14 +83,9 @@
   (wgrep-change-readonly-file t))
 
 ;; Auto update packages
-;;
-;; Since `quelpa' is lazy-loaded, we require it explicitly when upgrade
-;; packages.
 (use-package auto-package-update
   :ensure t
-  :commands auto-package-update-now
-  :config
-  (require 'quelpa)
+  :commands auto-package-update-now auto-package-update-now-async
   :custom
   (auto-package-update-delete-old-versions t))
 
