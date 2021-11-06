@@ -21,6 +21,7 @@
 (use-package term
   :ensure nil
   :hook ((term-mode . term-mode-common-init)
+         (term-mode . term-mode-prompt-regexp-setup)
          (term-exec . term-mode-no-query))
   :bind (:map term-raw-map
          ("C-c C-y" . term-paste)
@@ -33,6 +34,10 @@
   (when (eq system-type 'darwin)
     (define-key term-raw-map (kbd "H-v") 'term-paste))
 
+  (defun term-mode-prompt-regexp-setup ()
+    "Setup `term-prompt-regexp' for term-mode."
+    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
   (defun term-mode-no-query ()
     "No prompt about processes when killing term."
     (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
@@ -40,8 +45,7 @@
   :custom
   (term-input-ignoredups t)
   (term-completion-autolist t)
-  (term-scroll-to-bottom-on-output 'all)
-  (term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+  (term-scroll-to-bottom-on-output 'all))
 
 ;; the Emacs shell & friends
 (use-package eshell
