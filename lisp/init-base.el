@@ -63,8 +63,6 @@
       hscroll-step 2
       hscroll-margin 2
       scroll-conservatively 101
-      scroll-up-aggressively 0.01
-      scroll-down-aggressively 0.01
       scroll-preserve-screen-position 'always)
 
 ;; The nano style for truncated long lines.
