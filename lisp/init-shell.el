@@ -44,8 +44,7 @@
       (set-process-query-on-exit-flag proc nil)))
   :custom
   (term-input-ignoredups t)
-  (term-completion-autolist t)
-  (term-scroll-to-bottom-on-output 'all))
+  (term-completion-autolist t))
 
 ;; the Emacs shell & friends
 (use-package eshell
@@ -54,6 +53,7 @@
                           (term-mode-common-init)
                           ;; Remove cmd args word by word
                           (modify-syntax-entry ?- "w")
+                          (modify-syntax-entry ?. "w")
                           ;; Eshell is not fully functional
                           (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
@@ -120,19 +120,12 @@ current directory."
        inhibit-line-move-field-capture t)))
   :custom
   (eshell-banner-message "")
-  (eshell-scroll-to-bottom-on-input 'all)
-  (eshell-scroll-to-bottom-on-output 'all)
-  (eshell-kill-on-exit t)
-  (eshell-kill-processes-on-exit t)
-  ;; Don't record command in history if starts with whitespace
-  (eshell-input-filter 'eshell-input-filter-initial-space)
-  (eshell-error-if-no-glob t)
-  (eshell-glob-case-insensitive t)
+  ;; Define our own prompt.
   (eshell-highlight-prompt nil)
   (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
   (eshell-prompt-function 'eshell-prompt)
   ;; The following cmds will run on term.
-  (eshell-visual-commands '("top" "htop" "less" "more" "bat" "telnet"))
+  (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
   (eshell-destroy-buffer-when-process-dies t)
@@ -155,11 +148,7 @@ current directory."
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook ((shell-mode . term-mode-common-init)
-         (shell-mode . shell-turn-off-echo))
-  :config
-  (defun shell-turn-off-echo ()
-    (setq-local comint-process-echoes t)))
+  :hook (shell-mode . term-mode-common-init))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
