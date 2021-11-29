@@ -20,7 +20,6 @@
                           "--malloc-trim"
                           "--background-index"
                           "--clang-tidy"
-                          "--cross-file-rename"
                           "--completion-style=bundled"
                           "--pch-storage=memory"
                           "--header-insertion=iwyu"
