@@ -452,7 +452,6 @@
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
                            "cmake_minimum_required(VERSION 3.11)" n n
-                           "include(FetchContent)" n n
                            "set(CMAKE_POSITION_INDEPENDENT_CODE ON)" n
                            "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n n
                            "project(" (s proj) n
@@ -461,6 +460,8 @@
                            "  DESCRIPTION \"\"" n
                            "  HOMEPAGE_URL \"\"" n
                            ")" n n
+                           "include(CTest)" n
+                           "include(FetchContent)" n n
                            "option(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
                            "option(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
@@ -485,12 +486,11 @@
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Benchmark" n
                            "if(" (proj-prefixed "_ENABLE_BENCHMARKS)") n
-                           "  enable_testing()" n n
                            "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
                            "  FetchContent_Declare(" n
                            "    benchmark" n
                            "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "    GIT_TAG        v1.5.2" n
+                           "    GIT_TAG        v1.6.0" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
@@ -499,12 +499,11 @@
                            "endif()" n n
                            "# Test" n
                            "if(" (proj-prefixed "_ENABLE_TESTS)") n
-                           "  enable_testing()" n n
                            "  # libdoctest.a and libdoctest_with_main.a will be built" n
                            "  FetchContent_Declare(" n
                            "    doctest" n
                            "    GIT_REPOSITORY https://github.com/onqtam/doctest" n
-                           "    GIT_TAG        2.4.4" n
+                           "    GIT_TAG        2.4.6" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
