@@ -91,12 +91,13 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 插件配置、升级
 
-使用`package.el`(自带的)来安装包、`use-package`来管理配置。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。为什么我会从`straight.el`切换至`quelpa`呢？主要
-是`straight.el`不支持单个文件的下载、配置，见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，
-`llvm-mode`和`tablegen-mode`需要用户自己执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，
-所以实际上也没差多少。
+使用`package.el`(自带的)来安装包、`use-package`来管理配置。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
 
-而自动升级选择了`auto-package-update`这个包。如果需要更新，<kbd>M-x auto-package-update-now</kbd>即可。需要注意的是，更新是同步的。
+为什么我会从`straight.el`切换至`quelpa`呢？
+
+主要是`straight.el`不支持单个文件的下载、配置，为了使用`llvm-mode.el`而 clone 整个 llvm repo 就得不尝失了吧。相关配置见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，`llvm-mode`和`tablegen-mode`需要用户自己执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，所以实际上也没差多少。
+
+而自动升级选择了`auto-package-update`这个包。如果需要更新，<kbd>M-x auto-package-update-now</kbd> 即可。如果想要异步更新，则使用<kbd>M-x auto-package-update-now-async</kbd>。由于 `package-refresh-contents` 暂时未暴露 callback 接口所以无法与之前的包更新操作构成异步流，需要用户提前 <kbd>M-x package-refresh-contents</kbd>.
 
 # 界面
 
@@ -108,7 +109,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-以前是 `ivy` 用户，现在则是仅使用 `embark` 和 `consult` 了。
+以前是`ivy`用户，现在则是仅使用`vertico`, `embark`和`consult`了。
 
 `Emacs`下的`org-mode`/`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
@@ -139,7 +140,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>[u</kbd>    | `evil-collection-unimpaired-url-encode` 对所选内容进行`url`参数编码 |
 | <kbd>]u</kbd>    | `evil-collection-unimpaired-url-decode` 对所选内容进行`url`参数解码 |
 
-此外，凭借 avy 模拟了 [evil-snipe][evil-snipe] 了的 `s` 和 `f` 功能。
+此外，凭借 avy 模拟了 [evil-snipe][evil-snipe] 的 `s` 和 `f` 功能。
 
 | key          | function                     |
 |--------------|------------------------------|
@@ -289,11 +290,10 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 更详细的按键绑定请直接看[代码](lisp/init-evil.el). :-)
 
-定义了一组`hydra`，通过调用`avy`与`thing-at-point`函数，快速复制对应光标处的内容。为了在编辑模式中也能够使用，将其绑定在了<kbd>C-c h c</kbd>上。<kbd>C-c h</kbd>是所有`hydra`的前缀，目前有3个，分别是:
+<kbd>C-c h</kbd>是所有`hydra`的前缀，目前有 2 个，分别是:
 
-1. `hydra-copy`通过`avy`用来快速拷贝
-2. `hydra-macro`方便执行`kmacro`
-3. `hydra-other-window-scroll`在不改变焦点的情况下移动另一窗口的`buffer`
+1. `hydra-macro`方便执行`kmacro`
+2. `hydra-other-window-scroll`在不改变焦点的情况下移动另一窗口的`buffer`
 
 # 通用开发设置
 
@@ -302,7 +302,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 - `dumb-jump`作为`lsp-find-definition`失败后的备份手段
 - `magit`作为`git`客户端
 - `hideshow`来显示/隐藏结构化的代码块，如 "{ }" 函数体等
-- `rmsbolt`作为一个本地的 **Compiler Explorer** 相比于`godbolt`友好一点
+- `rmsbolt`作为一个本地的 **Compiler Explorer** 相比于`godbolt`快速一点
 - `ispell`拼写检查器, `evil`用户可以快速通过<kbd>z=</kbd> (`ispell-word`) 来检查
 - `flyspell`拼写检查器，仅在`magit`写提交信息时启用
 - `quickrun`作为一个能够执行部分区域内的代码块，方便快速验证函数功能
@@ -365,7 +365,7 @@ yay -S ocaml-ocp-indent dune
 
 ## haskell-mode
 
-非常纯粹, ~~其实是平常不怎么写 haskell~~
+非常纯粹, ~~其实是平常不怎么写 haskell~~。
 
 # 截图
 
