@@ -11,7 +11,7 @@
   :ensure t
   :after evil
   :bind (("C-c h m" . hydra-macro/body)
-         ("C-c h s" . hydra-other-window-scroll/body))
+         ("C-c h o" . hydra-other-window-scroll/body))
   :config
   (defhydra hydra-other-window-scroll (nil nil)
     "Scroll in other window"
