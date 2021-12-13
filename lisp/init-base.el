@@ -340,7 +340,6 @@
   :custom
   (tab-bar-show nil)
   (tab-bar-tab-hints t)
-  (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)
   (tab-bar-tab-name-function 'tab-bar-tab-name-all))
 
