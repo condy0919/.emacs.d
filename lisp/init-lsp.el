@@ -6,6 +6,10 @@
 ;;; Code:
 
 ;; The completion engine
+;;
+;; 'company-mode' has an online manual now.
+;;
+;; https://company-mode.github.io/manual/
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
@@ -37,8 +41,9 @@
   (company-dabbrev-code-everywhere t)
   ;; call `tempo-expand-if-complete' after completion
   (company-tempo-expand t)
-  ;; Stop annoying me
-  (company-etags-use-main-table-list nil)
+  ;; Ignore uninteresting files. Items end with a slash are recognized as
+  ;; directories.
+  (company-files-exclusions '(".git/" ".DS_Store"))
   ;; No icons
   (company-format-margin-function nil)
   (company-backends '((company-capf :with company-tempo)
