@@ -86,6 +86,11 @@ current directory."
                 " -iname '*" filename "*'")))
       (eshell-command-result cmd)))
 
+  (defun eshell/z ()
+    "cd to directory with completion."
+    (let ((dir (completing-read "Directory: " (ring-elements eshell-last-dir-ring) nil t)))
+      (eshell/cd dir)))
+
   (defun eshell-prompt ()
     "Prompt for eshell."
     (concat
