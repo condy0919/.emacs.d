@@ -20,6 +20,7 @@
 
 ;; Linux specific
 (setq x-gtk-use-system-tooltips nil
+      x-gtk-use-native-input t
       x-underline-at-descent-line t)
 
 ;; With GPG 2.1+, this forces gpg-agent to use the Emacs minibuffer to prompt
