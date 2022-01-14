@@ -85,7 +85,6 @@
 (require 'init-mail)
 (require 'init-shell)
 (require 'init-spell)
-(require 'init-reader)
 
 ;; MacOS specific
 (when (eq system-type 'darwin)

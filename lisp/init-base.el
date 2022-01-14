@@ -458,7 +458,6 @@ Else, call `comment-or-uncomment-region' on the current line."
                    (name . "\\*Packages\\*")
                    (name . "\\*Messages\\*")
                    (name . "\\*Customize\\*")))
-      ("News" (or (name . "\\*newsticker\\*")))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
                   (name . "\\*info\\*")
