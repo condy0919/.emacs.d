@@ -178,7 +178,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "ac" 'calendar
       "ag" 'gnus
       "ai" 'rcirc
-      "an" 'newsticker-show-news
 
       ;; open
       "oc" 'org-capture
