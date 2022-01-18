@@ -31,9 +31,6 @@
          ("C-h" . nil)
          ("C-u" . nil))
   :config
-  (when (eq system-type 'darwin)
-    (define-key term-raw-map (kbd "H-v") 'term-paste))
-
   (defun term-mode-prompt-regexp-setup ()
     "Setup `term-prompt-regexp' for term-mode."
     (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
@@ -153,7 +150,22 @@ current directory."
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook (shell-mode . term-mode-common-init))
+  :hook (shell-mode . term-mode-common-init)
+  :bind ("M-`" . shell-toggle) ;; was `tmm-menubar'
+  :config
+  (defun shell-toggle ()
+    "Toggle a persistent shell popup window.
+If popup is visible but unselected, select it.
+If popup is focused, kill it."
+    (interactive)
+    (if-let ((win (get-buffer-window "*shell-popup*")))
+        (when (eq (selected-window) win)
+          ;; If users attempt to delete the sole ordinary window, silence it.
+          (ignore-errors (delete-window win)))
+      (let ((display-comint-buffer-action '(display-buffer-at-bottom
+                                            (inhibit-same-window . nil))))
+
+        (shell "*shell-popup*")))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
