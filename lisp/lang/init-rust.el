@@ -10,10 +10,10 @@
   :defines lsp-rust-server
   :mode ("\\.rs\\'" . rust-mode)
   :config
-  ;; Prefer `rust-analyzer' over `rls'
+  ;; Recently `lsp-rust-server' defaults to `rust-analyzer'.
   (with-eval-after-load 'lsp-mode
-    (when (executable-find "rust-analyzer")
-      (setq lsp-rust-server 'rust-analyzer)))
+    (when (executable-find "rls")
+      (setq lsp-rust-server 'rls)))
   :custom
   (rust-format-on-save (executable-find "rustfmt")))
 
