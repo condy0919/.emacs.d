@@ -7,14 +7,9 @@
 
 (use-package rust-mode
   :ensure t
-  :defines lsp-rust-server
   :mode ("\\.rs\\'" . rust-mode)
-  :config
-  ;; Recently `lsp-rust-server' defaults to `rust-analyzer'.
-  (with-eval-after-load 'lsp-mode
-    (when (executable-find "rls")
-      (setq lsp-rust-server 'rls)))
   :custom
+  (rust-format-show-buffer nil)
   (rust-format-on-save (executable-find "rustfmt")))
 
 ;; Cargo integration
