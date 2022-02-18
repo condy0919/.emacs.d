@@ -93,7 +93,6 @@
 (setq use-short-answers t)
 (unless (>= emacs-major-version 28)
   (fset 'yes-or-no-p 'y-or-n-p))
-(fset 'list-buffers 'ibuffer)
 
 ;; Inhibit switching out from `y-or-n-p' and `read-char-choice'
 (setq y-or-n-p-use-read-key t
@@ -440,11 +439,12 @@ Else, call `comment-or-uncomment-region' on the current line."
   (browse-url-handlers '(("\\`file:" . browse-url-default-browser))))
 
 ;; Buffer manager
+;;
+;; `sR': switch to saved filter groups
 (use-package ibuffer
   :ensure nil
-  :hook ((ibuffer-mode . ibuffer-auto-mode)
-         (ibuffer-mode . (lambda ()
-                           (ibuffer-switch-to-saved-filter-groups "Default"))))
+  :hook (ibuffer-mode . ibuffer-auto-mode)
+  :bind ([remap list-buffers] . ibuffer)
   :custom
   (ibuffer-expert t)
   (ibuffer-movement-cycle nil)
@@ -488,10 +488,7 @@ Else, call `comment-or-uncomment-region' on the current line."
                    (not (starred-name))))
       ("Dired" (mode . dired-mode))
       ("IRC" (or (mode . rcirc-mode)
-                 (mode . erc-mode)))
-      ("Images" (or (mode . image-mode)
-                    (mode . image-dired-display-image-mode)
-                    (mode . image-dired-thumbnail-mode)))))))
+                 (mode . erc-mode)))))))
 
 ;; Notifications
 ;;
