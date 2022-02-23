@@ -12,6 +12,10 @@
   :ensure nil
   :hook (compilation-filter . colorize-compilation-buffer)
   :config
+  (use-package ansi-color
+    :ensure nil
+    :commands ansi-color-apply-on-region)
+
   (defun colorize-compilation-buffer ()
     "ANSI coloring in compilation buffers."
     (with-silent-modifications
