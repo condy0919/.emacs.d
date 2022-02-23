@@ -86,7 +86,7 @@
   :custom
   (projectile-use-git-grep t)
   (projectile-indexing-method 'alien)
-  ;; Ignore uninteresting files. It has no effects when use alien mode.
+  ;; Ignore uninteresting files. It has no effect when use alien mode.
   (projectile-globally-ignored-files '("TAGS" "tags" ".DS_Store"))
   (projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o" ".swp" ".so" ".a"))
   (projectile-ignored-projects `("~/"
