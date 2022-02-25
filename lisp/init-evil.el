@@ -238,7 +238,18 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
     (with-eval-after-load 'elisp-mode
       (dolist (keymap (list emacs-lisp-mode-map lisp-interaction-mode-map))
         (define-leader-key 'normal keymap :localleader
-          "i" 'info-lookup-symbol)))))
+          "i" 'info-lookup-symbol
+
+          ;; eval
+          "eb" 'eval-buffer
+          "ed" 'eval-defun
+          "ee" 'eval-last-sexp
+          "el" 'load-library
+
+          ;; goto
+          "gf" 'find-function
+          "gv" 'find-variable
+          "gl" 'find-library)))))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

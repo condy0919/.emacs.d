@@ -150,7 +150,8 @@ current directory."
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook (shell-mode . term-mode-common-init)
+  :hook ((shell-mode . term-mode-common-init)
+         (shell-mode . revert-tab-width-to-default))
   :bind ("M-`" . shell-toggle) ;; was `tmm-menubar'
   :config
   (defun shell-toggle ()
@@ -165,7 +166,12 @@ If popup is focused, kill it."
       (let ((display-comint-buffer-action '(display-buffer-at-bottom
                                             (inhibit-same-window . nil))))
 
-        (shell "*shell-popup*")))))
+        (shell "*shell-popup*"))))
+
+  ;; Correct indentation for `ls'
+  (defun revert-tab-width-to-default ()
+    "Revert `tab-width' to default value."
+    (setq-local tab-width 8)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

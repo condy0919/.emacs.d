@@ -9,7 +9,6 @@
 (use-package elisp-mode
   :ensure nil
   :bind (:map emacs-lisp-mode-map
-         ("C-c C-b" . eval-buffer)
          ("C-c C-c" . eval-to-comment)
          :map lisp-interaction-mode-map
          ("C-c C-c" . eval-to-comment))

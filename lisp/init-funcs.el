@@ -66,8 +66,7 @@ confirmation."
 
 ;;;###autoload
 (defun +transient-tab-bar-history ()
-  "Transient map of command `tab-bar-history-back' and command
-`tab-bar-history-forward'."
+  "Transient map of command `tab-bar-history'."
   (interactive)
   (let ((echo-keystrokes nil))
     (tab-bar-history-back)
