@@ -184,19 +184,6 @@
   :ensure nil
   :hook (after-init . save-place-mode))
 
-;; Update buffer whenever file changes
-;; Also revert dired buffer.
-(use-package autorevert
-  :ensure nil
-  :hook (after-init . global-auto-revert-mode)
-  :custom
-  (auto-revert-interval 3)
-  (auto-revert-avoid-polling t)
-  (auto-revert-verbose nil)
-  (auto-revert-remote-files t)
-  (auto-revert-check-vc-info t)
-  (global-auto-revert-non-file-buffers t))
-
 ;; Highlight current line in GUI
 (use-package hl-line
   :ensure nil
