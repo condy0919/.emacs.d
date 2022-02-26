@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
         emacs_version:
           - 27.1
           - 27.2
@@ -26,20 +26,47 @@ jobs:
       with:
         version: ${{ matrix.emacs_version }}
 
-    - uses: actions/checkout@v2
-    - name: Check startup
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Disable package-quickstart
+      run: sed -i '/(setq package-quickstart t)/d' init.el
+
+    - name: Cache ELPA packages
+      id: elpa-cache
+      uses: actions/cache@v2
+      with:
+        path: elpa
+        key: ${{ matrix.os }}-${{ matrix.emacs_version }}-elpa-installed
+
+    - name: Download elpa packages
+      if: steps.elpa-cache.outputs.cache-hit != 'true'
       run: |
-        ${EMACS:=emacs} --version
-        echo "Attempting startup..."
-        ${EMACS:=emacs} -nw --batch --eval \
+        emacs -nw --batch --eval \
         '(progn
            (require (quote package))
            (require (quote url-vars))
            (let ((url-show-status nil)
                  (user-emacs-directory default-directory)
-                 (user-init-file (expand-file-name "init.el"))
-                 (load-path (delq default-directory load-path)))
-             (load-file user-init-file)
+                 (package-user-dir (file-name-as-directory (expand-file-name "elpa" default-directory)))
+                 (user-init-file (expand-file-name "init.el")))
+             (load user-init-file t t)
+             (run-hooks (quote after-init-hook))
+             (run-hooks (quote emacs-startup-hook))))'
+
+    - name: Check startup
+      run: |
+        emacs --version
+        echo "Attempting startup..."
+        emacs -nw --batch --eval \
+        '(progn
+           (require (quote package))
+           (require (quote url-vars))
+           (let ((url-show-status nil)
+                 (user-emacs-directory default-directory)
+                 (package-user-dir (file-name-as-directory (expand-file-name "elpa" default-directory)))
+                 (user-init-file (expand-file-name "init.el")))
+             (load user-init-file t t)
              (run-hooks (quote after-init-hook))
              (run-hooks (quote emacs-startup-hook))))'
         echo "Startup successful"

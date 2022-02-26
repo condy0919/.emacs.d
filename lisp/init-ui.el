@@ -5,12 +5,19 @@
 
 ;;; Code:
 
+;; Use default theme in terminals
 (use-package doom-themes
   :ensure t
-  :init
-  (load-theme 'doom-one t)
+  :when (display-graphic-p)
   :config
+  (load-theme 'doom-one t)
   (doom-themes-org-config))
+
+(use-package emacs
+  :ensure nil
+  :unless (display-graphic-p)
+  :config
+  (load-theme 'leuven t))
 
 (use-package doom-modeline
   :ensure t
