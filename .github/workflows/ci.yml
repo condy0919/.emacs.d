@@ -39,6 +39,9 @@ jobs:
         path: elpa
         key: ${{ matrix.os }}-${{ matrix.emacs_version }}-elpa-installed
 
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+
     - name: Download elpa packages
       if: steps.elpa-cache.outputs.cache-hit != 'true'
       run: |
