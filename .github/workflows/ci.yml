@@ -26,12 +26,14 @@ jobs:
       with:
         version: ${{ matrix.emacs_version }}
 
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Check startup
       run: |
-        ${EMACS:=emacs} --version
+        emacs --version
         echo "Attempting startup..."
-        ${EMACS:=emacs} -nw --batch --eval \
+        emacs -nw --batch --eval \
         '(progn
            (require (quote package))
            (require (quote url-vars))
@@ -43,3 +45,10 @@ jobs:
              (run-hooks (quote after-init-hook))
              (run-hooks (quote emacs-startup-hook))))'
         echo "Startup successful"
+
+    - name: Cache elpa packages
+      uses: actions/cache@v2
+      with:
+        path: .emacs.d/elpa
+        key: ${{ runner.os }}-emacs-packages-${{ hashFiles('**/*.el') }}
+        restore-keys: ${{ runner.os }}-emacs-package-
