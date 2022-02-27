@@ -9,7 +9,7 @@
 (require 'init-funcs)
 
 (defun term-mode-common-init ()
-  "The common initialization for term/shell."
+  "The common initialization procedure for term/shell."
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
   (setq-local global-hl-line-mode nil))
@@ -48,9 +48,6 @@
   :ensure nil
   :hook ((eshell-mode . (lambda ()
                           (term-mode-common-init)
-                          ;; Remove cmd args word by word
-                          (modify-syntax-entry ?- "w")
-                          (modify-syntax-entry ?. "w")
                           ;; Eshell is not fully functional
                           (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
@@ -143,7 +140,11 @@ current directory."
   :ensure nil
   :bind (:map eshell-mode-map
          ([remap kill-region] . backward-kill-word)
-         ([remap delete-char] . eshell-delchar-or-maybe-eof)))
+         ([remap delete-char] . eshell-delchar-or-maybe-eof))
+  :config
+  ;; Delete the last "word"
+  (dolist (ch '(?_ ?- ?.))
+    (modify-syntax-entry ch "w" eshell-mode-syntax-table)))
 
 ;; Used as a `sh-mode' REPL.
 ;;
