@@ -112,8 +112,10 @@
 (use-package xref
   :ensure nil
   :init
-  ;; On Emacs 28, `xref-search-program' can be set to `ripgrep'.
-  ;; `project-find-regexp' benefits from that.
+  ;; Emacs 28+
+  ;;
+  ;; `project-find-regexp' can be faster when setting `xref-search-program' to
+  ;;  `ripgrep'.
   (when (>= emacs-major-version 28)
     (setq xref-search-program 'ripgrep)
     (setq xref-show-xrefs-function #'xref-show-definitions-completing-read)
