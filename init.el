@@ -34,8 +34,6 @@
 ;; Don't forget to M-x package-quickstart-refresh if a new package is installed.
 (setq package-quickstart t)
 
-(package-initialize)
-
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
