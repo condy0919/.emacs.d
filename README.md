@@ -54,7 +54,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 需要的依赖
 
-- `hunspell` 拼写检查，目前仅在`git-commit-mode`下启用
+- `hunspell` 拼写检查，目前仅在`git-commit-mode`下默认启用
 - `rg` 更快的`grep`
 - `pandoc` (optional) 文本转换工具，`markdown-mode`渲染需要
 - `markdown` (optional) 文本转换工具，`markdown-mode`渲染需要
@@ -67,37 +67,33 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 最基础的配置包含了那些在所有`mode`下都不会变更的配置，包含了：
 
-| 包名          | 功能                                                 |
-|---------------|------------------------------------------------------|
-| align         | `align-regexp`可以自动对齐选择的符号                 |
-| appt          | 任务提醒，可以与`org-mode`结合                       |
-| autorevert    | 当文本被其他编辑器修改后，可自动更新                 |
-| delsel        | 选中文本可以直接覆盖着写，一般编辑器都默认开这个功能 |
-| hippie-expand | 用来展开文本                                         |
-| hl-line       | 高亮当前行                                           |
-| newcomment    | 注释、反注释功能                                     |
-| paren         | 高亮匹配的括号                                       |
-| saveplace     | 自动记录上次打开文件的位置                           |
-| simple        | 在`modeline`里显示行号、列号以及当前文本的大小       |
-| so-long       | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)            |
-| tab-bar       | 窗口布局管理 (`Emacs` 27+ 自带)                      |
-| tramp         | 远程编辑就靠它                                       |
+| 包名          | 功能                                           |
+|---------------|------------------------------------------------|
+| align         | `align-regexp`可以自动对齐选择的符号           |
+| appt          | 任务提醒，可以与`org-mode`结合                 |
+| hippie-expand | 用来展开文本                                   |
+| hl-line       | 高亮当前行                                     |
+| newcomment    | 注释、反注释功能                               |
+| paren         | 高亮匹配的括号                                 |
+| saveplace     | 自动记录上次打开文件的位置                     |
+| simple        | 在`modeline`里显示行号、列号以及当前文本的大小 |
+| so-long       | 打开长行的文件不再痛苦 (`Emacs` 27+ 自带)      |
+| tab-bar       | 窗口布局管理 (`Emacs` 27+ 自带)                |
+| tramp         | 远程编辑就靠它                                 |
 
 而这几个包也是`Emacs`自带的。
 
 为了保持界面的整洁，禁用了菜单栏、工具栏和滚动条。
 
-~~在跳转之后会闪烁一下当前行，这样就比较容易知道当前光标在哪里了。这个功能也是基于自带的pulse。~~ 太卡了，禁用了。
-
 # 插件配置、升级
 
-使用`package.el`(自带的)来安装包、`use-package`来管理配置。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
+`package.el`(自带的)来安装包、`use-package`来管理配置。对于`elpa`, `melpa`里没有的包，使用`quelpa`辅助下载。
 
 为什么我会从`straight.el`切换至`quelpa`呢？
 
-主要是`straight.el`不支持单个文件的下载、配置，为了使用`llvm-mode.el`而 clone 整个 llvm repo 就得不尝失了吧。相关配置见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，`llvm-mode`和`tablegen-mode`需要用户自己执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，所以实际上也没差多少。
+主要是`straight.el`不支持单个文件的下载、配置，为了使用`llvm-mode.el`而 clone 整个 llvm repo 就显得有点得不尝失了。相关配置见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，`llvm-mode`和`tablegen-mode`需要人工执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，所以最终效果跟`package.el`是一样的。
 
-而自动升级选择了`auto-package-update`这个包。如果需要更新，<kbd>M-x auto-package-update-now</kbd> 即可。如果想要异步更新，则使用<kbd>M-x auto-package-update-now-async</kbd>。由于 `package-refresh-contents` 暂时未暴露 callback 接口所以无法与之前的包更新操作构成异步流，需要用户提前 <kbd>M-x package-refresh-contents</kbd>.
+而自动升级选择了`auto-package-update`。如果需要更新，<kbd>M-x auto-package-update-now</kbd> 即可。如果想要异步更新，则使用<kbd>M-x auto-package-update-now-async</kbd>。由于 `package-refresh-contents` 暂时未暴露 callback 接口所以无法与之前的包更新操作构成异步流，需要用户提前 <kbd>M-x package-refresh-contents</kbd>.
 
 # 界面
 
@@ -255,19 +251,16 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## Emacs
 
-| key                | function                                                           |
-|--------------------|--------------------------------------------------------------------|
-| <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释                                |
-| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码                                |
-| <kbd>C-c x</kbd>   | 调用`quickrun`来运行当前`buffer`内的代码。`eval`快人一步！         |
-| <kbd>C-c p</kbd>   | `projectile`调用前缀，方便地在项目内跳转、编译等其他功能           |
-| <kbd>C-x g</kbd>   | 呼出 `magit`                                                       |
-| <kbd>C-M-i</kbd>   | 在`git-commit`时会有`flyspell`检查单词是否错误，通过此按键自动修正 |
-| <kbd>C-x o</kbd>   | 开启`repeat-mode`, 方便原生`C-x o`切换`window`                     |
-| <kbd>M-g M-l</kbd> | 调用`avy-goto-line`                                                |
+| key                | function                                |
+|--------------------|-----------------------------------------|
+| <kbd>M-\`</kbd>    | 打开一个弹出式`shell`以临时执行一些命令 |
+| <kbd>M-;</kbd>     | `comment-or-uncomment` 注释与反注释     |
+| <kbd>C-c '</kbd>   | 通过`separedit`在注释中快乐地写代码     |
+| <kbd>C-c p</kbd>   | `projectile`调用前缀                    |
+| <kbd>C-x g</kbd>   | 呼出 `magit`                            |
+| <kbd>M-g M-l</kbd> | 调用`avy-goto-line`                     |
 
-因为[projectile](https://github.com/bbatsov/projectile)比较常用，把它单独拿出来
-说。
+因为[projectile](https://github.com/bbatsov/projectile)比较常用，故把它单独拿出来说。
 
 | key                  | function                                                             |
 |----------------------|----------------------------------------------------------------------|
@@ -312,8 +305,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 ## cc-mode
 
-使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`clangd`，一般发行版的源里都
-会有对应的包。如果想使用[ccls][ccls]，可以`customize`对应的变量:
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`clangd`，一般发行版的源里都会有对应的包。如果想使用[ccls][ccls]，可以`customize`对应的变量:
 
 ``` emacs-lisp
 (setq lsp-clients-clangd-executable "ccls"
@@ -325,22 +317,13 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 此外，
 
 - `cmake-mode`可使用`company-mode`进行符号补全
-- 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中生效。
+- 启用了`hide-ifdef-mode`，可以令`#if 0`到`#endif`之间的代码看起来像注释一样。也可以`#define`一些宏，放入`hide-ifdef-env`中即生效。
 - 部分常用`snippet`，如`ifndef`,`main`等等。详细列表见[`init-cpp.el`](lisp/lang/init-cpp.el)文件
 - `cmake-mode`增加了一个简单 lib 的`snippet`，可以通过`lib`关键字展开
 
 ## rust-mode
 
-使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rls`,一般发行版会把它直接跟
-`rust`绑在一起，也可以使用`rustup`来安装。对于`rust-analyzer`用户而言，通过设置
-
-``` emacs-lisp
-(setq lsp-rust-server 'rust-analyzer)
-```
-
-来切换至`rust-analyzer`。
-
-当然，
+使用`lsp-mode`作为补全、符号查找的工具，默认后端使用`rust-analyzer`，需要额外安装`rust-analyzer`的包。`lsp-mode`会首先考虑`rust-analyzer`，如果未在`exec-path`中找到则会转而使用`rls`。`rls` 通常与`rust`这个包捆绑在一起。
 
 - `rust-mode`开启了保存时格式化文件，需要确保`rustfmt`二进制包存在
 - 使用了[cargo][cargo]来提供深度集成化的`cargo`命令
@@ -380,11 +363,13 @@ yay -S ocaml-ocp-indent dune
 
 # FAQ
 
-1. [dashboard][dashboard] 里图标显示不正确？
-   依赖 [all-the-icons][all-the-icons], 请确保`M-x all-the-icons-install-fonts`安
-   装对应的字体以显示图标。
-2. 更新时提示对应版本的包不存在？
-   这多是因为国内镜像源同步慢导致的。如果出错，可以临时禁用镜像源。
+## [dashboard][dashboard] 图标显示异常
+
+依赖 [all-the-icons][all-the-icons], 请确保`M-x all-the-icons-install-fonts`安装对应的字体以显示图标。一般情况下会自动安装对应的字体，见[all-the-icons-install-fonts](https://github.com/domtronn/all-the-icons.el/blob/2c963ebb75f211d2f7ac3d2db5f4a9ee2f3e27da/all-the-icons.el#L1052) 函数。
+
+## 更新时提示对应包版本不存在
+
+如果您在使用国内镜像源时出现这个问题，多数情况都是由镜像源同步不一致导致的，可以切换成上游来规避这个问题。
 
 ``` elisp
 (setq package-archives
@@ -392,12 +377,16 @@ yay -S ocaml-ocp-indent dune
         ("gnu"    . "https://elpa.gnu.org/packages/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 ```
-3. 如果升级包遇到了错误，可以使用 [init-mini.el](init-mini.el) 这个最小的配置来
-   启动。
+
+## Emacs 配置挂了
+
+可以使用 [init-mini.el](init-mini.el) 这个最小配置来临时救急一下。
 
 ``` bash
 emacs -Q -l init-mini.el
 ```
+
+~~虽然咱都是直接开 nvim 的~~
 
 # 其他
 
