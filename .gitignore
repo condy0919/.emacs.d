@@ -13,6 +13,9 @@
 # flycheck temp file
 .flycheck*
 
+# The quickstart file
+package-quickstart.el
+
 elpa/
 straight/
 quelpa/

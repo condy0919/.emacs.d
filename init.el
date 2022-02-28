@@ -47,6 +47,11 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Keep ~/.emacs.d/ clean.
+(use-package no-littering
+  :ensure t
+  :demand t)
+
 ;; Bootstrap `quelpa'.
 (use-package quelpa
   :ensure t

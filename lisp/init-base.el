@@ -511,7 +511,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :custom
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
-  (recentf-exclude '( ;; Folders on MacOS start
+  (recentf-exclude '(;; Folders on MacOS start
                      "^/private/tmp/"
                      "^/var/folders/"
                      ;; Folders on MacOS end
@@ -526,11 +526,6 @@ Else, call `comment-or-uncomment-region' on the current line."
 (use-package try
   :ensure t
   :commands try try-and-refresh)
-
-;; Keep ~/.emacs.d clean
-(use-package no-littering
-  :ensure t
-  :demand t)
 
 ;; MacOS specific
 (use-package exec-path-from-shell
