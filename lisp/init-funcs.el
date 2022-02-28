@@ -78,18 +78,5 @@ confirmation."
        map)
      t)))
 
-;;;###autoload
-(defun +transient-tab-bar-undo-close-tab ()
-  "Transient version of `tab-bar-undo-close-tab'."
-  (interactive)
-  (let ((echo-keystrokes nil))
-    (tab-bar-undo-close-tab)
-    (message "Tab: [u]ndo")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map "u" #'tab-bar-undo-close-tab)
-       map)
-     t)))
-
 (provide 'init-funcs)
 ;;; init-funcs.el ends here

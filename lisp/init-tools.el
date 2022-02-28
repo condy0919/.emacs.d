@@ -108,6 +108,33 @@
   (separedit-continue-fill-column t)
   (separedit-buffer-creation-hook #'auto-fill-mode))
 
+;; Universal menus
+(use-package transient
+  :ensure nil
+  :when (>= emacs-major-version 28)
+  :bind (("C-c h o" . scroll-other-window-menu))
+  :config
+  (transient-define-prefix scroll-other-window-menu ()
+    "Scroll other window."
+    :transient-suffix     'transient--do-stay
+    :transient-non-suffix 'transient--do-warn
+    [["Line"
+      ("j" "next line" scroll-other-window-line)
+      ("k" "previous line" scroll-other-window-down-line)]
+     ["Page"
+      ("C-f" "next page" scroll-other-window)
+      ("C-b" "previous page" scroll-other-window-down)]])
+
+  (defun scroll-other-window-line ()
+    "Scroll up of one line in other window."
+    (interactive)
+    (scroll-other-window 1))
+
+  (defun scroll-other-window-down-line ()
+    "Scroll down of one line in other window."
+    (interactive)
+    (scroll-other-window-down 1)))
+
 ;; Pastebin service
 (use-package webpaste
   :ensure t

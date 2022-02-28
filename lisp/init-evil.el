@@ -157,7 +157,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "tt" 'tab-bar-switch-to-tab
       "tp" 'tab-bar-switch-to-recent-tab
       "tr" 'tab-bar-rename-tab
-      "tu" '+transient-tab-bar-undo-close-tab
 
       ;; text
       "xj" 'set-justification
