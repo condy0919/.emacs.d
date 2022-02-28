@@ -6,12 +6,8 @@
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum)
 
-;; We're using Emacs 27+.
-;;
-;; Installed packages are now activated *before* loading the init file. As a
-;; result of this change, it is no longer necessary to call
-;; `package-initialize'.
-(setq package-enable-at-startup t)
+;; Do not initialise the package manager. This is done in `init.el'.
+(setq package-enable-at-startup nil)
 
 ;; Faster to disable these here (before they've been initialized)
 (push '(menu-bar-lines . 0) default-frame-alist)
