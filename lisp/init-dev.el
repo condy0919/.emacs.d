@@ -111,22 +111,19 @@
 ;; xref
 (use-package xref
   :ensure nil
-  :init
+  :hook ((xref-after-return xref-after-jump) . recenter)
+  :custom
   ;; Emacs 28+
   ;;
   ;; `project-find-regexp' can be faster when setting `xref-search-program' to
   ;;  `ripgrep'.
-  (when (>= emacs-major-version 28)
-    (setq xref-search-program 'ripgrep)
-    (setq xref-show-xrefs-function #'xref-show-definitions-completing-read)
-    (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
-  :hook ((xref-after-return xref-after-jump) . recenter))
+  (xref-search-program 'ripgrep)
+  (xref-show-xrefs-function #'xref-show-definitions-completing-read)
+  (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
 (use-package dumb-jump
   :ensure t
-  :init
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate t)
   :bind (("M-g j" . dumb-jump-go)
          ("M-g J" . dumb-jump-go-other-window))
   :custom
