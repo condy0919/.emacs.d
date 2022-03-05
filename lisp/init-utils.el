@@ -48,5 +48,15 @@ name and search again. Typically OP is nil or \"common\"."
                             (view-mode +1)
                             (pop-to-buffer buf)))))))))
 
+(defconst wttr-default-cities '("北京" "上海" "深圳" "杭州"))
+(defconst wttr-url-template "https://weathernew.pae.baidu.com/weathernew/pc?query=%s天气&srcid=4982")
+
+;;;###autoload
+(defun wttr (city)
+  "Weather forecast for CITY."
+  (interactive (list (completing-read "City: " wttr-default-cities)))
+  (let ((url (format wttr-url-template city)))
+    (xwidget-webkit-browse-url url)))
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
