@@ -48,7 +48,7 @@ name and search again. Typically OP is nil or \"common\"."
                             (view-mode +1)
                             (pop-to-buffer buf)))))))))
 
-(defconst wttr-default-cities '("北京" "上海" "深圳" "杭州"))
+(defconst wttr-default-cities '("杭州" "深圳" "北京" "上海"))
 (defconst wttr-url-template "https://weathernew.pae.baidu.com/weathernew/pc?query=%s天气&srcid=4982")
 
 ;;;###autoload
