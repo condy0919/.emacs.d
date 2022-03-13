@@ -146,7 +146,9 @@ current directory."
   (dolist (ch '(?_ ?- ?.))
     (modify-syntax-entry ch "w" eshell-mode-syntax-table)))
 
-;; Used as a `sh-mode' REPL.
+;; The interactive shell.
+;;
+;; It can be used as a `sh-mode' REPL.
 ;;
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell

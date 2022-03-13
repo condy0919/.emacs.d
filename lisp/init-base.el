@@ -384,9 +384,13 @@ Else, call `comment-or-uncomment-region' on the current line."
                                 (when (> (count-windows) 1)
                                   (delete-window)))))))
   :custom
-  (comint-history-isearch 'dwim)
   ;; Make the prompt of "*Python*" buffer readonly
-  (comint-prompt-read-only t))
+  (comint-prompt-read-only t)
+  (comint-history-isearch 'dwim)
+  ;; Colorize
+  (comint-terminfo-terminal (if (file-readable-p "/usr/share/terminfo/d/dumb-emacs-ansi")
+                                "dumb-emacs-ansi"
+                              "dumb")))
 
 ;; Better abbrev expansion
 (use-package hippie-exp
