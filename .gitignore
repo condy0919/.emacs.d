@@ -16,9 +16,11 @@
 # The quickstart file
 package-quickstart.el
 
+# shell startfile
+init_bash.sh
+init_zsh.sh
+
 elpa/
-straight/
-quelpa/
 var/
 etc/
 eln-cache/
