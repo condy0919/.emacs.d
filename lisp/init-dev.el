@@ -132,7 +132,10 @@
   (dumb-jump-selector 'completing-read))
 
 ;; A fancy ctags frontend
+;;
+;; Disable untill https://github.com/universal-ctags/citre/issues/113 is resolved.
 (use-package citre
+  :disabled t
   :ensure t
   :init
   ;; Load the prelude.
