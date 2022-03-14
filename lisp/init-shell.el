@@ -21,27 +21,11 @@
 (use-package term
   :ensure nil
   :hook ((term-mode . term-mode-common-init)
-         (term-mode . term-mode-prompt-regexp-setup)
-         (term-exec . term-mode-no-query))
-  :bind (:map term-raw-map
-         ("C-c C-y" . term-paste)
-         ;; Don't capture my keys!
-         ("M-:" . nil)
-         ("M-x" . nil)
-         ("C-h" . nil)
-         ("C-u" . nil))
+         (term-mode . term-mode-prompt-regexp-setup))
   :config
   (defun term-mode-prompt-regexp-setup ()
     "Setup `term-prompt-regexp' for term-mode."
-    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
-
-  (defun term-mode-no-query ()
-    "No prompt about processes when killing term."
-    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-      (set-process-query-on-exit-flag proc nil)))
-  :custom
-  (term-input-ignoredups t)
-  (term-completion-autolist t))
+    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *")))
 
 ;; the Emacs shell & friends
 (use-package eshell
