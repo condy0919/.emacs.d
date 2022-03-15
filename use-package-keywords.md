@@ -2,7 +2,6 @@ Use the following ordering for `use-package` keywords:
 
 - `:ensure`
 - `:when`
-- `:quelpa`
 - `:requires`
 - `:defines`
 - `:functions`

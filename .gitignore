@@ -21,6 +21,7 @@ init_bash.sh
 init_zsh.sh
 
 elpa/
+quelpa/
 var/
 etc/
 eln-cache/
