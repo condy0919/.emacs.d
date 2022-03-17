@@ -449,6 +449,8 @@ Else, call `comment-or-uncomment-region' on the current line."
                    (name . "\\*Packages\\*")
                    (name . "\\*Messages\\*")
                    (name . "\\*Customize\\*")))
+      ("Browser" (or (mode . eww-mode)
+                     (mode . xwidget-webkit-mode)))
       ("Help" (or (name . "\\*Help\\*")
                   (name . "\\*Apropos\\*")
                   (name . "\\*info\\*")
