@@ -133,10 +133,7 @@
   (dumb-jump-selector 'completing-read))
 
 ;; A fancy ctags frontend
-;;
-;; Disable untill https://github.com/universal-ctags/citre/issues/113 is resolved.
 (use-package citre
-  :disabled t
   :ensure t
   :init
   ;; Load the prelude.
@@ -152,7 +149,7 @@
   (citre-ctags-program (executable-find "ctags"))
   (citre-readtags-program (executable-find "readtags")))
 
-;; Browse devdoc.io
+;; Browse devdocs.io
 (use-package devdocs
   :ensure t
   :bind ("C-c b" . devdocs-lookup)
