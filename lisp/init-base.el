@@ -138,8 +138,9 @@
   (line-number-mode t)
   (column-number-mode t)
   (size-indication-mode t)
-  ;; No visual feedback on copy.
+  ;; No visual feedback on copy/delete.
   (copy-region-blink-delay 0)
+  (delete-pair-blink-delay 0)
   ;; confusing if no fringes (GUI only).
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   ;; column starts from 1
