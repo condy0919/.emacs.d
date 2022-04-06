@@ -98,10 +98,6 @@
 (setq y-or-n-p-use-read-key t
       read-char-choice-use-read-key t)
 
-;; A simple frame title
-(setq frame-title-format '("%b - Emacs")
-      icon-title-format frame-title-format)
-
 ;; Enable the disabled narrow commands
 (put 'narrow-to-defun  'disabled nil)
 (put 'narrow-to-page   'disabled nil)
