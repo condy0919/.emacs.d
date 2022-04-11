@@ -56,13 +56,15 @@ confirmation."
   (interactive
    (list (or buffer-file-name
              (user-error "No file is visiting"))))
-  (message (kill-new file)))
+  (kill-new file)
+  (message "Copying '%s' to clipboard" file))
 
 ;;;###autoload
 (defun +copy-current-buffer-name ()
-  "Copy the name to the current buffer."
+  "Copy the name of current buffer."
   (interactive)
-  (message (kill-new (buffer-name))))
+  (kill-new (buffer-name))
+  (message "Copying '%s' to clipboard" (buffer-name)))
 
 ;;;###autoload
 (defun +transient-tab-bar-history ()
