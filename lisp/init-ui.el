@@ -58,13 +58,6 @@
                    ("*Occur*"                   :select t   :align t)
                    ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t))))
 
-;; All `temp-buffer's, e.g. *Completions*, will never mess up window layout.
-(use-package help
-  :ensure nil
-  :hook (after-init . temp-buffer-resize-mode)
-  :custom
-  (help-window-select t))
-
 ;; Windows layout recorder
 ;;
 ;; You can still use `winner-mode' on Emacs 26 or early. On Emacs 27, it's

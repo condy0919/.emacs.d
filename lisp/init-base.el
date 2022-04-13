@@ -246,6 +246,7 @@
   (completion-category-overrides '((buffer (styles . (flex)))))
   ;; vertical view
   (completions-format 'one-column)
+  (completions-max-height 13)
   (completions-detailed t))
 
 ;; Holidays
