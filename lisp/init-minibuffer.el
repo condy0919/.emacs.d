@@ -11,26 +11,12 @@
   :custom
   (vertico-sort-function nil))
 
-;; `embark-dwim' invoke actions like `hyperbole'.
 (use-package embark
   :ensure t
-  :bind (("M-RET"   . embark-either)
-         :map minibuffer-local-map
+  :bind (:map minibuffer-local-map
          ("M-o"     . embark-act)
          ("C-c C-c" . embark-export)
-         ("C-c C-o" . embark-collect-snapshot))
-  :config
-  (defun embark-either (&optional arg)
-    "Invoke `embark-act' is ARG is non-nil, otherwise invoke
-`embark-dwim'."
-    (interactive "P")
-    (if arg
-        (embark-act)
-      (embark-dwim)))
-  :custom
-  (embark-collect-initial-view-alist '((t . list)))
-  (embark-collect-live-initial-delay 0.15)
-  (embark-collect-live-update-delay 0.15))
+         ("C-c C-o" . embark-collect)))
 
 (use-package consult
   :ensure t
