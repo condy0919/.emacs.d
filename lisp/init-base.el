@@ -227,14 +227,17 @@
          :map minibuffer-local-isearch-map
          ([escape] . abort-recursive-edit))
   :custom
+  ;; Default minibuffer is fine-tuned since Emacs 29
   (completion-auto-help t)
   (completion-show-help nil)
-  ;; Cycle completions regardless of the count
-  (completion-cycle-threshold t)
+  (completion-cycle-threshold nil)
+  (completion-auto-select 'second-tab)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
   (minibuffer-eldef-shorten-default t)
   (minibuffer-electric-default-mode t)
+  ;; Don't insert completion at point into minibuffer
+  (minibuffer-completion-auto-choose nil)
   ;; One frame one minibuffer.
   (minibuffer-follows-selected-frame nil)
   ;; Ignore cases when complete
