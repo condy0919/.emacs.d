@@ -207,12 +207,14 @@
     (add-hook 'rcirc-print-functions #'rcirc-notify-me))
   :custom
   (rcirc-default-port 7000)
-  ;; print messages in current channel buffer
-  (rcirc-always-use-server-buffer-flag nil)
-  (rcirc-authenticate-before-join t)
+  (rcirc-kill-channel-buffers t)
+  ;; Always cycle for completions
+  (rcirc-cycle-completion-flag t)
   (rcirc-auto-authenticate-flag t)
+  (rcirc-authenticate-before-join t)
   (rcirc-fill-column #'window-text-width)
-  (rcirc-kill-channel-buffers t))
+  ;; print messages in current channel buffer
+  (rcirc-always-use-server-buffer-flag nil))
 
 (provide 'init-tools)
 ;;; init-tools.el ends here
