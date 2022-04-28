@@ -172,9 +172,9 @@
 
   (defface hideshow-border-face
     '((((background light))
-       :background "light coral" :extend t)
+       :background "rosy brown" :extend t)
       (t
-       :background "firebrick" :extend t))
+       :background "sandy brown" :extend t))
     "Face used for hideshow fringe."
     :group 'hideshow)
 
