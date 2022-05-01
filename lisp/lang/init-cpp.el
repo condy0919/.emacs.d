@@ -9,27 +9,27 @@
 
 (use-package cc-mode
   :ensure nil
-  :defines lsp-clients-clangd-executable lsp-clients-clangd-args
-  :mode ("\\.cxx\\'" . cc-mode)
+  :mode ("\\.cxx\\'" . c++-mode)
   :hook (c-mode . (lambda ()
                     (setq comment-start "// "
                           comment-end "")))
   :config
-  (defconst ccls-args nil)
-  (defconst clangd-args '("-j=2"
-                          "--malloc-trim"
-                          "--background-index"
-                          "--clang-tidy"
-                          "--completion-style=bundled"
-                          "--pch-storage=memory"
-                          "--header-insertion=iwyu"
-                          "--header-insertion-decorators"))
-  (with-eval-after-load 'lsp-mode
-    ;; Prefer `clangd' over `ccls'
-    (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
-                                            lsp-clients-clangd-args clangd-args))
-          ((executable-find "ccls") (setq lsp-clients-clangd-executable "ccls"
-                                          lsp-clients-clangd-args ccls-args))))
+  (with-no-warnings
+    (defconst ccls-args nil)
+    (defconst clangd-args '("-j=2"
+                            "--malloc-trim"
+                            "--background-index"
+                            "--clang-tidy"
+                            "--completion-style=bundled"
+                            "--pch-storage=memory"
+                            "--header-insertion=iwyu"
+                            "--header-insertion-decorators"))
+    (with-eval-after-load 'lsp-mode
+      ;; Prefer `clangd' over `ccls'
+      (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
+                                              lsp-clients-clangd-args clangd-args))
+            ((executable-find "ccls") (setq lsp-clients-clangd-executable "ccls"
+                                            lsp-clients-clangd-args ccls-args)))))
   :custom
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
