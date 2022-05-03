@@ -213,13 +213,12 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 打开一些看起来像是独立的应用:
 
-| key           | function                     |
-|---------------|------------------------------|
-| <kbd>aa</kbd> | `org-agenda`日程             |
-| <kbd>ac</kbd> | `calendar`日历               |
-| <kbd>ag</kbd> | `gnus`查看新闻组             |
-| <kbd>ai</kbd> | `rcirc`上 IRC                |
-| <kbd>an</kbd> | `newsticker`查看RSS订阅      |
+| key           | function         |
+|---------------|------------------|
+| <kbd>aa</kbd> | `org-agenda`日程 |
+| <kbd>ac</kbd> | `calendar`日历   |
+| <kbd>ag</kbd> | `gnus`查看新闻组 |
+| <kbd>ai</kbd> | `rcirc`上 IRC    |
 
 搜索相关的`Leader`键绑定:
 
