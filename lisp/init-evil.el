@@ -96,6 +96,9 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       ;; SPC, quit minibuffer.
       "SPC" 'keyboard-escape-quit
 
+      ;; Resume
+      "'" 'vertico-repeat
+
       ;; file
       "ff" 'find-file
       "fF" 'find-file-other-window

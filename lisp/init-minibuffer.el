@@ -7,7 +7,8 @@
 
 (use-package vertico
   :ensure t
-  :hook (after-init . vertico-mode)
+  :hook ((after-init . vertico-mode)
+         (minibuffer-setup . vertico-repeat-save))
   :custom
   (vertico-sort-function nil))
 
