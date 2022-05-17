@@ -146,9 +146,7 @@
          ("C-c c u" . citre-update-this-tags-file))
   :custom
   (citre-auto-enable-citre-mode-modes '(prog-mode))
-  (citre-prompt-language-for-ctags-command t)
-  (citre-ctags-program (executable-find "ctags"))
-  (citre-readtags-program (executable-find "readtags")))
+  (citre-prompt-language-for-ctags-command t))
 
 ;; Browse devdocs.io
 (use-package devdocs
@@ -192,7 +190,7 @@
     "Display a folded region indicator with the number of folded lines."
     (when (eq 'code (overlay-get ov 'hs))
       (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
-             (info (format "(%d)..." nlines)))
+             (info (format " (%d)..." nlines)))
         ;; fringe indicator
         (overlay-put ov 'before-string (propertize " "
                                                    'display '(left-fringe hideshow-folded-fringe
