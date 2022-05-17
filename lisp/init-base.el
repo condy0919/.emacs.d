@@ -132,7 +132,6 @@
 ;; Show line/column number and more
 (use-package simple
   :ensure nil
-  :bind ([remap just-one-space] . cycle-spacing)
   :custom
   ;; show line/column/filesize in modeline
   (line-number-mode t)
