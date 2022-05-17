@@ -98,6 +98,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
 
       ;; Resume
       "'" 'vertico-repeat
+      "." 'avy-menu
 
       ;; file
       "ff" 'find-file

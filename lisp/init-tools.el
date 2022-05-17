@@ -37,6 +37,21 @@
   :hook (after-init . avy-setup-default)
   :bind (("M-g M-l" . avy-goto-line)
          ("M-g M-j" . avy-goto-char-timer))
+  :config
+  (when (>= emacs-major-version 28)
+    (use-package transient
+      :ensure nil
+      :config
+      (transient-define-prefix avy-menu ()
+        "Avy quick menu."
+        :transient-suffix     'transient--do-stay
+        :transient-non-suffix 'transient--do-warn
+        [["Move"
+          ("j" "avy-next" avy-next)
+          ("k" "avy-prev" avy-prev)
+          ("p" "avy-pop-mark" avy-pop-mark)]
+         ["Resume"
+          ("r" "avy-resume" avy-resume)]])))
   :custom
   (avy-background t)
   (avy-all-windows nil)
