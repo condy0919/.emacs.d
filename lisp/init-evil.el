@@ -141,8 +141,8 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "cc" 'compile
       "cC" 'recompile
       "ck" 'kill-compilation
+      "cw" 'delete-trailing-whitespace
       "cx" 'quickrun
-      "cX" 'quickrun-shell
 
       ;; window
       "w" 'evil-window-map
@@ -162,11 +162,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "tt" 'tab-bar-switch-to-tab
       "tp" 'tab-bar-switch-to-recent-tab
       "tr" 'tab-bar-rename-tab
-
-      ;; text
-      "xj" 'set-justification
-      "xw" 'delete-trailing-whitespace
-      "x TAB" 'indent-rigidly
 
       ;; search
       "sj" 'evil-show-jumps
