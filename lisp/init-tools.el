@@ -51,7 +51,9 @@
           ("k" "avy-prev" avy-prev)
           ("p" "avy-pop-mark" avy-pop-mark)]
          ["Resume"
-          ("r" "avy-resume" avy-resume)]])))
+          ("r" "avy-resume" avy-resume)]
+         ["Exit"
+          ("q" "quit" transient-quit-one)]])))
   :custom
   (avy-background t)
   (avy-all-windows nil)
