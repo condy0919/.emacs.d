@@ -122,6 +122,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "bC" 'clone-indirect-buffer-other-window
       "by" '+copy-current-buffer-name
       "bv" 'revert-buffer
+      "bx" 'scratch-buffer
       "bz" 'bury-buffer
       ;; --------------
       "bm" 'bookmark-set
