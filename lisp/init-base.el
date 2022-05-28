@@ -142,8 +142,6 @@
   (delete-pair-blink-delay 0)
   ;; confusing if no fringes (GUI only).
   (visual-line-fringe-indicators '(nil right-curly-arrow))
-  ;; column starts from 1
-  (column-number-indicator-zero-based nil)
   ;; don't save current clipboard text before replacing it
   (save-interprogram-paste-before-kill nil)
   ;; eliminate duplicates
