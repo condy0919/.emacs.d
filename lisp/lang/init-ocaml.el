@@ -13,8 +13,16 @@
   (tuareg-match-patterns-aligned t)
   (tuareg-indent-align-with-first-arg t))
 
+;; Context sensitive completion
+;; Bundled with the aur package `merlin'
+(use-package merlin
+  :ensure nil
+  :hook (tuareg-mode . merlin-mode)
+  :custom
+  (merlin-command "ocamlmerlin"))
+
 ;; Indentation tool for OCaml
-;; Bundled with system package `ocaml-ocp-indent'
+;; Bundled with the system package `ocaml-ocp-indent'
 (use-package ocp-indent
   :ensure nil
   :when (executable-find "ocp-indent")
