@@ -84,7 +84,7 @@
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "report_problem" :height 1.1 :v-adjust -0.2) "⚑")
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "update"         :height 1.1 :v-adjust -0.2) "♺")
-                                        "Update" "Update packages synchronously" (lambda (&rest _) (auto-package-update-now)) success))))
+                                        "Update" "Update packages synchronously" (lambda (&rest _) (package-update-all nil)) success))))
 
   :hook ((after-init . dashboard-setup-startup-hook)
          (dashboard-mode . (lambda ()
