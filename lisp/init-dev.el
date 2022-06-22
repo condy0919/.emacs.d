@@ -10,16 +10,7 @@
 ;; Compilation Mode
 (use-package compile
   :ensure nil
-  :hook (compilation-filter . colorize-compilation-buffer)
-  :config
-  (use-package ansi-color
-    :ensure nil
-    :commands ansi-color-apply-on-region)
-
-  (defun colorize-compilation-buffer ()
-    "ANSI coloring in compilation buffers."
-    (with-silent-modifications
-      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  :hook (compilation-filter . ansi-color-compilation-filter)
   :custom
   (compilation-always-kill t)
   (compilation-scroll-output t)
