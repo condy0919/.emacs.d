@@ -8,6 +8,10 @@
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs\\'" . rust-mode)
+  :config
+  (with-no-warnings
+    (with-eval-after-load 'lsp-mode
+      (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-extern-crate"])))
   :custom
   (rust-format-show-buffer nil)
   (rust-format-on-save (executable-find "rustfmt")))
