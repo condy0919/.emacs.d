@@ -229,14 +229,6 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>sm</kbd> | `evil-show-marks`                                                      |
 | <kbd>sr</kbd> | `evil-show-registers`                                                  |
 
-与文本相关的`Leader`键绑定:
-
-| key              | function                                     |
-|------------------|----------------------------------------------|
-| <kbd>x TAB</kbd> | `indent-rigidly`在一个`region`上统一进行缩进 |
-| <kbd>xw</kbd>    | `delete-trailing-whitespace`删除行末空白字符 |
-| <kbd>xj</kbd>    | `set-justification`文本对齐                  |
-
 与代码相关的`Leader`键绑定:
 
 | key           | function                                          |
@@ -247,6 +239,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | <kbd>cx</kbd> | `quickrun`快速运行当前程序                        |
 | <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出              |
 | <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示 |
+| <kbd>cw</kbd> | `delete-trailing-whitespace`删除行末空白字符      |
 
 ## Emacs
 
