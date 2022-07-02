@@ -40,6 +40,7 @@
   (shackle-default-alignment 'below)
   (shackle-rules '((magit-status-mode    :select t :inhibit-window-quit t :same t)
                    (magit-log-mode       :select t :inhibit-window-quit t :same t)
+                   (vc-annotate-mode     :select t :inhibit-window-quit t :same t)
                    ("*quickrun*"         :select t :inhibit-window-quit t :same t)
                    (profiler-report-mode :select t)
                    (xwidget-webkit-mode  :select t :same t)
