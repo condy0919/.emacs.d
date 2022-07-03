@@ -19,6 +19,8 @@
   (dired-bind-man nil)
   (dired-bind-info nil)
   (dired-kill-when-opening-new-dired-buffer t)
+  ;; Dont prompt about killing buffer visiting delete file
+  (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-AFhlv"))
@@ -56,8 +58,6 @@
                             ".vscode"
                             ".ccls-cache" ".clangd")
                         string-end))
-  ;; Dont prompt about killing buffer visiting delete file
-  (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-guess-shell-alist-user `((,(rx "."
                                         (or
                                          ;; Videos
