@@ -190,7 +190,6 @@
 ;; Edit text for browser with GhostText or AtomicChrome extension
 (use-package atomic-chrome
   :ensure t
-  :when (display-graphic-p)
   :hook ((emacs-startup . atomic-chrome-start-server)
          (atomic-chrome-edit-mode . delete-other-windows))
   :custom
