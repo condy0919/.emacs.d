@@ -99,16 +99,6 @@
   :custom
   (wgrep-change-readonly-file t))
 
-;; Auto update packages
-;;
-;; M-x `package-update' since Emacs 29
-(when (< emacs-major-version 29)
-  (use-package auto-package-update
-    :ensure t
-    :commands auto-package-update-now auto-package-update-now-async
-    :custom
-    (auto-package-update-delete-old-versions t)))
-
 ;; GC optimization
 (use-package gcmh
   :ensure t
