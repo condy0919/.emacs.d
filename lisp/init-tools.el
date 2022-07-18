@@ -185,6 +185,10 @@
                    ("Man Go" .
                     [simple-query "archlinux.org" "man.archlinux.org/search?q=" "&go=Go"])
 
+                   ;; Code search
+                   ("Code Search" .
+                    [simple-query "sourcegraph.com" "sourcegraph.com/search?q=context:global+" "&patternType=literal"])
+
                    ;; Life
                    ("Weather" . webjump-weather)
 
