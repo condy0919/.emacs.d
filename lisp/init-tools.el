@@ -160,6 +160,15 @@
   :ensure nil
   ;; C-c / will be shadowed by `org-sparse-tree' in org-mode
   :bind ("C-c C-/" . webjump)
+  :config
+  (defconst webjump-weather-default-cities '("杭州" "深圳" "北京" "上海"))
+  (defconst webjump-weather-url-template "https://weathernew.pae.baidu.com/weathernew/pc?query=%s天气&srcid=4982")
+
+  (defun webjump-weather (_name)
+    (let ((city (completing-read "City: " webjump-weather-default-cities)))
+      (format webjump-weather-url-template city)))
+
+  (add-to-list 'browse-url-handlers '("weathernew.pae.baidu.com" . xwidget-webkit-browse-url))
   :custom
   (webjump-sites '(;; Internet search engines.
                    ("Google" .
@@ -175,6 +184,9 @@
                     [simple-query "archlinux.org" "man.archlinux.org/search?q=" ""])
                    ("Man Go" .
                     [simple-query "archlinux.org" "man.archlinux.org/search?q=" "&go=Go"])
+
+                   ;; Life
+                   ("Weather" . webjump-weather)
 
                    ;; Language specific engines.
                    ("x86 Instructions Reference" .
