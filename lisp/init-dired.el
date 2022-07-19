@@ -16,8 +16,6 @@
   :custom
   (dired-dwim-target t)
   (dired-bind-vm nil)
-  (dired-bind-man nil)
-  (dired-bind-info nil)
   (dired-kill-when-opening-new-dired-buffer t)
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil)
