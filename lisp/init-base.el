@@ -28,8 +28,8 @@
 (setq epg-pinentry-mode 'loopback)
 
 ;; Optimize for very long lines
-(setq bidi-paragraph-direction 'left-to-right
-      bidi-inhibit-bpa t)
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
 
 ;; No backup files
 (setq make-backup-files nil
@@ -170,7 +170,6 @@
   ;; better word wrapping for CJK characters
   (word-wrap-by-category t)
   ;; paragraphs
-  (sentence-end "\\([，。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
   (sentence-end-double-space nil))
 
 ;; Back to the previous position

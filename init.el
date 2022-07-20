@@ -58,8 +58,8 @@
   (quelpa-update-melpa-p nil)
   (quelpa-checkout-melpa-p nil))
 
-(setq debug-on-error t)
-(setq-default lexical-binding t)
+;; --debug-init implies `debug-on-error'.
+(setq debug-on-error init-file-debug)
 
 (let ((dir (locate-user-emacs-file "lisp")))
   (add-to-list 'load-path (file-name-as-directory dir))
