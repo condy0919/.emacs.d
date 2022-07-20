@@ -199,11 +199,7 @@
 ;; Use emacsclient to connect
 (use-package server
   :ensure nil
-  :when (display-graphic-p)
-  :defer 1
-  :config
-  (unless (server-running-p)
-    (server-start)))
+  :hook (after-init . server-mode))
 
 ;; Workaround with minified source files
 (use-package so-long
