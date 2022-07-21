@@ -62,6 +62,8 @@
          ("C-c d" . lsp-describe-thing-at-point)
          ("C-c a" . lsp-execute-code-action)
          ("C-c r" . lsp-rename))
+  :config
+  (lsp-enable-which-key-integration t)
   :custom
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-links nil)                 ;; no clickable links
