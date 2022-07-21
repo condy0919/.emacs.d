@@ -30,7 +30,7 @@
                                            (nnimap-expunge 'never))))
   ;;; Startup functions
   (gnus-save-killed-list nil)
-  (gnus-check-new-newsgroups 'ask-server)
+  (gnus-check-new-newsgroups nil)
   ;; No other newsreader is used.
   (gnus-save-newsrc-file nil)
   (gnus-read-newsrc-file nil)
