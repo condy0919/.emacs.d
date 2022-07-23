@@ -104,3 +104,4 @@ starlark
 subtype/M
 url
 unscalable
+nvim
