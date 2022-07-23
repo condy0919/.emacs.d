@@ -8,11 +8,17 @@
 (require 'rx)
 (require 'init-funcs)
 
-(defun term-mode-common-init ()
+(defun shell-mode-common-init ()
   "The common initialization procedure for term/shell."
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
   (setq-local global-hl-line-mode nil))
+
+(defun shell-self-destroy-sentinel (proc _exit-msg)
+  "Make PROC self destroyable."
+  (when (memq (process-status proc) '(exit signal stop))
+    (kill-buffer (process-buffer proc))
+    (ignore-errors (delete-window))))
 
 ;; General term mode
 ;;
@@ -20,18 +26,24 @@
 ;; See https://www.emacswiki.org/emacs/AnsiTermHints for more information.
 (use-package term
   :ensure nil
-  :hook ((term-mode . term-mode-common-init)
-         (term-mode . term-mode-prompt-regexp-setup))
+  :hook ((term-mode . shell-mode-common-init)
+         (term-mode . term-mode-prompt-regexp-setup)
+         (term-exec . term-mode-set-sentinel))
   :config
   (defun term-mode-prompt-regexp-setup ()
     "Setup `term-prompt-regexp' for term-mode."
-    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *")))
+    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
+  (defun term-mode-set-sentinel ()
+    "Close buffer after exit."
+    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+      (set-process-sentinel proc #'shell-self-destroy-sentinel))))
 
 ;; the Emacs shell & friends
 (use-package eshell
   :ensure nil
   :hook ((eshell-mode . (lambda ()
-                          (term-mode-common-init)
+                          (shell-mode-common-init)
                           ;; Eshell is not fully functional
                           (setenv "PAGER" "cat")))
          (eshell-after-prompt . eshell-prompt-read-only))
@@ -137,7 +149,7 @@ current directory."
 ;; `shell' is recommended to use over `tramp'.
 (use-package shell
   :ensure nil
-  :hook ((shell-mode . term-mode-common-init)
+  :hook ((shell-mode . shell-mode-common-init)
          (shell-mode . revert-tab-width-to-default))
   :bind ("M-`" . shell-toggle) ;; was `tmm-menubar'
   :config
@@ -147,13 +159,14 @@ If popup is visible but unselected, select it.
 If popup is focused, kill it."
     (interactive)
     (if-let ((win (get-buffer-window "*shell-popup*")))
-        (when (eq (selected-window) win)
-          ;; If users attempt to delete the sole ordinary window, silence it.
-          (ignore-errors (delete-window win)))
+        (if (eq (selected-window) win)
+            ;; If users attempt to delete the sole ordinary window, silence it.
+            (ignore-errors (delete-window win))
+          (select-window win))
       (let ((display-comint-buffer-action '(display-buffer-at-bottom
                                             (inhibit-same-window . nil))))
-
-        (shell "*shell-popup*"))))
+        (when-let ((proc (ignore-errors (get-buffer-process (shell "*shell-popup*")))))
+          (set-process-sentinel proc #'shell-self-destroy-sentinel)))))
 
   ;; Correct indentation for `ls'
   (defun revert-tab-width-to-default ()

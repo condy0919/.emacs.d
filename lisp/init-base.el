@@ -363,20 +363,8 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; Command line interpreter
 (use-package comint
   :ensure nil
-  ;; NOTE: `term' and `ielm' are not derived from `comint-mode'
-  :hook ((comint-exec term-exec ielm-mode) . buffer-auto-close)
   :bind (:map comint-mode-map
          ([remap kill-region]   . backward-kill-word))
-  :config
-  (defun buffer-auto-close ()
-    "Close buffer after exit."
-    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-      (set-process-sentinel proc
-                            (lambda (process _exit-msg)
-                              (when (memq (process-status process) '(exit signal))
-                                (kill-buffer (process-buffer process))
-                                (when (> (count-windows) 1)
-                                  (delete-window)))))))
   :custom
   ;; Make the prompt of "*Python*" buffer readonly
   (comint-prompt-read-only t)
