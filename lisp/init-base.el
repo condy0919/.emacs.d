@@ -370,9 +370,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   (comint-prompt-read-only t)
   (comint-history-isearch 'dwim)
   ;; Colorize
-  (comint-terminfo-terminal (if (file-readable-p "/usr/share/terminfo/d/dumb-emacs-ansi")
-                                "dumb-emacs-ansi"
-                              "dumb")))
+  (comint-terminfo-terminal "dumb-emacs-ansi"))
 
 ;; Better abbrev expansion
 (use-package hippie-exp
