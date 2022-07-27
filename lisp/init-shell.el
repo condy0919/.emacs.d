@@ -172,7 +172,9 @@ If popup is focused, kill it."
   ;; Correct indentation for `ls'
   (defun revert-tab-width-to-default ()
     "Revert `tab-width' to default value."
-    (setq-local tab-width 8)))
+    (setq-local tab-width 8))
+  :custom
+  (shell-kill-buffer-on-exit t))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
