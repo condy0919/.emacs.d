@@ -38,8 +38,7 @@
   (consult-async-min-input 2)
   (consult-async-refresh-delay 0.15)
   (consult-async-input-throttle 0.2)
-  (consult-async-input-debounce 0.1)
-  (consult-project-root-function #'projectile-project-root))
+  (consult-async-input-debounce 0.1))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
