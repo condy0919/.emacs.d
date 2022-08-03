@@ -5,7 +5,6 @@
 
 ;;; Code:
 
-(require 'rx)
 (require 'init-funcs)
 
 (defun shell-mode-common-init ()

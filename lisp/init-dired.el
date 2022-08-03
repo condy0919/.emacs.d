@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(require 'rx)
-
 ;; Use ( to toggle dired-hide-details-mode
 (use-package dired
   :ensure nil

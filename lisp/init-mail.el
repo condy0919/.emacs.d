@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(require 'rx)
-
 ;; A newsreader in Emacs
 (use-package gnus
   :ensure nil
