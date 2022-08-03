@@ -8,16 +8,6 @@
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
-(unless (or (daemonp) noninteractive)
-  ;; Keep a ref to the actual file-name-handler
-  (let ((default-file-name-handler-alist file-name-handler-alist))
-    ;; Set the file-name-handler to nil (because regexing is cpu intensive)
-    (setq file-name-handler-alist nil)
-    ;; Reset file-name-handler-alist after initialization
-    (add-hook 'emacs-startup-hook
-              (lambda ()
-                (setq file-name-handler-alist default-file-name-handler-alist)))))
-
 ;; Increase how much is read from processes in a single chunk (default is 4kb).
 ;; `lsp-mode' benefits from that.
 (setq read-process-output-max (* 4 1024 1024))
@@ -27,8 +17,6 @@
       '(("melpa"  . "https://melpa.org/packages/")
         ("gnu"    . "https://elpa.gnu.org/packages/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
-
-(package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)

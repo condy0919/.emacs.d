@@ -6,9 +6,6 @@
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum)
 
-;; Do not initialise the package manager. This is done in `init.el'.
-(setq package-enable-at-startup nil)
-
 ;; Faster to disable these here (before they've been initialized)
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
@@ -19,10 +16,20 @@
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
-;; Ignore X resources; its settings would be redundant with the other settings
-;; in this file and can conflict with later config (particularly where the
-;; cursor color is concerned).
-(advice-add #'x-apply-session-resources :override #'ignore)
+(unless (or (daemonp) noninteractive)
+  ;; Keep a ref to the actual file-name-handler
+  (let ((default-file-name-handler-alist file-name-handler-alist))
+    ;; Set the file-name-handler to nil (because regexing is cpu intensive)
+    (setq file-name-handler-alist nil)
+    ;; Reset file-name-handler-alist after initialization
+    (add-hook 'emacs-startup-hook
+              (lambda ()
+                ;; Merge instead of overwrite because there may have bene
+                ;; changes to `file-name-handler-alist' since startup we want to
+                ;; preserve.
+                (setq file-name-handler-alist
+                      (delete-dups (append file-name-handler-alist
+                                           default-file-name-handler-alist)))))))
 
 (provide 'early-init)
 ;;; early-init.el ends here
