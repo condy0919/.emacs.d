@@ -21,11 +21,12 @@
 
 (use-package consult
   :ensure t
-  :bind (([remap imenu]              . consult-imenu)
-         ([remap goto-line]          . consult-goto-line)
-         ([remap bookmark-jump]      . consult-bookmark)
-         ([remap recentf-open-files] . consult-recent-file)
-         ([remap evil-show-marks]    . consult-mark))
+  :bind (([remap imenu]                  . consult-imenu)
+         ([remap goto-line]              . consult-goto-line)
+         ([remap bookmark-jump]          . consult-bookmark)
+         ([remap evil-show-marks]        . consult-mark)
+         ([remap recentf-open-files]     . consult-recent-file)
+         ([remap repeat-complex-command] . consult-complex-command))
   :config
   (with-no-warnings
     (consult-customize consult-ripgrep consult-git-grep consult-grep
