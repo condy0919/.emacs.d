@@ -249,7 +249,7 @@
   :commands rmsbolt-compile
   :custom
   (rmsbolt-asm-format nil)
-  (rmsbolt-default-directory "/tmp"))
+  (rmsbolt-default-directory temporary-file-directory))
 
 ;; Parser generator
 (use-package bison-mode
