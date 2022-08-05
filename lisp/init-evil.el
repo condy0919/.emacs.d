@@ -86,11 +86,23 @@
 `evil-define-key*'. All BINDINGS are prefixed with \"<leader>\"
 if LOCALLEADER is nil, otherwise \"<localleader>\"."
       (cl-assert (cl-evenp (length bindings)))
-      (let ((prefix (if localleader "<localleader>" "<leader>")))
+      (let ((prefix (if localleader "<localleader>" "<leader>"))
+            wk-replacements)
         (while bindings
           (let ((key (pop bindings))
                 (def (pop bindings)))
-            (evil-define-key* state map (kbd (concat prefix key)) def)))))
+            (when (symbolp def)
+              (evil-define-key* state map (kbd (concat prefix key)) def))
+            ;; Save which-key (key . replacement).
+            (pcase def
+              (`(:wk ,replacement)
+               (push (cons (concat prefix key) replacement) wk-replacements)))))
+        ;; which-key integration.
+        ;; XXX: replacement for localleader NOT supported.
+        (with-eval-after-load 'which-key
+          (cl-loop for (key . replacement) in wk-replacements
+                   unless localleader
+                   do (which-key-add-key-based-replacements key replacement)))))
 
     (define-leader-key 'normal 'global nil
       ;; SPC, quit minibuffer.
@@ -101,6 +113,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "." 'avy-menu
 
       ;; file
+      "f"  '(:wk "files")
       "ff" 'find-file
       "fF" 'find-file-other-window
       "f/" 'find-file-other-window
@@ -112,10 +125,12 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "fl" 'find-file-literally
 
       ;; dired
+      "d" '(:wk "dired")
       "dj" 'dired-jump
       "dJ" 'dired-jump-other-window
 
       ;; buffer & bookmark
+      "b" '(:wk "bufmark")
       "bb" 'switch-to-buffer
       "bB" 'switch-to-buffer-other-window
       "bc" 'clone-indirect-buffer
@@ -137,6 +152,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "bs" 'bookmark-save
 
       ;; code
+      "c" '(:wk "code")
       "cd" 'rmsbolt-compile
       "cc" 'compile
       "cC" 'recompile
@@ -152,6 +168,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "w/" 'split-window-horizontally
 
       ;; tab
+      "t" '(:wk "tab")
       "t9" 'tab-bar-switch-to-last-tab
       "tc" 'tab-bar-close-tab
       "tC" 'tab-bar-close-group-tabs
@@ -164,6 +181,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "tr" 'tab-bar-rename-tab
 
       ;; search
+      "s" '(:wk "search")
       "sj" 'evil-show-jumps
       "sm" 'evil-show-marks
       "sr" 'evil-show-registers
@@ -173,12 +191,14 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "p" 'projectile-command-map
 
       ;; app
+      "a" '(:wk "app")
       "aa" 'org-agenda
       "ac" 'calendar
       "ag" 'gnus
       "ai" 'rcirc
 
       ;; open
+      "o" '(:wk "open")
       "oc" 'org-capture
       "ol" 'org-store-link
       "ot" 'ansi-term
