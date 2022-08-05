@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(require 'init-funcs)
-
 (defun shell-mode-common-init ()
   "The common initialization procedure for term/shell."
   (setq-local scroll-margin 0)
@@ -44,8 +42,7 @@
   :hook ((eshell-mode . (lambda ()
                           (shell-mode-common-init)
                           ;; Eshell is not fully functional
-                          (setenv "PAGER" "cat")))
-         (eshell-after-prompt . eshell-prompt-read-only))
+                          (setenv "PAGER" "cat"))))
   :config
   ;; Prevent accident typing
   (defalias 'eshell/vi 'find-file)
@@ -73,7 +70,7 @@ current directory."
                 " -and"
                 " -type f"
                 " -and"
-                " -iname '*" filename "*'")))
+                " -iname '*" (format "%s" filename) "*'")))
       (eshell-command-result cmd)))
 
   (defun eshell/z ()
@@ -90,46 +87,8 @@ current directory."
         (setq dir (substring dir 0 -1)))
       (let ((dir (completing-read "Directory: " dirs nil t)))
         (eshell/cd dir))))
-
-  (defun eshell-prompt ()
-    "Prompt for eshell."
-    (concat
-     (propertize user-login-name 'face 'font-lock-keyword-face)
-     "@"
-     "Youmu "
-     (if (equal (eshell/pwd) "~")
-         "~"
-       (abbreviate-file-name (eshell/pwd)))
-     " "
-     (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory)))
-               (br (pcase vc
-                     ('Git (car (vc-git-branches)))
-                     (_ "unknown"))))
-         (concat (propertize "(" 'face 'success)
-                 (format "%s" vc)
-                 (propertize ")" 'face 'success)
-                 (propertize "-" 'face 'font-lock-string-face)
-                 (propertize "[" 'face 'success)
-                 (propertize br 'face 'font-lock-constant-face)
-                 (propertize "]" 'face 'success)
-                 " ")
-       "")
-     "% "))
-
-  (defun eshell-prompt-read-only ()
-    "Make eshell's prompt read-only."
-    (add-text-properties
-     (point-at-bol)
-     (point)
-     '(read-only t
-       front-sticky (font-lock-face read-only)
-       rear-nonsticky (font-lock-face read-only))))
   :custom
   (eshell-banner-message "")
-  ;; Define our own prompt.
-  (eshell-highlight-prompt nil)
-  (eshell-prompt-regexp "^[^@]+@[^ ]+ [^ ]+ \\(([a-zA-Z]+)-\\[[a-zA-Z]+\\] \\)?% ")
-  (eshell-prompt-function 'eshell-prompt)
   ;; The following cmds will run on term.
   (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
