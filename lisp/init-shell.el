@@ -92,7 +92,9 @@ current directory."
        (abbreviate-file-name (eshell/pwd)))
      " "
      (if-let* ((vc (ignore-errors (vc-responsible-backend default-directory)))
-               (br (car (vc-git-branches))))
+               (br (pcase vc
+                     ('Git (car (vc-git-branches)))
+                     (_ "unknown"))))
          (concat (propertize "(" 'face 'success)
                  (format "%s" vc)
                  (propertize ")" 'face 'success)
