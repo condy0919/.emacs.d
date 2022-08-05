@@ -121,10 +121,9 @@ current directory."
     (add-text-properties
      (point-at-bol)
      (point)
-     '(rear-nonsticky t
-       field output
-       read-only t
-       inhibit-line-move-field-capture t)))
+     '(read-only t
+       front-sticky (font-lock-face read-only)
+       rear-nonsticky (font-lock-face read-only))))
   :custom
   (eshell-banner-message "")
   ;; Define our own prompt.
