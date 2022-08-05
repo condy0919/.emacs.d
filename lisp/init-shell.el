@@ -81,6 +81,16 @@ current directory."
     (let ((dir (completing-read "Directory: " (delete-dups (ring-elements eshell-last-dir-ring)) nil t)))
       (eshell/cd dir)))
 
+  (defun eshell/bd ()
+    "cd to parent directory with completions."
+    (let ((dir default-directory)
+          dirs)
+      (while (not (string-empty-p dir))
+        (push (file-name-directory dir) dirs)
+        (setq dir (substring dir 0 -1)))
+      (let ((dir (completing-read "Directory: " dirs nil t)))
+        (eshell/cd dir))))
+
   (defun eshell-prompt ()
     "Prompt for eshell."
     (concat
