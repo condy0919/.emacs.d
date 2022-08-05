@@ -16,20 +16,5 @@
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
-(unless (or (daemonp) noninteractive)
-  ;; Keep a ref to the actual file-name-handler
-  (let ((default-file-name-handler-alist file-name-handler-alist))
-    ;; Set the file-name-handler to nil (because regexing is cpu intensive)
-    (setq file-name-handler-alist nil)
-    ;; Reset file-name-handler-alist after initialization
-    (add-hook 'emacs-startup-hook
-              (lambda ()
-                ;; Merge instead of overwrite because there may have bene
-                ;; changes to `file-name-handler-alist' since startup we want to
-                ;; preserve.
-                (setq file-name-handler-alist
-                      (delete-dups (append file-name-handler-alist
-                                           default-file-name-handler-alist)))))))
-
 (provide 'early-init)
 ;;; early-init.el ends here
