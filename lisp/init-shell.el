@@ -77,8 +77,8 @@ current directory."
       (eshell-command-result cmd)))
 
   (defun eshell/z ()
-    "cd to directory with completion."
-    (let ((dir (completing-read "Directory: " (ring-elements eshell-last-dir-ring) nil t)))
+    "cd to directory with completions."
+    (let ((dir (completing-read "Directory: " (delete-dups (ring-elements eshell-last-dir-ring)) nil t)))
       (eshell/cd dir)))
 
   (defun eshell-prompt ()
