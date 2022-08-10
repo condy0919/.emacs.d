@@ -44,11 +44,12 @@
                    ("*quickrun*"         :select t :inhibit-window-quit t :same t)
                    (profiler-report-mode :select t)
                    (xwidget-webkit-mode  :select t :same t)
-                   (apropos-mode         :select t :align t :size 0.4)
-                   (help-mode            :select t :align t :size 0.4)
                    (comint-mode          :select t :align t :size 0.4)
                    (grep-mode            :select t :align t)
                    (rg-mode              :select t :align t)
+                   ;; See also `help-window-select'
+                   (apropos-mode         :select nil :align t :size 0.4)
+                   (help-mode            :select nil :align t :size 0.4)
                    ("*Flycheck errors*"         :select t   :align t :size 10)
                    ("*Backtrace*"               :select t   :align t :size 15)
                    ("*Shell Command Output*"    :select nil :align t :size 0.4)
@@ -58,6 +59,12 @@
                    ("*Process List*"            :select t   :align t :size 0.3)
                    ("*Occur*"                   :select t   :align t)
                    ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t))))
+
+(use-package help
+  :ensure nil
+  :custom
+  (help-window-select t)
+  (help-enable-variable-value-editing t))
 
 ;; Windows layout recorder
 ;;
