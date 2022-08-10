@@ -110,6 +110,9 @@
 (put 'list-timers 'disabled nil)
 (put 'list-threads 'disabled nil)
 
+;; Quick editing in `describe-variable'
+(put 'help-fns-edit-variable 'disabled nil)
+
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
