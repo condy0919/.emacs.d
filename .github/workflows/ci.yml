@@ -13,19 +13,21 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        emacs_version:
-          - 27.1
-          - 27.2
-          - 28.1
-          - snapshot
+        os: [ubuntu-latest, macos-latest]
+        emacs-version: [27.2, 28.1]
+        experimental: [false]
+        include:
+          - os: ubuntu-latest
+            emacs-version: snapshot
+            experimental: true
     steps:
     - uses: purcell/setup-emacs@master
       with:
-        version: ${{ matrix.emacs_version }}
+        version: ${{ matrix.emacs-version }}
 
     - name: Checkout
       uses: actions/checkout@v2
@@ -35,7 +37,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: elpa
-        key: ${{ matrix.os }}-${{ matrix.emacs_version }}-elpa-installed
+        key: ${{ matrix.os }}-${{ matrix.emacs-version }}-elpa-installed
 
     - name: Download elpa packages
       if: steps.elpa-cache.outputs.cache-hit != 'true'
@@ -64,6 +66,7 @@ jobs:
                  (user-emacs-directory default-directory)
                  (package-user-dir (file-name-as-directory (expand-file-name "elpa" default-directory)))
                  (user-init-file (expand-file-name "init.el")))
+             (package-initialize)
              (load user-init-file t t)
              (run-hooks (quote after-init-hook))
              (run-hooks (quote emacs-startup-hook))))'
