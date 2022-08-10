@@ -12,17 +12,15 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
         emacs-version: [27.2, 28.1]
         experimental: [false]
         include:
-          - os: ubuntu-latest
-            emacs-version: snapshot
+          - emacs-version: snapshot
             experimental: true
     steps:
     - uses: purcell/setup-emacs@master
