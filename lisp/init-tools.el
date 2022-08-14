@@ -122,12 +122,12 @@
 (use-package transient
   :ensure nil
   :when (>= emacs-major-version 28)
-  :bind (("C-c h o" . scroll-other-window-menu))
+  :bind (("C-c h o" . scroll-other-window-menu)
+         ("C-c h t" . background-opacity-menu))
   :config
   (transient-define-prefix scroll-other-window-menu ()
     "Scroll other window."
     :transient-suffix     'transient--do-stay
-    :transient-non-suffix 'transient--do-warn
     [["Line"
       ("j" "next line" scroll-other-window-line)
       ("k" "previous line" scroll-other-window-down-line)]
@@ -143,7 +143,37 @@
   (defun scroll-other-window-down-line ()
     "Scroll down of one line in other window."
     (interactive)
-    (scroll-other-window-down 1)))
+    (scroll-other-window-down 1))
+
+  (transient-define-prefix background-opacity-menu ()
+    "Set frame background opacity."
+    [:description
+     background-opacity-get-alpha-str
+     ("+" "increase" background-opacity-inc-alpha :transient t)
+     ("-" "decrease" background-opacity-dec-alpha :transient t)
+     ("=" "set to ?" background-opacity-set-alpha)])
+
+  (defun background-opacity-inc-alpha (&optional n)
+    (interactive)
+    (let* ((alpha (background-opacity-get-alpha))
+           (next-alpha (cl-incf alpha (or n 1))))
+      (set-frame-parameter nil 'alpha-background next-alpha)))
+
+  (defun background-opacity-dec-alpha ()
+    (interactive)
+    (background-opacity-inc-alpha -1))
+
+  (defun background-opacity-set-alpha (alpha)
+    (interactive "nSet to: ")
+    (set-frame-parameter nil 'alpha-background alpha))
+
+  (defun background-opacity-get-alpha ()
+    (pcase (frame-parameter nil 'alpha-background)
+      ((pred (not numberp)) 100)
+      (`,alpha alpha)))
+
+  (defun background-opacity-get-alpha-str ()
+    (format "Alpha %s%%" (background-opacity-get-alpha))))
 
 ;; Pastebin service
 (use-package webpaste
