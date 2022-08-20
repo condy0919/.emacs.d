@@ -193,6 +193,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       ;; app
       "a" '(:wk "app")
       "aa" 'org-agenda
+      "ab" 'ebib
       "ac" 'calendar
       "ag" 'gnus
       "ai" 'rcirc
