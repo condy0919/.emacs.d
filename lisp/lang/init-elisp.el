@@ -23,9 +23,8 @@
       (eval-print-last-sexp arg)
       (save-excursion
         (goto-char start)
-        (save-match-data
-          (re-search-forward "[[:space:]\n]+" nil t)
-          (insert eval-as-comment-prefix))))))
+        (forward-line 1)
+        (insert eval-as-comment-prefix)))))
 
 (use-package ielm
   :ensure nil
