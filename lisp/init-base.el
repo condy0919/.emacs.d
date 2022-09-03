@@ -230,7 +230,8 @@
   (completion-auto-select 'second-tab)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
-  (minibuffer-eldef-shorten-default t)
+  ;; shorten " (default %s)" => " [%s]"
+  (minibuffer-default-prompt-format " [%s]")
   (minibuffer-electric-default-mode t)
   ;; Don't insert completion at point into minibuffer
   (minibuffer-completion-auto-choose nil)
