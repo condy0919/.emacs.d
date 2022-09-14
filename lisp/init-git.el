@@ -62,15 +62,6 @@
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-merge-split-window-function 'split-window-horizontally))
 
-;; Open current file in browser
-(use-package browse-at-remote
-  :ensure t
-  :bind (:map vc-prefix-map
-         ("b" . bar-browse)         ;; was `vc-switch-backend', obsolete since 28.1
-         ("c" . bar-to-clipboard))
-  :custom
-  (browse-at-remote-add-line-number-if-no-region-selected nil))
-
 ;; Setup gitignore mode
 (use-package conf-mode
   :ensure nil
