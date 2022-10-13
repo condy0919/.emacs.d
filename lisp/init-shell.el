@@ -17,6 +17,10 @@
     (kill-buffer (process-buffer proc))
     (ignore-errors (delete-window))))
 
+(defun shell-delete-window (&optional win)
+  "Delete WIN wrapper."
+  (ignore-errors (delete-window win)))
+
 ;; General term mode
 ;;
 ;; If you use bash, directory track is supported natively.
@@ -131,7 +135,7 @@ If popup is focused, kill it."
     (if-let ((win (get-buffer-window "*shell-popup*")))
         (if (eq (selected-window) win)
             ;; If users attempt to delete the sole ordinary window, silence it.
-            (ignore-errors (delete-window win))
+            (shell-delete-window)
           (select-window win))
       (let ((display-comint-buffer-action '(display-buffer-at-bottom
                                             (inhibit-same-window . nil))))
@@ -144,6 +148,28 @@ If popup is focused, kill it."
     (setq-local tab-width 8))
   :custom
   (shell-kill-buffer-on-exit t))
+
+;; For windows, use eshell instead.
+(use-package eshell
+  :ensure nil
+  :when (eq system-type 'windows-nt)
+  :bind ("M-`" . eshell-toggle)
+  :config
+  (defun eshell-toggle ()
+    "Toggle a persistent eshell popup window.
+If popup is visible but unselected, select it.
+If popup is focused, kill it."
+    (interactive)
+    (if-let ((win (get-buffer-window "*eshell-popup*")))
+        (if (eq (selected-window) win)
+            ;; If users attempt to delete the sole ordinary window. silence it.
+            (shell-delete-window)
+          (select-window win))
+      (let ((display-comint-buffer-action '(display-buffer-at-bottom
+                                            (inhibit-same-window . nil)))
+            (eshell-buffer-name "*eshell-popup*"))
+        (with-current-buffer (eshell)
+          (add-hook 'eshell-exit-hook 'shell-delete-window nil t))))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
