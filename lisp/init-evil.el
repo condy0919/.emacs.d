@@ -186,6 +186,8 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "sm" 'evil-show-marks
       "sr" 'evil-show-registers
       "si" 'imenu
+      "sp" 'consult-ripgrep
+      "ss" 'consult-line
 
       ;; project
       "p" 'projectile-command-map
