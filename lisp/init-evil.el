@@ -23,16 +23,11 @@
          :map evil-normal-state-map
          ("s" . evil-avy-goto-char-timer))
   :config
-  ;; Install `undo-fu' when necessary
-  (when (< emacs-major-version 28)
-    (use-package undo-fu
-      :ensure t))
-
   ;; Silence line out of range error.
   (shut-up! #'evil-indent)
   :custom
   ;; undo will never freeze my Emacs
-  (evil-undo-system (if (>= emacs-major-version 28) 'undo-redo 'undo-fu))
+  (evil-undo-system 'undo-redo)
   ;; Switch to the new window after splitting
   (evil-split-window-below t)
   (evil-vsplit-window-right t)
@@ -110,7 +105,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
 
       ;; Resume
       "'" 'vertico-repeat
-      "." 'avy-menu
 
       ;; file
       "f"  '(:wk "files")
@@ -136,7 +130,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "bc" 'clone-indirect-buffer
       "bC" 'clone-indirect-buffer-other-window
       "by" '+copy-current-buffer-name
-      "bv" 'revert-buffer
+      "bv" 'revert-buffer-quick
       "bx" 'scratch-buffer
       "bz" 'bury-buffer
       ;; --------------

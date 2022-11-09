@@ -35,8 +35,8 @@
                              (c++-mode . "//+!?\\|\\**")
                              (awk-mode . "#+")
                              (other    . "//+\\|\\**")))
-  (c-doc-comment-style `((c-mode   . gtkdoc)
-                         (c++-mode . ,(if (>= emacs-major-version 28) 'doxygen 'gtkdoc))))
+  (c-doc-comment-style '((c-mode   . gtkdoc)
+                         (c++-mode . doxygen)))
   (c-basic-offset 4)
   (c-label-minimum-indentation 0)
   (c-offsets-alist '(;; a multi-line C style block comment

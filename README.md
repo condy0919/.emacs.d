@@ -8,7 +8,7 @@
 
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 27.1-29.x](https://img.shields.io/badge/Supports-Emacs_27.1_--_29.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+![Supports Emacs 28.1-29.x](https://img.shields.io/badge/Supports-Emacs_28.1_--_29.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
 
 </div>
 
@@ -54,7 +54,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 # 需要的依赖
 
-- `hunspell` 拼写检查，目前仅在`git-commit-mode`下默认启用
+- `hunspell` (optional) 拼写检查，目前仅在`git-commit-mode`下默认启用
 - `rg` 更快的`grep`
 - `pandoc` (optional) 文本转换工具，`markdown-mode`渲染需要
 - `markdown` (optional) 文本转换工具，`markdown-mode`渲染需要
@@ -93,7 +93,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 主要是`straight.el`不支持单个文件的下载、配置，为了使用`llvm-mode.el`而 clone 整个 llvm repo 就显得有点得不尝失了。相关配置见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，`llvm-mode`和`tablegen-mode`需要人工执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，所以最终效果跟`package.el`是一样的。
 
-而自动升级选择了`auto-package-update`。如果需要更新，<kbd>M-x auto-package-update-now</kbd> 即可。如果想要异步更新，则使用<kbd>M-x auto-package-update-now-async</kbd>。由于 `package-refresh-contents` 暂时未暴露 callback 接口所以无法与之前的包更新操作构成异步流，需要用户提前 <kbd>M-x package-refresh-contents</kbd>.
+Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-update-all</kbd> 即可。
 
 # 界面
 
@@ -216,6 +216,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | key           | function         |
 |---------------|------------------|
 | <kbd>aa</kbd> | `org-agenda`日程 |
+| <kbd>ab</kbd> | `ebib`查看论文   |
 | <kbd>ac</kbd> | `calendar`日历   |
 | <kbd>ag</kbd> | `gnus`查看新闻组 |
 | <kbd>ai</kbd> | `rcirc`上 IRC    |

@@ -91,8 +91,6 @@
 
 ;; Sane defaults
 (setq use-short-answers t)
-(unless (>= emacs-major-version 28)
-  (fset 'yes-or-no-p 'y-or-n-p))
 
 ;; Inhibit switching out from `y-or-n-p' and `read-char-choice'
 (setq y-or-n-p-use-read-key t

@@ -24,7 +24,7 @@
 
   ;; Emoji support
   (let ((fonts '("Apple Color Emoji")))
-    (cl-loop with script = (if (>= emacs-major-version 28) 'emoji 'unicode)
+    (cl-loop with script = 'emoji
              for font in fonts
              when (member font (font-family-list))
              return (set-fontset-font t script (font-spec :family font) nil 'prepend)))
