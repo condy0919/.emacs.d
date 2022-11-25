@@ -93,10 +93,9 @@
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "update"         :height 1.1 :v-adjust -0.2) "♺")
                                         "Update" "Update packages synchronously" (lambda (&rest _) (package-update-all nil)) success))))
-
-  :hook ((after-init . dashboard-setup-startup-hook)
-         (dashboard-mode . (lambda ()
-                             (setq-local global-hl-line-mode nil))))
+  (dashboard-setup-startup-hook)
+  :hook (dashboard-mode . (lambda ()
+                            (setq-local global-hl-line-mode nil)))
   :config
   (defconst homepage-url "https://github.com/condy0919/.emacs.d")
   (defconst stars-url (concat homepage-url "/stargazers"))
