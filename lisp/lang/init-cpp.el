@@ -340,44 +340,7 @@
                            )
                          "main"
                          "Insert a main function"
-                         'c-tempo-tags)
-
-  (tempo-define-template "c++-class-equality"
-                         '((P "type: " type 'noinsert)
-                           (tempo-save-named 'inline (if (y-or-n-p "Inline? ") "inline " ""))
-                           (tempo-save-named 'constexpr (if (y-or-n-p "Constexpr? ") "constexpr " ""))
-                           (tempo-save-named 'noexcept (if (y-or-n-p "Noexcept? ") "noexcept " ""))
-                           (s inline) (s constexpr) "bool operator==(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           p n
-                           "}" > n>
-                           (s inline) (s constexpr) "bool operator!=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           "return !(lhs == rhs);" > n>
-                           "}" > n>
-                           )
-                         "eq"
-                         "Class equality comparison"
-                         'c++-tempo-tags)
-  (tempo-define-template "c++-class-totally-ordered"
-                         '((P "type: " type 'noinsert)
-                           (tempo-save-named 'inline (if (y-or-n-p "Inline? ") "inline " ""))
-                           (tempo-save-named 'constexpr (if (y-or-n-p "Constexpr? ") "constexpr " ""))
-                           (tempo-save-named 'noexcept (if (y-or-n-p "Noexcept? ") "noexcept " ""))
-                           (s inline) (s constexpr) "bool operator<(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           p n
-                           "}" > n>
-                           (s inline) (s constexpr) "bool operator>(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           "return rhs < lhs;" > n>
-                           "}" > n>
-                           (s inline) (s constexpr) "bool operator<=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           "return !(lhs > rhs);" > n>
-                           "}" > n>
-                           (s inline) (s constexpr) "bool operator>=(const " (s type) "& lhs, const " (s type) "& rhs) " (s noexcept) "{" > n>
-                           "return !(lhs < rhs);" > n>
-                           "}" > n>
-                           )
-                         "ord"
-                         "Class totally ordered comparison"
-                         'c++-tempo-tags))
+                         'c-tempo-tags))
 
 ;; cmake, the de factor build system for C++
 (use-package cmake-mode
