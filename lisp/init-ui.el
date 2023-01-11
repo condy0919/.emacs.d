@@ -69,7 +69,7 @@
 ;; Windows layout recorder
 ;;
 ;; You can still use `winner-mode' on Emacs 26 or early. On Emacs 27, it's
-;; prefered over `winner-mode' for better compatibility with `tab-bar-mode'.
+;; preferred over `winner-mode' for better compatibility with `tab-bar-mode'.
 (use-package tab-bar
   :ensure nil
   :hook (after-init . tab-bar-history-mode)

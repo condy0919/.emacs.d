@@ -410,7 +410,7 @@
   ;; # Features
   ;;
   ;; - Option to enable tests
-  ;; - Option to enabel benchmarks
+  ;; - Option to enable benchmarks
   ;; - Git tag based version
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
@@ -431,7 +431,7 @@
                            "add_library(" (s proj) " \"\")" n n
                            "# Alias to avoid name conflicts" n
                            "# add_library(ANameWithDoubleColons ALIAS " (s proj) ")" n n
-                           "### Commpile options" n
+                           "### Compile options" n
                            "# Enable C++17 (Required)" n
                            "target_compile_features(" (s proj) n
                            "  PUBLIC" n
