@@ -24,7 +24,6 @@
   :bind (([remap imenu]                  . consult-imenu)
          ([remap goto-line]              . consult-goto-line)
          ([remap bookmark-jump]          . consult-bookmark)
-         ([remap evil-show-marks]        . consult-mark)
          ([remap recentf-open-files]     . consult-recent-file)
          ([remap repeat-complex-command] . consult-complex-command))
   :config

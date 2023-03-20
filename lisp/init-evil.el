@@ -48,7 +48,9 @@
 
 (use-package evil-collection
   :ensure t
-  :hook (evil-mode . evil-collection-init)
+  :hook (after-init . evil-collection-init)
+  :bind (([remap evil-show-marks] . evil-collection-consult-mark)
+         ([remap evil-show-jumps] . evil-collection-consult-jump-list))
   :custom
   (evil-collection-setup-debugger-keys nil)
   (evil-collection-calendar-want-org-bindings t)
