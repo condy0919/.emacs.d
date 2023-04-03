@@ -25,7 +25,9 @@
          ([remap goto-line]              . consult-goto-line)
          ([remap bookmark-jump]          . consult-bookmark)
          ([remap recentf-open-files]     . consult-recent-file)
-         ([remap repeat-complex-command] . consult-complex-command))
+         ([remap repeat-complex-command] . consult-complex-command)
+         ([remap jump-to-register]       . consult-register-load)
+         ([remap point-to-register]      . consult-register-store))
   :config
   (with-no-warnings
     (consult-customize consult-ripgrep consult-git-grep consult-grep
@@ -33,6 +35,16 @@
                        consult-recent-file
                        consult-buffer
                        :preview-key nil))
+
+  ;; Optionally configure the register formatting. This improves the register
+  ;; preview for `consult-register', `consult-register-load',
+  ;; `consult-register-store' and the Emacs built-ins.
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+
+  ;; Optionally tweak the register preview window.
+  ;; This adds thin lines, sorting and hides the mode line of the window.
+  (advice-add #'register-preview :override #'consult-register-window)
   :custom
   (consult-fontify-preserve nil)
   (consult-async-min-input 2)

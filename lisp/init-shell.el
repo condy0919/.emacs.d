@@ -147,7 +147,8 @@ If popup is focused, kill it."
     "Revert `tab-width' to default value."
     (setq-local tab-width 8))
   :custom
-  (shell-kill-buffer-on-exit t))
+  (shell-kill-buffer-on-exit t)
+  (shell-get-old-input-include-continuation-lines t))
 
 ;; For windows, use eshell instead.
 (use-package eshell
