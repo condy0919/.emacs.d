@@ -111,6 +111,7 @@
   ;; `project-find-regexp' can be faster when setting `xref-search-program' to
   ;;  `ripgrep'.
   (xref-search-program 'ripgrep)
+  (xref-history-storage 'xref-window-local-history)
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
