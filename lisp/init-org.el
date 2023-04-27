@@ -29,7 +29,7 @@
   (org-use-sub-superscripts '{})
   (org-yank-adjusted-subtrees t)
   (org-ctrl-k-protect-subtree 'error)
-  (org-catch-invisible-edits 'smart)
+  (org-fold-catch-invisible-edits 'smart)
   (org-insert-heading-respect-content t)
   ;; call C-c C-o explicitly
   (org-return-follows-link nil)

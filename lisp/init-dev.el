@@ -110,9 +110,11 @@
   ;;
   ;; `project-find-regexp' can be faster when setting `xref-search-program' to
   ;;  `ripgrep'.
-  (xref-search-program 'ripgrep)
+  (xref-search-program (cond ((executable-find "rg") 'ripgrep)
+                             ((executable-find "ugrep") 'ugrep)
+                             (t 'grep)))
   (xref-history-storage 'xref-window-local-history)
-  (xref-show-xrefs-function #'xref-show-definitions-completing-read)
+  (xref-show-xrefs-function #'xref-show-definitions-buffer-at-bottom)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;; Jump to definition, used as a fallback of lsp-find-definition
