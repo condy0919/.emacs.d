@@ -49,9 +49,7 @@
   (company-backends '((company-capf :with company-tempo)
                       company-files
                       (company-dabbrev-code company-keywords)
-                      company-dabbrev
-                      ;; HACK: prevent `lsp-mode' to add `company-capf' back.
-                      company-capf)))
+                      company-dabbrev)))
 
 ;; lsp-mode
 (use-package lsp-mode
@@ -81,6 +79,7 @@
   (lsp-modeline-diagnostics-enable nil)     ;; as above
   (lsp-log-io nil)                          ;; debug only
   (lsp-auto-guess-root t)                   ;; Yes, I'm using projectile
+  (lsp-completion-provider :none)           ;; don't add `company-capf' to `company-backends'
   (lsp-keep-workspace-alive nil)            ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil))             ;; disable eldoc hover
 

@@ -7,10 +7,7 @@
 
 ;; Edit shell scripts
 ;;
-;; awesoome. sh-mode provides `sh-while-getopts' to automate getopts.
-;;
-;; Emacs master enables `sh-mode' when editing archlinux PKGBUILD.
-;; See https://debbugs.gnu.org/cgi/bugreport.cgi?bug=46660
+;; sh-mode provides `sh-while-getopts' to automate getopts.
 (use-package sh-script
   :ensure nil
   :mode (("\\.sh\\'"     . sh-mode)
@@ -24,6 +21,24 @@
   :custom
   (sh-basic-offset 2)
   (sh-indentation 2))
+
+;; Snippets for sh
+(use-package tempo
+  :ensure nil
+  :after sh-script
+  :hook (sh-mode . sh-mode-tempo-setup)
+  :config
+  (defvar sh-tempo-tags nil)
+  (defun sh-mode-tempo-setup ()
+    (tempo-use-tag-list 'sh-tempo-tags))
+
+  (tempo-define-template "sh-shebang"
+                         '("#!/bin/bash" > n n
+                           "set -euo pipefail -x" > n n
+                           )
+                         "sb"
+                         "Insert shebang"
+                         'sh-tempo-tags))
 
 (provide 'init-sh)
 ;;; init-sh.el ends here
