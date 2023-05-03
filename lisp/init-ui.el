@@ -92,10 +92,8 @@
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "report_problem" :height 1.1 :v-adjust -0.2) "⚑")
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
                                        (,(if (fboundp 'all-the-icons-material) (all-the-icons-material "update"         :height 1.1 :v-adjust -0.2) "♺")
-                                        "Update" "Update packages synchronously" (lambda (&rest _) (package-update-all nil)) success))))
+                                        "Upgrade" "Upgrade packages synchronously" (lambda (&rest _) (package-upgrade-all nil)) success))))
   (dashboard-setup-startup-hook)
-  :hook (dashboard-mode . (lambda ()
-                            (setq-local global-hl-line-mode nil)))
   :config
   (defconst homepage-url "https://github.com/condy0919/.emacs.d")
   (defconst stars-url (concat homepage-url "/stargazers"))
@@ -107,8 +105,7 @@
   (dashboard-set-init-info t)
   (dashboard-set-navigator t)
   (dashboard-items '((recents   . 10)
-                     (projects  . 5)
-                     (bookmarks . 5))))
+                     (projects  . 7))))
 
 (provide 'init-ui)
 
