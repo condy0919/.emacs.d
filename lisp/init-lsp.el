@@ -56,6 +56,7 @@
   :ensure t
   :hook (prog-mode . lsp-deferred)
   :bind (:map lsp-mode-map
+         ("C-="   . lsp-extend-selection)
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
          ("C-c a" . lsp-execute-code-action)
@@ -72,7 +73,7 @@
   (lsp-enable-text-document-color nil)      ;; as above
   (lsp-enable-symbol-highlighting nil)      ;; as above
   (lsp-enable-on-type-formatting nil)       ;; as above
-  (lsp-enable-indentation nil)              ;; don't change my code without my permission
+  (lsp-semantic-tokens-enable nil)          ;; optional
   (lsp-semantic-tokens-apply-modifiers nil) ;; don't override token faces
   (lsp-headerline-breadcrumb-enable nil)    ;; keep headline clean
   (lsp-modeline-code-actions-enable nil)    ;; keep modeline clean
