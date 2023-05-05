@@ -15,37 +15,30 @@
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
   ;; prettify
   (org-startup-indented t)
-  (org-fontify-todo-headline t)
+  (org-fontify-todo-headline nil)
   (org-fontify-done-headline t)
   (org-fontify-whole-heading-line t)
   (org-fontify-quote-and-verse-blocks t)
   (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
   ;; image
   (org-image-actual-width nil)
-  (org-display-remote-inline-images 'cache)
   ;; more user-friendly
   (org-imenu-depth 4)
   (org-clone-delete-id t)
   (org-use-sub-superscripts '{})
   (org-yank-adjusted-subtrees t)
   (org-ctrl-k-protect-subtree 'error)
-  (org-fold-catch-invisible-edits 'smart)
-  (org-insert-heading-respect-content t)
+  (org-fold-catch-invisible-edits 'show-and-error)
   ;; call C-c C-o explicitly
   (org-return-follows-link nil)
   ;; todo
-  (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "WIP(i!)" "WAIT(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")
-                       (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f!)")))
+  (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "WIP(i!)" "WAIT(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")))
   (org-todo-keyword-faces '(("TODO"       :foreground "#7c7c75" :weight bold)
                             ("HOLD"       :foreground "#feb24c" :weight bold)
                             ("WIP"        :foreground "#0098dd" :weight bold)
                             ("WAIT"       :foreground "#9f7efe" :weight bold)
                             ("DONE"       :foreground "#50a14f" :weight bold)
-                            ("CANCELLED"  :foreground "#ff6480" :weight bold)
-                            ("REPORT"     :foreground "magenta" :weight bold)
-                            ("BUG"        :foreground "red"     :weight bold)
-                            ("KNOWNCAUSE" :foreground "yellow"  :weight bold)
-                            ("FIXED"      :foreground "green"   :weight bold)))
+                            ("CANCELLED"  :foreground "#ff6480" :weight bold)))
   (org-use-fast-todo-selection 'expert)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -60,7 +53,6 @@
   (org-closed-keep-when-no-todo t)
   ;; log
   (org-log-repeat 'time)
-  (org-log-into-drawer t)
   ;; refile
   (org-refile-use-cache nil)
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
@@ -71,8 +63,6 @@
   (org-goto-auto-isearch nil)
   (org-goto-interface 'outline-path-completion)
   ;; tags, e.g. #+TAGS: keyword in your file
-  (org-use-tag-inheritance nil)
-  (org-agenda-use-tag-inheritance nil)
   (org-use-fast-tag-selection t)
   (org-fast-tag-selection-single-key t)
   ;; archive
@@ -101,7 +91,6 @@
   (org-agenda-insert-diary-extract-time t)
   (org-agenda-inhibit-startup t)
   (org-agenda-time-leading-zero t)
-  (org-agenda-remove-tags t)
   (org-agenda-columns-add-appointments-to-effort-sum t)
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-window-setup 'current-window))
@@ -117,7 +106,6 @@
   (org-confirm-babel-evaluate nil)
   (org-src-fontify-natively t)
   (org-src-tab-acts-natively t)
-  (org-src-preserve-indentation t)
   (org-src-window-setup 'other-window)
   (org-src-lang-modes '(("C"      . c)
                         ("C++"    . c++)
@@ -141,18 +129,7 @@
   :config
   (with-no-warnings
     (defun org-capture-setup ()
-      (setq-local org-complete-tags-always-offer-all-agenda-tags t))
-
-    (defun project-todo-org-file (headline)
-      (let* ((file (expand-file-name "TODO.org" (projectile-acquire-root)))
-             (buf (find-file-noselect file)))
-        (set-buffer buf)
-        ;; Set to UTF-8 because we may be visiting raw file.
-        (setq buffer-file-coding-system 'utf-8-unix)
-        (unless (org-find-exact-headline-in-buffer headline)
-          (goto-char (point-max))
-          (insert "* " headline)
-          (org-set-tags (downcase headline))))))
+      (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
   (org-capture-use-agenda-date t)
   (org-capture-templates-contexts nil)
@@ -168,16 +145,7 @@
                            ;; Capture
                            ("c" "Capture")
                            ("cn" "Note" entry (file+headline "capture.org" "Notes")
-                            "* %? %^g\n%i\n")
-                           ;; Project
-                           ("p" "Project")
-                           ("pb" "Bug"           entry (function ,(lazy! (project-todo-org-file "Bugs")))          "* %?")
-                           ("pf" "Feature"       entry (function ,(lazy! (project-todo-org-file "Features")))      "* %?")
-                           ("ps" "Security"      entry (function ,(lazy! (project-todo-org-file "Security")))      "* %?")
-                           ("pe" "Enhancement"   entry (function ,(lazy! (project-todo-org-file "Enhancements")))  "* %?")
-                           ("po" "Optimization"  entry (function ,(lazy! (project-todo-org-file "Optimizations"))) "* %?")
-                           ("pd" "Documentation" entry (function ,(lazy! (project-todo-org-file "Documentation"))) "* %?")
-                           ("pm" "Miscellaneous" entry (function ,(lazy! (project-todo-org-file "Miscellaneous"))) "* %?"))))
+                            "* %? %^g\n%i\n"))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
