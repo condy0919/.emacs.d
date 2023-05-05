@@ -57,5 +57,9 @@
   :ensure t
   :after embark consult)
 
+(use-package marginalia
+  :ensure t
+  :hook (after-init . marginalia-mode))
+
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here
