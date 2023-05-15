@@ -91,7 +91,7 @@
                                         "Stars" "Show stars" (lambda (&rest _) (browse-url stars-url)))
                                        (,(if (fboundp 'nerd-icons-octicon) (nerd-icons-octicon "nf-oct-alert") "⚑")
                                         "Issue" "Report issue" (lambda (&rest _) (browse-url issue-url)) warning)
-                                       (,(if (fboundp 'nerd-icons-octicon) (nerd-icons-octicon "nf-oct-cloud_download") "♺")
+                                       (,(if (fboundp 'nerd-icons-octicon) (nerd-icons-octicon "nf-oct-download") "♺")
                                         "Upgrade" "Upgrade packages synchronously" (lambda (&rest _) (package-upgrade-all nil)) success))))
   (dashboard-setup-startup-hook)
   :config
