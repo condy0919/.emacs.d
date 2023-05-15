@@ -119,11 +119,8 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "fR" '+rename-current-file
       "fr" 'recentf-open-files
       "fl" 'find-file-literally
-
-      ;; dired
-      "d" '(:wk "dired")
-      "dj" 'dired-jump
-      "dJ" 'dired-jump-other-window
+      "fj" 'dired-jump
+      "fJ" 'dired-jump-other-window
 
       ;; buffer & bookmark
       "b" '(:wk "bufmark")

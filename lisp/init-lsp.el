@@ -56,7 +56,6 @@
   :ensure t
   :hook (prog-mode . lsp-deferred)
   :bind (:map lsp-mode-map
-         ("C-="   . lsp-extend-selection)
          ("C-c f" . lsp-format-region)
          ("C-c d" . lsp-describe-thing-at-point)
          ("C-c a" . lsp-execute-code-action)
