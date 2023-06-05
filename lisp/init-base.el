@@ -369,6 +369,8 @@ Else, call `comment-or-uncomment-region' on the current line."
   :bind (:map comint-mode-map
          ([remap kill-region]   . backward-kill-word))
   :custom
+  ;; No paging
+  (comint-pager "cat")
   ;; Make the prompt of "*Python*" buffer readonly
   (comint-prompt-read-only t)
   (comint-history-isearch 'dwim)
