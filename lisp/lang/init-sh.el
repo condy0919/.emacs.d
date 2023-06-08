@@ -36,7 +36,7 @@
                          '("#!/bin/bash" > n n
                            "set -euo pipefail -x" > n n
                            )
-                         "sb"
+                         "shebang"
                          "Insert shebang"
                          'sh-tempo-tags))
 
