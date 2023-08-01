@@ -8,7 +8,7 @@
 
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 28.1-29.x](https://img.shields.io/badge/Supports-Emacs_28.1_--_29.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+![Supports Emacs 28.1-30.x](https://img.shields.io/badge/Supports-Emacs_28.1_--_30.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
 
 </div>
 
@@ -93,7 +93,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 主要是`straight.el`不支持单个文件的下载、配置，为了使用`llvm-mode.el`而 clone 整个 llvm repo 就显得有点得不尝失了。相关配置见[`init-cpp.el`](lisp/lang/init-cpp.el)内的`llvm-mode`配置项。另外由于`quelpa`与 `package-quickstart`冲突，`llvm-mode`和`tablegen-mode`需要人工执行对应的`quelpa`代码块来提前安装，而不是通过`use-package`自动检测、下载。不过因为`quelpa`安装过后的包也会在`~/.emacs.d/elpa/`里放一份，所以最终效果跟`package.el`是一样的。
 
-Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-update-all</kbd> 即可。
+Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-upgrade-all</kbd> 即可。
 
 # 界面
 
@@ -105,7 +105,7 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 
 `avy`用来代替`vim-easymotion`。而且`avy`还提供了`goto-line`的功能，这下都不用开相对行号`8k` `9j`这样跳了。
 
-以前是`ivy`用户，现在则是仅使用`vertico`, `embark`和`consult`了。
+以前是`ivy`用户，现在则是仅使用`vertico`, `embark`, `consult` 和 `marginalia` 了。
 
 `Emacs`下的`org-mode`/`markdown-mode`让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有`separedit`，让人在代码里写`documentation comments`不再烦恼。
 
@@ -162,19 +162,14 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 | <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
 | <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
 | <kbd>f/</kbd> | 同上                                                                        |
-| <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                        |
-| <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                |
-| <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                            |
-| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                                      |
-| <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件                                       |
+| <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                          |
+| <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                  |
+| <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                              |
+| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                                        |
+| <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件                                    |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                                   |
-
-与目录相关的`Leader`键绑定如下:
-
-| key           | function                                            |
-|---------------|-----------------------------------------------------|
-| <kbd>dj</kbd> | `dired-jump`进入当前文件的目录                      |
-| <kbd>dJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
+| <kbd>fj</kbd> | `dired-jump`进入当前文件的目录                                              |
+| <kbd>fJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开                         |
 
 与`buffer`、`bookmark`相关的键绑定:
 
@@ -185,7 +180,8 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 | <kbd>bc</kbd> | `clone-indirect-buffer`将当前`buffer`克隆至另一`buffer`，它们可以使用不同`major-mode` |
 | <kbd>bC</kbd> | `clone-indirect-buffer-other-window`同上，不过是在另一窗口打开                        |
 | <kbd>bv</kbd> | `revert-buffer`重新读取当前`buffer`对应的文件                                         |
-| <kbd>by</kbd> | `+copy-current-buffer-name`复制当前`buffer`的名字                                   |
+| <kbd>bx</kbd> | `scratch-buffer`直接跳转到 `*scratch*` buffer                                         |
+| <kbd>by</kbd> | `+copy-current-buffer-name`复制当前`buffer`的名字                                     |
 | <kbd>bz</kbd> | `bury-buffer`退出当前`buffer`的显示，当前`buffer`未被 kill                            |
 
 | key           | function                                                |
@@ -216,19 +212,20 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 | key           | function         |
 |---------------|------------------|
 | <kbd>aa</kbd> | `org-agenda`日程 |
-| <kbd>ab</kbd> | `ebib`查看论文   |
 | <kbd>ac</kbd> | `calendar`日历   |
 | <kbd>ag</kbd> | `gnus`查看新闻组 |
 | <kbd>ai</kbd> | `rcirc`上 IRC    |
 
 搜索相关的`Leader`键绑定:
 
-| key           | function                                                               |
-|---------------|------------------------------------------------------------------------|
-| <kbd>si</kbd> | `imenu`                                                                |
-| <kbd>sj</kbd> | `evil-show-jumps`                                                      |
-| <kbd>sm</kbd> | `evil-show-marks`                                                      |
-| <kbd>sr</kbd> | `evil-show-registers`                                                  |
+| key           | function              |
+|---------------|-----------------------|
+| <kbd>si</kbd> | `imenu`               |
+| <kbd>sj</kbd> | `evil-show-jumps`     |
+| <kbd>sm</kbd> | `evil-show-marks`     |
+| <kbd>sr</kbd> | `evil-show-registers` |
+| <kbd>sp</kbd> | `consult-ripgrep`     |
+| <kbd>ss</kbd> | `consult-line`        |
 
 与代码相关的`Leader`键绑定:
 
@@ -278,8 +275,8 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 
 <kbd>C-c h</kbd>是所有`hydra`的前缀，目前有 2 个，分别是:
 
-1. `hydra-macro`方便执行`kmacro`
-2. `hydra-other-window-scroll`在不改变焦点的情况下移动另一窗口的`buffer`
+1. `background-opacity-menu`方便执行调整真透明度
+2. `scroll-other-window-menu`在不改变焦点的情况下移动另一窗口的`buffer`
 
 # 通用开发设置
 
@@ -292,7 +289,7 @@ Emacs 29 引入了 `package-update-all`，需要更新直接 <kbd>M-x package-up
 - `ispell`拼写检查器, `evil`用户可以快速通过<kbd>z=</kbd> (`ispell-word`) 来检查
 - `flyspell`拼写检查器，仅在`magit`写提交信息时启用
 - `quickrun`作为一个能够执行部分区域内的代码块，方便快速验证函数功能
-- `tempo`作为代码片段展开工具, `spdx`然后再<kbd>M-x tempo-expand-if-complete</kbd>即可
+- `tempo`作为代码片段展开工具, `spdx`然后再<kbd>M-x tempo-expand-if-complete</kbd>即可。也可以通过 `hippie-expand` 来触发
 
 # prog-mode
 
@@ -358,7 +355,7 @@ yay -S ocaml-ocp-indent dune
 
 ## [dashboard][dashboard] 图标显示异常
 
-依赖 [all-the-icons][all-the-icons], 请确保`M-x all-the-icons-install-fonts`安装对应的字体以显示图标。一般情况下会自动安装对应的字体，见[all-the-icons-install-fonts](https://github.com/domtronn/all-the-icons.el/blob/2c963ebb75f211d2f7ac3d2db5f4a9ee2f3e27da/all-the-icons.el#L1052) 函数。
+依赖 [nerd-icons][nerd-icons], 请确保 `M-x nerd-icons-install-fonts` 安装对应的字体以显示图标。
 
 ## 更新时提示对应包版本不存在
 
@@ -385,7 +382,7 @@ emacs -Q -l init-mini.el
 
 欢迎提`issue`给出建议，感谢！
 
-[all-the-icons]: https://github.com/domtronn/all-the-icons.el/
+[nerd-icons]: https://github.com/rainstormstudio/nerd-icons.el
 [ccls]: https://github.com/MaskRay/ccls/
 [cargo]: https://melpa.org/#/cargo
 [dashboard]: https://github.com/emacs-dashboard/emacs-dashboard/
