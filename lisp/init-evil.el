@@ -105,6 +105,9 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       ;; SPC, quit minibuffer.
       "SPC" 'keyboard-escape-quit
 
+      ;; Clear highlights
+      "S-SPC" 'lazy-highlight-cleanup
+
       ;; Resume
       "'" 'vertico-repeat
 
