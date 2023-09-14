@@ -139,8 +139,9 @@
          ("C-c c a" . citre-ace-peek)
          ("C-c c u" . citre-update-this-tags-file))
   :custom
-  (citre-auto-enable-citre-mode-modes '(prog-mode))
-  (citre-prompt-language-for-ctags-command t))
+  (citre-enable-capf-integration nil)
+  (citre-prompt-language-for-ctags-command t)
+  (citre-auto-enable-citre-mode-modes '(prog-mode)))
 
 ;; Browse devdocs.io
 (use-package devdocs
