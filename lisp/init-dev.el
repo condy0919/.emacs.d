@@ -33,6 +33,7 @@
   (gdb-show-changed-values t)
   (gdb-delete-out-of-scope t)
   (gdb-use-colon-colon-notation t)
+  (gdb-debuginfod-enable-setting nil)
   (gdb-restore-window-configuration-after-quit t))
 
 ;; Insert SPDX license header
