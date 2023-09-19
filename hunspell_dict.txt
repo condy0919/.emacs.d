@@ -24,8 +24,8 @@ UI
 WIP
 lsp
 
-# Elisp
-autoload/SMG
+# Emacs
+autoload
 customizable
 dired
 docstring
@@ -96,13 +96,14 @@ XXX
 # Others
 README
 SPDX
-backend/SM
 config
 natively
 stackoverflow
 starlark
-subtype/M
+subtype
 url
 unscalable
 nvim
 backend
+debuginfod
+significand
