@@ -40,13 +40,10 @@
     (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
       (set-process-sentinel proc #'shell-self-destroy-sentinel))))
 
-;; the Emacs shell & friends
+;; The Emacs shell & friends
 (use-package eshell
   :ensure nil
-  :hook ((eshell-mode . (lambda ()
-                          (shell-mode-common-init)
-                          ;; Eshell is not fully functional
-                          (setenv "PAGER" "cat"))))
+  :hook (eshell-mode . shell-mode-common-init)
   :config
   ;; Prevent accident typing
   (defalias 'eshell/vi 'find-file)
@@ -92,12 +89,10 @@ current directory."
       (let ((dir (completing-read "Directory: " dirs nil t)))
         (eshell/cd dir))))
   :custom
-  (eshell-banner-message "")
   ;; The following cmds will run on term.
   (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
-  (eshell-destroy-buffer-when-process-dies t)
   ;; Completion like bash
   (eshell-cmpl-ignore-case t)
   (eshell-cmpl-cycle-completions nil))
