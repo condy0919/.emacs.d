@@ -13,8 +13,9 @@
     (with-eval-after-load 'lsp-mode
       (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-extern-crate"])))
   :custom
-  (rust-format-show-buffer nil)
-  (rust-format-on-save (executable-find "rustfmt")))
+  (rust-indent-where-clause t)
+  (rust-format-on-save t)
+  (rust-format-show-buffer nil))
 
 ;; Cargo integration
 (use-package cargo
