@@ -18,10 +18,38 @@
   (compilation-ask-about-save nil))
 
 ;; The unified debugger
-;; WIP: upstreaming
 (use-package gud
   :ensure nil
-  :hook (gud-mode . gud-tooltip-mode))
+  :hook (gud-mode . gud-tooltip-mode)
+  :config
+  (defface gud-position-face
+    '((((background light))
+       :foreground "black" :extend t)
+      (t
+       :foreground "white" :extend t))
+    "Face used for gud fringe."
+    :group 'gud)
+
+  (define-fringe-bitmap 'gud-position-right-triangle
+    [#b11000000
+     #b11100000
+     #b11110000
+     #b11111000
+     #b11111100
+     #b11111110
+     #b11111111
+     #b11111111
+     #b11111110
+     #b11111100
+     #b11111000
+     #b11110000
+     #b11100000
+     #b11000000])
+
+  (set-fringe-bitmap-face 'gud-position-right-triangle 'gud-position-face)
+  (put 'gud-overlay-arrow-position 'overlay-arrow-bitmap 'gud-position-right-triangle)
+  :custom
+  (gud-highlight-current-line t))
 
 ;; GDB specific config
 (use-package gdb-mi
