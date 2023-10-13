@@ -233,6 +233,14 @@
                  "path" "service" "slice" "socket" "swap" "target" "timer")
              string-end) . conf-toml-mode))
 
+(use-package treesit
+  :ensure nil
+  :config
+  (setq treesit-language-source-alist
+        '((c . ("https://github.com/tree-sitter/tree-sitter-c"))
+          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
+          (json . ("https://github.com/tree-sitter/tree-sitter-json")))))
+
 (require 'init-cpp)
 (require 'init-rust)
 (require 'init-ocaml)
