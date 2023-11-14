@@ -5,19 +5,16 @@
 
 ;;; Code:
 
-;; Use default theme in terminals
+;; Use Iosvkem in terminals
 (use-package doom-themes
   :ensure t
-  :when (display-graphic-p)
   :config
-  (load-theme 'doom-one t)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
 
-(use-package emacs
-  :ensure nil
-  :unless (display-graphic-p)
-  :config
-  (load-theme 'leuven t))
+  (let ((theme (if (display-graphic-p)
+                   'doom-one
+                 'doom-Iosvkem)))
+    (load-theme theme t)))
 
 (use-package doom-modeline
   :ensure t
