@@ -241,7 +241,9 @@
   (read-file-name-completion-ignore-case t)
   ;; `selectrum', `vertico' and `icomplete' will honoring
   (completion-styles '(basic partial-completion substring flex))
-  (completion-category-overrides '((buffer (styles . (flex)))))
+  (completion-category-overrides '((buffer (styles . (flex)))
+                                   (eglot-capf (styles . (basic partial-completion)))
+                                   (imenu (styles . (substring)))))
   ;; vertical view
   (completions-format 'one-column)
   (completions-max-height 13)
