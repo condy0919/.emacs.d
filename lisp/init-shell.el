@@ -120,7 +120,6 @@ current directory."
   :ensure nil
   :hook ((shell-mode . shell-mode-common-init)
          (shell-mode . revert-tab-width-to-default))
-  :bind ("M-`" . shell-toggle) ;; was `tmm-menubar'
   :config
   (defun shell-toggle ()
     "Toggle a persistent shell popup window.
@@ -145,10 +144,11 @@ If popup is focused, kill it."
   (shell-kill-buffer-on-exit t)
   (shell-get-old-input-include-continuation-lines t))
 
-;; For windows, use eshell instead.
+;; Use eshell everywhere.
+;;
+;; `eshell' is recommended to use over `tramp'.
 (use-package eshell
   :ensure nil
-  :when (eq system-type 'windows-nt)
   :bind ("M-`" . eshell-toggle)
   :config
   (defun eshell-toggle ()
