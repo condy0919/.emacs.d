@@ -15,12 +15,8 @@
   :custom
   (rust-indent-where-clause t)
   (rust-format-on-save t)
-  (rust-format-show-buffer nil))
-
-;; Cargo integration
-(use-package cargo
-  :ensure t
-  :hook (rust-mode . cargo-minor-mode))
+  (rust-format-show-buffer nil)
+  (rust-load-optional-libraries t))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here
