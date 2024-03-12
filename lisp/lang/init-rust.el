@@ -14,8 +14,6 @@
       (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-extern-crate"])))
   :custom
   (rust-indent-where-clause t)
-  (rust-format-on-save t)
-  (rust-format-show-buffer nil)
   (rust-load-optional-libraries t))
 
 (provide 'init-rust)
