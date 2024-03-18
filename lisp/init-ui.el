@@ -98,10 +98,18 @@
   (dashboard-startup-banner 'logo)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
-  (dashboard-set-init-info t)
-  (dashboard-set-navigator t)
   (dashboard-items '((recents   . 10)
-                     (projects  . 7))))
+                     (projects  . 7)))
+  (dashboard-startupify-list '(dashboard-insert-banner
+                               dashboard-insert-newline
+                               dashboard-insert-banner-title
+                               dashboard-insert-newline
+                               dashboard-insert-navigator
+                               dashboard-insert-newline
+                               dashboard-insert-init-info
+                               dashboard-insert-items
+                               dashboard-insert-newline
+                               dashboard-insert-footer)))
 
 (provide 'init-ui)
 
