@@ -383,15 +383,17 @@
   ;; .
   ;; ├── CMakeLists.txt
   ;; ├── include
-  ;; │   └── lib.hpp
+  ;; │   └── lib.hpp
   ;; ├── src
-  ;; │   └── lib.cpp
+  ;; │   ├── foo.cpp
+  ;; │   ├── foo_test.cpp
+  ;; │   └── foo_benchmark.cpp
   ;; ├── benchmarks
-  ;; │   └── CMakeLists.txt
+  ;; │   └── CMakeLists.txt
   ;; └── tests
   ;;     └── CMakeLists.txt
   ;;
-  ;; The `benchmarks` directory is optional.
+  ;; The `benchmarks` directory and `tests` directory are optional.
   ;;
   ;; If you want to put all headers in `src` directory, don't forget to export them.
   ;;
@@ -415,7 +417,7 @@
   ;; - Git tag based version
   (tempo-define-template "cmake-library"
                          '((P "project: " proj 'noinsert)
-                           "cmake_minimum_required(VERSION 3.11)" n n
+                           "cmake_minimum_required(VERSION 3.13)" n n
                            "set(CMAKE_POSITION_INDEPENDENT_CODE ON)" n
                            "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n n
                            "project(" (s proj) n
@@ -426,8 +428,8 @@
                            ")" n n
                            "include(CTest)" n
                            "include(FetchContent)" n n
-                           "option(" (proj-prefixed "_ENABLE_TESTS") " \"Enable tests\" ON)" n
-                           "option(" (proj-prefixed "_ENABLE_BENCHMARKS") " \"Enable benchmarks\" OFF)" n n
+                           "option(" (proj-prefixed "_BUILD_TESTS") " \"Build tests\" ON)" n
+                           "option(" (proj-prefixed "_BUILD_BENCHMARKS") " \"Build benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
                            "add_library(" (s proj) " \"\")" n n
                            "# Alias to avoid name conflicts" n
@@ -449,30 +451,28 @@
                            "find_package(Threads REQUIRED)" n
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Benchmark" n
-                           "if(" (proj-prefixed "_ENABLE_BENCHMARKS)") n
+                           "if(" (proj-prefixed "_BUILD_BENCHMARKS)") n
                            "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
                            "  FetchContent_Declare(" n
                            "    benchmark" n
                            "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "    GIT_TAG        v1.6.0" n
+                           "    GIT_TAG        v1.8.3" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
-                           "  FetchContent_MakeAvailable(benchmark)" n n
-                           "  add_subdirectory(benchmarks)" n
+                           "  FetchContent_MakeAvailable(benchmark)" n
                            "endif()" n n
                            "# Test" n
-                           "if(" (proj-prefixed "_ENABLE_TESTS)") n
-                           "  # libdoctest.a and libdoctest_with_main.a will be built" n
+                           "if(" (proj-prefixed "_BUILD_TESTS)") n
+                           "  # libgtest.a and libgtest_main.a will be built" n
                            "  FetchContent_Declare(" n
-                           "    doctest" n
-                           "    GIT_REPOSITORY https://github.com/onqtam/doctest" n
-                           "    GIT_TAG        2.4.6" n
+                           "    gtest" n
+                           "    GIT_REPOSITORY https://github.com/google/googletest" n
+                           "    GIT_TAG        v1.14.0" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
-                           "  FetchContent_MakeAvailable(doctest)" n n
-                           "  add_subdirectory(tests)" n
+                           "  FetchContent_MakeAvailable(gtest)" n
                            "endif()" n n
                            "### Definitions" n n
                            "### Includes" n n
