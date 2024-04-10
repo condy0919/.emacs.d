@@ -79,15 +79,9 @@ current directory."
     (let ((dir (completing-read "Directory: " (delete-dups (ring-elements eshell-last-dir-ring)) nil t)))
       (eshell/cd dir)))
 
-  (defun eshell/bd ()
-    "cd to parent directory with completions."
-    (let ((dir default-directory)
-          dirs)
-      (while (not (string-empty-p dir))
-        (push (file-name-directory dir) dirs)
-        (setq dir (substring dir 0 -1)))
-      (let ((dir (completing-read "Directory: " dirs nil t)))
-        (eshell/cd dir))))
+  (defun eshell/rg (&rest args)
+    "ripgrep with eshell integration."
+    (eshell-grep "rg" (append '("--no-heading") args) t))
   :custom
   ;; The following cmds will run on term.
   (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
