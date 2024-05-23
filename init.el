@@ -10,6 +10,8 @@
 
 ;; Increase how much is read from processes in a single chunk (default is 4kb).
 ;; `lsp-mode' benefits from that.
+;;
+;; `cat /proc/sys/fs/pipe-max-size` to check the max value.
 (setq read-process-output-max (* 4 1024 1024))
 
 (require 'package)
