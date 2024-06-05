@@ -17,7 +17,7 @@
   ;; Don't quit Emacs on `:q'.
   ;;
   ;; Rebind `f'/`s' to mimic `evil-snipe'.
-  :bind (([remap evil-quit] . kill-this-buffer)
+  :bind (([remap evil-quit] . kill-current-buffer)
          :map evil-motion-state-map
          ("f" . evil-avy-goto-char-in-line)
          :map evil-normal-state-map
