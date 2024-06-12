@@ -93,13 +93,12 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
             ;; Save which-key (key . replacement).
             (pcase def
               (`(:wk ,replacement)
-               (push (cons (concat prefix key) replacement) wk-replacements)))))
+               (push (cons (concat "SPC " key) replacement) wk-replacements)))))
         ;; which-key integration.
         ;; XXX: replacement for localleader NOT supported.
-        (with-eval-after-load 'which-key
-          (cl-loop for (key . replacement) in wk-replacements
-                   unless localleader
-                   do (which-key-add-key-based-replacements key replacement)))))
+        (cl-loop for (key . replacement) in wk-replacements
+                 unless localleader
+                 do (which-key-add-key-based-replacements key replacement))))
 
     (define-leader-key 'normal 'global nil
       ;; SPC, quit minibuffer.
