@@ -37,6 +37,12 @@
   (gdb-debuginfod-enable-setting nil)
   (gdb-restore-window-configuration-after-quit t))
 
+;; #number can be clickable.
+(use-package bug-reference
+  :ensure nil
+  :bind (:map bug-reference-map
+         ("C-c C-o" . bug-reference-push-button)))
+
 ;; Insert SPDX license header
 (use-package spdx
   :ensure t
