@@ -19,6 +19,9 @@
     "C-x n" "narrow"
     "C-x t" "tab")
   :custom
+  (which-key-ellipsis "..")
+  (which-key-separator " → ")
+  (which-key-dont-use-unicode nil)
   (which-key-idle-delay 0.5)
   (which-key-add-column-padding 1))
 

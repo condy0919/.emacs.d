@@ -48,7 +48,7 @@
 
 (use-package evil-collection
   :ensure t
-  :hook (after-init . evil-collection-init)
+  :hook (evil-mode . evil-collection-init)
   :bind (([remap evil-show-marks] . evil-collection-consult-mark)
          ([remap evil-show-jumps] . evil-collection-consult-jump-list))
   :custom
