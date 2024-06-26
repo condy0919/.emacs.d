@@ -60,6 +60,7 @@
   :ensure nil
   :custom
   (help-window-select t)
+  (help-window-keep-selected t)
   (help-enable-variable-value-editing t))
 
 ;; Windows layout recorder

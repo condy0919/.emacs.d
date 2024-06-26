@@ -193,7 +193,7 @@
   :ensure nil
   :custom
   (repeat-mode t)
-  (repeat-exit-timeout 3)
+  (repeat-exit-timeout 1)
   (repeat-exit-key (kbd "RET")))
 
 ;; Server mode.
