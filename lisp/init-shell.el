@@ -88,6 +88,11 @@ current directory."
   (eshell-cmpl-ignore-case t)
   (eshell-cmpl-cycle-completions nil))
 
+(use-package em-hist
+  :ensure nil
+  :bind (:map eshell-hist-mode-map
+         ("M-r" . consult-history)))
+
 (use-package em-rebind
   :ensure nil
   :commands eshell-delchar-or-maybe-eof)
