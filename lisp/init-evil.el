@@ -51,6 +51,10 @@
   :hook (evil-mode . evil-collection-init)
   :bind (([remap evil-show-marks] . evil-collection-consult-mark)
          ([remap evil-show-jumps] . evil-collection-consult-jump-list))
+  :config
+  ;; Make `evil-collection-consult-mark' and `evil-collection-consult-jump-list'
+  ;; immediately available.
+  (evil-collection-require 'consult)
   :custom
   (evil-collection-setup-debugger-keys nil)
   (evil-collection-calendar-want-org-bindings t)
