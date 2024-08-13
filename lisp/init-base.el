@@ -247,6 +247,7 @@
   ;; vertical view
   (completions-format 'one-column)
   (completions-max-height 13)
+  (completions-sort nil)
   (completions-detailed t))
 
 ;; Holidays
