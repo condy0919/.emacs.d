@@ -242,6 +242,7 @@
   ;; `selectrum', `vertico' and `icomplete' will honoring
   (completion-styles '(basic partial-completion substring flex))
   (completion-category-overrides '((buffer (styles . (flex)))
+                                   (file (styles . (substring)))
                                    (eglot-capf (styles . (basic partial-completion)))
                                    (imenu (styles . (substring)))))
   ;; vertical view
