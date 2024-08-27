@@ -456,7 +456,7 @@
                            "  FetchContent_Declare(" n
                            "    benchmark" n
                            "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "    GIT_TAG        v1.8.3" n
+                           "    GIT_TAG        v1.9.0" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
@@ -468,7 +468,7 @@
                            "  FetchContent_Declare(" n
                            "    gtest" n
                            "    GIT_REPOSITORY https://github.com/google/googletest" n
-                           "    GIT_TAG        v1.14.0" n
+                           "    GIT_TAG        v1.15.2" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
@@ -488,7 +488,7 @@
                            ")" n n
                            "### Obtain version information from Git" n
                            "# if(NOT " (proj-prefixed "_VERSION)") n
-                           "#   execute_process(COMMAND git describe --tag --long HEAD" n
+                           "#   execute_process(COMMAND git describe --always --long HEAD" n
                            "#     OUTPUT_VARIABLE " (proj-prefixed "_VERSION") n
                            "#     OUTPUT_STRIP_TRAILING_WHITESPACE" n
                            "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n
