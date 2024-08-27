@@ -245,6 +245,7 @@
                                    (file (styles . (substring)))
                                    (eglot-capf (styles . (basic partial-completion)))
                                    (imenu (styles . (substring)))))
+  (completion-pcm-leading-wildcard t)
   ;; vertical view
   (completions-format 'one-column)
   (completions-max-height 13)
