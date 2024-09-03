@@ -81,7 +81,8 @@
   (lsp-auto-guess-root t)                   ;; Yes, I'm using projectile
   (lsp-completion-provider :none)           ;; don't add `company-capf' to `company-backends'
   (lsp-keep-workspace-alive nil)            ;; auto kill lsp server
-  (lsp-eldoc-enable-hover nil))             ;; disable eldoc hover
+  (lsp-eldoc-enable-hover nil)              ;; disable eldoc hover
+  (lsp-completion-enable-additional-text-edit nil))
 
 (use-package eglot
   :disabled
