@@ -21,10 +21,7 @@
                             "--background-index"
                             "--clang-tidy"
                             "--completion-style=bundled"
-                            "--pch-storage=disk"
-                            "--header-insertion=iwyu"
-                            "--header-insertion-decorators"
-                            "--include-cleaner-stdlib"))
+                            "--header-insertion-decorators"))
     (with-eval-after-load 'lsp-mode
       ;; Prefer `clangd' over `ccls'
       (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
