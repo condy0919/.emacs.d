@@ -146,6 +146,8 @@
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   ;; don't save current clipboard text before replacing it
   (save-interprogram-paste-before-kill nil)
+  ;; kill last word if there is no active region. C-w behaves more like vim.
+  (kill-region-dwim 'unix-word)
   ;; eliminate duplicates
   (kill-do-not-save-duplicates t)
   ;; include '\n' when point starts at the beginning-of-line
