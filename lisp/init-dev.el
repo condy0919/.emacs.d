@@ -142,13 +142,11 @@
   ;; Load the prelude.
   (require 'citre-config)
   :bind (("C-c c j" . citre-jump)
-         ("C-c c J" . citre-jump-back)
-         ("C-c c p" . citre-peek)
-         ("C-c c a" . citre-ace-peek)
+         ("C-c c q" . citre-query-jump)
+         ("C-c c r" . citre-query-jump-to-reference)
          ("C-c c u" . citre-update-this-tags-file))
   :custom
   (citre-enable-capf-integration nil)
-  (citre-prompt-language-for-ctags-command t)
   (citre-auto-enable-citre-mode-modes '(prog-mode)))
 
 ;; Browse devdocs.io
