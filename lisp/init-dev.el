@@ -167,38 +167,44 @@
   :ensure nil
   :hook (prog-mode . hs-minor-mode)
   :config
-  (defconst hideshow-folded-face '((t (:inherit 'font-lock-comment-face :box t))))
+  (defconst hideshow-folded-face '((t (:inherit 'font-lock-comment-face :extend t :weight light))))
 
   (defface hideshow-border-face
-    '((((background light))
-       :background "rosy brown" :extend t)
-      (t
-       :background "sandy brown" :extend t))
+    '((t (:inherit font-lock-function-name-face :extend t)))
     "Face used for hideshow fringe."
     :group 'hideshow)
 
   (define-fringe-bitmap 'hideshow-folded-fringe
-    (vector #b00000000
-            #b00000000
-            #b00000000
-            #b11000011
-            #b11100111
-            #b01111110
-            #b00111100
-            #b00011000))
+    (vector #b11111100
+            #b11111100
+            #b01111111
+            #b00111111
+            #b00111111
+            #b00011111
+            #b00000111
+            #b00000011
+            #b00000011
+            #b00000111
+            #b00011111
+            #b00111111
+            #b00111111
+            #b01111111
+            #b11111100
+            #b11111100))
 
   (defun hideshow-folded-overlay-fn (ov)
-    "Display a folded region indicator with the number of folded lines."
+    "Display a folded region indicator."
     (when (eq 'code (overlay-get ov 'hs))
-      (let* ((nlines (count-lines (overlay-start ov) (overlay-end ov)))
-             (info (format " (%d)..." nlines)))
-        ;; fringe indicator
-        (overlay-put ov 'before-string (propertize " "
-                                                   'display '(left-fringe hideshow-folded-fringe
-                                                                          hideshow-border-face)))
-        ;; folding indicator
-        (overlay-put ov 'display (propertize info 'face hideshow-folded-face)))))
+      ;; fringe indicator
+      (overlay-put ov 'before-string (propertize " " 'display '(left-fringe hideshow-folded-fringe hideshow-border-face)))
+      ;; delete overlay if the region is removed
+      (overlay-put ov 'evaporate t)
+      ;; folding indicator
+      (overlay-put ov 'face hideshow-folded-face)
+      (overlay-put ov 'display (propertize " [...] " 'face hideshow-folded-face))))
+
   :custom
+  (hs-hide-comments-when-hiding-all nil)
   (hs-set-up-overlay #'hideshow-folded-overlay-fn))
 
 ;; Antlr mode
