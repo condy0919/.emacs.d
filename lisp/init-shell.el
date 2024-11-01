@@ -37,7 +37,7 @@
 
   (defun term-mode-set-sentinel ()
     "Close buffer after exit."
-    (when-let ((proc (ignore-errors (get-buffer-process (current-buffer)))))
+    (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
       (set-process-sentinel proc #'shell-self-destroy-sentinel))))
 
 ;; The Emacs shell & friends
@@ -122,14 +122,14 @@ current directory."
 If popup is visible but unselected, select it.
 If popup is focused, kill it."
     (interactive)
-    (if-let ((win (get-buffer-window "*shell-popup*")))
+    (if-let* ((win (get-buffer-window "*shell-popup*")))
         (if (eq (selected-window) win)
             ;; If users attempt to delete the sole ordinary window, silence it.
             (shell-delete-window)
           (select-window win))
       (let ((display-comint-buffer-action '(display-buffer-at-bottom
                                             (inhibit-same-window . nil))))
-        (when-let ((proc (ignore-errors (get-buffer-process (shell "*shell-popup*")))))
+        (when-let* ((proc (ignore-errors (get-buffer-process (shell "*shell-popup*")))))
           (set-process-sentinel proc #'shell-self-destroy-sentinel)))))
 
   ;; Correct indentation for `ls'
@@ -152,7 +152,7 @@ If popup is focused, kill it."
 If popup is visible but unselected, select it.
 If popup is focused, kill it."
     (interactive)
-    (if-let ((win (get-buffer-window "*eshell-popup*")))
+    (if-let* ((win (get-buffer-window "*eshell-popup*")))
         (if (eq (selected-window) win)
             ;; If users attempt to delete the sole ordinary window. silence it.
             (shell-delete-window)
