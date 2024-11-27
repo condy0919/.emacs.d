@@ -35,6 +35,7 @@
 (use-package flyspell
   :ensure nil
   :custom
+  (flyspell-delay-use-timer t)
   (flyspell-check-changes t)
   ;; Use M-C-i instead if M-TAB is shadowed by your window manager
   (flyspell-use-meta-tab t)
