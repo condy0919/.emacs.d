@@ -146,7 +146,7 @@
          ("C-c c /" . citre-jump-to-reference)
          ("C-c c ?" . citre-query-jump-to-reference)
          ("C-c c u" . citre-update-this-tags-file)
-         ("C-c c g" . citre-global-update-file))
+         ("C-c c g" . citre-global-update-database))
   :custom
   (citre-enable-capf-integration nil)
   (citre-auto-enable-citre-mode-modes '(prog-mode)))
