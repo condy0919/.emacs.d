@@ -127,8 +127,8 @@ If popup is focused, kill it."
             ;; If users attempt to delete the sole ordinary window, silence it.
             (shell-delete-window)
           (select-window win))
-      (let ((display-comint-buffer-action '(display-buffer-at-bottom
-                                            (inhibit-same-window . nil))))
+      (let ((display-buffer-alist '(((category . comint)
+                                     (display-buffer-at-bottom)))))
         (when-let* ((proc (ignore-errors (get-buffer-process (shell "*shell-popup*")))))
           (set-process-sentinel proc #'shell-self-destroy-sentinel)))))
 
@@ -157,8 +157,8 @@ If popup is focused, kill it."
             ;; If users attempt to delete the sole ordinary window. silence it.
             (shell-delete-window)
           (select-window win))
-      (let ((display-comint-buffer-action '(display-buffer-at-bottom
-                                            (inhibit-same-window . nil)))
+      (let ((display-buffer-alist '(((category . comint)
+                                     (display-buffer-at-bottom))))
             (eshell-buffer-name "*eshell-popup*"))
         (with-current-buffer (eshell)
           (add-hook 'eshell-exit-hook 'shell-delete-window nil t))))))
