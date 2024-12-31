@@ -294,7 +294,8 @@
     (add-to-list 'hide-ifdef-env '(__clang__ . 1))
     (add-to-list 'hide-ifdef-env '(__llvm__ . 1)))
   :custom
-  (hide-ifdef-initially t)
+  ;; Use hide-ifdefs/show-ifdefs manually.
+  (hide-ifdef-initially nil)
   (hide-ifdef-shadow t))
 
 ;; Expand C macros
