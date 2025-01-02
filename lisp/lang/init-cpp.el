@@ -322,6 +322,18 @@
                          "ifndef"
                          "Insert #ifndef #define #endif directives"
                          'c-tempo-tags)
+  (tempo-define-template "c-extern-C"
+                         '("#ifdef __cplusplus" n
+                           "extern \"C\" {" n
+                           "#endif" n
+                           p n
+                           "#ifdef __cplusplus" n
+                           "}" n
+                           "#endif" n
+                           )
+                         "cpl"
+                         "Insert #ifdef __cplusplus ..."
+                         'c-tempo-tags)
   (tempo-define-template "c-main"
                          '("int main(int argc, char* argv[]) {" > n>
                            p n
