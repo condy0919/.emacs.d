@@ -330,6 +330,7 @@
   :custom
   (tab-bar-show nil)
   (tab-bar-tab-hints t)
+  (tab-bar-define-keys nil)
   (tab-bar-close-button-show nil)
   (tab-bar-tab-name-function 'tab-bar-tab-name-all)
   (tab-bar-format '(tab-bar-format-tabs tab-bar-separator)))

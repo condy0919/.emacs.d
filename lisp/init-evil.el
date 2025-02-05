@@ -176,7 +176,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "tn" 'tab-bar-new-tab
       "to" 'tab-bar-close-other-tabs
       "tt" 'tab-bar-switch-to-tab
-      "tp" 'tab-bar-switch-to-recent-tab
+      "t'" 'tab-bar-switch-to-recent-tab
       "tr" 'tab-bar-rename-tab
 
       ;; search
