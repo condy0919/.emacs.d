@@ -156,6 +156,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "cc" 'compile
       "cC" 'recompile
       "ck" 'kill-compilation
+      "cl" '+switch-to-compilation
       "cw" 'delete-trailing-whitespace
       "cx" 'quickrun
 

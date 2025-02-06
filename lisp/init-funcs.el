@@ -80,5 +80,12 @@ confirmation."
        map)
      t)))
 
+;;;###autoload
+(defun +switch-to-compilation ()
+  "Switch to the \"*compilation*\" buffer."
+  (interactive)
+  (when-let* ((buf (get-buffer "*compilation*")))
+    (pop-to-buffer buf)))
+
 (provide 'init-funcs)
 ;;; init-funcs.el ends here
