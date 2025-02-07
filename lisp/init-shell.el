@@ -91,7 +91,10 @@ current directory."
 (use-package em-hist
   :ensure nil
   :bind (:map eshell-hist-mode-map
-         ("M-r" . consult-history)))
+         ("M-r" . consult-history))
+  :custom
+  (eshell-hist-ignoredups 'erase)
+  (eshell-input-filter 'eshell-input-filter-initial-space))
 
 (use-package em-rebind
   :ensure nil
