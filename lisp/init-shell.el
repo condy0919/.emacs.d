@@ -43,7 +43,8 @@
 ;; The Emacs shell & friends
 (use-package eshell
   :ensure nil
-  :hook (eshell-mode . shell-mode-common-init)
+  :hook ((eshell-mode . shell-mode-common-init)
+         (eshell-mode . completion-preview-mode))
   :config
   ;; Prevent accident typing
   (defalias 'eshell/vi 'find-file)
