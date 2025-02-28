@@ -226,8 +226,8 @@
   ;; Default minibuffer is fine-tuned since Emacs 29
   (completion-auto-help t)
   (completion-show-help nil)
+  (completion-auto-select nil)
   (completion-cycle-threshold nil)
-  (completion-auto-select 'second-tab)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
   ;; shorten " (default %s)" => " [%s]"
