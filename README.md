@@ -8,7 +8,7 @@
 
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 28.1-30.x](https://img.shields.io/badge/Supports-Emacs_28.1_--_30.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+![Supports Emacs 30.1-31.x](https://img.shields.io/badge/Supports-Emacs_30.1_--_31.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
 
 </div>
 
@@ -229,15 +229,16 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 
 与代码相关的`Leader`键绑定:
 
-| key           | function                                          |
-|---------------|---------------------------------------------------|
-| <kbd>cc</kbd> | `compile`编译                                     |
-| <kbd>cC</kbd> | `recompile`重新编译                               |
-| <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程              |
-| <kbd>cx</kbd> | `quickrun`快速运行当前程序                        |
-| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出              |
-| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示 |
-| <kbd>cw</kbd> | `delete-trailing-whitespace`删除行末空白字符      |
+| key           | function                                                  |
+|---------------|-----------------------------------------------------------|
+| <kbd>cc</kbd> | `compile`编译                                             |
+| <kbd>cC</kbd> | `recompile`重新编译                                       |
+| <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程                      |
+| <kbd>cl</kbd> | `+switch-to-compilation`快速切换到 `*compilation*` buffer |
+| <kbd>cx</kbd> | `quickrun`快速运行当前程序                                |
+| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出                      |
+| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示         |
+| <kbd>cw</kbd> | `delete-trailing-whitespace`删除行末空白字符              |
 
 ## Emacs
 
