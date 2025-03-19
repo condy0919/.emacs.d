@@ -524,6 +524,14 @@ Else, call `comment-or-uncomment-region' on the current line."
                      "/TAGS\\'"
                      "COMMIT_EDITMSG\\'")))
 
+(use-package savehist
+  :ensure nil
+  :hook (after-init . savehist-mode)
+  :custom
+  (savehist-additional-variables '(mark-ring
+                                   global-mark-ring
+                                   (kill-ring . 50))))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
