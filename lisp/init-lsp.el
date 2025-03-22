@@ -124,9 +124,12 @@
   (eglot-sync-connect 0)
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
-  (eglot-events-buffer-size 0)
+  (eglot-events-buffer-config '(:size 0 :format short))
   (eglot-ignored-server-capabilities '(:documentLinkProvider
-                                       :documentOnTypeFormattingProvider)))
+                                       :documentOnTypeFormattingProvider
+                                       :foldingRangeProvider
+                                       :colorProvider
+                                       :inlayHintProvider)))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
