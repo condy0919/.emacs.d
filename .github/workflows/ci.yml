@@ -30,11 +30,11 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Cache ELPA packages
       id: elpa-cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: elpa
         key: ${{ matrix.os }}-${{ matrix.emacs-version }}-elpa-installed
