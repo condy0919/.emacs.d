@@ -19,7 +19,8 @@
   :custom
   (magit-diff-refine-hunk t)
   (magit-diff-paint-whitespace nil)
-  (magit-ediff-dwim-show-on-hunks t))
+  (magit-ediff-dwim-show-on-hunks t)
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 
 ;; NOTE: `diff-hl' depends on `vc'
 (use-package vc

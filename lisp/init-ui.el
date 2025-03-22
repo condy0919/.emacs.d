@@ -35,9 +35,7 @@
   :custom
   (shackle-default-size 0.5)
   (shackle-default-alignment 'below)
-  (shackle-rules '((magit-status-mode        :select t :inhibit-window-quit t :same t)
-                   (magit-log-mode           :select t :inhibit-window-quit t :same t)
-                   (vc-annotate-mode         :select t :inhibit-window-quit t :same t)
+  (shackle-rules '((vc-annotate-mode         :select t :inhibit-window-quit t :same t)
                    ("*quickrun*"             :select t :inhibit-window-quit t :same t)
                    (profiler-report-mode     :select t)
                    (xwidget-webkit-mode      :select t :same t)
@@ -54,7 +52,7 @@
                    ("*Org-Babel Error Output*"  :select nil :align t :size 0.3)
                    ("*Process List*"            :select t   :align t :size 0.3)
                    ("*Occur*"                   :select t   :align t)
-                   ("\\*eldoc\\( for \\)?.*\\*" :select nil :align t :size 15 :regexp t))))
+                   ("\\*eldoc\\( for \\)?.*\\*" :select t   :align t :size 15 :regexp t))))
 
 (use-package help
   :ensure nil
