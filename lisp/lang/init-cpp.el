@@ -456,7 +456,7 @@
                            "  FetchContent_Declare(" n
                            "    benchmark" n
                            "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
-                           "    GIT_TAG        v1.9.0" n
+                           "    GIT_TAG        v1.9.2" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
@@ -468,7 +468,7 @@
                            "  FetchContent_Declare(" n
                            "    gtest" n
                            "    GIT_REPOSITORY https://github.com/google/googletest" n
-                           "    GIT_TAG        v1.15.2" n
+                           "    GIT_TAG        v1.16.0" n
                            "    GIT_SHALLOW    true" n
                            "    GIT_PROGRESS   true" n
                            "  )" n
