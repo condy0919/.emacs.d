@@ -331,7 +331,7 @@
                            "}" n
                            "#endif" n
                            )
-                         "cpl"
+                         "externC"
                          "Insert #ifdef __cplusplus ..."
                          'c-tempo-tags)
   (tempo-define-template "c-main"
