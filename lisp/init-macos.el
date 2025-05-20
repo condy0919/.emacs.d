@@ -1,4 +1,4 @@
-;;; init-osx.el --- Tweaks for MacOS -*- lexical-binding: t -*-
+;;; init-macos.el --- Tweaks for MacOS -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -16,7 +16,7 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
   ;; Useful when use an external keyboard
-  (defun +osx-swap-option-and-command ()
+  (defun +mac-swap-option-and-command ()
     "Swap `mac-option-modifier' and `mac-command-modifier'."
     (interactive)
     (cl-rotatef mac-option-modifier mac-command-modifier)
@@ -44,5 +44,5 @@
   ;; Visit files opened outside of Emacs in existing frame, not a new one
   (ns-pop-up-frames nil))
 
-(provide 'init-osx)
-;;; init-osx.el ends here
+(provide 'init-macos)
+;;; init-macos.el ends here

@@ -76,7 +76,7 @@
 
 ;; MacOS specific
 (when (eq system-type 'darwin)
-  (require 'init-osx))
+  (require 'init-macos))
 
 (when (file-exists-p custom-file)
   (load custom-file))
