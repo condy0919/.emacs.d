@@ -28,6 +28,7 @@
   :custom
   (vc-follow-symlinks t)
   (vc-allow-async-revert t)
+  (vc-allow-async-diff t)
   (vc-handled-backends '(Git)))
 
 ;; Highlight uncommitted changes using VC
