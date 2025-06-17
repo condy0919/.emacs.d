@@ -232,8 +232,6 @@
 (use-package graphviz-dot-mode
   :ensure t
   :mode ("\\.dot\\'" . graphviz-dot-mode)
-  :config
-  (set-company-backends-for! graphviz-dot-mode company-dabbrev-code company-dabbrev company-graphviz-dot-backend)
   :custom
   (graphviz-dot-indent-width 2))
 
