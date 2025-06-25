@@ -328,6 +328,7 @@
   :ensure nil
   :hook (after-init . tab-bar-mode)
   :custom
+  (tab-bar-show 1)
   (tab-bar-tab-hints t)
   (tab-bar-auto-width nil)
   (tab-bar-close-button-show nil)
