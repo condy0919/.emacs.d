@@ -246,6 +246,7 @@
   (completion-category-overrides '((buffer (styles . (flex)))
                                    (file (styles . (substring)))
                                    (eglot-capf (styles . (basic partial-completion)))
+                                   (kill-ring (styles . (substring)))
                                    (imenu (styles . (substring)))))
   (completion-pcm-leading-wildcard t)
   ;; vertical view

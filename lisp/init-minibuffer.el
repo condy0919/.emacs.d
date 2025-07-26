@@ -22,6 +22,7 @@
 (use-package consult
   :ensure t
   :bind (([remap imenu]                  . consult-imenu)
+         ([remap yank-pop]               . consult-yank-pop)
          ([remap goto-line]              . consult-goto-line)
          ([remap bookmark-jump]          . consult-bookmark)
          ([remap recentf-open-files]     . consult-recent-file)
