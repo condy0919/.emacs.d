@@ -31,7 +31,7 @@ If NEWNAME is a directory, move file to it."
    (list (or buffer-file-name
              (user-error "No file is visiting"))))
   (when (y-or-n-p (format "Really delete '%s'? " file))
-    (kill-this-buffer)
+    (kill-current-buffer)
     (delete-file file)))
 
 ;;;###autoload
