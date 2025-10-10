@@ -113,6 +113,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
 
       ;; Resume
       "'" 'vertico-repeat
+      ";" 'avy-resume
 
       ;; file
       "f"  '(:wk "files")

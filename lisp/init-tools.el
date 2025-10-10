@@ -40,12 +40,20 @@
   :hook (after-init . avy-setup-default)
   :bind (("M-g M-l" . avy-goto-line)
          ("M-g M-j" . avy-goto-char-timer))
+  :config
+  (defun avy-action-embark-dwim (pt)
+    (save-excursion
+      (goto-char pt)
+      (embark-dwim))
+    t)
   :custom
   (avy-background t)
   (avy-all-windows nil)
   (avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   ;; overlay is used during isearch, `pre' style makes avy keys evident.
-  (avy-styles-alist '((avy-isearch . pre))))
+  (avy-styles-alist '((avy-isearch . pre)))
+  (avy-dispatch-alist '((?y . avy-action-copy)
+                        (?. . avy-action-embark-dwim))))
 
 ;; The builtin incremental search
 (use-package isearch
