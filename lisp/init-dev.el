@@ -156,7 +156,9 @@
   :ensure t
   :bind ("C-c b" . devdocs-lookup)
   :config
-  (add-to-list 'completion-category-overrides '(devdocs (styles . (flex)))))
+  (add-to-list 'completion-category-overrides '(devdocs (styles . (flex))))
+  :custom
+  (devdocs-window-select t))
 
 ;; Hiding structured data
 ;;
