@@ -35,7 +35,9 @@
                        consult-bookmark
                        consult-recent-file
                        consult-buffer
-                       :preview-key nil))
+                       :preview-key nil)
+    (consult-customize consult-line
+                       :prompt "Search: "))
 
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
