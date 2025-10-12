@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(require 'init-macros)
+(require 'init-funcs)
 
 (use-package cc-mode
   :ensure nil

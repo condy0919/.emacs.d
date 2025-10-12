@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(require 'init-macros)
+(require 'init-funcs)
 
 ;; Compilation Mode
 (use-package compile

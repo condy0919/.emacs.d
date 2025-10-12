@@ -6,7 +6,6 @@
 ;;; Code:
 
 (require 'init-funcs)
-(require 'init-macros)
 
 (use-package evil
   :ensure t
