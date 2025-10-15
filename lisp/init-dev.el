@@ -125,16 +125,6 @@
   (xref-show-xrefs-function #'xref-show-definitions-completing-read)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
-;; Jump to definition, used as a fallback of lsp-find-definition
-(use-package dumb-jump
-  :ensure t
-  :bind (("M-g j" . dumb-jump-go)
-         ("M-g J" . dumb-jump-go-other-window))
-  :custom
-  (dumb-jump-quiet t)
-  (dumb-jump-aggressive t)
-  (dumb-jump-selector 'completing-read))
-
 ;; A fancy ctags frontend
 (use-package citre
   :ensure t

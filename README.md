@@ -283,7 +283,7 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 
 - 显示行末空白字符
 - 高亮**TODO** **FIXME**等关键字
-- `dumb-jump`作为`lsp-find-definition`失败后的备份手段
+- `rg`作为`lsp-find-definition`失败后的备份手段
 - `magit`作为`git`客户端
 - `hideshow`来显示/隐藏结构化的代码块，如 "{ }" 函数体等
 - `rmsbolt`作为一个本地的 **Compiler Explorer** 相比于`godbolt`快速一点
