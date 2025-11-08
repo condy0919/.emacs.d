@@ -16,8 +16,8 @@
          ("C-c i b" . ispell-buffer)
          ("C-c i r" . ispell-region))
   :config
-  ;; MacOS is broken
-  (when (eq system-type 'darwin)
+  ;; Help MacOS/Windows find the dict.aff
+  (when (member system-type '(darwin windows-nt))
     (setenv "DICTIONARY" "en_US"))
 
   ;; no spell checking for org special blocks
