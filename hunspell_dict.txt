@@ -93,6 +93,10 @@ FIXME
 TODO
 XXX
 
+# RDMA
+RDMA
+RNDV
+
 # Others
 README
 SPDX
@@ -107,4 +111,3 @@ nvim
 backend
 debuginfod
 significand
-RDMA
