@@ -280,23 +280,6 @@
   :ensure nil
   :mode ("\\.td\\'" . tablegen-mode))
 
-;; Highlight "#if 0" as comments
-(use-package hideif
-  :ensure nil
-  :hook ((c-mode c++-mode) . hide-ifdef-mode)
-  :config
-  (when (eq system-type 'gnu/linux)
-    (add-to-list 'hide-ifdef-env '(__linux__ . 1))
-    (add-to-list 'hide-ifdef-env '(__GNUC__ . 11)))
-  (when (eq system-type 'darwin)
-    (add-to-list 'hide-ifdef-env '(__APPLE__ . 1))
-    (add-to-list 'hide-ifdef-env '(__clang__ . 1))
-    (add-to-list 'hide-ifdef-env '(__llvm__ . 1)))
-  :custom
-  ;; Use hide-ifdefs/show-ifdefs manually.
-  (hide-ifdef-initially nil)
-  (hide-ifdef-shadow t))
-
 ;; Snippets for C/C++
 (use-package tempo
   :ensure nil
