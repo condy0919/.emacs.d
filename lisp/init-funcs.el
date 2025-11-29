@@ -18,7 +18,6 @@
                  (let ((inhibit-message t))
                    (ignore-errors (apply f args))))))
 
-;;;###autoload
 (defun +rename-current-file (newname)
   "Rename current visiting file to NEWNAME.
 If NEWNAME is a directory, move file to it."
@@ -38,7 +37,6 @@ If NEWNAME is a directory, move file to it."
   (set-visited-file-name newname)
   (rename-buffer newname))
 
-;;;###autoload
 (defun +delete-current-file (file)
   "Delete current visiting FILE."
   (interactive
@@ -48,7 +46,6 @@ If NEWNAME is a directory, move file to it."
     (kill-current-buffer)
     (delete-file file)))
 
-;;;###autoload
 (defun +copy-current-file (new-path &optional overwrite-p)
   "Copy current buffer's file to `NEW-PATH'.
 If `OVERWRITE-P', overwrite the destination file without
@@ -64,7 +61,6 @@ confirmation."
     (make-directory (file-name-directory new-path) t)
     (copy-file old-path new-path (or overwrite-p 1))))
 
-;;;###autoload
 (defun +copy-current-filename (file)
   "Copy the full path to the current FILE."
   (interactive
@@ -73,14 +69,12 @@ confirmation."
   (kill-new file)
   (message "Copying '%s' to clipboard" file))
 
-;;;###autoload
 (defun +copy-current-buffer-name ()
   "Copy the name of current buffer."
   (interactive)
   (kill-new (buffer-name))
   (message "Copying '%s' to clipboard" (buffer-name)))
 
-;;;###autoload
 (defun +transient-tab-bar-history ()
   "Transient map of command `tab-bar-history'."
   (interactive)
@@ -94,7 +88,6 @@ confirmation."
        map)
      t)))
 
-;;;###autoload
 (defun +switch-to-compilation ()
   "Switch to the \"*compilation*\" buffer."
   (interactive)
