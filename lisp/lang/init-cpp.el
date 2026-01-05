@@ -323,7 +323,16 @@
                            )
                          "main"
                          "Insert a main function"
-                         'c-tempo-tags))
+                         'c-tempo-tags)
+
+  (tempo-define-template "c++-default-move-op"
+                         '((P "class: " class 'noinsert)
+                           (s class) "(" (s class) "&& rhs) noexcept = default;" n>
+                           (s class) "& operator=(" (s class) "&& rhs) noexcept = default;" n>
+                           p n)
+                         "mv"
+                         "Supply default move ctor and move assignment operator"
+                         'c++-tempo-tags))
 
 ;; cmake, the de factor build system for C++
 (use-package cmake-mode
