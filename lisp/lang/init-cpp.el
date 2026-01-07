@@ -7,6 +7,20 @@
 
 (require 'init-funcs)
 
+;; Find other test/benchmark files.
+(use-package files
+  :ensure nil
+  :config
+  (add-to-list 'find-sibling-rules
+               `(,(rx (group (+ (not "/"))) (or ".hpp" ".cpp") eos)
+                 "\\1_test.cpp" "\\1_benchmark.cpp"))
+  (add-to-list 'find-sibling-rules
+               `(,(rx (group (+ (not "/"))) "_test.cpp" eos)
+                 "\\1.cpp" "\\1.hpp"))
+  (add-to-list 'find-sibling-rules
+               `(,(rx (group (+ (not "/"))) "_benchmark.cpp" eos)
+                 "\\1.cpp" "\\1.hpp")))
+
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . c++-mode)

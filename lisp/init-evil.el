@@ -125,6 +125,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "fR" '+rename-current-file
       "fr" 'recentf-open-files
       "fl" 'find-file-literally
+      "fo" 'find-sibling-file
       "fj" 'dired-jump
       "fJ" 'dired-jump-other-window
 
