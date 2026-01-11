@@ -86,6 +86,7 @@ PKGBUILD
 fcitx
 nano
 systemd
+lcov
 
 # Comments
 DONT
