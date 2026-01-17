@@ -34,5 +34,28 @@
   (gptel-prompt-prefix-alist nil)
   (gptel-response-prefix-alist nil))
 
+(use-package gptel
+  :ensure nil
+  :after magit
+  :config
+  (defconst gptel-commit-system-prompt
+    "You are an expert programmer writing a good Git commit message.
+You have carefully reviewed every file diff included in this commit.
+Now, write the commit message using the Conventional Commits
+specification. The first line should be no more than 68 characters.")
+
+  (defun gptel-commit ()
+    "Generate Git commit message with gptel"
+    (interactive)
+    (if-let* ((lines (magit-git-lines "diff" "--cached"))
+              (changes (string-join lines "\n")))
+      (let ((gptel-include-reasoning nil)
+            (gptel-use-context 'system)
+            (gptel-use-tools nil))
+        (gptel-request changes
+          :system gptel-commit-system-prompt
+          :stream t))
+      (message "You have no file staged"))))
+
 (provide 'init-gpt)
 ;;; init-gpt.el ends here
