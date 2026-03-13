@@ -536,6 +536,17 @@ Else, call `comment-or-uncomment-region' on the current line."
                                    global-mark-ring
                                    (kill-ring . 50))))
 
+(use-package completion-preview
+  :ensure nil
+  :bind (:map completion-preview-active-mode-map
+         ([tab] . completion-preview-insert)
+         ("M-n" . completion-preview-next-candidate)
+         ("M-p" . completion-preview-prev-candidate)
+         ([remap forward-word] . completion-preview-insert-word))
+  :custom
+  (completion-preview-ignore-case t)
+  (completion-preview-sort-function #'identity))
+
 ;; Try out emacs package without installing
 (use-package try
   :ensure t
