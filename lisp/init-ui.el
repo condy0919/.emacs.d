@@ -99,6 +99,7 @@
   (dashboard-set-file-icons t)
   (dashboard-items '((recents   . 10)
                      (projects  . 7)))
+  (dashboard-projects-backend 'projectile)
   (dashboard-startupify-list '(dashboard-insert-banner
                                dashboard-insert-newline
                                dashboard-insert-banner-title
