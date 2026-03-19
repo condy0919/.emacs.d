@@ -226,7 +226,7 @@
   ;; Default minibuffer is fine-tuned since Emacs 29
   (completion-auto-help t)
   (completion-show-help nil)
-  (completion-auto-select nil)
+  (completion-auto-select 'second-tab)
   (completion-cycle-threshold nil)
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode t)
@@ -249,8 +249,9 @@
                                    (kill-ring (styles . (substring)))
                                    (imenu (styles . (substring)))))
   (completion-pcm-leading-wildcard t)
-  ;; vertical view
-  (completions-format 'one-column)
+  ;; horizontal view to match zsh compstyle
+  (completions-header-format nil)
+  (completions-format 'horizontal)
   (completions-max-height 13)
   (completions-sort nil)
   (completions-detailed t))
