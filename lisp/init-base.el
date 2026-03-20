@@ -249,9 +249,9 @@
                                    (kill-ring (styles . (substring)))
                                    (imenu (styles . (substring)))))
   (completion-pcm-leading-wildcard t)
-  ;; horizontal view to match zsh compstyle
+  ;; vertical view to match zsh compstyle
   (completions-header-format nil)
-  (completions-format 'horizontal)
+  (completions-format 'vertical)
   (completions-max-height 13)
   (completions-sort nil)
   (completions-detailed t))
