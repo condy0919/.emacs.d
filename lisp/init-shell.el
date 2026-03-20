@@ -9,7 +9,9 @@
   "The common initialization procedure for term/shell."
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
-  (setq-local global-hl-line-mode nil))
+  (setq-local global-hl-line-mode nil)
+  ;; Force "ls foo" to trigger a completion when foo1, foo2, ... in current directory.
+  (setq-local completion-category-overrides '((file (styles basic)))))
 
 (defun shell-self-destroy-sentinel (proc _exit-msg)
   "Make PROC self destroyable."
@@ -43,8 +45,7 @@
 ;; The Emacs shell & friends
 (use-package eshell
   :ensure nil
-  :hook ((eshell-mode . shell-mode-common-init)
-         (eshell-mode . completion-preview-mode))
+  :hook (eshell-mode . shell-mode-common-init)
   :config
   ;; Prevent accident typing
   (defalias 'eshell/vi 'find-file)
@@ -85,9 +86,11 @@ current directory."
   (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
-  ;; Completion like bash
   (eshell-cmpl-ignore-case t)
-  (eshell-cmpl-cycle-completions nil))
+  ;; Completion like zsh
+  (eshell-cmpl-autolist t)
+  (eshell-cmpl-cycle-completions t)
+  (eshell-cmpl-cycle-cutoff-length nil))
 
 (use-package em-hist
   :ensure nil
