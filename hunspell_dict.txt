@@ -80,6 +80,8 @@ stdout
 struct
 vptr
 vtbl
+ctor
+dtor
 
 # Linux
 PKGBUILD
@@ -102,6 +104,9 @@ TP
 CTP
 RTP
 URMA
+jfc
+jfs
+jfr
 
 # Others
 README
