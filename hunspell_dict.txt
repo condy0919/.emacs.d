@@ -67,6 +67,7 @@ consteval
 constexpr
 constinit
 dereference
+dereferencing
 destructor
 errno
 fmtlib
@@ -89,6 +90,7 @@ fcitx
 nano
 systemd
 lcov
+coredump
 
 # Comments
 DONT
@@ -107,6 +109,7 @@ URMA
 jfc
 jfs
 jfr
+ubsocket
 
 # Others
 README
