@@ -33,6 +33,11 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package package
+  :ensure nil
+  :custom
+  (package-install-upgrade-built-in t))
+
 ;; Keep ~/.emacs.d/ clean.
 (use-package no-littering
   :ensure t
