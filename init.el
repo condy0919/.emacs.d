@@ -36,7 +36,7 @@
 (use-package package
   :ensure nil
   :custom
-  (package-install-upgrade-built-in t))
+  (package-install-upgrade-built-in nil))
 
 ;; Keep ~/.emacs.d/ clean.
 (use-package no-littering
