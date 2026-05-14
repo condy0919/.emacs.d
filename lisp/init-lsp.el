@@ -69,12 +69,8 @@
   (lsp-enable-folding nil)                  ;; use `hideshow' instead
   (lsp-enable-snippet nil)                  ;; no snippets, it requires `yasnippet'
   (lsp-enable-file-watchers nil)            ;; performance matters
-  (lsp-enable-text-document-color nil)      ;; as above
-  (lsp-enable-symbol-highlighting nil)      ;; as above
   (lsp-enable-on-type-formatting nil)       ;; as above
-  (lsp-semantic-tokens-enable nil)          ;; optional
   (lsp-semantic-tokens-apply-modifiers nil) ;; don't override token faces
-  (lsp-headerline-breadcrumb-enable nil)    ;; keep headline clean
   (lsp-modeline-code-actions-enable nil)    ;; keep modeline clean
   (lsp-modeline-diagnostics-enable nil)     ;; as above
   (lsp-log-io nil)                          ;; debug only
@@ -83,6 +79,9 @@
   (lsp-keep-workspace-alive nil)            ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)              ;; disable eldoc hover
   (lsp-completion-enable-additional-text-edit nil))
+
+(use-package lsp-treemacs
+  :ensure t)
 
 (use-package eglot
   :disabled
