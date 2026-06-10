@@ -155,21 +155,31 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 | <kbd>zC</kbd> | `evil-close-fold-rec`递归地显示当前以及之内的代码块 |
 | <kbd>za</kbd> | `evil-toggle-fold`来切换是否隐藏代码                |
 
+全局/通用`Leader`键绑定如下:
+
+| key              | function                                             |
+|------------------|------------------------------------------------------|
+| <kbd>SPC</kbd>   | `keyboard-escape-quit`退出 minibuffer / 取消当前操作 |
+| <kbd>S-SPC</kbd> | `lazy-highlight-cleanup`清除搜索高亮                 |
+| <kbd>'</kbd>     | `vertico-repeat`恢复上一次 Vertico 补全              |
+| <kbd>;</kbd>     | `avy-resume`恢复上一次 avy 跳转                      |
+
 与文件相关的`Leader`键绑定如下:
 
-| key           | function                                                                    |
-|---------------|-----------------------------------------------------------------------------|
-| <kbd>ff</kbd> | `find-file`打开文件, <kbd>f.</kbd>有相同效果                                |
-| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开, <kbd>f/</kbd>有相同效果 |
-| <kbd>f/</kbd> | 同上                                                                        |
-| <kbd>fD</kbd> | `+delete-current-file`删除当前文件                                          |
-| <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方                                  |
-| <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径                              |
-| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                                        |
-| <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件                                    |
-| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件                                   |
-| <kbd>fj</kbd> | `dired-jump`进入当前文件的目录                                              |
-| <kbd>fJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开                         |
+| key           | function                                            |
+|---------------|-----------------------------------------------------|
+| <kbd>ff</kbd> | `find-file`打开文件                                 |
+| <kbd>fF</kbd> | `find-file-other-window`同上，不过是在另一窗口打开  |
+| <kbd>f/</kbd> | 同上                                                |
+| <kbd>fD</kbd> | `+delete-current-file`删除当前文件                  |
+| <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方          |
+| <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径      |
+| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                |
+| <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件            |
+| <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件           |
+| <kbd>fo</kbd> | `find-sibling-file`寻找并打开关联的兄弟文件         |
+| <kbd>fj</kbd> | `dired-jump`进入当前文件的目录                      |
+| <kbd>fJ</kbd> | `dired-jump-other-window`同上，不过是在另一窗口打开 |
 
 与`buffer`、`bookmark`相关的键绑定:
 
@@ -179,9 +189,9 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 | <kbd>bB</kbd> | `switch-to-buffer-other-window`同上，不过是在另一窗口打开                             |
 | <kbd>bc</kbd> | `clone-indirect-buffer`将当前`buffer`克隆至另一`buffer`，它们可以使用不同`major-mode` |
 | <kbd>bC</kbd> | `clone-indirect-buffer-other-window`同上，不过是在另一窗口打开                        |
-| <kbd>bv</kbd> | `revert-buffer`重新读取当前`buffer`对应的文件                                         |
-| <kbd>bx</kbd> | `scratch-buffer`直接跳转到 `*scratch*` buffer                                         |
 | <kbd>by</kbd> | `+copy-current-buffer-name`复制当前`buffer`的名字                                     |
+| <kbd>bv</kbd> | `revert-buffer-quick`快速重新读取当前`buffer`对应的文件                               |
+| <kbd>bx</kbd> | `scratch-buffer`直接跳转到 `*scratch*` buffer                                         |
 | <kbd>bz</kbd> | `bury-buffer`退出当前`buffer`的显示，当前`buffer`未被 kill                            |
 
 | key           | function                                                |
@@ -197,15 +207,45 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 | <kbd>bs</kbd> | `bookmark-save`保存书签                                 |
 | <kbd>bw</kbd> | `bookmark-write`将书签保存至其他文件                    |
 
+与窗口相关的`Leader`键绑定如下:
+
+| key           | function                                           |
+|---------------|----------------------------------------------------|
+| <kbd>w</kbd>  | `evil-window-map`窗口操作的前缀键 (等同于 `C-w`)   |
+| <kbd>wx</kbd> | `kill-buffer-and-window`关闭当前 buffer 并关闭窗口 |
+| <kbd>wu</kbd> | `+transient-tab-bar-history`撤销/恢复窗口布局      |
+| <kbd>w-</kbd> | `split-window-vertically`水平分割窗口              |
+| <kbd>w/</kbd> | `split-window-horizontally`垂直分割窗口            |
+
+与标签页 (Tab) 相关的`Leader`键绑定如下:
+
+| key           | function                                             |
+|---------------|------------------------------------------------------|
+| <kbd>tc</kbd> | `tab-bar-close-tab`关闭当前标签页                    |
+| <kbd>tC</kbd> | `tab-bar-close-group-tabs`关闭当前标签组的所有标签页 |
+| <kbd>tg</kbd> | `tab-bar-change-tab-group`修改当前标签页的分组       |
+| <kbd>ti</kbd> | `tab-switcher`切换标签页                             |
+| <kbd>tn</kbd> | `tab-bar-new-tab`新建标签页                          |
+| <kbd>to</kbd> | `tab-bar-close-other-tabs`关闭其他标签页             |
+| <kbd>tt</kbd> | `tab-bar-switch-to-tab`切换到指定的标签页            |
+| <kbd>t'</kbd> | `tab-bar-switch-to-recent-tab`切换到最近访问的标签页 |
+| <kbd>tr</kbd> | `tab-bar-rename-tab`重命名当前标签页                 |
+
+与项目相关的`Leader`键绑定如下:
+
+| key          | function                                                          |
+|--------------|-------------------------------------------------------------------|
+| <kbd>p</kbd> | `projectile-command-map`项目管理前缀键 (功能与下文的 `C-c p` 相同) |
+
 打开其他程序的`Leader`键绑定:
 
-| key           | function                                                   |
-|---------------|------------------------------------------------------------|
-| <kbd>ot</kbd> | `ansi-term`打开`ansi-term`                              |
-| <kbd>oe</kbd> | `eshell`打开`eshell`                                       |
-| <kbd>os</kbd> | `shell`打开`shell`                                         |
-| <kbd>ol</kbd> | `org-store-link`存储URL                                    |
-| <kbd>oc</kbd> | `org-capture`随时记录一些想法、URL等                       |
+| key           | function                             |
+|---------------|--------------------------------------|
+| <kbd>ot</kbd> | `ansi-term`打开`ansi-term`           |
+| <kbd>oe</kbd> | `eshell`打开`eshell`                 |
+| <kbd>os</kbd> | `shell`打开`shell`                   |
+| <kbd>ol</kbd> | `org-store-link`存储URL              |
+| <kbd>oc</kbd> | `org-capture`随时记录一些想法、URL等 |
 
 打开一些看起来像是独立的应用:
 
@@ -231,14 +271,13 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 
 | key           | function                                                  |
 |---------------|-----------------------------------------------------------|
+| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示         |
 | <kbd>cc</kbd> | `compile`编译                                             |
 | <kbd>cC</kbd> | `recompile`重新编译                                       |
 | <kbd>ck</kbd> | `kill-compilation`打断当前的编译过程                      |
 | <kbd>cl</kbd> | `+switch-to-compilation`快速切换到 `*compilation*` buffer |
-| <kbd>cx</kbd> | `quickrun`快速运行当前程序                                |
-| <kbd>cX</kbd> | `quickrun-shell`在`eshell`里查看输出                      |
-| <kbd>cd</kbd> | `rmsbolt-compile`查看编译器的输出，如汇编、IR表示         |
 | <kbd>cw</kbd> | `delete-trailing-whitespace`删除行末空白字符              |
+| <kbd>cx</kbd> | `quickrun`快速运行当前程序                                |
 
 ## Emacs
 
