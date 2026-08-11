@@ -100,6 +100,8 @@ current directory."
   :bind (:map eshell-hist-mode-map
          ("M-r" . consult-history))
   :custom
+  (eshell-history-append t)
+  (eshell-hist-ignoredups t)
   (eshell-history-size 10000))
 
 (use-package em-rebind
