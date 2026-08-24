@@ -51,7 +51,8 @@ specification. The first line should be no more than 68 characters.")
               (changes (string-join lines "\n")))
       (let ((gptel-include-reasoning nil)
             (gptel-use-context 'system)
-            (gptel-use-tools nil))
+            (gptel-use-tools nil)
+            (gptel-model 'deepseek-v4-flash))
         (gptel-request changes
           :system gptel-commit-system-prompt
           :stream t))
