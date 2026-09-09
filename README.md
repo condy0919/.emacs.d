@@ -8,7 +8,7 @@
 
 [![Build Status](https://github.com/condy0919/.emacs.d/workflows/CI/badge.svg)](https://github.com/condy0919/.emacs.d/actions)
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](LICENSE)
-![Supports Emacs 30.1-31.x](https://img.shields.io/badge/Supports-Emacs_30.1_--_31.x-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
+![Supports Emacs 31+](https://img.shields.io/badge/Supports-Emacs_31%2B-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white)
 
 </div>
 
@@ -174,7 +174,7 @@ Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-u
 | <kbd>fD</kbd> | `+delete-current-file`删除当前文件                  |
 | <kbd>fC</kbd> | `+copy-current-file`拷贝当前文件至其他地方          |
 | <kbd>fy</kbd> | `+copy-current-filename`拷贝当前文件的绝对路径      |
-| <kbd>fR</kbd> | `+rename-current-file`重命名当前文件                |
+| <kbd>fR</kbd> | `rename-visited-file`重命名当前文件                 |
 | <kbd>fr</kbd> | `recentf-open-files`访问最近使用过的文件            |
 | <kbd>fl</kbd> | `find-file-literally`采用朴素模式打开文件           |
 | <kbd>fo</kbd> | `find-sibling-file`寻找并打开关联的兄弟文件         |

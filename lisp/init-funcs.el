@@ -18,25 +18,6 @@
                  (let ((inhibit-message t))
                    (ignore-errors (apply f args))))))
 
-(defun +rename-current-file (newname)
-  "Rename current visiting file to NEWNAME.
-If NEWNAME is a directory, move file to it."
-  (interactive
-   (progn
-     (unless buffer-file-name
-       (user-error "No file is visiting"))
-     (let ((name (read-file-name "Rename to: " nil buffer-file-name 'confirm)))
-       (when (equal (file-truename name)
-                    (file-truename buffer-file-name))
-         (user-error "Can't rename file to itself"))
-       (list name))))
-  ;; NEWNAME is a directory
-  (when (equal newname (file-name-as-directory newname))
-    (setq newname (concat newname (file-name-nondirectory buffer-file-name))))
-  (rename-file buffer-file-name newname)
-  (set-visited-file-name newname)
-  (rename-buffer newname))
-
 (defun +delete-current-file (file)
   "Delete current visiting FILE."
   (interactive

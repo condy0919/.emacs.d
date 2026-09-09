@@ -122,7 +122,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "fC" '+copy-current-file
       "fD" '+delete-current-file
       "fy" '+copy-current-filename
-      "fR" '+rename-current-file
+      "fR" 'rename-visited-file
       "fr" 'recentf-open-files
       "fl" 'find-file-literally
       "fo" 'find-sibling-file

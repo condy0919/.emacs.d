@@ -10,7 +10,6 @@
       use-dialog-box nil
       inhibit-x-resources t
       inhibit-default-init t
-      inhibit-startup-screen t
       inhibit-startup-message t
       inhibit-startup-buffer-menu t)
 
