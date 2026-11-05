@@ -80,8 +80,12 @@
   (lsp-eldoc-enable-hover nil)              ;; disable eldoc hover
   (lsp-completion-enable-additional-text-edit nil))
 
-(use-package lsp-treemacs
-  :ensure t)
+(use-package lsp-hierarchy
+  :ensure t
+  :vc (:url "https://github.com/condy0919/lsp-hierarchy.git" :rev :newest)
+  :bind (:map lsp-command-map
+         ("gt" . lsp-hierarchy-show-type)
+         ("gh" . lsp-hierarchy-show-call)))
 
 (use-package eglot
   :disabled
