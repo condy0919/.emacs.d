@@ -114,14 +114,6 @@
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
-;; Keep clean but enable `menu-bar' in MacOS
-(when (and (fboundp 'menu-bar-mode) (not (eq system-type 'darwin)))
-  (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil))
-
 ;; Highlight parenthesises
 (use-package paren
   :ensure nil
