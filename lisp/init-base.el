@@ -371,8 +371,10 @@ Else, call `comment-or-uncomment-region' on the current line."
 (use-package comint
   :ensure nil
   :bind (:map comint-mode-map
-         ([remap kill-region]   . backward-kill-word))
+         ("M-." . comint-insert-previous-argument))
   :custom
+  ;; zsh-like
+  (comint-insert-previous-argument-from-end t)
   ;; No paging, `eshell' and `shell' will honoring.
   (comint-pager "cat")
   ;; Make the prompt of "*Python*" buffer readonly
