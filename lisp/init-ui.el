@@ -67,9 +67,7 @@
 ;; preferred over `winner-mode' for better compatibility with `tab-bar-mode'.
 (use-package tab-bar
   :ensure nil
-  :hook (after-init . tab-bar-history-mode)
-  :custom
-  (tab-bar-history-buttons-show nil))
+  :hook (after-init . tab-bar-history-mode))
 
 (use-package nerd-icons
   :ensure t
