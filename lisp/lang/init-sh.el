@@ -19,8 +19,7 @@
   (defun sh-mode-setup ()
     (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p nil t))
   :custom
-  (sh-basic-offset 2)
-  (sh-indentation 2))
+  (sh-basic-offset 2))
 
 ;; Snippets for sh
 (use-package tempo
