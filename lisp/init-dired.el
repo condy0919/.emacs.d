@@ -53,23 +53,7 @@
                             ".cache"
                             ".vscode"
                             ".ccls-cache" ".clangd")
-                        string-end))
-  (dired-guess-shell-alist-user `((,(rx "."
-                                        (or
-                                         ;; Videos
-                                         "mp4" "avi" "mkv" "flv" "ogv" "ogg" "mov"
-                                         ;; Music
-                                         "wav" "mp3" "flac"
-                                         ;; Images
-                                         "jpg" "jpeg" "png" "gif" "xpm" "svg" "bmp"
-                                         ;; Docs
-                                         "pdf" "md" "djvu" "ps" "eps" "doc" "docx" "xls" "xlsx" "ppt" "pptx")
-                                        string-end)
-                                   ,(pcase system-type
-                                      ('gnu/linux "xdg-open")
-                                      ('darwin "open")
-                                      ('windows-nt "start")
-                                      (_ ""))))))
+                        string-end)))
 
 ;; Make dired colorful
 (use-package diredfl
