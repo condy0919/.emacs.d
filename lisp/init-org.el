@@ -98,7 +98,7 @@
 ;; Write codes in org-mode
 (use-package org-src
   :ensure nil
-  :hook (org-babel-after-execute . org-redisplay-inline-images)
+  :hook (org-babel-after-execute . org-link-preview-refresh)
   :bind (:map org-src-mode-map
          ;; consistent with separedit/magit
          ("C-c C-c" . org-edit-src-exit))
