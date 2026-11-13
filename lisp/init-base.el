@@ -404,6 +404,7 @@ Else, call `comment-or-uncomment-region' on the current line."
 
 ;; Buffer index
 (use-package imenu
+  :ensure nil
   :hook (imenu-after-jump . recenter)
   :custom
   (imenu-flatten 'group))

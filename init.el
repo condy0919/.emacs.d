@@ -8,7 +8,7 @@
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
-;; Increase how much is read from processes in a single chunk (default is 4kb).
+;; Increase how much is read from processes in a single chunk (default is 64kb).
 ;; `lsp-mode' benefits from that.
 ;;
 ;; `cat /proc/sys/fs/pipe-max-size` to check the max value.
