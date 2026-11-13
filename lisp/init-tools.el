@@ -168,16 +168,6 @@
   (defun background-opacity-get-alpha-str ()
     (format "Alpha %s%%" (background-opacity-get-alpha))))
 
-;; Pastebin service
-(use-package webpaste
-  :ensure t
-  :commands webpaste-paste-buffer-or-region
-  :custom
-  (webpaste-open-in-browser t)
-  (webpaste-paste-confirmation t)
-  (webpaste-add-to-killring nil)
-  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org" "ix.io")))
-
 ;; Web search
 (use-package webjump
   :ensure nil
