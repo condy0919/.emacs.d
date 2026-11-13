@@ -13,7 +13,10 @@
   ;; No marginalia annotation in Completion
   (setq-local marginalia-annotators nil)
   ;; Force "ls foo" to trigger a completion when foo1, foo2, ... in current directory.
-  (setq-local completion-category-overrides '((file (styles basic)))))
+  ;; Replace only the `file' entry so other global category overrides remain intact.
+  (setq-local completion-category-overrides
+              (cons '(file (styles basic))
+                    (assq-delete-all 'file (copy-sequence completion-category-overrides)))))
 
 (defun shell-self-destroy-sentinel (proc _exit-msg)
   "Make PROC self destroyable."
