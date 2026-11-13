@@ -92,14 +92,10 @@ current directory."
   (eshell-visual-subcommands '(("git" "help" "lg" "log" "diff" "show")))
   (eshell-visual-options '(("git" "--help" "--paginate")))
   (eshell-cmpl-ignore-case t)
-  ;; Completion like zsh
-  (eshell-cmpl-autolist t)
-  (eshell-cmpl-cycle-completions t)
-  (eshell-cmpl-cycle-cutoff-length nil))
+  (eshell-last-dir-ring-size 256))
 
 (use-package em-hist
   :ensure nil
-  :hook (eshell-hist-load . eshell-hist-initialize)
   :bind (:map eshell-hist-mode-map
          ("M-r" . consult-history))
   :custom
