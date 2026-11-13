@@ -67,7 +67,10 @@
 ;; preferred over `winner-mode' for better compatibility with `tab-bar-mode'.
 (use-package tab-bar
   :ensure nil
-  :hook (after-init . tab-bar-history-mode))
+  :hook (after-init . tab-bar-history-mode)
+  :bind (:repeat-map tab-bar-history-repeat-map
+         ("u" . tab-bar-history-back)
+         ("r" . tab-bar-history-forward)))
 
 (use-package nerd-icons
   :ensure t

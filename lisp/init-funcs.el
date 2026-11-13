@@ -56,19 +56,6 @@ confirmation."
   (kill-new (buffer-name))
   (message "Copying '%s' to clipboard" (buffer-name)))
 
-(defun +transient-tab-bar-history ()
-  "Transient map of command `tab-bar-history'."
-  (interactive)
-  (let ((echo-keystrokes nil))
-    (tab-bar-history-back)
-    (message "tab-bar-history: [u]back [r]forward")
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (define-key map "u" #'tab-bar-history-back)
-       (define-key map "r" #'tab-bar-history-forward)
-       map)
-     t)))
-
 (defun +switch-to-compilation ()
   "Switch to the \"*compilation*\" buffer."
   (interactive)
