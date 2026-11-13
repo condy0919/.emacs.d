@@ -101,7 +101,9 @@ current directory."
   :custom
   (eshell-history-append t)
   (eshell-hist-ignoredups t)
-  (eshell-history-size 10000))
+  (eshell-history-size 10000)
+  (eshell-history-isearch 'dwim)
+  (eshell-input-filter #'eshell-input-filter-initial-space))
 
 (use-package em-rebind
   :ensure nil
@@ -110,7 +112,9 @@ current directory."
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
-         ([remap delete-char] . eshell-delchar-or-maybe-eof)))
+         ([remap delete-char] . eshell-delchar-or-maybe-eof))
+  :custom
+  (eshell-scroll-to-bottom-on-input 'this))
 
 ;; The interactive shell.
 ;;
