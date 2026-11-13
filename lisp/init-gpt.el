@@ -25,7 +25,7 @@
     :system "You are an expert coding assistant. Your role is to provide high-quality code solutions, refactorings, and explanations."
     :tools nil)
   :custom
-  (gptel-model 'deepseek-v4-pro)
+  (gptel-model 'deepseek-v4-flash)
   (gptel-track-media t)
   (gptel-include-reasoning 'ignore)
   (gptel-highlight-methods (if (display-graphic-p) '(fringe) '(margin)))
