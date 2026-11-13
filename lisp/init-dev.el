@@ -166,11 +166,6 @@
   (hs-indicator-type (if (display-graphic-p) 'fringe 'margin))
   (hs-hide-comments-when-hiding-all nil))
 
-;; Antlr mode
-(use-package antlr-mode
-  :ensure nil
-  :mode ("\\.g4\\'" . antlr-mode))
-
 ;; XML
 (use-package nxml-mode
   :ensure nil
