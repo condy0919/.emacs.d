@@ -25,7 +25,6 @@
   (add-to-list 'ispell-skip-region-alist '("#\\+begin_src" . "#\\+end_src"))
   (add-to-list 'ispell-skip-region-alist '("#\\+begin_example" . "#\\+end_example"))
   :custom
-  (ispell-really-hunspell t)
   (ispell-program-name "hunspell")
   (ispell-dictionary "en_US")
   (ispell-following-word t)
