@@ -52,12 +52,16 @@
             ((executable-find "ccls") (setq lsp-clients-clangd-executable "ccls"
                                             lsp-clients-clangd-args ccls-args)))))
   :custom
+  (c-default-style '((java-mode . "java")
+                     (awk-mode  . "awk")
+                     (other     . "user")))
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
                              (awk-mode . "#+")
                              (other    . "//+\\|\\**")))
-  (c-doc-comment-style '((c-mode   . gtkdoc)
+  (c-doc-comment-style '((c-mode   . (gtkdoc doxygen))
                          (c++-mode . doxygen)))
+  (c-cleanup-list '(comment-close-slash))
   (c-basic-offset 4)
   (c-label-minimum-indentation 0)
   (c-offsets-alist '(;; a multi-line C style block comment
@@ -100,7 +104,15 @@
                      (inline-close          . 0)
                      (inclass               . +)
                      (friend                . 0)
-                     ;; `noexcept' specifier indentation
+                     ;; function declaration/definition continuation after arglist
+                     ;; (`noexcept', trailing return type, exception specifiers)
+                     ;;
+                     ;; auto add(int a, int b)
+                     ;;     -> int
+                     ;;     noexcept
+                     ;; {
+                     ;;     return a + b;
+                     ;; }
                      (func-decl-cont        . +)
                      ;; brace of list
                      ;;
@@ -115,6 +127,17 @@
                      (brace-list-intro      . +)
                      (brace-list-entry      . 0)
                      (brace-entry-open      . 0)
+                     ;; brace of enum
+                     ;;
+                     ;; enum class Color
+                     ;; {
+                     ;;     Red,
+                     ;;     Green,
+                     ;; };
+                     (enum-open             . 0)
+                     (enum-close            . 0)
+                     (enum-intro            . +)
+                     (enum-entry            . 0)
                      ;; brace of namespace
                      ;;
                      ;; namespace ns {
@@ -160,7 +183,7 @@
                      ;;
                      ;; int main(int argc, char* argv[]) {
                      ;;     const int var1 = 42;
-                     ;;     const int var2 = (argc > 1) ? 314   // <- a new statement starts
+                     ;;     const int var2 = (argc > 1) ? 314   // <- statement
                      ;;                                 : 512;  // <- statement-cont
                      ;;     {
                      ;;         const int var3 = 42;            // <- statement-block-intro
@@ -228,7 +251,7 @@
                      ;; #define ALIST(G)                                \
                      ;;     G(1)                                        \
                      ;;     G(2)
-                     (cpp-macro             . -1000)
+                     (cpp-macro             . [0])
                      (cpp-macro-cont        . +)
                      ;; extern
                      ;;
@@ -262,7 +285,8 @@
                      ;; dummy<int,
                      ;;       char,
                      ;;       double>(0, 0, 0);
-                     (template-args-cont    . (c-lineup-template-args +)))))
+                     (template-args-cont    . (c-lineup-template-args
+                                               c-lineup-template-args-indented-from-margin)))))
 
 ;; A compiler output viewer
 (use-package rmsbolt
