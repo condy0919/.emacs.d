@@ -387,7 +387,7 @@
          ;; Compatible with lsp-mode keybindings
          ("C-c d" . cmake-help))
   :config
-  (set-company-backends-for! cmake-mode company-cmake company-dabbrev-code company-dabbrev))
+  (set-company-backends-for! cmake-mode (company-cmake :with company-tempo) company-dabbrev-code company-dabbrev))
 
 ;; Extra font locks for cmake
 (use-package cmake-font-lock
@@ -407,11 +407,6 @@
 
   (defun cmake-mode-tempo-setup ()
     (tempo-use-tag-list 'cmake-tempo-tags))
-
-  ;; cmake provides `PROJECT_NAME` to refer the name defined with `project`
-  ;; function. Sadly converting a string to upper case is hard in cmake.
-  (defun proj-prefixed (arg)
-    (tempo-process-and-insert-string (concat (upcase (tempo-lookup-named 'proj)) arg)))
 
   ;; Make sure you have the following directory hierarchy
   ;;
@@ -451,8 +446,12 @@
   ;; - Option to enable benchmarks
   ;; - Git tag based version
   (tempo-define-template "cmake-library"
-                         '((P "project: " proj 'noinsert)
-                           "cmake_minimum_required(VERSION 3.13)" n n
+                         '((P "project: " proj noinsert)
+                           (tempo-save-named 'PROJ
+                                             (replace-regexp-in-string
+                                              "[^[:alnum:]_]" "_"
+                                              (upcase (tempo-lookup-named 'proj))))
+                           "cmake_minimum_required(VERSION 3.20)" n n
                            "set(CMAKE_POSITION_INDEPENDENT_CODE ON)" n
                            "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n n
                            "project(" (s proj) n
@@ -463,8 +462,8 @@
                            ")" n n
                            "include(CTest)" n
                            "include(FetchContent)" n n
-                           "option(" (proj-prefixed "_BUILD_TESTS") " \"Build tests\" ON)" n
-                           "option(" (proj-prefixed "_BUILD_BENCHMARKS") " \"Build benchmarks\" OFF)" n n
+                           "option(" (s PROJ) "_BUILD_TESTS \"Build tests\" ON)" n
+                           "option(" (s PROJ) "_BUILD_BENCHMARKS \"Build benchmarks\" OFF)" n n
                            "# Sources for the library are specified at the end" n
                            "add_library(" (s proj) " \"\")" n n
                            "# Alias to avoid name conflicts" n
@@ -486,7 +485,7 @@
                            "find_package(Threads REQUIRED)" n
                            "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
                            "# Benchmark" n
-                           "if(" (proj-prefixed "_BUILD_BENCHMARKS)") n
+                           "if(" (s PROJ) "_BUILD_BENCHMARKS)" n
                            "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
                            "  FetchContent_Declare(" n
                            "    benchmark" n
@@ -498,7 +497,7 @@
                            "  FetchContent_MakeAvailable(benchmark)" n
                            "endif()" n n
                            "# Test" n
-                           "if(" (proj-prefixed "_BUILD_TESTS)") n
+                           "if(" (s PROJ) "_BUILD_TESTS)" n
                            "  # libgtest.a and libgtest_main.a will be built" n
                            "  FetchContent_Declare(" n
                            "    gtest" n
@@ -522,17 +521,17 @@
                            "    src/lib.cpp" n
                            ")" n n
                            "### Obtain version information from Git" n
-                           "# if(NOT " (proj-prefixed "_VERSION)") n
+                           "# if(NOT " (s PROJ) "_VERSION)" n
                            "#   execute_process(COMMAND git describe --always --long HEAD" n
-                           "#     OUTPUT_VARIABLE " (proj-prefixed "_VERSION") n
+                           "#     OUTPUT_VARIABLE " (s PROJ) "_VERSION" n
                            "#     OUTPUT_STRIP_TRAILING_WHITESPACE" n
                            "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n
                            "#" n
-                           "#   if(NOT " (proj-prefixed "_VERSION)") n
-                           "#     set(" (proj-prefixed "_VERSION") " \"<unknown>\")" n
+                           "#   if(NOT " (s PROJ) "_VERSION)" n
+                           "#     set(" (s PROJ) "_VERSION \"<unknown>\")" n
                            "#   endif()" n
                            "# endif()" n n
-                           "# target_compile_definitions(" (s proj) " PRIVATE " (proj-prefixed "_VERSION=\"${") (proj-prefixed "_VERSION") "}\")" n
+                           "# target_compile_definitions(" (s proj) " PRIVATE " (s PROJ) "_VERSION=\"${" (s PROJ) "_VERSION}\")" n
                            )
                          "lib"
                          "Insert a cmake library"
