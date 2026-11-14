@@ -394,6 +394,10 @@
   :ensure t
   :hook (cmake-mode . cmake-font-lock-activate))
 
+(defun init-cpp--cmake-upper-id (name)
+  "Normalize NAME into an uppercase CMake identifier prefix."
+  (replace-regexp-in-string "[^[:alnum:]_]" "_" (upcase (or name ""))))
+
 ;; Snippets for cmake
 ;;
 ;; Visit https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html for
@@ -408,135 +412,283 @@
   (defun cmake-mode-tempo-setup ()
     (tempo-use-tag-list 'cmake-tempo-tags))
 
-  ;; Make sure you have the following directory hierarchy
+  ;; Recommended project layout (CMake >= 3.21):
   ;;
   ;; .
-  ;; ├── CMakeLists.txt
-  ;; ├── include
-  ;; │   └── lib.hpp
-  ;; ├── src
-  ;; │   ├── foo.cpp
-  ;; │   ├── foo_test.cpp
-  ;; │   └── foo_benchmark.cpp
-  ;; ├── benchmarks
-  ;; │   └── CMakeLists.txt
-  ;; └── tests
-  ;;     └── CMakeLists.txt
+  ;; ├── CMakeLists.txt           (tag: lib)
+  ;; ├── CMakePresets.json        (tag: presets, in js-json-mode/json-ts-mode)
+  ;; ├── foo/
+  ;; │   ├── CMakeLists.txt       (tag: umbrella)
+  ;; │   ├── core/
+  ;; │   │   ├── CMakeLists.txt   (tag: comp, test, bench)
+  ;; │   │   ├── a.hpp
+  ;; │   │   ├── a.cpp
+  ;; │   │   ├── a_test.cpp
+  ;; │   │   └── a_benchmark.cpp
+  ;; │   └── runtime/
+  ;; │       └── CMakeLists.txt
+  ;; ├── tools/
+  ;; │   └── CMakeLists.txt       (tag: exe)
+  ;; ├── tests/
+  ;; │   └── CMakeLists.txt       (tag: test)
+  ;; └── benchmarks/
+  ;;     └── CMakeLists.txt       (tag: bench)
   ;;
-  ;; The `benchmarks` directory and `tests` directory are optional.
-  ;;
-  ;; If you want to put all headers in `src` directory, don't forget to export them.
-  ;;
-  ;; ``` cmake
-  ;; # method 1
-  ;; set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
-  ;;
-  ;; # method 2
-  ;; target_sources(yourlib
-  ;;   PRIVATE
-  ;;     implementation.cpp
-  ;;   PUBLIC
-  ;;     header.hpp
-  ;; )
-  ;; ```
-  ;;
-  ;; # Features
-  ;;
-  ;; - Option to enable tests
-  ;; - Option to enable benchmarks
-  ;; - Git tag based version
+  ;; Features of `cmake-library' (`lib`):
+  ;; - Top-level isolation via `PROJECT_IS_TOP_LEVEL' (safe for FetchContent/add_subdirectory)
+  ;; - Decoupled `<PROJ>_BUILD_TESTS' with `enable_testing()' (no global `CTest'/`BUILD_TESTING')
+  ;; - Separated `public' and `dev' interface option targets
   (tempo-define-template "cmake-library"
                          '((P "project: " proj noinsert)
                            (tempo-save-named 'PROJ
-                                             (replace-regexp-in-string
-                                              "[^[:alnum:]_]" "_"
-                                              (upcase (tempo-lookup-named 'proj))))
-                           "cmake_minimum_required(VERSION 3.20)" n n
-                           "set(CMAKE_POSITION_INDEPENDENT_CODE ON)" n
-                           "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n n
+                                             (init-cpp--cmake-upper-id (tempo-lookup-named 'proj)))
+                           "cmake_minimum_required(VERSION 3.21)" n n
                            "project(" (s proj) n
                            "  VERSION 0.1.0" n
                            "  LANGUAGES CXX" n
                            "  DESCRIPTION \"\"" n
                            "  HOMEPAGE_URL \"\"" n
                            ")" n n
-                           "include(CTest)" n
-                           "include(FetchContent)" n n
-                           "option(" (s PROJ) "_BUILD_TESTS \"Build tests\" ON)" n
-                           "option(" (s PROJ) "_BUILD_BENCHMARKS \"Build benchmarks\" OFF)" n n
-                           "# Sources for the library are specified at the end" n
-                           "add_library(" (s proj) " \"\")" n n
-                           "# Alias to avoid name conflicts" n
-                           "# add_library(ANameWithDoubleColons ALIAS " (s proj) ")" n n
+                           "# Top-level only settings (do not pollute parent project)" n
+                           "if(PROJECT_IS_TOP_LEVEL)" n
+                           "  set(CMAKE_POSITION_INDEPENDENT_CODE ON)" n
+                           "  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" n
+                           "  if(NOT DEFINED CMAKE_CXX_EXTENSIONS)" n
+                           "    set(CMAKE_CXX_EXTENSIONS OFF)" n
+                           "  endif()" n
+                           "endif()" n n
+                           "option(" (s PROJ) "_BUILD_SHARED     \"Build shared libraries\"           OFF)" n
+                           "option(" (s PROJ) "_BUILD_TESTS      \"Build unit and integration tests\" ${PROJECT_IS_TOP_LEVEL})" n
+                           "option(" (s PROJ) "_BUILD_BENCHMARKS \"Build micro and macro benchmarks\" ${PROJECT_IS_TOP_LEVEL})" n
+                           "option(" (s PROJ) "_BUILD_TOOLS      \"Build CLI tools\"                  ${PROJECT_IS_TOP_LEVEL})" n n
                            "### Compile options" n
-                           "# Enable C++17 (Required)" n
-                           "target_compile_features(" (s proj) n
-                           "  PUBLIC" n
-                           "    cxx_std_17" n
+                           "add_library(" (s proj) "_public_options INTERFACE)" n
+                           "target_compile_features(" (s proj) "_public_options INTERFACE cxx_std_23)" n
+                           "target_include_directories(" (s proj) "_public_options INTERFACE" n
+                           "  ${CMAKE_CURRENT_SOURCE_DIR}" n
                            ")" n n
-                           "# Common GCC/Clang options" n
-                           "target_compile_options(" (s proj) n
-                           "  PRIVATE" n
-                           "    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra>" n
+                           "add_library(" (s proj) "_dev_options INTERFACE)" n
+                           "target_compile_options(" (s proj) "_dev_options INTERFACE" n
+                           "  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>" n
+                           "  $<$<CXX_COMPILER_ID:MSVC>:/W4>" n
                            ")" n n
-                           "### Libraries" n
-                           "# Enable threading support" n
-                           "set(THREADS_PREFER_PTHREAD_FLAG ON)" n
-                           "find_package(Threads REQUIRED)" n
-                           "target_link_libraries(" (s proj) " PRIVATE Threads::Threads)" n n
-                           "# Benchmark" n
+                           "### Dependencies" n
+                           "include(FetchContent)" n n
+                           "if(" (s PROJ) "_BUILD_TESTS)" n
+                           "  enable_testing()" n
+                           "  include(GoogleTest)" n n
+                           "  # Targets: GTest::gtest, GTest::gtest_main, GTest::gmock, GTest::gmock_main" n
+                           "  FetchContent_Declare(" n
+                           "    gtest" n
+                           "    GIT_REPOSITORY https://github.com/google/googletest.git" n
+                           "    GIT_TAG        v1.16.0" n
+                           "    GIT_SHALLOW    TRUE" n
+                           "  )" n
+                           "  FetchContent_MakeAvailable(gtest)" n
+                           "endif()" n n
                            "if(" (s PROJ) "_BUILD_BENCHMARKS)" n
-                           "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"Disable benchmark testing\" FORCE)" n
+                           "  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL \"\" FORCE)" n
+                           "  # Targets: benchmark::benchmark, benchmark::benchmark_main" n
                            "  FetchContent_Declare(" n
                            "    benchmark" n
                            "    GIT_REPOSITORY https://github.com/google/benchmark.git" n
                            "    GIT_TAG        v1.9.2" n
-                           "    GIT_SHALLOW    true" n
-                           "    GIT_PROGRESS   true" n
+                           "    GIT_SHALLOW    TRUE" n
                            "  )" n
                            "  FetchContent_MakeAvailable(benchmark)" n
                            "endif()" n n
-                           "# Test" n
+                           "### Subdirectories" n
+                           "add_subdirectory(" (s proj) ")" n n
+                           "if(" (s PROJ) "_BUILD_TOOLS)" n
+                           "  add_subdirectory(tools)" n
+                           "endif()" n
                            "if(" (s PROJ) "_BUILD_TESTS)" n
-                           "  # libgtest.a and libgtest_main.a will be built" n
-                           "  FetchContent_Declare(" n
-                           "    gtest" n
-                           "    GIT_REPOSITORY https://github.com/google/googletest" n
-                           "    GIT_TAG        v1.16.0" n
-                           "    GIT_SHALLOW    true" n
-                           "    GIT_PROGRESS   true" n
-                           "  )" n
-                           "  FetchContent_MakeAvailable(gtest)" n
-                           "endif()" n n
-                           "### Definitions" n n
-                           "### Includes" n n
-                           "target_include_directories(" (s proj) " PUBLIC" n
-                           "  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" n
-                           "  $<INSTALL_INTERFACE:include>" n
-                           ")" n n
-                           "### Install" n n
-                           "### Sources" n
-                           "target_sources(" (s proj) n
-                           "  PRIVATE" n
-                           "    src/lib.cpp" n
-                           ")" n n
-                           "### Obtain version information from Git" n
-                           "# if(NOT " (s PROJ) "_VERSION)" n
-                           "#   execute_process(COMMAND git describe --always --long HEAD" n
-                           "#     OUTPUT_VARIABLE " (s PROJ) "_VERSION" n
-                           "#     OUTPUT_STRIP_TRAILING_WHITESPACE" n
-                           "#     WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")" n
-                           "#" n
-                           "#   if(NOT " (s PROJ) "_VERSION)" n
-                           "#     set(" (s PROJ) "_VERSION \"<unknown>\")" n
-                           "#   endif()" n
-                           "# endif()" n n
-                           "# target_compile_definitions(" (s proj) " PRIVATE " (s PROJ) "_VERSION=\"${" (s PROJ) "_VERSION}\")" n
-                           )
+                           "  add_subdirectory(tests)" n
+                           "endif()" n
+                           "if(" (s PROJ) "_BUILD_BENCHMARKS)" n
+                           "  add_subdirectory(benchmarks)" n
+                           "endif()" n)
                          "lib"
-                         "Insert a cmake library"
+                         "Insert a top-level CMake library project (>= 3.21)"
                          'cmake-tempo-tags)
-  )
+
+  (tempo-define-template "cmake-umbrella"
+                         '((P "project: " proj noinsert)
+                           (tempo-save-named 'PROJ
+                                             (init-cpp--cmake-upper-id (tempo-lookup-named 'proj)))
+                           "if(" (s PROJ) "_BUILD_SHARED)" n
+                           "  set(BUILD_SHARED_LIBS ON)" n
+                           "else()" n
+                           "  set(BUILD_SHARED_LIBS OFF)" n
+                           "endif()" n n
+                           p n n
+                           "add_library(" (s proj) " INTERFACE)" n
+                           "add_library(" (s proj) "::" (s proj) " ALIAS " (s proj) ")" n
+                           "target_link_libraries(" (s proj) n
+                           "  INTERFACE" n
+                           "    " (s proj) "_public_options" n
+                           ")" n)
+                         "umbrella"
+                         "Insert an umbrella target aggregating components"
+                         'cmake-tempo-tags)
+
+  (tempo-define-template "cmake-component"
+                         '((P "project: " proj noinsert)
+                           (P "component: " comp noinsert)
+                           "add_library(" (s proj) "_" (s comp) n
+                           "  " p n
+                           ")" n
+                           "add_library(" (s proj) "::" (s comp) " ALIAS " (s proj) "_" (s comp) ")" n n
+                           "target_link_libraries(" (s proj) "_" (s comp) n
+                           "  PUBLIC" n
+                           "    " (s proj) "_public_options" n
+                           "  PRIVATE" n
+                           "    " (s proj) "_dev_options" n
+                           ")" n)
+                         "comp"
+                         "Insert a CMake component library target"
+                         'cmake-tempo-tags)
+
+  (tempo-define-template "cmake-test"
+                         '((P "project: " proj noinsert)
+                           (P "test target: " target noinsert)
+                           (tempo-save-named 'PROJ
+                                             (init-cpp--cmake-upper-id (tempo-lookup-named 'proj)))
+                           "if(" (s PROJ) "_BUILD_TESTS)" n
+                           "  add_executable(" (s target) n
+                           "    " (s target) ".cpp" n
+                           "  )" n
+                           "  target_link_libraries(" (s target) n
+                           "    PRIVATE" n
+                           "      " (s proj) "::" (p "component or project: ") n
+                           "      GTest::gtest_main" n
+                           "  )" n
+                           "  gtest_discover_tests(" (s target) ")" n
+                           "endif()" n)
+                         "test"
+                         "Insert a GoogleTest executable and CTest registration"
+                         'cmake-tempo-tags)
+
+  (tempo-define-template "cmake-benchmark"
+                         '((P "project: " proj noinsert)
+                           (P "benchmark target: " target noinsert)
+                           (tempo-save-named 'PROJ
+                                             (init-cpp--cmake-upper-id (tempo-lookup-named 'proj)))
+                           "if(" (s PROJ) "_BUILD_BENCHMARKS)" n
+                           "  add_executable(" (s target) n
+                           "    " (s target) ".cpp" n
+                           "  )" n
+                           "  target_link_libraries(" (s target) n
+                           "    PRIVATE" n
+                           "      " (s proj) "::" (p "component or project: ") n
+                           "      benchmark::benchmark_main" n
+                           "  )" n
+                           "endif()" n)
+                         "bench"
+                         "Insert a Google Benchmark executable"
+                         'cmake-tempo-tags)
+
+  (tempo-define-template "cmake-executable"
+                         '((P "target: " target noinsert)
+                           "add_executable(" (s target) n
+                           "  " (s target) ".cpp" n
+                           ")" n
+                           "target_link_libraries(" (s target) n
+                           "  PRIVATE" n
+                           "    " p n
+                           ")" n)
+                         "exe"
+                         "Insert an executable target"
+                         'cmake-tempo-tags)
+
+  (tempo-define-template "cmake-fetch"
+                         '((P "package: " pkg noinsert)
+                           "FetchContent_Declare(" n
+                           "  " (s pkg) n
+                           "  GIT_REPOSITORY " (P "git url: " url) n
+                           "  GIT_TAG        " (P "git tag: " tag) n
+                           "  GIT_SHALLOW    TRUE" n
+                           ")" n
+                           "FetchContent_MakeAvailable(" (s pkg) ")" n)
+                         "fetch"
+                         "Insert a FetchContent dependency block"
+                         'cmake-tempo-tags))
+
+;; Snippets for CMakePresets.json (v3, CMake >= 3.21)
+(use-package tempo
+  :ensure nil
+  :hook ((js-json-mode . cmake-presets-tempo-setup)
+         (json-ts-mode . cmake-presets-tempo-setup))
+  :config
+  (defvar cmake-presets-tempo-tags nil)
+
+  (defun cmake-presets-tempo-setup ()
+    (when (or (null buffer-file-name)
+              (string-match-p (rx "CMake" (? "User") "Presets.json" eos)
+                              buffer-file-name))
+      (tempo-use-tag-list 'cmake-presets-tempo-tags)))
+
+  (tempo-define-template "cmake-presets"
+                         '((P "project: " proj noinsert)
+                           (tempo-save-named 'PROJ
+                                             (init-cpp--cmake-upper-id (tempo-lookup-named 'proj)))
+                           "{" n
+                           "  \"version\": 3," n
+                           "  \"cmakeMinimumRequired\": {" n
+                           "    \"major\": 3," n
+                           "    \"minor\": 21," n
+                           "    \"patch\": 0" n
+                           "  }," n
+                           "  \"configurePresets\": [" n
+                           "    {" n
+                           "      \"name\": \"base\"," n
+                           "      \"hidden\": true," n
+                           "      \"generator\": \"Ninja\"," n
+                           "      \"binaryDir\": \"${sourceDir}/build/${presetName}\"," n
+                           "      \"cacheVariables\": {" n
+                           "        \"CMAKE_EXPORT_COMPILE_COMMANDS\": \"ON\"" n
+                           "      }" n
+                           "    }," n
+                           "    {" n
+                           "      \"name\": \"debug\"," n
+                           "      \"inherits\": \"base\"," n
+                           "      \"cacheVariables\": {" n
+                           "        \"CMAKE_BUILD_TYPE\": \"Debug\"," n
+                           "        \"" (s PROJ) "_BUILD_TESTS\": \"ON\"" n
+                           "      }" n
+                           "    }," n
+                           "    {" n
+                           "      \"name\": \"release\"," n
+                           "      \"inherits\": \"base\"," n
+                           "      \"cacheVariables\": {" n
+                           "        \"CMAKE_BUILD_TYPE\": \"Release\"," n
+                           "        \"" (s PROJ) "_BUILD_TESTS\": \"OFF\"" n
+                           "      }" n
+                           "    }" n
+                           "  ]," n
+                           "  \"buildPresets\": [" n
+                           "    {" n
+                           "      \"name\": \"debug\"," n
+                           "      \"configurePreset\": \"debug\"" n
+                           "    }," n
+                           "    {" n
+                           "      \"name\": \"release\"," n
+                           "      \"configurePreset\": \"release\"" n
+                           "    }" n
+                           "  ]," n
+                           "  \"testPresets\": [" n
+                           "    {" n
+                           "      \"name\": \"debug\"," n
+                           "      \"configurePreset\": \"debug\"," n
+                           "      \"output\": {" n
+                           "        \"outputOnFailure\": true" n
+                           "      }" n
+                           "    }" n
+                           "  ]" n
+                           "}" n)
+                         "presets"
+                         "Insert a CMakePresets.json v3 template"
+                         'cmake-presets-tempo-tags))
 
 (provide 'init-cpp)
 
