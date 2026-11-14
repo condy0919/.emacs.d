@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(require 'init-funcs)
-
 ;; Compilation Mode
 (use-package compile
   :ensure nil
