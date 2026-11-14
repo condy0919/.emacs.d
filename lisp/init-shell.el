@@ -18,12 +18,6 @@
               (cons '(file (styles basic))
                     (assq-delete-all 'file (copy-sequence completion-category-overrides)))))
 
-(defun shell-self-destroy-sentinel (proc _exit-msg)
-  "Make PROC self destroyable."
-  (when (memq (process-status proc) '(exit signal stop))
-    (kill-buffer (process-buffer proc))
-    (ignore-errors (delete-window))))
-
 (defun shell-delete-window (&optional win)
   "Delete WIN wrapper."
   (ignore-errors (delete-window win)))
@@ -35,17 +29,11 @@
 (use-package term
   :ensure nil
   :hook ((term-mode . shell-mode-common-init)
-         (term-mode . term-mode-prompt-regexp-setup)
-         (term-exec . term-mode-set-sentinel))
+         (term-mode . term-mode-prompt-regexp-setup))
   :config
   (defun term-mode-prompt-regexp-setup ()
     "Setup `term-prompt-regexp' for term-mode."
-    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
-
-  (defun term-mode-set-sentinel ()
-    "Close buffer after exit."
-    (when-let* ((proc (ignore-errors (get-buffer-process (current-buffer)))))
-      (set-process-sentinel proc #'shell-self-destroy-sentinel))))
+    (setq-local term-prompt-regexp "^[^#$%>\n]*[#$%>] *")))
 
 ;; The Emacs shell & friends
 (use-package eshell
