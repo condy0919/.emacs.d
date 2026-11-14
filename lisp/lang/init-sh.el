@@ -11,8 +11,6 @@
 (use-package sh-script
   :ensure nil
   :hook (sh-mode . sh-mode-setup)
-  :bind (:map sh-mode-map
-         ("C-c C-e" . sh-execute-region))
   :config
   (defun sh-mode-setup ()
     (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p nil t))
@@ -22,7 +20,6 @@
 ;; Snippets for sh
 (use-package tempo
   :ensure nil
-  :after sh-script
   :hook (sh-mode . sh-mode-tempo-setup)
   :config
   (defvar sh-tempo-tags nil)
@@ -32,7 +29,10 @@
   (tempo-define-template "sh-shebang"
                          '("#!/bin/bash" > n n
                            "set -euo pipefail -x" > n n
-                           )
+                           (when (and (derived-mode-p 'sh-base-mode)
+                                      (not (eq (bound-and-true-p sh-shell) 'bash)))
+                             (sh-set-shell "bash" nil nil)
+                             nil))
                          "shebang"
                          "Insert shebang"
                          'sh-tempo-tags))
