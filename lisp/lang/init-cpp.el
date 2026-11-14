@@ -306,7 +306,6 @@
 ;; Snippets for C/C++
 (use-package tempo
   :ensure nil
-  :after cc-mode
   :hook ((c-mode . c-mode-tempo-setup)
          (c++-mode . c++-mode-tempo-setup))
   :config
@@ -404,7 +403,6 @@
 ;; more information about cmake.
 (use-package tempo
   :ensure nil
-  :after cmake-mode
   :hook (cmake-mode . cmake-mode-tempo-setup)
   :config
   (defvar cmake-tempo-tags nil)
