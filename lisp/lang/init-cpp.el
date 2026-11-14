@@ -7,19 +7,28 @@
 
 (require 'init-funcs)
 
-;; Find other test/benchmark files.
+;; Find sibling header/source/test/benchmark files.
 (use-package files
   :ensure nil
   :config
-  (add-to-list 'find-sibling-rules
-               `(,(rx (group (+ (not "/"))) (or ".hpp" ".cpp") eos)
-                 "\\1_test.cpp" "\\1_benchmark.cpp"))
-  (add-to-list 'find-sibling-rules
-               `(,(rx (group (+ (not "/"))) "_test.cpp" eos)
-                 "\\1.cpp" "\\1.hpp"))
-  (add-to-list 'find-sibling-rules
-               `(,(rx (group (+ (not "/"))) "_benchmark.cpp" eos)
-                 "\\1.cpp" "\\1.hpp")))
+  (dolist (rule
+           `(;; _test -> headers / sources / benchmark
+             (,(rx (group (+ (not "/"))) "_test" (group (or ".cpp" ".cc" ".cxx" ".c")) eos)
+              "\\1\\.hpp" "\\1\\.hh" "\\1\\.hxx" "\\1\\.h"
+              "\\1\\2" "\\1_benchmark\\2")
+             ;; _benchmark -> headers / sources / test
+             (,(rx (group (+ (not "/"))) "_benchmark" (group (or ".cpp" ".cc" ".cxx" ".c")) eos)
+              "\\1\\.hpp" "\\1\\.hh" "\\1\\.hxx" "\\1\\.h"
+              "\\1\\2" "\\1_test\\2")
+             ;; headers -> sources / test / benchmark
+             (,(rx (group (+ (not "/"))) (or ".hpp" ".hh" ".hxx" ".h") eos)
+              "\\1\\.cpp" "\\1\\.cc" "\\1\\.cxx" "\\1\\.c"
+              "\\1_test\\.cpp" "\\1_test\\.c" "\\1_benchmark\\.cpp")
+             ;; sources -> headers / test / benchmark
+             (,(rx (group (+ (not "/"))) (group (or ".cpp" ".cc" ".cxx" ".c")) eos)
+              "\\1\\.hpp" "\\1\\.hh" "\\1\\.hxx" "\\1\\.h"
+              "\\1_test\\2" "\\1_benchmark\\2")))
+    (add-to-list 'find-sibling-rules rule t)))
 
 (use-package cc-mode
   :ensure nil
