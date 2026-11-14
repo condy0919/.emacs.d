@@ -30,12 +30,13 @@
               "\\1_test\\2" "\\1_benchmark\\2")))
     (add-to-list 'find-sibling-rules rule t)))
 
+(declare-function c-toggle-comment-style "cc-cmds" (&optional arg))
+
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . c++-mode)
   :hook (c-mode . (lambda ()
-                    (setq comment-start "// "
-                          comment-end "")))
+                    (c-toggle-comment-style -1)))
   :config
   (with-no-warnings
     (defconst ccls-args nil)
