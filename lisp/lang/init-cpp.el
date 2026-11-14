@@ -321,20 +321,21 @@
 
   (tempo-define-template "c-ifndef"
                          '("#ifndef " (P "ifndef-clause: " clause) > n
-                           "#define " (s clause) n> p n
-                           "#endif // " (s clause) n>
+                           "#define " (s clause) > n
+                           r n
+                           "#endif // " (s clause) > n
                            )
                          "ifndef"
                          "Insert #ifndef #define #endif directives"
                          'c-tempo-tags)
   (tempo-define-template "c-extern-C"
-                         '("#ifdef __cplusplus" n
-                           "extern \"C\" {" n
-                           "#endif" n
-                           p n
-                           "#ifdef __cplusplus" n
-                           "}" n
-                           "#endif" n
+                         '("#ifdef __cplusplus" > n
+                           "extern \"C\" {" > n
+                           "#endif" > n
+                           r n
+                           "#ifdef __cplusplus" > n
+                           "}" > n
+                           "#endif" > n
                            )
                          "externC"
                          "Insert #ifdef __cplusplus ..."
@@ -349,12 +350,32 @@
                          'c-tempo-tags)
 
   (tempo-define-template "c++-default-move-op"
-                         '((P "class: " class 'noinsert)
-                           (s class) "(" (s class) "&& rhs) noexcept = default;" n>
-                           (s class) "& operator=(" (s class) "&& rhs) noexcept = default;" n>
+                         '((P "class: " class noinsert)
+                           (s class) "(" (s class) "&& rhs) noexcept = default;" > n>
+                           (s class) "& operator=(" (s class) "&& rhs) noexcept = default;" > n>
                            p n)
                          "mv"
                          "Supply default move ctor and move assignment operator"
+                         'c++-tempo-tags)
+  (tempo-define-template "c++-default-copy-op"
+                         '((P "class: " class noinsert)
+                           (s class) "(const " (s class) "& rhs) = default;" > n>
+                           (s class) "& operator=(const " (s class) "& rhs) = default;" > n>
+                           p n)
+                         "cp"
+                         "Supply default copy ctor and copy assignment operator"
+                         'c++-tempo-tags)
+  (tempo-define-template "c++-namespace"
+                         '((P "namespace: " ns noinsert)
+                           "namespace" (let ((ns (or (tempo-lookup-named 'ns) "")))
+                                         (if (string-empty-p ns) "" (concat " " ns)))
+                           " {" > n>
+                           r n
+                           "} // namespace" (let ((ns (or (tempo-lookup-named 'ns) "")))
+                                               (if (string-empty-p ns) "" (concat " " ns)))
+                           > n)
+                         "ns"
+                         "Insert a namespace block"
                          'c++-tempo-tags))
 
 ;; cmake, the de factor build system for C++
