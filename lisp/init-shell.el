@@ -10,8 +10,6 @@
   (setq-local scroll-margin 0)
   (setq-local truncate-lines t)
   (setq-local global-hl-line-mode nil)
-  ;; No marginalia annotation in Completion
-  (setq-local marginalia-annotators nil)
   ;; Force "ls foo" to trigger a completion when foo1, foo2, ... in current directory.
   ;; Replace only the `file' entry so other global category overrides remain intact.
   (setq-local completion-category-overrides
