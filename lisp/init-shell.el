@@ -16,10 +16,6 @@
               (cons '(file (styles basic))
                     (assq-delete-all 'file (copy-sequence completion-category-overrides)))))
 
-(defun shell-delete-window (&optional win)
-  "Delete WIN wrapper."
-  (ignore-errors (delete-window win)))
-
 ;; General term mode
 ;;
 ;; If you use bash, directory track is supported natively.
@@ -130,18 +126,19 @@ current directory."
   (defun eshell-toggle ()
     "Toggle a persistent eshell popup window.
 If popup is visible but unselected, select it.
-If popup is focused, kill it."
+If popup is focused, hide it."
     (interactive)
     (if-let* ((win (get-buffer-window "*eshell-popup*")))
         (if (eq (selected-window) win)
-            ;; If users attempt to delete the sole ordinary window. silence it.
-            (shell-delete-window)
+            (quit-window nil win)
           (select-window win))
-      (let ((display-buffer-alist '(((category . comint)
-                                     (display-buffer-at-bottom))))
+      (let ((display-buffer-alist
+             (cons '("\\`\\*eshell-popup\\*\\'"
+                     (display-buffer-at-bottom)
+                     (dedicated . soft))
+                   display-buffer-alist))
             (eshell-buffer-name "*eshell-popup*"))
-        (with-current-buffer (eshell)
-          (add-hook 'eshell-exit-hook 'shell-delete-window nil t))))))
+        (eshell)))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

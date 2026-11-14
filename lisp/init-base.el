@@ -17,6 +17,9 @@
 (setq window-resize-pixelwise t
       frame-resize-pixelwise t)
 
+;; Quit auto-created windows when killing their buffer
+(setq kill-buffer-quit-windows t)
+
 ;; Linux specific
 (setq x-gtk-use-system-tooltips nil
       x-gtk-use-native-input t
