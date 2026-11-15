@@ -76,11 +76,6 @@
 
 (setq-default fill-column 80)
 
-;; Treats the `_' as a word constituent
-(add-hook 'after-change-major-mode-hook
-          (lambda ()
-            (modify-syntax-entry ?_ "w")))
-
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -167,6 +162,11 @@
   (word-wrap-by-category t)
   ;; paragraphs
   (sentence-end-double-space nil))
+
+;; Treat `snake_case' words as a single unit without mutating syntax tables
+(use-package subword
+  :ensure nil
+  :hook (after-init . global-superword-mode))
 
 ;; Back to the previous position
 (use-package saveplace
