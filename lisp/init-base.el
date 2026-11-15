@@ -171,7 +171,9 @@
 ;; Back to the previous position
 (use-package saveplace
   :ensure nil
-  :hook (after-init . save-place-mode))
+  :hook (after-init . save-place-mode)
+  :custom
+  (save-place-limit 1000))
 
 ;; Highlight current line in GUI
 (use-package hl-line
@@ -344,7 +346,7 @@ If the region is active and `transient-mark-mode' is on, call
 Else, if the current line is empty, insert a comment and indent
 it.
 Else, call `comment-or-uncomment-region' on the current line."
-    (interactive)
+    (interactive "*")
     (if (region-active-p)
         (comment-or-uncomment-region (region-beginning) (region-end))
       (if (save-excursion
@@ -353,6 +355,7 @@ Else, call `comment-or-uncomment-region' on the current line."
           (comment-dwim nil)
         (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
   :custom
+  (comment-empty-lines t)
   ;; `auto-fill' inside comments.
   ;;
   ;; The quoted text in `message-mode' are identified as comments, so only
@@ -364,8 +367,13 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :defer t
   :custom
-  ;; Always use file cache when using tramp
-  (remote-file-name-inhibit-cache nil)
+  ;; Cache remote file attributes with a bounded TTL to avoid stale state
+  (remote-file-name-inhibit-cache 60)
+  (remote-file-name-inhibit-locks t)
+  (remote-file-name-inhibit-auto-save t)
+  (remote-file-name-inhibit-auto-save-visited t)
+  (remote-file-name-inhibit-delete-by-moving-to-trash t)
+  (tramp-verbose 2)
   (tramp-default-method "ssh"))
 
 ;; Command line interpreter
@@ -381,6 +389,9 @@ Else, call `comment-or-uncomment-region' on the current line."
   ;; Make the prompt of "*Python*" buffer readonly
   (comint-prompt-read-only t)
   (comint-history-isearch 'dwim)
+  (comint-input-ignoredups t)
+  (comint-input-ring-size 5000)
+  (comint-scroll-to-bottom-on-input 'this)
   ;; Colorize
   (comint-terminfo-terminal "dumb-emacs-ansi"))
 
@@ -410,6 +421,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :hook (imenu-after-jump . recenter)
   :custom
+  (imenu-auto-rescan t)
   (imenu-flatten 'group))
 
 ;; Buffer manager
