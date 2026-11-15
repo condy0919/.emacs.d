@@ -23,37 +23,20 @@
 
 (use-package dired-aux
   :ensure nil
-  :after dired
-  :config
-  (with-no-warnings
-    (defvar dired-dotfiles-show t)
-    (defun dired-dotfiles-toggle (&rest _)
-      "Show/hide dotfiles."
-      (interactive)
-      (if (not dired-dotfiles-show)
-          (revert-buffer)
-        (dired-mark-files-regexp "^\\.")
-        (dired-do-kill-lines))
-      (setq-local dired-dotfiles-show (not dired-dotfiles-show)))
-
-    (advice-add 'dired-do-print :override #'dired-dotfiles-toggle))
+  :defer t
   :custom
   (dired-vc-rename-file t)
   (dired-do-revert-buffer t)
   (dired-isearch-filenames 'dwim)
   (dired-create-destination-dirs 'ask))
 
+;; Use C-x M-o to toggle dired-omit-mode
 (use-package dired-x
   :ensure nil
   :hook (dired-mode . dired-omit-mode)
   :custom
   (dired-omit-verbose nil)
-  (dired-omit-files (rx string-start
-                        (or ".DS_Store"
-                            ".cache"
-                            ".vscode"
-                            ".ccls-cache" ".clangd")
-                        string-end)))
+  (dired-omit-files (rx string-start (or "." "#"))))
 
 ;; Make dired colorful
 (use-package diredfl
