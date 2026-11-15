@@ -187,8 +187,8 @@
 ;; state.
 (use-package repeat
   :ensure nil
+  :hook (after-init . repeat-mode)
   :custom
-  (repeat-mode t)
   (repeat-exit-timeout 1)
   (repeat-exit-key (kbd "RET")))
 
@@ -293,9 +293,11 @@
   :hook (after-init . appt-activate)
   :config
   (defun appt-display-with-notification (min-to-app new-time appt-msg)
-    (notify-send :title (format "Appointment in %s minutes" min-to-app)
-                 :body appt-msg
-                 :urgency 'critical)
+    (let ((mins (mapconcat #'identity (ensure-list min-to-app) ", "))
+          (msgs (mapconcat #'identity (ensure-list appt-msg) "\n")))
+      (notify-send :title (format "Appointment in %s minutes" mins)
+                   :body msgs
+                   :urgency 'critical))
     (appt-disp-window min-to-app new-time appt-msg))
   :custom
   (appt-audible nil)
