@@ -19,8 +19,6 @@
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-hide-details-hide-symlink-targets nil)
-  ;; Preserve size (5) and timestamp (6 7 8) columns under "-AFhlv"
-  (dired-hide-details-preserved-columns '(5 6 7 8))
   (dired-listing-switches "-AFhlv"))
 
 (use-package dired-aux
