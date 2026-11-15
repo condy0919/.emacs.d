@@ -402,9 +402,35 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :bind ([remap dabbrev-expand] . hippie-expand)
   :config
-  (defun try-expand-tempo (_old)
+  (defvar he-string-beg)
+  (defvar he-string-end)
+  (defvar he-search-string)
+  (defvar tempo-match-finder)
+
+  (declare-function he-reset-string "hippie-exp")
+  (declare-function tempo-find-match-string "tempo")
+  (declare-function tempo-expand-if-complete "tempo")
+
+  (defun try-expand-tempo (old)
+    "Expand the tempo tag before point following the `hippie-expand' protocol."
     (require 'tempo)
-    (tempo-expand-if-complete))
+    (if old
+        (progn
+          (he-reset-string)
+          (goto-char he-string-end)
+          nil)
+      (when-let* ((match (tempo-find-match-string tempo-match-finder))
+                  (beg (copy-marker (cdr match)))
+                  (str (buffer-substring-no-properties beg (point)))
+                  (end (copy-marker (point) t)))
+        (unwind-protect
+            (when (tempo-expand-if-complete)
+              (set-marker he-string-beg beg)
+              (set-marker he-string-end end)
+              (setq he-search-string str)
+              t)
+          (set-marker beg nil)
+          (set-marker end nil)))))
   :custom
   (hippie-expand-try-functions-list '(try-expand-tempo
                                       try-expand-dabbrev
