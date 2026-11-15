@@ -13,12 +13,14 @@
          ("C-c C-e"   . wdired-change-to-wdired-mode))
   :custom
   (dired-dwim-target t)
-  (dired-bind-vm nil)
+  (dired-mouse-drag-files t)
   (dired-kill-when-opening-new-dired-buffer t)
   ;; Dont prompt about killing buffer visiting delete file
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-hide-details-hide-symlink-targets nil)
+  ;; Preserve size (5) and timestamp (6 7 8) columns under "-AFhlv"
+  (dired-hide-details-preserved-columns '(5 6 7 8))
   (dired-listing-switches "-AFhlv"))
 
 (use-package dired-aux
