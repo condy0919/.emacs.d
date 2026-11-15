@@ -97,7 +97,7 @@
   (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
-  (flycheck-indication-mode 'right-fringe))
+  (flycheck-indication-mode (if (display-graphic-p) 'right-fringe 'right-margin)))
 
 ;; xref
 (use-package xref
@@ -153,7 +153,6 @@
   :custom
   (hs-show-indicators t)
   (hs-display-lines-hidden t)
-  (hs-indicator-type (if (display-graphic-p) 'fringe 'margin))
   (hs-hide-comments-when-hiding-all nil))
 
 ;; XML
