@@ -8,7 +8,8 @@
 ;; Compilation Mode
 (use-package compile
   :ensure nil
-  :hook (compilation-filter . ansi-color-compilation-filter)
+  :hook ((compilation-filter . ansi-color-compilation-filter)
+         (compilation-filter . ansi-osc-compilation-filter))
   :custom
   (compilation-always-kill t)
   (compilation-scroll-output t)
