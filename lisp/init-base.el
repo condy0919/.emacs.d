@@ -432,17 +432,10 @@ Else, call `comment-or-uncomment-region' on the current line."
           (set-marker beg nil)
           (set-marker end nil)))))
   :custom
+  (hippie-expand-max-buffers 20)
   (hippie-expand-try-functions-list '(try-expand-tempo
                                       try-expand-dabbrev
-                                      try-expand-dabbrev-all-buffers
-                                      try-expand-dabbrev-from-kill
-                                      try-complete-file-name-partially
-                                      try-complete-file-name
-                                      try-expand-all-abbrevs
-                                      try-expand-list
-                                      try-expand-line
-                                      try-complete-lisp-symbol-partially
-                                      try-complete-lisp-symbol)))
+                                      try-expand-dabbrev-all-buffers)))
 
 ;; Buffer index
 (use-package imenu
