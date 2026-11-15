@@ -67,6 +67,11 @@
   :custom
   (whitespace-style '(face trailing)))
 
+;; Respect project coding styles
+(use-package editorconfig
+  :ensure nil
+  :hook (after-init . editorconfig-mode))
+
 ;; Quickrun codes, including cpp. awesome!
 (use-package quickrun
   :ensure t
