@@ -29,6 +29,7 @@
   ;; Easy navigation to candidates with M-<n>
   (company-show-quick-access t)
   (company-require-match nil)
+  (company-abort-on-unique-match nil)
   (company-minimum-prefix-length 3)
   (company-tooltip-width-grow-only t)
   (company-tooltip-align-annotations t)
@@ -81,11 +82,12 @@
   (lsp-completion-enable-additional-text-edit nil))
 
 (use-package lsp-hierarchy
-  :ensure t
+  :ensure nil
+  :after lsp-mode
   :vc (:url "https://github.com/condy0919/lsp-hierarchy.git" :rev :newest)
   :bind (:map lsp-command-map
-         ("gt" . lsp-hierarchy-show-type)
-         ("gh" . lsp-hierarchy-show-call)))
+         ("g t" . lsp-hierarchy-show-type)
+         ("g h" . lsp-hierarchy-show-call)))
 
 (use-package eglot
   :disabled
