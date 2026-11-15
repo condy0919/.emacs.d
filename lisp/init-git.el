@@ -17,6 +17,7 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-dispatch))
   :custom
+  (magit-save-repository-buffers 'dontask)
   (magit-diff-refine-hunk t)
   (magit-diff-paint-whitespace nil)
   (magit-ediff-dwim-show-on-hunks t)
@@ -42,6 +43,7 @@
   (unless (display-graphic-p)
     (diff-hl-margin-mode))
   :custom
+  (diff-hl-disable-on-remote t)
   (diff-hl-update-async t))
 
 ;; Visual diff interface
