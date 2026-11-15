@@ -57,9 +57,6 @@
 ;; No annoying bell
 (setq ring-bell-function 'ignore)
 
-;; No eyes distraction
-(setq blink-cursor-mode nil)
-
 ;; Smooth scroll & friends
 (setq scroll-step 2
       scroll-margin 2
