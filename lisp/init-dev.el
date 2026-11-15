@@ -191,7 +191,7 @@
   :mode ((rx "."
              (or "automount" "busname" "link" "mount" "netdev" "network"
                  "path" "service" "slice" "socket" "swap" "target" "timer")
-             string-end) . conf-toml-mode))
+             string-end) . conf-desktop-mode))
 
 (require 'init-cpp)
 (require 'init-rust)
