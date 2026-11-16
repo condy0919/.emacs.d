@@ -84,8 +84,8 @@
 
 (use-package lsp-hierarchy
   :ensure nil
-  :after lsp-mode
   :vc (:url "https://github.com/condy0919/lsp-hierarchy.git" :rev :newest)
+  :after lsp-mode
   :bind (:map lsp-command-map
          ("g t" . lsp-hierarchy-show-type)
          ("g h" . lsp-hierarchy-show-call)))

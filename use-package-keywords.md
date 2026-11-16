@@ -1,6 +1,7 @@
 Use the following ordering for `use-package` keywords:
 
 - `:ensure`
+- `:vc`
 - `:when`
 - `:requires`
 - `:defines`
@@ -8,6 +9,7 @@ Use the following ordering for `use-package` keywords:
 - `:commands`
 - `:demand`
 - `:defer`
+- `:catch`
 - `:after`
 - `:preface`
 - `:init`
