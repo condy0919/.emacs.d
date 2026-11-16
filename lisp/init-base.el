@@ -538,7 +538,8 @@ Else, call `comment-or-uncomment-region' on the current line."
   :custom
   (savehist-additional-variables '(mark-ring
                                    global-mark-ring
-                                   (kill-ring . 50))))
+                                   search-ring
+                                   regexp-search-ring)))
 
 (use-package completion-preview
   :ensure nil
