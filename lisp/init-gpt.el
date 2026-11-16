@@ -16,16 +16,12 @@
                         :stream t
                         :key 'gptel-api-key-from-auth-source))
 
-  (gptel-make-preset 'thinking
-    :description "Enable chain-of-thought reasoning"
-    :request-params '(:think (:type "enabled")))
-
   (gptel-make-preset 'coding
     :description "A preset optimized for coding tasks"
     :system "You are an expert coding assistant. Your role is to provide high-quality code solutions, refactorings, and explanations."
     :tools nil)
   :custom
-  (gptel-model 'deepseek-v4-flash)
+  (gptel-model 'deepseek-flash)
   (gptel-track-media t)
   (gptel-include-reasoning 'ignore)
   (gptel-highlight-methods (if (display-graphic-p) '(fringe) '(margin)))
@@ -38,24 +34,24 @@
   :ensure nil
   :after magit
   :config
-  (defconst gptel-commit-system-prompt
-    "You are an expert programmer writing a good Git commit message.
+  (gptel-make-preset 'commit
+    :description "Generate Git commit messages"
+    :model 'deepseek-flash
+    :system "You are an expert programmer writing a good Git commit message.
 You have carefully reviewed every file diff included in this commit.
 Now, write the commit message using the Conventional Commits
-specification. The first line should be no more than 68 characters.")
+specification. The first line should be no more than 68 characters."
+    :include-reasoning nil
+    :use-context 'system
+    :use-tools nil)
 
   (defun gptel-commit ()
-    "Generate Git commit message with gptel"
+    "Generate Git commit message with gptel."
     (interactive)
     (if-let* ((lines (magit-git-lines "diff" "--cached"))
               (changes (string-join lines "\n")))
-      (let ((gptel-include-reasoning nil)
-            (gptel-use-context 'system)
-            (gptel-use-tools nil)
-            (gptel-model 'deepseek-v4-flash))
-        (gptel-request changes
-          :system gptel-commit-system-prompt
-          :stream t))
+        (gptel-with-preset 'commit
+          (gptel-request changes :stream t))
       (message "You have no file staged"))))
 
 (provide 'init-gpt)
