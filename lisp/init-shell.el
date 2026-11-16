@@ -53,12 +53,12 @@
     "Search for files matching FILENAME in either DIR or the
 current directory."
     (find-dired (or dir ".")
-                (concat " -not -path '*/.git*'"
-                        " -and -not -path 'build'" ;; the cmake build directory
+                (concat " -not -path '*/.git/*'"
+                        " -and -not -path '*/build/*'" ;; the cmake build directory
                         " -and"
                         " -type f"
                         " -and"
-                        " -iname " (format "'*%s*'" filename))))
+                        " -iname " (shell-quote-argument (format "*%s*" filename)))))
 
   (defun eshell/z ()
     "cd to directory with completions."
