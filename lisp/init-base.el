@@ -163,11 +163,6 @@
   ;; paragraphs
   (sentence-end-double-space nil))
 
-;; Treat `snake_case' words as a single unit without mutating syntax tables
-(use-package subword
-  :ensure nil
-  :hook (after-init . global-superword-mode))
-
 ;; Back to the previous position
 (use-package saveplace
   :ensure nil

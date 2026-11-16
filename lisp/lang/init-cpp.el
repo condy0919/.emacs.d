@@ -35,8 +35,9 @@
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . c++-mode)
-  :hook (c-mode . (lambda ()
-                    (c-toggle-comment-style -1)))
+  :hook ((c-mode . (lambda ()
+                     (c-toggle-comment-style -1)))
+         ((c-mode c++-mode) . superword-mode))
   :config
   (with-no-warnings
     (defconst ccls-args nil)

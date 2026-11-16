@@ -8,6 +8,7 @@
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs\\'" . rust-mode)
+  :hook (rust-mode . superword-mode)
   :config
   (with-no-warnings
     (with-eval-after-load 'lsp-mode
