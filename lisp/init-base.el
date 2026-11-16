@@ -431,8 +431,14 @@ Else, call `comment-or-uncomment-region' on the current line."
 ;; `sR': switch to saved filter groups
 (use-package ibuffer
   :ensure nil
-  :hook (ibuffer-mode . ibuffer-auto-mode)
+  :hook ((ibuffer-mode . ibuffer-auto-mode)
+         (ibuffer-mode . +ibuffer-use-default-filter-groups))
   :bind ([remap list-buffers] . ibuffer)
+  :preface
+  (declare-function ibuffer-switch-to-saved-filter-groups "ibuf-ext" (name))
+  (defun +ibuffer-use-default-filter-groups ()
+    "Switch to the \"Default\" saved filter group in `ibuffer'."
+    (ibuffer-switch-to-saved-filter-groups "Default"))
   :custom
   (ibuffer-expert t)
   (ibuffer-movement-cycle nil)
