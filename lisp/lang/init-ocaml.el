@@ -17,6 +17,7 @@
 ;; Bundled with the aur package `merlin'
 (use-package merlin
   :ensure nil
+  :when (executable-find "ocamlmerlin")
   :hook (tuareg-mode . merlin-mode)
   :custom
   (merlin-command "ocamlmerlin"))
