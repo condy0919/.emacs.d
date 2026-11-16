@@ -3,8 +3,12 @@
 
 ;;; Code:
 
-;; Defer garbage collection further back in the startup process
+;; Defer garbage collection further back in the startup process, then restore
+;; a practical threshold once startup completes.
 (setq gc-cons-threshold most-positive-fixnum)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 100 1024 1024))))
 
 ;; Faster to disable these here (before they've been initialized)
 ;; Enable `menu-bar' on MacOS

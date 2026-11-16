@@ -94,14 +94,6 @@
   :custom
   (wgrep-change-readonly-file t))
 
-;; GC optimization
-(use-package gcmh
-  :ensure t
-  :hook (after-init . gcmh-mode)
-  :custom
-  (gcmh-idle-delay 10)
-  (gcmh-high-cons-threshold #x6400000)) ;; 100 MB
-
 ;; Write documentation comment in an easy way
 (use-package separedit
   :ensure t

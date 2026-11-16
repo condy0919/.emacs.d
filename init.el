@@ -2,12 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; A big contributor to startup times is garbage collection. We up the gc
-;; threshold to temporarily prevent it from running, and then reset it by the
-;; `gcmh' package.
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
-
 ;; Increase how much is read from processes in a single chunk (default is 64kb).
 ;; `lsp-mode' benefits from that.
 ;;
