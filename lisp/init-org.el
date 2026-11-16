@@ -73,7 +73,7 @@
   (org-link-abbrev-alist '(("GitHub" . "https://github.com/")
                            ("GitLab" . "https://gitlab.com/")
                            ("Google" . "https://google.com/search?q=")
-                           ("RFCs"   . "https://tools.ietf.org/html/")
+                           ("RFCs"   . "https://www.rfc-editor.org/rfc/")
                            ("LWN"    . "https://lwn.net/Articles/")
                            ("WG21"   . "https://wg21.link/"))))
 
