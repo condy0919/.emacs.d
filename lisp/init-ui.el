@@ -77,6 +77,7 @@
   :custom
   (tab-bar-show 1)
   (tab-bar-tab-hints t)
+  (tab-bar-truncate t)
   (tab-bar-auto-width nil)
   (tab-bar-close-button-show nil)
   (tab-bar-format '(tab-bar-format-tabs-groups

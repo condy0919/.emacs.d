@@ -26,6 +26,8 @@
 ;; NOTE: `diff-hl' depends on `vc'
 (use-package vc
   :ensure nil
+  ;; auto-revert on vc trakced files only
+  :hook (after-init . vc-auto-revert-mode)
   :custom
   (vc-follow-symlinks t)
   (vc-allow-async-revert t)

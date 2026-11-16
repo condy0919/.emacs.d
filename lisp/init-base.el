@@ -110,14 +110,15 @@
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
-;; Highlight parenthesises
+;; Highlight parenthesises. :-)
 (use-package paren
   :ensure nil
   :hook (after-init . show-paren-mode)
   :custom
   (show-paren-when-point-inside-paren t)
   (show-paren-when-point-in-periphery t)
-  (show-paren-context-when-offscreen t))
+  (show-paren-context-when-offscreen t)
+  (show-paren-not-in-comments-or-strings 'on-mismatch))
 
 ;; Show line/column number and more
 (use-package simple
@@ -169,6 +170,7 @@
   :ensure nil
   :hook (after-init . save-place-mode)
   :custom
+  (save-place-autosave-interval 300)
   (save-place-limit 1000))
 
 ;; Highlight current line in GUI
@@ -515,6 +517,8 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :hook (after-init . recentf-mode)
   :custom
+  (recentf-autosave-interval 300)
+  (recentf-show-messages nil)
   (recentf-max-saved-items 300)
   (recentf-auto-cleanup 'never)
   (recentf-exclude '(;; Folders on MacOS start
