@@ -179,6 +179,16 @@
   :when (display-graphic-p)
   :hook (after-init . global-hl-line-mode))
 
+;; Display tooltips in tty child frames
+(use-package tty-tip
+  :ensure nil
+  :hook (after-init . tty-tip-mode))
+
+;; Prettify truncation and continuation glyphs
+(use-package disp-table
+  :ensure nil
+  :hook (after-init . prettify-special-glyphs-mode))
+
 ;; Enable `repeat-mode' to reduce key sequence length
 ;;
 ;; If we have been idle for `repeat-exit-timeout' seconds, exit the repeated
