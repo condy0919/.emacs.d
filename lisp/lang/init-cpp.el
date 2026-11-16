@@ -307,10 +307,8 @@
 ;;
 ;; Install with
 ;;
-;; ```elisp
-;; (quelpa
-;;  '(llvm-mode :fetcher url
-;;              :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/llvm-mode.el"))
+;; ```sh
+;; curl -fsSL https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/llvm-mode.el -o ~/.emacs.d/user-lisp/llvm-mode.el
 ;; ```
 (use-package llvm-mode
   :ensure nil
@@ -320,10 +318,8 @@
 ;;
 ;; Install with
 ;;
-;; ```elisp
-;; (quelpa
-;;  '(tablegen-mode :fetcher url
-;;                  :url "https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/tablegen-mode.el"))
+;; ```sh
+;; curl -fsSL https://gitee.com/mirrors/LLVM/raw/main/llvm/utils/emacs/tablegen-mode.el -o ~/.emacs.d/user-lisp/tablegen-mode.el
 ;; ```
 (use-package tablegen-mode
   :ensure nil

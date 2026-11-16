@@ -25,16 +25,6 @@
   :ensure t
   :demand t)
 
-;; Bootstrap `quelpa'.
-(use-package quelpa
-  :ensure t
-  :commands quelpa
-  :custom
-  (quelpa-git-clone-depth 1)
-  (quelpa-self-upgrade-p nil)
-  (quelpa-update-melpa-p nil)
-  (quelpa-checkout-melpa-p nil))
-
 ;; --debug-init implies `debug-on-error'.
 (setq debug-on-error init-file-debug)
 
