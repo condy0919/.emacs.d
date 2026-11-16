@@ -142,7 +142,7 @@
   (defun background-opacity-inc-alpha (&optional n)
     (interactive)
     (let* ((alpha (background-opacity-get-alpha))
-           (next-alpha (cl-incf alpha (or n 1))))
+           (next-alpha (incf alpha (or n 1))))
       (set-frame-parameter nil 'alpha-background next-alpha)))
 
   (defun background-opacity-dec-alpha ()

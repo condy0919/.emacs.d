@@ -82,7 +82,7 @@
       "Define leader key in MAP when STATE, a wrapper for
 `evil-define-key*'. All BINDINGS are prefixed with \"<leader>\"
 if LOCALLEADER is nil, otherwise \"<localleader>\"."
-      (cl-assert (cl-evenp (length bindings)))
+      (cl-assert (evenp (length bindings)))
       (let ((prefix (if localleader "<localleader>" "<leader>"))
             wk-replacements)
         (while bindings
