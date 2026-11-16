@@ -7,8 +7,7 @@
 
 (use-package gptel
   :ensure t
-  :hook ((gptel-mode . gptel-highlight-mode)
-         (gptel-post-stream . gptel-auto-scroll))
+  :hook (gptel-mode . gptel-highlight-mode)
   :bind (:map gptel-mode-map
          ("C-c C-g" . gptel-abort))
   :config
