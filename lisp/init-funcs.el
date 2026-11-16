@@ -24,8 +24,8 @@
    (list (or buffer-file-name
              (user-error "No file is visiting"))))
   (when (y-or-n-p (format "Really delete '%s'? " file))
-    (kill-current-buffer)
-    (delete-file file)))
+    (delete-file file)
+    (kill-current-buffer)))
 
 (defun +copy-current-file (new-path &optional overwrite-p)
   "Copy current buffer's file to `NEW-PATH'.
