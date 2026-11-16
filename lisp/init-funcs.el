@@ -24,7 +24,8 @@
    (list (or buffer-file-name
              (user-error "No file is visiting"))))
   (when (y-or-n-p (format "Really delete '%s'? " file))
-    (delete-file file)
+    ;; respect `delete-by-moving-to-trash'
+    (delete-file file t)
     (kill-current-buffer)))
 
 (defun +copy-current-file (new-path &optional overwrite-p)
