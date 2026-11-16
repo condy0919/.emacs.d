@@ -79,6 +79,7 @@
   (lsp-completion-provider :none)           ;; don't add `company-capf' to `company-backends'
   (lsp-keep-workspace-alive nil)            ;; auto kill lsp server
   (lsp-eldoc-enable-hover nil)              ;; disable eldoc hover
+  (lsp-warn-no-matched-clients nil)         ;; no warning if no lsp client available
   (lsp-completion-enable-additional-text-edit nil))
 
 (use-package lsp-hierarchy
