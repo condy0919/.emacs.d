@@ -58,7 +58,7 @@
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
   :ensure t
-  :defer t)
+  :after (embark consult))
 
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here
