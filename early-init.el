@@ -25,5 +25,8 @@
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
+;; Suppress warnings and errors reported by asynchronous native compilation.
+(setq native-comp-async-report-warnings-errors 'silent)
+
 (provide 'early-init)
 ;;; early-init.el ends here
