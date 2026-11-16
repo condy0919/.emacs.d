@@ -60,11 +60,6 @@ current directory."
                         " -and"
                         " -iname " (shell-quote-argument (format "*%s*" filename)))))
 
-  (defun eshell/z ()
-    "cd to directory with completions."
-    (let ((dir (completing-read "Directory: " (delete-dups (ring-elements eshell-last-dir-ring)) nil t)))
-      (eshell/cd dir)))
-
   (defun eshell/rg (&rest args)
     "ripgrep with eshell integration."
     (eshell-grep "rg" (append '("--no-heading") args) t))
