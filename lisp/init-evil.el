@@ -21,9 +21,6 @@
          ("f" . evil-avy-goto-char-in-line)
          :map evil-normal-state-map
          ("s" . evil-avy-goto-char-timer))
-  :config
-  ;; Silence line out of range error.
-  (shut-up! #'evil-indent)
   :custom
   ;; undo will never freeze my Emacs
   (evil-undo-system 'undo-redo)

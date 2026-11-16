@@ -16,7 +16,7 @@
   `(advice-add ,func :around
                (defun ,(intern (format "shut-up-%s" func)) (f &rest args)
                  (let ((inhibit-message t))
-                   (ignore-errors (apply f args))))))
+                   (apply f args)))))
 
 (defun +delete-current-file (file)
   "Delete current visiting FILE."
