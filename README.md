@@ -97,6 +97,18 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 
 Emacs 29 引入了 `package-upgrade-all`，需要更新直接 <kbd>M-x package-upgrade-all</kbd> 即可（或者直接点 Dashboard 上的 **Upgrade**）。
 
+CI 使用 Emacs 31.1 检查启动，并额外运行允许失败的 snapshot 作兼容性参考。在仓库根目录可以运行相同的检查：
+
+```bash
+# 验证启动检查能识别错误；使用临时配置和独立进程，不下载包
+emacs -Q --batch -l .github/check-init-tests.el -f ert-run-tests-batch-and-exit
+
+# 检查当前配置的启动路径；会安装缺失的依赖包
+emacs -Q --batch -l .github/check-init.el -f ci-check-init
+```
+
+启动检查依次加载 `early-init.el`、激活包、处理 `user-lisp/`、加载 `init.el`，然后执行 `after-init-hook` 和 `emacs-startup-hook`。未捕获的错误以及错误级告警都会使检查失败，普通告警仍保留在日志中。该检查不覆盖 GUI frame 行为或尚未触发的语言工具。包缓存按 Emacs 构建版本和配置内容区分，缓存命中也仍会检查、安装缺失依赖。
+
 # 界面
 
 GUI 使用 `doom-one`，简直惊艳！`doom-one` 的界面非常好看！终端则切换到 `doom-Iosvkem`，状态栏用 `doom-modeline`，弹出窗口交给 `shackle` 管。
