@@ -1,47 +1,26 @@
-;;; init-mini.el --- The minimal configuration -*- lexical-binding: t -*-
+;;; init-mini.el --- Built-in-only rescue configuration -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
-;; Emacs minimal configuration for debugging.
+;; Start with: emacs -Q -l ~/.emacs.d/init-mini.el
+;; Keep this independent of packages, init-base and personal customizations.
 ;;
 
 ;;; Code:
 
-(require 'package)
+(setq debug-on-error t
+      use-short-answers t)
 
-(setq package-archives
-      '(("melpa"  . "https://melpa.org/packages/")
-        ("gnu"    . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
-
-(package-initialize)
-
-;; Configure the built-in `use-package'.
-(eval-and-compile
-  (setq use-package-enable-imenu-support t))
-(eval-when-compile
-  (require 'use-package))
-
-(setq debug-on-error t)
-(setq-default lexical-binding t)
-
-(add-to-list 'load-path (file-name-as-directory (locate-user-emacs-file "lisp")))
-(setq custom-file (locate-user-emacs-file "custom.el"))
-
-(require 'init-base)
+;; With -Q -l, `after-init-hook' has already run.  Enable modes directly.
+(column-number-mode 1)
+(show-paren-mode 1)
 
 ;; Incremental complete in minibuffer
-(use-package icomplete
-  :ensure nil
-  :hook (emacs-startup . icomplete-mode)
-  :custom
-  (icomplete-vertical-mode t)
-  (icomplete-prospects-height 10)
-  (icomplete-hide-common-prefix nil)
-  (icomplete-show-matches-on-no-input nil))
-
-(when (file-exists-p custom-file)
-  (load custom-file))
+(require 'icomplete)
+(setq icomplete-prospects-height 10
+      icomplete-hide-common-prefix nil
+      icomplete-show-matches-on-no-input nil)
+(icomplete-vertical-mode 1)
 
 (provide 'init-mini)
 ;;; init-mini.el ends here

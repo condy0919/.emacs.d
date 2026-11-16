@@ -417,7 +417,7 @@ yay -S ocaml-ocp-indent dune
 
 ## Emacs 配置挂了
 
-先用 `emacs --debug-init` 看看报错，也可以使用 [init-mini.el](init-mini.el) 这个最小配置来临时救急一下。
+先用 `emacs --debug-init` 查看正常配置的报错。需要临时编辑文件时，可启动独立的 [init-mini.el](init-mini.el) 救援配置：
 
 ``` bash
 emacs -Q -l ~/.emacs.d/init-mini.el
