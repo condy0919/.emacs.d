@@ -61,16 +61,29 @@
   (help-window-keep-selected t)
   (help-enable-variable-value-editing t))
 
-;; Windows layout recorder
+;; Windows layout manager & recorder
 ;;
+;; gt next-tab
+;; gT prev-tab
 ;; You can still use `winner-mode' on Emacs 26 or early. On Emacs 27, it's
 ;; preferred over `winner-mode' for better compatibility with `tab-bar-mode'.
 (use-package tab-bar
   :ensure nil
-  :hook (after-init . tab-bar-history-mode)
+  :hook ((after-init . tab-bar-mode)
+         (after-init . tab-bar-history-mode))
   :bind (:repeat-map tab-bar-history-repeat-map
          ("u" . tab-bar-history-back)
-         ("r" . tab-bar-history-forward)))
+         ("r" . tab-bar-history-forward))
+  :custom
+  (tab-bar-show 1)
+  (tab-bar-tab-hints t)
+  (tab-bar-auto-width nil)
+  (tab-bar-close-button-show nil)
+  (tab-bar-format '(tab-bar-format-tabs-groups
+                    tab-bar-separator
+                    tab-bar-format-align-right
+                    tab-bar-format-global))
+  (tab-bar-tab-name-function 'tab-bar-tab-name-truncated))
 
 (use-package nerd-icons
   :ensure t
