@@ -62,7 +62,7 @@ current directory."
 
   (defun eshell/rg (&rest args)
     "ripgrep with eshell integration."
-    (eshell-grep "rg" (append '("--no-heading") args) t))
+    (eshell-grep "rg" (append '("--no-heading" "--with-filename") args) t))
   :custom
   ;; The following cmds will run on term.
   (eshell-visual-commands '("top" "htop" "less" "more" "telnet"))
