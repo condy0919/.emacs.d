@@ -118,7 +118,8 @@
                              ((executable-find "ugrep") 'ugrep)
                              (t 'grep)))
   (xref-history-storage 'xref-window-local-history)
-  (xref-show-xrefs-function #'xref-show-definitions-completing-read)
+  ;; Usually there is a single definition and many xrefs, so display the xrefs in
+  ;; a buffer.
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;; A fancy ctags frontend
