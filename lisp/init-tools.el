@@ -66,8 +66,8 @@
          ;; Edit the search string instead of jumping back
          ([remap isearch-delete-char] . isearch-del-char))
   :config
-  (define-advice isearch-occur (:after (_regexp &optional _nlines))
-    (isearch-exit))
+  ;; End Isearch before Shackle selects the Occur window.
+  (put 'isearch-occur 'isearch-exit t)
   :custom
   ;; Record isearch in minibuffer history, so C-x ESC ESC can repeat it.
   (isearch-resume-in-command-history t)
