@@ -3,6 +3,9 @@
 
 ;;; Code:
 
+;; Ignore X resources before the initial GUI frame is created.
+(setq inhibit-x-resources t)
+
 ;; Defer garbage collection further back in the startup process, then restore
 ;; a practical threshold once startup completes.
 (setq gc-cons-threshold most-positive-fixnum)
