@@ -35,10 +35,12 @@
 (use-package cc-mode
   :ensure nil
   :mode ("\\.cxx\\'" . c++-mode)
-  :hook ((c-mode . (lambda ()
-                     (c-toggle-comment-style -1)))
-         ((c-mode c++-mode) . superword-mode))
+  :hook (c-mode . (lambda ()
+                    (c-toggle-comment-style -1)))
   :config
+  ;; Keep snake_case whole without Superword's incompatible Evil boundaries.
+  (modify-syntax-entry ?_ "w" c-mode-syntax-table)
+  (modify-syntax-entry ?_ "w" c++-mode-syntax-table)
   (with-no-warnings
     (defconst ccls-args nil)
     (defconst clangd-args '("-j=2"

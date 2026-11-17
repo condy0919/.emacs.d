@@ -25,7 +25,7 @@
                                            (nnimap-address "imap.gmail.com")
                                            (nnimap-server-port "imaps")
                                            (nnimap-stream ssl)
-                                           (nnimap-expunge 'never))))
+                                           (nnimap-expunge never))))
   ;;; Startup functions
   (gnus-save-killed-list nil)
   (gnus-check-new-newsgroups nil)

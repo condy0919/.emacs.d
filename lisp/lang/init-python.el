@@ -8,7 +8,9 @@
 (use-package python
   :ensure nil
   :mode ("\\.py\\'" . python-mode)
-  :hook (python-mode . superword-mode)
+  :config
+  ;; Keep snake_case whole without Superword's incompatible Evil boundaries.
+  (modify-syntax-entry ?_ "w" python-mode-syntax-table)
   :custom
   (python-shell-dedicated 'project)
   (python-indent-guess-indent-offset-verbose nil))
