@@ -546,9 +546,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :hook (after-init . savehist-mode)
   :custom
-  (savehist-additional-variables '(mark-ring
-                                   global-mark-ring
-                                   search-ring
+  (savehist-additional-variables '(search-ring
                                    regexp-search-ring)))
 
 (use-package completion-preview
