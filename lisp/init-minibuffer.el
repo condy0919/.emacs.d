@@ -28,7 +28,12 @@
          ([remap recentf-open-files]     . consult-recent-file)
          ([remap repeat-complex-command] . consult-complex-command)
          ([remap jump-to-register]       . consult-register-load)
-         ([remap point-to-register]      . consult-register-store))
+         ([remap point-to-register]      . consult-register-store)
+         ("M-s M-h"                      . consult-isearch-history)
+         ("M-s l"                        . consult-line)
+         :map isearch-mode-map
+         ("M-s M-h" . consult-isearch-history)
+         ("M-s l" . consult-line))
   :config
   (with-no-warnings
     (consult-customize consult-ripgrep consult-git-grep consult-grep
