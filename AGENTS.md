@@ -35,6 +35,7 @@
 - `use-package` 关键字顺序遵守 [use-package-keywords.md](use-package-keywords.md)，包括 `:vc`。使用列表中尚未出现的关键字时，同步补充该文档。
 - 内置包使用 `:ensure nil`。保持现有模块边界、lexical binding、命名和缩进风格；不要仅为少量选项新建模块。
 - 注意 `:init`、`:config`、延迟加载和启动 hook 的执行时机，避免为设置按键或变量而无故提前加载大型包。
+- `:hook` 中的 lambda 不会像函数名那样生成 autoload 并隐含延迟加载；没有其他延迟加载条件时，包会立即加载。优先绑定已有函数；确需 lambda 时，应明确延迟加载条件（如 `:defer t`），并确认 hook 执行时所调用的函数已有 autoload 或其所属包已加载。不要仅为触发延迟加载而改写成自定义函数名；替换 lambda 时须保留参数语义，并通过宏展开或独立进程确认包的实际加载时机。
 - 修改按键时检查当前 keymap、Evil、Evil Collection 和 remap 的共同作用，优先复用已有集成。
 - 涉及命令行为时，确认前缀参数、buffer-local 状态、当前 buffer/窗口和异步进程的语义，不能只确认函数能被调用。
 - 修改退出 hook 或窗口清理时，确认后续保存逻辑所需的当前 buffer 没有被提前切走；优先使用 Emacs 原生的窗口生命周期。

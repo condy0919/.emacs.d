@@ -80,10 +80,13 @@
 ;; Keep track of tasks
 (use-package org-agenda
   :ensure nil
-  :hook (org-agenda-finalize . (lambda () (org-agenda-to-appt t)))
+  :hook (org-agenda-finalize . org-agenda-refresh-appts)
   :config
+  (defun org-agenda-refresh-appts ()
+    "Rebuild appointment reminders from Org agenda files."
+    (org-agenda-to-appt t))
   ;; Rebuild the appointment list from Org every 5 minutes.
-  (run-at-time t 300 #'org-agenda-to-appt t)
+  (run-at-time t 300 #'org-agenda-refresh-appts)
   (shut-up! #'org-agenda-to-appt)
   :custom
   (org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
