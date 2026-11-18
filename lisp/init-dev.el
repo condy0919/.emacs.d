@@ -16,6 +16,16 @@
   ;; Save all buffers on M-x `compile'
   (compilation-ask-about-save nil))
 
+;; View patches
+(use-package diff-mode
+  :ensure nil
+  :defer t
+  :custom
+  (diff-default-read-only t)
+  ;; Let `vc-diff' use full source/revision context for accurate syntax
+  ;; highlighting; fall back to hunk text when that context is unavailable.
+  (diff-font-lock-syntax 'hunk-also))
+
 ;; The unified debugger
 (use-package gud
   :ensure nil

@@ -342,6 +342,7 @@ AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`）
 - 高亮 **TODO**、**FIXME** 等关键字
 - `citre` 作为 ctags 跳转入口（`C-c c j`），`rg` 和 `devdocs` (`C-c b`) 辅助查代码与文档
 - `magit` 作为 `git` 客户端，配合 `diff-hl` 显示变更标记及 `vc-auto-revert-mode` 自动刷新
+- `diff-mode` 默认只读；`hunk-also` 让 `vc-diff` 优先利用完整源文件或对应版本的上下文进行语法高亮，缺少上下文时根据 hunk 高亮
 - `hideshow` 来显示/隐藏结构化的代码块，如 "{ }" 函数体等
 - `rmsbolt` 作为一个本地的 **Compiler Explorer**，相比于 `godbolt` 快速一点
 - `ispell` 拼写检查器，`evil` 用户可以快速通过 <kbd>z=</kbd> (`ispell-word`) 来检查
