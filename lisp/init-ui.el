@@ -28,6 +28,14 @@
   (doom-modeline-unicode-fallback t)
   (doom-modeline-enable-word-count nil))
 
+(use-package window
+  :ensure nil
+  :bind ("M-o" . other-window)
+  :custom
+  (window-resize-pixelwise t)
+  ;; Quit auto-created windows when killing their buffer
+  (kill-buffer-quit-windows t))
+
 ;; Customize popwin behavior
 (use-package shackle
   :ensure t

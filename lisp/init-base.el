@@ -13,11 +13,7 @@
       inhibit-startup-buffer-menu t)
 
 ;; Pixelwise resize
-(setq window-resize-pixelwise t
-      frame-resize-pixelwise t)
-
-;; Quit auto-created windows when killing their buffer
-(setq kill-buffer-quit-windows t)
+(setq frame-resize-pixelwise t)
 
 ;; Linux specific
 (setq x-gtk-use-system-tooltips nil
