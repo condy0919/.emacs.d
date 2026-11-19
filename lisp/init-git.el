@@ -40,10 +40,6 @@
   :hook ((after-init         . global-diff-hl-mode)
          (dired-mode         . diff-hl-dired-mode-unless-remote)
          (magit-post-refresh . diff-hl-magit-post-refresh))
-  :config
-  ;; When Emacs runs in terminal, show the indicators in margin instead.
-  (unless (display-graphic-p)
-    (diff-hl-margin-mode))
   :custom
   (diff-hl-disable-on-remote t)
   (diff-hl-update-async t))

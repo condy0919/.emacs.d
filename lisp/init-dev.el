@@ -113,7 +113,7 @@
   (flycheck-temp-prefix ".flycheck")
   (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-emacs-lisp-load-path 'inherit)
-  (flycheck-indication-mode (if (display-graphic-p) 'right-fringe 'right-margin)))
+  (flycheck-indication-mode 'right-margin))
 
 ;; xref
 (use-package xref
