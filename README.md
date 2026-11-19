@@ -70,7 +70,7 @@ git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 | 包名          | 功能                                             |
 |---------------|--------------------------------------------------|
 | align         | `align-regexp` 可以自动对齐选择的符号            |
-| appt          | 任务提醒，可以与 `org-mode` 结合                 |
+| appt          | 可与 Org 日程联动，预约倒计时显示在模式行        |
 | disp-table    | `prettify-special-glyphs-mode` 美化折行/截断符号 |
 | editorconfig  | 读取项目 `.editorconfig` 缩进风格                |
 | hippie-expand | 用来展开文本                                     |

@@ -88,10 +88,8 @@
   (tab-bar-truncate t)
   (tab-bar-auto-width nil)
   (tab-bar-close-button-show nil)
-  (tab-bar-format '(tab-bar-format-tabs-groups
-                    tab-bar-separator
-                    tab-bar-format-align-right
-                    tab-bar-format-global))
+  ;; Keep appointment reminders on the mode line even when the tab bar is hidden.
+  (tab-bar-format '(tab-bar-format-tabs-groups))
   (tab-bar-tab-name-function 'tab-bar-tab-name-truncated))
 
 (use-package nerd-icons
