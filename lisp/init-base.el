@@ -427,6 +427,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   :hook (imenu-after-jump . recenter)
   :custom
   (imenu-auto-rescan t)
+  (imenu-max-item-length nil)
   (imenu-flatten 'group))
 
 ;; Buffer manager

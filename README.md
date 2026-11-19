@@ -119,7 +119,7 @@ GUI 使用 `doom-one`，简直惊艳！`doom-one` 的界面非常好看！终端
 
 `avy` 用来代替 `vim-easymotion`。而且 `avy` 还提供了 `goto-line` 的功能，这下都不用开相对行号 `8k` `9j` 这样跳了。
 
-以前是 `ivy` 用户，现在则是仅使用 `vertico`、`embark` 和 `consult` 了（候选详细信息直接交给内置的 `completions-detailed`）。另外 `consult` 重映射了不少内置命令，比如 `imenu` → `consult-imenu`、`bookmark-jump` → `consult-bookmark`、`recentf-open-files` → `consult-recent-file`。
+以前是 `ivy` 用户，现在则是仅使用 `vertico`、`embark` 和 `consult` 了（候选详细信息直接交给内置的 `completions-detailed`）。另外 `consult` 重映射了不少内置命令，比如 `imenu` → `consult-imenu`（可按完整符号名筛选）、`bookmark-jump` → `consult-bookmark`、`recentf-open-files` → `consult-recent-file`。
 
 `Emacs` 下的 `org-mode`/`markdown-mode` 让人惊艳，突然觉得写文档也会这么快乐。与之相辅相成的还有 `separedit`，让人在代码里写 `documentation comments` 不再烦恼。
 
