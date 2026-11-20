@@ -52,6 +52,7 @@
   ;; immediately available.
   (evil-collection-require 'consult)
   :custom
+  (evil-collection-key-blacklist '("SPC"))
   (evil-collection-setup-debugger-keys nil)
   (evil-collection-calendar-want-org-bindings t)
   (evil-collection-unimpaired-want-repeat-mode-integration t))
