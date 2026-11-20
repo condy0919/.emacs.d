@@ -329,6 +329,9 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :bind (:map comint-mode-map
          ("M-." . comint-insert-previous-argument))
+  :config
+  (add-hook 'comint-output-filter-functions #'comint-osc-process-output)
+  (add-hook 'comint-output-filter-functions #'comint-truncate-buffer)
   :custom
   ;; zsh-like
   (comint-insert-previous-argument-from-end t)
@@ -339,6 +342,7 @@ Else, call `comment-or-uncomment-region' on the current line."
   (comint-history-isearch 'dwim)
   (comint-input-ignoredups t)
   (comint-input-ring-size 5000)
+  (comint-buffer-maximum-size 10000)
   (comint-scroll-to-bottom-on-input 'this)
   ;; Colorize
   (comint-terminfo-terminal "dumb-emacs-ansi"))
