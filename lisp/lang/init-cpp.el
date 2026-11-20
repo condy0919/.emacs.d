@@ -47,7 +47,8 @@
                             "--background-index"
                             "--clang-tidy"
                             "--completion-style=bundled"
-                            "--header-insertion-decorators"))
+                            "--header-insertion=never"
+                            "--header-insertion-decorators=0"))
     (with-eval-after-load 'lsp-mode
       ;; Prefer `clangd' over `ccls'
       (cond ((executable-find "clangd") (setq lsp-clients-clangd-executable "clangd"
