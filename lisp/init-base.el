@@ -504,6 +504,8 @@ Else, call `comment-or-uncomment-region' on the current line."
   :ensure nil
   :hook (after-init . savehist-mode)
   :custom
+  (history-delete-duplicates t)
+  (history-length 300)
   (savehist-additional-variables '(search-ring
                                    regexp-search-ring)))
 
