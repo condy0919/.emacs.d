@@ -157,6 +157,14 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "sp" 'consult-ripgrep
       "ss" 'consult-line
 
+      ;; git
+      "g" '(:wk "git")
+      "gb" 'magit-blame-addition
+      "gc" 'gptel-commit
+      "gf" 'magit-file-dispatch
+      "gg" 'magit-status
+      "gp" 'diff-hl-show-hunk
+
       ;; project
       "p" 'projectile-command-map
 

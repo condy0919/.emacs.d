@@ -294,6 +294,16 @@ AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`）
 | <kbd>cw</kbd> | `delete-trailing-whitespace` 删除行末空白字符              |
 | <kbd>cx</kbd> | `quickrun` 快速运行当前程序                                |
 
+Git 相关的 `Leader` 键绑定：
+
+| key           | function                                    |
+|---------------|---------------------------------------------|
+| <kbd>gb</kbd> | `magit-blame-addition` 查看当前行提交归属   |
+| <kbd>gc</kbd> | `gptel-commit` 使用 AI 生成提交信息         |
+| <kbd>gf</kbd> | `magit-file-dispatch` 当前文件 Git 操作菜单 |
+| <kbd>gg</kbd> | `magit-status` 打开 Magit 状态页            |
+| <kbd>gp</kbd> | `diff-hl-show-hunk` 预览当前修改块          |
+
 ## Emacs
 
 | key                | function                                    |
