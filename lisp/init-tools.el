@@ -78,6 +78,7 @@
   ;; M-< and M-> move to the first/last occurrence of the current search string.
   (isearch-allow-motion t)
   (isearch-motion-changes-direction t)
+  (isearch-allow-scroll 'unlimited)
   ;; lazy isearch
   (isearch-lazy-count t)
   (isearch-lazy-highlight t)
