@@ -20,7 +20,6 @@
   :ensure t
   :hook (after-init . doom-modeline-mode)
   :custom
-  (doom-modeline-irc nil)
   (doom-modeline-mu4e nil)
   (doom-modeline-gnus nil)
   (doom-modeline-github nil)

@@ -194,7 +194,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       "aa" 'org-agenda
       "ac" 'calendar
       "ag" 'gnus
-      "ai" 'rcirc
 
       ;; open
       "o" '(:wk "open")

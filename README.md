@@ -49,7 +49,7 @@
 git clone --depth 1 https://github.com/condy0919/.emacs.d ~/.emacs.d
 ```
 
-主力配置围绕 **C/C++/Rust/OCaml/Haskell** 展开，顺带覆盖 Python、Emacs Lisp、Shell、Bazel、CMake 等；日常写作与工具则包含 Org、Markdown、Gnus、rcirc 和 `gptel`。
+主力配置围绕 **C/C++/Rust/OCaml/Haskell** 展开，顺带覆盖 Python、Emacs Lisp、Shell、Bazel、CMake 等；日常写作与工具则包含 Org、Markdown、Gnus 和 `gptel`。
 
 保持着尽量使用 `Emacs` 自带功能的原则，能用自带的就用自带的。
 
@@ -271,7 +271,6 @@ AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`）
 | <kbd>aa</kbd> | `org-agenda` 日程 |
 | <kbd>ac</kbd> | `calendar` 日历   |
 | <kbd>ag</kbd> | `gnus` 查看新闻组 |
-| <kbd>ai</kbd> | `rcirc` 上 IRC    |
 
 搜索相关的 `Leader` 键绑定：
 
