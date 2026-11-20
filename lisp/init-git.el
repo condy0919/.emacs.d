@@ -48,8 +48,7 @@
 (use-package ediff
   :ensure nil
   ;; Restore window config after quitting ediff
-  :hook ((ediff-before-setup . ediff-save-window-conf)
-         (ediff-quit         . ediff-restore-window-conf))
+  :hook (ediff-before-setup . ediff-save-window-conf)
   :config
   (defvar local-ediff-saved-window-conf nil)
 
@@ -59,6 +58,8 @@
   (defun ediff-restore-window-conf ()
     (when (window-configuration-p local-ediff-saved-window-conf)
       (set-window-configuration local-ediff-saved-window-conf)))
+
+  (add-hook 'ediff-quit-hook #'ediff-restore-window-conf t)
   :custom
   (ediff-highlight-all-diffs t)
   (ediff-window-setup-function 'ediff-setup-windows-plain)
