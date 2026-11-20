@@ -26,7 +26,6 @@
 
 ;; Optimize for very long lines
 (setq-default bidi-paragraph-direction 'left-to-right)
-(setq-default bidi-display-reordering 'left-to-right)
 (setq bidi-inhibit-bpa t)
 
 ;; No backup files
