@@ -21,45 +21,8 @@
          ("f" . evil-avy-goto-char-in-line)
          :map evil-normal-state-map
          ("s" . evil-avy-goto-char-timer))
-  :custom
-  ;; undo will never freeze my Emacs
-  (evil-undo-system 'undo-redo)
-  ;; Switch to the new window after splitting
-  (evil-split-window-below t)
-  (evil-vsplit-window-right t)
-  (evil-ex-complete-emacs-commands nil)
-  (evil-ex-interactive-search-highlight 'selected-window)
-  ;; when `visual-line-mode' enabled, exchange j/k with gj/gk
-  (evil-respect-visual-line-mode t)
-  (evil-want-integration t)
-  (evil-want-keybinding nil)
-  (evil-want-fine-undo t)
-  (evil-want-C-g-bindings t)
-  (evil-want-abbrev-expand-on-insert-exit nil)
-  (evil-symbol-word-search t))
-
-(use-package evil-surround
-  :ensure t
-  :hook (after-init . global-evil-surround-mode))
-
-(use-package evil-collection
-  :ensure t
-  :hook (evil-mode . evil-collection-init)
-  :bind (([remap evil-show-marks] . evil-collection-consult-mark)
-         ([remap evil-show-jumps] . evil-collection-consult-jump-list))
   :config
-  ;; Make `evil-collection-consult-mark' and `evil-collection-consult-jump-list'
-  ;; immediately available.
-  (evil-collection-require 'consult)
-  :custom
-  (evil-collection-key-blacklist '("SPC"))
-  (evil-collection-setup-debugger-keys nil)
-  (evil-collection-unimpaired-want-repeat-mode-integration t))
-
-;; evil leader map
-(use-package evil
-  :ensure nil
-  :config
+  ;; evil leader map
   (with-no-warnings
     ;; We use "SPC" as the leader key, "SPC m" as the localleader key. Due to the
     ;; limitation of `evil-set-leader', we can't easily set localleader key with
@@ -265,7 +228,41 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
           ;; goto
           "gf" 'find-function
           "gv" 'find-variable
-          "gl" 'find-library)))))
+          "gl" 'find-library))))
+  :custom
+  ;; undo will never freeze my Emacs
+  (evil-undo-system 'undo-redo)
+  ;; Switch to the new window after splitting
+  (evil-split-window-below t)
+  (evil-vsplit-window-right t)
+  (evil-ex-complete-emacs-commands nil)
+  (evil-ex-interactive-search-highlight 'selected-window)
+  ;; when `visual-line-mode' enabled, exchange j/k with gj/gk
+  (evil-respect-visual-line-mode t)
+  (evil-want-integration t)
+  (evil-want-keybinding nil)
+  (evil-want-fine-undo t)
+  (evil-want-C-g-bindings t)
+  (evil-want-abbrev-expand-on-insert-exit nil)
+  (evil-symbol-word-search t))
+
+(use-package evil-surround
+  :ensure t
+  :hook (after-init . global-evil-surround-mode))
+
+(use-package evil-collection
+  :ensure t
+  :hook (evil-mode . evil-collection-init)
+  :bind (([remap evil-show-marks] . evil-collection-consult-mark)
+         ([remap evil-show-jumps] . evil-collection-consult-jump-list))
+  :config
+  ;; Make `evil-collection-consult-mark' and `evil-collection-consult-jump-list'
+  ;; immediately available.
+  (evil-collection-require 'consult)
+  :custom
+  (evil-collection-key-blacklist '("SPC"))
+  (evil-collection-setup-debugger-keys nil)
+  (evil-collection-unimpaired-want-repeat-mode-integration t))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
