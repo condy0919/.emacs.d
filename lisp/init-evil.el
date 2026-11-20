@@ -54,7 +54,6 @@
   :custom
   (evil-collection-key-blacklist '("SPC"))
   (evil-collection-setup-debugger-keys nil)
-  (evil-collection-calendar-want-org-bindings t)
   (evil-collection-unimpaired-want-repeat-mode-integration t))
 
 ;; evil leader map
@@ -193,7 +192,6 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
       ;; app
       "a" '(:wk "app")
       "aa" 'org-agenda
-      "ac" 'calendar
       "ag" 'gnus
 
       ;; open

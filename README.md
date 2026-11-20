@@ -269,7 +269,6 @@ AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`）
 | key           | function          |
 |---------------|-------------------|
 | <kbd>aa</kbd> | `org-agenda` 日程 |
-| <kbd>ac</kbd> | `calendar` 日历   |
 | <kbd>ag</kbd> | `gnus` 查看新闻组 |
 
 搜索相关的 `Leader` 键绑定：
