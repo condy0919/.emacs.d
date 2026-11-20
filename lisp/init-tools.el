@@ -168,13 +168,17 @@
   :bind ("C-c C-/" . webjump)
   :config
   (defconst webjump-weather-default-cities '("杭州" "深圳" "北京" "上海"))
-  (defconst webjump-weather-url-template "https://weathernew.pae.baidu.com/weathernew/pc?query=%s天气&srcid=4982")
+  (defconst webjump-weather-url-template "https://weathernew.pae.baidu.com/weathernew/pc?query=%s&srcid=4982")
+
+  (declare-function webjump-url-encode "webjump" (str))
 
   (defun webjump-weather (_name)
     (let ((city (completing-read "City: " webjump-weather-default-cities)))
-      (format webjump-weather-url-template city)))
+      (format webjump-weather-url-template
+              (webjump-url-encode (concat city "天气")))))
 
-  (add-to-list 'browse-url-handlers '("weathernew.pae.baidu.com" . xwidget-webkit-browse-url))
+  (when (and (featurep 'xwidget-internal) (display-graphic-p))
+    (add-to-list 'browse-url-handlers '("weathernew.pae.baidu.com" . xwidget-webkit-browse-url)))
   :custom
   (webjump-sites '(;; Internet search engines.
                    ("Google" .
