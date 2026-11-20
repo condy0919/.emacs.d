@@ -56,12 +56,20 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
             ;; Save which-key (key . replacement).
             (pcase def
               (`(:wk ,replacement)
-               (push (cons (concat "SPC " key) replacement) wk-replacements)))))
+               (push (cons key replacement) wk-replacements)))))
         ;; which-key integration.
-        ;; XXX: replacement for localleader NOT supported.
-        (cl-loop for (key . replacement) in wk-replacements
-                 unless localleader
-                 do (which-key-add-key-based-replacements key replacement))))
+        (if (not localleader)
+            (cl-loop for (key . replacement) in wk-replacements
+                     do (which-key-add-key-based-replacements
+                          (concat "SPC " key) replacement))
+          (dolist (s (ensure-list state))
+            (when-let* ((aux (evil-get-auxiliary-keymap map s)))
+              (cl-loop for (key . replacement) in wk-replacements
+                       for full-key = (concat prefix key)
+                       for existing = (lookup-key aux (kbd full-key))
+                       when (or (keymapp existing) (symbolp existing))
+                       do (which-key-add-keymap-based-replacements aux
+                            full-key (cons replacement existing))))))))
 
     (define-leader-key 'normal 'global nil
       ;; SPC, quit minibuffer.
@@ -182,6 +190,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
         "T" 'org-todo-list
 
         ;; babel
+        "b"  '(:wk "babel")
         "bp" 'org-babel-previous-src-block
         "bn" 'org-babel-next-src-block
         "be" 'org-babel-expand-src-block
@@ -196,6 +205,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
         "bk" 'org-babel-remove-result-one-or-many
 
         ;; clock
+        "c"  '(:wk "clock")
         "cc" 'org-clock-in
         "cC" 'org-clock-out
         "cd" 'org-clock-mark-default-task
@@ -209,6 +219,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
         "c-" 'org-clock-timestamps-down
 
         ;; insert
+        "i"  '(:wk "insert")
         "id" 'org-insert-drawer
         "in" 'org-add-note
         "it" 'org-time-stamp-inactive
@@ -220,12 +231,14 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
           "i" 'info-lookup-symbol
 
           ;; eval
+          "e"  '(:wk "eval")
           "eb" 'eval-buffer
           "ed" 'eval-defun
           "ee" 'eval-last-sexp
           "el" 'load-library
 
           ;; goto
+          "g"  '(:wk "goto")
           "gf" 'find-function
           "gv" 'find-variable
           "gl" 'find-library))))
