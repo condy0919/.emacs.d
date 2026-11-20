@@ -90,7 +90,10 @@ current directory."
   :ensure nil
   :bind (:map eshell-mode-map
          ([remap delete-char] . eshell-delchar-or-maybe-eof))
+  :config
+  (add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer)
   :custom
+  (eshell-buffer-maximum-lines 10000)
   (eshell-scroll-to-bottom-on-input 'this))
 
 ;; The interactive shell.
