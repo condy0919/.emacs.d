@@ -23,7 +23,6 @@
   (gptel-model 'deepseek-flash)
   (gptel-track-media t)
   (gptel-include-reasoning 'ignore)
-  (gptel-highlight-methods (if (display-graphic-p) '(fringe) '(margin)))
   (gptel-default-mode 'org-mode)
   (gptel-org-branching-context t)
   (gptel-prompt-prefix-alist nil)
