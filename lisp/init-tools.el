@@ -69,6 +69,8 @@
   ;; End Isearch before Shackle selects the Occur window.
   (put 'isearch-occur 'isearch-exit t)
   :custom
+  (search-ring-max 300)
+  (regexp-search-ring-max 300)
   ;; Record isearch in minibuffer history, so C-x ESC ESC can repeat it.
   (isearch-resume-in-command-history t)
   ;; One space can represent a sequence of whitespaces
