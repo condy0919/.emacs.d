@@ -91,7 +91,7 @@ current directory."
   :bind (:map eshell-mode-map
          ([remap delete-char] . eshell-delchar-or-maybe-eof))
   :config
-  (add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer)
+  (add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer 90)
   :custom
   (eshell-buffer-maximum-lines 10000)
   (eshell-scroll-to-bottom-on-input 'this))

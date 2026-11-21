@@ -331,7 +331,7 @@ Else, call `comment-or-uncomment-region' on the current line."
          ("M-." . comint-insert-previous-argument))
   :config
   (add-hook 'comint-output-filter-functions #'comint-osc-process-output)
-  (add-hook 'comint-output-filter-functions #'comint-truncate-buffer)
+  (add-hook 'comint-output-filter-functions #'comint-truncate-buffer 90)
   :custom
   ;; zsh-like
   (comint-insert-previous-argument-from-end t)
