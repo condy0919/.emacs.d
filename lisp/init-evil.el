@@ -121,13 +121,11 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
 
       ;; code
       "c" '(:wk "code")
-      "cd" 'rmsbolt-compile
       "cc" 'compile
       "cC" 'recompile
       "ck" 'kill-compilation
       "cl" '+switch-to-compilation
       "cw" 'delete-trailing-whitespace
-      "cx" 'quickrun
 
       ;; window
       "w" 'evil-window-map

@@ -292,14 +292,6 @@
                      (template-args-cont    . (c-lineup-template-args
                                                c-lineup-template-args-indented-from-margin)))))
 
-;; A compiler output viewer
-(use-package rmsbolt
-  :ensure t
-  :commands rmsbolt-compile
-  :custom
-  (rmsbolt-asm-format nil)
-  (rmsbolt-default-directory temporary-file-directory))
-
 ;; Parser generator
 (use-package bison-mode
   :ensure t

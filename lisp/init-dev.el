@@ -82,14 +82,6 @@
   :ensure nil
   :hook (after-init . editorconfig-mode))
 
-;; Quickrun codes, including cpp. awesome!
-(use-package quickrun
-  :ensure t
-  :bind ("C-c x" . quickrun)
-  :custom
-  (quickrun-focus-p nil)
-  (quickrun-input-file-extension ".qr"))
-
 ;; Project management
 (use-package projectile
   :ensure t

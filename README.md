@@ -286,13 +286,11 @@ AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`）
 
 | key           | function                                                   |
 |---------------|------------------------------------------------------------|
-| <kbd>cd</kbd> | `rmsbolt-compile` 查看编译器的输出，如汇编、IR表示         |
 | <kbd>cc</kbd> | `compile` 编译                                             |
 | <kbd>cC</kbd> | `recompile` 重新编译                                       |
 | <kbd>ck</kbd> | `kill-compilation` 打断当前的编译过程                      |
 | <kbd>cl</kbd> | `+switch-to-compilation` 快速切换到 `*compilation*` buffer |
 | <kbd>cw</kbd> | `delete-trailing-whitespace` 删除行末空白字符              |
-| <kbd>cx</kbd> | `quickrun` 快速运行当前程序                                |
 
 Git 相关的 `Leader` 键绑定：
 
@@ -352,10 +350,8 @@ Git 相关的 `Leader` 键绑定：
 - `magit` 作为 `git` 客户端，配合 `diff-hl` 显示变更标记及 `vc-auto-revert-mode` 自动刷新
 - `diff-mode` 默认只读；`hunk-also` 让 `vc-diff` 优先利用完整源文件或对应版本的上下文进行语法高亮，缺少上下文时根据 hunk 高亮
 - `hideshow` 来显示/隐藏结构化的代码块，如 "{ }" 函数体等
-- `rmsbolt` 作为一个本地的 **Compiler Explorer**，相比于 `godbolt` 快速一点
 - `ispell` 拼写检查器，`evil` 用户可以快速通过 <kbd>z=</kbd> (`ispell-word`) 来检查
 - `flyspell` 拼写检查器，仅在 `magit` 写提交信息时启用
-- `quickrun` 能够快速运行当前文件/区域，方便验证代码片段
 - `tempo` 作为代码片段展开工具，`spdx` 提供许可证头，配合 <kbd>M-x tempo-expand-if-complete</kbd> 或 `hippie-expand` 触发
 - C/C++、Python 和 Rust 将 `_` 设为单词字符，让 `snake_case` 整体参与单词移动及文本对象操作；不启用 `superword-mode`，避免 Evil 的 `w` 停滞或 `iw` 选区异常
 
