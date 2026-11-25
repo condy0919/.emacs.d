@@ -125,7 +125,7 @@ GUI 使用 `doom-one`，简直惊艳！`doom-one` 的界面非常好看！终端
 
 [valign][valign] 提供了像素级别的表格对齐，终于不用再靠西文半宽的字体了！
 
-AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`），写 commit message 时加载 Magit 后可以直接调用 `M-x gptel-commit`。
+AI 辅助用的是 `gptel`（配了 DeepSeek 后端，凭据走 `auth-source`），写 commit message 时可以直接调用 `M-x gptel-commit` 或 `SPC g c`。
 
 从 `neovim` 迁移过来的我，自然是常开 `evil-mode`，相关的 `evil` 套件有：
 
