@@ -9,14 +9,27 @@
 
 (use-package org
   :ensure nil
-  :hook (org-mode . visual-line-mode)
+  :hook ((org-mode . visual-line-mode)
+         (org-babel-after-execute . org-babel-preview-result))
+  :config
+  (defun org-babel-preview-result ()
+    "Refresh link previews in the current Org Babel result block."
+    (when-let* ((location (org-babel-where-is-src-block-result)))
+      (when (and (>= location (point-min)) (<= location (point-max)))
+        (save-excursion
+          (goto-char location)
+          (let ((case-fold-search t))
+            (when (looking-at-p org-babel-result-regexp)
+              (goto-char (org-element-post-affiliated (org-element-at-point)))
+              (let ((beg (point))
+                    (end (org-babel-result-end)))
+                (when (> end beg)
+                  (org-link-preview-region nil t beg end)))))))))
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
   ;; prettify
   (org-startup-indented t)
-  (org-fontify-todo-headline nil)
-  (org-fontify-done-headline t)
   (org-fontify-whole-heading-line t)
   (org-fontify-quote-and-verse-blocks t)
   (org-list-demote-modify-bullet '(("+" . "-") ("1." . "a.") ("-" . "+")))
@@ -29,8 +42,6 @@
   (org-yank-adjusted-subtrees t)
   (org-ctrl-k-protect-subtree 'error)
   (org-fold-catch-invisible-edits 'show-and-error)
-  ;; call C-c C-o explicitly
-  (org-return-follows-link nil)
   ;; todo
   (org-todo-keywords '((sequence "TODO(t)" "HOLD(h!)" "WIP(i!)" "WAIT(w!)" "|" "DONE(d!)" "CANCELLED(c@/!)")))
   (org-todo-keyword-faces '(("TODO"       :foreground "#7c7c75" :weight bold)
@@ -49,12 +60,9 @@
                            ("APPT_WARNTIME_ALL" . "0 5 10 15 20 25 30 45 60")
                            ("STYLE_ALL" . "habit")))
   (org-columns-default-format "%25ITEM %TODO %SCHEDULED %DEADLINE %3PRIORITY %TAGS %CLOCKSUM %EFFORT{:}")
-  ;; Remove CLOSED: [timestamp] after switching to non-DONE states
-  (org-closed-keep-when-no-todo t)
   ;; log
-  (org-log-repeat 'time)
+  (org-log-into-drawer t)
   ;; refile
-  (org-refile-use-cache nil)
   (org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
@@ -75,7 +83,17 @@
                            ("Google" . "https://google.com/search?q=")
                            ("RFCs"   . "https://www.rfc-editor.org/rfc/")
                            ("LWN"    . "https://lwn.net/Articles/")
-                           ("WG21"   . "https://wg21.link/"))))
+                           ("WG21"   . "https://wg21.link/")))
+  ;; babel
+  (org-confirm-babel-evaluate nil)
+  (org-babel-load-languages '((C          . t)
+                              (dot        . t)
+                              (emacs-lisp . t)
+                              (eshell     . t)
+                              (python     . t)
+                              (shell      . t)))
+  ;; export
+  (org-export-with-sub-superscripts '{}))
 
 ;; Keep track of tasks
 (use-package org-agenda
@@ -94,28 +112,16 @@
   (org-agenda-insert-diary-extract-time t)
   (org-agenda-inhibit-startup t)
   (org-agenda-time-leading-zero t)
-  (org-agenda-columns-add-appointments-to-effort-sum t)
-  (org-agenda-restore-windows-after-quit t)
-  (org-agenda-window-setup 'current-window))
+  (org-agenda-columns-add-appointments-to-effort-sum t))
 
 ;; Write codes in org-mode
 (use-package org-src
   :ensure nil
-  :hook (org-babel-after-execute . org-link-preview-refresh)
   :bind (:map org-src-mode-map
          ;; consistent with separedit/magit
          ("C-c C-c" . org-edit-src-exit))
   :custom
-  (org-confirm-babel-evaluate nil)
-  (org-src-fontify-natively t)
-  (org-src-tab-acts-natively t)
-  (org-src-window-setup 'other-window)
-  (org-babel-load-languages '((C          . t)
-                              (dot        . t)
-                              (emacs-lisp . t)
-                              (eshell     . t)
-                              (python     . t)
-                              (shell      . t))))
+  (org-src-content-indentation 0))
 
 ;; Create structured information quickly
 (use-package org-capture
@@ -127,7 +133,6 @@
       (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
   (org-capture-use-agenda-date t)
-  (org-capture-templates-contexts nil)
   (org-capture-templates `(;; Tasks
                            ("t" "Tasks")
                            ("tt" "Today" entry (file+olp+datetree "tasks.org")
