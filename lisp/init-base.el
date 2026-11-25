@@ -159,6 +159,11 @@
   ;; paragraphs
   (sentence-end-double-space nil))
 
+;; Auto-refresh image buffers when files change on disk
+(use-package image-mode
+  :ensure nil
+  :hook (image-mode . auto-revert-mode))
+
 ;; Back to the previous position
 (use-package saveplace
   :ensure nil
