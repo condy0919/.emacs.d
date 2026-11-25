@@ -186,7 +186,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
         "d" 'org-deadline
         "e" 'org-set-effort
         "f" 'org-footnote-action
-        "l" 'org-lint
+        "l" 'org-link-preview
         "o" 'org-toggle-ordered-property
         "p" 'org-set-property
         "q" 'org-set-tags-command
