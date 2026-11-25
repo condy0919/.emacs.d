@@ -204,19 +204,25 @@
       (setq-local org-complete-tags-always-offer-all-agenda-tags t)))
   :custom
   (org-capture-use-agenda-date t)
-  (org-capture-templates `(;; Tasks
+  (org-capture-templates '(;; Tasks
                            ("t" "Tasks")
                            ("tt" "Today" entry (file+olp+datetree "tasks.org")
-                            "* %? %^{EFFORT}p"
-                            :prepend t)
+                            "* TODO %?%^{EFFORT}p"
+                            :prepend t
+                            :empty-lines 1)
                            ("ti" "Inbox" entry (file+headline "tasks.org" "Inbox")
-                            "* %?\n%i\n")
+                            "* TODO %?\n%i"
+                            :empty-lines 1)
                            ("tm" "Mail" entry (file+headline "tasks.org" "Inbox")
-                            "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:\n")
-                           ;; Capture
-                           ("c" "Capture")
-                           ("cn" "Note" entry (file+headline "capture.org" "Notes")
-                            "* %? %^g\n%i\n"))))
+                            "* TODO %^{type|reply to|contact} %^{recipient} about %^{subject} :MAIL:"
+                            :empty-lines 1)
+                           ;; Diary & Notes
+                           ("d" "Diary" entry (file+olp+datetree "diary.org")
+                            "* %U %?\n%i"
+                            :empty-lines 1)
+                           ("n" "Note" entry (file+headline "notes.org" "Notes")
+                            "* %? %^g\n%i"
+                            :empty-lines 1))))
 
 (provide 'init-org)
 ;;; init-org.el ends here
