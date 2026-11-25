@@ -391,7 +391,7 @@ yay -S ocaml-ocp-indent dune
 
 - `python-mode` 按项目隔离交互式解释器
 - Emacs Lisp 直接用内置支持，常用求值快捷键绑在 `SPC m` 下（如 `SPC m e b`、`SPC m e d`、`SPC m e e`）
-- 另有 Shell、Bazel、YAML、Graphviz、Systemd 和 Bison/Flex 配置，详见 [init-dev.el](lisp/init-dev.el) 和 [lisp/lang/](lisp/lang/)
+- 另有 Shell、Bazel、YAML、Systemd 和 Bison/Flex 配置，详见 [init-dev.el](lisp/init-dev.el) 和 [lisp/lang/](lisp/lang/)
 
 # 截图
 
