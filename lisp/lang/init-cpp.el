@@ -394,7 +394,7 @@
                          "Insert a namespace block"
                          'c++-tempo-tags))
 
-;; cmake, the de factor build system for C++
+;; cmake, the de facto build system for C++
 (use-package cmake-mode
   :ensure t
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)

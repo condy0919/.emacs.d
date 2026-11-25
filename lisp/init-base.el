@@ -104,7 +104,7 @@
 ;; Use TeX as default IM
 (setq default-input-method "TeX")
 
-;; Highlight parenthesises. :-)
+;; Highlight parenthesis. :-)
 (use-package paren
   :ensure nil
   :hook (after-init . show-paren-mode)
