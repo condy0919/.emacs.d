@@ -459,6 +459,7 @@ Else, call `comment-or-uncomment-region' on the current line."
       ("Prog" (and (derived-mode . prog-mode)
                    (not (starred-name))))
       ("Dired" (mode . dired-mode))
+      ("Image" (mode . image-mode))
       ("IRC" (or (mode . rcirc-mode)
                  (mode . erc-mode)))))))
 
