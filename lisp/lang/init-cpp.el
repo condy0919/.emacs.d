@@ -23,7 +23,8 @@
              ;; headers -> sources / test / benchmark
              (,(rx (group (+ (not "/"))) (or ".hpp" ".hh" ".hxx" ".h") eos)
               "\\1\\.cpp" "\\1\\.cc" "\\1\\.cxx" "\\1\\.c"
-              "\\1_test\\.cpp" "\\1_test\\.c" "\\1_benchmark\\.cpp")
+              "\\1_test\\.cpp" "\\1_test\\.cc" "\\1_test\\.cxx" "\\1_test\\.c"
+              "\\1_benchmark\\.cpp" "\\1_benchmark\\.cc" "\\1_benchmark\\.cxx" "\\1_benchmark\\.c")
              ;; sources -> headers / test / benchmark
              (,(rx (group (+ (not "/"))) (group (or ".cpp" ".cc" ".cxx" ".c")) eos)
               "\\1\\.hpp" "\\1\\.hh" "\\1\\.hxx" "\\1\\.h"
