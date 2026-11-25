@@ -155,6 +155,45 @@
   :custom
   (org-src-content-indentation 0))
 
+;; D2-inspired SVG styling for Graphviz dot blocks
+(use-package ob-dot
+  :ensure nil
+  :defer t
+  :config
+  (setq org-babel-default-header-args:dot
+        `((:results . "file")
+          (:exports . "both")
+          (:cmdline . ,(string-join
+                        '("-Tsvg"
+                          ;; White canvas + padding for GitHub light/dark themes
+                          "-Gbgcolor=#ffffff"
+                          "-Gpad=0.3"
+                          "-Gnodesep=0.5"
+                          "-Granksep=0.6"
+                          "-Gsplines=polyline"
+                          "-Gfontname=sans-serif"
+                          "-Gfontsize=13"
+                          "-Gfontcolor=#1e293b"
+                          ;; D2-style rounded cards with generous padding for CJK
+                          "-Nshape=box"
+                          "-Nstyle=rounded,filled"
+                          "-Nmargin=0.22,0.12"
+                          "-Nfillcolor=#edf2ff"
+                          "-Ncolor=#4a6cf7"
+                          "-Npenwidth=1.2"
+                          "-Nfontname=sans-serif"
+                          "-Nfontsize=13"
+                          "-Nfontcolor=#1e293b"
+                          ;; Crisp muted connectors
+                          "-Ecolor=#64748b"
+                          "-Epenwidth=1.2"
+                          "-Earrowhead=vee"
+                          "-Earrowsize=0.75"
+                          "-Efontname=sans-serif"
+                          "-Efontsize=11"
+                          "-Efontcolor=#475569")
+                        " ")))))
+
 ;; Create structured information quickly
 (use-package org-capture
   :ensure nil
