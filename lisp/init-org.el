@@ -9,54 +9,7 @@
 
 (use-package org
   :ensure nil
-  :hook ((org-mode . visual-line-mode)
-         (org-babel-after-execute . org-babel-preview-result))
-  :config
-  (defun org-babel--result-image-file ()
-    "Return the first existing image file in the current Org Babel result."
-    (when-let* ((location (org-babel-where-is-src-block-result)))
-      (when (and (>= location (point-min)) (<= location (point-max)))
-        (save-excursion
-          (goto-char location)
-          (let ((case-fold-search t))
-            (when (looking-at-p org-babel-result-regexp)
-              (goto-char (org-element-post-affiliated (org-element-at-point)))
-              (let ((end (org-babel-result-end)))
-                (catch 'found
-                  (while (re-search-forward org-link-any-re end t)
-                    (save-excursion
-                      (backward-char)
-                      (when-let* ((link (org-element-lineage (org-element-context) 'link t))
-                                  (type (org-element-property :type link))
-                                  (path (org-element-property :path link))
-                                  (file (pcase type
-                                          ("file" (expand-file-name (substitute-in-file-name path)))
-                                          ("attachment"
-                                           (require 'org-attach)
-                                           (org-attach-expand path)))))
-                        (when (and (string-match-p (image-file-name-regexp) file)
-                                   (file-exists-p file))
-                          (throw 'found file)))))))))))))
-
-  (defun org-babel-preview-result ()
-    "Preview the current Org Babel result image in a side window."
-    (when (display-images-p)
-      (when-let* ((file (org-babel--result-image-file)))
-        (let* ((existing (find-buffer-visiting file))
-               (buf (or existing (find-file-noselect file))))
-          (display-buffer
-           buf
-           '((display-buffer-reuse-window display-buffer-in-side-window)
-             (side . right)
-             (slot . 0)
-             (window-width . 0.45)))
-          (with-current-buffer buf
-            (cond
-             ((and existing (not (buffer-modified-p)))
-              (let ((inhibit-message t))
-                (revert-buffer t t t)))
-             ((derived-mode-p 'image-mode)
-              (image-toggle-display-image))))))))
+  :hook (org-mode . visual-line-mode)
   :custom
   (org-directory "~/.org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
